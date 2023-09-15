@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf2hhha6auhwc"]
+
+[ext_resource type="Texture2D" uid="uid://cc5fotk2nhgsn" path="res://Background/StartMenuBackground.png" id="1_v78f3"]
+[ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_kaoco"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/ExitUI.cs" id="4_jewm0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk0wm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbk44"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(34, 3)
+texture = ExtResource("1_v78f3")
+hframes = 3
+vframes = 2
+
+[node name="Start" type="Button" parent="."]
+layout_direction = 2
+offset_left = -215.0
+offset_top = -81.5
+offset_right = -133.0
+offset_bottom = -33.5
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.870588, 0.65098, 0.478431, 1)
+theme_override_colors/font_focus_color = Color(0.870588, 0.65098, 0.478431, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hk0wm")
+text = "PLAY"
+flat = true
+alignment = 0
+
+[node name="Quit" type="Button" parent="."]
+offset_left = -215.0
+offset_top = -42.0
+offset_right = -133.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.870588, 0.65098, 0.478431, 1)
+theme_override_colors/font_focus_color = Color(0.870588, 0.65098, 0.478431, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nbk44")
+text = "QUIT"
+flat = true
+alignment = 0
+
+[node name="ExitUI" type="Node" parent="."]
+script = ExtResource("4_jewm0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

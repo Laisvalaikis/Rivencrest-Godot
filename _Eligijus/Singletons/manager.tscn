@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csrw8551ker7e"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/UIStack.cs" id="1_lbvt8"]
+
+[node name="Manager" type="Node"]
+script = ExtResource("1_lbvt8")
