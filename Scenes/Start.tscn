@@ -1,12 +1,299 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf2hhha6auhwc"]
+[gd_scene load_steps=62 format=3 uid="uid://bf2hhha6auhwc"]
 
+[ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/ExitGame.cs" id="1_7t1oi"]
 [ext_resource type="Texture2D" uid="uid://cc5fotk2nhgsn" path="res://Background/StartMenuBackground.png" id="1_v78f3"]
 [ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_kaoco"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/View.cs" id="3_h5osm"]
+[ext_resource type="FontFile" uid="uid://crwa4qq00v0ab" path="res://Fonts/rubber-biscuit/DisposableDroidBB-Italic.ttf" id="3_xqwg4"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/ExitUI.cs" id="4_jewm0"]
+[ext_resource type="ButtonGroup" uid="uid://bben6g1ru47lm" path="res://_Eligijus/Prefabs/ButtonGroups/ColorButtons.tres" id="4_jqlsu"]
+[ext_resource type="ButtonGroup" uid="uid://s1aeo2c2f8sw" path="res://_Eligijus/Prefabs/ButtonGroups/Difficulty.tres" id="5_a1b7b"]
+[ext_resource type="Texture2D" uid="uid://d1dc4r57p1q4p" path="res://_Eligijus/Sprites/Slot Card/CharacterCards.png" id="6_qb7ql"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i51hm"]
+atlas = ExtResource("1_v78f3")
+region = Rect2(10, 40, 400, 245)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b82ti"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hk0wm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbk44"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr4cm"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.815686)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_m3188"]
+Panel/styles/panel = SubResource("StyleBoxFlat_nr4cm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0i33"]
+bg_color = Color(1, 1, 1, 0.0705882)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lylsn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tfi8"]
+bg_color = Color(0.615686, 0.0705882, 1, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfgvw"]
+bg_color = Color(0.419608, 0, 0.803922, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kn18v"]
+bg_color = Color(0.615686, 0.0705882, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4ptp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1h2q3"]
+bg_color = Color(1, 0.0705882, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwa1w"]
+bg_color = Color(0.803922, 0, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfkhf"]
+bg_color = Color(1, 0.0705882, 0.129412, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_brhka"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mby8k"]
+bg_color = Color(0.0705882, 1, 0.32549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ieus2"]
+bg_color = Color(0, 0.803922, 0.32549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0poxv"]
+bg_color = Color(0.0705882, 1, 0.32549, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u68fx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf3po"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jxqc"]
+bg_color = Color(0.803922, 0.803922, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8lry"]
+bg_color = Color(1, 1, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gi1k1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsh54"]
+bg_color = Color(0.164706, 0, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfo8s"]
+bg_color = Color(0.0588235, 0, 0.803922, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pix1b"]
+bg_color = Color(0.164706, 0, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1r6t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s38mv"]
+bg_color = Color(1, 1, 1, 0.0705882)
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kb0u5"]
+bg_color = Color(1, 1, 1, 0.117647)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulbih"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kq3tp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix6ep"]
+bg_color = Color(1, 1, 1, 0.0705882)
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_daidt"]
+bg_color = Color(1, 1, 1, 0.117647)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6f8ob"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oxg43"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1auti"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kko1u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwgkm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7tb3r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_asngy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85l56"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kun32"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbhob"]
+bg_color = Color(0, 0, 0, 0.815686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8tgo"]
+bg_color = Color(1, 1, 1, 0.360784)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip4es"]
+bg_color = Color(1, 1, 1, 0.313726)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bm2em"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3kya"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_detail = 10
+expand_margin_right = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tynhy"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_detail = 10
+expand_margin_left = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rsgy6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ple3"]
+bg_color = Color(1, 1, 1, 0.313726)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dgt7c"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,53 +301,540 @@
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(34, 3)
-texture = ExtResource("1_v78f3")
-hframes = 3
-vframes = 2
+[node name="Canvas" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+script = ExtResource("1_7t1oi")
 
-[node name="Start" type="Button" parent="."]
-layout_direction = 2
-offset_left = -215.0
-offset_top = -81.5
-offset_right = -133.0
-offset_bottom = -33.5
+[node name="TextureRect" type="TextureRect" parent="Canvas"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(2.08165e-12, 2.08165e-12)
+texture = SubResource("AtlasTexture_i51hm")
+
+[node name="MainMenu" type="Panel" parent="Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b82ti")
+script = ExtResource("3_h5osm")
+viewEnabledOnStart = true
+viewCanBeDisabled = false
+addViewToStack = false
+
+[node name="Start" type="Button" parent="Canvas/MainMenu"]
+layout_direction = 2
+offset_left = 150.0
+offset_top = 180.0
+offset_right = 455.0
+offset_bottom = 348.0
+scale = Vector2(1, 0.9)
 theme_override_colors/font_hover_color = Color(0.870588, 0.65098, 0.478431, 1)
 theme_override_colors/font_focus_color = Color(0.870588, 0.65098, 0.478431, 1)
 theme_override_fonts/font = ExtResource("2_kaoco")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 160
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hk0wm")
 text = "PLAY"
 flat = true
 alignment = 0
 
-[node name="Quit" type="Button" parent="."]
-offset_left = -215.0
-offset_top = -42.0
-offset_right = -133.0
-offset_bottom = 6.0
+[node name="Quit" type="Button" parent="Canvas/MainMenu"]
+offset_left = 150.0
+offset_top = 300.0
+offset_right = 350.0
+offset_bottom = 428.0
 grow_vertical = 2
+scale = Vector2(1, 0.9)
 theme_override_colors/font_hover_color = Color(0.870588, 0.65098, 0.478431, 1)
 theme_override_colors/font_focus_color = Color(0.870588, 0.65098, 0.478431, 1)
 theme_override_fonts/font = ExtResource("2_kaoco")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 120
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nbk44")
 text = "QUIT"
 flat = true
 alignment = 0
 
-[node name="ExitUI" type="Node" parent="."]
-script = ExtResource("4_jewm0")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_scale = 0.001
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="SaveCreation" type="Panel" parent="Canvas"]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_m3188")
+script = ExtResource("3_h5osm")
+
+[node name="SlotName" type="LineEdit" parent="Canvas/SaveCreation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -420.0
+offset_right = 380.0
+offset_bottom = -220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_xqwg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_n0i33")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lylsn")
+placeholder_text = "SLOT NAME"
+alignment = 1
+
+[node name="Label" type="Label" parent="Canvas/SaveCreation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -180.0
+offset_right = 400.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(2.08165e-12, 2.08165e-12)
+theme_override_colors/font_color = Color(1, 0.87451, 0.52549, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 75
+text = "Select Your Team Color"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorContainer" type="HBoxContainer" parent="Canvas/SaveCreation"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 0
+offset_left = 540.0
+offset_top = 480.0
+offset_right = 1420.0
+offset_bottom = 580.0
+pivot_offset = Vector2(2.08165e-12, 2.08165e-12)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 85
+
+[node name="Magenta" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_5tfi8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kfgvw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kn18v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i4ptp")
+toggle_mode = true
+button_group = ExtResource("4_jqlsu")
+
+[node name="Red" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_1h2q3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gwa1w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qfkhf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_brhka")
+toggle_mode = true
+button_group = ExtResource("4_jqlsu")
+
+[node name="Green" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_mby8k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ieus2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0poxv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u68fx")
+toggle_mode = true
+button_group = ExtResource("4_jqlsu")
+
+[node name="Yellow" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_qf3po")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2jxqc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v8lry")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gi1k1")
+toggle_mode = true
+button_group = ExtResource("4_jqlsu")
+
+[node name="Blue" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xsh54")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yfo8s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pix1b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d1r6t")
+toggle_mode = true
+button_group = ExtResource("4_jqlsu")
+
+[node name="DifficultyContainer" type="HBoxContainer" parent="Canvas/SaveCreation"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -590.0
+offset_top = 120.0
+offset_right = 590.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(2.08165e-12, 2.08165e-12)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 500
+
+[node name="Easy" type="Button" parent="Canvas/SaveCreation/DifficultyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_s38mv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kb0u5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ulbih")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kq3tp")
+toggle_mode = true
+button_group = ExtResource("5_a1b7b")
+text = "EASY"
+
+[node name="Hard" type="Button" parent="Canvas/SaveCreation/DifficultyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_ix6ep")
+theme_override_styles/hover = SubResource("StyleBoxFlat_daidt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ulbih")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6f8ob")
+toggle_mode = true
+button_group = ExtResource("5_a1b7b")
+text = "HARD"
+
+[node name="Back" type="Button" parent="Canvas/SaveCreation"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = -220.0
+offset_right = -229.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.87451, 0.52549, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oxg43")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1auti")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kko1u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qwgkm")
+text = "BACK"
+
+[node name="Create" type="Button" parent="Canvas/SaveCreation"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = -220.0
+offset_right = 408.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.87451, 0.52549, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7tb3r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_asngy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_85l56")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kun32")
+disabled = true
+text = "CREATE"
+
+[node name="SlotCards" type="Panel" parent="Canvas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nbhob")
+script = ExtResource("3_h5osm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/SlotCards"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -368.0
+offset_right = 850.0
+offset_bottom = 368.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 122
+
+[node name="SlotCard1" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_qb7ql")
+
+[node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 380
+theme_override_styles/normal = SubResource("StyleBoxFlat_t8tgo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ip4es")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t8tgo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bm2em")
+text = "+"
+
+[node name="SlotMenu" type="Control" parent="Canvas/SlotCards/HBoxContainer/SlotCard1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SlotName" type="Label" parent="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 11.0
+offset_bottom = 114.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+text = "SLOT 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlotButtons" type="HBoxContainer" parent="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Play" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_s3kya")
+text = "PLAY"
+
+[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
+text = "DEL"
+
+[node name="SlotCard2" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_qb7ql")
+
+[node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 380
+theme_override_styles/normal = SubResource("StyleBoxFlat_t8tgo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ip4es")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t8tgo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rsgy6")
+text = "+"
+
+[node name="SlotMenu" type="Control" parent="Canvas/SlotCards/HBoxContainer/SlotCard2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SlotName" type="Label" parent="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 11.0
+offset_bottom = 114.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+text = "SLOT 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlotButtons" type="HBoxContainer" parent="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Play" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_s3kya")
+text = "PLAY"
+
+[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
+text = "DEL"
+
+[node name="SlotCard3" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_qb7ql")
+
+[node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 380
+theme_override_styles/normal = SubResource("StyleBoxFlat_t8tgo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ple3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t8tgo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dgt7c")
+text = "+"
+
+[node name="SlotMenu" type="Control" parent="Canvas/SlotCards/HBoxContainer/SlotCard3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SlotName" type="Label" parent="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 11.0
+offset_bottom = 114.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+text = "SLOT 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlotButtons" type="HBoxContainer" parent="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -148.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Play" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons"]
+layout_mode = 2
+size_flags_horizontal = 7
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_s3kya")
+text = "PLAY"
+
+[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
+text = "DEL"
+
+[node name="Back" type="Button" parent="Canvas/SlotCards"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -95.5
+offset_top = -140.0
+offset_right = 95.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.87451, 0.52549, 1)
+theme_override_fonts/font = ExtResource("2_kaoco")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oxg43")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1auti")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kko1u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qwgkm")
+text = "BACK"
+
+[node name="ExitUI" type="Node" parent="."]
+script = ExtResource("4_jewm0")
+
+[connection signal="pressed" from="Canvas/MainMenu/Start" to="Canvas/SlotCards" method="ButtonPressed"]
+[connection signal="pressed" from="Canvas/MainMenu/Quit" to="Canvas" method="ButtonPressed"]
+[connection signal="pressed" from="Canvas/SaveCreation/Back" to="Canvas/SaveCreation" method="ExitView"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="Canvas/SaveCreation" method="OpenView"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/AddButton" to="Canvas/SaveCreation" method="OpenView"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/AddButton" to="Canvas/SaveCreation" method="OpenView"]
+[connection signal="pressed" from="Canvas/SlotCards/Back" to="Canvas/SlotCards" method="ExitView"]

@@ -3,6 +3,12 @@ using System;
 
 public partial class View : Control
 {
+	[Signal]
+	public delegate void OpenViewSignalEventHandler();
+	[Signal]
+	public delegate void CloseViewSignalEventHandler();
+	[Export] 
+	private bool viewEnabledOnStart { get; set; } = false;
 	[Export]
 	private bool viewCanBeDisabled {get; set;} = true;
 	[Export]
@@ -11,7 +17,10 @@ public partial class View : Control
 	private bool _disabled = true;
 	public override void _Ready()
 	{
-		OpenView();
+		if (viewEnabledOnStart)
+		{
+			OpenView();
+		}
 	}
 	
 	public void OpenView()
@@ -26,7 +35,8 @@ public partial class View : Control
 			_viewIndex = UIStack.Instance.AddView(this);
 		}
 		_disabled = false;
-	// 	openView.Invoke();
+		EmitSignal("OpenViewSignalEventHandler");
+		GD.Print(Name);
 	}
 	
 	public void UpdateIndex(int index)
@@ -47,7 +57,7 @@ public partial class View : Control
 		}
 
 		_disabled = true;
-		// closeView.Invoke();
+		EmitSignal("CloseViewSignalEventHandler");
 		_viewIndex = -1;
 	}
 	
@@ -73,7 +83,9 @@ public partial class View : Control
 		_disabled = true;
 	}
 	
+	public void ButtonPressed()
+	{
+		OpenView();
+	}
+
 }
-
-
-
