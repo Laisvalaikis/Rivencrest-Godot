@@ -7,7 +7,7 @@ public class UnlockedAbilities
 
    public UnlockedAbilities()
    {
-      abilityUnlocked = false;
-      abilityConfirmed = false;
+	  abilityUnlocked = false;
+	  abilityConfirmed = false;
    }
 }

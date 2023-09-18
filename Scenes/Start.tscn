@@ -323,12 +323,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b82ti")
 script = ExtResource("3_h5osm")
-viewEnabledOnStart = true
 viewCanBeDisabled = false
 addViewToStack = false
 
 [node name="Start" type="Button" parent="Canvas/MainMenu"]
 layout_direction = 2
+layout_mode = 0
 offset_left = 150.0
 offset_top = 180.0
 offset_right = 455.0
@@ -344,6 +344,7 @@ flat = true
 alignment = 0
 
 [node name="Quit" type="Button" parent="Canvas/MainMenu"]
+layout_mode = 0
 offset_left = 150.0
 offset_top = 300.0
 offset_right = 350.0

@@ -8,6 +8,12 @@
 
 config_version=5
 
+[MonoCustomResourceRegistry]
+
+ClassPrefix=""
+SearchType=0
+ResourceScriptDirectories=["res://", "res://Data"]
+
 [application]
 
 config/name="Rivencrest-godot"
@@ -27,6 +33,10 @@ window/size/viewport_height=1080
 [dotnet]
 
 project/assembly_name="Rivencrest-godot"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/MonoCustomResourceRegistry/plugin.cfg")
 
 [rendering]
 

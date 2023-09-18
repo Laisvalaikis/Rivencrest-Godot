@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Godot;
 
 [System.Serializable]
 public class Encounter
@@ -26,15 +27,15 @@ public class Encounter
         numOfEnemies = 0;
     }
 
-    public static bool operator ==(Encounter a, Encounter b)
-    {
-        return JsonUtility.ToJson(a) == JsonUtility.ToJson(b);
-    }
-
-    public static bool operator !=(Encounter a, Encounter b)
-    {
-        return JsonUtility.ToJson(a) != JsonUtility.ToJson(b);
-    }
+    // public static bool operator ==(Encounter a, Encounter b)
+    // {
+    //     return JsonUtility.ToJson(a) == JsonUtility.ToJson(b);
+    // }
+    //
+    // public static bool operator !=(Encounter a, Encounter b)
+    // {
+    //     return JsonUtility.ToJson(a) != JsonUtility.ToJson(b);
+    // }
 
     public override bool Equals(object obj)
     {

@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using Godot;
 
 
-    [Serializable]
+[Serializable]
     public class SavedCharacter : SavableCharacter
     {
-        public GameObject prefab;
+        public Node prefab;
         public SavedCharacter() { }
 
-        public SavedCharacter(GameObject prefab, int level, int xP, int xPToGain, bool dead, string characterName,
+        public SavedCharacter(Node prefab, int level, int xP, int xPToGain, bool dead, string characterName,
             int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int confirmedAbilities, List<Blessing> blessings, int prefabIndex, PlayerInformationData playerInformation)
             : base(level, xP, xPToGain, dead, characterName, abilityPointCount, unlockedAbilities, confirmedAbilities, blessings, prefabIndex, playerInformation)
         {
@@ -20,12 +21,12 @@ using System;
             this.prefab = x.prefab;
         }
 
-        public SavedCharacter(SavableCharacter x, GameObject prefab) : base(x)
+        public SavedCharacter(SavableCharacter x, Node prefab) : base(x)
         {
             this.prefab = prefab;
         }
         
-        public SavedCharacter(SavableCharacter x, GameObject prefab, PlayerInformationData playerInformation) : base(x)
+        public SavedCharacter(SavableCharacter x, Node prefab, PlayerInformationData playerInformation) : base(x)
         {
             this.prefab = prefab;
             this.playerInformation = playerInformation;

@@ -18,15 +18,15 @@ public static class LocalSaveSystem
 		try
 		{
 			Directory.CreateDirectory(Path.GetDirectoryName(path));
-			string dataToStore = JsonUtility.ToJson(data, true);
+			// string dataToStore = JsonUtility.ToJson(data, true);
 			//dataToStore = EncryptDecrypt(dataToStore);
-			using (FileStream stream = new FileStream(path, FileMode.Create))
-			{
-				using (StreamWriter writer = new StreamWriter(stream))
-				{
-					writer.Write(dataToStore);
-				}
-			}
+			// using (FileStream stream = new FileStream(path, FileMode.Create))
+			// {
+			// 	using (StreamWriter writer = new StreamWriter(stream))
+			// 	{
+			// 		writer.Write(dataToStore);
+			// 	}
+			// }
 		}
 		catch (Exception e)
 		{
@@ -46,15 +46,15 @@ public static class LocalSaveSystem
 			try
 			{
 				string dataToLoad = "";
-				using (FileStream stream = new FileStream(path, FileMode.Open))
-				{
-					using (StreamReader reader = new StreamReader(stream))
-					{
-						dataToLoad = reader.ReadToEnd();
-					}
-				}
+				// using (FileStream stream = new FileStream(path, FileMode.Open))
+				// {
+				// 	using (StreamReader reader = new StreamReader(stream))
+				// 	{
+				// 		dataToLoad = reader.ReadToEnd();
+				// 	}
+				// }
 				//dataToLoad = EncryptDecrypt(dataToLoad);
-				loadedData = JsonUtility.FromJson<T>(dataToLoad);
+				// loadedData = JsonUtility.FromJson<T>(dataToLoad);
 			}
 			catch (Exception e)
 			{
