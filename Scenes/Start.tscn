@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bf2hhha6auhwc"]
+[gd_scene load_steps=66 format=3 uid="uid://bf2hhha6auhwc"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/ExitGame.cs" id="1_7t1oi"]
 [ext_resource type="Texture2D" uid="uid://cc5fotk2nhgsn" path="res://Background/StartMenuBackground.png" id="1_v78f3"]
@@ -8,7 +8,10 @@
 [ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/ExitUI.cs" id="4_jewm0"]
 [ext_resource type="ButtonGroup" uid="uid://bben6g1ru47lm" path="res://_Eligijus/Prefabs/ButtonGroups/ColorButtons.tres" id="4_jqlsu"]
 [ext_resource type="ButtonGroup" uid="uid://s1aeo2c2f8sw" path="res://_Eligijus/Prefabs/ButtonGroups/Difficulty.tres" id="5_a1b7b"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/CreateSave.cs" id="5_xvt15"]
 [ext_resource type="Texture2D" uid="uid://d1dc4r57p1q4p" path="res://_Eligijus/Sprites/Slot Card/CharacterCards.png" id="6_qb7ql"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveSlotCard.cs" id="9_ihtty"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveManager.cs" id="11_a1u1o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i51hm"]
 atlas = ExtResource("1_v78f3")
@@ -34,6 +37,8 @@ corner_detail = 5
 
 [sub_resource type="Theme" id="Theme_m3188"]
 Panel/styles/panel = SubResource("StyleBoxFlat_nr4cm")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xevjl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0i33"]
 bg_color = Color(1, 1, 1, 0.0705882)
@@ -360,7 +365,7 @@ text = "QUIT"
 flat = true
 alignment = 0
 
-[node name="SaveCreation" type="Panel" parent="Canvas"]
+[node name="SaveCreationView" type="Panel" parent="Canvas"]
 visible = false
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 15
@@ -371,7 +376,19 @@ grow_vertical = 2
 theme = SubResource("Theme_m3188")
 script = ExtResource("3_h5osm")
 
-[node name="SlotName" type="LineEdit" parent="Canvas/SaveCreation"]
+[node name="SaveCreation" type="Panel" parent="Canvas/SaveCreationView" node_paths=PackedStringArray("buttonForCreation", "_saveManager")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xevjl")
+script = ExtResource("5_xvt15")
+buttonForCreation = NodePath("Create")
+_saveManager = NodePath("../../../GameManager/SaveManager")
+
+[node name="SlotName" type="LineEdit" parent="Canvas/SaveCreationView/SaveCreation"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -391,7 +408,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_lylsn")
 placeholder_text = "SLOT NAME"
 alignment = 1
 
-[node name="Label" type="Label" parent="Canvas/SaveCreation"]
+[node name="Label" type="Label" parent="Canvas/SaveCreationView/SaveCreation"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -412,9 +429,8 @@ text = "Select Your Team Color"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorContainer" type="HBoxContainer" parent="Canvas/SaveCreation"]
+[node name="ColorContainer" type="HBoxContainer" parent="Canvas/SaveCreationView/SaveCreation"]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
-layout_mode = 0
 offset_left = 540.0
 offset_top = 480.0
 offset_right = 1420.0
@@ -424,7 +440,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 85
 
-[node name="Magenta" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+[node name="Magenta" type="Button" parent="Canvas/SaveCreationView/SaveCreation/ColorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_5tfi8")
@@ -434,7 +450,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_i4ptp")
 toggle_mode = true
 button_group = ExtResource("4_jqlsu")
 
-[node name="Red" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+[node name="Red" type="Button" parent="Canvas/SaveCreationView/SaveCreation/ColorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_1h2q3")
@@ -444,7 +460,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_brhka")
 toggle_mode = true
 button_group = ExtResource("4_jqlsu")
 
-[node name="Green" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+[node name="Green" type="Button" parent="Canvas/SaveCreationView/SaveCreation/ColorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_mby8k")
@@ -454,7 +470,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_u68fx")
 toggle_mode = true
 button_group = ExtResource("4_jqlsu")
 
-[node name="Yellow" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+[node name="Yellow" type="Button" parent="Canvas/SaveCreationView/SaveCreation/ColorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_qf3po")
@@ -464,7 +480,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_gi1k1")
 toggle_mode = true
 button_group = ExtResource("4_jqlsu")
 
-[node name="Blue" type="Button" parent="Canvas/SaveCreation/ColorContainer"]
+[node name="Blue" type="Button" parent="Canvas/SaveCreationView/SaveCreation/ColorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_xsh54")
@@ -474,7 +490,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_d1r6t")
 toggle_mode = true
 button_group = ExtResource("4_jqlsu")
 
-[node name="DifficultyContainer" type="HBoxContainer" parent="Canvas/SaveCreation"]
+[node name="DifficultyContainer" type="HBoxContainer" parent="Canvas/SaveCreationView/SaveCreation"]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 1
 anchors_preset = 8
@@ -493,7 +509,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 500
 
-[node name="Easy" type="Button" parent="Canvas/SaveCreation/DifficultyContainer"]
+[node name="Easy" type="Button" parent="Canvas/SaveCreationView/SaveCreation/DifficultyContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -507,7 +523,7 @@ toggle_mode = true
 button_group = ExtResource("5_a1b7b")
 text = "EASY"
 
-[node name="Hard" type="Button" parent="Canvas/SaveCreation/DifficultyContainer"]
+[node name="Hard" type="Button" parent="Canvas/SaveCreationView/SaveCreation/DifficultyContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -521,7 +537,7 @@ toggle_mode = true
 button_group = ExtResource("5_a1b7b")
 text = "HARD"
 
-[node name="Back" type="Button" parent="Canvas/SaveCreation"]
+[node name="Back" type="Button" parent="Canvas/SaveCreationView/SaveCreation"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -545,7 +561,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_kko1u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qwgkm")
 text = "BACK"
 
-[node name="Create" type="Button" parent="Canvas/SaveCreation"]
+[node name="Create" type="Button" parent="Canvas/SaveCreationView/SaveCreation"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -595,10 +611,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 122
 
-[node name="SlotCard1" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
+[node name="SlotCard1" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("addButton", "slotMenu", "slotTitle")]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
+script = ExtResource("9_ihtty")
+addButton = NodePath("AddButton")
+slotMenu = NodePath("SlotMenu")
+slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1"]
 visible = false
@@ -665,10 +685,15 @@ theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
 text = "DEL"
 
-[node name="SlotCard2" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
+[node name="SlotCard2" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("addButton", "slotMenu", "slotTitle")]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
+script = ExtResource("9_ihtty")
+slotIndex = 1
+addButton = NodePath("AddButton")
+slotMenu = NodePath("SlotMenu")
+slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2"]
 visible = false
@@ -735,10 +760,15 @@ theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
 text = "DEL"
 
-[node name="SlotCard3" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
+[node name="SlotCard3" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("addButton", "slotMenu", "slotTitle")]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
+script = ExtResource("9_ihtty")
+slotIndex = 2
+addButton = NodePath("AddButton")
+slotMenu = NodePath("SlotMenu")
+slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3"]
 visible = false
@@ -832,10 +862,35 @@ text = "BACK"
 [node name="ExitUI" type="Node" parent="."]
 script = ExtResource("4_jewm0")
 
+[node name="GameManager" type="Node" parent="."]
+
+[node name="SaveManager" type="Node" parent="GameManager"]
+script = ExtResource("11_a1u1o")
+
 [connection signal="pressed" from="Canvas/MainMenu/Start" to="Canvas/SlotCards" method="ButtonPressed"]
 [connection signal="pressed" from="Canvas/MainMenu/Quit" to="Canvas" method="ButtonPressed"]
-[connection signal="pressed" from="Canvas/SaveCreation/Back" to="Canvas/SaveCreation" method="ExitView"]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="Canvas/SaveCreation" method="OpenView"]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/AddButton" to="Canvas/SaveCreation" method="OpenView"]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/AddButton" to="Canvas/SaveCreation" method="OpenView"]
+[connection signal="CloseViewSignal" from="Canvas/SaveCreationView" to="Canvas/SlotCards" method="OpenView"]
+[connection signal="OpenViewSignal" from="Canvas/SaveCreationView" to="Canvas/SlotCards" method="ExitViewWithoutRemoveFromStack"]
+[connection signal="text_changed" from="Canvas/SaveCreationView/SaveCreation/SlotName" to="Canvas/SaveCreationView/SaveCreation" method="TextInput"]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/ColorContainer/Magenta" to="Canvas/SaveCreationView/SaveCreation" method="SetColor" binds= ["Magenta"]]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/ColorContainer/Red" to="Canvas/SaveCreationView/SaveCreation" method="TextInput" binds= ["Red"]]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/ColorContainer/Green" to="Canvas/SaveCreationView/SaveCreation" method="SetColor" binds= ["Green"]]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/ColorContainer/Yellow" to="Canvas/SaveCreationView/SaveCreation" method="TextInput" binds= ["Yellow"]]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/ColorContainer/Blue" to="Canvas/SaveCreationView/SaveCreation" method="TextInput" binds= ["Blue"]]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/DifficultyContainer/Easy" to="Canvas/SaveCreationView/SaveCreation" method="SetDifficulty" binds= [0]]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/DifficultyContainer/Hard" to="Canvas/SaveCreationView/SaveCreation" method="SetDifficulty" binds= [1]]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/Back" to="Canvas/SaveCreationView" method="ExitView"]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/Create" to="Canvas/SaveCreationView/SaveCreation" method="CreateNewSave"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="Canvas/SaveCreationView" method="OpenView"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="GameManager/SaveManager" method="SaveData" binds= [0]]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons/Delete" to="Canvas/SlotCards/HBoxContainer/SlotCard1" method="DeleteSlot"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons/Delete" to="GameManager/SaveManager" method="DeleteSlot" binds= [0]]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/AddButton" to="Canvas/SaveCreationView" method="OpenView"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/AddButton" to="GameManager/SaveManager" method="SaveData" binds= [1]]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons/Delete" to="Canvas/SlotCards/HBoxContainer/SlotCard2" method="DeleteSlot"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons/Delete" to="GameManager/SaveManager" method="DeleteSlot" binds= [1]]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/AddButton" to="Canvas/SaveCreationView" method="OpenView"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/AddButton" to="GameManager/SaveManager" method="SaveData" binds= [2]]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons/Delete" to="Canvas/SlotCards/HBoxContainer/SlotCard3" method="DeleteSlot"]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons/Delete" to="GameManager/SaveManager" method="DeleteSlot" binds= [2]]
 [connection signal="pressed" from="Canvas/SlotCards/Back" to="Canvas/SlotCards" method="ExitView"]

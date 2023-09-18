@@ -6,12 +6,12 @@ public static class SaveSystem
 {
 	private static string defaultPath = "user://";
 	private static string pathToData = ProjectSettings.GlobalizePath(defaultPath);
-	private static string currentSlot = pathToData + "/currentSlot.log";
-	private static string[] slots = { pathToData + "/slot1.log",
-		pathToData + "/slot2.log", pathToData + "/slot3.log" };
-	private static string globalStatistics = pathToData + "/globalstats.log";
-	private static string[] slotStatistics = { pathToData + "/slot1stats.log",
-		pathToData + "/slot2stats.log", pathToData + "/slot3stats.log" };
+	private static string currentSlot = pathToData + "currentSlot.log";
+	private static string[] slots = { pathToData + "slot1.log",
+		pathToData + "slot2.log", pathToData + "slot3.log" };
+	private static string globalStatistics = pathToData + "globalstats.log";
+	private static string[] slotStatistics = { pathToData + "slot1stats.log",
+		pathToData + "slot2stats.log", pathToData + "slot3stats.log" };
 
 	public static void SaveTownData(TownData data, int slotIndex = -1)
 	{

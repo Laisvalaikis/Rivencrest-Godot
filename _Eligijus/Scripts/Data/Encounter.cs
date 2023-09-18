@@ -37,10 +37,10 @@ public class Encounter
     //     return JsonUtility.ToJson(a) != JsonUtility.ToJson(b);
     // }
 
-    public override bool Equals(object obj)
-    {
-        return this == (Encounter)obj;
-    }
+    // public override bool Equals(object obj)
+    // {
+    //     return this == (Encounter)obj;
+    // }
 
     public override int GetHashCode()
     {

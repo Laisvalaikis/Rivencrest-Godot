@@ -1,0 +1,14 @@
+
+Jcsharpsquid:S3903"(Move 'Encounter' into a named namespace.(êÉÔåùÿÿÿÿ
+acsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(öÛù”
+acsharpsquid:S1104	"DMake this field 'private' and encapsulate it in a 'public' property.(ÂÄ× 
+fcsharpsquid:S1104
+"DMake this field 'private' and encapsulate it in a 'public' property.(ùğÀ·ıÿÿÿÿ
+fcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(›ºó®ÿÿÿÿÿ
+acsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¾å‡
+fcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(”»‹¸şÿÿÿÿ
+fcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(åºŠñúÿÿÿÿ
+~csharpsquid:S3249/"aRemove this 'base' call to 'object.GetHashCode', which is directly based on the object reference.(ÀïåÖ
+xcsharpsquid:S1206"OThis class overrides 'GetHashCode' and should therefore also override 'Equals'.(êÉÔåùÿÿÿÿ8×²¤Äª1
+;csharpsquid:S125"Remove this commented out code.(ÒÛÛì
+Bcsharpsquid:S125"Remove this commented out code.(Ú°à¬8İÍÍ·ª1

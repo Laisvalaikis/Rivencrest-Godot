@@ -20,6 +20,11 @@ public partial class View : Control
 		if (viewEnabledOnStart)
 		{
 			OpenView();
+			if (this.GetThemeStylebox("panel") != null)
+			{
+				GD.PrintErr("Not Null");
+			}
+			
 		}
 	}
 	
@@ -28,14 +33,13 @@ public partial class View : Control
 		if (!IsVisibleInTree())
 		{
 			Show();
-			// gameObject.SetActive(true);
 		}
 		if (_viewIndex == -1 && addViewToStack)
 		{
 			_viewIndex = UIStack.Instance.AddView(this);
 		}
 		_disabled = false;
-		EmitSignal("OpenViewSignalEventHandler");
+		EmitSignal("OpenViewSignal");
 		GD.Print(Name);
 	}
 	
@@ -57,7 +61,7 @@ public partial class View : Control
 		}
 
 		_disabled = true;
-		EmitSignal("CloseViewSignalEventHandler");
+		EmitSignal("CloseViewSignal");
 		_viewIndex = -1;
 	}
 	

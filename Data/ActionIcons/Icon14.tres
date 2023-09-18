@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://clt8tspgdp6x6"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/TextureResource.cs" id="1_dccln"]
+[ext_resource type="Texture2D" uid="uid://dmswae100dsh8" path="res://_Eligijus/Sprites/ActionButtonIcons.png" id="2_c5s0g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vee3n"]
+atlas = ExtResource("2_c5s0g")
+region = Rect2(3, 22, 10, 10)
+
+[resource]
+script = ExtResource("1_dccln")
+texture = SubResource("AtlasTexture_vee3n")

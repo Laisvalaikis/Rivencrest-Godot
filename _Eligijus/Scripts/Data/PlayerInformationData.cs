@@ -40,9 +40,7 @@ public partial class PlayerInformationData: Resource
 	[Export]
 	public Texture roleSprite;
 	[Export]
-	private Godot.Collections.Array<TextureResource> abilitySprites;
-	[Export]
-	private Godot.Collections.Array<AbilityData> abilities;
+	private Godot.Collections.Array<TextureResource> abilities;
 	[Export]
 	public Godot.Collections.Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
 	
@@ -50,7 +48,7 @@ public partial class PlayerInformationData: Resource
 	int dodgeChance, string role, Color classColor, Color secondClassColor, Color textColor,
 	Color backgroundColor, Texture CharacterPortraitSprite, Texture CharacterSplashArt,//For character table
 	Texture CroppedSplashArt, Texture characterSprite, Texture roleSprite,
-	Godot.Collections.Array<TextureResource> abilitySprites, Godot.Collections.Array<AbilityData> abilities, Godot.Collections.Array<Blessing> BlessingsAndCurses)
+	Godot.Collections.Array<TextureResource> abilities, Godot.Collections.Array<Blessing> BlessingsAndCurses)
 	{
 		this.ClassName = ClassName;
 		this.MaxHealth = MaxHealth;
@@ -69,7 +67,6 @@ public partial class PlayerInformationData: Resource
 		this.CroppedSplashArt = CroppedSplashArt;
 		this.characterSprite = characterSprite;
 		this.roleSprite = roleSprite;
-		this.abilitySprites = abilitySprites;
 		this.abilities = abilities;
 
 		this.BlessingsAndCurses = BlessingsAndCurses;
@@ -94,7 +91,6 @@ public partial class PlayerInformationData: Resource
 		CroppedSplashArt = playerInformationData.CroppedSplashArt;
 		characterSprite = playerInformationData.characterSprite;
 		roleSprite = playerInformationData.roleSprite;
-		abilitySprites = playerInformationData.abilitySprites;
 		abilities = playerInformationData.abilities;
 
 		BlessingsAndCurses = playerInformationData.BlessingsAndCurses;
@@ -119,7 +115,6 @@ public partial class PlayerInformationData: Resource
 		CroppedSplashArt = playerInformationData.CroppedSplashArt;
 		characterSprite = playerInformationData.characterSprite;
 		roleSprite = playerInformationData.roleSprite;
-		abilitySprites = playerInformationData.abilitySprites;
 		abilities = playerInformationData.abilities;
 
 		BlessingsAndCurses = playerInformationData.BlessingsAndCurses;
