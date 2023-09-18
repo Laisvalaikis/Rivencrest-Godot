@@ -1,75 +1,101 @@
+// using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
+using Godot.Collections;
+
 
 public partial class LoadingScreenController : Node
 {
-    private static LoadingScreenController Instance;
-    [Export] 
-    private Panel darkScreen;
-    [Export] 
-    private Panel loadingScreen;
-    [Export] 
-    private float fadeLength;
-    [Export] 
-    private float waitTime;
+	private static LoadingScreenController _instance;
+	[Export] 
+	private Panel _darkScreen;
+	[Export] 
+	private Panel _loadingScreen;
+	[Export] 
+	private float _fadeLength;
+	[Export] 
+	private float _waitTime;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
+	private readonly Godot.Collections.Dictionary<string, string> GAME_SCENS = new Godot.Collections.Dictionary<string, string>
+	{
+		{ "game_world", "res://Scenes/Town.tscn" }
+	};
 
-    public static void LoadScene(int sceneToLoad)
-    {
-        // Instance.StartCoroutine(Instance.SceneTransition(sceneToLoad));
-    }
+	PackedScene loading_screen = GD.Load<PackedScene>("res://Scenes/LoadingScene.tscn");
 
-    IEnumerator SceneTransition(int sceneName)
-    {
-        // darkScreen.alpha = 0;
-        darkScreen.Show();
-        float timer = 0f;
-        // while(timer < fadeLength)
-        // {
-            // timer = Mathf.Clamp(timer + Time.deltaTime, 0f, fadeLength);
-            // darkScreen.alpha = timer / fadeLength;
-            yield return null;
-        // }
-        loadingScreen.Show();
-        timer = fadeLength;
-        // while (timer > 0)
-        // {
-            // timer = Mathf.Clamp(timer - Time.deltaTime, 0f, fadeLength);
-            // darkScreen.alpha = timer / fadeLength;
-            // yield return null;
-        // }
-        darkScreen.Hide();
-        // yield return new WaitForSeconds(waitTime);
-        // var operation = SceneManager.LoadSceneAsync(sceneName);
-        // while(!operation.isDone)
-        // {
-            // yield return null;
-        // }
-        // darkScreen.alpha = 0;
-        darkScreen.Show();
-        timer = 0f;
-        // while (timer < fadeLength)
-        // {
-            // timer = Mathf.Clamp(timer + Time.deltaTime, 0f, fadeLength);
-            // darkScreen.alpha = timer / fadeLength;
-            // yield return null;
-        // }
-        loadingScreen.Hide();
-        timer = fadeLength;
-        // while (timer > 0)
-        // {
-            // timer = Mathf.Clamp(timer - Time.deltaTime, 0f, fadeLength);
-            // darkScreen.alpha = timer / fadeLength;
-            // yield return null;
-        // }
-        darkScreen.Hide();
-    }
+	private StyleBoxFlat _styleBoxDarkScreen;
+	private StyleBoxFlat _styleBoxLoadingScreen;
+	private Array array;
+
+	public override void _Ready()
+	{
+		if (_instance == null)
+		{
+			_instance = this;
+		}
+	}
+
+	public static void LoadScene(Node currentScene, string nextScene)
+	{
+		Node loadingSceneInstance = _instance.loading_screen.Instantiate();
+		_instance.GetTree().Root.AddChild(loadingSceneInstance); //CallDeferred("AddChild", loadingSceneInstance);
+		
+		string loadPath;
+		if (_instance.GAME_SCENS.ContainsKey(nextScene))
+		{
+			loadPath = _instance.GAME_SCENS[nextScene];
+		}
+		else
+		{
+			loadPath = nextScene;
+		}
+
+		Error loaderNextScene = Error.Ok;
+		if (ResourceLoader.Exists(loadPath))
+		{
+			loaderNextScene = ResourceLoader.LoadThreadedRequest(loadPath);
+		}
+
+		if (loaderNextScene != Error.Ok)
+		{
+			GD.PrintErr("Attempt to load non-existence file");
+		}
+		
+		_instance.FreeUpScene(currentScene);
+
+		while (true)
+		{
+			ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(loadPath, new Array());
+			if (status == ResourceLoader.ThreadLoadStatus.InvalidResource)
+			{
+				GD.Print("Resource is invalid");
+				break;
+			}
+			if (status == ResourceLoader.ThreadLoadStatus.Failed)
+			{
+				GD.Print("Error loading");
+				break;
+			}
+			if (status == ResourceLoader.ThreadLoadStatus.InProgress)
+			{
+				
+			}
+			if (status == ResourceLoader.ThreadLoadStatus.Loaded)
+			{
+				PackedScene node = (PackedScene)ResourceLoader.LoadThreadedGet(loadPath);
+				_instance.GetTree().Root.AddChild(node.Instantiate());//CallDeferred("AddChild", node.Instantiate());
+				break;
+			}
+			
+		}
+		
+	}
+
+	private void FreeUpScene(Node currnet)
+	{
+		currnet.QueueFree();
+	}
+
 }

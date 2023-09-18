@@ -5,13 +5,15 @@ using Godot;
 public partial class SaveSlotCard : Control
 {
 	[Export]
-	private int slotIndex;
+	private int _slotIndex;
 	[Export] 
-	private CanvasItem addButton;
+	private CanvasItem _addButton;
 	[Export] 
-	private CanvasItem slotMenu;
+	private CanvasItem _slotMenu;
 	[Export] 
-	private Label slotTitle;
+	private SaveManager _saveManager;
+	[Export] 
+	private Label _slotTitle;
 	// Start is called before the first frame update
 	public override void _Ready()
 	{
@@ -20,12 +22,12 @@ public partial class SaveSlotCard : Control
 
 	public override void _Draw()
 	{
-		bool saveExist = SaveSystem.DoesSaveFileExist(slotIndex);
-		SetActive(addButton, !saveExist);
-		SetActive(slotMenu, saveExist);
+		bool saveExist = SaveSystem.DoesSaveFileExist(_slotIndex);
+		SetActive(_addButton, !saveExist);
+		SetActive(_slotMenu, saveExist);
 		if(saveExist)
 		{
-			slotTitle.Text = SaveSystem.LoadTownData(slotIndex).slotName;
+			_slotTitle.Text = SaveSystem.LoadTownData(_slotIndex).slotName;
 		}
 	}
 
@@ -43,7 +45,8 @@ public partial class SaveSlotCard : Control
 
 	public void DeleteSlot()
 	{
-		SetActive(addButton, true);
-		SetActive(slotMenu, false);
+		SetActive(_addButton, true);
+		SetActive(_slotMenu, false);
+		_saveManager.DeleteSlot(_slotIndex);
 	}
 }

@@ -4,17 +4,20 @@ using System;
 public partial class ChangeScene : Node
 {
 	[Export] 
-	private int sceneToLoad;
+	private string sceneToLoad;
+	[Export] 
+	private Node mainNode;
 	public void SceneTransition()
 	{
 		UIStack.ClearStack();
-		LoadingScreenController.LoadScene(sceneToLoad);
+		LoadingScreenController.LoadScene(mainNode, sceneToLoad);
 	}
 	
-	public void SceneTransition(int sceneIndex)
+	public void SceneTransition(string scene)
 	{
 		UIStack.ClearStack();
-		LoadingScreenController.LoadScene(sceneIndex);
+		LoadingScreenController.LoadScene(mainNode, scene);
 	}
 	
 }
+

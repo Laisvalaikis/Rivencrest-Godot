@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bf2hhha6auhwc"]
+[gd_scene load_steps=68 format=3 uid="uid://bf2hhha6auhwc"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/ExitGame.cs" id="1_7t1oi"]
 [ext_resource type="Texture2D" uid="uid://cc5fotk2nhgsn" path="res://Background/StartMenuBackground.png" id="1_v78f3"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://d1dc4r57p1q4p" path="res://_Eligijus/Sprites/Slot Card/CharacterCards.png" id="6_qb7ql"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveSlotCard.cs" id="9_ihtty"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveManager.cs" id="11_a1u1o"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/DeleteSave.cs" id="11_ckrji"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/SceneManager/ChangeScene.cs" id="14_2lhdw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i51hm"]
 atlas = ExtResource("1_v78f3")
@@ -431,6 +433,7 @@ vertical_alignment = 1
 
 [node name="ColorContainer" type="HBoxContainer" parent="Canvas/SaveCreationView/SaveCreation"]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 0
 offset_left = 540.0
 offset_top = 480.0
 offset_right = 1420.0
@@ -611,14 +614,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 122
 
-[node name="SlotCard1" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("addButton", "slotMenu", "slotTitle")]
+[node name="SlotCard1" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("_addButton", "_slotMenu", "_saveManager", "_slotTitle")]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
 script = ExtResource("9_ihtty")
-addButton = NodePath("AddButton")
-slotMenu = NodePath("SlotMenu")
-slotTitle = NodePath("SlotMenu/SlotName")
+_addButton = NodePath("AddButton")
+_slotMenu = NodePath("SlotMenu")
+_saveManager = NodePath("../../../../GameManager/SaveManager")
+_slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1"]
 visible = false
@@ -677,23 +681,26 @@ theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_s3kya")
 text = "PLAY"
 
-[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons"]
+[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons" node_paths=PackedStringArray("_saveSlotCard")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_kaoco")
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
 text = "DEL"
+script = ExtResource("11_ckrji")
+_saveSlotCard = NodePath("../../..")
 
-[node name="SlotCard2" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("addButton", "slotMenu", "slotTitle")]
+[node name="SlotCard2" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("_addButton", "_slotMenu", "_saveManager", "_slotTitle")]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
 script = ExtResource("9_ihtty")
-slotIndex = 1
-addButton = NodePath("AddButton")
-slotMenu = NodePath("SlotMenu")
-slotTitle = NodePath("SlotMenu/SlotName")
+_slotIndex = 1
+_addButton = NodePath("AddButton")
+_slotMenu = NodePath("SlotMenu")
+_saveManager = NodePath("../../../../GameManager/SaveManager")
+_slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2"]
 visible = false
@@ -752,23 +759,26 @@ theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_s3kya")
 text = "PLAY"
 
-[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons"]
+[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons" node_paths=PackedStringArray("_saveSlotCard")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_kaoco")
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
 text = "DEL"
+script = ExtResource("11_ckrji")
+_saveSlotCard = NodePath("../../..")
 
-[node name="SlotCard3" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("addButton", "slotMenu", "slotTitle")]
+[node name="SlotCard3" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("_addButton", "_slotMenu", "_saveManager", "_slotTitle")]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
 script = ExtResource("9_ihtty")
-slotIndex = 2
-addButton = NodePath("AddButton")
-slotMenu = NodePath("SlotMenu")
-slotTitle = NodePath("SlotMenu/SlotName")
+_slotIndex = 2
+_addButton = NodePath("AddButton")
+_slotMenu = NodePath("SlotMenu")
+_saveManager = NodePath("../../../../GameManager/SaveManager")
+_slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3"]
 visible = false
@@ -827,13 +837,15 @@ theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_s3kya")
 text = "PLAY"
 
-[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons"]
+[node name="Delete" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons" node_paths=PackedStringArray("_saveSlotCard")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_kaoco")
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_tynhy")
 text = "DEL"
+script = ExtResource("11_ckrji")
+_saveSlotCard = NodePath("../../..")
 
 [node name="Back" type="Button" parent="Canvas/SlotCards"]
 layout_mode = 1
@@ -867,6 +879,11 @@ script = ExtResource("4_jewm0")
 [node name="SaveManager" type="Node" parent="GameManager"]
 script = ExtResource("11_a1u1o")
 
+[node name="ChangeScene" type="Node" parent="GameManager" node_paths=PackedStringArray("mainNode")]
+script = ExtResource("14_2lhdw")
+sceneToLoad = "res://Scenes/Town.tscn"
+mainNode = NodePath("../..")
+
 [connection signal="pressed" from="Canvas/MainMenu/Start" to="Canvas/SlotCards" method="ButtonPressed"]
 [connection signal="pressed" from="Canvas/MainMenu/Quit" to="Canvas" method="ButtonPressed"]
 [connection signal="CloseViewSignal" from="Canvas/SaveCreationView" to="Canvas/SlotCards" method="OpenView"]
@@ -883,14 +900,9 @@ script = ExtResource("11_a1u1o")
 [connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/Create" to="Canvas/SaveCreationView/SaveCreation" method="CreateNewSave"]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="Canvas/SaveCreationView" method="OpenView"]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="GameManager/SaveManager" method="SaveData" binds= [0]]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons/Delete" to="Canvas/SlotCards/HBoxContainer/SlotCard1" method="DeleteSlot"]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons/Delete" to="GameManager/SaveManager" method="DeleteSlot" binds= [0]]
+[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons/Play" to="GameManager/ChangeScene" method="SceneTransition"]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/AddButton" to="Canvas/SaveCreationView" method="OpenView"]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/AddButton" to="GameManager/SaveManager" method="SaveData" binds= [1]]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons/Delete" to="Canvas/SlotCards/HBoxContainer/SlotCard2" method="DeleteSlot"]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard2/SlotMenu/SlotButtons/Delete" to="GameManager/SaveManager" method="DeleteSlot" binds= [1]]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/AddButton" to="Canvas/SaveCreationView" method="OpenView"]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/AddButton" to="GameManager/SaveManager" method="SaveData" binds= [2]]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons/Delete" to="Canvas/SlotCards/HBoxContainer/SlotCard3" method="DeleteSlot"]
-[connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard3/SlotMenu/SlotButtons/Delete" to="GameManager/SaveManager" method="DeleteSlot" binds= [2]]
 [connection signal="pressed" from="Canvas/SlotCards/Back" to="Canvas/SlotCards" method="ExitView"]

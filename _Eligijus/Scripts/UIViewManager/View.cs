@@ -17,14 +17,13 @@ public partial class View : Control
 	private bool _disabled = true;
 	public override void _Ready()
 	{
+		if (this.GetThemeStylebox("panel") != null)
+		{
+			GD.PrintErr("Not Null");
+		}
 		if (viewEnabledOnStart)
 		{
 			OpenView();
-			if (this.GetThemeStylebox("panel") != null)
-			{
-				GD.PrintErr("Not Null");
-			}
-			
 		}
 	}
 	
