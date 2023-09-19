@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm5sqsqle3ngu"]
+[gd_scene load_steps=20 format=3 uid="uid://dm5sqsqle3ngu"]
 
 [ext_resource type="Texture2D" uid="uid://dev04kosy7rue" path="res://Background/TownBackground.png" id="1_a4s1p"]
 [ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_b0a05"]
+[ext_resource type="Texture2D" uid="uid://d21bsxa5ftmoq" path="res://_Eligijus/Sprites/TownButtons.png" id="3_8hj86"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fy4iv"]
 atlas = ExtResource("1_a4s1p")
@@ -14,6 +15,42 @@ region = Rect2(480, 0, 479, 270)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5vgxq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nji1n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv61k"]
+atlas = ExtResource("3_8hj86")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4sma"]
+texture = SubResource("AtlasTexture_uv61k")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elr05"]
+atlas = ExtResource("3_8hj86")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e8haj"]
+texture = SubResource("AtlasTexture_elr05")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdfkg"]
+atlas = ExtResource("3_8hj86")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_emsg8"]
+texture = SubResource("AtlasTexture_sdfkg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txk5u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygxst"]
+atlas = ExtResource("3_8hj86")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4b7un"]
+texture = SubResource("AtlasTexture_elr05")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjk0k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwcdd"]
+atlas = ExtResource("3_8hj86")
+region = Rect2(120, 0, 40, 40)
 
 [node name="Town" type="Node2D"]
 
@@ -49,6 +86,7 @@ offset_bottom = 225.0
 theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
 theme_override_colors/font_pressed_color = Color(0.988235, 0.909804, 0.713726, 1)
 theme_override_colors/font_hover_color = Color(0.972549, 0.839216, 0.490196, 1)
+theme_override_colors/font_focus_color = Color(0.901961, 0.733333, 0.262745, 1)
 theme_override_fonts/font = ExtResource("2_b0a05")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nyho2")
@@ -99,6 +137,19 @@ offset_top = 175.0
 offset_right = 361.0
 offset_bottom = 365.0
 grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_q4sma")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e8haj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_emsg8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_txk5u")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/MainUI/RecruitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ygxst")
 
 [node name="TownHallButton" type="Button" parent="CanvasLayer/MainUI"]
 anchors_preset = 5
@@ -109,3 +160,16 @@ offset_top = 298.0
 offset_right = 571.0
 offset_bottom = 488.0
 grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_emsg8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4b7un")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_emsg8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hjk0k")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/MainUI/TownHallButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_vwcdd")
