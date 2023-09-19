@@ -614,15 +614,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 122
 
-[node name="SlotCard1" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("_addButton", "_slotMenu", "_saveManager", "_slotTitle")]
+[node name="SlotCard1" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
 script = ExtResource("9_ihtty")
-_addButton = NodePath("AddButton")
-_slotMenu = NodePath("SlotMenu")
-_saveManager = NodePath("../../../../GameManager/SaveManager")
-_slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard1"]
 visible = false
@@ -691,16 +687,11 @@ text = "DEL"
 script = ExtResource("11_ckrji")
 _saveSlotCard = NodePath("../../..")
 
-[node name="SlotCard2" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("_addButton", "_slotMenu", "_saveManager", "_slotTitle")]
+[node name="SlotCard2" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
 script = ExtResource("9_ihtty")
-_slotIndex = 1
-_addButton = NodePath("AddButton")
-_slotMenu = NodePath("SlotMenu")
-_saveManager = NodePath("../../../../GameManager/SaveManager")
-_slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard2"]
 visible = false
@@ -769,16 +760,11 @@ text = "DEL"
 script = ExtResource("11_ckrji")
 _saveSlotCard = NodePath("../../..")
 
-[node name="SlotCard3" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer" node_paths=PackedStringArray("_addButton", "_slotMenu", "_saveManager", "_slotTitle")]
+[node name="SlotCard3" type="TextureRect" parent="Canvas/SlotCards/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_qb7ql")
 script = ExtResource("9_ihtty")
-_slotIndex = 2
-_addButton = NodePath("AddButton")
-_slotMenu = NodePath("SlotMenu")
-_saveManager = NodePath("../../../../GameManager/SaveManager")
-_slotTitle = NodePath("SlotMenu/SlotName")
 
 [node name="AddButton" type="Button" parent="Canvas/SlotCards/HBoxContainer/SlotCard3"]
 visible = false
