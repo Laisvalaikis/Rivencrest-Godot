@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmgqq7bbqcu4f"]
+[gd_scene load_steps=10 format=3 uid="uid://bmgqq7bbqcu4f"]
 
 [ext_resource type="Texture2D" uid="uid://cqgx6k5jey036" path="res://_Eligijus/Sprites/PortraitBar.png" id="1_ttbu4"]
 [ext_resource type="Texture2D" uid="uid://iyg0n2036r1n" path="res://_Eligijus/Sprites/ActionButtons.png" id="2_0t0ig"]
 [ext_resource type="PackedScene" uid="uid://c0ctr7upkr3fo" path="res://_Eligijus/Prefabs/PortraitBar/portrait.tscn" id="3_17w16"]
+[ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="4_o6ofb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m21ee"]
 
@@ -27,15 +28,15 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("1_ttbu4")
 
-[node name="Button" type="Button" parent="."]
+[node name="Pause" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -35.0
-offset_top = 80.0
+offset_top = 60.0
 offset_right = 35.0
-offset_bottom = 150.0
+offset_bottom = 130.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.72549, 0.72549, 0.72549, 1)
 theme_override_colors/font_pressed_color = Color(0.72549, 0.72549, 0.72549, 1)
@@ -53,20 +54,91 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 124.0
-offset_bottom = 124.0
+offset_left = -62.5
+offset_top = -540.0
+offset_right = 62.5
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 2
+alignment = 1
 
-[node name="Button" parent="VBoxContainer" instance=ExtResource("3_17w16")]
+[node name="ArowUp" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="VBoxContainer/ArowUp" instance=ExtResource("3_17w16")]
+custom_minimum_size = Vector2(125, 125)
 layout_direction = 0
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="VBoxContainer/MarginContainer" instance=ExtResource("3_17w16")]
+custom_minimum_size = Vector2(125, 125)
+layout_direction = 0
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+
+[node name="Button" parent="VBoxContainer/MarginContainer2" instance=ExtResource("3_17w16")]
+layout_direction = 0
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="Button" parent="VBoxContainer/MarginContainer3" instance=ExtResource("3_17w16")]
+layout_direction = 0
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="Button" parent="VBoxContainer/MarginContainer4" instance=ExtResource("3_17w16")]
+custom_minimum_size = Vector2(125, 125)
+layout_direction = 0
+layout_mode = 2
+
+[node name="ArowDown" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="VBoxContainer/ArowDown" instance=ExtResource("3_17w16")]
+custom_minimum_size = Vector2(125, 125)
+layout_direction = 0
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Encounter" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -110.0
+offset_right = 120.0
+offset_bottom = -25.0045
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_fonts/font = ExtResource("4_o6ofb")
+theme_override_font_sizes/font_size = 60
+text = "Embark"
