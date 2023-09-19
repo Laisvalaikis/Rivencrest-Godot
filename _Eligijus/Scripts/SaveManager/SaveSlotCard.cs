@@ -7,7 +7,7 @@ public partial class SaveSlotCard : Control
 	[Export]
 	private int _slotIndex;
 	[Export] 
-	private CanvasItem _addButton;
+	private Button _addButton;
 	[Export] 
 	private CanvasItem _slotMenu;
 	[Export] 

@@ -1,16 +1,0 @@
-
-]csharpsquid:S1854B"9Remove this useless assignment to local variable 'timer'.(¡ªı“8Çº²Åª1
-bcsharpsquid:S1854:"9Remove this useless assignment to local variable 'timer'.(ÒøË³úÿÿÿÿ8²Åª1
-]csharpsquid:S1854*"9Remove this useless assignment to local variable 'timer'.(¡ªı“8ğæ²Åª1
-Scsharpsquid:S3903"6Move 'LoadingScreenController' into a named namespace.(Û¸ÍÀ
-Ycsharpsquid:S1172"0Remove this unused method parameter 'sceneName'.(·ğ¾‰ıÿÿÿÿ8ÅÚ±Åª1
-rcsharpsquid:S2696"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(Ä“±Ï
-\csharpsquid:S1144"3Remove the unused private method 'SceneTransition'.(·ğ¾‰ıÿÿÿÿ8ÅÚ±Åª1
-Bcsharpsquid:S125"Remove this commented out code.(°šè•8ÅÚ±Åª1
-Gcsharpsquid:S125 "Remove this commented out code.(ãì¢‹øÿÿÿÿ8ÅÚ±Åª1
-Gcsharpsquid:S125#"Remove this commented out code.(í«şªıÿÿÿÿ8‘²Åª1
-Gcsharpsquid:S125("Remove this commented out code.(éØ»Úûÿÿÿÿ8•³Åª1
-Bcsharpsquid:S125+"Remove this commented out code.(•§¶8Èº²Åª1
-Bcsharpsquid:S1252"Remove this commented out code.(ÁÚÿÇ8ÅÚ±Åª1
-Gcsharpsquid:S125;"Remove this commented out code.(í«şªıÿÿÿÿ8Ÿú²Åª1
-Bcsharpsquid:S125C"Remove this commented out code.(•§¶8ñæ²Åª1

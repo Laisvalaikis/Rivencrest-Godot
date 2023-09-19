@@ -1,14 +1,0 @@
-
-Kcsharpsquid:S3903")Move 'SaveSystem' into a named namespace.(˜Ùéàúÿÿÿÿ
-Ocsharpsquid:S3903°"*Move 'CurrentSlot' into a named namespace.(Ö«ÿÄ8‚¥Ñ·ª1
-hcsharpsquid:S1104²"DMake this field 'private' and encapsulate it in a 'public' property.(­³ÄD8¿ñ˜Äª1
-]csharpsquid:S112"5'System.Exception' should not be thrown by user code.(Ï¼²Ëøÿÿÿÿ8‚¥Ñ·ª1
-]csharpsquid:S112"5'System.Exception' should not be thrown by user code.(õ¥½–ûÿÿÿÿ8‚¥Ñ·ª1
-]csharpsquid:S112*"5'System.Exception' should not be thrown by user code.(Ï¼²Ëøÿÿÿÿ8‚¥Ñ·ª1
-]csharpsquid:S112C"5'System.Exception' should not be thrown by user code.(õ¥½–ûÿÿÿÿ8‚¥Ñ·ª1
-]csharpsquid:S112Q"5'System.Exception' should not be thrown by user code.(õ¥½–ûÿÿÿÿ8‚¥Ñ·ª1
-]csharpsquid:S112l"5'System.Exception' should not be thrown by user code.(Ï¼²Ëøÿÿÿÿ8‚¥Ñ·ª1
-Ycsharpsquid:S112‹"5'System.Exception' should not be thrown by user code.(èß¼”8‚¥Ñ·ª1
-Bcsharpsquid:S1259"Remove this commented out code.(ÖÖð³8ƒ¥Ñ·ª1
-Bcsharpsquid:S125]"Remove this commented out code.(ÑÊäø8ƒ¥Ñ·ª1
-Gcsharpsquid:S125o"Remove this commented out code.(ÄÂ¨„ûÿÿÿÿ8ƒ¥Ñ·ª1

@@ -898,6 +898,7 @@ mainNode = NodePath("../..")
 [connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/DifficultyContainer/Hard" to="Canvas/SaveCreationView/SaveCreation" method="SetDifficulty" binds= [1]]
 [connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/Back" to="Canvas/SaveCreationView" method="ExitView"]
 [connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/Create" to="Canvas/SaveCreationView/SaveCreation" method="CreateNewSave"]
+[connection signal="pressed" from="Canvas/SaveCreationView/SaveCreation/Create" to="GameManager/ChangeScene" method="SceneTransition"]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="Canvas/SaveCreationView" method="OpenView"]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/AddButton" to="GameManager/SaveManager" method="SaveData" binds= [0]]
 [connection signal="pressed" from="Canvas/SlotCards/HBoxContainer/SlotCard1/SlotMenu/SlotButtons/Play" to="GameManager/ChangeScene" method="SceneTransition"]

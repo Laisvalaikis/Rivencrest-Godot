@@ -59,7 +59,7 @@ public static class LocalSaveSystem
 			}
 			catch (Exception e)
 			{
-				GD.Print("Error occured when trying to load data from file: " + path + "\n" + e);
+				GD.PrintErr("Error occured when trying to load data from file: " + path + "\n" + e);
 				return default(T);
 			}
 		}
