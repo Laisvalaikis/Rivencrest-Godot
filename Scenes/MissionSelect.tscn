@@ -1,22 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4dlqs3vlnh2o"]
+[gd_scene load_steps=12 format=3 uid="uid://c4dlqs3vlnh2o"]
 
 [ext_resource type="Texture2D" uid="uid://c7gswwp2apb" path="res://Background/MissionSelectBackround.png" id="1_pc7oq"]
-[ext_resource type="Texture2D" uid="uid://c84wcvys7k3fp" path="res://_Eligijus/Sprites/EndTurnButton.png" id="2_6p35s"]
 [ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_yspwi"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveManager.cs" id="3_2i0ko"]
+[ext_resource type="Texture2D" uid="uid://fbmpi06b3q7k" path="res://_Eligijus/Sprites/DefaultButtons.png" id="3_iki6a"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SceneManager/ChangeScene.cs" id="4_8eohq"]
+[ext_resource type="PackedScene" uid="uid://bmgqq7bbqcu4f" path="res://_Eligijus/Prefabs/PortraitBar/PortraitBar.tscn" id="4_e0fgu"]
+[ext_resource type="Texture2D" uid="uid://dmswae100dsh8" path="res://_Eligijus/Sprites/ActionButtonIcons.png" id="7_giskr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yi0uj"]
 atlas = ExtResource("1_pc7oq")
 region = Rect2(0, 0, 480, 272)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ymtc"]
-atlas = ExtResource("2_6p35s")
-region = Rect2(0, 51, 58, 17)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3kqx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5oho"]
+atlas = ExtResource("3_iki6a")
+region = Rect2(85, 17, 46, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1h4cf"]
+atlas = ExtResource("7_giskr")
+region = Rect2(150, 39, 7, 10)
 
 [node name="MissionSelect" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="SaveManager" type="Node" parent="Camera2D"]
+script = ExtResource("3_2i0ko")
+
+[node name="ChangeScene" type="Node" parent="Camera2D" node_paths=PackedStringArray("mainNode")]
+script = ExtResource("4_8eohq")
+mainNode = NodePath("../..")
 
 [node name="Canvas" type="CanvasLayer" parent="Camera2D"]
 
@@ -28,25 +43,43 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_yi0uj")
 
+[node name="PrtraitBar" parent="Camera2D/Canvas" instance=ExtResource("4_e0fgu")]
+offset_left = -222.0
+offset_right = -57.0
+
 [node name="Back" type="Button" parent="Camera2D/Canvas"]
+z_as_relative = false
 offset_left = 1644.0
 offset_top = 960.0
 offset_right = 1901.0
 offset_bottom = 1051.0
 theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
 theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 69
-text = "Back"
-icon = SubResource("AtlasTexture_7ymtc")
+theme_override_font_sizes/font_size = 62
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x3kqx")
+text = "BACK"
+icon = SubResource("AtlasTexture_h5oho")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="GameManager" type="Node" parent="."]
+[node name="Label" type="Label" parent="Camera2D/Canvas"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -265.0
+offset_top = 34.0
+offset_right = 404.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 90
+text = "SELECT MISSION"
 
-[node name="SaveManager" type="Node" parent="GameManager"]
-script = ExtResource("3_2i0ko")
-
-[node name="ChangeScene" type="Node" parent="GameManager" node_paths=PackedStringArray("mainNode")]
-script = ExtResource("4_8eohq")
-mainNode = NodePath("../..")
+[node name="Button" type="Button" parent="Camera2D/Canvas"]
+offset_left = 810.0
+offset_top = 657.0
+offset_right = 825.0
+offset_bottom = 675.0
+icon = SubResource("AtlasTexture_1h4cf")

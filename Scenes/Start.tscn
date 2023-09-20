@@ -9,7 +9,7 @@
 [ext_resource type="ButtonGroup" uid="uid://bben6g1ru47lm" path="res://_Eligijus/Prefabs/ButtonGroups/ColorButtons.tres" id="4_jqlsu"]
 [ext_resource type="ButtonGroup" uid="uid://s1aeo2c2f8sw" path="res://_Eligijus/Prefabs/ButtonGroups/Difficulty.tres" id="5_a1b7b"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/CreateSave.cs" id="5_xvt15"]
-[ext_resource type="Texture2D" uid="uid://d1dc4r57p1q4p" path="res://_Eligijus/Sprites/Slot Card/CharacterCards.png" id="6_qb7ql"]
+[ext_resource type="Texture2D" uid="uid://d1dc4r57p1q4p" path="res://_Eligijus/Sprites/SlotCard/CharacterCards.png" id="6_qb7ql"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveSlotCard.cs" id="9_ihtty"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveManager.cs" id="11_a1u1o"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/DeleteSave.cs" id="11_ckrji"]
