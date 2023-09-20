@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgc5iywtdgiw1"]
+[gd_scene load_steps=16 format=3 uid="uid://bgc5iywtdgiw1"]
 
 [ext_resource type="Texture2D" uid="uid://dfkj7rj1gc155" path="res://_Eligijus/Sprites/TownTables.png" id="1_w3gqg"]
 [ext_resource type="Texture2D" uid="uid://d21bsxa5ftmoq" path="res://_Eligijus/Sprites/TownButtons.png" id="2_vm431"]
 [ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="3_pqkni"]
 [ext_resource type="PackedScene" uid="uid://cowhldcuymjxm" path="res://_Eligijus/Prefabs/RecruitmentCenter/Button.tscn" id="4_0qa8l"]
+[ext_resource type="Texture2D" uid="uid://fbmpi06b3q7k" path="res://_Eligijus/Sprites/DefaultButtons.png" id="5_75xmh"]
 [ext_resource type="PackedScene" uid="uid://dsg11s2s8jrcg" path="res://_Eligijus/Prefabs/RecruitmentCenter/CharacterInformationInShop.tscn" id="5_bn5xe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpfsq"]
@@ -17,6 +18,13 @@ region = Rect2(0, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvica"]
 atlas = ExtResource("2_vm431")
 region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig20o"]
+atlas = ExtResource("5_75xmh")
+region = Rect2(12, 17, 48, 17)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_76wcq"]
+texture = SubResource("AtlasTexture_ig20o")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5djtw"]
 atlas = ExtResource("1_w3gqg")
@@ -95,7 +103,7 @@ anchor_bottom = 0.5
 offset_left = -604.0
 offset_top = -456.0
 offset_right = -95.0
-offset_bottom = 369.0
+offset_bottom = 354.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
@@ -140,7 +148,29 @@ layout_mode = 2
 [node name="Character" parent="VBoxContainer/MarginContainer5" instance=ExtResource("4_0qa8l")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="Reroll" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -273.0
+offset_top = -112.0
+offset_right = -95.0
+offset_bottom = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_colors/font_pressed_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_colors/font_hover_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_colors/font_focus_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_fonts/font = ExtResource("3_pqkni")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_76wcq")
+text = "REROLL"
+
+[node name="Exit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -155,10 +185,9 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CharacterInformationInShop" parent="." instance=ExtResource("5_bn5xe")]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_bottom = 20.0
-grow_vertical = 2
+visible = false
+layout_mode = 0
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 661.0
+offset_bottom = 843.0
