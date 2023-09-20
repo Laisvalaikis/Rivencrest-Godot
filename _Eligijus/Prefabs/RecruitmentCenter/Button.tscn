@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://cowhldcuymjxm"]
+
+[ext_resource type="Texture2D" uid="uid://c34ih1emfmpl2" path="res://_Eligijus/Sprites/CharacterRecruitBox.png" id="1_jil1p"]
+[ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_3x7ls"]
+[ext_resource type="Texture2D" uid="uid://c78fi5eyxgclo" path="res://_Eligijus/Sprites/PortraitBar/PortraitUI.png" id="3_nqnyh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4j3d"]
+atlas = ExtResource("1_jil1p")
+region = Rect2(0, 0, 106, 30)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s474w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0joo"]
+atlas = ExtResource("3_nqnyh")
+region = Rect2(73, 5, 24, 24)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yrnk7"]
+font = ExtResource("2_3x7ls")
+font_size = 48
+font_color = Color(0.901961, 0.733333, 0.262745, 1)
+
+[node name="Character" type="TextureRect"]
+offset_right = 509.0
+offset_bottom = 144.0
+texture = SubResource("AtlasTexture_a4j3d")
+
+[node name="Button" type="Button" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -38.4
+offset_right = 235.3
+offset_bottom = 33.6
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_colors/font_pressed_color = Color(0.803922, 0.647059, 0.192157, 1)
+theme_override_colors/font_hover_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_colors/font_disabled_color = Color(0.803922, 0.647059, 0.192157, 0.501961)
+theme_override_fonts/font = ExtResource("2_3x7ls")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s474w")
+text = "BUY"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.1
+offset_top = -57.6
+offset_right = -124.85
+offset_bottom = 57.6
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_e0joo")
+
+[node name="Name" type="Label" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.5
+offset_top = 20.0
+offset_right = 119.5
+offset_bottom = 72.0
+grow_horizontal = 2
+text = "KNIGHT"
+label_settings = SubResource("LabelSettings_yrnk7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.5
+offset_top = -72.0
+offset_right = 119.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "1000g"
+label_settings = SubResource("LabelSettings_yrnk7")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dm5sqsqle3ngu"]
+[gd_scene load_steps=24 format=3 uid="uid://dm5sqsqle3ngu"]
 
 [ext_resource type="Texture2D" uid="uid://dev04kosy7rue" path="res://Background/TownBackground.png" id="1_a4s1p"]
 [ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_b0a05"]
 [ext_resource type="Texture2D" uid="uid://d21bsxa5ftmoq" path="res://_Eligijus/Sprites/TownButtons.png" id="3_8hj86"]
+[ext_resource type="PackedScene" uid="uid://bgc5iywtdgiw1" path="res://_Eligijus/Prefabs/RecruitmentCenter/RecruitmentCenter.tscn" id="4_7ghpu"]
 [ext_resource type="PackedScene" uid="uid://bmgqq7bbqcu4f" path="res://_Eligijus/Prefabs/PortraitBar/PortraitBar.tscn" id="4_xm4l6"]
 [ext_resource type="PackedScene" uid="uid://dcypus8k2gv3v" path="res://_Eligijus/Prefabs/Buttons/EmbarkButton.tscn" id="5_8nfdk"]
 
@@ -18,32 +19,36 @@ region = Rect2(480, 0, 479, 270)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nji1n"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uv61k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_558bl"]
 atlas = ExtResource("3_8hj86")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4sma"]
-texture = SubResource("AtlasTexture_uv61k")
+texture = SubResource("AtlasTexture_558bl")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_elr05"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_03le5"]
 atlas = ExtResource("3_8hj86")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e8haj"]
-texture = SubResource("AtlasTexture_elr05")
+texture = SubResource("AtlasTexture_03le5")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdfkg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcj15"]
 atlas = ExtResource("3_8hj86")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_emsg8"]
-texture = SubResource("AtlasTexture_sdfkg")
+texture = SubResource("AtlasTexture_hcj15")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txk5u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ygxst"]
 atlas = ExtResource("3_8hj86")
 region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elr05"]
+atlas = ExtResource("3_8hj86")
+region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4b7un"]
 texture = SubResource("AtlasTexture_elr05")
@@ -175,6 +180,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_vwcdd")
+
+[node name="RecruitmentCenter" parent="CanvasLayer/MainUI" instance=ExtResource("4_7ghpu")]
+visible = false
 
 [node name="PrtraitBar" parent="CanvasLayer" instance=ExtResource("4_xm4l6")]
 
