@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4dlqs3vlnh2o"]
+[gd_scene load_steps=8 format=3 uid="uid://c4dlqs3vlnh2o"]
 
 [ext_resource type="Texture2D" uid="uid://c7gswwp2apb" path="res://Background/MissionSelectBackround.png" id="1_pc7oq"]
 [ext_resource type="Texture2D" uid="uid://c84wcvys7k3fp" path="res://_Eligijus/Sprites/EndTurnButton.png" id="2_6p35s"]
+[ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_yspwi"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SaveManager.cs" id="3_2i0ko"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/SceneManager/ChangeScene.cs" id="4_8eohq"]
 
@@ -32,16 +33,14 @@ offset_left = 1644.0
 offset_top = 960.0
 offset_right = 1901.0
 offset_bottom = 1051.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 69
+text = "Back"
 icon = SubResource("AtlasTexture_7ymtc")
 flat = true
 icon_alignment = 1
 expand_icon = true
-
-[node name="TextEdit" type="TextEdit" parent="Camera2D/Canvas/Back"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "BACK"
 
 [node name="GameManager" type="Node" parent="."]
 
