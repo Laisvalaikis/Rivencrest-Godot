@@ -1,11 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj4efmj3njnxs"]
+[gd_scene load_steps=8 format=3 uid="uid://bj4efmj3njnxs"]
 
 [ext_resource type="Texture2D" uid="uid://btljd4so2vrli" path="res://_Eligijus/Sprites/PortraitBar/PortraitButtons.png" id="1_hvqjc"]
 [ext_resource type="Texture2D" uid="uid://dmswae100dsh8" path="res://_Eligijus/Sprites/ActionButtonIcons.png" id="2_0jevg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rejsa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kheq3"]
 atlas = ExtResource("1_hvqjc")
-region = Rect2(1, 1, 32, 32)
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_07r7c"]
+texture = SubResource("AtlasTexture_kheq3")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gadfb"]
+atlas = ExtResource("1_hvqjc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ediro"]
+texture = SubResource("AtlasTexture_gadfb")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ofnx"]
 atlas = ExtResource("2_0jevg")
@@ -24,7 +34,9 @@ offset_right = 62.5
 offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
-icon = SubResource("AtlasTexture_rejsa")
+theme_override_styles/normal = SubResource("StyleBoxTexture_07r7c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ediro")
+theme_override_styles/focus = SubResource("StyleBoxTexture_07r7c")
 icon_alignment = 1
 expand_icon = true
 

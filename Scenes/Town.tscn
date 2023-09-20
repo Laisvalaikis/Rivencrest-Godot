@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm5sqsqle3ngu"]
+[gd_scene load_steps=22 format=3 uid="uid://dm5sqsqle3ngu"]
 
 [ext_resource type="Texture2D" uid="uid://dev04kosy7rue" path="res://Background/TownBackground.png" id="1_a4s1p"]
 [ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_b0a05"]
 [ext_resource type="Texture2D" uid="uid://d21bsxa5ftmoq" path="res://_Eligijus/Sprites/TownButtons.png" id="3_8hj86"]
 [ext_resource type="PackedScene" uid="uid://bmgqq7bbqcu4f" path="res://_Eligijus/Prefabs/PortraitBar/PortraitBar.tscn" id="4_xm4l6"]
+[ext_resource type="PackedScene" uid="uid://dcypus8k2gv3v" path="res://_Eligijus/Prefabs/Buttons/EmbarkButton.tscn" id="5_8nfdk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fy4iv"]
 atlas = ExtResource("1_a4s1p")
@@ -176,3 +177,15 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_vwcdd")
 
 [node name="PrtraitBar" parent="CanvasLayer" instance=ExtResource("4_xm4l6")]
+
+[node name="Button2" parent="CanvasLayer/PrtraitBar" instance=ExtResource("5_8nfdk")]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -158.0
+offset_top = -115.0
+offset_right = 158.0
+offset_bottom = -29.0
+grow_vertical = 0

@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmgqq7bbqcu4f"]
+[gd_scene load_steps=11 format=3 uid="uid://bmgqq7bbqcu4f"]
 
 [ext_resource type="Texture2D" uid="uid://cqgx6k5jey036" path="res://_Eligijus/Sprites/PortraitBar/PortraitBar.png" id="1_ss48h"]
 [ext_resource type="Texture2D" uid="uid://iyg0n2036r1n" path="res://_Eligijus/Sprites/ActionButtons.png" id="2_0t0ig"]
 [ext_resource type="PackedScene" uid="uid://c0ctr7upkr3fo" path="res://_Eligijus/Prefabs/PortraitBar/portraitButton.tscn" id="3_17w16"]
 [ext_resource type="PackedScene" uid="uid://shil6c3es0g8" path="res://_Eligijus/Prefabs/PortraitBar/portraitArrowUpButton.tscn" id="3_vi6t4"]
 [ext_resource type="PackedScene" uid="uid://bj4efmj3njnxs" path="res://_Eligijus/Prefabs/PortraitBar/portraitArrowDownButton.tscn" id="5_7d18s"]
-[ext_resource type="PackedScene" uid="uid://dcypus8k2gv3v" path="res://_Eligijus/Prefabs/Buttons/EmbarkButton.tscn" id="6_1uas4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m21ee"]
 
@@ -90,17 +89,6 @@ layout_mode = 2
 
 [node name="Button" parent="VBoxContainer/ArowDown" instance=ExtResource("5_7d18s")]
 layout_mode = 2
-
-[node name="Button" parent="." instance=ExtResource("6_1uas4")]
-layout_mode = 1
-anchors_preset = 7
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -158.0
-offset_top = -115.0
-offset_right = 158.0
-offset_bottom = -29.0001
-grow_vertical = 0
 
 [node name="Pause" type="Button" parent="."]
 layout_mode = 1
