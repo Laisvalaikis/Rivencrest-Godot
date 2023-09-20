@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://shil6c3es0g8"]
+
+[ext_resource type="Texture2D" uid="uid://btljd4so2vrli" path="res://_Eligijus/Sprites/PortraitBar/PortraitButtons.png" id="1_y3flr"]
+[ext_resource type="Texture2D" uid="uid://dmswae100dsh8" path="res://_Eligijus/Sprites/ActionButtonIcons.png" id="2_hgjjt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rejsa"]
+atlas = ExtResource("1_y3flr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24ajt"]
+texture = SubResource("AtlasTexture_rejsa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40mqa"]
+atlas = ExtResource("1_y3flr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gsajr"]
+texture = SubResource("AtlasTexture_40mqa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ofnx"]
+atlas = ExtResource("2_hgjjt")
+region = Rect2(162, 36, 18, 18)
+
+[node name="Button" type="Button"]
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_24ajt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gsajr")
+theme_override_styles/focus = SubResource("StyleBoxTexture_24ajt")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Sprite" type="TextureRect" parent="."]
+self_modulate = Color(0.901961, 0.733333, 0.262745, 1)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_1ofnx")
+flip_v = true

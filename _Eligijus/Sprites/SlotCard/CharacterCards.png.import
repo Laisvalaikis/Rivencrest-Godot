@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c78fi5eyxgclo"
-path="res://.godot/imported/PortraitUI.png-441638a2f3034e05c4aa2bcc9b9cfd13.ctex"
+uid="uid://d1dc4r57p1q4p"
+path="res://.godot/imported/CharacterCards.png-2c4d2c65d0614c5b0332c7f5e2faeced.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_Eligijus/Sprites/PortraitUI.png"
-dest_files=["res://.godot/imported/PortraitUI.png-441638a2f3034e05c4aa2bcc9b9cfd13.ctex"]
+source_file="res://_Eligijus/Sprites/SlotCard/CharacterCards.png"
+dest_files=["res://.godot/imported/CharacterCards.png-2c4d2c65d0614c5b0332c7f5e2faeced.ctex"]
 
 [params]
 

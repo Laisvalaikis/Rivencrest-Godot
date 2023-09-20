@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=15 format=3 uid="uid://fpvleus21ol2"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="1_j3edm"]
-[ext_resource type="Texture2D" uid="uid://c78fi5eyxgclo" path="res://_Eligijus/Sprites/PortraitUI.png" id="1_px2ns"]
+[ext_resource type="Texture2D" uid="uid://c78fi5eyxgclo" path="res://_Eligijus/Sprites/PortraitBar/PortraitUI.png" id="1_px2ns"]
 [ext_resource type="Texture2D" uid="uid://b5mxljxsvoclv" path="res://_Eligijus/Sprites/TablePortraits.png" id="2_5bgvp"]
 [ext_resource type="Texture2D" uid="uid://c7h4qv2qdvhws" path="res://_Eligijus/Sprites/Yellow/Yellow.png" id="3_7boyj"]
 [ext_resource type="Resource" uid="uid://1sicug0eb6nq" path="res://Data/ActionIcons/Icon17.tres" id="3_xrvti"]

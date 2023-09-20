@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqgx6k5jey036"
-path="res://.godot/imported/PortraitBar.png-1cf26dd29708805b515fc792fe578005.ctex"
+uid="uid://btljd4so2vrli"
+path="res://.godot/imported/PortraitButtons.png-214a86bcdbbd8e0c513b93bb41885382.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_Eligijus/Sprites/PortraitBar.png"
-dest_files=["res://.godot/imported/PortraitBar.png-1cf26dd29708805b515fc792fe578005.ctex"]
+source_file="res://_Eligijus/Sprites/PortraitBar/PortraitButtons.png"
+dest_files=["res://.godot/imported/PortraitButtons.png-214a86bcdbbd8e0c513b93bb41885382.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c84wcvys7k3fp"
-path="res://.godot/imported/EndTurnButton.png-984f446e37afcba24b9c5090b2f43d7f.ctex"
+uid="uid://cqgx6k5jey036"
+path="res://.godot/imported/PortraitBar.png-4099a74403d0a8d03e910435b9bf7513.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_Eligijus/Sprites/EndTurnButton.png"
-dest_files=["res://.godot/imported/EndTurnButton.png-984f446e37afcba24b9c5090b2f43d7f.ctex"]
+source_file="res://_Eligijus/Sprites/PortraitBar/PortraitBar.png"
+dest_files=["res://.godot/imported/PortraitBar.png-4099a74403d0a8d03e910435b9bf7513.ctex"]
 
 [params]
 
