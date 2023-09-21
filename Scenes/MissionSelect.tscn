@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c4dlqs3vlnh2o"]
+[gd_scene load_steps=28 format=3 uid="uid://c4dlqs3vlnh2o"]
 
 [ext_resource type="Texture2D" uid="uid://c7gswwp2apb" path="res://Background/MissionSelectBackround.png" id="1_pc7oq"]
 [ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="2_yspwi"]
@@ -20,6 +20,12 @@ region = Rect2(0, 0, 480, 272)
 atlas = ExtResource("3_iki6a")
 region = Rect2(85, 17, 46, 17)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2glk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5yaw7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_llt8c"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hkf4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4o4x"]
@@ -29,6 +35,12 @@ region = Rect2(1, 1, 38, 38)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8klyi"]
 atlas = ExtResource("7_giskr")
 region = Rect2(150, 39, 7, 10)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_073n2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sd1ll"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o3klu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8q2q7"]
 
@@ -95,13 +107,15 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="SelectMission" type="Label" parent="Camera2D/Canvas"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -265.0
-offset_top = 34.0
-offset_right = 404.0
-offset_bottom = 156.0
+anchors_preset = -1
+anchor_left = 0.362
+anchor_top = 0.088
+anchor_right = 0.362
+anchor_bottom = 0.088
+offset_left = -0.0400391
+offset_top = -61.04
+offset_right = 668.96
+offset_bottom = 60.96
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
 theme_override_fonts/font = ExtResource("2_yspwi")
@@ -113,6 +127,9 @@ offset_left = 810.0
 offset_top = 657.0
 offset_right = 900.0
 offset_bottom = 747.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o2glk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5yaw7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_llt8c")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8hkf4")
 icon = SubResource("AtlasTexture_o4o4x")
 flat = true
@@ -140,6 +157,9 @@ offset_left = 1047.0
 offset_top = 583.0
 offset_right = 1137.0
 offset_bottom = 673.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_073n2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sd1ll")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_o3klu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8q2q7")
 icon = SubResource("AtlasTexture_enl2y")
 flat = true
@@ -147,16 +167,12 @@ expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Camera2D/Canvas/Level2Encounter"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -45.0
 offset_top = -45.0
-offset_right = 45.0
+offset_right = 90.0
 offset_bottom = 45.0
-grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
@@ -168,22 +184,154 @@ modulate = Color(0.580392, 0.764706, 0.227451, 1)
 layout_mode = 2
 texture = SubResource("AtlasTexture_kgkew")
 
-[node name="MissionBar" type="TextureRect" parent="Camera2D/Canvas/Level2Encounter"]
-layout_mode = 1
+[node name="MissionBar" type="TextureRect" parent="Camera2D/Canvas"]
 anchors_preset = -1
 anchor_left = -11.167
 anchor_top = -6.456
 anchor_right = -11.167
 anchor_bottom = -6.456
-offset_left = 0.0300903
-offset_top = 0.0400391
-offset_right = 352.03
-offset_bottom = 1078.04
+offset_left = 21482.6
+offset_top = 6974.48
+offset_right = 21834.6
+offset_bottom = 8052.48
 grow_horizontal = 0
 grow_vertical = 2
 texture = SubResource("AtlasTexture_bww81")
 
-[node name="Embark" type="Button" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
+[node name="MissionNameLabel" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 343.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "Map:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MissionName" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 80.0
+offset_right = 343.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "Campfire:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 146.0
+offset_right = 343.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 340.0
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CategoryLabel" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 263.0
+offset_right = 348.0
+offset_bottom = 317.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "Category"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Category" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -215.0
+offset_right = 351.0
+offset_bottom = -161.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "Forest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumOfEnemiesLabel" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_top = 405.0
+offset_right = 351.0
+offset_bottom = 513.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "Number of
+enemies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumOfEnemies" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 523.0
+offset_right = 346.0
+offset_bottom = 577.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MissionInformationLabel" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 597.0
+offset_right = 345.0
+offset_bottom = 705.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 50
+text = "Mission 
+information"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MissionInformation" type="Label" parent="Camera2D/Canvas/MissionBar"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 745.0
+offset_right = 343.0
+offset_bottom = 825.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
+theme_override_fonts/font = ExtResource("2_yspwi")
+theme_override_font_sizes/font_size = 30
+text = "Information"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Embark" type="Button" parent="Camera2D/Canvas/MissionBar"]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 962.0
@@ -201,133 +349,3 @@ icon = SubResource("AtlasTexture_u2oq2")
 flat = true
 icon_alignment = 1
 expand_icon = true
-
-[node name="MissionNameLabel" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 11.0
-offset_right = 343.0
-offset_bottom = 71.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "Map:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MissionName" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 80.0
-offset_right = 343.0
-offset_bottom = 134.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "Campfire:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LevelLabel" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 146.0
-offset_right = 343.0
-offset_bottom = 200.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "Level"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Level" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_top = 200.0
-offset_right = 340.0
-offset_bottom = 254.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CategoryLabel" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 263.0
-offset_right = 348.0
-offset_bottom = 317.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "Category"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Category" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 324.0
-offset_right = 351.0
-offset_bottom = 378.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "Forest"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NumOfEnemiesLabel" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_top = 405.0
-offset_right = 351.0
-offset_bottom = 513.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "Number of
-enemies"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NumOfEnemies" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 523.0
-offset_right = 346.0
-offset_bottom = 577.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MissionInformationLabel" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 597.0
-offset_right = 345.0
-offset_bottom = 705.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 50
-text = "Mission 
-information"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MissionInformation" type="Label" parent="Camera2D/Canvas/Level2Encounter/MissionBar"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 745.0
-offset_right = 343.0
-offset_bottom = 825.0
-theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 0.603922)
-theme_override_fonts/font = ExtResource("2_yspwi")
-theme_override_font_sizes/font_size = 30
-text = "Information"
-horizontal_alignment = 1
-vertical_alignment = 1
