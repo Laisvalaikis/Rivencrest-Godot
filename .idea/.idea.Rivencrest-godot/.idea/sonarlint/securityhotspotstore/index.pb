@@ -1,6 +1,4 @@
 
-Z
-*_Eligijus/Scripts/UIViewManager/UIStack.cs,6\c\6c2620f1072d7c5b419c93c4a60b6e6defecb459
 U
 %_Eligijus/Scripts/Data/AbilityData.cs,c\1\c140d15918757798a21e37f1a96b168cb4fa94ed
 Y

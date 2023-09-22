@@ -44,19 +44,23 @@ public partial class View : Control
 	
 	public void ExitView()
 	{
-		if (viewCanBeDisabled)
+		if (!_disabled)
 		{
-			Hide();
-		}
 
-		if (addViewToStack)
-		{
-			UIStack.Quit(_viewIndex);
-		}
+			if (viewCanBeDisabled)
+			{
+				Hide();
+			}
 
-		_disabled = true;
-		EmitSignal("CloseViewSignal");
-		_viewIndex = -1;
+			if (addViewToStack)
+			{
+				UIStack.Quit(_viewIndex);
+			}
+
+			_disabled = true;
+			EmitSignal("CloseViewSignal");
+			_viewIndex = -1;
+		}
 	}
 	
 	public void OpenCloseView()
