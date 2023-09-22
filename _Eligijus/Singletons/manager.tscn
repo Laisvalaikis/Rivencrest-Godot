@@ -1,10 +1,3 @@
-[gd_scene load_steps=3 format=3 uid="uid://csrw8551ker7e"]
-
-[ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/UIStack.cs" id="1_lbvt8"]
-[ext_resource type="Script" path="res://_Eligijus/Scripts/SceneManager/LoadingScreenController.cs" id="2_ik00w"]
-
-[node name="Manager" type="Node"]
-script = ExtResource("1_lbvt8")
-
-[node name="SceneLoad" type="Node" parent="."]
-script = ExtResource("2_ik00w")
+version https://git-lfs.github.com/spec/v1
+oid sha256:6b9e01629fe5c700d7c00eb4375c048d2ea403b9c63b26be7ea539c40adeae4b
+size 418
