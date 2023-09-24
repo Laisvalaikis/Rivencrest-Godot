@@ -1,33 +1,31 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Godot.Collections;
 using Godot;
+using Array = Godot.Collections.Array;
 
 public partial class Data : Node
 {
 	public static Data Instance { get; private set; }
-	
 	[Export]
-	public List<SavedCharacter> Characters;
+	public Array<SavedCharacterResource> Characters;
 	[Export]
-	public List<SavedCharacter> AllAvailableCharacters;
+	public Array<SavedCharacterResource> AllAvailableCharacters;
 	[Export]
-	public List<Node> AllEnemyCharacterPrefabs;
+	public Array<Node> AllEnemyCharacterPrefabs;
 	[Export]
-	public List<SavedCharacter> AllEnemySavedCharacters;
-	
-	public List<int> CharactersOnLastMission;
+	public Array<SavedCharacterResource> AllEnemySavedCharacters;
+	public Array<int> CharactersOnLastMission;
 	[Export]
-	public TownData newGameData;
+	public TownDataResource newGameData;
 	public bool canButtonsBeClicked = true;
 	[Export]
 	public bool canButtonsBeClickedState = true;
 	[Export]
-	public List<int> XPToLevelUp;
+	public Array XPToLevelUp;
 	[Export]
 	public bool isCurrentScenePlayableMap = false;
 	public bool switchPortraits;
-	public List<int> SwitchedCharacters;
+	public Array SwitchedCharacters;
 	public int currentCharacterIndex = -1;
 	[Export]
 	public int maxCharacterCount;
@@ -35,11 +33,11 @@ public partial class Data : Node
 	public int minCharacterCount;
 	public bool createNewRCcharacters = false;
 	[Export]
-	public List<int> selectedEnemies;
+	public Array<int> selectedEnemies;
 	public Statistics statistics;
 	public Statistics globalStatistics;
 	[Export]
-	public TownData townData;
+	public TownDataResource townData;
 	[Signal]
 	public delegate void CharacterRecruitmentEventHandler();
 	// Start is called before the first frame update
@@ -53,7 +51,7 @@ public partial class Data : Node
 		}
 	}
 
-	public void InsertCharacter(SavedCharacter character)
+	public void InsertCharacter(SavedCharacterResource character)
 	{
 		Characters.Add(character);
 		EmitSignal("CharacterRecruitment");

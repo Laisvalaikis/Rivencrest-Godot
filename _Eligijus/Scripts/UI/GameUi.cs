@@ -100,7 +100,7 @@ public partial class GameUi : Node
 		bool playerHasUnspentPoints = false;
 		if (_data.Characters != null)
 		{
-			List<SavedCharacter> charactersToUpdate = _data.Characters;
+			Array<SavedCharacterResource> charactersToUpdate = _data.Characters;
 			for (int i = 0; i < charactersToUpdate.Count; i++)
 			{
 				if (charactersToUpdate[i].abilityPointCount > 0)

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dqk3bgv7ai36b"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/SaveManager/SavedCharacter.cs" id="1_nr2al"]
+
+[resource]
+script = ExtResource("1_nr2al")
