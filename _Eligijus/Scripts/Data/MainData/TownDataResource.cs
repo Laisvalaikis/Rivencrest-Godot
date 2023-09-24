@@ -51,4 +51,81 @@ public partial class TownDataResource: Resource
 	public Array<EncounterResource> generatedEncounters;
 	[Export]
 	public GameSettingsResource gameSettings;
+
+	public TownDataResource(TownDataResource data)
+	{
+		teamColor = data.teamColor;
+		slotName = data.slotName;
+		difficultyLevel = data.difficultyLevel;
+		townGold = data.townGold;
+		day = data.day;
+		wasLastMissionSuccessful = data.wasLastMissionSuccessful;
+		characters = new Array<SavableCharacterResource>(data.characters);
+		charactersOnLastMission = new Array<int>(data.charactersOnLastMission);
+		wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
+		newGame = data.newGame;
+		singlePlayer = data.singlePlayer;
+		selectedMission = data.selectedMission;
+		townHall = data.townHall;
+		if(data.rcCharacters != null)
+			rcCharacters = new Array<SavableCharacterResource>(data.rcCharacters);
+		createNewRCcharacters = data.rcCharacters == null;
+		enemies = new Array<int>(data.enemies);
+		allowEnemySelection = data.allowEnemySelection;
+		allowDuplicates = data.allowDuplicates;
+		teamColor = data.teamColor;
+		selectedEncounter = data.selectedEncounter;
+		pastEncounters = data.pastEncounters;
+		generateNewEncounters = data.generateNewEncounters;
+		generatedEncounters = data.generatedEncounters;
+		gameSettings = data.gameSettings;
+	}
+
+	public TownDataResource(TownData data)
+	{
+		teamColor = data.teamColor;
+		slotName = data.slotName;
+		difficultyLevel = data.difficultyLevel;
+		townGold = data.townGold;
+		day = data.day;
+		wasLastMissionSuccessful = data.wasLastMissionSuccessful;
+		characters = new Array<SavableCharacterResource>();
+		for (int i = 0; i < data.characters.Count; i++)
+		{
+			characters.Add(new SavableCharacterResource(data.characters[i]));
+		}
+		charactersOnLastMission = new Array<int>(data.charactersOnLastMission);
+		wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
+		newGame = data.newGame;
+		singlePlayer = data.singlePlayer;
+		selectedMission = data.selectedMission;
+		townHall = new TownHallDataResource(data.townHall);
+		if (data.rcCharacters != null)
+		{
+			rcCharacters = new Array<SavableCharacterResource>();
+			for (int i = 0; i < data.rcCharacters.Count; i++)
+			{
+				rcCharacters.Add(new SavableCharacterResource(data.rcCharacters[i]));
+			}
+		}
+		createNewRCcharacters = data.rcCharacters == null;
+		enemies = new Array<int>(data.enemies);
+		allowEnemySelection = data.allowEnemySelection;
+		allowDuplicates = data.allowDuplicates;
+		teamColor = data.teamColor;
+		selectedEncounter = new EncounterResource(data.selectedEncounter);
+		pastEncounters = new Array<EncounterResource>();
+		for (int i = 0; i < data.pastEncounters.Count; i++)
+		{
+			pastEncounters.Add(new EncounterResource(data.pastEncounters[i]));
+		}
+		generateNewEncounters = data.generateNewEncounters;
+		generatedEncounters = new Array<EncounterResource>();
+		for (int i = 0; i < data.generatedEncounters.Count; i++)
+		{
+			generatedEncounters.Add(new EncounterResource(data.generatedEncounters[i]));
+		}
+		gameSettings = new GameSettingsResource(data.gameSettings);
+	}
+
 }

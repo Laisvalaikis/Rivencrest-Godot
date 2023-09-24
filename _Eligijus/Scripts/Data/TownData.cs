@@ -67,6 +67,53 @@ using System;
 			this.gameSettings = gameSettings;
 		}
 
+		public TownData(TownDataResource data)
+		{
+			teamColor = data.teamColor;
+			slotName = data.slotName;
+			difficultyLevel = data.difficultyLevel;
+			townGold = data.townGold;
+			day = data.day;
+			wasLastMissionSuccessful = data.wasLastMissionSuccessful;
+			characters = new List<SavableCharacter>();
+			for (int i = 0; i < data.characters.Count; i++)
+			{
+				characters.Add(new SavableCharacter(data.characters[i]));
+			}
+			charactersOnLastMission = new List<int>(data.charactersOnLastMission);
+			wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
+			newGame = data.newGame;
+			singlePlayer = data.singlePlayer;
+			selectedMission = data.selectedMission;
+			townHall = new TownHallData(data.townHall);
+			if (data.rcCharacters != null)
+			{
+				rcCharacters = new List<SavableCharacter>();
+				for (int i = 0; i < data.rcCharacters.Count; i++)
+				{
+					rcCharacters.Add(new SavableCharacter(data.rcCharacters[i]));
+				}
+			}
+			createNewRCcharacters = data.rcCharacters == null;
+			enemies = new List<int>(data.enemies);
+			allowEnemySelection = data.allowEnemySelection;
+			allowDuplicates = data.allowDuplicates;
+			teamColor = data.teamColor;
+			selectedEncounter = new Encounter(data.selectedEncounter);
+			pastEncounters = new List<Encounter>();
+			for (int i = 0; i < data.pastEncounters.Count; i++)
+			{
+				pastEncounters.Add(new Encounter(data.pastEncounters[i]));
+			}
+			generateNewEncounters = data.generateNewEncounters;
+			generatedEncounters = new List<Encounter>();
+			for (int i = 0; i < data.generatedEncounters.Count; i++)
+			{
+				generatedEncounters.Add(new Encounter(data.generatedEncounters[i]));
+			}
+			gameSettings = new GameSettings(data.gameSettings);
+		}
+
 		public static TownData NewGameData(string color, int difficulty, string slotName)
 		{
 			return new TownData
@@ -132,21 +179,41 @@ using System;
 			this.characterIndex = characterIndex;
 			this.playerInformation = playerInformation;
 		}
-
-		public SavableCharacter(SavableCharacter x)
+		
+		public SavableCharacter(SavableCharacterResource data)
 		{
-			this.level = x.level;
-			this.xP = x.xP;
-			this.xPToGain = x.xPToGain;
-			this.dead = x.dead;
-			this.characterName = x.characterName;
-			this.abilityPointCount = x.abilityPointCount;
-			this.unlockedAbilities = x.unlockedAbilities;
-			this.toConfirmAbilities = x.toConfirmAbilities;
-			this.blessings = this.blessings = new List<Blessing>(x.blessings);
-			this.cost = x.cost;
-			this.characterIndex = x.characterIndex;
-			this.playerInformation = x.playerInformation;
+			this.level = data.level;
+			this.xP = data.xP;
+			this.xPToGain = data.xPToGain;
+			this.dead = data.dead;
+			this.characterName = data.characterName;
+			this.abilityPointCount = data.abilityPointCount;
+			this.unlockedAbilities = new List<UnlockedAbilities>();
+			for (int i = 0; i < data.unlockedAbilities.Count; i++)
+			{
+				this.unlockedAbilities.Add(new UnlockedAbilities(data.unlockedAbilities[i]));
+			}
+			this.toConfirmAbilities = data.toConfirmAbilities;
+			this.blessings = this.blessings = new List<Blessing>(data.blessings);
+			this.cost = data.cost;
+			this.characterIndex = data.characterIndex;
+			this.playerInformation = data.playerInformation;
+		}
+
+		public SavableCharacter(SavableCharacter data)
+		{
+			this.level = data.level;
+			this.xP = data.xP;
+			this.xPToGain = data.xPToGain;
+			this.dead = data.dead;
+			this.characterName = data.characterName;
+			this.abilityPointCount = data.abilityPointCount;
+			this.unlockedAbilities = data.unlockedAbilities;
+			this.toConfirmAbilities = data.toConfirmAbilities;
+			this.blessings = this.blessings = new List<Blessing>(data.blessings);
+			this.cost = data.cost;
+			this.characterIndex = data.characterIndex;
+			this.playerInformation = data.playerInformation;
 		}
 	}
 
@@ -162,5 +229,12 @@ using System;
 			attackHelper = false;
 			masterVolume = 1f;
 			mute = false;
+		}
+
+		public GameSettings(GameSettingsResource data)
+		{
+			attackHelper = data.attackHelper;
+			masterVolume = data.masterVolume;
+			mute = data.mute;
 		}
 	}

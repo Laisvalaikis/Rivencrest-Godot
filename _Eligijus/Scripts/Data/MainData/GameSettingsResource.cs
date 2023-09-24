@@ -8,4 +8,18 @@ public partial class GameSettingsResource: Resource
     public float masterVolume;
     [Export]
     public bool mute;
+
+    public GameSettingsResource(GameSettingsResource data)
+    {
+        attackHelper = data.attackHelper;
+        masterVolume = data.masterVolume;
+        mute = data.mute;
+    }
+
+    public GameSettingsResource(GameSettings data)
+    {
+        attackHelper = data.attackHelper;
+        masterVolume = data.masterVolume;
+        mute = data.mute;
+    }
 }

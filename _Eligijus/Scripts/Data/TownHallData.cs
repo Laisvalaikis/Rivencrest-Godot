@@ -92,4 +92,14 @@ public class TownHallData
         }
     }
 
+    public TownHallData(TownHallDataResource data)
+    {
+        maxCharacterCount = data.maxCharacterCount;
+        attractedCharactersCount = data.attractedCharactersCount;
+        attractedCharacterLevel = data.attractedCharacterLevel;
+        maxCharacterLevel = data.maxCharacterLevel;
+        characterReRoll = data.characterReRoll;
+        damagedMerchant = data.damagedMerchant;
+    }
+
 }

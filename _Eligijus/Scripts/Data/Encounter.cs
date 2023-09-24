@@ -27,6 +27,17 @@ public class Encounter
         numOfEnemies = 0;
     }
 
+    public Encounter(EncounterResource data)
+    {
+        mapName = data.mapName;
+        missionCategory = data.missionCategory;
+        encounterLevel = data.encounterLevel;
+        enemyPool = new List<string>(data.enemyPool);
+        allowDuplicates = data.allowDuplicates;
+        numOfEnemies = data.numOfEnemies;
+        missionText = data.missionText;
+    }
+
     // public static bool operator ==(Encounter a, Encounter b)
     // {
     //     return JsonUtility.ToJson(a) == JsonUtility.ToJson(b);

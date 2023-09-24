@@ -1,13 +1,19 @@
 
 [System.Serializable]
 public class UnlockedAbilities
-{
-   public bool abilityUnlocked = false;
-   public bool abilityConfirmed = false;
+{ 
+	public bool abilityConfirmed = false; 
+	public bool abilityUnlocked = false; 
+	public UnlockedAbilities()
+	{
+	   abilityConfirmed = false; 
+	   abilityUnlocked = false;
+	}
 
-   public UnlockedAbilities()
-   {
-	  abilityUnlocked = false;
-	  abilityConfirmed = false;
-   }
+	public UnlockedAbilities(UnlockedAbilitiesResource data)
+	{
+	   abilityConfirmed = data.abilityConfirmed;
+	   abilityUnlocked = data.abilityUnlocked;
+	}
+
 }
