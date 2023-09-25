@@ -297,7 +297,6 @@ public partial class CharacterTable : Control
     {
         int cost = _data.Characters[characterIndex].cost;
         _data.townData.townGold += cost / 2;
-        gameUI.EnableGoldChange("+" + cost / 2 + "g");
         gameUI.UpdateTownCost();
         _data.Characters.RemoveAt(characterIndex);
         portraitBar.RemoveCharacter(characterIndex);

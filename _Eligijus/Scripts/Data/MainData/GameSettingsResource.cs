@@ -9,6 +9,11 @@ public partial class GameSettingsResource: Resource
     [Export]
     public bool mute;
 
+    public GameSettingsResource()
+    {
+        
+    }
+
     public GameSettingsResource(GameSettingsResource data)
     {
         attackHelper = data.attackHelper;

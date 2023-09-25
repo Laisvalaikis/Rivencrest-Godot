@@ -3,7 +3,7 @@ using System.Collections;
 using Godot;
 using Godot.Collections;
 
-public partial class Recruitment : Control
+public partial class Recruitment : Node
 {
 	[Export]
 	public Array<RecruitButton> recruitTableCharacters;
@@ -27,20 +27,22 @@ public partial class Recruitment : Control
 	private Array<string> NamesW = new Array<string>();
 	private Array<int> characterIndexList;
 	private Random _random;
-	public override void _Draw()
+	public override void _Ready()
 	{
-		base._Draw();
+		base._Ready();
 		if (_data == null)
 		{
 			_data = Data.Instance;
 			characterIndexList = new Array<int>();
 		}
+
+		_random = new Random();
 	}
 
 	public void RecruitmentStart()
 	{
-		ReadString(NamesM, NamesMFile);
-		ReadString(NamesW, NamesWFile);
+		ReadString(ref NamesM, NamesMFile);
+		ReadString(ref NamesW, NamesWFile);
 		if (_data.townData.day > 1)
 		{
 			AttractedCharactersCount = 2;
@@ -67,15 +69,14 @@ public partial class Recruitment : Control
 		UpdateButtons();
 	}
 
-	public void ReadString(Array<string> stringList, string namesFile)
+	public void ReadString(ref Array<string> stringList, string namesFile)
 	{
-		stringList.Clear();
+		stringList = new Array<string>();
 		using (var file = FileAccess.Open(namesFile, FileAccess.ModeFlags.Read))
 		{
-			string line;
-			while ((line = file.GetLine()) != null)
+			while (!file.EofReached())
 			{
-				stringList.Add(line);
+				stringList.Add(file.GetLine());
 			}
 		}
 	}
@@ -84,23 +85,16 @@ public partial class Recruitment : Control
 		Array<SavedCharacterResource> AllCharactersCopy = new Array<SavedCharacterResource>(_data.AllAvailableCharacters);
 		CharactersInShop.Clear();
 		characterIndexList.Clear();
-		if(NamesW.Count <= 8)
+		for (int i = 0; i < AttractedCharactersCount && AllCharactersCopy.Count > 0; i++)
 		{
-			ReadString(NamesW, NamesWFile);
-		}
-		if (NamesM.Count <= 8)
-		{
-			ReadString(NamesM, NamesMFile);
-		}
-		for (int i = 0; i < AttractedCharactersCount; i++)
-		{
+			GD.Print(AllCharactersCopy.Count);
 			int randomIndex = _random.Next(0, AllCharactersCopy.Count);
 			SavedCharacterResource characterToAdd = new SavedCharacterResource(AllCharactersCopy[randomIndex]);
 			characterToAdd.level = 1;
 			characterToAdd.xP = 0;
-			for (int j = AllCharactersCopy.Count; j >= 0; j--)
+			for (int j = AllCharactersCopy.Count-1; j >= 0; j--)
 			{
-				if (AllCharactersCopy[i].prefab == characterToAdd.prefab)
+				if (AllCharactersCopy[j].prefabPath == characterToAdd.prefabPath)
 				{
 					AllCharactersCopy.RemoveAt(i);
 				}
@@ -183,7 +177,6 @@ public partial class Recruitment : Control
 				
 				_data.InsertCharacter(savedCharacter);
 				_data.townData.townGold -= savedCharacter.cost;
-				gameUI.EnableGoldChange("-" + savedCharacter.cost + "g");
 				gameUI.UpdateTownCost();
 				portraitBar.InsertCharacter();
 				gameUI.UpdateUnspentPointWarnings();
@@ -220,3 +213,4 @@ public partial class Recruitment : Control
 	}
 	
 }
+

@@ -17,6 +17,11 @@ public partial class EncounterResource: Resource
 	public int numOfEnemies;
 	[Export]
 	public string missionText;
+	
+	public EncounterResource()
+	{
+		
+	}
 
 	public EncounterResource(EncounterResource data)
 	{

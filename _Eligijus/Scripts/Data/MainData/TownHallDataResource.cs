@@ -16,6 +16,11 @@ public partial class TownHallDataResource: Resource
     [Export]
     public int damagedMerchant;
 
+    public TownHallDataResource()
+    {
+        
+    }
+
     public TownHallDataResource(TownHallDataResource data)
     {
         maxCharacterCount = data.maxCharacterCount;

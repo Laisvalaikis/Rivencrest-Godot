@@ -29,6 +29,11 @@ public partial class SavableCharacterResource : Resource
 	[Export]
 	public PlayerInformationData playerInformation;
 
+	public SavableCharacterResource()
+	{
+		
+	}
+
 	public SavableCharacterResource(SavableCharacterResource data)
 	{
 		level = data.level;

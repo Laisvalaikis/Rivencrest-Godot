@@ -43,7 +43,12 @@ public partial class PlayerInformationData: Resource
 	public Array<TextureResource> abilities;
 	[Export]
 	public Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
-	
+
+	public PlayerInformationData()
+	{
+		
+	}
+
 	public PlayerInformationData(string ClassName, int MaxHealth, int critChance, int accuracy,
 	int dodgeChance, string role, Color classColor, Color secondClassColor, Color textColor,
 	Color backgroundColor, Texture CharacterPortraitSprite, Texture CharacterSplashArt,//For character table

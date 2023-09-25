@@ -5,8 +5,6 @@ U
 %_Eligijus/Scripts/Data/AbilityData.cs,c\1\c140d15918757798a21e37f1a96b168cb4fa94ed
 a
 1_Eligijus/Scripts/Character/Blessings/Blessing.cs,7\3\731e8d2ca45800ff0a9a80ea58118401ecaa47cc
-_
-/_Eligijus/Scripts/Data/PlayerInformationData.cs,3\d\3df8efc3227c314948b6c62ce3991aee0b56f351
 Z
 *_Eligijus/Scripts/Statistics/Statistics.cs,c\e\ce14c568b9cf2d354d0f0848677ca50b56deeeb2
 [
@@ -27,11 +25,5 @@ i
 -_Eligijus/Scripts/SaveManager/SaveSlotCard.cs,6\a\6a3972942715273c7497b2cf939d655d6e4dde55
 Z
 *_Eligijus/Scripts/UIViewManager/UIStack.cs,6\c\6c2620f1072d7c5b419c93c4a60b6e6defecb459
-N
-_Eligijus/Scripts/UI/GameUi.cs,7\7\77ca0c064a49502ff59702c82347672d5c507901
-N
-_Eligijus/Scripts/Data/Data.cs,6\9\69093793e155d791c9d281e41dc25b2e0ed1ee8b
 _
 /_Eligijus/Scripts/SaveManager/SavedCharacter.cs,e\8\e88f21165dd889723fb8292a38a7218c11680515
-R
-"_Eligijus/Scripts/Data/TownData.cs,e\1\e1e99ac5cfccf7a8a4f794f273033f5dcbc9a99e

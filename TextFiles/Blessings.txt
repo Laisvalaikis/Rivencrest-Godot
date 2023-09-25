@@ -1,0 +1,62 @@
+Freezing touch;0;-;-;-;Basic attacks slow enemies by 1
+Healthy;0;-;-;-;Grants 3 max HP
+Venomous touch;0;-;-;-;Basic attacks apply poison
+Molten touch;1;-;-;-;Basic attack apply aflame
+Gather round;1;Shaman;HealSingle;-;Healing potion heals everyone in range
+Sharp blade;0;-;-;-;Basic attacks deal 2 more damage
+Meteor rain;2;Fire mage;FlameBlast;-;Flame blast creates danger zones on all affected tiles
+Rapid fire;1;Fire mage;LaserBeam;-;Laser beam becomes a fast ability
+Head start;1;-;-;-;Gain 2 movement points at the start of the mission
+Swiftness;2;-;-;-;Gain bonus movement point at the start of each even turn
+Enlighten;1;Enchantress;Purify;-;Purify heals the target as well
+Distant remedy;1;Enchantress;Purify;-;Increase the range of Purify by 1
+Painful spot;1;Enchantress;WeakSpot;-;Attaks against the target with Weak spot deal 2 damage
+Silent plague;1;Enchantress;SilenceBeam;-;Silence beam applies poison
+Distant defence;1;Enchantress;PinkBarrier;-;Increase the range of Barrier by 1
+Stay there;1;Portalist;SwitchPlaces;-;Switching places also roots the enemy
+Fetch;2;Portalist;ThrowSpear;-;Dealing damage to enemies with Throw spear grants 1 bonus damage
+Far reach;1;Shaman;HealSingle;-;Increase range of healing potion by 1
+Explosive dart;1;Shaman;PoisonDart;-;Poison dart affects adjacent enemies as well
+Plaguebearer;1;Shaman;CrowAttack;-;Crow attack poisons enemies after dealing damage
+Revive;2;-;-;Dead;Revives a character who died during the mission
+Antitoxic;1;-;-;-;Immune to poison
+Agility;2;-;-;-;Attacking does not remove movement points
+Spectral;1;-;-;-;Can move through enemies
+Vampiric touch;1;-;-;-;Lifesteal on attack
+No escape;1;Crusader;ChainHook;-;Increase the range of Chain hook by 1
+Grappling hook;2;Crusader;ChainHook;-;You can target walls with Chain hook and pull yourself to them
+Stunning;1;Crusader;StunAttack;-;Shield attack stuns
+Toxic metals;1;Crusader;StunAttack;-;Shield attack applies poison
+Battle rage;1;Crusader;GroundSlam;-;Heal after the second slam of Ground slam
+Martial artist;1;Crusader;FlameKick;-;Kicking an enemy into another enemy deals damage to both of them
+Combo kick;1;Crusader;FlameKick;-;Deal bonus damage if you kick an enemy into another one
+Ice skates;1;Sorceress;IceFreeze;-;Gain 1 MP after casting Ring of frost
+Friendly frost;1;Sorceress;IceFreeze;-;Ring of frost does not affect allies
+Frostbite;1;Sorceress;IceFreeze;-;Ring of frost deals 2 more damage
+Blizzard;1;Sorceress;IceFreeze;-;Ring of frost slows enemies by 2
+Sharp eye;1;Huntress;RainOfArrows;-;Rain of arrows does not affect allies
+Noxious arrows;1;Huntress;Volley;-;Volley applies stronger poison
+Poisonous shot;1;Huntress;LongShot;-;Long shot applies poison
+Caught one;2;Huntress;LongShot;-;Long shot slows by 2
+Preparation;2;Huntress;RainOfArrows;-;Rain of arrows also deals initial damage to enemies
+Chilling shot;0;Huntress;PowerShot;-;Power shot slows by 2
+Release toxins;1;Huntress;PowerShot;-;Power shot deals bonus damage if the target is poisoned
+Astonishing;1;Guardian;MarkEnemy;-;Attack against the marked target now stuns
+Eagle eye;1;Guardian;MarkEnemy;-;Increase the range of Mark by 1
+Fresh air;1;Guardian;WindBoost;-;Increase the healing of wind boost
+Breezy defence;1;Guardian;CreateWhiteField;-;After casting White field, gain a barrier
+Harsh winds;1;Guardian;ChillingGust;-;Dual winds deal more damage
+Healing winds;1;Guardian;ChillingGust;-;Dual winds heal allies
+Swift strike;1;Assassin;ShadowBlink;-;Gain 1 MP after casting Shadow blink
+Hostile;2;Assassin;Enrage;-;Reduce the cooldown of Enrage by 1
+Pat on the back;1;Assassin;ShadowBlink;-;Casting Shadow blink on an ally reduces its cooldown by 1
+Feast;2;Assassin;Execute;-;Killing enemies with Execute grants 2 bonus damage to the ability
+Cavalry;1;Knight;DisarmingSlam;-;Increase the range of Disarming slam by 1
+Seeker;1;Knight;HealingSight;-;Healing sight gives 1 MP
+Solar explosion;1;Knight;HealingSight;-;Healing sight deals damage to adjacent enemies
+Halt;1;Knight;SwordPush;-;Sword from the sky roots target in the middle
+Sword mastery;1;Knight;SwordPush;-;Sword from the sky becomes a fast ability
+Block from afar;1;Knight;Block;-;Increase the range of Block by 1
+Sense of safety;1;Knight;Block;-;Blocked target is healed after blocking
+Concussion;1;Stoneweaver;WallSmash;-;Enemies damaged by Wall smash are silenced
+Grand entrance;1;Stoneweaver;RaiseRock;-;After summoning a rock, damage is dealt to adjacent enemies

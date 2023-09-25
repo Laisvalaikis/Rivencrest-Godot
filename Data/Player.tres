@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bextsbhbwu4wv"]
+
+[ext_resource type="Resource" uid="uid://fpvleus21ol2" path="res://Data/PlayerYellowData.tres" id="1_1kykc"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="2_bt7gp"]
+
+[resource]
+script = ExtResource("2_bt7gp")
+prefabPath = "res://Data/Player/PlayerYellow.tscn"
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = null
+toConfirmAbilities = 0
+blessings = null
+cost = 800
+characterIndex = 0
+playerInformation = ExtResource("1_1kykc")

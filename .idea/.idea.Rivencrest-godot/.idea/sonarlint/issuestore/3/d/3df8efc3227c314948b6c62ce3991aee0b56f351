@@ -1,24 +1,0 @@
-
-]csharpsquid:S3903"4Move 'PlayerInformationData' into a named namespace.(«Æ¿éúÿÿÿÿ8—œ²¸ª1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(Ò÷ı8—œ²¸ª1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ıÄ¯Ïıÿÿÿÿ8˜œ²¸ª1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ÿ¤èş8˜œ²¸ª1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(„ÿÕ–ıÿÿÿÿ8˜œ²¸ª1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¸Ø»8˜œ²¸ª1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ñÁÂÜ8æ‘®ºª1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(áê‚Ö8˜œ²¸ª1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¡›š€ùÿÿÿÿ8˜œ²¸ª1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¶ÀÿÄüÿÿÿÿ8˜œ²¸ª1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(‘»¦8æ‘®ºª1
-mcsharpsquid:S1104!"DMake this field 'private' and encapsulate it in a 'public' property.(á»–—şÿÿÿÿ8˜œ²¸ª1
-mcsharpsquid:S1104#"DMake this field 'private' and encapsulate it in a 'public' property.(­Ó”øÿÿÿÿ8™œ²¸ª1
-mcsharpsquid:S1104%"DMake this field 'private' and encapsulate it in a 'public' property.(ÛÁ¤İùÿÿÿÿ8™œ²¸ª1
-hcsharpsquid:S1104'"DMake this field 'private' and encapsulate it in a 'public' property.(˜£¼¤8™œ²¸ª1
-mcsharpsquid:S1104)"DMake this field 'private' and encapsulate it in a 'public' property.(«ç›•ùÿÿÿÿ8™œ²¸ª1
-hcsharpsquid:S1104-"DMake this field 'private' and encapsulate it in a 'public' property.(ì’ÿ¢8Ãü½½ª1
-}csharpsquid:S3604"TRemove the member initializer, all constructors set an initial value for the member.(ıÄ¯Ïıÿÿÿÿ8åÃá¸ª1
-xcsharpsquid:S3604"TRemove the member initializer, all constructors set an initial value for the member.(ÿ¤èş8åÃá¸ª1
-}csharpsquid:S3604"TRemove the member initializer, all constructors set an initial value for the member.(„ÿÕ–ıÿÿÿÿ8åÃá¸ª1
-xcsharpsquid:S3604"TRemove the member initializer, all constructors set an initial value for the member.(¸Ø»8ç‘®ºª1
-xcsharpsquid:S3604-"TRemove the member initializer, all constructors set an initial value for the member.(ì’ÿ¢8Äü½½ª1
-ncsharpsquid:S107/"FConstructor has 17 parameters, which is greater than the 7 authorized.(½«ÖŞÿÿÿÿÿ8ÂÜ×¸ª1

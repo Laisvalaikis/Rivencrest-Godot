@@ -1,22 +1,0 @@
-
-?csharpsquid:S3903"#Move 'Data' into a named namespace.(ÖÍ×2
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(äÍÍÍıÿÿÿÿ8¨ ¹é«1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(î£ëÿÿÿÿÿÿ8¨ ¹é«1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(Ûíù¡ÿÿÿÿÿ8¨ ¹é«1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ŒÑí8© ¹é«1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¬·¿ªÿÿÿÿÿ8© ¹é«1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(©¯á­8© ¹é«1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(²±¯×ûÿÿÿÿ8© ¹é«1
-mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(‰í‰Úûÿÿÿÿ8© ¹é«1
-gcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(²åæB8© ¹é«1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ıÖàá8© ¹é«1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(Úıİˆ8© ¹é«1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ëÜ—â8© ¹é«1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(×âè8© ¹é«1
-hcsharpsquid:S1104!"DMake this field 'private' and encapsulate it in a 'public' property.(µÇÅé8© ¹é«1
-hcsharpsquid:S1104#"DMake this field 'private' and encapsulate it in a 'public' property.(á•·Â8© ¹é«1
-mcsharpsquid:S1104$"DMake this field 'private' and encapsulate it in a 'public' property.(é›Ó¾şÿÿÿÿ8© ¹é«1
-mcsharpsquid:S1104&"DMake this field 'private' and encapsulate it in a 'public' property.(Ã˜ğÎıÿÿÿÿ8© ¹é«1
-hcsharpsquid:S1104'"DMake this field 'private' and encapsulate it in a 'public' property.(—¨š8© ¹é«1
-mcsharpsquid:S1104("DMake this field 'private' and encapsulate it in a 'public' property.(òà¤şÿÿÿÿ8© ¹é«1
-mcsharpsquid:S1104*"DMake this field 'private' and encapsulate it in a 'public' property.(¹µá¯ÿÿÿÿÿ8© ¹é«1

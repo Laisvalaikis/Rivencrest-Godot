@@ -2,8 +2,15 @@ using Godot;
 
 public partial class SavedCharacterResource : SavableCharacterResource
 {
+    [Export] 
+    public string prefabPath;
     [Export]
     public Node prefab;
+
+    public SavedCharacterResource()
+    {
+        
+    }
 
     public SavedCharacterResource(Node prefab, SavableCharacterResource data) : base(data)
     {

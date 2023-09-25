@@ -6,24 +6,23 @@ public partial class GameUi : Node
 {
 	[Export] 
 	private Label townGold;
-	[Export]
-	private Array<Label> townGoldChanges;
 	[Export] private Label dayNumber;
-	[Export] private Label difficulty;
+	[Export] private Button difficulty;
 	[Export] private CanvasItem abilityPointWarning;
 	[Export] private CanvasItem buyRecruitsWarning;
 	[Export] private Button embark;
 	private Data _data;
 
-	private void Start()
+	public override void _Ready()
 	{
+		base._Ready();
 		_data = Data.Instance;
 		UpdateDifficultyText();
 		UpdateDayNumber();
 		UpdateTownCost();
 		UpdateEmbarkButton();
 	}
-
+	
 	public void UpdateEmbarkButton()
 	{
 		if (_data.Characters.Count >= _data.minCharacterCount)
@@ -66,20 +65,6 @@ public partial class GameUi : Node
 		{
 			difficulty.Text = "HARD";   
 		}
-	}
-
-	public void EnableGoldChange(string text)
-	{
-	  
-			for (int i = 0; i < townGoldChanges.Count; i++)
-			{
-				if (!townGoldChanges[i].IsVisibleInTree())
-				{
-					townGoldChanges[i].Text = text;
-					townGoldChanges[i].Show();
-					break;
-				}
-			}
 	}
 	public void UpdateBuyRecruitsWarning()
 	{

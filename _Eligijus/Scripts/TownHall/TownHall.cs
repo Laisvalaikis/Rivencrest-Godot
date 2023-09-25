@@ -137,7 +137,6 @@ public partial class TownHall : Control
 			TownHallDataResource townHall = _data.townData.townHall;
 			townHall.SetByType((TownHallUpgrade)SelectedUpgrade.upgradeData.upgradeIndex, SelectedUpgrade.upgradeData.upgradeValue);
 			GameManager.Instance.SpendGold(SelectedUpgrade.upgradeData.upgradeCost);
-			gameUi.EnableGoldChange("-" + SelectedUpgrade.upgradeData.upgradeCost + "g");
 			gameUi.UpdateTownCost();
 			UpdateButtons();
 		}

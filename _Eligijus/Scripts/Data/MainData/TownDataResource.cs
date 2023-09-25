@@ -52,6 +52,11 @@ public partial class TownDataResource: Resource
 	[Export]
 	public GameSettingsResource gameSettings;
 
+	public TownDataResource()
+	{
+		
+	}
+
 	public TownDataResource(TownDataResource data)
 	{
 		teamColor = data.teamColor;
@@ -90,12 +95,32 @@ public partial class TownDataResource: Resource
 		day = data.day;
 		wasLastMissionSuccessful = data.wasLastMissionSuccessful;
 		characters = new Array<SavableCharacterResource>();
-		for (int i = 0; i < data.characters.Count; i++)
+		if (data.characters != null)
 		{
-			characters.Add(new SavableCharacterResource(data.characters[i]));
+			for (int i = 0; i < data.characters.Count; i++)
+			{
+				characters.Add(new SavableCharacterResource(data.characters[i]));
+			}
 		}
-		charactersOnLastMission = new Array<int>(data.charactersOnLastMission);
-		wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
+
+		if (data.charactersOnLastMission != null)
+		{
+			charactersOnLastMission = new Array<int>(data.charactersOnLastMission);
+		}
+		else
+		{
+			charactersOnLastMission = new Array<int>();
+		}
+
+		if (data.charactersOnLastMission != null)
+		{
+			wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
+		}
+		else
+		{
+			wereCharactersOnAMission = false;
+		}
+
 		newGame = data.newGame;
 		singlePlayer = data.singlePlayer;
 		selectedMission = data.selectedMission;
@@ -109,7 +134,16 @@ public partial class TownDataResource: Resource
 			}
 		}
 		createNewRCcharacters = data.rcCharacters == null;
-		enemies = new Array<int>(data.enemies);
+		
+		if (data.enemies != null)
+		{
+			enemies = new Array<int>(data.enemies);
+		}
+		else
+		{
+			enemies = new Array<int>();
+		}
+
 		allowEnemySelection = data.allowEnemySelection;
 		allowDuplicates = data.allowDuplicates;
 		teamColor = data.teamColor;
