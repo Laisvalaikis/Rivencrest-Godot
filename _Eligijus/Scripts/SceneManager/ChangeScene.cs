@@ -20,4 +20,3 @@ public partial class ChangeScene : Node
 	}
 	
 }
-

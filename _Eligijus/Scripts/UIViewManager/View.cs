@@ -63,6 +63,19 @@ public partial class View : Control
 		}
 	}
 	
+	public void ToggleView(bool toggle)
+	{
+		if (toggle)
+		{
+			OpenView();
+		}
+		else
+		{
+			ExitView();
+		}
+		GD.Print(toggle);
+	}
+	
 	public void OpenCloseView()
 	{
 		if (_disabled)
@@ -91,3 +104,4 @@ public partial class View : Control
 	}
 
 }
+

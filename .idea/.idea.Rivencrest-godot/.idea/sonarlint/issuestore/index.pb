@@ -27,8 +27,6 @@ i
 -_Eligijus/Scripts/SaveManager/SaveSlotCard.cs,6\a\6a3972942715273c7497b2cf939d655d6e4dde55
 Z
 *_Eligijus/Scripts/UIViewManager/UIStack.cs,6\c\6c2620f1072d7c5b419c93c4a60b6e6defecb459
-W
-'_Eligijus/Scripts/UIViewManager/View.cs,1\2\129017a1cdbf0f2e42d6f7465868970f1fd4959b
 N
 _Eligijus/Scripts/UI/GameUi.cs,7\7\77ca0c064a49502ff59702c82347672d5c507901
 N
