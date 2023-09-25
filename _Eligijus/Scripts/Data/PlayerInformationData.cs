@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using MonoCustomResourceRegistry;
 using Godot;
+using Godot.Collections;
 
 [RegisteredType(nameof(PlayerInformationData), "", nameof(Resource))]
 public partial class PlayerInformationData: Resource
@@ -40,9 +40,9 @@ public partial class PlayerInformationData: Resource
 	[Export]
 	public Texture roleSprite;
 	[Export]
-	private Godot.Collections.Array<TextureResource> abilities;
+	public Array<TextureResource> abilities;
 	[Export]
-	public Godot.Collections.Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
+	public Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
 	
 	public PlayerInformationData(string ClassName, int MaxHealth, int critChance, int accuracy,
 	int dodgeChance, string role, Color classColor, Color secondClassColor, Color textColor,

@@ -66,6 +66,7 @@ using System;
 			this.generatedEncounters = generatedEncounters;
 			this.gameSettings = gameSettings;
 		}
+		
 
 		public TownData(TownDataResource data)
 		{

@@ -7,6 +7,11 @@ public partial class UnlockedAbilitiesResource: Resource
     [Export]
     public bool abilityConfirmed = false;
 
+    public UnlockedAbilitiesResource()
+    {
+        
+    }
+
     public UnlockedAbilitiesResource(UnlockedAbilitiesResource data)
     {
         abilityUnlocked = data.abilityUnlocked;

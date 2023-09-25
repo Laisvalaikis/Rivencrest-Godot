@@ -20,8 +20,16 @@ using Godot;
 		{
 			this.prefab = x.prefab;
 		}
+		public SavedCharacter(SavedCharacterResource x) : base(x)
+		{
+			this.prefab = x.prefab;
+		}
 
 		public SavedCharacter(SavableCharacter x, Node prefab) : base(x)
+		{
+			this.prefab = prefab;
+		}
+		public SavedCharacter(SavableCharacterResource x, Node prefab) : base(x)
 		{
 			this.prefab = prefab;
 		}

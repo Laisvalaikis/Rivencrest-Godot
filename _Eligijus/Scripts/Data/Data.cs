@@ -21,11 +21,11 @@ public partial class Data : Node
 	[Export]
 	public bool canButtonsBeClickedState = true;
 	[Export]
-	public Array XPToLevelUp;
+	public Array<int> XPToLevelUp;
 	[Export]
 	public bool isCurrentScenePlayableMap = false;
 	public bool switchPortraits;
-	public Array SwitchedCharacters;
+	public Array<int> SwitchedCharacters;
 	public int currentCharacterIndex = -1;
 	[Export]
 	public int maxCharacterCount;

@@ -33,4 +33,63 @@ public partial class TownHallDataResource: Resource
         characterReRoll = data.characterReRoll;
         damagedMerchant = data.damagedMerchant;
     }
+    
+    public int GetByType(TownHallUpgrade townHallUpgrade)
+    {
+        if (townHallUpgrade == TownHallUpgrade.MaxCharacterCount)
+        {
+            return maxCharacterCount;
+        }
+        else if(townHallUpgrade == TownHallUpgrade.AttractedCharacterCount)
+        {
+            return attractedCharactersCount;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.MaxCharacterLevel)
+        {
+            return maxCharacterLevel;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.CharacterReRoll)
+        {
+            return characterReRoll;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.AttractedCharacterLevel)
+        {
+            return attractedCharacterLevel;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.MerchantStatus)
+        {
+            return damagedMerchant;
+        }
+
+        return -1;
+    }
+
+    public void SetByType(TownHallUpgrade townHallUpgrade, int value)
+    {
+        if (townHallUpgrade == TownHallUpgrade.MaxCharacterCount)
+        {
+            maxCharacterCount = value;
+        }
+        else if(townHallUpgrade == TownHallUpgrade.AttractedCharacterCount)
+        {
+            attractedCharactersCount = value;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.MaxCharacterLevel)
+        {
+            maxCharacterLevel = value;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.CharacterReRoll)
+        {
+            characterReRoll = value;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.AttractedCharacterLevel)
+        {
+            attractedCharacterLevel = value;
+        }
+        else if (townHallUpgrade == TownHallUpgrade.MerchantStatus)
+        {
+            damagedMerchant = value;
+        }
+    }
+    
 }

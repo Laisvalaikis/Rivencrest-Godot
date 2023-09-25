@@ -24,4 +24,22 @@ public partial class SavedCharacterResource : SavableCharacterResource
     {
         this.prefab = data.prefab;
     }
+    
+    public SavedCharacterResource(SavableCharacterResource x, Node prefab, PlayerInformationData playerInformation) : base(x)
+    {
+        this.prefab = prefab;
+        this.playerInformation = playerInformation;
+    }
+    
+    public string CharacterTableBlessingString()
+    {
+        string blessingsInOneString = "";
+        for(int i = 0; i < blessings.Count; i++)
+        {
+            blessingsInOneString += blessings[i].blessingName;
+            if (i != blessings.Count - 1) blessingsInOneString += "\n";
+        }
+        return blessingsInOneString;
+    }
+    
 }
