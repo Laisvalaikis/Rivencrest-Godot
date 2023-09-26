@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
-public partial class CharacterPortrait : Control
+public partial class CharacterPortrait : Button
 {
 	[Export]
 	public int characterIndex = 0;

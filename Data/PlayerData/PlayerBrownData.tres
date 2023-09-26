@@ -32,6 +32,7 @@ region = Rect2(26, 5, 8, 10)
 
 [resource]
 script = ExtResource("9_naaqd")
+characterType = 0
 ClassName = "STONEWEAVER"
 MaxHealth = 28
 critChance = 3
@@ -48,4 +49,5 @@ CroppedSplashArt = SubResource("AtlasTexture_wvorl")
 characterSprite = SubResource("AtlasTexture_bb43w")
 roleSprite = SubResource("AtlasTexture_cr8ew")
 abilities = Array[Resource]([ExtResource("3_vdj1o"), ExtResource("6_wqxfn"), ExtResource("5_0rk7f"), ExtResource("6_0atsc")])
+abilityTexts = null
 BlessingsAndCurses = []

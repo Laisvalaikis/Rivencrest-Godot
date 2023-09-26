@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bfyv2kkumk021"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_sxilg"]
+
+[resource]
+script = ExtResource("1_sxilg")
+abilityTitle = "Attack"
+abilityDescription = "Damage player"

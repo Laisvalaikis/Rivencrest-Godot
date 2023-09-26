@@ -87,7 +87,6 @@ public partial class Recruitment : Node
 		characterIndexList.Clear();
 		for (int i = 0; i < AttractedCharactersCount && AllCharactersCopy.Count > 0; i++)
 		{
-			GD.Print(AllCharactersCopy.Count);
 			int randomIndex = _random.Next(0, AllCharactersCopy.Count);
 			SavedCharacterResource characterToAdd = new SavedCharacterResource(AllCharactersCopy[randomIndex]);
 			characterToAdd.level = 1;

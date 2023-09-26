@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=15 format=3 uid="uid://fpvleus21ol2"]
+[gd_resource type="Resource" load_steps=19 format=3 uid="uid://fpvleus21ol2"]
 
 [ext_resource type="Texture2D" uid="uid://c78fi5eyxgclo" path="res://_Eligijus/Sprites/PortraitBar/PortraitUI.png" id="1_l7vt0"]
 [ext_resource type="Texture2D" uid="uid://b5mxljxsvoclv" path="res://_Eligijus/Sprites/TablePortraits.png" id="2_a2mob"]
@@ -7,8 +7,12 @@
 [ext_resource type="Resource" uid="uid://dn34heap6x613" path="res://Data/ActionIcons/Icon30.tres" id="5_apjqb"]
 [ext_resource type="Resource" uid="uid://b31tm8vf7h43x" path="res://Data/ActionIcons/Icon40.tres" id="6_nnhw5"]
 [ext_resource type="Texture2D" uid="uid://c7h4qv2qdvhws" path="res://_Eligijus/Sprites/Yellow/Yellow.png" id="7_56vwv"]
+[ext_resource type="Resource" uid="uid://1wyp1ft6mien" path="res://Data/AbilityText/Block.tres" id="7_a85u6"]
 [ext_resource type="Texture2D" uid="uid://doc2msolo3im5" path="res://_Eligijus/Sprites/Icons.png" id="8_44qdy"]
+[ext_resource type="Resource" uid="uid://c8hedwbtv16dk" path="res://Data/AbilityText/SwordPush.tres" id="8_qxndc"]
+[ext_resource type="Resource" uid="uid://cfobenedtqh66" path="res://Data/AbilityText/HealingSight.tres" id="9_f067g"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="9_lq43l"]
+[ext_resource type="Resource" uid="uid://bkidlce8w4g8w" path="res://Data/AbilityText/DisarmingSlam.tres" id="10_8uaqy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hqeq"]
 atlas = ExtResource("1_l7vt0")
@@ -32,6 +36,7 @@ region = Rect2(26, 5, 8, 10)
 
 [resource]
 script = ExtResource("9_lq43l")
+characterType = 0
 ClassName = "KNIGHT"
 MaxHealth = 28
 critChance = 3
@@ -48,4 +53,5 @@ CroppedSplashArt = SubResource("AtlasTexture_6ewrp")
 characterSprite = SubResource("AtlasTexture_qmccf")
 roleSprite = SubResource("AtlasTexture_6jv1f")
 abilities = Array[Resource]([ExtResource("3_mexlr"), ExtResource("4_um7pp"), ExtResource("5_apjqb"), ExtResource("6_nnhw5")])
+abilityTexts = Array[Resource]([ExtResource("7_a85u6"), ExtResource("8_qxndc"), ExtResource("9_f067g"), ExtResource("10_8uaqy")])
 BlessingsAndCurses = []

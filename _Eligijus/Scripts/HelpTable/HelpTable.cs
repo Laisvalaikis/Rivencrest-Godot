@@ -94,8 +94,24 @@ public partial class HelpTable : Control
 			}
 		}
 	}
-	
-	
+
+	public void UpdateHelpTable(AbilityText abilityText)
+	{
+		SetupHelpTable();
+		if (wasSelected)
+		{
+			Hide();
+			wasSelected = false;
+		}
+		else
+		{
+			Show();
+			FillTableWithInfo(abilityText);
+			wasSelected = true;
+		}
+	}
+
+
 
 	public void EnableTableForCharacters(Ability currentAbility)
 	{
@@ -134,6 +150,37 @@ public partial class HelpTable : Control
 			fastAbility.Show();
 		}
 		rangeText.Text = baseAction.AttackRange.ToString();
+	}
+	
+	private void FillTableWithInfo(AbilityText abilityText)
+	{
+		
+		abilityTitle.Text = abilityText.abilityTitle;
+		abilityDescription.Text = abilityText.abilityDescription;
+		// cooldownText.Text = baseAction.AbilityCooldown.ToString();
+		// if (baseAction.maxAttackDamage == 0)
+		// {
+		// 	damageIcon.Hide();
+		// 	damageText.Hide();
+		// }
+		// else
+		// {
+		// 	damageIcon.Show();
+		// 	damageText.Show();
+		// 	damageText.Text = baseAction.GetDamageString();
+		// }
+
+		// if (baseAction.isAbilitySlow)
+		// {
+		// 	slowAbility.Show();
+		// 	fastAbility.Hide();
+		// }
+		// else
+		// {
+		// 	slowAbility.Hide();
+		// 	fastAbility.Show();
+		// }
+
 	}
 
 

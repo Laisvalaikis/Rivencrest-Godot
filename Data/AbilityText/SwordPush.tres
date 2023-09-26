@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c8hedwbtv16dk"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_ywtnm"]
+
+[resource]
+script = ExtResource("1_ywtnm")
+abilityTitle = "SHIELD SLAM"
+abilityDescription = "Dash to an enemy and
+DISARM them.
+DISARMED enemies can't use
+their attack abilities."

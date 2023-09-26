@@ -123,16 +123,17 @@ public partial class CharacterInspectInShop : Node
 		return atlas;
 	}
 	
-	// public void EnableDisableHelpTable(int abilityIndex)
-	// {
-	//     Transform helpTableTransform = helpTable.transform;
-	//     Vector3 currentPosition = helpTableTransform.position;
-	//     Vector3 position = new Vector3(currentPosition.x, _characterAbilityRecruits[abilityIndex].gameObject.transform.position.y,
-	//         currentPosition.z);
-	//     helpTableTransform.SetPositionAndRotation(position, helpTableTransform.rotation);
-	//     // helpTable.EnableTableForCharacters(abilityIndex, _currentCharacterIndex);
-	//     Debug.LogError("FIX ABILITY INFORMATION");
-	// }
+	public void EnableDisableHelpTable(int abilityIndex)
+	{
+		Vector2 currentPosition = helpTable.GlobalPosition;
+		float y = _characterAbilityRecruits[abilityIndex].GlobalPosition.Y;
+		y = y + (_characterAbilityRecruits[abilityIndex].Size.Y / 2f);
+		y = y - (helpTable.Size.Y / 2f);
+		Vector2 position = new Vector2(currentPosition.X, y);
+		helpTable.SetGlobalPosition(position);
+		helpTable.UpdateHelpTable(_characterAbilityRecruits[abilityIndex].abilityText);
+		GD.PrintErr("FIX ABILITY INFORMATION");
+	}
 	
 	private StyleBoxTexture NewTexture(CompressedTexture2D compressedTexture, Rect2 rect, Color pressedColor)
 	{
@@ -155,3 +156,4 @@ public partial class CharacterInspectInShop : Node
 		return atlas;
 	}
 }
+

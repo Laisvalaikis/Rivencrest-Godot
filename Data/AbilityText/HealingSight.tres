@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cfobenedtqh66"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_rwa6s"]
+
+[resource]
+script = ExtResource("1_rwa6s")
+abilityTitle = "BLESSING OF THE SUN"
+abilityDescription = "Heal yourself and
+gain 2 vision points
+for 1 turn."

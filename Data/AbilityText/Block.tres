@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://1wyp1ft6mien"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_2ipre"]
+
+[resource]
+script = ExtResource("1_2ipre")
+abilityTitle = "BLOCK"
+abilityDescription = "BLOCK and ally.
+Until your next turn
+you take all the damage
+that the ally would take."
