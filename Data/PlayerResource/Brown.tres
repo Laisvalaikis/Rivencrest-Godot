@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://2uuquw5n2ayx"]
+
+[ext_resource type="Resource" uid="uid://t6kp41je1xv2" path="res://Data/PlayerData/PlayerBrownData.tres" id="1_mcrm0"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="2_6c4hk"]
+
+[resource]
+script = ExtResource("2_6c4hk")
+prefabPath = "res://_Eligijus/Prefabs/Characters/PlayerBrown.tscn"
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = Array[Resource]([])
+toConfirmAbilities = 0
+blessings = Array[Node]([])
+cost = 1000
+characterIndex = 8
+playerInformation = ExtResource("1_mcrm0")

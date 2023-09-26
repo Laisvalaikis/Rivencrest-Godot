@@ -120,7 +120,7 @@ public partial class Recruitment : Node
 			{
 				characterToAdd.unlockedAbilities.Add(new UnlockedAbilitiesResource());
 			}
-			GD.PrintErr("Need to redo Unlocked Abilities");
+			// GD.PrintErr("Need to redo Unlocked Abilities");
 			//
 			if (CharacterLevelChar == 1)
 			{

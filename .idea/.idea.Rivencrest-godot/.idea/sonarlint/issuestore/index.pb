@@ -9,8 +9,6 @@ Z
 *_Eligijus/Scripts/Statistics/Statistics.cs,c\e\ce14c568b9cf2d354d0f0848677ca50b56deeeb2
 [
 +_Eligijus/Scripts/SaveManager/SaveSystem.cs,e\5\e5bcbe1e4bbb8eb50f3726b33afc60c824720db2
-Y
-)_Eligijus/Scripts/Data/TextureResource.cs,b\f\bfbb562e070b023e583f8681e4b18176f3dfaf67
 ^
 ._Eligijus/Scripts/SceneManager/LoadingScene.cs,d\d\dd2ba9f8985ab34983da9abe4291abd1c27d5737
 [
@@ -27,3 +25,27 @@ Z
 *_Eligijus/Scripts/UIViewManager/UIStack.cs,6\c\6c2620f1072d7c5b419c93c4a60b6e6defecb459
 _
 /_Eligijus/Scripts/SaveManager/SavedCharacter.cs,e\8\e88f21165dd889723fb8292a38a7218c11680515
+Z
+*_Eligijus/Scripts/AbilitySystem/Ability.cs,5\0\50e905393e029511b9b4fe99cce66b0b19f43f72
+Y
+)_Eligijus/Scripts/Abilities/BaseAction.cs,0\7\073f1343089188c22fbe6a2b36180ef60f690fcd
+Y
+)_Eligijus/Scripts/Data/TownHallUpgrade.cs,6\8\6856185e8ce75aaf04768e937db583294cd3c74a
+V
+&_Eligijus/Scripts/Data/TownHallData.cs,6\2\6283f68a43837c6f7d4c64f5bd7a59a7ec633418
+Y
+)_Eligijus/Scripts/TownHall/UpgradeData.cs,c\1\c12250eb30e23f80f0a89a157931c1094f5c94c7
+[
++_Eligijus/Scripts/TownHall/UpgradeButton.cs,4\8\48cd00d1d40b2ad20d19c123408d1dc24f58f575
+P
+ _Eligijus/Scripts/GameManager.cs,6\c\6c5eb5787d2dbfc5318f010f339134000e0eae6d
+V
+&_Eligijus/Scripts/TownHall/TownHall.cs,e\8\e89f9edaddf3db4647df852d5bbdc5a70f90bfd1
+R
+"_Eligijus/Scripts/Data/TownData.cs,e\1\e1e99ac5cfccf7a8a4f794f273033f5dcbc9a99e
+d
+4_Eligijus/Scripts/Data/MainData/EncounterResource.cs,a\2\a210c66fbc564b004d1e2b62b609b7e92fe575f2
+g
+7_Eligijus/Scripts/Data/MainData/GameSettingsResource.cs,c\b\cb0951ef9bdafa1ee51f2fada8710a4bbe9fe262
+g
+7_Eligijus/Scripts/Data/MainData/TownHallDataResource.cs,1\3\132787ea06d32b5ef3316ee94ee7054913eba044

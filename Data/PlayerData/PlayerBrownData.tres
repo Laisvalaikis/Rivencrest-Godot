@@ -1,0 +1,51 @@
+[gd_resource type="Resource" load_steps=15 format=3 uid="uid://t6kp41je1xv2"]
+
+[ext_resource type="Texture2D" uid="uid://c78fi5eyxgclo" path="res://_Eligijus/Sprites/PortraitBar/PortraitUI.png" id="1_pyqkg"]
+[ext_resource type="Texture2D" uid="uid://b5mxljxsvoclv" path="res://_Eligijus/Sprites/TablePortraits.png" id="2_vgtfs"]
+[ext_resource type="Resource" uid="uid://clt8tspgdp6x6" path="res://Data/ActionIcons/Icon14.tres" id="3_vdj1o"]
+[ext_resource type="Resource" uid="uid://brv8s5nmtp8a6" path="res://Data/ActionIcons/Icon38.tres" id="5_0rk7f"]
+[ext_resource type="Resource" uid="uid://cvigbj1t8h6oy" path="res://Data/ActionIcons/Icon35.tres" id="6_0atsc"]
+[ext_resource type="Resource" uid="uid://b31tm8vf7h43x" path="res://Data/ActionIcons/Icon40.tres" id="6_wqxfn"]
+[ext_resource type="Texture2D" uid="uid://4bgt3f1olgi8" path="res://_Eligijus/Sprites/Brown/Brown.png" id="7_wqk1t"]
+[ext_resource type="Texture2D" uid="uid://doc2msolo3im5" path="res://_Eligijus/Sprites/Icons.png" id="8_pwfug"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="9_naaqd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuy4b"]
+atlas = ExtResource("1_pyqkg")
+region = Rect2(209, 6, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vi70"]
+atlas = ExtResource("2_vgtfs")
+region = Rect2(584, 374, 112, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvorl"]
+atlas = ExtResource("2_vgtfs")
+region = Rect2(339, 866, 101, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb43w"]
+atlas = ExtResource("7_wqk1t")
+region = Rect2(82, 63, 31, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr8ew"]
+atlas = ExtResource("8_pwfug")
+region = Rect2(26, 5, 8, 10)
+
+[resource]
+script = ExtResource("9_naaqd")
+ClassName = "STONEWEAVER"
+MaxHealth = 28
+critChance = 3
+accuracy = 100
+dodgeChance = 5
+role = "TANK"
+classColor = Color(0.843137, 0.682353, 0.52549, 1)
+secondClassColor = Color(0.992157, 0.803922, 0.639216, 1)
+textColor = Color(1, 0.807843, 0.623529, 1)
+backgroundColor = Color(0.470588, 0.313726, 0.211765, 1)
+CharacterPortraitSprite = SubResource("AtlasTexture_xuy4b")
+CharacterSplashArt = SubResource("AtlasTexture_1vi70")
+CroppedSplashArt = SubResource("AtlasTexture_wvorl")
+characterSprite = SubResource("AtlasTexture_bb43w")
+roleSprite = SubResource("AtlasTexture_cr8ew")
+abilities = Array[Resource]([ExtResource("3_vdj1o"), ExtResource("6_wqxfn"), ExtResource("5_0rk7f"), ExtResource("6_0atsc")])
+BlessingsAndCurses = []

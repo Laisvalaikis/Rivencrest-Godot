@@ -6,7 +6,8 @@ using Godot.Collections;
 [RegisteredType(nameof(PlayerInformationData), "", nameof(Resource))]
 public partial class PlayerInformationData: Resource
 {
-	
+	[Export]
+	public CharacterType characterType;
 	[Export]
 	public string ClassName;
 	[Export]
@@ -42,6 +43,8 @@ public partial class PlayerInformationData: Resource
 	[Export]
 	public Array<TextureResource> abilities;
 	[Export]
+	public Array<AbilityText> abilityTexts;
+	[Export]
 	public Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
 
 	public PlayerInformationData()
@@ -49,12 +52,13 @@ public partial class PlayerInformationData: Resource
 		
 	}
 
-	public PlayerInformationData(string ClassName, int MaxHealth, int critChance, int accuracy,
+	public PlayerInformationData(CharacterType characterType, string ClassName, int MaxHealth, int critChance, int accuracy,
 	int dodgeChance, string role, Color classColor, Color secondClassColor, Color textColor,
 	Color backgroundColor, Texture CharacterPortraitSprite, Texture CharacterSplashArt,//For character table
 	Texture CroppedSplashArt, Texture characterSprite, Texture roleSprite,
 	Godot.Collections.Array<TextureResource> abilities, Godot.Collections.Array<Blessing> BlessingsAndCurses)
 	{
+		this.characterType = characterType;
 		this.ClassName = ClassName;
 		this.MaxHealth = MaxHealth;
 		this.critChance = critChance;
@@ -79,6 +83,7 @@ public partial class PlayerInformationData: Resource
 	
 	public PlayerInformationData(PlayerInformationData playerInformationData)
 	{
+		characterType = playerInformationData.characterType;
 		ClassName = playerInformationData.ClassName;
 		MaxHealth = playerInformationData.MaxHealth;
 		critChance = playerInformationData.critChance;
@@ -103,6 +108,7 @@ public partial class PlayerInformationData: Resource
 	
 	public void CopyData(PlayerInformationData playerInformationData)
 	{
+		characterType = playerInformationData.characterType;
 		ClassName = playerInformationData.ClassName;
 		MaxHealth = playerInformationData.MaxHealth;
 		critChance = playerInformationData.critChance;

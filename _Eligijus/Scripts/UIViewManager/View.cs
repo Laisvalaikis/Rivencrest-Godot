@@ -15,6 +15,7 @@ public partial class View : Control
 	public bool addViewToStack {get; set;} = true;
 	private int _viewIndex = -1;
 	private bool _disabled = true;
+	private int buttonIndex = -1;
 	public override void _Ready()
 	{
 		if (viewEnabledOnStart)
@@ -88,6 +89,31 @@ public partial class View : Control
 		}
 	}
 	
+	public void OpenCloseView(int buttonIndex)
+	{
+		if (this.buttonIndex == -1)
+		{
+			this.buttonIndex = buttonIndex;
+		}
+
+		if (this.buttonIndex == buttonIndex)
+		{
+			if (_disabled)
+			{
+				OpenView();
+			}
+			else
+			{
+				ExitView();
+			}
+		}
+		else
+		{
+			OpenView();
+			this.buttonIndex = buttonIndex;
+		}
+	}
+	
 	public void ExitViewWithoutRemoveFromStack()
 	{
 		if (viewCanBeDisabled)
@@ -97,11 +123,5 @@ public partial class View : Control
 
 		_disabled = true;
 	}
-	
-	public void ButtonPressed()
-	{
-		OpenView();
-	}
 
 }
-

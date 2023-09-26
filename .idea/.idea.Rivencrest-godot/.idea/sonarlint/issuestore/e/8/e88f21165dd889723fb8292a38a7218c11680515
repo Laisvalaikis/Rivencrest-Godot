@@ -2,5 +2,5 @@
 Ocsharpsquid:S3903"-Move 'SavedCharacter' into a named namespace.(‘âŸÎÿÿÿÿÿ
 `csharpsquid:S1104
 "DMake this field 'private' and encapsulate it in a 'public' property.(ïÚÛS
->csharpsquid:S1643("Use a StringBuilder instead.(óæÆÔşÿÿÿÿ
-9csharpsquid:S1643)"Use a StringBuilder instead.(Ú¯úô
+>csharpsquid:S16430"Use a StringBuilder instead.(óæÆÔşÿÿÿÿ
+9csharpsquid:S16431"Use a StringBuilder instead.(Ú¯úô
