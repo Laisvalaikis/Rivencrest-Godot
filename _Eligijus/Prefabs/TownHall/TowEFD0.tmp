@@ -1,0 +1,132 @@
+[gd_scene load_steps=20 format=3 uid="uid://cg585ut0s4iw3"]
+
+[ext_resource type="Texture2D" uid="uid://dfkj7rj1gc155" path="res://_Eligijus/Sprites/TownTables.png" id="1_ydytq"]
+[ext_resource type="Texture2D" uid="uid://d21bsxa5ftmoq" path="res://_Eligijus/Sprites/TownButtons.png" id="2_mbxw7"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/UIViewManager/View.cs" id="2_v7yar"]
+[ext_resource type="FontFile" uid="uid://tt04fluuqy1s" path="res://Fonts/rubber-biscuit/DisposableDroidBB.ttf" id="3_6uib4"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/TownHall/UpgradeButton.cs" id="5_oou2n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq0p3"]
+atlas = ExtResource("1_ydytq")
+region = Rect2(356, 402, 280, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xatq"]
+atlas = ExtResource("2_mbxw7")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqeyx"]
+atlas = ExtResource("2_mbxw7")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66rxs"]
+atlas = ExtResource("2_mbxw7")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mgjr1"]
+texture = SubResource("AtlasTexture_66rxs")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1q2s"]
+atlas = ExtResource("2_mbxw7")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b4bvu"]
+texture = SubResource("AtlasTexture_h1q2s")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_el288"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6fr7"]
+atlas = ExtResource("1_ydytq")
+region = Rect2(611, 610, 11, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8so0"]
+texture = SubResource("AtlasTexture_a6fr7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwalx"]
+atlas = ExtResource("1_ydytq")
+region = Rect2(611, 610, 11, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t1h73"]
+texture = SubResource("AtlasTexture_jwalx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ylarl"]
+texture = SubResource("AtlasTexture_jwalx")
+modulate_color = Color(0.494118, 0.494118, 0.494118, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_giul0"]
+
+[node name="TownHall" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -714.0
+offset_top = -456.0
+offset_right = 574.0
+offset_bottom = 456.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_jq0p3")
+script = ExtResource("2_v7yar")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_direction = 1
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 240.0
+offset_bottom = 240.0
+texture = SubResource("AtlasTexture_8xatq")
+
+[node name="Icon" type="TextureRect" parent="Icon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_uqeyx")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 48.0
+offset_right = 623.999
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_fonts/font = ExtResource("3_6uib4")
+theme_override_font_sizes/font_size = 58
+text = "MERCHANT SHOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradePrice" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -196.0
+offset_right = 645.0
+offset_bottom = -111.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.901961, 0.733333, 0.262745, 1)
+theme_override_fonts/font = ExtResource("3_6uib4")
+theme_override_font_sizes/font_size = 80
+text = "-5000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeTitle" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -76.0
+offset_right = 645.0
+offset_bottom = 4.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.901961, 

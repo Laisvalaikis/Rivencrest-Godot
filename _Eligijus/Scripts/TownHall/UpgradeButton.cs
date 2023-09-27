@@ -1,72 +1,89 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
 public partial class UpgradeButton : Button
 {
-    [Export]
-    public Texture DefaultSprite;
-    [Export]
-    public Texture UpgradedSprite;
-    [Export]
-    public UpgradeData upgradeData;
-    [Export]
-    public TextureRect frame;
-    [Export]
-    public Label text;
-    [Export]
-    public AnimationPlayer imageFadeController;
-    [Export]
-    public Control animationObject;
-    [Export]
-    public Button button;
-    private bool enabled = true;
-    private Data _data;
+	[Export]
+	public TownHall townHall;
+	[Export]
+	public Texture UpgradedSprite;
+	[Export]
+	public UpgradeData upgradeData;
+	[Export]
+	public Button frame;
+	[Export]
+	public Button textColor;
+	[Export]
+	public Control animationObject;
+	[Export]
+	public Button button;
+	private bool enabled = true;
+	private Data _data;
 
-    public override void _Draw()
-    {
-        base._Ready();
-        if (_data == null && Data.Instance != null)
-        {
-            _data = Data.Instance;
-        }
+	public override void _Draw()
+	{
+		base._Ready();
+		if (_data == null && Data.Instance != null)
+		{
+			_data = Data.Instance;
+		}
+		animationObject.Show();
+		UpdateUpgradeButton();
+	}
 
-        UpdateUpgradeButton();
-    }
+	public void SelectUpgrade()
+	{
+		townHall.SelectUpgrade(this);
+	}
 
-    private void Start()
-    {
-        animationObject.Show();
-    }
+	public void UpdateUpgradeButton()
+	{
+		if (enabled)
+		{
 
-    public void UpdateUpgradeButton()
-    {
-        if (enabled)
-        {
+			TownHallDataResource townHall = _data.townData.townHall;
+			if (townHall.GetByType((TownHallUpgrade)upgradeData.upgradeIndex) + 1 <
+				upgradeData.upgradeValue) //negalimi pirkti nes per auksti
+			{
+				button.Disabled = true;
+			}
+			else if (townHall.GetByType((TownHallUpgrade)upgradeData.upgradeIndex) + 1 >
+					 upgradeData.upgradeValue) //nupirkti
+			{
+				button.Disabled = false;
 
-            TownHallDataResource townHall = _data.townData.townHall;
-            if (townHall.GetByType((TownHallUpgrade)upgradeData.upgradeIndex) + 1 <
-                upgradeData.upgradeValue) //negalimi pirkti nes per auksti
-            {
-                button.Disabled = true;
-            }
-            else if (townHall.GetByType((TownHallUpgrade)upgradeData.upgradeIndex) + 1 >
-                     upgradeData.upgradeValue) //nupirkti
-            {
-                button.Disabled = false;
-                frame.Texture.Set("atlas", UpgradedSprite.Get("atlas"));
-                text.LabelSettings.FontColor = Colors.White;
-            }
-            else
-            {
-                button.Disabled = false;
-            } //galimas pirkti
-        }
-    }
+				AtlasTexture atlasTexture = NewAtlasTexture(UpgradedSprite, Colors.White);
+				StyleBoxTexture styleBoxTexture = new StyleBoxTexture();
+				styleBoxTexture.Texture = atlasTexture;
+				styleBoxTexture.ModulateColor = Colors.White;
+				frame.AddThemeStyleboxOverride("normal", styleBoxTexture);
+				frame.AddThemeStyleboxOverride("hover", styleBoxTexture);
+				frame.AddThemeStyleboxOverride("pressed", styleBoxTexture);
+				frame.AddThemeStyleboxOverride("disabled", styleBoxTexture);
+				
+				textColor.AddThemeColorOverride("font_color", Colors.White);
+			}
+			else
+			{
+				button.Disabled = false;
+			} //galimas pirkti
+		}
+	}
 
-    public void Pause(bool pause)
-    {
-        enabled = !pause;
-    }
+	public void Pause(bool pause)
+	{
+		enabled = !pause;
+	}
+	
+	private AtlasTexture NewAtlasTexture(Texture spriteTexture, Color pressedColor)
+	{
+		AtlasTexture atlas = new AtlasTexture();
+		atlas.Region = (Rect2)spriteTexture.Get("region");
+		atlas.Atlas = (CompressedTexture2D)spriteTexture.Get("atlas");
+		
+		return atlas;
+	}
 }
+

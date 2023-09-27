@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 
 
-public partial class TownHall : Control
+public partial class TownHall : Node
 {
 	[Export]
 	public TextureRect imageComponent;
@@ -15,8 +15,6 @@ public partial class TownHall : Control
 	public Label upgradeDescriptionText;
 	[Export]
 	public Label upgradeCostText;
-	[Export]
-	public Button buyButton;
 	[Export]
 	public Control backgroundForText;
 	[Export]
@@ -30,9 +28,9 @@ public partial class TownHall : Control
 	private Data _data;
 	private List<bool> buttonState;
 
-	public override void _Draw()
+	public override void _Ready()
 	{
-		base._Draw();
+		base._Ready();
 		if (_data == null)
 		{
 			_data = Data.Instance;
@@ -43,38 +41,6 @@ public partial class TownHall : Control
 			}
 		}
 		// _data.townData.hasClickedTH = true;
-	}
-
-	public void DisableAllButtons()
-	{
-		if (buttonState == null)
-		{
-			buttonState = new List<bool>();
-		}
-		else if (buttonState.Count > 0)
-		{
-			for (int i = 0; i < buttonState.Count; i++)
-			{
-				buttonState[i] = upgradeButtons[i].button.Disabled;
-				upgradeButtons[i].button.Disabled = true;
-				upgradeButtons[i].Pause(true);
-			}
-			pause = true;
-		}
-	}
-
-	public void EnableAllButtons()
-	{
-		if (buttonState != null && buttonState.Count > 0)
-		{
-			for (int i = 0; i < upgradeButtons.Count; i++)
-			{
-				upgradeButtons[i].Pause(false);
-				upgradeButtons[i].button.Disabled = buttonState[i];
-				
-			}
-			pause = false;
-		}
 	}
 
 	public void SetupMerchantSprite()
@@ -89,10 +55,9 @@ public partial class TownHall : Control
 		}
 		backgroundForText.Show();
 	}
+	
 	public void UpdateButtons()
 	{
-		
-
 			foreach (UpgradeButton button in upgradeButtons)
 			{
 				if (button.IsVisibleInTree())
@@ -111,14 +76,12 @@ public partial class TownHall : Control
 				upgradeNameText.Text = SelectedUpgrade.upgradeData.upgradeName;
 				upgradeDescriptionText.Text = SelectedUpgrade.upgradeData.upgradeDescription;
 				upgradeCostText.Text = "-" + SelectedUpgrade.upgradeData.upgradeCost.ToString() + "g";
-				buyButton.Disabled = _data.townData.townGold < SelectedUpgrade.upgradeData.upgradeCost;
 			}
 			else
 			{ 
 				upgradeNameText.Hide();
 				upgradeDescriptionText.Hide();
 				upgradeCostText.Hide();
-				buyButton.Hide();
 			}
 		
 	}
@@ -132,14 +95,11 @@ public partial class TownHall : Control
 	
 	public void BuyUpgrade()
 	{
-		if (!buyButton.Disabled)
-		{
-			TownHallDataResource townHall = _data.townData.townHall;
-			townHall.SetByType((TownHallUpgrade)SelectedUpgrade.upgradeData.upgradeIndex, SelectedUpgrade.upgradeData.upgradeValue);
-			GameManager.Instance.SpendGold(SelectedUpgrade.upgradeData.upgradeCost);
-			gameUi.UpdateTownCost();
-			UpdateButtons();
-		}
+		TownHallDataResource townHall = _data.townData.townHall;
+		townHall.SetByType((TownHallUpgrade)SelectedUpgrade.upgradeData.upgradeIndex, SelectedUpgrade.upgradeData.upgradeValue);
+		GameManager.Instance.SpendGold(SelectedUpgrade.upgradeData.upgradeCost);
+		gameUi.UpdateTownCost();
+		UpdateButtons();
 	}
 	public void SelectUpgrade(UpgradeButton upgradeButton)
 	{

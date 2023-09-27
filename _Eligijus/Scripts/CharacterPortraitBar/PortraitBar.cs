@@ -81,13 +81,15 @@ public partial class PortraitBar : TextureRect
 	{
 		int index = characterIndex-_scrollCharacterSelectIndex;
 		CharacterPortrait characterPortrait = townPortraits[index];
-
+		Control characterPortraitContainer = townPortraitsContainers[index];
 		if(_data.Characters.Count < _page * townPortraits.Count && _data.Characters.Count >= (_page - 1) * townPortraits.Count )
 		{
+			townPortraitsContainers.RemoveAt(index);
 			townPortraits.RemoveAt(index);
-			int siblingIndex = townPortraits[townPortraits.Count - 1].GetIndex();
-			MoveChild(characterPortrait, siblingIndex);
-			townPortraitsContainers[index].Hide();
+			int siblingIndex = townPortraitsContainers[townPortraits.Count - 1].GetIndex();
+			characterPortraitContainer.GetParent().MoveChild(characterPortraitContainer, siblingIndex);
+			characterPortraitContainer.Hide();
+			townPortraitsContainers.Add(characterPortraitContainer);
 			townPortraits.Add(characterPortrait);
 		}
 		
@@ -246,3 +248,4 @@ public partial class PortraitBar : TextureRect
 	}
 
 }
+

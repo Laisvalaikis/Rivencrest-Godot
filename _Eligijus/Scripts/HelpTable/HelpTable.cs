@@ -61,10 +61,9 @@ public partial class HelpTable : Control
 	public void EnableTableForBoughtCharacters(int abilityIndex, int characterIndex)
 	{
 		SetupHelpTable();
-		// ActionManager actionManager = _data.Characters[characterIndex].prefab.GetComponent<ActionManager>();
 		SavedCharacterResource character = _data.Characters[characterIndex];
-		// UpdateHelpTable(abilityIndex, character, actionManager);
-		GD.PrintErr("FIX ABILITY INFORMATION");
+		UpdateHelpTable(character.playerInformation.abilityTexts[abilityIndex]);
+		// GD.PrintErr("FIX ABILITY INFORMATION");
 	}
 
 	public void DisableHelpTable()

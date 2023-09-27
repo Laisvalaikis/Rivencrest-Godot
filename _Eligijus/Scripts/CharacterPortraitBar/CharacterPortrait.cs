@@ -14,6 +14,8 @@ public partial class CharacterPortrait : Button
 	[Export]
 	public Control abilityPointCorner;
 	[Export]
+	public View characterTableView;
+	[Export]
 	public CharacterTable characterTable;
 	private Data _data;
 
@@ -31,7 +33,7 @@ public partial class CharacterPortrait : Button
 			}
 			else
 			{
-				if (characterTable.IsVisibleInTree() && characterTable.GetCurrentCharacterIndex() == characterIndex)
+				if (characterTableView.IsVisibleInTree() && characterTable.GetCurrentCharacterIndex() == characterIndex)
 				{
 					characterTable.ExitTable();
 				}
@@ -44,7 +46,13 @@ public partial class CharacterPortrait : Button
 			}
 		
 	}
-	
+
+	public override void _Pressed()
+	{
+		base._Pressed();
+		OnPortraitClick();
+	}
+
 	private void AddCharacterForSwitching(int index)
 	{
 		_data.SwitchedCharacters.Add(index);
