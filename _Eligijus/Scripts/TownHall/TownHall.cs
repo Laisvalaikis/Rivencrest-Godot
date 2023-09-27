@@ -95,11 +95,15 @@ public partial class TownHall : Node
 	
 	public void BuyUpgrade()
 	{
-		TownHallDataResource townHall = _data.townData.townHall;
-		townHall.SetByType((TownHallUpgrade)SelectedUpgrade.upgradeData.upgradeIndex, SelectedUpgrade.upgradeData.upgradeValue);
-		GameManager.Instance.SpendGold(SelectedUpgrade.upgradeData.upgradeCost);
-		gameUi.UpdateTownCost();
-		UpdateButtons();
+		if (_data.townData.townGold >= SelectedUpgrade.upgradeData.upgradeCost)
+		{
+			TownHallDataResource townHall = _data.townData.townHall;
+			townHall.SetByType((TownHallUpgrade)SelectedUpgrade.upgradeData.upgradeIndex,
+				SelectedUpgrade.upgradeData.upgradeValue);
+			GameManager.Instance.SpendGold(SelectedUpgrade.upgradeData.upgradeCost);
+			gameUi.UpdateTownCost();
+			UpdateButtons();
+		}
 	}
 	public void SelectUpgrade(UpgradeButton upgradeButton)
 	{

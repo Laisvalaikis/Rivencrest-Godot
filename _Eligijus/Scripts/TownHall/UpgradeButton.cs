@@ -21,7 +21,7 @@ public partial class UpgradeButton : Button
 	public Button button;
 	private Data _data;
 
-	public override void _Draw()
+	public override void _Ready()
 	{
 		base._Ready();
 		if (_data == null && Data.Instance != null)
@@ -39,7 +39,8 @@ public partial class UpgradeButton : Button
 
 	public void UpdateUpgradeButton()
 	{
-		TownHallDataResource townHall = _data.townData.townHall;
+		
+			TownHallDataResource townHall = _data.townData.townHall;
 			if (townHall.GetByType((TownHallUpgrade)upgradeData.upgradeIndex) + 1 <
 				upgradeData.upgradeValue) //negalimi pirkti nes per auksti
 			{
@@ -58,13 +59,18 @@ public partial class UpgradeButton : Button
 				frame.AddThemeStyleboxOverride("hover", styleBoxTexture);
 				frame.AddThemeStyleboxOverride("pressed", styleBoxTexture);
 				frame.AddThemeStyleboxOverride("disabled", styleBoxTexture);
-				
+
 				textColor.AddThemeColorOverride("font_color", Colors.White);
+				textColor.AddThemeColorOverride("font_pressed_color", Colors.White);
+				textColor.AddThemeColorOverride("font_hover_color", Colors.White);
+				textColor.AddThemeColorOverride("font_focus_color", Colors.White);
+				textColor.AddThemeColorOverride("font_disabled_color", Colors.White);
 			}
 			else
 			{
 				button.Disabled = false;
 			} //galimas pirkti
+		
 	}
 	
 	
