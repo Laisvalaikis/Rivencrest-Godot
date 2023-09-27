@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Godot;
 
-public partial class HelpTable : Control
+public partial class HelpTable : Node
 {
+	[Export] 
+	public View helpTableView;
 	[Export]
 	public TextureRect icon;
 	[Export]
@@ -34,7 +36,7 @@ public partial class HelpTable : Control
 	
 	public void closeHelpTable()
 	{
-		Hide();
+		helpTableView.ExitView();
 	}
 
 	public override void _Ready()
@@ -70,7 +72,7 @@ public partial class HelpTable : Control
 	{
 		if (wasSelected)
 		{
-			Hide();
+			helpTableView.ExitView();
 			wasSelected = false;
 		}
 	}
@@ -82,12 +84,12 @@ public partial class HelpTable : Control
 		{
 			if (wasSelected)
 			{
-				Hide();
+				helpTableView.ExitView();
 				wasSelected = false;
 			}
 			else
 			{
-				Show();
+				helpTableView.OpenView();
 				FillTableWithInfo(currentAbility, abilityText);
 				wasSelected = true;
 			}
@@ -99,12 +101,12 @@ public partial class HelpTable : Control
 		SetupHelpTable();
 		if (wasSelected)
 		{
-			Hide();
+			helpTableView.ExitView();
 			wasSelected = false;
 		}
 		else
 		{
-			Show();
+			helpTableView.OpenView();
 			FillTableWithInfo(abilityText);
 			wasSelected = true;
 		}
@@ -184,3 +186,4 @@ public partial class HelpTable : Control
 
 
 }
+

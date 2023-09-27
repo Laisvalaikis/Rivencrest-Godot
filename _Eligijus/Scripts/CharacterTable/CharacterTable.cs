@@ -222,7 +222,7 @@ public partial class CharacterTable : Node
 		characterIndex = index;
 		if (index != tempIndex)
 		{
-			helpTable.Hide();
+			helpTable.helpTableView.ExitView();
 			UndoAbilitySelection(tempIndex);
 			UpdateTable();
 			UpdateAllAbilities();
@@ -248,12 +248,12 @@ public partial class CharacterTable : Node
 			// Vector2 currentPosition = helpTable.GlobalPosition;
 			// Vector2 position = new Vector2(currentPosition.X, abilityButtons[index].GlobalPosition.Y);
 			
-			Vector2 currentPosition = helpTable.GlobalPosition;
+			Vector2 currentPosition = helpTable.helpTableView.GlobalPosition;
 			float y = abilityButtons[index].GlobalPosition.Y;
 			y = y + (abilityButtons[index].Size.Y / 2f);
-			y = y - (helpTable.Size.Y / 2f);
+			y = y - (helpTable.helpTableView.Size.Y / 2f);
 			Vector2 position = new Vector2(currentPosition.X, y);
-			helpTable.SetGlobalPosition(position);
+			helpTable.helpTableView.SetGlobalPosition(position);
 			helpTable.EnableTableForBoughtCharacters(index, characterIndex);
 		}
 	}
@@ -275,26 +275,31 @@ public partial class CharacterTable : Node
 	public void ExitTable()
 	{
 		UndoAbilitySelection(characterIndex);
+		portraitBar.ToggleDeSelectButton(characterIndex);
 		view.ExitView();
 	}
 	
 	public void OnLeftArrowClick()
 	{
 		UndoAbilitySelection(characterIndex);
+		portraitBar.ToggleDeSelectButton(characterIndex);
 		int newCharacterIndex = Mathf.Clamp(characterIndex - 1, 0, _data.Characters.Count - 1);
 		DisplayCharacterTable(newCharacterIndex);
 		UpdateTable();
 		UpdateAllAbilities();
+		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollDownByCharacterIndex(newCharacterIndex);
 	}
 
 	public void OnRightArrowClick()
 	{
 		UndoAbilitySelection(characterIndex);
+		portraitBar.ToggleDeSelectButton(characterIndex);
 		int newCharacterIndex = Mathf.Clamp(characterIndex + 1, 0, _data.Characters.Count - 1);
 		DisplayCharacterTable(newCharacterIndex);
 		UpdateTable();
 		UpdateAllAbilities();
+		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollUpByCharacterIndex(newCharacterIndex);
 	}
 
@@ -490,8 +495,6 @@ public partial class CharacterTable : Node
 		
 		return atlas;
 	}
-
-
-
+	
 }
 

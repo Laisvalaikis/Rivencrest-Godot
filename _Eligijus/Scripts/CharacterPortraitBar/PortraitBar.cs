@@ -61,6 +61,16 @@ public partial class PortraitBar : TextureRect
 		}
 	}
 
+	public void ToggleSelectButton(int index)
+	{
+		townPortraits[index].ButtonPressed = true;
+	}
+	
+	public void ToggleDeSelectButton(int index)
+	{
+		townPortraits[index].ButtonPressed = false;
+	}
+
 	public void InsertCharacter()
 	{
 		int index = _lastElement + 1;

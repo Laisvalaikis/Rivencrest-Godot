@@ -125,12 +125,12 @@ public partial class CharacterInspectInShop : Node
 	
 	public void EnableDisableHelpTable(int abilityIndex)
 	{
-		Vector2 currentPosition = helpTable.GlobalPosition;
+		Vector2 currentPosition = helpTable.helpTableView.GlobalPosition;
 		float y = _characterAbilityRecruits[abilityIndex].GlobalPosition.Y;
 		y = y + (_characterAbilityRecruits[abilityIndex].Size.Y / 2f);
-		y = y - (helpTable.Size.Y / 2f);
+		y = y - (helpTable.helpTableView.Size.Y / 2f);
 		Vector2 position = new Vector2(currentPosition.X, y);
-		helpTable.SetGlobalPosition(position);
+		helpTable.helpTableView.SetGlobalPosition(position);
 		helpTable.UpdateHelpTable(_characterAbilityRecruits[abilityIndex].abilityText);
 		GD.PrintErr("FIX ABILITY INFORMATION");
 	}
