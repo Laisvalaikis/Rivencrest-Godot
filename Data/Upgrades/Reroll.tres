@@ -6,6 +6,6 @@
 script = ExtResource("1_yu235")
 upgradeIndex = 3
 upgradeValue = 1
-upgradeCost = 1000
-upgradeName = "SEASONED RECRUITS"
-upgradeDescription = "Recruits who come to the Recruitment Center are now Level 2."
+upgradeCost = 500
+upgradeName = "REROLL BUTTON"
+upgradeDescription = "Don't like the characters on offer? No problem! With the Reroll Option, get a fresh set of potential recruits in the Recruitment Center."

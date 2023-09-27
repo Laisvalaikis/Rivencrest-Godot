@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cxl8nh74cdjcc"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/TownHall/UpgradeData.cs" id="1_0try4"]
+
+[resource]
+script = ExtResource("1_0try4")
+upgradeIndex = 0
+upgradeValue = 1
+upgradeCost = 900
+upgradeName = "RANK EXPANSION"
+upgradeDescription = " Strengthen your reserves. Increase your character inventory to 12."

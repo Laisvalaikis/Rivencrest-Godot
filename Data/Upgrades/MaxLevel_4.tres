@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d5y5pc7m1m1t"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/TownHall/UpgradeData.cs" id="1_wpo5s"]
+
+[resource]
+script = ExtResource("1_wpo5s")
+upgradeIndex = 2
+upgradeValue = 2
+upgradeCost = 1000
+upgradeName = "ENHANCED TRAINING 3"
+upgradeDescription = "Raise character level cap to 4."

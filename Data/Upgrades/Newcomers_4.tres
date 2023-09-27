@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://csib777qh74cp"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/TownHall/UpgradeData.cs" id="1_an2gg"]
+
+[resource]
+script = ExtResource("1_an2gg")
+upgradeIndex = 1
+upgradeValue = 2
+upgradeCost = 500
+upgradeName = "EXPANDED RECRUITMENT 2"
+upgradeDescription = "Recruits who come to the Recruitment Center are now Level 2."

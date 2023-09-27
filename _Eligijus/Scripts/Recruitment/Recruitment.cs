@@ -104,10 +104,10 @@ public partial class Recruitment : Node
 				characterToAdd.playerInformation.ClassName == "SORCERESS" ||
 				characterToAdd.playerInformation.ClassName == "HUNTRESS")
 			{
-				NameList = NamesW;
+				NameList = new Array<string>(NamesW);
 			}
 			else {
-				NameList = NamesM;
+				NameList = new Array<string>(NamesM);
 			}
 			int randomIndex2 = _random.Next(0, NameList.Count);
 			characterToAdd.characterName = NameList[randomIndex2].ToUpper();

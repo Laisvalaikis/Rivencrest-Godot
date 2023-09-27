@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bxarra8s2px07"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/TownHall/UpgradeData.cs" id="1_a3qyu"]
+
+[resource]
+script = ExtResource("1_a3qyu")
+upgradeIndex = 4
+upgradeValue = 1
+upgradeCost = 1000
+upgradeName = "SEASONED RECRUITS"
+upgradeDescription = "Recruits who come to the Recruitment Center are now Level 2."

@@ -19,7 +19,6 @@ public partial class UpgradeButton : Button
 	public Control animationObject;
 	[Export]
 	public Button button;
-	private bool enabled = true;
 	private Data _data;
 
 	public override void _Draw()
@@ -40,10 +39,7 @@ public partial class UpgradeButton : Button
 
 	public void UpdateUpgradeButton()
 	{
-		if (enabled)
-		{
-
-			TownHallDataResource townHall = _data.townData.townHall;
+		TownHallDataResource townHall = _data.townData.townHall;
 			if (townHall.GetByType((TownHallUpgrade)upgradeData.upgradeIndex) + 1 <
 				upgradeData.upgradeValue) //negalimi pirkti nes per auksti
 			{
@@ -52,7 +48,7 @@ public partial class UpgradeButton : Button
 			else if (townHall.GetByType((TownHallUpgrade)upgradeData.upgradeIndex) + 1 >
 					 upgradeData.upgradeValue) //nupirkti
 			{
-				button.Disabled = false;
+				button.Disabled = true;
 
 				AtlasTexture atlasTexture = NewAtlasTexture(UpgradedSprite, Colors.White);
 				StyleBoxTexture styleBoxTexture = new StyleBoxTexture();
@@ -69,13 +65,8 @@ public partial class UpgradeButton : Button
 			{
 				button.Disabled = false;
 			} //galimas pirkti
-		}
 	}
-
-	public void Pause(bool pause)
-	{
-		enabled = !pause;
-	}
+	
 	
 	private AtlasTexture NewAtlasTexture(Texture spriteTexture, Color pressedColor)
 	{

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bysbobia278tx"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/TownHall/UpgradeData.cs" id="1_44v44"]
+
+[resource]
+script = ExtResource("1_44v44")
+upgradeIndex = 1
+upgradeValue = 3
+upgradeCost = 500
+upgradeName = "EXPANDED RECRUITMENT 3"
+upgradeDescription = "Get an extra character to choose from in the Recruitment Center after each mission."
