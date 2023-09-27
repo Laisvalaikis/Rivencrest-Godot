@@ -66,6 +66,7 @@ public partial class PortraitBar : TextureRect
 		int index = _lastElement + 1;
 		if (index < _data.Characters.Count && index < townPortraits.Count)
 		{
+			GD.Print(_data.Characters[index].playerInformation.ResourceName);
 			UpdatePortrait(index, index);
 			_lastElement = index;
 			
@@ -157,15 +158,15 @@ public partial class PortraitBar : TextureRect
 
 	public void UpdatePortrait(int portraitIndex, int index)
 	{
-		GD.Print(portraitIndex);
+		
 		if (index >= 0)
 		{
+			
 			townPortraitsContainers[portraitIndex].Show();
 			townPortraits[portraitIndex].characterIndex = index;
-
-			StyleBoxTexture sprite = NewTexture(_data.Characters[index].playerInformation.CharacterPortraitSprite,
+			
+			townPortraits[portraitIndex].characterImage.Texture = NewAtlasTexture(_data.Characters[index].playerInformation.CharacterPortraitSprite,
 				Colors.White);
-			townPortraits[portraitIndex].characterImage.AddThemeStyleboxOverride("normal", sprite);
 			
 			townPortraits[portraitIndex].levelText.Text = _data.Characters[index].level.ToString();
 			if (_data.Characters[index].toConfirmAbilities > 0 || _data.Characters[index].abilityPointCount > 0)
@@ -233,6 +234,15 @@ public partial class PortraitBar : TextureRect
 		
 
 		return styleBox;
+	}
+	
+	private AtlasTexture NewAtlasTexture(Texture spriteTexture, Color pressedColor)
+	{
+		AtlasTexture atlas = new AtlasTexture();
+		atlas.Region = (Rect2)spriteTexture.Get("region");
+		atlas.Atlas = (CompressedTexture2D)spriteTexture.Get("atlas");
+		
+		return atlas;
 	}
 
 }
