@@ -15,12 +15,12 @@ public class TownHallData
         damagedMerchant = 0;
     }
 
-    public int maxCharacterCount;
-    public int attractedCharactersCount;
-    public int maxCharacterLevel;
-    public int characterReRoll;
-    public int attractedCharacterLevel;
-    public int damagedMerchant;
+    public int maxCharacterCount { get; set; }
+    public int attractedCharactersCount { get; set; }
+    public int maxCharacterLevel { get; set; }
+    public int characterReRoll { get; set; }
+    public int attractedCharacterLevel { get; set; }
+    public int damagedMerchant { get; set; }
 
     public int GetByType(TownHallUpgrade townHallUpgrade)
     {

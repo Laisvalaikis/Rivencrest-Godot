@@ -5,13 +5,13 @@ using Godot;
 [System.Serializable]
 public class Encounter
 {
-    public string mapName;
-    public string missionCategory;
-    public int encounterLevel;
-    public List<string> enemyPool;
-    public bool allowDuplicates;
-    public int numOfEnemies;
-    public string missionText;
+    public string mapName { get; set; }
+    public string missionCategory { get; set; }
+    public int encounterLevel { get; set; }
+    public List<string> enemyPool { get; set; }
+    public bool allowDuplicates { get; set; }
+    public int numOfEnemies { get; set; }
+    public string missionText { get; set; }
     //int blessing chance
     //List<GameObject> EnemyPool;
     //int XPReward;

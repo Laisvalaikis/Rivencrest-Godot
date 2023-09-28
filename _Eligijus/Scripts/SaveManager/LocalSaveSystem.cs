@@ -37,6 +37,7 @@ public static class LocalSaveSystem
 
 	public static T Load<T>(string path)
 	{
+		GD.Print(path);
 		if (!types.Contains(typeof(T)))
 		{
 			throw new ArgumentException("Type not supported");
@@ -47,6 +48,7 @@ public static class LocalSaveSystem
 			try
 			{
 				string dataToLoad = "";
+				
 				 using (FileStream stream = new FileStream(path, FileMode.Open))
 				 {
 				 	using (StreamReader reader = new StreamReader(stream))
@@ -54,6 +56,7 @@ public static class LocalSaveSystem
 				 		dataToLoad = reader.ReadToEnd();
 				 	}
 				 }
+				 
 				// dataToLoad = EncryptDecrypt(dataToLoad);
 				loadedData = JsonConvert.DeserializeObject<T>(dataToLoad);
 			}

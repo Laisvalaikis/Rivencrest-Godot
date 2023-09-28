@@ -11,7 +11,9 @@ public partial class SaveData : Node
 	private Array<SavedCharacterResource> _recruitCharacters;
 	private bool _allowEnemySelection = false;
 	private bool _allowDuplicates = false;
-
+	[Export]
+	private Recruitment _recruitment;
+	
 	public override void _Ready()
 	{
 		base._Ready();
@@ -36,23 +38,28 @@ public partial class SaveData : Node
 		List<SavedCharacter> rcCharacters = new List<SavedCharacter>();
 		for (int i = 0; i < _recruitCharacters.Count; i++)
 		{
-			savedCharacters.Add(new SavedCharacter(_recruitCharacters[i]));
+			rcCharacters.Add(new SavedCharacter(_recruitCharacters[i]));
 		}
 
-		TownData data = new TownData(townData.difficultyLevel, townData.townGold, townData.day, savedCharacters, new List<int>(_data.CharactersOnLastMission),
-			townData.wasLastMissionSuccessful, false, townData.singlePlayer, townData.selectedMission, townData.townHall, rcCharacters,
-			new List<int>(_data.selectedEnemies), _allowEnemySelection, _allowDuplicates, SaveSystem.LoadTownData().teamColor,
-			townData.slotName, townData.selectedEncounter, townData.pastEncounters, townData.generateNewEncounters, townData.generatedEncounters, townData.gameSettings);
+		// TownData data = new TownData(townData.difficultyLevel, townData.townGold, townData.day, savedCharacters, new List<int>(_data.CharactersOnLastMission),
+			// townData.wasLastMissionSuccessful, false, townData.singlePlayer, townData.selectedMission, townData.townHall, rcCharacters,
+			// new List<int>(_data.selectedEnemies), _allowEnemySelection, _allowDuplicates, SaveSystem.LoadTownData().teamColor,
+			// townData.slotName, townData.selectedEncounter, townData.pastEncounters, townData.generateNewEncounters, townData.generatedEncounters, townData.gameSettings);
+		TownData data = new TownData(_data.townData);
+		data.characters = new List<SavableCharacter>(savedCharacters);
+		if(rcCharacters != null)
+			data.rcCharacters = new List<SavableCharacter>(rcCharacters);
+		data.createNewRCcharacters = rcCharacters == null;
 		SaveSystem.SaveTownData(data);
 		SaveSystem.SaveStatistics(_data.statistics);
 		SaveSystem.SaveStatistics(_data.globalStatistics, true);
 	}
 
-	public void SaveTownData(Recruitment recruitment)
+	public void SaveTownData()
 	{
 		_allowEnemySelection = false;
 		_allowDuplicates = false;
-		_recruitCharacters = recruitment.CharactersInShop;
+		_recruitCharacters = _recruitment.CharactersInShop;
 		SaveGameData();
 	}
 

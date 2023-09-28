@@ -1,0 +1,34 @@
+[gd_resource type="Resource" load_steps=11 format=3 uid="uid://t6kp41je1xv2"]
+
+[ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_rc31j"]
+[ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_6xjj2"]
+[ext_resource type="Texture2D" uid="uid://m3c84mwfn12o" path="res://Data/PlayerResource/Brown/Textures/CropedSplashArt.tres" id="3_kfrgo"]
+[ext_resource type="Texture2D" uid="uid://cxs8t4bnodobb" path="res://Data/ActionIcons/Icon_14.tres" id="4_o6dqj"]
+[ext_resource type="Texture2D" uid="uid://tjs65gyxptmo" path="res://Data/ActionIcons/Icon_40.tres" id="5_b7p5o"]
+[ext_resource type="Texture2D" uid="uid://5feh0eu5g8ie" path="res://Data/ActionIcons/Icon_38.tres" id="6_6hc41"]
+[ext_resource type="Texture2D" uid="uid://ccr3ov24n73k8" path="res://Data/ActionIcons/Icon_34.tres" id="7_0xnyv"]
+[ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="8_r5xg4"]
+[ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="9_5q0ag"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="10_arv31"]
+
+[resource]
+script = ExtResource("10_arv31")
+characterType = 0
+ClassName = "STONEWEAVER"
+MaxHealth = 28
+critChance = 3
+accuracy = 100
+dodgeChance = 5
+role = "TANK"
+classColor = Color(0.843137, 0.682353, 0.52549, 1)
+secondClassColor = Color(0.992157, 0.803922, 0.639216, 1)
+textColor = Color(1, 0.807843, 0.623529, 1)
+backgroundColor = Color(0.470588, 0.313726, 0.211765, 1)
+CharacterPortraitSprite = ExtResource("1_rc31j")
+CharacterSplashArt = ExtResource("2_6xjj2")
+CroppedSplashArt = ExtResource("3_kfrgo")
+characterSprite = ExtResource("8_r5xg4")
+roleSprite = ExtResource("9_5q0ag")
+abilities = Array[Resource]([ExtResource("4_o6dqj"), ExtResource("5_b7p5o"), ExtResource("6_6hc41"), ExtResource("7_0xnyv")])
+abilityTexts = Array[Resource]([])
+BlessingsAndCurses = []

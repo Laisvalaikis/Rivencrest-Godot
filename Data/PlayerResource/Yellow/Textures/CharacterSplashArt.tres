@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://7ueya57up0ve"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ecoko"]
+load_path = "res://.godot/imported/TablePortraits.png-9f3fd4b4f1b738d05d132d734c11c9cb.ctex"
+
+[resource]
+atlas = SubResource("CompressedTexture2D_ecoko")
+region = Rect2(842, 46, 110, 118)

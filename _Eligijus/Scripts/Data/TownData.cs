@@ -6,32 +6,32 @@ using System;
 	public class TownData
 	{
 		//Slot info
-		public string teamColor;
-		public string slotName;
-		public bool singlePlayer;//cia sita gal kazkaip istrint reiks ¯\_(ツ)_/¯
+		public string teamColor { get; set; }
+		public string slotName { get; set; }
+		public bool singlePlayer { get; set; }//cia sita gal kazkaip istrint reiks ¯\_(ツ)_/¯
 		//Town info
-		public int difficultyLevel;
-		public int townGold;
-		public int day;
-		public bool newGame;
-		public List<SavableCharacter> characters;
+		public int difficultyLevel { get; set; }
+		public int townGold { get; set; }
+		public int day { get; set; }
+		public bool newGame { get; set; }
+		public List<SavableCharacter> characters { get; set; }
 		// public string townHall;
-		public TownHallData townHall;
-		public List<SavableCharacter> rcCharacters;
-		public bool createNewRCcharacters;
+		public TownHallData townHall { get; set; }
+		public List<SavableCharacter> rcCharacters { get; set; }
+		public bool createNewRCcharacters { get; set; }
 		//Mission/Encounter info
-		public List<int> charactersOnLastMission;
-		public bool wasLastMissionSuccessful;
-		public bool wereCharactersOnAMission;
-		public string selectedMission;
-		public List<int> enemies;
-		public bool allowEnemySelection;
-		public bool allowDuplicates;
-		public Encounter selectedEncounter;
-		public List<Encounter> pastEncounters;
-		public bool generateNewEncounters;
-		public List<Encounter> generatedEncounters;
-		public GameSettings gameSettings;
+		public List<int> charactersOnLastMission { get; set; }
+		public bool wasLastMissionSuccessful { get; set; }
+		public bool wereCharactersOnAMission { get; set; }
+		public string selectedMission { get; set; }
+		public List<int> enemies { get; set; }
+		public bool allowEnemySelection { get; set; }
+		public bool allowDuplicates { get; set; }
+		public Encounter selectedEncounter { get; set; }
+		public List<Encounter> pastEncounters { get; set; }
+		public bool generateNewEncounters { get; set; }
+		public List<Encounter> generatedEncounters { get; set; }
+		public GameSettings gameSettings { get; set; }
 
 		public TownData() { }
 
@@ -149,18 +149,18 @@ using System;
 	[Serializable]
 	public class SavableCharacter
 	{
-		public int level;
-		public int xP;
-		public int xPToGain;
-		public string characterName;
-		public bool dead;
-		public int abilityPointCount;
-		public List<UnlockedAbilities> unlockedAbilities;
-		public int toConfirmAbilities = 0;
-		public List<Blessing> blessings;
-		public int cost;
-		public int characterIndex;
-		public PlayerInformationData playerInformation;
+		public int level { get; set; }
+		public int xP { get; set; }
+		public int xPToGain { get; set; }
+		public string characterName { get; set; }
+		public bool dead { get; set; }
+		public int abilityPointCount { get; set; }
+		public List<UnlockedAbilities> unlockedAbilities { get; set; }
+		public int toConfirmAbilities { get; set; }
+		public List<Blessing> blessings { get; set; }
+		public int cost { get; set; }
+		public int characterIndex { get; set; }
+		public PlayerInformationData playerInformation { get; set; }
 
 		public SavableCharacter() { }
 
@@ -221,9 +221,9 @@ using System;
 	[Serializable]
 	public class GameSettings
 	{
-		public bool attackHelper;
-		public float masterVolume;
-		public bool mute;
+		public bool attackHelper { get; set; }
+		public float masterVolume { get; set; }
+		public bool mute { get; set; }
 
 		public GameSettings()
 		{
