@@ -65,14 +65,9 @@ public partial class CharacterTable : Node
 	private Data _data;
 	private bool pauseEnabled = false;
 	
-	private void Awake()
-	{
-	}
-
 	public override void _Ready()
 	{
 		base._Ready();
-		// ResetTempUnlockedAbilities();
 		if (_data == null && Data.Instance != null)
 		{
 			_data = Data.Instance;
@@ -90,10 +85,6 @@ public partial class CharacterTable : Node
 	public int GetCurrentCharacterIndex()
 	{
 		return characterIndex;
-	}
-
-	private void OnDisable()
-	{
 	}
 
 	public void DisableAllButtons()
@@ -216,7 +207,6 @@ public partial class CharacterTable : Node
 
 	public void DisplayCharacterTable(int index)
 	{
-		// gameObject.SetActive(true);
 		view.OpenView();
 		int tempIndex = characterIndex;
 		characterIndex = index;
@@ -245,9 +235,6 @@ public partial class CharacterTable : Node
 	{
 		if (!pauseEnabled)
 		{
-			// Vector2 currentPosition = helpTable.GlobalPosition;
-			// Vector2 position = new Vector2(currentPosition.X, abilityButtons[index].GlobalPosition.Y);
-			
 			Vector2 currentPosition = helpTable.helpTableView.GlobalPosition;
 			float y = abilityButtons[index].GlobalPosition.Y;
 			y = y + (abilityButtons[index].Size.Y / 2f);
@@ -328,15 +315,6 @@ public partial class CharacterTable : Node
 			UpdateTableInformation();
 			UpdateConfirmationTable();
 		}
-		
-		if (view.IsVisibleInTree())
-		{
-			HighlightCurrentCharacterInPortraitBar();
-		}
-		else
-		{
-			RemoveHighlightsFromPortraitBar();
-		}
 		confirmationTable.Hide();
 		if (_data.Characters[characterIndex].toConfirmAbilities > 0)
 		{
@@ -374,38 +352,6 @@ public partial class CharacterTable : Node
 			sellButton.Hide();
 		}
 	}
-	
-
-	private void RemoveHighlightsFromPortraitBar()
-	{
-		// for (int i = 0; i < portraitBar.buttonOnHover.Count; i++)
-		// {
-		//     if (portraitBar.townPortraits[i].gameObject.activeInHierarchy)
-		//     {
-		//         portraitBar.buttonOnHover[i].SetBool("select", false);
-		//     }
-		// }
-	}
-
-	private void HighlightCurrentCharacterInPortraitBar()
-	{
-
-		// for (int i = 0; i < portraitBar.buttonOnHover.Count; i++)
-		// {
-		//     if (portraitBar.townPortraits[i].gameObject.activeInHierarchy)
-		//     {
-		//         if (portraitBar.townPortraits[i].characterIndex == characterIndex)
-		//         {
-		//             portraitBar.buttonOnHover[i].SetBool("select", true);
-		//         }
-		//         else
-		//         {
-		//             portraitBar.buttonOnHover[i].SetBool("select", false);
-		//         }
-		//     }
-		// }
-	}
-	
 
 	public void UpdateTableInformation()
 	{
@@ -430,7 +376,7 @@ public partial class CharacterTable : Node
 		abilityPointCount.LabelSettings.FontColor = color;
 		characterArt.Texture.Set("region", data.CharacterSplashArt.Get("region"));
 		blessingList.Text = character.CharacterTableBlessingString();
-		//
+		
 		for (int i = 0; i < abilityButtonBackgroundImages.Count; i++)
 		{
 			abilityButtons[i].Show();
