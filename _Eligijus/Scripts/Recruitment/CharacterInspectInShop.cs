@@ -5,21 +5,36 @@ public partial class CharacterInspectInShop : Node
 {
 	[Export] 
 	private TextureRect characterArt;
-	[Export] private TextureRect tableBorder;
-	[Export] private Label className;
-	[Export] private Label role;
-	[Export] private Label maxHP;
-	[Export] private Label range;
-	[Export] private Label level;
-	[Export] private Control damage;
-	[Export] private Control tank;
-	[Export] private Control support;
-	[Export] private Control meleeType;
-	[Export] private Control rangeType;
-	[Export] private Array<CharacterAbilityRecruit> _characterAbilityRecruits;
-	[Export] private Recruitment recruitment;
-	[Export] private HelpTable helpTable;
-	[Export] private View view;
+	[Export] 
+	private TextureRect tableBorder;
+	[Export] 
+	private Label className;
+	[Export] 
+	private Label role;
+	[Export] 
+	private Label maxHP;
+	[Export] 
+	private Label range;
+	[Export] 
+	private Label level;
+	[Export] 
+	private Control damage;
+	[Export] 
+	private Control tank;
+	[Export] 
+	private Control support;
+	[Export] 
+	private Control meleeType;
+	[Export] 
+	private Control rangeType;
+	[Export] 
+	private Array<CharacterAbilityRecruit> _characterAbilityRecruits;
+	[Export] 
+	private Recruitment recruitment;
+	[Export] 
+	private HelpTable helpTable;
+	[Export] 
+	private View view;
 	private int _currentCharacterIndex = 0;
 	private int _currentCharacterInShop;
 
@@ -46,6 +61,7 @@ public partial class CharacterInspectInShop : Node
 	private void UpdateView(int index)
 	{
 		SavedCharacterResource savedCharacter = recruitment.GetInShopCharacterByIndex(index);
+		recruitment.SetSelectedCharacterIndex(index);
 		_currentCharacterInShop = index;
 		_currentCharacterIndex = recruitment.GetRealCharacterIndex(index);
 		PlayerInformationData character = savedCharacter.playerInformation;

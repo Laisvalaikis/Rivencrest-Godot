@@ -8,6 +8,8 @@ public partial class Recruitment : Node
 	[Export]
 	public Array<RecruitButton> recruitTableCharacters;
 	[Export]
+	public Array<Button> iconButtons;
+	[Export]
 	public Array<SavedCharacterResource> CharactersInShop = null;
 	[Export]
 	public int AttractedCharactersCount;
@@ -27,6 +29,7 @@ public partial class Recruitment : Node
 	private Array<string> NamesW = new Array<string>();
 	private Array<int> characterIndexList;
 	private Random _random;
+	private int selectedCharacterIndex = -1;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -37,6 +40,16 @@ public partial class Recruitment : Node
 		}
 
 		_random = new Random();
+	}
+
+	public void SetSelectedCharacterIndex(int index)
+	{
+		selectedCharacterIndex = index;
+	}
+
+	public void DeSelectCurrentButton()
+	{
+		iconButtons[selectedCharacterIndex].ButtonPressed = false;
 	}
 
 	public void RecruitmentStart()
