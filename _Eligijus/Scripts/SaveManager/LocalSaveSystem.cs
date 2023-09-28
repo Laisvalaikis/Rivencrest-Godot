@@ -19,7 +19,7 @@ public static class LocalSaveSystem
 		try
 		{
 			Directory.CreateDirectory(Path.GetDirectoryName(path));
-			string dataToStore = JsonConvert.SerializeObject(data);
+			string dataToStore = JsonConvert.SerializeObject(data, Formatting.Indented);
 			//dataToStore = EncryptDecrypt(dataToStore);
 			using (FileStream stream = new FileStream(path, FileMode.Create))
 			{

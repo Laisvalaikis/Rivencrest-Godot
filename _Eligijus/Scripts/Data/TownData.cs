@@ -79,7 +79,7 @@ using System;
 			characters = new List<SavableCharacter>();
 			for (int i = 0; i < data.characters.Count; i++)
 			{
-				characters.Add(new SavableCharacter(data.characters[i]));
+				characters.Add(new SavableCharacter(data.characters[i], null));
 			}
 			charactersOnLastMission = new List<int>(data.charactersOnLastMission);
 			wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
@@ -92,7 +92,7 @@ using System;
 				rcCharacters = new List<SavableCharacter>();
 				for (int i = 0; i < data.rcCharacters.Count; i++)
 				{
-					rcCharacters.Add(new SavableCharacter(data.rcCharacters[i]));
+					rcCharacters.Add(new SavableCharacter(data.rcCharacters[i], null));
 				}
 			}
 			createNewRCcharacters = data.rcCharacters == null;
@@ -182,6 +182,26 @@ using System;
 		}
 		
 		public SavableCharacter(SavableCharacterResource data)
+		{
+			this.level = data.level;
+			this.xP = data.xP;
+			this.xPToGain = data.xPToGain;
+			this.dead = data.dead;
+			this.characterName = data.characterName;
+			this.abilityPointCount = data.abilityPointCount;
+			this.unlockedAbilities = new List<UnlockedAbilities>();
+			for (int i = 0; i < data.unlockedAbilities.Count; i++)
+			{
+				this.unlockedAbilities.Add(new UnlockedAbilities(data.unlockedAbilities[i]));
+			}
+			this.toConfirmAbilities = data.toConfirmAbilities;
+			this.blessings = this.blessings = new List<Blessing>(data.blessings);
+			this.cost = data.cost;
+			this.characterIndex = data.characterIndex;
+			this.playerInformation = data.playerInformation;
+		}
+		
+		public SavableCharacter(SavableCharacterResource data, PlayerInformationData playerInformation)
 		{
 			this.level = data.level;
 			this.xP = data.xP;

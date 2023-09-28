@@ -69,4 +69,25 @@ public partial class SavableCharacterResource : Resource
 		characterIndex = data.characterIndex;
 		playerInformation = data.playerInformation;
 	}
+	
+	
+	public SavableCharacterResource(SavableCharacter data, PlayerInformationData playerInformation)
+	{
+		level = data.level;
+		xP = data.xP;
+		xPToGain = data.xPToGain;
+		dead = data.dead;
+		characterName = data.characterName;
+		abilityPointCount = data.abilityPointCount;
+		unlockedAbilities = new Array<UnlockedAbilitiesResource>();
+		for (int i = 0; i < data.unlockedAbilities.Count; i++)
+		{
+			unlockedAbilities.Add(new UnlockedAbilitiesResource(data.unlockedAbilities[i]));
+		}
+		toConfirmAbilities = data.toConfirmAbilities;
+		blessings = this.blessings = new Array<Blessing>(data.blessings);
+		cost = data.cost;
+		characterIndex = data.characterIndex;
+		this.playerInformation = playerInformation;
+	}
 }

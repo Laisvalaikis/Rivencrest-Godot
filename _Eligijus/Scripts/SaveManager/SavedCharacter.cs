@@ -34,6 +34,11 @@ using Godot;
 			this.prefab = prefab;
 		}
 		
+		public SavedCharacter(SavableCharacterResource x, Node prefab, PlayerInformationData playerInformationData) : base(x, playerInformationData)
+		{
+			this.prefab = prefab;
+		}
+		
 		public SavedCharacter(SavableCharacter x, Node prefab, PlayerInformationData playerInformation) : base(x)
 		{
 			this.prefab = prefab;

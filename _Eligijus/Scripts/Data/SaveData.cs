@@ -27,24 +27,19 @@ public partial class SaveData : Node
 	//SAVESYSTEM
 	public void SaveGameData()
 	{
-		TownData townData = new TownData(_data.townData);
 		_data.selectedEnemies = new Array<int>();
 		List<SavedCharacter> savedCharacters = new List<SavedCharacter>();
 		for (int i = 0; i < _data.Characters.Count; i++)
 		{
-			savedCharacters.Add(new SavedCharacter(_data.Characters[i], _data.Characters[i].prefab));
+			savedCharacters.Add(new SavedCharacter(_data.Characters[i], _data.Characters[i].prefab, null));
 		}
 		
 		List<SavedCharacter> rcCharacters = new List<SavedCharacter>();
 		for (int i = 0; i < _recruitCharacters.Count; i++)
 		{
-			rcCharacters.Add(new SavedCharacter(_recruitCharacters[i]));
+			rcCharacters.Add(new SavedCharacter(_recruitCharacters[i], _recruitCharacters[i].prefab, null));
 		}
 
-		// TownData data = new TownData(townData.difficultyLevel, townData.townGold, townData.day, savedCharacters, new List<int>(_data.CharactersOnLastMission),
-			// townData.wasLastMissionSuccessful, false, townData.singlePlayer, townData.selectedMission, townData.townHall, rcCharacters,
-			// new List<int>(_data.selectedEnemies), _allowEnemySelection, _allowDuplicates, SaveSystem.LoadTownData().teamColor,
-			// townData.slotName, townData.selectedEncounter, townData.pastEncounters, townData.generateNewEncounters, townData.generatedEncounters, townData.gameSettings);
 		TownData data = new TownData(_data.townData);
 		data.characters = new List<SavableCharacter>(savedCharacters);
 		if(rcCharacters != null)
@@ -115,7 +110,6 @@ public partial class SaveData : Node
 			_data.CharactersOnLastMission = new Array<int>();
 		}
 		
-		List<SavedCharacterResource> savableCharacterResources = new List<SavedCharacterResource>();
 		for (int i = 0; i < _data.townData.characters.Count; i++)
 		{
 			SavableCharacterResource savableCharacter = _data.townData.characters[i];
