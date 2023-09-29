@@ -95,6 +95,7 @@ public partial class CharacterSelectManager : Node
 
 		_selectedCharacterForMission.Add(_data.Characters[characterIndex]);
 		_selectedCharacterIndexForMission.Add(characterIndex);
+		characterButtons[characterIndex].ButtonPressed = true;
 		AddCharacter(_data.Characters[characterIndex].playerInformation, characterIndex);
 		if(_selectedCharacterForMission.Count == 3)
 		{
