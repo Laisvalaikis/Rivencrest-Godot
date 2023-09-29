@@ -100,7 +100,7 @@ public partial class TownDataResource: Resource
 			for (int i = 0; i < data.characters.Count; i++)
 			{
 				int characterIndex = data.characters[i].characterIndex;
-				characters.Add(new SavableCharacterResource(data.characters[i], Data.Instance.Characters[characterIndex].playerInformation));
+				characters.Add(new SavableCharacterResource(data.characters[i], Data.Instance.AllAvailableCharacters[characterIndex].playerInformation));
 			}
 		}
 
@@ -132,7 +132,7 @@ public partial class TownDataResource: Resource
 			for (int i = 0; i < data.rcCharacters.Count; i++)
 			{
 				int characterIndex = data.rcCharacters[i].characterIndex;
-				rcCharacters.Add(new SavableCharacterResource(data.rcCharacters[i], Data.Instance.Characters[characterIndex].playerInformation));
+				rcCharacters.Add(new SavableCharacterResource(data.rcCharacters[i], Data.Instance.AllAvailableCharacters[characterIndex].playerInformation));
 			}
 		}
 		createNewRCcharacters = data.rcCharacters == null;

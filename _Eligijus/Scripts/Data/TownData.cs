@@ -218,7 +218,7 @@ using System;
 			this.blessings = this.blessings = new List<Blessing>(data.blessings);
 			this.cost = data.cost;
 			this.characterIndex = data.characterIndex;
-			this.playerInformation = data.playerInformation;
+			this.playerInformation = playerInformation;
 		}
 
 		public SavableCharacter(SavableCharacter data)

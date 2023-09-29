@@ -14,9 +14,9 @@ public partial class SaveData : Node
 	[Export]
 	private Recruitment _recruitment;
 	
-	public override void _Ready()
+	public override void _EnterTree()
 	{
-		base._Ready();
+		base._EnterTree();
 		if (_data == null)
 		{
 			_data = Data.Instance;
