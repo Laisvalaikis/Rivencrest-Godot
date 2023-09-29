@@ -42,9 +42,9 @@ public partial class Data : Node
 	public delegate void CharacterRecruitmentEventHandler();
 	// Start is called before the first frame update
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
-		base._Ready();
+		base._EnterTree();
 		if (Instance == null)
 		{
 			Instance = this;

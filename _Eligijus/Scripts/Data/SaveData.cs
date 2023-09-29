@@ -35,9 +35,12 @@ public partial class SaveData : Node
 		}
 		
 		List<SavedCharacter> rcCharacters = new List<SavedCharacter>();
-		for (int i = 0; i < _recruitCharacters.Count; i++)
+		if (_recruitCharacters != null)
 		{
-			rcCharacters.Add(new SavedCharacter(_recruitCharacters[i], _recruitCharacters[i].prefab, null));
+			for (int i = 0; i < _recruitCharacters.Count; i++)
+			{
+				rcCharacters.Add(new SavedCharacter(_recruitCharacters[i], _recruitCharacters[i].prefab, null));
+			}
 		}
 
 		TownData data = new TownData(_data.townData);
