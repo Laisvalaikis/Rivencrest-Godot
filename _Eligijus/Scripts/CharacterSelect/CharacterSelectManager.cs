@@ -206,18 +206,8 @@ public partial class CharacterSelectManager : Node
 
 	}
 	
-	public void OnClickTeamCharacterButton(int buttonIndex)
+	public void OnClickTeamCharacterButton()
 	{
-		// if (!characterSelectOpen)
-		// {
-		//     characterSelectOpen = true;
-		//     characterSelectView.OpenView();
-		// }
-		// else
-		// {
-		//     RemoveCharacterFromTeam(portraitButtons[buttonIndex].characterIndex);
-		// }
-		
 		if (!_characterSelectOpen)
 		{
 			_characterSelectView.OpenView();
@@ -229,14 +219,31 @@ public partial class CharacterSelectManager : Node
 			_characterSelectOpen = false;
 		}
 	}
+	
+	public void OnClickTeamCharacterButton(int buttonIndex)
+	{
+		if (!_characterSelectOpen)
+		{
+			_characterSelectOpen = true;
+			_characterSelectView.OpenView();
+		}
+		else
+		{
+			RemoveCharacterFromTeam(portraitButtons[buttonIndex].characterIndex);
+		}
+
+	}
 
 	
 	public void OrderSaveData()
 	{
-		foreach (SavedCharacterResource character in _selectedCharacterForMission)
+		if (_selectedCharacterForMission != null)
 		{
-			_data.Characters.Remove(character);
-			_data.Characters.Insert(0, character);
+			foreach (SavedCharacterResource character in _selectedCharacterForMission)
+			{
+				_data.Characters.Remove(character);
+				_data.Characters.Insert(0, character);
+			}
 		}
 		_data.townData.allowEnemySelection = true;
 		_data.townData.allowDuplicates = false;
@@ -252,3 +259,4 @@ public partial class CharacterSelectManager : Node
 	}
 	
 }
+

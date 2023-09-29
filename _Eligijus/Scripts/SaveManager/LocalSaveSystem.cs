@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Godot;
 public static class LocalSaveSystem
@@ -26,12 +27,23 @@ public static class LocalSaveSystem
 				using (StreamWriter writer = new StreamWriter(stream))
 				{
 					writer.Write(dataToStore);
+					// CopyFilesAsync(stream, writer);
 				}
 			}
 		}
 		catch (Exception e)
 		{
 			GD.PrintErr("Error occured when trying to save data to file: " + path + "\n" + e);
+		}
+	}
+	
+	public static async Task CopyFilesAsync(StreamReader Source, StreamWriter Destination)
+	{
+		char[] buffer = new char[0x1000];
+		int numRead;
+		while ((numRead = await Source.ReadAsync(buffer, 0, buffer.Length)) != 0)
+		{
+			await Destination.WriteAsync(buffer, 0, numRead);
 		}
 	}
 

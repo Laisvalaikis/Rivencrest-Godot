@@ -72,6 +72,7 @@ public partial class SaveData : Node
 	{
 		if (SaveSystem.DoesSaveFileExist() && !_data.createNewRCcharacters)
 		{
+			_recruitCharacters = new Array<SavedCharacterResource>();
 			TownDataResource townData = _data.townData;
 			for (int i = 0; i < townData.rcCharacters.Count; i++)
 			{
@@ -126,4 +127,3 @@ public partial class SaveData : Node
 	}
 
 }
-

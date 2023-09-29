@@ -100,7 +100,10 @@ using System;
 			allowEnemySelection = data.allowEnemySelection;
 			allowDuplicates = data.allowDuplicates;
 			teamColor = data.teamColor;
-			selectedEncounter = new Encounter(data.selectedEncounter);
+			if (data.selectedEncounter != null)
+			{
+				selectedEncounter = new Encounter(data.selectedEncounter);
+			}
 			pastEncounters = new List<Encounter>();
 			for (int i = 0; i < data.pastEncounters.Count; i++)
 			{

@@ -149,7 +149,10 @@ public partial class TownDataResource: Resource
 		allowEnemySelection = data.allowEnemySelection;
 		allowDuplicates = data.allowDuplicates;
 		teamColor = data.teamColor;
-		selectedEncounter = new EncounterResource(data.selectedEncounter);
+		if (data.selectedEncounter != null)
+		{
+			selectedEncounter = new EncounterResource(data.selectedEncounter);
+		}
 		pastEncounters = new Array<EncounterResource>();
 		for (int i = 0; i < data.pastEncounters.Count; i++)
 		{
