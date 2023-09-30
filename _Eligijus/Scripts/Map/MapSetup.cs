@@ -1,0 +1,86 @@
+using System;
+using System.Collections;
+using Godot;
+
+public partial class MapSetup : Node
+{
+    private string MapName;
+    [Export] 
+    private MapDataController _mapDataController;
+    [Export]
+    private Node mapHolder;
+    private Node toFollow;
+    // [Export]
+    // private CameraController cameraController;
+    // [Export]
+    // private PlayerTeams playerTeams;
+    // [Export]
+    // private AIManager aiManager;
+    private MapData currentMapData;
+    private Data _data;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        if (_data == null)
+        {
+            _data = Data.Instance;
+            MapName = _data.townData.selectedMission;
+            GD.Print(MapName);
+            // SetupAMap();
+        }
+    }
+
+    // public void SetupAMap() 
+    // {
+    //
+    //     if (_mapDataController.mapDatas.ContainsKey(MapName))
+    //     {
+    //         MapData mapInfo = new MapData();
+    //         mapInfo.CopyData(_mapDataController.mapDatas[MapName]);
+    //         currentMapData = mapInfo;
+    //         //coordinates
+    //         for (int i = 0; i < playerTeams.allCharacterList.teams.Count && !playerTeams.allCharacterList.teams[i].isTeamAI; i++)
+    //         {
+    //             playerTeams.allCharacterList.teams[i].coordinates.Clear();
+    //             for (int j = 0; j < mapInfo.mapCoordinates[i].coordinates.Count; j++)
+    //             {
+    //                 playerTeams.allCharacterList.teams[i].coordinates.Add(mapInfo.mapCoordinates[i].coordinates[j]);
+    //             }
+    //         }
+    //         //NPC team spawning
+    //         if (mapInfo.npcTeam.Count == 0)
+    //         {
+    //             playerTeams.allCharacterList.teams.RemoveAt(2);
+    //         }
+    //
+    //         //AI destinations
+    //         aiManager.AIDestinations = mapInfo.aiMapCoordinates.coordinates;
+    //         CreateMap();
+    //     }
+    //     else
+    //     {
+    //         GD.PrintErr("Map can not be found");
+    //     }
+    // }
+    //
+    // private void CreateMap()
+    // {
+    //     Instantiate(GetSelectedMap(), mapHolder.transform);
+    //     toFollow.transform.position = currentMapData.toFollowStartPosition;
+    //     cameraController.panLimitX = currentMapData.panLimitX;
+    //     cameraController.panLimitY = currentMapData.panLimitY;
+    //     cameraController.cinemachineVirtualCamera.Follow = toFollow.transform;
+    // }
+    //
+    //
+    // public string GetSelectedMap()
+    // {
+    //     string nodePath = "";
+    //     if (MapName != null)
+    //     {
+    //         nodePath = _mapDataController.mapDatas[MapName].mapPrefab.ToString();
+    //     }
+    //     return nodePath;
+    // }
+}
