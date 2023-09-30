@@ -20,8 +20,6 @@ public partial class GameTileMap : Node2D
 			chunks = new List<ChunkData>();
 		}
 	}
-
-	// public CharacterAction selectedCharacterAction;
 	[Export] 
 	public TileMapData currentMap; 
 	// [SerializeField] private SpriteRenderer[] tileSpriteRenderers;
@@ -40,7 +38,7 @@ public partial class GameTileMap : Node2D
 
 	private bool _updateWeight = false;
 	private int _countForTreeSpawn = 0;
-	// public GameObject _currentSelectedCharacter;
+	public Node _currentSelectedCharacter;
 	// private PlayerInformation _currentPlayerInformation;
 	private Vector2 _mousePosition;
 	private int chunckIndex;
@@ -357,50 +355,6 @@ public partial class GameTileMap : Node2D
 		return _chunks[randomX].chunks[randomY];
 	}
 
-	// public ChunkData GetChunkForPosition()
-	// {
-	//
-	//     if (_countForTreeSpawn < 3)
-	//     {
-	//         _countForTreeSpawn++;
-	//         if (_maxHeap.CurSize() > 0)
-	//         {
-	//             ChunkData data = _maxHeap.GetMax();
-	//             if (data.IsStandingOnChunk())
-	//             {
-	//                 (int, int) index = data.GetIndexes();
-	//                 data = GetRandomChunkAround(index.Item1, index.Item2);
-	//             }
-	//             return data;
-	//         }
-	//         else
-	//         {
-	//             ChunkData data = GetRandomChunk();
-	//             if (data.IsStandingOnChunk())
-	//             {
-	//                 (int, int) index = data.GetIndexes();
-	//                 data = GetRandomChunkAround(index.Item1, index.Item2);
-	//             }
-	//
-	//             return data;
-	//
-	//         }
-	//     }
-	//     else
-	//     {
-	//         _countForTreeSpawn = 0;
-	//         ChunkData data = GetRandomChunk();
-	//         if (data.IsStandingOnChunk())
-	//         {
-	//             (int, int) index = data.GetIndexes();
-	//             data = GetRandomChunkAround(index.Item1, index.Item2);
-	//
-	//         }
-	//         return data;
-	//     }
-	//
-	// }
-
 	// public void ResetChunkCharacter(Vector3 mousePosition)
 	// {
 	//     if (GetChunk(mousePosition) != null)
@@ -430,36 +384,25 @@ public partial class GameTileMap : Node2D
 	//     }
 	// }
 
-	// public bool CharacterIsOnTile(Vector3 mousePosition)
-	// {
-	//     if (GetChunk(mousePosition) != null)
-	//     {
-	//         ChunkData chunkData = GetChunk(mousePosition);
-	//         return chunkData.GetCurrentCharacter() != null;
-	//     }
-	//     return false;
-	// }
-	
-	// public bool SelectedCharacterIsOnTile(Vector3 mousePosition)
-	// {
-	//     if (GetChunk(mousePosition) != null)
-	//     {
-	//         ChunkData chunkData = GetChunk(mousePosition);
-	//         return chunkData.GetCurrentCharacter() != null && chunkData.GetCurrentCharacter() == _currentSelectedCharacter;
-	//     }
-	//
-	//     return false;
-	// }
+	public bool CharacterIsOnTile(Vector3 mousePosition)
+	{
+		if (GetChunk(mousePosition) != null)
+		{
+			ChunkData chunkData = GetChunk(mousePosition);
+			return chunkData.GetCurrentCharacter() != null;
+		}
+		return false;
+	}
 
-	// public bool OtherCharacterIsOnTile(Vector3 mousePosition)
-	// {
-	//     if (GetChunk(mousePosition) != null)
-	//     {
-	//         ChunkData chunkData = GetChunk(mousePosition);
-	//         return chunkData.GetCurrentCharacter() != null && chunkData.GetCurrentCharacter() != _currentSelectedCharacter;
-	//     }
-	//     return false;
-	// }
+	public bool OtherCharacterIsOnTile(Vector3 mousePosition)
+	{
+		if (GetChunk(mousePosition) != null)
+		{
+			ChunkData chunkData = GetChunk(mousePosition);
+			return chunkData.GetCurrentCharacter() != null && chunkData.GetCurrentCharacter() != _currentSelectedCharacter;
+		}
+		return false;
+	}
 
 	// public void MoveSelectedCharacter(Vector3 mousePosition, Vector3 offset = default, GameObject character = null)
 	// {
@@ -547,20 +490,20 @@ public partial class GameTileMap : Node2D
 	//     }
 	// }
 
-	// public bool CharacterIsSelected()
-	// {
-	//     return _currentSelectedCharacter != null;
-	// }
-	//
-	// public GameObject GetCurrentCharacter()
-	// {
-	//     return _currentSelectedCharacter;
-	// }
-	//
-	// public void SetCurrentCharacter(GameObject currentCharacter)
-	// {
-	//     _currentSelectedCharacter = currentCharacter;
-	// }
+	public bool CharacterIsSelected()
+	{
+		return _currentSelectedCharacter != null;
+	}
+	
+	public Node GetCurrentCharacter()
+	{
+		return _currentSelectedCharacter;
+	}
+	
+	public void SetCurrentCharacter(Node currentCharacter)
+	{
+		_currentSelectedCharacter = currentCharacter;
+	}
 
 	// public void OnMouseClick(InputAction.CallbackContext context)
 	// {

@@ -42,9 +42,9 @@ public class ChunkData
     private bool _standingOnChunk = false;
     private bool _canUseTile = false;
     private bool _tileIsLocked = false;
-    // private GameObject _currentCharacter;
+    private Node _currentCharacter;
     // private PlayerInformation _currentPlayerInformation;
-    // private InformationType _type = InformationType.None;
+    private InformationType _type = InformationType.None;
     // private SpriteRenderer _tileSpriteRenderer;
     // private HighlightTile _highlightTile;
     
@@ -148,25 +148,25 @@ public class ChunkData
     //     
     // }
 
-    // public InformationType GetInformationType()
-    // {
-    //     return _type;
-    // }
+    public InformationType GetInformationType()
+    {
+        return _type;
+    }
 
     // public void SetCurrentCharacter(GameObject gameObject)
     // {
     //     _currentCharacter = gameObject;
     // }
 
-    // public GameObject GetCurrentCharacter()
-    // {
-    //     return _currentCharacter;
-    // }
+    public Node GetCurrentCharacter()
+    {
+        return _currentCharacter;
+    }
 
-    // public bool CharacterIsOnTile()
-    // {
-    //     return _currentCharacter != null;
-    // }
+    public bool CharacterIsOnTile()
+    {
+        return _currentCharacter != null;
+    }
 
     // public PlayerInformation GetCurrentPlayerInformation()
     // {
