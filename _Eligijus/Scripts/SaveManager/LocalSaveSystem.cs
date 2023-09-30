@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.IO;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
 using Newtonsoft.Json;
 using Godot;
+
 public static class LocalSaveSystem
 {
 	private static Type[] types = { typeof(TownData), typeof(CurrentSlot), typeof(Statistics) };
 	private static readonly string encryptionCodeWord = "T84783VMMST0R83jfdndA";
 
+	public static Thread SaveThread<T>(T data, string path)
+	{
+		Thread thread = new Thread(() => Save(data, path));
+		thread.Start();
+		return thread;
+	}
+	
 	public static void Save<T>(T data, string path)
 	{
 		if(!types.Contains(typeof(T)))
@@ -26,24 +36,13 @@ public static class LocalSaveSystem
 			{
 				using (StreamWriter writer = new StreamWriter(stream))
 				{
-					writer.Write(dataToStore);
-					// CopyFilesAsync(stream, writer);
+					writer.WriteAsync(dataToStore);
 				}
 			}
 		}
 		catch (Exception e)
 		{
 			GD.PrintErr("Error occured when trying to save data to file: " + path + "\n" + e);
-		}
-	}
-	
-	public static async Task CopyFilesAsync(StreamReader Source, StreamWriter Destination)
-	{
-		char[] buffer = new char[0x1000];
-		int numRead;
-		while ((numRead = await Source.ReadAsync(buffer, 0, buffer.Length)) != 0)
-		{
-			await Destination.WriteAsync(buffer, 0, numRead);
 		}
 	}
 
@@ -61,13 +60,13 @@ public static class LocalSaveSystem
 			{
 				string dataToLoad = "";
 				
-				 using (FileStream stream = new FileStream(path, FileMode.Open))
-				 {
-				 	using (StreamReader reader = new StreamReader(stream))
-				 	{
-				 		dataToLoad = reader.ReadToEnd();
-				 	}
-				 }
+				using (FileStream stream = new FileStream(path, FileMode.Open))
+				{
+					using (StreamReader reader = new StreamReader(stream))
+					{
+						dataToLoad = reader.ReadToEnd();
+					}
+				}
 				 
 				// dataToLoad = EncryptDecrypt(dataToLoad);
 				loadedData = JsonConvert.DeserializeObject<T>(dataToLoad);

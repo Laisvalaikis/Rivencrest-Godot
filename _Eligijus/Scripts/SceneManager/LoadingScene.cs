@@ -11,6 +11,8 @@ public partial class LoadingScene : Node
 	private AnimationPlayer _fadeIn;
 	private Node _currentScene;
 	private string _nextScene;
+	private bool whileCheck = false;
+	private string loadingPath;
 	
 	private readonly Dictionary<string, string> GAME_SCENS = new Dictionary<string, string>
 	{
@@ -52,6 +54,8 @@ public partial class LoadingScene : Node
 		if (ResourceLoader.Exists(loadPath))
 		{
 			loaderNextScene = ResourceLoader.LoadThreadedRequest(loadPath);
+			loadingPath = loadPath;
+			whileCheck = true;
 		}
 
 		if (loaderNextScene != Error.Ok)
@@ -61,36 +65,46 @@ public partial class LoadingScene : Node
 		
 		FreeUpScene(currentScene);
 		
+	}
 
-		while (true)
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+
+		if (whileCheck)
 		{
-			ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(loadPath, new Array());
+
+			ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(loadingPath, new Array());
 			if (status == ResourceLoader.ThreadLoadStatus.InvalidResource)
 			{
 				GD.PrintErr("Resource is invalid");
-				break;
+				whileCheck = false;
 			}
+
 			if (status == ResourceLoader.ThreadLoadStatus.Failed)
 			{
 				GD.PrintErr("Error loading");
-				break;
+				whileCheck = false;
 			}
+
 			if (status == ResourceLoader.ThreadLoadStatus.InProgress)
 			{
-				
+
 			}
+
 			if (status == ResourceLoader.ThreadLoadStatus.Loaded)
 			{
-				PackedScene node = (PackedScene)ResourceLoader.LoadThreadedGet(loadPath);
+				PackedScene node = (PackedScene)ResourceLoader.LoadThreadedGet(loadingPath);
 				GetTree().Root.CallDeferred("add_child", node.Instantiate());
 				_label.Hide();
 				FadeOut();
-				break;
+				whileCheck = false;
 			}
-			
+
 		}
+
 	}
-	
+
 	private void FreeUpScene(Node current)
 	{
 		current.QueueFree();

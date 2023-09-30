@@ -1,6 +1,7 @@
 using Godot;
 using System.IO;
 using System;
+using System.Threading;
 
 public static class SaveSystem
 {
@@ -28,8 +29,28 @@ public static class SaveSystem
 			throw new Exception("Invalid slot index");
 		}
 		SaveCurrentSlot(slotIndex);
-		LocalSaveSystem.Save(data, slots[slotIndex]);
+		// LocalSaveSystem.Save(data, slots[slotIndex]);
+		ThreadManager.InsertThread(LocalSaveSystem.SaveThread(data, slots[slotIndex]));
 	}
+	
+	public static void SaveTownDataThread(TownData data, int slotIndex = -1)
+	{
+		if(slotIndex == -1)
+		{
+			slotIndex = GetCurrentSlot();
+			if(slotIndex == -1)
+			{
+				throw new Exception("Problem retrieving current slot");
+			}
+		}
+		else if(slotIndex < 0 || slotIndex > 2)
+		{
+			throw new Exception("Invalid slot index");
+		}
+		SaveCurrentSlot(slotIndex);
+		ThreadManager.InsertThread(LocalSaveSystem.SaveThread(data, slots[slotIndex]));
+	}
+
 
 	public static TownData LoadTownData(int slotIndex = -1)
 	{
@@ -66,7 +87,8 @@ public static class SaveSystem
 		{
 			throw new Exception("Invalid slot index");
 		}
-		LocalSaveSystem.Save(new CurrentSlot(slotIndex), currentSlot);
+		// LocalSaveSystem.Save(new CurrentSlot(slotIndex), currentSlot);
+		ThreadManager.InsertThread(LocalSaveSystem.SaveThread(new CurrentSlot(slotIndex), currentSlot));
 	}
 
 	public static int GetCurrentSlot()
@@ -99,7 +121,8 @@ public static class SaveSystem
 	{
 		if(global)
 		{
-			LocalSaveSystem.Save(data, globalStatistics);
+			// LocalSaveSystem.Save(data, globalStatistics);
+			ThreadManager.InsertThread(LocalSaveSystem.SaveThread(data, globalStatistics));
 			return;
 		}
 		int slotIndex = GetCurrentSlot();
@@ -107,7 +130,8 @@ public static class SaveSystem
 		{
 			throw new Exception("Problem retrieving current slot");
 		}
-		LocalSaveSystem.Save(data, slotStatistics[slotIndex]);
+		// LocalSaveSystem.Save(data, slotStatistics[slotIndex]);
+		ThreadManager.InsertThread(LocalSaveSystem.SaveThread(data, slotStatistics[slotIndex]));
 		//if (LoadStatistics(true) != null)
 		//{
 		//    LocalSaveSystem.Save(LoadStatistics(true).Add(data), globalStatistics);

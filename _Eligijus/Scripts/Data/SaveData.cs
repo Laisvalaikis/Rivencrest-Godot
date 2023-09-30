@@ -48,7 +48,8 @@ public partial class SaveData : Node
 		if(rcCharacters != null)
 			data.rcCharacters = new List<SavableCharacter>(rcCharacters);
 		data.createNewRCcharacters = rcCharacters == null;
-		SaveSystem.SaveTownData(data);
+		// SaveSystem.SaveTownData(data);
+		SaveSystem.SaveTownDataThread(data);
 		SaveSystem.SaveStatistics(_data.statistics);
 		SaveSystem.SaveStatistics(_data.globalStatistics, true);
 	}

@@ -1,11 +1,9 @@
+using System.Threading;
 using Godot;
 
 public partial class SaveManager: Node
 {
-	void Start()
-	{
-	
-	}
+	private Thread _thread;
 
 	public void SaveData(int slotIndex)
 	{
@@ -32,9 +30,8 @@ public partial class SaveManager: Node
 
 	public void CreateSave(string color, int difficulty, string teamName)
 	{
-		SaveSystem.SaveTownData(TownData.NewGameData(color, difficulty, teamName));
+		// SaveSystem.SaveTownData(TownData.NewGameData(color, difficulty, teamName));
+		SaveSystem.SaveTownDataThread(TownData.NewGameData(color, difficulty, teamName));
 	}
-
-
 }
 
