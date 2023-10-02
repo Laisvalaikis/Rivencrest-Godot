@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c2ie6r1wn35o4"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapCoordinates.cs" id="1_tl1m1"]
+
+[resource]
+script = ExtResource("1_tl1m1")
+coordinates = null
