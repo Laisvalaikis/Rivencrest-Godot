@@ -6,7 +6,7 @@ using Godot;
 public class ChunkData
 {
 
-    public ChunkData(int indexWidth, int indexHeight, float width, float height, float positionWidth, float positionHeight, bool tileIsLocked) //SpriteRenderer tileSpriteRenderer, HighlightTile highlightTile,  bool tileIsLocked
+    public ChunkData(int indexWidth, int indexHeight, float width, float height, float positionWidth, float positionHeight, bool tileIsLocked, HighlightTile highlightTile) //SpriteRenderer tileSpriteRenderer, HighlightTile highlightTile,  bool tileIsLocked
     {
         _indexHeight = indexHeight;
         _indexWidth = indexWidth;
@@ -16,7 +16,7 @@ public class ChunkData
         _positionHeight = positionHeight;
         _tileIsLocked = tileIsLocked;
         // _tileSpriteRenderer = tileSpriteRenderer;
-        // _highlightTile = highlightTile;
+        _highlightTile = highlightTile;
     }
     
     public ChunkData(int indexHeight, int indexWidth)
@@ -42,11 +42,11 @@ public class ChunkData
     private bool _standingOnChunk = false;
     private bool _canUseTile = false;
     private bool _tileIsLocked = false;
-    private Node _currentCharacter;
-    // private PlayerInformation _currentPlayerInformation;
+    private Node2D _currentCharacter;
+    private PlayerInformation _currentPlayerInformation;
     private InformationType _type = InformationType.None;
     // private SpriteRenderer _tileSpriteRenderer;
-    // private HighlightTile _highlightTile;
+    private HighlightTile _highlightTile;
     
     // public void SetupChunk()
     // {
@@ -93,9 +93,9 @@ public class ChunkData
     //     }
     // }
 
-    public Vector3 GetPosition()
+    public Vector2 GetPosition()
     {
-        return new(_positionWidth, _positionHeight, 0);
+        return new(_positionWidth, _positionHeight);
     }
     
     public Vector3 GetChunkCenterPosition()
@@ -127,38 +127,40 @@ public class ChunkData
     //     return _tileSpriteRenderer;
     // }
     
-    // public HighlightTile GetTileHighlight()
-    // {
-    //     return _highlightTile;
-    // }
+    public HighlightTile GetTileHighlight()
+    {
+        return _highlightTile;
+    }
 
-    // public void SetCurrentCharacter(GameObject gameObject, PlayerInformation playerInformation)
-    // {
-    //     _currentCharacter = gameObject;
-    //     _currentPlayerInformation = playerInformation;
-    //     if (playerInformation != null)
-    //     {
-    //         _type = playerInformation.GetInformationType(); 
-    //     }
-    //     else
-    //     {
-    //         _type = InformationType.None;
-    //     }
-    //
-    //     
-    // }
+    public void SetCurrentCharacter(Node2D gameObject, PlayerInformation playerInformation)
+    {
+        _currentCharacter = gameObject;
+        _currentPlayerInformation = playerInformation;
+        if (playerInformation != null)
+        {
+            _type = playerInformation.GetInformationType(); 
+        }
+        else
+        {
+            _type = InformationType.None;
+        }
+    
+        
+    }
+    
+    public void SetCurrentCharacter(Node2D gameObject)
+    {
+        _currentCharacter = gameObject;
+    }
+
 
     public InformationType GetInformationType()
     {
         return _type;
     }
 
-    // public void SetCurrentCharacter(GameObject gameObject)
-    // {
-    //     _currentCharacter = gameObject;
-    // }
 
-    public Node GetCurrentCharacter()
+    public Node2D GetCurrentCharacter()
     {
         return _currentCharacter;
     }
@@ -168,10 +170,10 @@ public class ChunkData
         return _currentCharacter != null;
     }
 
-    // public PlayerInformation GetCurrentPlayerInformation()
-    // {
-    //     return _currentPlayerInformation;
-    // }
+    public PlayerInformation GetCurrentPlayerInformation()
+    {
+        return _currentPlayerInformation;
+    }
 
     public void StandingOnChunk(bool standingOnChunk)
     {

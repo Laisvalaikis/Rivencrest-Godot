@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Godot;
-
+using Godot.Collections;
 public partial class GameTileMap : Node2D
 {
-	// [SerializeField] private Camera mainCamera;
-	// [SerializeField] private SelectAction _selectAction;
-
 	public static GameTileMap Tilemap;
 	[System.Serializable]
 	public class SaveChunks
@@ -22,11 +19,12 @@ public partial class GameTileMap : Node2D
 	}
 	[Export] 
 	public TileMapData currentMap; 
+	[Export] private SelectAction _selectAction;
 	// [SerializeField] private SpriteRenderer[] tileSpriteRenderers;
-	// [SerializeField] private HighlightTile[] tileHighlights;
+	[Export] private Array<HighlightTile> tileHighlights;
 	// [SerializeField] private GameObject tiles;
 	[Export] private bool showChunks;
-	// [SerializeField] private AbilityManager abilityManager;
+	[Export] private AbilityManager abilityManager;
 	private int _chunkCountWidth = 0;
 	private int _chunkCountHeight = 0;
 	private List<SaveChunks> _chunks;
@@ -38,7 +36,7 @@ public partial class GameTileMap : Node2D
 
 	private bool _updateWeight = false;
 	private int _countForTreeSpawn = 0;
-	public Node _currentSelectedCharacter;
+	public Node2D _currentSelectedCharacter;
 	// private PlayerInformation _currentPlayerInformation;
 	private Vector2 _mousePosition;
 	private int chunckIndex;
@@ -203,7 +201,7 @@ public partial class GameTileMap : Node2D
 					heightSize = leftSizeOfHeight / currentMap._chunkSize;
 				}
 				
-				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition, heightPosition, false);
+				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition, heightPosition, false, tileHighlights[chunckIndex]);
 				//tileSpriteRenderers[chunckIndex], tileHighlights[chunckIndex], false
 				if (currentMap._mapBoundries.boundries[h].Y - currentMap._chunkSize <= heightPosition - (heightSize) &&
 					currentMap._mapBoundries.boundries[h].Y >=  heightPosition &&
@@ -244,7 +242,7 @@ public partial class GameTileMap : Node2D
 		return _chunksArray;
 	}
 
-	public ChunkData GetChunk(Vector3 position)
+	public ChunkData GetChunk(Vector2 position)
 	{
 		int widthChunk = Mathf.CeilToInt((position.X - currentMap._initialPosition.X)/currentMap._chunkSize) - 1;
 		int heightChunk = Mathf.CeilToInt((currentMap._initialPosition.Y - position.Y) / currentMap._chunkSize) - 1;
@@ -363,46 +361,44 @@ public partial class GameTileMap : Node2D
 		return _chunks[randomX].chunks[randomY];
 	}
 
-	// public void ResetChunkCharacter(Vector3 mousePosition)
-	// {
-	//     if (GetChunk(mousePosition) != null)
-	//     {
-	//         ChunkData chunk = GetChunk(mousePosition);
-	//         chunk.SetCurrentCharacter(null, null);
-	//         chunk.GetTileHighlight().ActivatePlayerTile(false);
-	//     }
-	// }
-	
-	// public void SetCharacter(Vector3 mousePosition, GameObject character, PlayerInformation playerInformation)
-	// {
-	//     if (GetChunk(mousePosition) != null)
-	//     {
-	//         ChunkData chunkData = GetChunk(mousePosition);
-	//         chunkData.SetCurrentCharacter(character, playerInformation);
-	//         chunkData.GetTileHighlight().ActivatePlayerTile(true);
-	//     }
-	// }
-	//
-	// public void SetCharacter(ChunkData chunk, GameObject character, PlayerInformation playerInformation)
-	// {
-	//     if (chunk != null)
-	//     {
-	//         chunk.SetCurrentCharacter(character, playerInformation);
-	//         chunk.GetTileHighlight().ActivatePlayerTile(true);
-	//     }
-	// }
-
-	public bool CharacterIsOnTile(Vector3 mousePosition)
+	public void ResetChunkCharacter(ChunkData chunk)
 	{
-		if (GetChunk(mousePosition) != null)
+	    if (chunk != null)
+	    {
+	        chunk.SetCurrentCharacter(null, null);
+	        chunk.GetTileHighlight().ActivatePlayerTile(false);
+	    }
+	}
+	
+	public void SetCharacter(Vector2 mousePosition, Node2D character, PlayerInformation playerInformation)
+	{
+	    if (GetChunk(mousePosition) != null)
+	    {
+	        ChunkData chunkData = GetChunk(mousePosition);
+	        chunkData.SetCurrentCharacter(character, playerInformation);
+	        chunkData.GetTileHighlight().ActivatePlayerTile(true);
+	    }
+	}
+	
+	public void SetCharacter(ChunkData chunk, Node2D character, PlayerInformation playerInformation)
+	{
+	    if (chunk != null)
+	    {
+	        chunk.SetCurrentCharacter(character, playerInformation);
+	        chunk.GetTileHighlight().ActivatePlayerTile(true);
+	    }
+	}
+
+	public bool CharacterIsOnTile(ChunkData chunkData)
+	{
+		if (chunkData != null)
 		{
-			ChunkData chunkData = GetChunk(mousePosition);
 			return chunkData.GetCurrentCharacter() != null;
 		}
 		return false;
 	}
 
-	public bool OtherCharacterIsOnTile(Vector3 mousePosition)
+	public bool OtherCharacterIsOnTile(Vector2 mousePosition)
 	{
 		if (GetChunk(mousePosition) != null)
 		{
@@ -412,91 +408,87 @@ public partial class GameTileMap : Node2D
 		return false;
 	}
 
-	// public void MoveSelectedCharacter(Vector3 mousePosition, Vector3 offset = default, GameObject character = null)
-	// {
-	//     GameObject moveCharacter = _currentSelectedCharacter;
-	//     if (character != null)
-	//     {
-	//         moveCharacter = character;
-	//     }
-	//
-	//     if (GetChunk(mousePosition) != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
-	//     {
-	//         ChunkData previousCharacterChunk =
-	//             GameTileMap.Tilemap.GetChunk(moveCharacter.transform.position);
-	//         Vector3 characterPosition = GetChunk(mousePosition).GetPosition() - offset;
-	//         moveCharacter.transform.position = characterPosition;
-	//         SetCharacter(mousePosition, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
-	//         if(previousCharacterChunk!=GetChunk(mousePosition))
-	//             ResetChunkCharacter(previousCharacterChunk.GetPosition());
-	//         
-	//     }
-	//     // SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
-	//     // bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
-	// }
-	//
-	// public void MoveSelectedCharacter(ChunkData chunk, GameObject character = null)
-	// {
-	//     GameObject moveCharacter = _currentSelectedCharacter;
-	//     if (character != null)
-	//     {
-	//         moveCharacter = character;
-	//     }
-	//
-	//     if (chunk != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
-	//     {
-	//         ChunkData previousCharacterChunk = Tilemap.GetChunk(moveCharacter.transform.position);
-	//         Vector3 characterPosition = chunk.GetPosition();
-	//         moveCharacter.transform.position = characterPosition;
-	//         SetCharacter(chunk, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
-	//         ResetChunkCharacter(previousCharacterChunk.GetPosition());
-	//     }
-	//     // SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
-	//     // bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
-	// }
+	public void MoveSelectedCharacter(Vector2 mousePosition, Vector2 offset = default, Node2D character = null)
+	{
+	    Node2D moveCharacter = _currentSelectedCharacter;
+	    if (character != null)
+	    {
+	        moveCharacter = character;
+	    }
 	
-	// public void MoveSelectedCharacterWithoutReset(Vector3 mousePosition, Vector3 offset = default, GameObject character = null)
-	// {
-	//     GameObject moveCharacter = _currentSelectedCharacter;
-	//     if (character != null)
-	//     {
-	//         moveCharacter = character;
-	//     }
-	//
-	//     if (GetChunk(mousePosition) != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
-	//     {
-	//         Vector3 characterPosition = GetChunk(mousePosition).GetPosition() - offset;
-	//         moveCharacter.transform.position = characterPosition;
-	//     }
-	//     // SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
-	//     // bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
-	// }
+	    if (GetChunk(mousePosition) != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
+	    {
+	        ChunkData previousCharacterChunk =
+	            GameTileMap.Tilemap.GetChunk(moveCharacter.GlobalPosition);
+	        Vector2 characterPosition = GetChunk(mousePosition).GetPosition() - offset;
+	        moveCharacter.GlobalPosition = characterPosition;
+	        SetCharacter(mousePosition, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
+	        if(previousCharacterChunk!=GetChunk(mousePosition))
+	            ResetChunkCharacter(previousCharacterChunk);
+	        
+	    }
+	    // SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
+	    // bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
+	}
+	
+	public void MoveSelectedCharacter(ChunkData chunk, Node2D character = null)
+	{
+	    Node2D moveCharacter = _currentSelectedCharacter;
+	    if (character != null)
+	    {
+	        moveCharacter = character;
+	    }
+	
+	    if (chunk != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
+	    {
+	        ChunkData previousCharacterChunk = Tilemap.GetChunk(moveCharacter.GlobalPosition);
+	        Vector2 characterPosition = chunk.GetPosition();
+	        moveCharacter.GlobalPosition = characterPosition;
+	        SetCharacter(chunk, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
+	        ResetChunkCharacter(previousCharacterChunk);
+	    }
+	    // SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
+	    // bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
+	}
+	
+	public void MoveSelectedCharacterWithoutReset(Vector2 mousePosition, Vector2 offset = default, Node2D character = null)
+	{
+	    Node2D moveCharacter = _currentSelectedCharacter;
+	    if (character != null)
+	    {
+	        moveCharacter = character;
+	    }
+	
+	    if (GetChunk(mousePosition) != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
+	    {
+	        Vector2 characterPosition = GetChunk(mousePosition).GetPosition() - offset;
+	        moveCharacter.GlobalPosition = characterPosition;
+	    }
+	}
 
-	public void SelectTile(Vector3 mousePosition)
+	public void SelectTile(Vector2 mousePosition)
 	{
 		
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
-			// _currentSelectedCharacter = chunkData.GetCurrentCharacter();
-			// _currentPlayerInformation = chunkData.GetCurrentPlayerInformation();
-			// if (_currentSelectedCharacter != null)
-			// {
-			//     _selectAction.SetCurrentCharacter(_currentSelectedCharacter);
-			// }
+			_currentSelectedCharacter = chunkData.GetCurrentCharacter();
+			if (_currentSelectedCharacter != null)
+			{
+			    _selectAction.SetCurrentCharacter(_currentSelectedCharacter);
+			}
 		}
 	}
 
-	// public void DeselectCurrentCharacter()
-	// {
-	//     if (_currentSelectedCharacter != null)
-	//     {
-	//         _currentSelectedCharacter = null;
-	//         _currentPlayerInformation = null;
-	//         _selectAction.gameObject.SetActive(false);
-	//         abilityManager.SetCurrentAbility(null);
-	//     }
-	// }
+	public void DeselectCurrentCharacter()
+	{
+	    if (_currentSelectedCharacter != null)
+	    {
+	        _currentSelectedCharacter = null;
+	        _selectAction.Hide();
+	        abilityManager.SetCurrentAbility(null);
+	    }
+	}
 
 	public bool CharacterIsSelected()
 	{
@@ -508,7 +500,7 @@ public partial class GameTileMap : Node2D
 		return _currentSelectedCharacter;
 	}
 	
-	public void SetCurrentCharacter(Node currentCharacter)
+	public void SetCurrentCharacter(Node2D currentCharacter)
 	{
 		_currentSelectedCharacter = currentCharacter;
 	}
