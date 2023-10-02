@@ -18,6 +18,8 @@ public partial class MapData : Resource
 	[Export]
 	public MapCoordinates aiMapCoordinates;
 	[Export]
+	public TileMapData tileMapCoordinates;
+	[Export]
 	public Vector3 toFollowStartPosition;
 	[Export]
 	public Vector2 panLimitX;

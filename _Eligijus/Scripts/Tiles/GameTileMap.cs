@@ -60,9 +60,10 @@ public partial class GameTileMap : Node2D
 		_random = new Random();
 	}
 
-	public override void _Ready()
+	public void SetupTiles(TileMapData tileMapData)
 	{
-		base._Ready();
+		currentMap = tileMapData;
+		
 		if (currentMap._chunkSize > 0)
 		{
 			_chunks = new List<SaveChunks>();
@@ -84,6 +85,13 @@ public partial class GameTileMap : Node2D
 		{
 			GD.PrintErr("Chunk size can't be 0");
 		}
+		
+	}
+
+	public override void _Ready()
+	{
+		base._Ready();
+		
 	}
 
 	public override void _ExitTree()
