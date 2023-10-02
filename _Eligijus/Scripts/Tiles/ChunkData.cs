@@ -48,50 +48,21 @@ public class ChunkData
     // private SpriteRenderer _tileSpriteRenderer;
     private HighlightTile _highlightTile;
     
-    // public void SetupChunk()
-    // {
-    //     if (!TileIsLocked())
-    //     {
-    //         _tileSpriteRenderer.gameObject.transform.position = GetChunkCenterPosition();
-    //         _tileSpriteRenderer.gameObject.SetActive(true);
-    //     }
-    //     else
-    //     {
-    //         _tileSpriteRenderer.gameObject.SetActive(false);
-    //     }
-    // }
-
-    // public void EnableTileRendering()
-    // {
-    //     if (!_tileIsLocked)
-    //     {
-    //         _tileSpriteRenderer.enabled = true;
-    //     }
-    // }
+    public void EnableTileRendering()
+    {
+        if (!_tileIsLocked)
+        {
+            _highlightTile.EnableHighlight(true);
+        }
+    }
     
-    // public void DisableTileRendering()
-    // {
-    //     if (!_tileIsLocked)
-    //     {
-    //         _tileSpriteRenderer.enabled = true;
-    //     }
-    // }
-    
-    // public void EnableTileRenderingGameObject()
-    // {
-    //     if (!_tileIsLocked)
-    //     {
-    //         _tileSpriteRenderer.gameObject.SetActive(true);
-    //     }
-    // }
-    
-    // public void DisableTileRenderingGameObject()
-    // {
-    //     if (!_tileIsLocked)
-    //     {
-    //         _tileSpriteRenderer.gameObject.SetActive(false);
-    //     }
-    // }
+    public void DisableTileRendering()
+    {
+        if (!_tileIsLocked)
+        {
+            _highlightTile.EnableHighlight(false);
+        }
+    }
 
     public Vector2 GetPosition()
     {

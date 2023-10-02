@@ -20,8 +20,10 @@ public partial class GameTileMap : Node2D
 	[Export] 
 	public TileMapData currentMap; 
 	[Export] private SelectAction _selectAction;
+	[Export] private Node2D highligtHolder;
+	[Export] private Resource textTilePrefab;
+	[Export] private Resource highlightTilePrefab;
 	// [SerializeField] private SpriteRenderer[] tileSpriteRenderers;
-	[Export] private Array<HighlightTile> tileHighlights;
 	// [SerializeField] private GameObject tiles;
 	[Export] private bool showChunks;
 	[Export] private AbilityManager abilityManager;
@@ -70,10 +72,6 @@ public partial class GameTileMap : Node2D
 			_chunkCountHeight = Mathf.CeilToInt(currentMap._mapHeight / currentMap._chunkSize);
 			int tileSize = _chunkCountWidth * _chunkCountHeight;
 			chunckIndex = 0;
-			// for (int i = tileSize; i < tileSpriteRenderers.Length; i++)
-			// {
-			//     tileSpriteRenderers[i].gameObject.SetActive(false);
-			// }
 			_chunksArray = new ChunkData[_chunkCountWidth, _chunkCountHeight];
 			_threadDistance = new Thread(CalculateDistance);
 			_threadDistance.Start();
@@ -200,8 +198,15 @@ public partial class GameTileMap : Node2D
 				{
 					heightSize = leftSizeOfHeight / currentMap._chunkSize;
 				}
+
+				PackedScene tileHighlight = (PackedScene)highlightTilePrefab;
+				HighlightTile tileNode = (HighlightTile)tileHighlight.Instantiate();
+				highligtHolder.CallDeferred("add_child", tileNode);
+				tileNode.SetDeferred("global_position", new Vector2(widthPosition + (currentMap._chunkSize/2) , heightPosition + (currentMap._chunkSize/2)));
+				tileNode.CallDeferred("hide");
+				// tileNode.GlobalPosition = new Vector2(widthPosition, heightPosition);
 				
-				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition, heightPosition, false, tileHighlights[chunckIndex]);
+				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition, heightPosition, false, tileNode);
 				//tileSpriteRenderers[chunckIndex], tileHighlights[chunckIndex], false
 				if (currentMap._mapBoundries.boundries[h].Y - currentMap._chunkSize <= heightPosition - (heightSize) &&
 					currentMap._mapBoundries.boundries[h].Y >=  heightPosition &&
@@ -209,6 +214,7 @@ public partial class GameTileMap : Node2D
 					currentMap._mapBoundries.boundries[h].Z >= widthPosition)
 				{
 					chunk.SetTileIsLocked(false);
+					tileNode.CallDeferred("show");
 				}
 				else
 				{

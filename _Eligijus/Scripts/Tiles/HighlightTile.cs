@@ -5,11 +5,9 @@ using Godot;
 
 public partial class HighlightTile : Node2D
 {
-	[Export] private Node2D colorGridTile;
-	[Export] private Node2D fogOfWarTile;
+	[Export] private Sprite2D highlight;
 	[Export] private Sprite2D arrowTile;
-	[Export] private Node2D dangerUI;
-	[Export] private Node2D playerSelect;
+	[Export] private Sprite2D playerSelect;
 	[Export] private Sprite2D preview;
 	
 	[Export] private AtlasTexture rightStartArrow;
@@ -31,12 +29,22 @@ public partial class HighlightTile : Node2D
 	[Export] private AtlasTexture bottomRightCornerArrow;
 
 	[Export] private Sprite2D skullSprite;
+	[Export] private Resource textTilePrefab;
 	[Export] private Label damageText;
 	
 	public bool isHighlighted = false;
 	public string activeState;
-	
-	
+
+	public override void _Ready()
+	{
+		base._Ready();
+		PackedScene textTile = (PackedScene)textTilePrefab;
+		Label label = (Label)textTile.Instantiate();
+		CallDeferred("add_child", label);
+		label.Hide();
+
+	}
+
 	public void ActivateDeathSkull(bool value)
 	{
 		if (value)
@@ -48,6 +56,12 @@ public partial class HighlightTile : Node2D
 			skullSprite.Hide();
 		}
 	}
+
+	public void SetLabel(Label label)
+	{
+		damageText = label;
+	}
+
 	public void SetDamageText(string text)
 	{
 		damageText.Show();
@@ -61,14 +75,27 @@ public partial class HighlightTile : Node2D
 	{
 		if (value)
 		{
-			colorGridTile.Show();
+			highlight.Show();
 		}
 		else
 		{
-			colorGridTile.Hide();
+			highlight.Hide();
 		}
 		isHighlighted = value;
 	}
+
+	public void EnableHighlight(bool value)
+	{
+		if (value)
+		{
+			highlight.Show();
+		}
+		else
+		{
+			highlight.Hide();
+		}
+	}
+
 	public void SetPreviewSprite(AtlasTexture sprite)
 	{
 		preview.Texture = sprite;
@@ -155,7 +182,7 @@ public partial class HighlightTile : Node2D
 	}
 	public void SetHighlightColor(Color color)
 	{
-		colorGridTile.SelfModulate = color;
+		highlight.SelfModulate = color;
 	}
 
 	bool IsSkillAvailableInFOW()
