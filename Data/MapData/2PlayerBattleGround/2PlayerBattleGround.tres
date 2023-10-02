@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://dpk6wx0b6aocm"]
+
+[ext_resource type="Resource" uid="uid://cjdpyw57v58qs" path="res://Data/MapData/2PlayerBattleGround/AI_Coordinates.tres" id="1_ivhri"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_xfasi"]
+[ext_resource type="Resource" uid="uid://c8747cxclji28" path="res://Data/MapData/2PlayerBattleGround/Coordinates_0.tres" id="2_v0t56"]
+[ext_resource type="Resource" uid="uid://i06xw8rofi1o" path="res://Data/MapData/2PlayerBattleGround/Coordinates_1.tres" id="3_72c3l"]
+[ext_resource type="Texture2D" uid="uid://s7souk1xjf2y" path="res://_Eligijus/Sprites/Map/2PlayerBattleGround.png" id="4_ukhii"]
+
+[resource]
+script = ExtResource("1_xfasi")
+mapName = "2PlayerBattleGround"
+suitableEnemies = Array[String](["ForestWitch", "ForestBear", "ForestDruid", "ForestWatcher", "ForestHuntress", "ForestStoneweaver"])
+npcTeam = Array[Node]([])
+suitableLevels = Array[int]([2, 3, 4, 5])
+mapCoordinates = Array[Resource]([ExtResource("2_v0t56"), ExtResource("3_72c3l")])
+aiMapCoordinates = ExtResource("1_ivhri")
+toFollowStartPosition = Vector3(1.78, 0.71, 0)
+panLimitX = Vector2(0.5, 10.5)
+panLimitY = Vector2(-0.5, 9.5)
+numberOfEnemies = 3
+mapCategory = "Forest"
+allowDuplicates = false
+mapImage = ExtResource("4_ukhii")
+informationText = ""

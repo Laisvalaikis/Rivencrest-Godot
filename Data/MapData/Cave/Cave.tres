@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bw4qdrlvl1a54"]
+
+[ext_resource type="Resource" uid="uid://bgce7qac0io1a" path="res://Data/MapData/Meadow/Coordinates_0.tres" id="1_6vavv"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_cm5vh"]
+[ext_resource type="Resource" uid="uid://sge1y06qj7ww" path="res://Data/MapData/Meadow/AI_Coordinates.tres" id="1_x02pw"]
+[ext_resource type="Resource" uid="uid://cl1h74fuxcck7" path="res://Data/MapData/Meadow/Coordinates_1.tres" id="2_ehtvn"]
+
+[resource]
+script = ExtResource("1_cm5vh")
+mapName = "Cave"
+suitableEnemies = Array[String](["UndeadBoss", "UndeadMindController", "UndeadSpider", "UndeadSpiderMaiden", "UndeadSpider"])
+npcTeam = null
+suitableLevels = Array[int]([2, 3, 4, 5])
+mapCoordinates = Array[Resource]([ExtResource("1_6vavv"), ExtResource("2_ehtvn")])
+aiMapCoordinates = ExtResource("1_x02pw")
+toFollowStartPosition = Vector3(7.79, 1.2, -1)
+panLimitX = Vector2(1.5, 13.5)
+panLimitY = Vector2(0.5, 10.5)
+numberOfEnemies = 4
+mapCategory = "Undead"
+allowDuplicates = false
+informationText = ""
