@@ -199,7 +199,7 @@ public class ChunkData
 
     public (int,int) GetIndexes()
     {
-        return (_indexHeight, _indexWidth);
+        return (_indexWidth, _indexHeight);
     }
 
     public void SetHeapIndex(int index)

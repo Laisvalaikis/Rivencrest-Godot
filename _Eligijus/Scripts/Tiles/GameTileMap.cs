@@ -250,18 +250,18 @@ public partial class GameTileMap : Node2D
 
 	public ChunkData GetChunk(Vector2 position)
 	{
-		int widthChunk = Mathf.CeilToInt((position.X - currentMap._initialPosition.X)/currentMap._chunkSize) - 1;
-		int heightChunk = Mathf.CeilToInt((currentMap._initialPosition.Y - position.Y) / currentMap._chunkSize) - 1;
+		int widthChunk = Mathf.CeilToInt((position.X - currentMap._initialPosition.X)/currentMap._chunkSize)-1;
+		int heightChunk = Mathf.CeilToInt((position.Y - currentMap._initialPosition.Y) / currentMap._chunkSize)-1;
 
 		
 		lock (_chunksArray)
 		{
 			
-			if (_chunksArray.GetLength(0) > heightChunk && heightChunk >= 0
-				&& _chunksArray.GetLength(1) > widthChunk && widthChunk >= 0
-				&& _chunksArray[heightChunk, widthChunk] != null && !_chunksArray[heightChunk, widthChunk].TileIsLocked())
+			if (_chunksArray.GetLength(0) > widthChunk && widthChunk >= 0
+				&& _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
+				&& _chunksArray[widthChunk, heightChunk] != null && !_chunksArray[widthChunk, heightChunk].TileIsLocked())
 			{
-				return _chunksArray[heightChunk, widthChunk];
+				return _chunksArray[widthChunk, heightChunk];
 			}
 			else
 			{

@@ -4,9 +4,8 @@ using Godot;
 using Godot.Collections;
 	public abstract partial class BaseAction: Resource
 	{
-
-		[Export] protected Node2D player;
-		[Export] protected PlayerInformation playerInformation;
+		
+		protected Player player;
 		[Export] protected bool laserGrid = false;
 		[Export] public int turnsSinceCast = 0;
 		[Export] public int turnLifetime = 1;
@@ -33,19 +32,18 @@ using Godot.Collections;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
 
-		void Awake()
+		public void SetupAbility(Player player)
 		{
-			// playerInformation = GetComponent<PlayerInformation>();
-			_random = new Random();
-			_playerInformationData = new PlayerInformationData();
-			_playerInformationData.CopyData(playerInformation.playerInformationData);
-			_chunkList = new List<ChunkData>();
-			// AbilityPoints = AbilityCooldown;
+			this.player = player;
+			Start();
 		}
 
 		public virtual void Start()
 		{
-			
+			_random = new Random();
+			_playerInformationData = new PlayerInformationData();
+			_playerInformationData.CopyData(player.playerInformation.playerInformationData);
+			_chunkList = new List<ChunkData>();
 		}
 
 		protected virtual void HighlightGridTile(ChunkData chunkData)
@@ -102,6 +100,7 @@ using Godot.Collections;
 			}
 			else
 			{
+				GD.Print(startChunk.GetPosition());
 				GenerateDiamondPattern(startChunk, attackRange);
 			}
 		}
@@ -378,7 +377,7 @@ using Godot.Collections;
 
 		protected bool IsAllegianceSame(ChunkData chunk)
 		{
-			return chunk == null || chunk.GetCurrentPlayerInformation().GetPlayerTeam() == playerInformation.GetPlayerTeam() || !friendlyFire;
+			return chunk == null || chunk.GetCurrentPlayerInformation().GetPlayerTeam() == player.playerInformation.GetPlayerTeam() || !friendlyFire;
 		}
 
 		protected bool IsItCriticalStrike(ref int damage)
