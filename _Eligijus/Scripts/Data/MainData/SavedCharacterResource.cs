@@ -2,22 +2,20 @@ using Godot;
 
 public partial class SavedCharacterResource : SavableCharacterResource
 {
-    [Export] 
-    public string prefabPath;
     [Export]
-    public Node prefab;
+    public Resource prefab;
 
     public SavedCharacterResource()
     {
         
     }
 
-    public SavedCharacterResource(Node prefab, SavableCharacterResource data) : base(data)
+    public SavedCharacterResource(Resource prefab, SavableCharacterResource data) : base(data)
     {
         this.prefab = prefab;
     }
     
-    public SavedCharacterResource(Node prefab, SavableCharacter data) : base(data)
+    public SavedCharacterResource(Resource prefab, SavableCharacter data) : base(data)
     {
         this.prefab = prefab;
     }
@@ -32,7 +30,7 @@ public partial class SavedCharacterResource : SavableCharacterResource
         this.prefab = data.prefab;
     }
     
-    public SavedCharacterResource(SavableCharacterResource x, Node prefab, PlayerInformationData playerInformation) : base(x)
+    public SavedCharacterResource(SavableCharacterResource x, Resource prefab, PlayerInformationData playerInformation) : base(x)
     {
         this.prefab = prefab;
         this.playerInformation = playerInformation;

@@ -106,7 +106,7 @@ public partial class Recruitment : Node
 			characterToAdd.xP = 0;
 			for (int j = AllCharactersCopy.Count-1; j >= 0; j--)
 			{
-				if (AllCharactersCopy[j].prefabPath == characterToAdd.prefabPath)
+				if (AllCharactersCopy[j].prefab.ResourcePath == characterToAdd.prefab.ResourcePath)
 				{
 					AllCharactersCopy.RemoveAt(i);
 				}

@@ -7,10 +7,10 @@ using Godot;
 [Serializable]
 	public class SavedCharacter : SavableCharacter
 	{
-		public Node prefab;
+		public Resource prefab;
 		public SavedCharacter() { }
 
-		public SavedCharacter(Node prefab, int level, int xP, int xPToGain, bool dead, string characterName,
+		public SavedCharacter(Resource prefab, int level, int xP, int xPToGain, bool dead, string characterName,
 			int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int confirmedAbilities, List<Blessing> blessings, int prefabIndex, PlayerInformationData playerInformation)
 			: base(level, xP, xPToGain, dead, characterName, abilityPointCount, unlockedAbilities, confirmedAbilities, blessings, prefabIndex, playerInformation)
 		{
@@ -25,21 +25,21 @@ using Godot;
 			this.prefab = x.prefab;
 		}
 
-		public SavedCharacter(SavableCharacter x, Node prefab) : base(x)
+		public SavedCharacter(SavableCharacter x, Resource prefab) : base(x)
 		{
 			this.prefab = prefab;
 		}
-		public SavedCharacter(SavableCharacterResource x, Node prefab) : base(x)
-		{
-			this.prefab = prefab;
-		}
-		
-		public SavedCharacter(SavableCharacterResource x, Node prefab, PlayerInformationData playerInformationData) : base(x, playerInformationData)
+		public SavedCharacter(SavableCharacterResource x, Resource prefab) : base(x)
 		{
 			this.prefab = prefab;
 		}
 		
-		public SavedCharacter(SavableCharacter x, Node prefab, PlayerInformationData playerInformation) : base(x)
+		public SavedCharacter(SavableCharacterResource x, Resource prefab, PlayerInformationData playerInformationData) : base(x, playerInformationData)
+		{
+			this.prefab = prefab;
+		}
+		
+		public SavedCharacter(SavableCharacter x, Resource prefab, PlayerInformationData playerInformation) : base(x)
 		{
 			this.prefab = prefab;
 			this.playerInformation = playerInformation;
