@@ -8,7 +8,9 @@ public partial class SelectActionButton : Button
     private int abilityIndex;
     private Ability abilityInformation;
     private HelpTable _helpTable;
+    [Export]
     public TextureRect abilityButtonBackground;
+    [Export]
     public TextureRect AbilityButtonImage;
     
     
