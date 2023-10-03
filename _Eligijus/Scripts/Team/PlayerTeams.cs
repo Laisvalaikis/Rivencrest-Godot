@@ -84,7 +84,8 @@ public partial class PlayerTeams : Node
 			{
 				PackedScene spawnResource = (PackedScene)allCharacterList[teamIndex].characterPrefabs[i];
 				Player spawnedCharacter = spawnResource.Instantiate<Player>();
-				GetTree().Root.CallDeferred("add_child", spawnResource.Instantiate());
+				GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+				spawnedCharacter.GlobalPosition = new Vector2(x.X, x.Y);
 				PlayerInformation playerInformation = spawnedCharacter.playerInformation;
 				playerInformation.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(spawnedCharacter.GlobalPosition + new Vector2(0, 0.5f), spawnedCharacter, playerInformation);
