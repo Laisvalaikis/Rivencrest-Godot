@@ -42,11 +42,11 @@ public partial class MapSetup : Node
 			//coordinates
 			for (int i = 0; i < playerTeams.allCharacterList.Count && !playerTeams.allCharacterList[i].isTeamAI; i++)
 			{
-			    playerTeams.allCharacterList[i].coordinates.Clear();
-			    for (int j = 0; j < currentMapData.mapCoordinates[i].coordinates.Count; j++)
-			    {
-			        playerTeams.allCharacterList[i].coordinates.Add(currentMapData.mapCoordinates[i].coordinates[j]);
-			    }
+				playerTeams.allCharacterList[i].coordinates.Clear();
+				for (int j = 0; j < currentMapData.mapCoordinates[i].coordinates.Count; j++)
+				{
+					playerTeams.allCharacterList[i].coordinates.Add(currentMapData.mapCoordinates[i].coordinates[j]);
+				}
 			}
 			//NPC team spawning
 			// if (mapInfo.npcTeam.Count == 0)

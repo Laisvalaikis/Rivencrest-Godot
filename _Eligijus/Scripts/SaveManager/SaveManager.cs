@@ -14,7 +14,8 @@ public partial class SaveManager: Node
 		}
 		if (SaveSystem.LoadStatistics() == null)
 		{
-			SaveSystem.SaveStatistics(new Statistics());
+			Thread thread = new Thread(() => { SaveSystem.SaveStatistics(new Statistics()); });
+			ThreadManager.InsertThreadAndWaitOthers(thread);
 		}
 	}
 

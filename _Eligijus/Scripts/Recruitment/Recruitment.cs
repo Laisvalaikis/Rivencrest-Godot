@@ -104,13 +104,14 @@ public partial class Recruitment : Node
 			SavedCharacterResource characterToAdd = new SavedCharacterResource(AllCharactersCopy[randomIndex]);
 			characterToAdd.level = 1;
 			characterToAdd.xP = 0;
-			for (int j = AllCharactersCopy.Count-1; j >= 0; j--)
-			{
-				if (AllCharactersCopy[j].prefab.ResourcePath == characterToAdd.prefab.ResourcePath)
-				{
-					AllCharactersCopy.RemoveAt(i);
-				}
-			}
+			// Generate only unique
+			// for (int j = AllCharactersCopy.Count-1; j >= 0; j--)
+			// {
+			// 	if (AllCharactersCopy[j].prefab.ResourcePath == characterToAdd.prefab.ResourcePath)
+			// 	{
+			// 		AllCharactersCopy.RemoveAt(j);
+			// 	}
+			// }
 			Array<string> NameList;
 			if (characterToAdd.playerInformation.ClassName == "ASSASSIN" ||
 				characterToAdd.playerInformation.ClassName == "ENCHANTRESS" ||

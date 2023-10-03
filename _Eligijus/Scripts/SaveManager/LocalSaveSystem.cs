@@ -21,6 +21,12 @@ public static class LocalSaveSystem
 		return thread;
 	}
 	
+	public static Thread SaveWaitThread<T>(T data, string path)
+	{
+		Thread thread = new Thread(() => Save(data, path));
+		return thread;
+	}
+	
 	public static void Save<T>(T data, string path)
 	{
 		if(!types.Contains(typeof(T)))
@@ -36,9 +42,12 @@ public static class LocalSaveSystem
 			{
 				using (StreamWriter writer = new StreamWriter(stream))
 				{
-					writer.WriteAsync(dataToStore);
+					writer.Write(dataToStore);
+					writer.Close();
 				}
+				stream.Close();
 			}
+			
 		}
 		catch (Exception e)
 		{

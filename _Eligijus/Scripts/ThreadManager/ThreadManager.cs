@@ -7,7 +7,11 @@ public partial class ThreadManager : Node
 {
 	public static ThreadManager Instance;
 	public List<Thread> threads;
+	public List<Thread> waitingThreads;
+	public List<Thread> workingThreads;
 	private int index = 0;
+	private int waitingIndex = -1;
+	private int workingIndex = -1;
 	// Called when the node enters the scene tree for the first time.
 	public override void _EnterTree()
 	{
@@ -39,6 +43,48 @@ public partial class ThreadManager : Node
 				index = threads.Count - 1;
 			}
 		}
+
+		if (waitingThreads != null && (threads != null && threads.Count == 0) || waitingThreads != null && threads == null)
+		{
+			if ( waitingThreads.Count > 0 )
+			{
+				if (waitingIndex >= 0)
+				{
+					waitingThreads[waitingIndex].Start();
+					if (workingThreads == null)
+					{
+						workingThreads = new List<Thread>();
+					}
+
+					workingThreads.Add(waitingThreads[waitingIndex]);
+					waitingThreads.RemoveAt(waitingIndex);
+					waitingIndex--;
+				}
+				else
+				{
+					waitingIndex = waitingThreads.Count - 1;
+				}
+			}
+		}
+
+		if (workingThreads != null)
+		{
+			if (workingIndex >= 0)
+			{
+				if (!workingThreads[workingIndex].IsAlive)
+				{
+					workingThreads[workingIndex].Join();
+					workingThreads.RemoveAt(index);
+					GD.PrintErr("Thread Finished Work");
+				}
+
+				workingIndex--;
+			}
+			else
+			{
+				workingIndex = waitingThreads.Count - 1;
+			}
+		}
 	}
 
 	public static void InsertThread(Thread thread)
@@ -51,6 +97,19 @@ public partial class ThreadManager : Node
 		{
 			Instance.threads = new List<Thread>();
 			Instance.threads.Add(thread);
+		}
+	}
+	
+	public static void InsertThreadAndWaitOthers(Thread thread)
+	{
+		if (Instance.waitingThreads != null)
+		{
+			Instance.waitingThreads.Add(thread);
+		}
+		else
+		{
+			Instance.waitingThreads = new List<Thread>();
+			Instance.waitingThreads.Add(thread);
 		}
 	}
 }
