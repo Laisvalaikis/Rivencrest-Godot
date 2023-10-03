@@ -10,6 +10,7 @@ characters = Array[Node2D]([])
 aliveCharacters = Array[Node2D]([])
 aliveCharactersPlayerInformation = Array[Node]([])
 coordinates = Array[Vector3]([])
+usedAbilities = []
 teamName = ""
 teamAllegiance = ""
 isTeamAI = false

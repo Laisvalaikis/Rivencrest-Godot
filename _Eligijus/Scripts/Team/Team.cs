@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
-public partial class Team: Resource
+public partial class Team : Resource
 {
     [Export]
     public Array<Resource> characterPrefabs;
@@ -14,7 +14,8 @@ public partial class Team: Resource
     public Array<PlayerInformation> aliveCharactersPlayerInformation;
     [Export]
     public Array<Vector3> coordinates;
-    public List<UsedAbility> usedAbilities = new List<UsedAbility>();
+    [Export]
+    public Array<UsedAbility> usedAbilities = new Array<UsedAbility>();
     [Export]
     public string teamName;
     [Export]
@@ -23,6 +24,6 @@ public partial class Team: Resource
     public bool isTeamAI;
     public int undoCount;
     public Node2D teamPortraitBoxGameObject;
-    public Node2D lastSelectedPlayer;
+    public Resource lastSelectedPlayer;
 
 }

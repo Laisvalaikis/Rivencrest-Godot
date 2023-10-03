@@ -1,3 +1,15 @@
-[gd_resource type="Resource" format=3 uid="uid://nmo2ljtjn5g6"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://nmo2ljtjn5g6"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Team/Team.cs" id="1_ro35s"]
 
 [resource]
+script = ExtResource("1_ro35s")
+characterPrefabs = Array[Resource]([])
+characters = Array[Node2D]([])
+aliveCharacters = Array[Node2D]([])
+aliveCharactersPlayerInformation = Array[Node]([])
+coordinates = Array[Vector3]([])
+usedAbilities = []
+teamName = ""
+teamAllegiance = ""
+isTeamAI = false

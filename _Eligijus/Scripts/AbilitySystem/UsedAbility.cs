@@ -1,6 +1,7 @@
 using System;
+using Godot;
 
-public class UsedAbility
+public partial class UsedAbility : Resource
 {
 	public BaseAction Ability { get; set; }
 	public ChunkData Chunk { get; set; }

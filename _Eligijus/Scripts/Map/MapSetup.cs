@@ -14,8 +14,8 @@ public partial class MapSetup : Node
 	private Node toFollow;
 	// [Export]
 	// private CameraController cameraController;
-	// [Export]
-	// private PlayerTeams playerTeams;
+	[Export]
+	private PlayerTeams playerTeams;
 	// [Export]
 	// private AIManager aiManager;=
 	private MapData currentMapData;
@@ -40,14 +40,14 @@ public partial class MapSetup : Node
 		{
 			currentMapData = _mapDataController.mapDatas[MapName];
 			//coordinates
-			// for (int i = 0; i < playerTeams.allCharacterList.teams.Count && !playerTeams.allCharacterList.teams[i].isTeamAI; i++)
-			// {
-			//     playerTeams.allCharacterList.teams[i].coordinates.Clear();
-			//     for (int j = 0; j < mapInfo.mapCoordinates[i].coordinates.Count; j++)
-			//     {
-			//         playerTeams.allCharacterList.teams[i].coordinates.Add(mapInfo.mapCoordinates[i].coordinates[j]);
-			//     }
-			// }
+			for (int i = 0; i < playerTeams.allCharacterList.Count && !playerTeams.allCharacterList[i].isTeamAI; i++)
+			{
+			    playerTeams.allCharacterList[i].coordinates.Clear();
+			    for (int j = 0; j < currentMapData.mapCoordinates[i].coordinates.Count; j++)
+			    {
+			        playerTeams.allCharacterList[i].coordinates.Add(currentMapData.mapCoordinates[i].coordinates[j]);
+			    }
+			}
 			//NPC team spawning
 			// if (mapInfo.npcTeam.Count == 0)
 			// {

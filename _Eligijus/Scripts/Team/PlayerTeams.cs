@@ -26,19 +26,35 @@ public partial class PlayerTeams : Node
 	private TeamsList currentCharacters;
 	// [SerializeField] private ColorManager colorManager;
 	private Data _data;
-	
-	void Start()
+
+	public override void _Ready()
 	{
+		base._Ready();
 		InitializeCharacterLists();
 		SpawnAllCharacters();
 		isGameOver = false;
 	}
 	
-	
 	private void InitializeCharacterLists()
 	{
 		_data = Data.Instance;
-		allCharacterList[0].characterPrefabs.Clear();
+		if (allCharacterList != null && allCharacterList.Count > 0)
+		{
+			if (allCharacterList[0] != null)
+			{
+				if (allCharacterList[0].characterPrefabs == null)
+				{
+					allCharacterList[0].characterPrefabs = new Array<Resource>();
+				}
+				
+			}
+		}
+		else
+		{
+			allCharacterList[0].characterPrefabs.Clear();
+		}
+
+		
 		foreach (var t in _data.Characters)
 		{
 			allCharacterList[0].characterPrefabs.Add(t.prefab);
@@ -64,10 +80,11 @@ public partial class PlayerTeams : Node
 		int i = 0;
 		foreach (var x in spawnCoordinates)
 		{
-			if (i < allCharacterList[teamIndex].characters.Count)
+			if (i < allCharacterList[teamIndex].characterPrefabs.Count)
 			{
 				PackedScene spawnResource = (PackedScene)allCharacterList[teamIndex].characterPrefabs[i];
 				Player spawnedCharacter = spawnResource.Instantiate<Player>();
+				GetTree().Root.CallDeferred("add_child", spawnResource.Instantiate());
 				PlayerInformation playerInformation = spawnedCharacter.playerInformation;
 				playerInformation.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(spawnedCharacter.GlobalPosition + new Vector2(0, 0.5f), spawnedCharacter, playerInformation);
@@ -80,7 +97,7 @@ public partial class PlayerTeams : Node
 		allCharacterList[teamIndex].undoCount = undoCount;
 		portraitTeamBox.ModifyList();
 		
-		allCharacterList[teamIndex].lastSelectedPlayer = allCharacterList[teamIndex].characters[0];//LastSelectedPlayer
+		allCharacterList[teamIndex].lastSelectedPlayer = allCharacterList[teamIndex].characterPrefabs[0];//LastSelectedPlayer
 	}
 
 	// public void AddCharacterToCurrentTeam(Node2D character)
