@@ -12,14 +12,17 @@ public partial class PvPCharacterSelect : Control
     private TextureRect characterPortraitSprite;
     private Node2D characterOnBoard;
     private PlayerInformation _playerInformation;
+    [Export]
     private PlayerInformationData _playerInformationData;
     private SelectAction _selectAction;
     private bool isButtonAvailable = true;
 
-    void Start()
+    public override void _Ready()
     {
+        base._Ready();
         CreateCharatersPortrait();
     }
+    
 
     public void SetGameTilemap(GameTileMap gameTileMap)
     {
@@ -30,6 +33,7 @@ public partial class PvPCharacterSelect : Control
     {
         if (characterOnBoard != null)
         {
+            
             _playerInformationData = _playerInformation.playerInformationData;
             characterPortraitSprite.Texture = (AtlasTexture)_playerInformationData.CharacterPortraitSprite;
             
@@ -57,14 +61,14 @@ public partial class PvPCharacterSelect : Control
             _gameTileMap.SetCurrentCharacter(characterOnBoard);
             isButtonAvailable = false;
             _selectAction.SetCurrentCharacter(characterOnBoard);
-            GD.Print("Selected");
+            // GD.Print("Selected");
         }
         else if (_gameTileMap.GetCurrentCharacter() == characterOnBoard)
         {
             _gameTileMap.DeselectCurrentCharacter();
             _selectAction.DeSetCurrentCharacter();
             isButtonAvailable = true;
-            GD.Print("Deselected");
+            // GD.Print("Deselected");
         }
 
         Player character = (Player)characterOnBoard;

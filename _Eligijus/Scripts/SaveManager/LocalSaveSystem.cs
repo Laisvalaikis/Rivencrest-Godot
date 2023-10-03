@@ -57,7 +57,6 @@ public static class LocalSaveSystem
 
 	public static T Load<T>(string path)
 	{
-		GD.Print(path);
 		if (!types.Contains(typeof(T)))
 		{
 			throw new ArgumentException("Type not supported");

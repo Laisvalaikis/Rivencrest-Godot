@@ -19,13 +19,14 @@ public partial class TeamInformation : Control
 	
 	public void ModifyList()
 	{
-		Array<Node2D> CharacterOnBoardList = playerTeams.AliveCharacterList(teamIndex);
+		Array<Node2D> characterOnBoardList = playerTeams.AliveCharacterList(teamIndex);
 		Array<PlayerInformation> characterAlivePlayerInformation = playerTeams.AliveCharacterPlayerInformationList(teamIndex);
 		for(int i = 0; i < pvpCharacterSelects.Count; i++)
 		{
-			if (i < CharacterOnBoardList.Count)
+			if (i < characterOnBoardList.Count)
 			{
-				pvpCharacterSelects[i].SetPortraitCharacter(CharacterOnBoardList[i], characterAlivePlayerInformation[i]);
+				GD.Print(pvpCharacterSelects[i].Name);
+				pvpCharacterSelects[i].SetPortraitCharacter(characterOnBoardList[i], characterAlivePlayerInformation[i]);
 				pvpCharacterSelects[i].CreateCharatersPortrait();
 				pvpCharacterSelects[i].SetSelectAction(selectAction);
 				pvpCharacterSelects[i].SetGameTilemap(gameTileMap);
@@ -37,7 +38,7 @@ public partial class TeamInformation : Control
 			
 		}
 
-		if (CharacterOnBoardList.Count != 0)
+		if (characterOnBoardList.Count != 0)
 		{
 			image.Show();
 		}
