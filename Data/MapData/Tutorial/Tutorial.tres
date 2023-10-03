@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://behxhscxem2p7"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://behxhscxem2p7"]
 
 [ext_resource type="Resource" uid="uid://sge1y06qj7ww" path="res://Data/MapData/Meadow/AI_Coordinates.tres" id="1_ao5rx"]
 [ext_resource type="Resource" uid="uid://drpjqwtamtx3l" path="res://Data/MapData/Tutorial/Coordinates_0.tres" id="2_0pmyl"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://7p7tdenva8qi" path="res://_Eligijus/Sprites/Map/Meadow.png" id="4_rjt8e"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="5_uv14d"]
 [ext_resource type="PackedScene" uid="uid://0nfqcq3srxjt" path="res://_Eligijus/Prefabs/Maps/Meadow.tscn" id="5_yjd0h"]
-[ext_resource type="Resource" uid="uid://cu6aja3qq3edn" path="res://Data/MapData/Tutorial/MapGeneration.tres" id="7_qe4al"]
 
 [resource]
 script = ExtResource("5_uv14d")
@@ -16,7 +15,6 @@ npcTeam = Array[Node]([])
 suitableLevels = Array[int]([1])
 mapCoordinates = Array[Resource]([ExtResource("2_0pmyl"), ExtResource("3_vtmf6")])
 aiMapCoordinates = ExtResource("1_ao5rx")
-tileMapCoordinates = ExtResource("7_qe4al")
 toFollowStartPosition = Vector3(4.44, 2.99, 0)
 panLimitX = Vector2(-0.5, 5.5)
 panLimitY = Vector2(0.5, 11.5)

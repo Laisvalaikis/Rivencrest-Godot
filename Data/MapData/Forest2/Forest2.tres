@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://d0ojurbsjbe4d"]
 
-[ext_resource type="Resource" uid="uid://sge1y06qj7ww" path="res://Data/MapData/Meadow/AI_Coordinates.tres" id="1_r7uy3"]
-[ext_resource type="Resource" uid="uid://bgce7qac0io1a" path="res://Data/MapData/Meadow/Coordinates_0.tres" id="2_s0vpk"]
-[ext_resource type="Resource" uid="uid://cl1h74fuxcck7" path="res://Data/MapData/Meadow/Coordinates_1.tres" id="3_13bdm"]
+[ext_resource type="Resource" uid="uid://c37iusqgjmvkf" path="res://Data/MapData/Forest2/AI_Coordinates.tres" id="1_vcjvp"]
+[ext_resource type="Resource" uid="uid://d05ixpbn616o5" path="res://Data/MapData/Forest2/Coordinates_0.tres" id="2_60wvj"]
+[ext_resource type="Resource" uid="uid://cochy4yw1ale4" path="res://Data/MapData/Forest2/Coordinates_1.tres" id="3_d1br5"]
 [ext_resource type="Texture2D" uid="uid://nl7ex4qddg4b" path="res://_Eligijus/Sprites/Map/Forest2.png" id="4_48ye5"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="5_s2ce4"]
 
@@ -12,8 +12,8 @@ mapName = "Forest2"
 suitableEnemies = Array[String](["ForestWicth", "ForestBear", "ForestDruid", "ForestWatcher", "ForestHuntress"])
 npcTeam = Array[Node]([])
 suitableLevels = Array[int]([2, 3, 4, 5])
-mapCoordinates = Array[Resource]([ExtResource("2_s0vpk"), ExtResource("3_13bdm")])
-aiMapCoordinates = ExtResource("1_r7uy3")
+mapCoordinates = Array[Resource]([ExtResource("2_60wvj"), ExtResource("3_d1br5")])
+aiMapCoordinates = ExtResource("1_vcjvp")
 toFollowStartPosition = Vector3(8.11, 0.55, -1)
 panLimitX = Vector2(5.5, 14.5)
 panLimitY = Vector2(-1.5, 14.5)

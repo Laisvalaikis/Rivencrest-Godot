@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c2rlbpmbwt7ys"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_ap3bo"]
+[ext_resource type="Resource" uid="uid://bdb4dj08bvokn" path="res://Data/MapData/SpiderLair/AI_Coordinates.tres" id="1_xej2j"]
+[ext_resource type="Resource" uid="uid://qf5xi2yw35mv" path="res://Data/MapData/SpiderLair/Coordinates_0.tres" id="2_jw2sj"]
+[ext_resource type="Resource" uid="uid://buwj8i74eg3p" path="res://Data/MapData/SpiderLair/Coordinates_1.tres" id="3_uwgr0"]
+
+[resource]
+script = ExtResource("1_ap3bo")
+mapName = "SpiderLair"
+suitableEnemies = Array[String](["UndeadBoss", "UndeadSpider", "UndeadSpiderMaiden", "UndeadSpider"])
+npcTeam = null
+suitableLevels = Array[int]([1, 2, 3, 4])
+mapCoordinates = Array[Resource]([ExtResource("2_jw2sj"), ExtResource("3_uwgr0")])
+aiMapCoordinates = ExtResource("1_xej2j")
+toFollowStartPosition = Vector3(4.21, 1.84, -1)
+panLimitX = Vector2(1.5, 13.5)
+panLimitY = Vector2(-1.5, 10.5)
+numberOfEnemies = 3
+mapCategory = "Undead"
+allowDuplicates = false
+informationText = ""

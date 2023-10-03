@@ -4,6 +4,6 @@ using Godot;
 
 public partial class MapCoordinates: Resource
 {
-    [Export]
-    public Array<Vector3> coordinates;
+	[Export]
+	public Array<Vector3> coordinates;
 }

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ds5m8gkomex5e"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapCoordinates.cs" id="1_vhp0y"]
+
+[resource]
+script = ExtResource("1_vhp0y")
+coordinates = Array[Vector3]([Vector3(6.5, 5, 0), Vector3(5.5, 6, 0), Vector3(3.5, 8, 0)])

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b1m13sqcflh28"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapCoordinates.cs" id="1_isvim"]
+
+[resource]
+script = ExtResource("1_isvim")
+coordinates = Array[Vector3]([Vector3(7.5, 0, 0), Vector3(8.5, 0, 0), Vector3(9.5, 1, 0)])
