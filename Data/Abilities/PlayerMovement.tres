@@ -1,13 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c5uds5vfkp1r"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://encu7jq8721o"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PlayerMovement.cs" id="1_81jrn"]
+[ext_resource type="Texture2D" uid="uid://dmswae100dsh8" path="res://_Eligijus/Sprites/ActionButtonIcons.png" id="1_u6cgn"]
+[ext_resource type="Resource" uid="uid://c5uds5vfkp1r" path="res://Data/Abilities/Abilities/PlayerMovement.tres" id="2_frprs"]
+[ext_resource type="Resource" uid="uid://dn0oigire132n" path="res://Data/AbilityText/PlayerMovement.tres" id="3_e7d4j"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_w3mwt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yubrb"]
+atlas = ExtResource("1_u6cgn")
+region = Rect2(40, 2, 9, 12)
 
 [resource]
-script = ExtResource("1_81jrn")
-laserGrid = false
-AttackRange = 1
-AbilityCooldown = 1
-minAttackDamage = 0
-maxAttackDamage = 0
-isAbilitySlow = true
-friendlyFire = false
+script = ExtResource("3_w3mwt")
+abilityText = ExtResource("3_e7d4j")
+enabled = true
+AbilityImage = SubResource("AtlasTexture_yubrb")
+Action = ExtResource("2_frprs")

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public partial class PvPCharacterSelect : Control
+public partial class PvPCharacterSelect : Button
 {
     [Export] private Control characterButtonParent;
     private GameTileMap _gameTileMap; //cia private padaryt
@@ -12,7 +12,6 @@ public partial class PvPCharacterSelect : Control
     private TextureRect characterPortraitSprite;
     private Node2D characterOnBoard;
     private PlayerInformation _playerInformation;
-    [Export]
     private PlayerInformationData _playerInformationData;
     private SelectAction _selectAction;
     private bool isButtonAvailable = true;
@@ -22,7 +21,12 @@ public partial class PvPCharacterSelect : Control
         base._Ready();
         CreateCharatersPortrait();
     }
-    
+
+    public override void _Pressed()
+    {
+        base._Pressed();
+        SelectPortrait();
+    }
 
     public void SetGameTilemap(GameTileMap gameTileMap)
     {
@@ -83,14 +87,6 @@ public partial class PvPCharacterSelect : Control
     {
         _selectAction = selectAction;
     }
-
-    public void OnHover()
-    {
-        
-    }
-    public void OffHover()
-    {
-       
-    }
+    
 
 }

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c5uds5vfkp1r"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PlayerMovement.cs" id="1_81jrn"]
+
+[resource]
+script = ExtResource("1_81jrn")
+laserGrid = false
+AttackRange = 1
+AbilityCooldown = 1
+minAttackDamage = 0
+maxAttackDamage = 0
+isAbilitySlow = true
+friendlyFire = false

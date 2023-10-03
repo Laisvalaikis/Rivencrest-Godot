@@ -6,7 +6,7 @@ public partial class SelectAction : Control
 {
 	private ActionManager _actionManagerNew;
 	private Array<Ability> _playerAbilities;
-	private Node2D _currentPlayer;
+	private Player _currentPlayer;
 	private PlayerInformationData _playerInformationData;
 	[Export] private HelpTable helpTable;
 	[Export] private AbilityManager _abilityManager;
@@ -19,10 +19,10 @@ public partial class SelectAction : Control
 
 	}
 
-	public void SetupSelectAction(ActionManager actionManager, PlayerInformationData playerInformationData)
+	public void SetupSelectAction()
 	{
-		_playerAbilities = actionManager.ReturnAbilities();
-		_playerInformationData = playerInformationData;
+		_playerAbilities = _currentPlayer.actionManager.ReturnAbilities();
+		_playerInformationData = _currentPlayer.playerInformation.playerInformationData;
 	}
 
 	private void GenerateActions()
@@ -63,7 +63,8 @@ public partial class SelectAction : Control
 	public void SetCurrentCharacter(Node2D currentPlayer)
 	{
 		Show();
-		_currentPlayer = currentPlayer;
+		_currentPlayer = (Player)currentPlayer;
+		SetupSelectAction();
 		GetAbilities();
 		UpdatePlayerInfo();
 		_abilityManager.SetCurrentAbility(_playerAbilities[0].Action);
