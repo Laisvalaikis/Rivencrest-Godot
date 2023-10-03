@@ -13,4 +13,4 @@ coordinates = Array[Vector3]([])
 usedAbilities = []
 teamName = ""
 teamAllegiance = ""
-isTeamAI = false
+isTeamAI = true
