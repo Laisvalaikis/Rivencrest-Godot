@@ -165,7 +165,7 @@ public partial class HighlightTile : Node2D
 	}
 	public void DeactivateArrowTile()
 	{
-		arrowTile.Show();
+		arrowTile.Hide();
 	}
 	public void ActivatePlayerTile(bool value)
 	{

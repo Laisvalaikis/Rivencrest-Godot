@@ -150,15 +150,19 @@ public partial class GameTileMap : Node2D
 		}
 	}
 
-
-	// Update is called once per frame
-	void Update()
+	public override void _Process(double delta)
 	{
-		// if (!_threadDistance.IsAlive && !chuncksIsSetUp)
-		// {
-		//     StartCoroutine(SetupChunckTiles());
-		//     chuncksIsSetUp = true;
-		// }
+		base._Process(delta);
+		if (!_threadDistance.IsAlive && !chuncksIsSetUp)
+		{
+		    // StartCoroutine(SetupChunckTiles());
+		    chuncksIsSetUp = true;
+		}
+	}
+
+	public bool ChunksIsSetuped()
+	{
+		return chuncksIsSetUp;
 	}
 
 	// IEnumerator SetupChunckTiles()
@@ -501,7 +505,7 @@ public partial class GameTileMap : Node2D
 		return _currentSelectedCharacter != null;
 	}
 	
-	public Node GetCurrentCharacter()
+	public Node2D GetCurrentCharacter()
 	{
 		return _currentSelectedCharacter;
 	}

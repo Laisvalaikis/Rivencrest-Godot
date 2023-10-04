@@ -41,7 +41,7 @@ public partial class Data : Node
 	[Signal]
 	public delegate void CharacterRecruitmentEventHandler();
 	// Start is called before the first frame update
-
+	
 	public override void _EnterTree()
 	{
 		base._EnterTree();

@@ -14,7 +14,7 @@ public partial class SaveData : Node
 	[Export]
 	private Recruitment _recruitment;
 	
-	public override void _EnterTree()
+	public override void _EnterTree() // Susitvarkyti Execution Order
 	{
 		base._EnterTree();
 		if (_data == null)

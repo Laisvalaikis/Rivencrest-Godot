@@ -33,7 +33,7 @@ public partial class SelectAction : Control
 		{
 			if (_playerAbilities[i].enabled)
 			{
-				abilityButtons[buttonIndex].Show();
+				abilityButtons[buttonIndex].buttonParent.Show();
 				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
 				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerAbilities[i].AbilityImage;
 				abilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
@@ -43,7 +43,7 @@ public partial class SelectAction : Control
 
 		for (int i = buttonIndex; i < abilityButtons.Count; i++)
 		{
-			abilityButtons[i].Hide();
+			abilityButtons[i].buttonParent.Hide();
 		}
 		
 	}

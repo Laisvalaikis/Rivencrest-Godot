@@ -211,9 +211,9 @@ public partial class PlayerMovement : BaseAction
 	{
 		if (prev == null && next == null) return 0;  // Invalid case
 
-		var (cy, cx) = current.GetIndexes();
-		var (py, px) = prev?.GetIndexes() ?? (0, 0);
-		var (ny, nx) = next?.GetIndexes() ?? (0, 0);
+		var (cx, cy) = current.GetIndexes();
+		var (px, py) = prev?.GetIndexes() ?? (0, 0);
+		var (nx, ny) = next?.GetIndexes() ?? (0, 0);
         
 		if (prev == null)  // Start
 		{

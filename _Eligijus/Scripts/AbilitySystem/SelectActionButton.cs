@@ -4,15 +4,16 @@ using Godot;
 
 public partial class SelectActionButton : Button
 {
-    private SelectAction selectAction;
-    private int abilityIndex;
-    private Ability abilityInformation;
-    private HelpTable _helpTable;
+    [Export] 
+    public Control buttonParent;
     [Export]
     public TextureRect abilityButtonBackground;
     [Export]
     public TextureRect AbilityButtonImage;
-    
+    private SelectAction selectAction;
+    private int abilityIndex;
+    private Ability abilityInformation;
+    private HelpTable _helpTable;
     
     public void OnHover()
     {

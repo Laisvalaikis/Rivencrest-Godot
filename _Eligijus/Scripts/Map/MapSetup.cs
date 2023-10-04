@@ -21,9 +21,9 @@ public partial class MapSetup : Node
 	private MapData currentMapData;
 	private Data _data;
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
-		base._Ready();
+		base._EnterTree();
 		if (_data == null)
 		{
 			_data = Data.Instance;
@@ -32,6 +32,8 @@ public partial class MapSetup : Node
 			SetupAMap();
 		}
 	}
+	
+	
 
 	public void SetupAMap() 
 	{

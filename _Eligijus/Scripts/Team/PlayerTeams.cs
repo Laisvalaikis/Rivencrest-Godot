@@ -26,15 +26,20 @@ public partial class PlayerTeams : Node
 	private TeamsList currentCharacters;
 	// [SerializeField] private ColorManager colorManager;
 	private Data _data;
+	private bool setupComplete = false;
 
-	public override void _Ready()
+	public override void _Process(double delta)
 	{
-		base._Ready();
-		InitializeCharacterLists();
-		SpawnAllCharacters();
-		isGameOver = false;
+		base._Process(delta);
+		if (!setupComplete && GameTileMap.Tilemap.ChunksIsSetuped())
+		{
+			InitializeCharacterLists();
+			SpawnAllCharacters();
+			isGameOver = false;
+			setupComplete = true;
+		}
 	}
-	
+
 	private void InitializeCharacterLists()
 	{
 		_data = Data.Instance;
@@ -85,10 +90,11 @@ public partial class PlayerTeams : Node
 				PackedScene spawnResource = (PackedScene)allCharacterList[teamIndex].characterPrefabs[i];
 				Player spawnedCharacter = spawnResource.Instantiate<Player>();
 				GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-				spawnedCharacter.GlobalPosition = new Vector2(x.X, x.Y);
+				Vector2 position = new Vector2(x.X, x.Y);
+				spawnedCharacter.GlobalPosition = position;
 				PlayerInformation playerInformation = spawnedCharacter.playerInformation;
 				playerInformation.SetPlayerTeam(teamIndex);
-				GameTileMap.Tilemap.SetCharacter(spawnedCharacter.GlobalPosition + new Vector2(0, 0.5f), spawnedCharacter, playerInformation);
+				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter, playerInformation);
 				currentCharacters.Teams[teamIndex].characters.Add(spawnedCharacter);
 				currentCharacters.Teams[teamIndex].aliveCharacters.Add(spawnedCharacter);
 				currentCharacters.Teams[teamIndex].aliveCharactersPlayerInformation.Add(playerInformation);
