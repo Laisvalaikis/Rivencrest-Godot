@@ -6,7 +6,6 @@ using System.Linq;
 
 public partial class PlayerMovement : BaseAction
 {
-	public Node2D playerObject;
 	private bool isFacingRight = true;
 	private GameTileMap _gameTileMap;
 
@@ -47,7 +46,7 @@ public partial class PlayerMovement : BaseAction
 			}
 			else
 			{
-				_path = GetDiagonalPath(_gameTileMap.GetChunk(playerObject.GlobalPosition), hoveredChunk, _chunkArray);
+				_path = GetDiagonalPath(_gameTileMap.GetChunk(player.GlobalPosition), hoveredChunk, _chunkArray);
 			}
 			SetTileArrow(_path,0,_path.Count-1);
 		}

@@ -41,6 +41,7 @@ public partial class HighlightTile : Node2D
 		PackedScene textTile = (PackedScene)textTilePrefab;
 		Label label = (Label)textTile.Instantiate();
 		CallDeferred("add_child", label);
+		damageText = label;
 		label.Hide();
 
 	}
@@ -55,11 +56,6 @@ public partial class HighlightTile : Node2D
 		{
 			skullSprite.Hide();
 		}
-	}
-
-	public void SetLabel(Label label)
-	{
-		damageText = label;
 	}
 
 	public void SetDamageText(string text)

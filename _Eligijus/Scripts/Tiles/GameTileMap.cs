@@ -135,7 +135,7 @@ public partial class GameTileMap : Node2D
 						// GD.Print("Mouse Motion at: ", GetGlobalMousePosition());
 						Rect2 rect = new Rect2();
 						rect.Size = new Vector2(data.GetDimensions().X, data.GetDimensions().Y);
-						rect.Position = new Vector2(data.GetPosition().X, data.GetPosition().Y);
+						rect.Position = new Vector2(data.GetPosition().X - (currentMap._chunkSize/2), data.GetPosition().Y - (currentMap._chunkSize/2));
 						if (data.CheckIfPosition(GetGlobalMousePosition(), currentMap))
 						{
 							DrawRect(rect, Colors.Red, true);
@@ -206,7 +206,7 @@ public partial class GameTileMap : Node2D
 				tileNode.CallDeferred("hide");
 				// tileNode.GlobalPosition = new Vector2(widthPosition, heightPosition);
 				
-				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition, heightPosition, false, tileNode);
+				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition + (currentMap._chunkSize/2), heightPosition + + (currentMap._chunkSize/2), false, tileNode);
 				//tileSpriteRenderers[chunckIndex], tileHighlights[chunckIndex], false
 				if (currentMap._mapBoundries.boundries[h].Y - currentMap._chunkSize <= heightPosition - (heightSize) &&
 					currentMap._mapBoundries.boundries[h].Y >=  heightPosition &&
@@ -214,7 +214,7 @@ public partial class GameTileMap : Node2D
 					currentMap._mapBoundries.boundries[h].Z >= widthPosition)
 				{
 					chunk.SetTileIsLocked(false);
-					tileNode.CallDeferred("show");
+					// tileNode.CallDeferred("show");
 				}
 				else
 				{
