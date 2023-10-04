@@ -28,6 +28,8 @@ public partial class SelectAction : Control
 	private void GenerateActions()
 	{
 		int buttonIndex = 0;
+		
+		// Selects first ability button
 		if (_playerAbilities.Count > 0)
 		{
 			abilityButtons[buttonIndex].AbilityInformationFirstSelect();
