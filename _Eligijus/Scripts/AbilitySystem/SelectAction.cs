@@ -28,7 +28,11 @@ public partial class SelectAction : Control
 	private void GenerateActions()
 	{
 		int buttonIndex = 0;
-		
+		if (_playerAbilities.Count > 0)
+		{
+			abilityButtons[buttonIndex].AbilityInformationFirstSelect();
+		}
+
 		for (int i = 0; i < _playerAbilities.Count; i++)
 		{
 			if (_playerAbilities[i].enabled)

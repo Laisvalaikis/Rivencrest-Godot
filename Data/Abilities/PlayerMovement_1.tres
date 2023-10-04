@@ -1,0 +1,34 @@
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://beg0vkhxsivlc"]
+
+[ext_resource type="Texture2D" uid="uid://dmswae100dsh8" path="res://_Eligijus/Sprites/ActionButtonIcons.png" id="1_7p77d"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PlayerMovement.cs" id="2_ajjr6"]
+[ext_resource type="Resource" uid="uid://dn0oigire132n" path="res://Data/AbilityText/PlayerMovement.tres" id="3_niphs"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_ks8bm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yubrb"]
+atlas = ExtResource("1_7p77d")
+region = Rect2(40, 2, 9, 12)
+
+[sub_resource type="Resource" id="Resource_mcidg"]
+script = ExtResource("2_ajjr6")
+laserGrid = false
+turnsSinceCast = 0
+turnLifetime = 1
+attackRange = 1
+abilityCooldown = 1
+minAttackDamage = 0
+maxAttackDamage = 0
+isAbilitySlow = true
+friendlyFire = false
+abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
+abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
+abilityHoverCharacter = Color(1, 0.890196, 0, 1)
+otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
+characterOnGrid = Color(1, 0.34902, 0.278431, 1)
+
+[resource]
+script = ExtResource("4_ks8bm")
+abilityText = ExtResource("3_niphs")
+enabled = true
+AbilityImage = SubResource("AtlasTexture_yubrb")
+Action = SubResource("Resource_mcidg")
