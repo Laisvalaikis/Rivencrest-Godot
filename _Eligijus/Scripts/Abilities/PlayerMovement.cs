@@ -8,15 +8,27 @@ public partial class PlayerMovement : BaseAction
 {
 	private bool isFacingRight = true;
 	private GameTileMap _gameTileMap;
-
 	private List<ChunkData> _path;
 	private ChunkData[,] _chunkArray;
 
-	public override Variant _Get(StringName property)
+	public PlayerMovement()
 	{
-		return base._Get(property);
+		
+	}
+	
+	public PlayerMovement(PlayerMovement playerMovement): base(playerMovement)
+	{
+		isFacingRight = playerMovement.isFacingRight;
+		_gameTileMap = playerMovement._gameTileMap;
+		_path = new List<ChunkData>();
 	}
 
+	public override BaseAction CreateNewInstance(BaseAction action)
+	{
+		PlayerMovement movement = new PlayerMovement((PlayerMovement)action);
+		return movement;
+	}
+	
 	public override void Start()
 	{
 		base.Start();
@@ -67,8 +79,9 @@ public partial class PlayerMovement : BaseAction
 	{
 		if (chunkData.GetCurrentCharacter() == null)
 		{
+			chunkData.GetTileHighlight().EnableTile(true);
 			chunkData.GetTileHighlight().ActivateColorGridTile(true);
-			chunkData.GetTileHighlight().SetHighlightColor(AbilityHighlight);
+			chunkData.GetTileHighlight().SetHighlightColor(abilityHighlight);
 		}
 	}
 	

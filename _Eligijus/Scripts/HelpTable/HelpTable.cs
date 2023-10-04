@@ -127,7 +127,7 @@ public partial class HelpTable : Node
 		BaseAction baseAction = (BaseAction)ability.Action;
 		abilityTitle.Text = abilityText.abilityTitle;
 		abilityDescription.Text = abilityText.abilityDescription;
-		cooldownText.Text = baseAction.AbilityCooldown.ToString();
+		cooldownText.Text = baseAction.abilityCooldown.ToString();
 		if (baseAction.maxAttackDamage == 0)
 		{
 			damageIcon.Hide();
@@ -150,7 +150,7 @@ public partial class HelpTable : Node
 			slowAbility.Hide();
 			fastAbility.Show();
 		}
-		rangeText.Text = baseAction.AttackRange.ToString();
+		rangeText.Text = baseAction.attackRange.ToString();
 	}
 	
 	private void FillTableWithInfo(AbilityText abilityText)

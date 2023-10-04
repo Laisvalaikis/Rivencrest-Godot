@@ -67,6 +67,8 @@ public partial class HighlightTile : Node2D
 	{
 		damageText.Hide();
 	}
+	
+
 	public void ActivateColorGridTile(bool value)
 	{
 		if (value)
@@ -80,15 +82,15 @@ public partial class HighlightTile : Node2D
 		isHighlighted = value;
 	}
 
-	public void EnableHighlight(bool value)
+	public void EnableTile(bool value)
 	{
 		if (value)
 		{
-			highlight.Show();
+			Show();
 		}
 		else
 		{
-			highlight.Hide();
+			Hide();
 		}
 	}
 

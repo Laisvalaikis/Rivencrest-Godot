@@ -11,9 +11,9 @@ using Godot.Collections;
 		[Export] public int turnLifetime = 1;
 		//private RaycastHit2D raycast;
 		[Export]
-		public int AttackRange = 1;
+		public int attackRange = 1;
 		[Export]
-		public int AbilityCooldown = 1;
+		public int abilityCooldown = 1;
 		[Export]
 		public int minAttackDamage = 0;
 		[Export]
@@ -22,15 +22,48 @@ using Godot.Collections;
 		public bool isAbilitySlow = true;
 		[Export]
 		public bool friendlyFire = false;
+		[Export]
+		protected Color abilityHighlight = new Color("#B25E55");
+		[Export]
+		protected Color abilityHighlightHover = new Color("#9E4A41");
+		[Export]
+		protected Color abilityHoverCharacter = new Color("#FFE300");
+		[Export]
+		protected Color otherOnGrid = new Color("#717171");
+		[Export]
+		protected Color characterOnGrid = new Color("#FF5947");
 		
-		protected Color AbilityHighlight = new Color("#B25E55");
-		protected Color AbilityHighlightHover = new Color("#9E4A41");
-		protected Color AbilityHoverCharacter = new Color("#FFE300");
-		protected Color OtherOnGrid = new Color("#717171");
-		protected Color CharacterOnGrid = new Color("#FF5947");
 		protected List<ChunkData> _chunkList;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
+
+		public BaseAction()
+		{
+			
+		}
+
+		public BaseAction(BaseAction action)
+		{
+			laserGrid = action.laserGrid;
+			turnsSinceCast = action.turnsSinceCast;
+			turnLifetime = action.turnLifetime;
+			attackRange = action.attackRange;
+			abilityCooldown = action.abilityCooldown;
+			minAttackDamage = action.minAttackDamage;
+			maxAttackDamage = action.maxAttackDamage;
+			isAbilitySlow = action.isAbilitySlow;
+			friendlyFire = action.friendlyFire;
+			abilityHighlight = action.abilityHighlight;
+			abilityHighlightHover = action.abilityHighlightHover;
+			abilityHoverCharacter = action.abilityHoverCharacter;
+			otherOnGrid = action.otherOnGrid;
+			characterOnGrid = action.characterOnGrid;
+		}
+
+		public virtual BaseAction CreateNewInstance(BaseAction action)
+		{
+			throw new NotImplementedException();
+		}
 
 		public void SetupAbility(Player player)
 		{
@@ -51,6 +84,7 @@ using Godot.Collections;
 			if (chunkData.GetCurrentCharacter() != GameTileMap.Tilemap.GetCurrentCharacter())
 			{
 				SetNonHoveredAttackColor(chunkData);
+				chunkData.GetTileHighlight().EnableTile(true);
 				chunkData.GetTileHighlight().ActivateColorGridTile(true);
 			}
 		}
@@ -70,13 +104,13 @@ using Godot.Collections;
 		
 		public virtual void CreateGrid(ChunkData chunkData, int radius)
 		{
-			CreateAvailableChunkList(AttackRange);
+			CreateAvailableChunkList(attackRange);
 			HighlightAllGridTiles();
 		}
 
 		public virtual void CreateGrid()
 		{
-			CreateAvailableChunkList(AttackRange);
+			CreateAvailableChunkList(attackRange);
 			HighlightAllGridTiles();
 		}
 
@@ -85,6 +119,7 @@ using Godot.Collections;
 			foreach (var chunk in _chunkList)
 			{
 				HighlightTile highlightTile = chunk.GetTileHighlight();
+				highlightTile.EnableTile(false);
 				highlightTile.ActivateColorGridTile(false);
 				DisableDamagePreview(chunk);
 			}
@@ -170,11 +205,11 @@ using Godot.Collections;
 		{
 			if (chunkData.GetCurrentCharacter() == null || (chunkData.GetCurrentCharacter() != null && !CanTileBeClicked(chunkData)))
 			{
-				chunkData.GetTileHighlight()?.SetHighlightColor(AbilityHighlight);
+				chunkData.GetTileHighlight()?.SetHighlightColor(abilityHighlight);
 			}
 			else
 			{
-				chunkData.GetTileHighlight()?.SetHighlightColor(CharacterOnGrid);
+				chunkData.GetTileHighlight()?.SetHighlightColor(characterOnGrid);
 			}
 		}
 
@@ -182,11 +217,11 @@ using Godot.Collections;
 		{
 			if (!chunkData.CharacterIsOnTile() || (chunkData.CharacterIsOnTile() && !CanTileBeClicked(chunkData)))
 			{
-				chunkData.GetTileHighlight()?.SetHighlightColor(AbilityHighlightHover);
+				chunkData.GetTileHighlight()?.SetHighlightColor(abilityHighlightHover);
 			}
 			else
 			{
-				chunkData.GetTileHighlight()?.SetHighlightColor(AbilityHoverCharacter);
+				chunkData.GetTileHighlight()?.SetHighlightColor(abilityHoverCharacter);
 				EnableDamagePreview(chunkData);
 			}
 		}

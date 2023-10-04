@@ -47,22 +47,6 @@ public class ChunkData
     private InformationType _type = InformationType.None;
     // private SpriteRenderer _tileSpriteRenderer;
     private HighlightTile _highlightTile;
-    
-    public void EnableTileRendering()
-    {
-        if (!_tileIsLocked)
-        {
-            _highlightTile.EnableHighlight(true);
-        }
-    }
-    
-    public void DisableTileRendering()
-    {
-        if (!_tileIsLocked)
-        {
-            _highlightTile.EnableHighlight(false);
-        }
-    }
 
     public Vector2 GetPosition()
     {

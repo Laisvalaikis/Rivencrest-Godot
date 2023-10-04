@@ -7,6 +7,7 @@ public partial class ActionManager : Node
 	[Export] 
 	private Player _player;
 	[Export]
+	private Array<Ability> _setupAbilities;
 	private Array<Ability> _abilities;
 	[Export]
 	private int availableAttackPoints;
@@ -18,11 +19,21 @@ public partial class ActionManager : Node
 	public override void _Ready()
 	{
 		base._Ready();
-		if (_abilities.Count != 0)
+		if (_setupAbilities.Count != 0)
 		{
-			for (int i = 0; i < _abilities.Count; i++)
+			for (int i = 0; i < _setupAbilities.Count; i++)
 			{
-				_abilities[i].Action.SetupAbility(_player);
+				Ability ability = new Ability(_setupAbilities[i]);
+				ability.Action.SetupAbility(_player);
+				if (_abilities == null)
+				{
+					_abilities = new Array<Ability>();
+					_abilities.Add(ability);
+				}
+				else
+				{
+					_abilities.Add(ability);
+				}
 			}
 		}
 	}

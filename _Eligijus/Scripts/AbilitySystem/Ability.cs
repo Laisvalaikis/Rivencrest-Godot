@@ -13,4 +13,19 @@ public partial class Ability: Resource
     public Texture AbilityImage;
     [Export]
     public BaseAction Action;
+
+    public Ability()
+    {
+        
+    }
+
+    public Ability(Ability ability)
+    {
+        abilityText = ability.abilityText;
+        enabled = ability.enabled;
+        AbilityImage = ability.AbilityImage;
+        BaseAction action = ability.Action.CreateNewInstance(ability.Action);
+        Action = action;
+    }
+
 }
