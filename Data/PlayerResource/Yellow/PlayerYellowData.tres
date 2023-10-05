@@ -27,5 +27,6 @@ CharacterSplashArt = ExtResource("2_ovwra")
 CroppedSplashArt = ExtResource("3_1ahov")
 characterSprite = ExtResource("12_2neps")
 roleSprite = ExtResource("13_upqkp")
-abilities = Array[Resource]([ExtResource("4_4tnee"), ExtResource("5_bx7pq")])
+baseAbilities = Array[Resource]([ExtResource("4_4tnee"), ExtResource("5_bx7pq")])
+abilities = Array[Resource]([ExtResource("5_bx7pq")])
 BlessingsAndCurses = []

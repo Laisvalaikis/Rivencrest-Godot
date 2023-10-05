@@ -5,6 +5,8 @@ using Godot.Collections;
 public partial class SelectAction : Control
 {
 	private ActionManager _actionManagerNew;
+	private Array<Ability> _playerAllAbilities;
+	private Array<Ability> _playerBaseAbilities;
 	private Array<Ability> _playerAbilities;
 	private Player _currentPlayer;
 	private PlayerInformationData _playerInformationData;
@@ -14,6 +16,7 @@ public partial class SelectAction : Control
 	[Export] private Label healthBar;
 	[Export] private TextureRect staminaButtonBackground;
 	[Export] private Array<SelectActionButton> abilityButtons;
+	private Data _data;
 	private void GetAbilities()
 	{
 
@@ -21,27 +24,47 @@ public partial class SelectAction : Control
 
 	public void SetupSelectAction()
 	{
+		if (Data.Instance != null)
+		{
+			_data = Data.Instance;
+		}
+
 		_playerAbilities = _currentPlayer.actionManager.ReturnAbilities();
+		_playerBaseAbilities = _currentPlayer.actionManager.ReturnBaseAbilities();
+		_playerAllAbilities = _currentPlayer.actionManager.ReturnAllAbilities();
 		_playerInformationData = _currentPlayer.playerInformation.playerInformationData;
 	}
 
 	private void GenerateActions()
 	{
 		int buttonIndex = 0;
-		
+		Array<UnlockedAbilitiesResource> unlockedAbilityList =
+			_data.Characters[_currentPlayer.playerIndex].unlockedAbilities;
 		// Selects first ability button
-		if (_playerAbilities.Count > 0)
+		if (_playerBaseAbilities.Count > 0)
 		{
 			abilityButtons[buttonIndex].AbilityInformationFirstSelect();
 		}
 
-		for (int i = 0; i < _playerAbilities.Count; i++)
+		for (int i = 0; i < _playerBaseAbilities.Count; i++)
 		{
-			if (_playerAbilities[i].enabled)
+			if (_playerBaseAbilities[i].enabled)
 			{
 				abilityButtons[buttonIndex].buttonParent.Show();
-				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
-				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerAbilities[i].AbilityImage;
+				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
+				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;
+				abilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
+				buttonIndex++;
+			}
+		}
+
+		for (int i = 0; i < _playerAbilities.Count; i++)
+		{
+			if (_playerAbilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
+			{
+				abilityButtons[buttonIndex].buttonParent.Show();
+				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
+				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;
 				abilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 				buttonIndex++;
 			}

@@ -6,7 +6,9 @@ public partial class ActionManager : Node
 {
 	[Export] 
 	private Player _player;
+	private Array<Ability> _baseAbilities;
 	private Array<Ability> _abilities;
+	private Array<Ability> _allAbilities;
 	[Export]
 	private int availableAttackPoints;
 	[Export]
@@ -17,29 +19,48 @@ public partial class ActionManager : Node
 	public override void _Ready()
 	{
 		base._Ready();
-		Array<Ability> abilities = _player.playerInformation.playerInformationData.abilities;
-		if (abilities != null && abilities.Count != 0)
+		_abilities = new Array<Ability>();
+		Array<Ability> allAbilities = new Array<Ability>();
+		_baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
+		allAbilities.AddRange(_player.playerInformation.playerInformationData.baseAbilities);
+		allAbilities.AddRange(_player.playerInformation.playerInformationData.abilities);
+		if (allAbilities != null && allAbilities.Count != 0)
 		{
-			for (int i = 0; i < abilities.Count; i++)
+			for (int i = 0; i < allAbilities.Count; i++)
 			{
-				Ability ability = new Ability(abilities[i]);
+				Ability ability = new Ability(allAbilities[i]);
 				ability.Action.SetupAbility(_player);
-				if (_abilities == null)
+				if (_allAbilities == null)
 				{
-					_abilities = new Array<Ability>();
-					_abilities.Add(ability);
+					_allAbilities = new Array<Ability>();
+					_allAbilities.Add(ability);
 				}
 				else
 				{
-					_abilities.Add(ability);
+					_allAbilities.Add(ability);
 				}
+			}
+
+			for (int i = _baseAbilities.Count; i < allAbilities.Count; i++)
+			{
+				_abilities.Add(_allAbilities[i]);
 			}
 		}
 	}
 
+	public Array<Ability> ReturnAllAbilities()
+	{
+		return _allAbilities;
+	}
+	
 	public Array<Ability> ReturnAbilities()
 	{
 		return _abilities;
+	}
+	
+	public Array<Ability> ReturnBaseAbilities()
+	{
+		return _baseAbilities;
 	}
 	
 	public virtual void RemoveActionPoints()

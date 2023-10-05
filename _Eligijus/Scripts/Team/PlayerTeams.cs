@@ -92,6 +92,7 @@ public partial class PlayerTeams : Node
 				GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 				Vector2 position = new Vector2(x.X, x.Y);
 				spawnedCharacter.GlobalPosition = position;
+				spawnedCharacter.playerIndex = i;
 				PlayerInformation playerInformation = spawnedCharacter.playerInformation;
 				playerInformation.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter, playerInformation);

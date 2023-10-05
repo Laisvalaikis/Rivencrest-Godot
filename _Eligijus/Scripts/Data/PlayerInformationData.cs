@@ -41,6 +41,8 @@ public partial class PlayerInformationData: Resource
 	[Export]
 	public Texture roleSprite;
 	[Export]
+	public Array<Ability> baseAbilities;
+	[Export]
 	public Array<Ability> abilities;
 	[Export]
 	public Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
