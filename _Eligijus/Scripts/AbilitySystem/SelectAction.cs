@@ -63,8 +63,8 @@ public partial class SelectAction : Control
 			if (_playerAbilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
 			{
 				abilityButtons[buttonIndex].buttonParent.Show();
-				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
-				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;
+				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
+				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerAbilities[i].AbilityImage;
 				abilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 				buttonIndex++;
 			}
@@ -96,7 +96,7 @@ public partial class SelectAction : Control
 		SetupSelectAction();
 		GetAbilities();
 		UpdatePlayerInfo();
-		_abilityManager.SetCurrentAbility(_playerAbilities[0].Action);
+		_abilityManager.SetCurrentAbility(_playerBaseAbilities[0].Action);
 		GenerateActions();
 	}
 	public void DeSetCurrentCharacter()

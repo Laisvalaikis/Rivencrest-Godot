@@ -20,9 +20,10 @@ public partial class ActionManager : Node
 	{
 		base._Ready();
 		_abilities = new Array<Ability>();
+		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
-		_baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
-		allAbilities.AddRange(_player.playerInformation.playerInformationData.baseAbilities);
+		Array<Ability> baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
+		allAbilities.AddRange(baseAbilities);
 		allAbilities.AddRange(_player.playerInformation.playerInformationData.abilities);
 		if (allAbilities != null && allAbilities.Count != 0)
 		{
@@ -39,6 +40,11 @@ public partial class ActionManager : Node
 				{
 					_allAbilities.Add(ability);
 				}
+			}
+			
+			for (int i = 0; i < baseAbilities.Count; i++)
+			{
+				_baseAbilities.Add(_allAbilities[i]);
 			}
 
 			for (int i = _baseAbilities.Count; i < allAbilities.Count; i++)
