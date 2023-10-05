@@ -1,3 +1,11 @@
+.godot/
+
+.import/
+
+export.cfg
+
+export_preset.cfg
+
 
 # Visual Studio cache directory
 .vs/
