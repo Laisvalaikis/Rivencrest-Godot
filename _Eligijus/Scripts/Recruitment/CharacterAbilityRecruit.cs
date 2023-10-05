@@ -9,5 +9,5 @@ public partial class CharacterAbilityRecruit: Button
 	[Export]
 	public TextureRect abilityIcon;
 	[Export] 
-	public AbilityText abilityText;
+	public Ability ability;
 }

@@ -64,7 +64,7 @@ public partial class HelpTable : Node
 	{
 		SetupHelpTable();
 		SavedCharacterResource character = _data.Characters[characterIndex];
-		UpdateHelpTable(character.playerInformation.abilities[abilityIndex].abilityText);
+		UpdateHelpTable(character.playerInformation.abilities[abilityIndex]);
 		// GD.PrintErr("FIX ABILITY INFORMATION");
 	}
 
@@ -76,27 +76,8 @@ public partial class HelpTable : Node
 			wasSelected = false;
 		}
 	}
-
-	private void UpdateHelpTable(Ability currentAbility)
-	{
-		AbilityText abilityText = currentAbility.abilityText;
-		if (abilityText != null)
-		{
-			if (wasSelected)
-			{
-				helpTableView.ExitView();
-				wasSelected = false;
-			}
-			else
-			{
-				helpTableView.OpenView();
-				FillTableWithInfo(currentAbility, abilityText);
-				wasSelected = true;
-			}
-		}
-	}
-
-	public void UpdateHelpTable(AbilityText abilityText)
+	
+	public void UpdateHelpTable(Ability ability)
 	{
 		SetupHelpTable();
 		if (wasSelected)
@@ -107,7 +88,7 @@ public partial class HelpTable : Node
 		else
 		{
 			helpTableView.OpenView();
-			FillTableWithInfo(abilityText);
+			FillTableWithInfo(ability);
 			wasSelected = true;
 		}
 	}
@@ -120,15 +101,13 @@ public partial class HelpTable : Node
 		UpdateHelpTable(currentAbility);
 	}
 	
-
-	private void FillTableWithInfo(Ability ability, AbilityText abilityText)
+	private void FillTableWithInfo(Ability ability)
 	{
-		icon.Texture.Set("atlas", ability.AbilityImage);
-		BaseAction baseAction = (BaseAction)ability.Action;
-		abilityTitle.Text = abilityText.abilityTitle;
-		abilityDescription.Text = abilityText.abilityDescription;
-		cooldownText.Text = baseAction.abilityCooldown.ToString();
-		if (baseAction.maxAttackDamage == 0)
+		icon.Texture = (AtlasTexture)ability.AbilityImage;
+		abilityTitle.Text = ability.abilityText.abilityTitle;
+		abilityDescription.Text = ability.abilityText.abilityDescription;
+		cooldownText.Text = ability.Action.abilityCooldown.ToString();
+		if (ability.Action.maxAttackDamage == 0)
 		{
 			damageIcon.Hide();
 			damageText.Hide();
@@ -137,10 +116,10 @@ public partial class HelpTable : Node
 		{
 			damageIcon.Show();
 			damageText.Show();
-			damageText.Text = baseAction.GetDamageString();
+			damageText.Text = ability.Action.GetDamageString();
 		}
 
-		if (baseAction.isAbilitySlow)
+		if (ability.Action.isAbilitySlow)
 		{
 			slowAbility.Show();
 			fastAbility.Hide();
@@ -150,37 +129,6 @@ public partial class HelpTable : Node
 			slowAbility.Hide();
 			fastAbility.Show();
 		}
-		rangeText.Text = baseAction.attackRange.ToString();
-	}
-	
-	private void FillTableWithInfo(AbilityText abilityText)
-	{
-		
-		abilityTitle.Text = abilityText.abilityTitle;
-		abilityDescription.Text = abilityText.abilityDescription;
-		// cooldownText.Text = baseAction.AbilityCooldown.ToString();
-		// if (baseAction.maxAttackDamage == 0)
-		// {
-		// 	damageIcon.Hide();
-		// 	damageText.Hide();
-		// }
-		// else
-		// {
-		// 	damageIcon.Show();
-		// 	damageText.Show();
-		// 	damageText.Text = baseAction.GetDamageString();
-		// }
-
-		// if (baseAction.isAbilitySlow)
-		// {
-		// 	slowAbility.Show();
-		// 	fastAbility.Hide();
-		// }
-		// else
-		// {
-		// 	slowAbility.Hide();
-		// 	fastAbility.Show();
-		// }
 
 	}
 

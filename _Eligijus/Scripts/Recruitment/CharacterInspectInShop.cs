@@ -123,7 +123,7 @@ public partial class CharacterInspectInShop : Node
 			_characterAbilityRecruits[i].Show();
 			_characterAbilityRecruits[i].backgroundImage.SelfModulate = character.backgroundColor;
 			_characterAbilityRecruits[i].abilityIcon.SelfModulate = character.classColor;
-			_characterAbilityRecruits[i].abilityText = character.abilities[i].abilityText;
+			_characterAbilityRecruits[i].ability = character.abilities[i];
 			AtlasTexture atlasTexture = NewTexture(character.abilities[i].AbilityImage, Colors.White);
 			_characterAbilityRecruits[i].abilityIcon.Texture = atlasTexture;
 		}
@@ -147,8 +147,7 @@ public partial class CharacterInspectInShop : Node
 		y = y - (helpTable.helpTableView.Size.Y / 2f);
 		Vector2 position = new Vector2(currentPosition.X, y);
 		helpTable.helpTableView.SetGlobalPosition(position);
-		helpTable.UpdateHelpTable(_characterAbilityRecruits[abilityIndex].abilityText);
-		GD.PrintErr("FIX ABILITY INFORMATION");
+		helpTable.UpdateHelpTable(_characterAbilityRecruits[abilityIndex].ability);
 	}
 	
 	private StyleBoxTexture NewTexture(CompressedTexture2D compressedTexture, Rect2 rect, Color pressedColor)
