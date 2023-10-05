@@ -123,8 +123,8 @@ public partial class CharacterInspectInShop : Node
 			_characterAbilityRecruits[i].Show();
 			_characterAbilityRecruits[i].backgroundImage.SelfModulate = character.backgroundColor;
 			_characterAbilityRecruits[i].abilityIcon.SelfModulate = character.classColor;
-			_characterAbilityRecruits[i].abilityText = character.abilityTexts[i];
-			AtlasTexture atlasTexture = NewTexture(character.abilities[i], Colors.White);
+			_characterAbilityRecruits[i].abilityText = character.abilities[i].abilityText;
+			AtlasTexture atlasTexture = NewTexture(character.abilities[i].AbilityImage, Colors.White);
 			_characterAbilityRecruits[i].abilityIcon.Texture = atlasTexture;
 		}
 		

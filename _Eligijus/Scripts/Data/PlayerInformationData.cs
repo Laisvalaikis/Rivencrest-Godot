@@ -41,9 +41,7 @@ public partial class PlayerInformationData: Resource
 	[Export]
 	public Texture roleSprite;
 	[Export]
-	public Array<AtlasTexture> abilities;
-	[Export]
-	public Array<AbilityText> abilityTexts;
+	public Array<Ability> abilities;
 	[Export]
 	public Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
 
@@ -56,7 +54,7 @@ public partial class PlayerInformationData: Resource
 	int dodgeChance, string role, Color classColor, Color secondClassColor, Color textColor,
 	Color backgroundColor, Texture CharacterPortraitSprite, Texture CharacterSplashArt,//For character table
 	Texture CroppedSplashArt, Texture characterSprite, Texture roleSprite,
-	Godot.Collections.Array<AtlasTexture> abilities, Godot.Collections.Array<Blessing> BlessingsAndCurses)
+	Godot.Collections.Array<Ability> abilities, Godot.Collections.Array<Blessing> BlessingsAndCurses)
 	{
 		this.characterType = characterType;
 		this.ClassName = ClassName;

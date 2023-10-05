@@ -381,7 +381,7 @@ public partial class CharacterTable : Node
 		{
 			abilityButtons[i].Show();
 			abilityButtonIconImages[i].SelfModulate = character.playerInformation.classColor;
-			AtlasTexture atlasTexture = NewAtlasTexture(character.playerInformation.abilities[i],
+			AtlasTexture atlasTexture = NewAtlasTexture(character.playerInformation.abilities[i].AbilityImage,
 				Colors.White);
 			abilityButtonIconImages[i].Texture = atlasTexture;
 			abilityButtonBackgroundImages[i].SelfModulate = character.playerInformation.backgroundColor;

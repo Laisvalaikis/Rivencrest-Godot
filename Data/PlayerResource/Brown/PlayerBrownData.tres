@@ -1,12 +1,10 @@
-[gd_resource type="Resource" load_steps=11 format=3 uid="uid://t6kp41je1xv2"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://t6kp41je1xv2"]
 
 [ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_rc31j"]
 [ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_6xjj2"]
 [ext_resource type="Texture2D" uid="uid://m3c84mwfn12o" path="res://Data/PlayerResource/Brown/Textures/CropedSplashArt.tres" id="3_kfrgo"]
-[ext_resource type="Texture2D" uid="uid://cxs8t4bnodobb" path="res://Data/ActionIcons/Icon_14.tres" id="4_o6dqj"]
-[ext_resource type="Texture2D" uid="uid://tjs65gyxptmo" path="res://Data/ActionIcons/Icon_40.tres" id="5_b7p5o"]
-[ext_resource type="Texture2D" uid="uid://5feh0eu5g8ie" path="res://Data/ActionIcons/Icon_38.tres" id="6_6hc41"]
-[ext_resource type="Texture2D" uid="uid://ccr3ov24n73k8" path="res://Data/ActionIcons/Icon_34.tres" id="7_0xnyv"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="4_yyrb3"]
+[ext_resource type="Resource" uid="uid://beg0vkhxsivlc" path="res://Data/Abilities/PlayerMovement_1.tres" id="5_7xj60"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="8_r5xg4"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="9_5q0ag"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="10_arv31"]
@@ -29,6 +27,5 @@ CharacterSplashArt = ExtResource("2_6xjj2")
 CroppedSplashArt = ExtResource("3_kfrgo")
 characterSprite = ExtResource("8_r5xg4")
 roleSprite = ExtResource("9_5q0ag")
-abilities = Array[Resource]([ExtResource("4_o6dqj"), ExtResource("5_b7p5o"), ExtResource("6_6hc41"), ExtResource("7_0xnyv")])
-abilityTexts = Array[Resource]([])
+abilities = Array[Resource]([ExtResource("4_yyrb3"), ExtResource("5_7xj60")])
 BlessingsAndCurses = []

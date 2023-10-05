@@ -64,7 +64,7 @@ public partial class HelpTable : Node
 	{
 		SetupHelpTable();
 		SavedCharacterResource character = _data.Characters[characterIndex];
-		UpdateHelpTable(character.playerInformation.abilityTexts[abilityIndex]);
+		UpdateHelpTable(character.playerInformation.abilities[abilityIndex].abilityText);
 		// GD.PrintErr("FIX ABILITY INFORMATION");
 	}
 
