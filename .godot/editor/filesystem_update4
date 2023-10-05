@@ -89,3 +89,4 @@ res://_Eligijus/Scripts/UIViewManager/UIStack.cs
 res://_Eligijus/Scripts/UI/GameUi.cs
 res://Data/PlayerResource/Yellow/PlayerYellowData.tres
 res://Data/PlayerResource/Brown/PlayerBrownData.tres
+res://Scenes/CharacterSelect.tscn
