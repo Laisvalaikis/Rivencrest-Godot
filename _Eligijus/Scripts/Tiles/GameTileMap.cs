@@ -18,7 +18,8 @@ public partial class GameTileMap : Node2D
 		}
 	}
 	[Export] 
-	public TileMapData currentMap; 
+	public TileMapData currentMap;
+	[Export] private TeamInformation teamInformation;
 	[Export] private SelectAction _selectAction;
 	[Export] private Node2D highligtHolder;
 	[Export] private Resource textTilePrefab;
@@ -116,6 +117,10 @@ public partial class GameTileMap : Node2D
 		{
 			QueueRedraw();
 		}
+		else if (@event is InputEventMouseButton  keyEvent && keyEvent.ButtonIndex == MouseButton.Left && keyEvent.Pressed)
+		{
+			MouseClick();
+		}
 	}
 
 
@@ -155,8 +160,8 @@ public partial class GameTileMap : Node2D
 		base._Process(delta);
 		if (!_threadDistance.IsAlive && !chuncksIsSetUp)
 		{
-		    // StartCoroutine(SetupChunckTiles());
-		    chuncksIsSetUp = true;
+			// StartCoroutine(SetupChunckTiles());
+			chuncksIsSetUp = true;
 		}
 	}
 
@@ -486,6 +491,7 @@ public partial class GameTileMap : Node2D
 			if (_currentSelectedCharacter != null)
 			{
 				_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
+				teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
 			}
 		}
 	}
@@ -494,9 +500,10 @@ public partial class GameTileMap : Node2D
 	{
 		if (_currentSelectedCharacter != null)
 		{
-			_currentSelectedCharacter = null;
 			_selectAction.Hide();
 			abilityManager.SetCurrentAbility(null);
+			teamInformation.SelectCharacterPortrait(_currentSelectedCharacter, false);
+			_currentSelectedCharacter = null;
 		}
 	}
 
@@ -515,33 +522,25 @@ public partial class GameTileMap : Node2D
 		_currentSelectedCharacter = currentCharacter;
 	}
 
-	// public void OnMouseClick(InputAction.CallbackContext context)
-	// {
-	//     if (context.performed)
-	//         MouseClick();
-	// }
-	
-	// private void MouseClick()
-	// {
-	//     _mousePosition = Input.mousePosition;
-	//     Vector3 mousePos = new Vector3(_mousePosition.x, _mousePosition.y, mainCamera.nearClipPlane);
-	//     Vector3 worldPos = mainCamera.ScreenToWorldPoint(mousePos);
-	//     ChunkData chunk = GetChunk(worldPos);
-	//     if (!CharacterIsSelected()) // no character selected
-	//     {
-	//         SelectTile(worldPos);
-	//     }
-	//     else if (CharacterIsSelected() && OtherCharacterIsOnTile(worldPos) && abilityManager.IsMovementSelected()) //Clicling on a different character when you have movement ability selected
-	//     {
-	//         SelectTile(worldPos);
-	//     }
-	//     else if(CharacterIsSelected() && OtherCharacterIsOnTile(worldPos) && !abilityManager.CanAbilityBeUsedOnTile(worldPos)) //Clicked on character that is outside of ability grid to select it
-	//     {
-	//         SelectTile(worldPos);
-	//     }
-	//     else if(CharacterIsSelected() && chunk!=null && GetCurrentCharacter()==chunk.GetCurrentCharacter()) // Clicking on currently selected character to deselect it
-	//     {
-	//         DeselectCurrentCharacter();
-	//     }
-	// }
+	private void MouseClick()
+	{
+		_mousePosition = GetGlobalMousePosition();
+		ChunkData chunk = GetChunk(_mousePosition);
+		if (!CharacterIsSelected()) // no character selected
+		{
+			SelectTile(_mousePosition);
+		}
+		else if (CharacterIsSelected() && OtherCharacterIsOnTile(_mousePosition) && abilityManager.IsMovementSelected()) //Clicling on a different character when you have movement ability selected
+		{
+			SelectTile(_mousePosition);
+		}
+		else if(CharacterIsSelected() && OtherCharacterIsOnTile(_mousePosition) && !abilityManager.CanAbilityBeUsedOnTile(_mousePosition)) //Clicked on character that is outside of ability grid to select it
+		{
+			SelectTile(_mousePosition);
+		}
+		else if(CharacterIsSelected() && chunk!=null && GetCurrentCharacter()==chunk.GetCurrentCharacter()) // Clicking on currently selected character to deselect it
+		{
+			DeselectCurrentCharacter();
+		}
+	}
 }

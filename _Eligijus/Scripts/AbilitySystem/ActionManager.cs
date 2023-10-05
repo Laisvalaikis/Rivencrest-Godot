@@ -19,7 +19,7 @@ public partial class ActionManager : Node
 	public override void _Ready()
 	{
 		base._Ready();
-		if (_setupAbilities.Count != 0)
+		if (_setupAbilities != null && _setupAbilities.Count != 0)
 		{
 			for (int i = 0; i < _setupAbilities.Count; i++)
 			{

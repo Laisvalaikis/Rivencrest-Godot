@@ -182,7 +182,6 @@ public partial class HighlightTile : Node2D
 	{
 		highlight.SelfModulate = color;
 	}
-
 	bool IsSkillAvailableInFOW()
 	{
 		return ( activeState == "CreateEye" || activeState == "CreatePortal");

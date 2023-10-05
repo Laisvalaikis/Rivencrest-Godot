@@ -56,7 +56,12 @@ public partial class PvPCharacterSelect : Button
         characterOnBoard = character;
         _playerInformation = characterInformation;
     }
-    
+
+    public Node2D GetCharacter()
+    {
+        return characterOnBoard;
+    }
+
 
     public void SelectPortrait()
     {

@@ -49,6 +49,18 @@ public partial class TeamInformation : Control
 		
 	}
 
+	public void SelectCharacterPortrait(Node2D character, bool select = true)
+	{
+		Array<Node2D> characterOnBoardList = playerTeams.AliveCharacterList(teamIndex);
+		for (int i = 0; i < characterOnBoardList.Count; i++)
+		{
+			if (pvpCharacterSelects[i].GetCharacter() == character)
+			{
+				pvpCharacterSelects[i].ButtonPressed = select;
+			}
+		}
+	}
+
 	public void ChangeBoxSprites(AtlasTexture main, Texture extension, Texture button)
 	{
 		image.Texture = main;
