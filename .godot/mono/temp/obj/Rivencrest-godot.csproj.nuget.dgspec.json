@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Rivencrest-Godot\\Rivencrest-godot.csproj": {}
+  },
+  "projects": {
+    "D:\\Rivencrest-Godot\\Rivencrest-godot.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Rivencrest-Godot\\Rivencrest-godot.csproj",
+        "projectName": "Rivencrest-godot",
+        "projectPath": "D:\\Rivencrest-Godot\\Rivencrest-godot.csproj",
+        "packagesPath": "C:\\Users\\eligijus\\.nuget\\packages\\",
+        "outputPath": "D:\\Rivencrest-Godot\\.godot\\mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\eligijus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Godot.SourceGenerators": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "GodotSharp": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "GodotSharpEditor": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
