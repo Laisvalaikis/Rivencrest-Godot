@@ -121,17 +121,20 @@ public static class SaveSystem
 	{
 		if(global)
 		{
-			// LocalSaveSystem.Save(data, globalStatistics);
 			ThreadManager.InsertThread(LocalSaveSystem.SaveThread(data, globalStatistics));
 			return;
 		}
-		int slotIndex = GetCurrentSlot();
-		if (slotIndex == -1)
+
+		Thread thread = new Thread(() =>
 		{
-			throw new Exception("Problem retrieving current slot");
-		}
-		// LocalSaveSystem.Save(data, slotStatistics[slotIndex]);
-		ThreadManager.InsertThread(LocalSaveSystem.SaveThread(data, slotStatistics[slotIndex]));
+			int slotIndex = GetCurrentSlot();
+			if (slotIndex == -1)
+			{
+				throw new Exception("Problem retrieving current slot");
+			}
+			ThreadManager.InsertThread(LocalSaveSystem.SaveThread(data, slotStatistics[slotIndex]));
+		});
+		ThreadManager.InsertThreadAndWaitOthers(thread);
 		//if (LoadStatistics(true) != null)
 		//{
 		//    LocalSaveSystem.Save(LoadStatistics(true).Add(data), globalStatistics);
@@ -148,7 +151,9 @@ public static class SaveSystem
 		{
 			return LocalSaveSystem.Load<Statistics>(globalStatistics);
 		}
-		return LocalSaveSystem.Load<Statistics>(slotStatistics[GetCurrentSlot()]);
+
+		int currentSlot = GetCurrentSlot();
+		return LocalSaveSystem.Load<Statistics>(slotStatistics[currentSlot]);
 	}
 
 	public static bool DoesSaveFileExist(int slotIndex = -1)

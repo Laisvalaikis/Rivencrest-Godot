@@ -67,14 +67,14 @@ public partial class ThreadManager : Node
 			}
 		}
 
-		if (workingThreads != null)
+		if (workingThreads != null && workingThreads.Count > 0)
 		{
 			if (workingIndex >= 0)
 			{
 				if (!workingThreads[workingIndex].IsAlive)
 				{
 					workingThreads[workingIndex].Join();
-					workingThreads.RemoveAt(index);
+					workingThreads.RemoveAt(workingIndex);
 					GD.PrintErr("Thread Finished Work");
 				}
 
