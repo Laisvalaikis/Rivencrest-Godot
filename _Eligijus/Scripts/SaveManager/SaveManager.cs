@@ -12,12 +12,17 @@ public partial class SaveManager: Node
 		{
 			SaveSystem.SaveStatistics(new Statistics(), true);
 		}
-		if (SaveSystem.LoadStatistics() == null)
+
+		Thread thread = new Thread(() =>
 		{
-			Thread thread = new Thread(() => { SaveSystem.SaveStatistics(new Statistics()); });
-			ThreadManager.InsertThreadAndWaitOthers(thread);
-		}
+			if (SaveSystem.LoadStatistics() == null)
+			{
+				SaveSystem.SaveStatistics(new Statistics());
+			}
+		});
+		ThreadManager.InsertThreadAndWaitOthers(thread);
 	}
+
 
 	public void DeleteSlot(int slotIndex)
 	{
