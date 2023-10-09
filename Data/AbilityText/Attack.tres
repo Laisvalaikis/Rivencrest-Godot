@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_sxilg")
 abilityTitle = "Attack"
-abilityDescription = "Damage player"
+abilityDescription = "Deal damage to an enemy."

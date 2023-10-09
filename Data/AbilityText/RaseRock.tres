@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dtvow5yvqiwum"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_dcalj"]
+
+[resource]
+script = ExtResource("1_dcalj")
+abilityTitle = "RAISE ROCK"
+abilityDescription = "Create a destroyable
+rock on a tile."

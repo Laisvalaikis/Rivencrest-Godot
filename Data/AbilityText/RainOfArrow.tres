@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ccxr8u0pawu21"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_ys85l"]
+
+[resource]
+script = ExtResource("1_ys85l")
+abilityTitle = "RAIN OF ARROWS"
+abilityDescription = "Create 5-Tile DANGER zone.
+Deal damage to characters standing
+in the zone next turn."

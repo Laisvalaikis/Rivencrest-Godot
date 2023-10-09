@@ -3,5 +3,5 @@ using System;
 
 public partial class AbilityData : Resource
 {
-    public ViewportTexture sprite;
+	public ViewportTexture sprite;
 }

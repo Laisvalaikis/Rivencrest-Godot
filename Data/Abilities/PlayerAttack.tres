@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://ccpbav7la1bdy"]
+
+[ext_resource type="Resource" uid="uid://bo0hgt82bjef8" path="res://Data/Abilities/Abilities/PlayerAttack.tres" id="1_q8w6d"]
+[ext_resource type="Texture2D" uid="uid://bqp8ix457q3yd" path="res://Data/ActionIcons/Icon_1.tres" id="1_sdmqr"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="2_floxv"]
+[ext_resource type="Resource" uid="uid://bfyv2kkumk021" path="res://Data/AbilityText/Attack.tres" id="2_mq1ru"]
+
+[resource]
+script = ExtResource("2_floxv")
+abilityText = ExtResource("2_mq1ru")
+enabled = true
+AbilityImage = ExtResource("1_sdmqr")
+Action = ExtResource("1_q8w6d")

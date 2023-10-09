@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bnsctq27afmyo"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_f0d14"]
+
+[resource]
+script = ExtResource("1_f0d14")
+abilityTitle = ""
+abilityDescription = ""

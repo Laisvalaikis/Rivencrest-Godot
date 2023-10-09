@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://4cg1r7wo7jjn"]
+
+[ext_resource type="Texture2D" uid="uid://dih63yjnnr85u" path="res://Data/ActionIcons/Icon_22.tres" id="1_3hwrv"]
+[ext_resource type="Resource" uid="uid://cjqfbjmmmxea8" path="res://Data/Abilities/Abilities/RainOfArrows.tres" id="2_dhsqg"]
+[ext_resource type="Resource" uid="uid://ccxr8u0pawu21" path="res://Data/AbilityText/RainOfArrow.tres" id="3_jtx4e"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_n8oaj"]
+
+[resource]
+script = ExtResource("3_n8oaj")
+abilityText = ExtResource("3_jtx4e")
+enabled = true
+AbilityImage = ExtResource("1_3hwrv")
+Action = ExtResource("2_dhsqg")
