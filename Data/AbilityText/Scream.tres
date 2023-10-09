@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://eb1rod0bqobu"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_fv11n"]
+
+[resource]
+script = ExtResource("1_fv11n")
+abilityTitle = "SCREAM"
+abilityDescription = "Deal damage to an enemy
+and teleport to a tile behind you.
+If the enemy does not have allies on
+adjacent tiles, they get silenced
+and cannot use abilities for 1 turn."

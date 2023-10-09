@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bxmdwgu0y1nmt"]
+
+[ext_resource type="Texture2D" uid="uid://5feh0eu5g8ie" path="res://Data/ActionIcons/Icon_38.tres" id="1_h6dbp"]
+[ext_resource type="Resource" uid="uid://b0mr7gnv2h7w1" path="res://Data/Abilities/Abilities/ShadowBlink.tres" id="1_uqilh"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="2_uvean"]
+[ext_resource type="Resource" uid="uid://bsv55f36gacrv" path="res://Data/AbilityText/ShadowBlink.tres" id="3_xs3qc"]
+
+[resource]
+script = ExtResource("2_uvean")
+abilityText = ExtResource("3_xs3qc")
+enabled = true
+AbilityImage = ExtResource("1_h6dbp")
+Action = ExtResource("1_uqilh")
