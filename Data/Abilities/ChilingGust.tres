@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://d0sujq78ntppf"]
+
+[ext_resource type="Texture2D" uid="uid://bpcfbm8bd4su2" path="res://Data/ActionIcons/Icon_4.tres" id="1_h5d3d"]
+[ext_resource type="Resource" uid="uid://cmvu8fii5kyn2" path="res://Data/Abilities/Abilities/ChilingGust.tres" id="2_f4tri"]
+[ext_resource type="Resource" uid="uid://b2uddxdgvxkdc" path="res://Data/AbilityText/ChilingGust.tres" id="3_b2mff"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_x67i2"]
+
+[resource]
+script = ExtResource("3_x67i2")
+abilityText = ExtResource("3_b2mff")
+enabled = true
+AbilityImage = ExtResource("1_h5d3d")
+Action = ExtResource("2_f4tri")

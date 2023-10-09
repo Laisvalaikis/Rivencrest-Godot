@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cmflk3hvs2s6h"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_w6k33"]
+
+[resource]
+script = ExtResource("1_w6k33")
+abilityTitle = "CHAIN HOOK"
+abilityDescription = "Pull a character to you."

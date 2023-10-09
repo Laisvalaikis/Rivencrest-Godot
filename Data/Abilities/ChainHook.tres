@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://d0nf14aky3n17"]
+
+[ext_resource type="Texture2D" uid="uid://bfag7sxfvss3v" path="res://Data/ActionIcons/Icon_13.tres" id="1_7m2sy"]
+[ext_resource type="Resource" uid="uid://df6vykmvah3p5" path="res://Data/Abilities/Abilities/ChainHook.tres" id="2_b0pdx"]
+[ext_resource type="Resource" uid="uid://cmflk3hvs2s6h" path="res://Data/AbilityText/ChainHook.tres" id="3_cybyq"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_wcxao"]
+
+[resource]
+script = ExtResource("3_wcxao")
+abilityText = ExtResource("3_cybyq")
+enabled = true
+AbilityImage = ExtResource("1_7m2sy")
+Action = ExtResource("2_b0pdx")
