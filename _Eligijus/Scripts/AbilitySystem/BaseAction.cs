@@ -4,7 +4,6 @@ using Godot;
 using Godot.Collections;
 	public abstract partial class BaseAction: Resource
 	{
-		
 		protected Player player;
 		[Export] protected bool laserGrid = false;
 		[Export] public int turnsSinceCast = 0;
@@ -126,17 +125,17 @@ using Godot.Collections;
 			_chunkList.Clear();
 		}
 
-		private void CreateAvailableChunkList(int attackRange)
+		protected virtual void CreateAvailableChunkList(int range)
 		{
 			ChunkData startChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 			if(laserGrid)
 			{
-				GeneratePlusPattern(startChunk, attackRange);
+				GeneratePlusPattern(startChunk, range);
 			}
 			else
 			{
 				GD.Print(startChunk.GetPosition());
-				GenerateDiamondPattern(startChunk, attackRange);
+				GenerateDiamondPattern(startChunk, range);
 			}
 		}
 
@@ -362,7 +361,7 @@ using Godot.Collections;
 			highlightTile.DisableDamageText();
 		}
 
-		protected virtual bool CanTileBeClicked(ChunkData chunkData)
+		public virtual bool CanTileBeClicked(ChunkData chunkData)
 		{
 			return CheckIfSpecificInformationType(chunkData, InformationType.Player) && !IsAllegianceSame(chunkData);
 		}
