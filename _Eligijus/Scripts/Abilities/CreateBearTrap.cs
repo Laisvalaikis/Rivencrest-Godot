@@ -31,7 +31,6 @@ public partial class CreateBearTrap : BaseAction
 		player.GetTree().Root.CallDeferred("add_child", spawnedBear);
 		PlayerInformation tempPlayerInformation = spawnedBear.playerInformation;
 		GameTileMap.Tilemap.SetCharacter(chunk, spawnedBear, tempPlayerInformation);
-		//_bearTrap.creator = gameObject; //nelabai zinau, kam sito reikia dar
 		i = 0;
 		FinishAbility();
 	}

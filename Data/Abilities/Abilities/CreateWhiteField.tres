@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0uq0mnl00q4o"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateWhiteField.cs" id="1_esa87"]
+
+[resource]
+script = ExtResource("1_esa87")

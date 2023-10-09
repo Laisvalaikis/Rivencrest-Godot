@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://brwrpv8k28awm"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_byshj"]
+
+[resource]
+script = ExtResource("1_byshj")
+abilityTitle = "DISARMING BLAST"
+abilityDescription = "Deal damage to an enemy
+and disarm them."

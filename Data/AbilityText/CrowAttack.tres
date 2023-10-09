@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cx4mq0sfjgtvw"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_ykwwd"]
+
+[resource]
+script = ExtResource("1_ykwwd")
+abilityTitle = "CROW ATTACK"
+abilityDescription = "Deal damage to all enemies in range.
+Deal bonus damage to those
+ that are poisoned."

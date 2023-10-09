@@ -36,7 +36,6 @@ public partial class Avalanche : BaseAction
                 if (CanTileBeClicked(chunkData))
                 {
                     DealRandomDamageToTarget(chunkData,minAttackDamage,maxAttackDamage);
-                    // _playerInformation.ApplyDebuff("IceSlow");
                 }
             }
             FinishAbility();
@@ -59,15 +58,7 @@ public partial class Avalanche : BaseAction
     {
         if (CheckIfSpecificInformationType(chunk, InformationType.Player))
         {
-            /*PlayerInformation playerInformationLocal = chunk.GetCurrentPlayerInformation();
-            if (playerInformationLocal.Slow1 
-                || playerInformationLocal.Slow2
-                || playerInformationLocal.Slow3 
-                || playerInformationLocal.Debuffs.Contains("Stun")
-                || playerInformationLocal.Silenced || playerInformationLocal.CantMove)*/
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }

@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_bi02s")
-abilityTitle = "SWORD FROM THE SKY"
-abilityDescription = "Deal damage to a target
-and its neighbors,
-pushing them away by 1 tile."
+abilityTitle = "SHIELD SLAM"
+abilityDescription = "Dash to an enemy and
+DISARM them.
+DISARMED enemies can't use
+their attack abilities."

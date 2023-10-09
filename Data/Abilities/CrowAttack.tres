@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cfya3hjcruwmo"]
+
+[ext_resource type="Texture2D" uid="uid://d15and2fvcisu" path="res://Data/ActionIcons/Icon_41.tres" id="1_eukei"]
+[ext_resource type="Resource" uid="uid://betqb3q204ewy" path="res://Data/Abilities/Abilities/CrowAttack.tres" id="2_0ov15"]
+[ext_resource type="Resource" uid="uid://cx4mq0sfjgtvw" path="res://Data/AbilityText/CrowAttack.tres" id="3_ksadt"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_x25qp"]
+
+[resource]
+script = ExtResource("4_x25qp")
+abilityText = ExtResource("3_ksadt")
+enabled = true
+AbilityImage = ExtResource("1_eukei")
+Action = ExtResource("2_0ov15")

@@ -24,17 +24,6 @@ public partial class Blaze : BaseAction
         if (CanTileBeClicked(chunk))
         {
             base.ResolveAbility(chunk);
-            // ChunkData chunkData = GetSpecificGroundTile(position);
-            // bool aflame = chunkData.GetCurrentPlayerInformation().Aflame != null;
-            // if (!aflame)
-            // {
-            //     chunkData.GetCurrentPlayerInformation().Aflame = gameObject;
-            // }
-            // else
-            // {
-            //     TriggerAflame(target);
-            // }
-            //grizti prie aflame veliau
         }
     }
     
@@ -46,7 +35,6 @@ public partial class Blaze : BaseAction
             centerChunk.GetCurrentPlayerInformation().GetHealth() > 0)
         {
             (int centerX, int centerY) = centerChunk.GetIndexes();
-            // GameTileMap.Tilemap.EnableAllTiles();
 
             for (int i = 1; i <= radius; i++)
             {

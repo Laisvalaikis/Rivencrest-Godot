@@ -6,8 +6,6 @@ public partial class CreateEye : BaseAction
 	[Export] 
 	private Resource eyePrefab;
 	private bool isEyeActive = true;
-	//private CharacterVision _characterVision;
-	//private PlayerInformation _playerInformation;
 	
 	public CreateEye()
 	{
@@ -33,15 +31,12 @@ public partial class CreateEye : BaseAction
 			GameTileMap.Tilemap.SetCharacter(chunk, spawnedEye, tempPlayerInformation);
 			base.ResolveAbility(chunk);
 		}
-		//_characterVision.EnableGrid();
-		//_playerInformation.VisionGameObject = eyePrefab;
-		//isEyeActive = true;
 		FinishAbility();
 	}
 
 	public override void CreateAvailableChunkList(int attackRange)
 	{
-		(int y, int x) coordinates = GameTileMap.Tilemap.GetChunk(player.Position).GetIndexes();
+		(int y, int x) coordinates = GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetIndexes();
 		ChunkData[,] chunkDataArray = GameTileMap.Tilemap.GetChunksArray();
 		_chunkList.Clear();
 		

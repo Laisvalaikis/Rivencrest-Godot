@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dlgtb8wm8m0g4"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_3c1e0"]
+
+[resource]
+script = ExtResource("1_3c1e0")
+abilityTitle = "WHITE FIELD"
+abilityDescription = "Create a DEFENSE AURA for 1 turn.
+Allies in the field are PROTECTED
+and take half less damage."

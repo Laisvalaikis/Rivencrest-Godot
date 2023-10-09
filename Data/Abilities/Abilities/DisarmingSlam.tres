@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cm0l4ix5qvwm0"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/DisarmingSlam.cs" id="1_k010w"]
+
+[resource]
+script = ExtResource("1_k010w")
