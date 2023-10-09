@@ -1,17 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cohlbs5m3pfb4"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dprh8mtc0kviv"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/AcidRain.cs" id="1_ugqgv"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateEye.cs" id="1_glqru"]
 
 [resource]
-script = ExtResource("1_ugqgv")
+script = ExtResource("1_glqru")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
 attackRange = 3
-abilityCooldown = 1
+abilityCooldown = 2
 minAttackDamage = 0
 maxAttackDamage = 0
-isAbilitySlow = true
+isAbilitySlow = false
 friendlyFire = false
 abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
 abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)

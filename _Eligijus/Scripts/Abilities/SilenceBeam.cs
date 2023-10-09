@@ -107,7 +107,7 @@ public partial class SilenceBeam : BaseAction
 		}
 	}
 
-	protected override void CreateAvailableChunkList(int range)
+	public override void CreateAvailableChunkList(int range)
 	{
 		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 		(int centerX, int centerY) = centerChunk.GetIndexes();

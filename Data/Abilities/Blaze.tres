@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://imu4kltsl2pa"]
+
+[ext_resource type="Texture2D" uid="uid://bnfdopd6v4505" path="res://Data/ActionIcons/Icon_5.tres" id="1_vovav"]
+[ext_resource type="Resource" uid="uid://d0g0s5nfbadd8" path="res://Data/Abilities/Abilities/Blaze.tres" id="2_f64ty"]
+[ext_resource type="Resource" uid="uid://c8027bjqabycg" path="res://Data/AbilityText/Blaze.tres" id="3_v8ss1"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_edngg"]
+
+[resource]
+script = ExtResource("4_edngg")
+abilityText = ExtResource("3_v8ss1")
+enabled = true
+AbilityImage = ExtResource("1_vovav")
+Action = ExtResource("2_f64ty")

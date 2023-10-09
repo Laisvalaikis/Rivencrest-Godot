@@ -53,7 +53,7 @@ public partial class BindingRitual : BaseAction
         }
     }
 
-    protected override void CreateAvailableChunkList(int attackRange)
+    public override void CreateAvailableChunkList(int attackRange)
     {
         ChunkData centerChunk =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();

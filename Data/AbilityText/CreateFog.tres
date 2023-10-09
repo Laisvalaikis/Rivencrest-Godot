@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d33bdxyafjpod"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_i8enw"]
+
+[resource]
+script = ExtResource("1_i8enw")
+abilityTitle = "FOG"
+abilityDescription = "Create Fog in which
+characters can't attack
+and use damage abilities.
+The Fog lasts 2 turns."

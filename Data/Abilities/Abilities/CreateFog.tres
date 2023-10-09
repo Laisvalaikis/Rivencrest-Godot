@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cohlbs5m3pfb4"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d3tran0e5j2ce"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/AcidRain.cs" id="1_ugqgv"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateFog.cs" id="1_db3ah"]
 
 [resource]
-script = ExtResource("1_ugqgv")
+script = ExtResource("1_db3ah")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
-attackRange = 3
-abilityCooldown = 1
+attackRange = 2
+abilityCooldown = 2
 minAttackDamage = 0
 maxAttackDamage = 0
 isAbilitySlow = true

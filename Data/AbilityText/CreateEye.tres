@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://gk41xhipbcax"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_6hhyu"]
+
+[resource]
+script = ExtResource("1_6hhyu")
+abilityTitle = "SPIRIT OF SIGHT"
+abilityDescription = "Create a spirit of sight
+which gives you 3-tile vision
+and lasts until the end of
+your turn."

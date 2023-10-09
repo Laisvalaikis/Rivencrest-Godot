@@ -125,7 +125,7 @@ using Godot.Collections;
 			_chunkList.Clear();
 		}
 
-		protected virtual void CreateAvailableChunkList(int range)
+		public virtual void CreateAvailableChunkList(int range)
 		{
 			ChunkData startChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 			if(laserGrid)

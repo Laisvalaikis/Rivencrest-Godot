@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dnqqe5jqq0jlr"]
+
+[ext_resource type="Texture2D" uid="uid://bfag7sxfvss3v" path="res://Data/ActionIcons/Icon_13.tres" id="1_qtodn"]
+[ext_resource type="Resource" uid="uid://d3tran0e5j2ce" path="res://Data/Abilities/Abilities/CreateFog.tres" id="2_l1652"]
+[ext_resource type="Resource" uid="uid://d33bdxyafjpod" path="res://Data/AbilityText/CreateFog.tres" id="3_g3xl6"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_8hani"]
+
+[resource]
+script = ExtResource("4_8hani")
+abilityText = ExtResource("3_g3xl6")
+enabled = true
+AbilityImage = ExtResource("1_qtodn")
+Action = ExtResource("2_l1652")

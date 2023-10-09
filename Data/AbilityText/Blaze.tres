@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c8027bjqabycg"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_rywh6"]
+
+[resource]
+script = ExtResource("1_rywh6")
+abilityTitle = "BLAZE"
+abilityDescription = "Damage and AFLAME
+an enemy.
+If they are already aflame,
+trigger it and deal bonus damage."
