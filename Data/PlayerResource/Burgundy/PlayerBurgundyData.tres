@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://b1a55n0vxj2t2"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="1_7wgcq"]
+[ext_resource type="Texture2D" uid="uid://bnjidvtwmfo62" path="res://Data/PlayerResource/Burgundy/Textures/CharacterPortraitSprite.tres" id="1_mfgp1"]
+[ext_resource type="Texture2D" uid="uid://1eqogr6xnixl" path="res://Data/PlayerResource/Burgundy/Textures/CharacterSplashArt.tres" id="2_436cn"]
+[ext_resource type="Texture2D" uid="uid://c8ujalu65jxj4" path="res://Data/PlayerResource/Burgundy/Textures/CropedSplashArt.tres" id="3_apk7f"]
+[ext_resource type="Resource" uid="uid://bxi28pjsvb74x" path="res://Data/Abilities/PlayerMovement_1.tres" id="4_fdq6l"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_5urb6"]
+[ext_resource type="Texture2D" uid="uid://dq2n57m7ixtr3" path="res://Data/PlayerResource/Burgundy/Textures/CharacterSprite.tres" id="6_xkp83"]
+[ext_resource type="Texture2D" uid="uid://biudeusi4gvvk" path="res://Data/PlayerResource/Burgundy/Textures/RoleSprite.tres" id="7_vfa6i"]
+
+[resource]
+script = ExtResource("1_7wgcq")
+characterType = 0
+ClassName = "CRUSADER"
+MaxHealth = 100
+critChance = 3
+accuracy = 100
+dodgeChance = 5
+role = "TANK"
+classColor = Color(0.913725, 0.592157, 0.227451, 1)
+secondClassColor = Color(0.631373, 0.211765, 0.211765, 1)
+textColor = Color(0.839216, 0.607843, 0.352941, 1)
+backgroundColor = Color(0.501961, 0.180392, 0.180392, 1)
+CharacterPortraitSprite = ExtResource("1_mfgp1")
+CharacterSplashArt = ExtResource("2_436cn")
+CroppedSplashArt = ExtResource("3_apk7f")
+characterSprite = ExtResource("6_xkp83")
+roleSprite = ExtResource("7_vfa6i")
+baseAbilities = Array[Resource]([ExtResource("5_5urb6"), ExtResource("4_fdq6l")])
+abilities = Array[Resource]([ExtResource("4_fdq6l")])
+BlessingsAndCurses = []
