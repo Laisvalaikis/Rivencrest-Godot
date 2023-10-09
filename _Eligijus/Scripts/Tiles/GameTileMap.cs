@@ -39,8 +39,8 @@ public partial class GameTileMap : Node2D
 
 	private bool _updateWeight = false;
 	private int _countForTreeSpawn = 0;
-	public Node2D _currentSelectedCharacter;
-	// private PlayerInformation _currentPlayerInformation;
+	public Player _currentSelectedCharacter;
+	private PlayerInformation _currentPlayerInformation;
 	private Vector2 _mousePosition;
 	private int chunckIndex;
 	private bool chuncksIsSetUp = false;
@@ -487,7 +487,7 @@ public partial class GameTileMap : Node2D
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
-			_currentSelectedCharacter = chunkData.GetCurrentCharacter();
+			_currentSelectedCharacter = (Player)chunkData.GetCurrentCharacter();
 			if (_currentSelectedCharacter != null)
 			{
 				_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
@@ -519,7 +519,7 @@ public partial class GameTileMap : Node2D
 	
 	public void SetCurrentCharacter(Node2D currentCharacter)
 	{
-		_currentSelectedCharacter = currentCharacter;
+		_currentSelectedCharacter = (Player)currentCharacter;
 	}
 
 	private void MouseClick()

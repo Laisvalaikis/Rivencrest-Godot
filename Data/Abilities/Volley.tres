@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://1ehrtv8vdql3"]
+
+[ext_resource type="Texture2D" uid="uid://dfq2tcxryvuf4" path="res://Data/ActionIcons/Icon_18.tres" id="1_4lgq8"]
+[ext_resource type="Resource" uid="uid://o2v8q602epqt" path="res://Data/Abilities/Abilities/Volley.tres" id="2_oo1qj"]
+[ext_resource type="Resource" uid="uid://dyla3485xv8ov" path="res://Data/AbilityText/Volley.tres" id="3_i85cp"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_nr0hw"]
+
+[resource]
+script = ExtResource("3_nr0hw")
+abilityText = ExtResource("3_i85cp")
+enabled = true
+AbilityImage = ExtResource("1_4lgq8")
+Action = ExtResource("2_oo1qj")

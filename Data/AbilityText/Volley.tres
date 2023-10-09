@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dyla3485xv8ov"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_p5r63"]
+
+[resource]
+script = ExtResource("1_p5r63")
+abilityTitle = "VOLLEY"
+abilityDescription = "Deal damage to an area
+and jump backwards by 1 tile.
+Damaged characters
+are also poisoned."

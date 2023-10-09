@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://le5fy7euh3y7"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_c65hi"]
+
+[resource]
+script = ExtResource("1_c65hi")
+abilityTitle = "THROW BEHIND"
+abilityDescription = "Throw character behind other character"
