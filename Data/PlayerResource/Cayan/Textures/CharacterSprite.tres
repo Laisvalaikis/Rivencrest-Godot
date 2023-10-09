@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c8i7pcxyauq3q"]
+
+[ext_resource type="Texture2D" uid="uid://byqv5f75eoatw" path="res://_Eligijus/Sprites/Cayan/Cyan.png" id="1_8gfeu"]
+
+[resource]
+atlas = ExtResource("1_8gfeu")
+region = Rect2(83, 71, 34, 60)
