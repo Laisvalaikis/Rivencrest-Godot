@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_7qf8a")
 abilityTitle = "ACID RAIN"
-abilityDescription = ""
+abilityDescription = "Debuff enemies"

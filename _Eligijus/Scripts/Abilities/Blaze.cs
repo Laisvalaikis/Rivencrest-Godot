@@ -1,11 +1,24 @@
 using System.Collections.Generic;
-
-namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
+using Godot;
 
 public partial class Blaze : BaseAction
 {
-    public int bonusDamage = 4;
+    [Export] public int bonusDamage = 4;
+    public Blaze()
+    {
 
+    }
+
+    public Blaze(Blaze blaze) : base(blaze)
+    {
+        bonusDamage = blaze.bonusDamage;
+    }
+	
+    public override BaseAction CreateNewInstance(BaseAction action)
+    {
+        Blaze blaze = new Blaze((Blaze)action);
+        return blaze;
+    }
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
@@ -25,21 +38,7 @@ public partial class Blaze : BaseAction
         }
     }
     
-    public Blaze()
-    {
 
-    }
-
-    public Blaze(Blaze blaze) : base(blaze)
-    {
-        bonusDamage = blaze.bonusDamage; //not sure if we need this, prob not
-    }
-	
-    public override BaseAction CreateNewInstance(BaseAction action)
-    {
-        Blaze blaze = new Blaze((Blaze)action);
-        return blaze;
-    }
     
     public void TriggerAflame(ChunkData centerChunk, int radius)//pakeisti ji i public override void veliau jei kels problemu
     {

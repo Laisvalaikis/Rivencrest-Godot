@@ -1,3 +1,10 @@
-[gd_resource type="Resource" format=3 uid="uid://bybxr6k7fyybw"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bybxr6k7fyybw"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_8rolk"]
 
 [resource]
+script = ExtResource("1_8rolk")
+abilityTitle = "SILENCE BEAM"
+abilityDescription = "Create danger zones
+that will silence and
+damage enemies."

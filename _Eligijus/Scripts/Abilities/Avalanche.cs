@@ -4,7 +4,22 @@ namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 
 public partial class Avalanche : BaseAction
 {
-    private PlayerInformation _playerInformation;
+    private PlayerInformation _playerInformation; //playeris ant kurio calliname
+    public Avalanche()
+    {
+    		
+    }
+    
+    public Avalanche(Avalanche avalanche): base(avalanche)
+    {
+        
+    }
+    	
+    public override BaseAction CreateNewInstance(BaseAction action)
+    {
+        Avalanche avalanche = new Avalanche((Avalanche)action);
+        return avalanche;
+    }
     void Start()
     {
         abilityHighlight = new Color(123,156, 178,255);
@@ -28,21 +43,7 @@ public partial class Avalanche : BaseAction
         }
     }
     
-    public Avalanche()
-    {
-		
-    }
-
-    public Avalanche(Avalanche avalanche): base(avalanche)
-    {
-        _playerInformation = avalanche._playerInformation;
-    }
-	
-    public override BaseAction CreateNewInstance(BaseAction action)
-    {
-        Avalanche avalanche = new Avalanche((Avalanche)action);
-        return avalanche;
-    }
+    
 
     public override bool CanTileBeClicked(ChunkData chunk)
     {

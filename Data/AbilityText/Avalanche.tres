@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dabmnptc8op5a"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_t1g7i"]
+
+[resource]
+script = ExtResource("1_t1g7i")
+abilityTitle = "AVALANCHE"
+abilityDescription = "Deal damage to all enemies
+in range affected
+by movement debuffs."

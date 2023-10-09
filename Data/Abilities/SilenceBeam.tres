@@ -1,7 +1,13 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://df6i4as2in2ku"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://df6i4as2in2ku"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="1_a4222"]
+[ext_resource type="Texture2D" uid="uid://ct28ohll6ow10" path="res://Data/ActionIcons/Icon_9.tres" id="1_ybd18"]
+[ext_resource type="Resource" uid="uid://5x5hmqyixtid" path="res://Data/Abilities/Abilities/SilenceBeam.tres" id="2_aasgu"]
+[ext_resource type="Resource" uid="uid://bybxr6k7fyybw" path="res://Data/AbilityText/SilenceBeam.tres" id="3_mkb25"]
 
 [resource]
 script = ExtResource("1_a4222")
+abilityText = ExtResource("3_mkb25")
 enabled = true
+AbilityImage = ExtResource("1_ybd18")
+Action = ExtResource("2_aasgu")

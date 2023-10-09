@@ -5,7 +5,21 @@ namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 public partial class SilenceBeam : BaseAction
 {
 	private ChunkData[,] _chunkArray;
+	public SilenceBeam()
+	{
 	
+	}
+	
+	public SilenceBeam(SilenceBeam silenceBeam) : base(silenceBeam)
+	{
+		
+	}
+		
+	public override BaseAction CreateNewInstance(BaseAction action)
+	{ 
+		SilenceBeam silenceBeam = new SilenceBeam((SilenceBeam)action); 
+		return silenceBeam;
+	}
 	void Start()
 	{
 		abilityHighlight = new Color(123,156, 178,255);
@@ -28,21 +42,7 @@ public partial class SilenceBeam : BaseAction
 		}
 	}
 	
-	public SilenceBeam()
-	{
 
-	}
-
-	public SilenceBeam(SilenceBeam acidRain) : base(acidRain)
-	{
-		_chunkArray = acidRain._chunkArray;
-	}
-	
-	public override BaseAction CreateNewInstance(BaseAction action)
-	{
-		SilenceBeam silenceBeam = new SilenceBeam((SilenceBeam)action);
-		return silenceBeam;
-	}
 	
 	private int FindChunkIndex(ChunkData chunkData)
 	{
