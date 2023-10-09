@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bal5ynq08gyvu"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="1_1862h"]
+[ext_resource type="Texture2D" uid="uid://dfq2tcxryvuf4" path="res://Data/ActionIcons/Icon_18.tres" id="1_ns3yq"]
+[ext_resource type="Resource" uid="uid://bean628p7yf62" path="res://Data/Abilities/Abilities/ReadyAimFire.tres" id="1_yx3x5"]
+[ext_resource type="Resource" uid="uid://buw5fhy0qav7c" path="res://Data/AbilityText/ReadyAimFire.tres" id="2_immk0"]
+
+[resource]
+script = ExtResource("1_1862h")
+abilityText = ExtResource("2_immk0")
+enabled = true
+AbilityImage = ExtResource("1_ns3yq")
+Action = ExtResource("1_yx3x5")

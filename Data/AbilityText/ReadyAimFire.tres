@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://buw5fhy0qav7c"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_68xlt"]
+
+[resource]
+script = ExtResource("1_68xlt")
+abilityTitle = "Ready Aim fire"
+abilityDescription = "Target tile, when next turn starts, fire arrow"
