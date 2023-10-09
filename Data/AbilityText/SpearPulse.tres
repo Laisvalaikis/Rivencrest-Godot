@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://kheoypiddx6a"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_g2xj7"]
+
+[resource]
+script = ExtResource("1_g2xj7")
+abilityTitle = "SPEAR PULSE"
+abilityDescription = "Deal damage around you.
+If your spear is on the
+ground, deal damage
+around it instead."

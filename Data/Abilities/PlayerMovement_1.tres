@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=3 uid="uid://beg0vkhxsivlc"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://bxi28pjsvb74x"]
 
 [ext_resource type="Texture2D" uid="uid://dmswae100dsh8" path="res://_Eligijus/Sprites/ActionButtonIcons.png" id="1_7p77d"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PlayerMovement.cs" id="2_ajjr6"]
