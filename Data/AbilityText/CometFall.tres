@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b2cl5yfhe48ws"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_r1lr4"]
+
+[resource]
+script = ExtResource("1_r1lr4")
+abilityTitle = "COMET FALL"
+abilityDescription = "Create 1-Tile DANGER zone.
+Deal damage to a character standing
+in the zone next turn."

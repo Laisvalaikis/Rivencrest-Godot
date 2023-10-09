@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://swr82th0rf0j"]
+
+[ext_resource type="Texture2D" uid="uid://cl5vicj0jmw5t" path="res://Data/ActionIcons/Icon_11.tres" id="1_fuqdp"]
+[ext_resource type="Resource" uid="uid://d3xd2fs2hscyw" path="res://Data/Abilities/Abilities/FromTheShadows.tres" id="2_q4jry"]
+[ext_resource type="Resource" uid="uid://jpgxkrkdob2b" path="res://Data/AbilityText/FromTheShadows.tres" id="3_1eu58"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_v70aq"]
+
+[resource]
+script = ExtResource("3_v70aq")
+abilityText = ExtResource("3_1eu58")
+enabled = true
+AbilityImage = ExtResource("1_fuqdp")
+Action = ExtResource("2_q4jry")

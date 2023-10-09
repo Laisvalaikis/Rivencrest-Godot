@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jpgxkrkdob2b"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_52stb"]
+
+[resource]
+script = ExtResource("1_52stb")
+abilityTitle = "FROM THE SHADOWS"
+abilityDescription = "Teleport to a tile and
+deal damage to all
+adjacent enemies."

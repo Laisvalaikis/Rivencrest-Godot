@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b1lyfcwo54t81"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_0yprl"]
+
+[resource]
+script = ExtResource("1_0yprl")
+abilityTitle = "FRONT SLASH"
+abilityDescription = "Deal damage in a line
+in front of you."

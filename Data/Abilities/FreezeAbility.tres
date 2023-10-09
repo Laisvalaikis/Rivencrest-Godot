@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://vlf82phv3exg"]
+
+[ext_resource type="Texture2D" uid="uid://bpcfbm8bd4su2" path="res://Data/ActionIcons/Icon_4.tres" id="1_h7xbd"]
+[ext_resource type="Resource" uid="uid://rx0mtc3mqsk" path="res://Data/Abilities/Abilities/FreezeAbility.tres" id="2_gabdu"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_wn84e"]
+
+[resource]
+script = ExtResource("3_wn84e")
+enabled = true
+AbilityImage = ExtResource("1_h7xbd")
+Action = ExtResource("2_gabdu")

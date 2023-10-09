@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://rx0mtc3mqsk"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FreezeAbility.cs" id="1_pjmin"]
+
+[resource]
+script = ExtResource("1_pjmin")
+laserGrid = false
+turnsSinceCast = 0
+turnLifetime = 1
+attackRange = 1
+abilityCooldown = 3
+minAttackDamage = 3
+maxAttackDamage = 4
+isAbilitySlow = true
+friendlyFire = true
+abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
+abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
+abilityHoverCharacter = Color(1, 0.890196, 0, 1)
+otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
+characterOnGrid = Color(1, 0.34902, 0.278431, 1)

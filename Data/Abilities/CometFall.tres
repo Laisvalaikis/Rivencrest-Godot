@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://ddemy25a7ohw3"]
+
+[ext_resource type="Texture2D" uid="uid://ct28ohll6ow10" path="res://Data/ActionIcons/Icon_9.tres" id="1_5flt6"]
+[ext_resource type="Resource" uid="uid://jve2h6f0a1uv" path="res://Data/Abilities/Abilities/CometFall.tres" id="2_trgm2"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_bvmq7"]
+[ext_resource type="Resource" uid="uid://b2cl5yfhe48ws" path="res://Data/AbilityText/CometFall.tres" id="3_cf8py"]
+
+[resource]
+script = ExtResource("3_bvmq7")
+abilityText = ExtResource("3_cf8py")
+enabled = true
+AbilityImage = ExtResource("1_5flt6")
+Action = ExtResource("2_trgm2")

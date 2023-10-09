@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cac6m0t0206m"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_r6mxe"]
+
+[resource]
+script = ExtResource("1_r6mxe")
+abilityTitle = "RING OF FROST"
+abilityDescription = "Deal damage to all nearby
+characters and SLOW them
+by 1 MP."
