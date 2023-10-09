@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://t6kp41je1xv2"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://t6kp41je1xv2"]
 
 [ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_rc31j"]
 [ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_6xjj2"]
 [ext_resource type="Texture2D" uid="uid://m3c84mwfn12o" path="res://Data/PlayerResource/Brown/Textures/CropedSplashArt.tres" id="3_kfrgo"]
 [ext_resource type="Resource" uid="uid://bxi28pjsvb74x" path="res://Data/Abilities/PlayerMovement_1.tres" id="5_7xj60"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_wvhc4"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="8_r5xg4"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="9_5q0ag"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="10_arv31"]
@@ -26,5 +27,6 @@ CharacterSplashArt = ExtResource("2_6xjj2")
 CroppedSplashArt = ExtResource("3_kfrgo")
 characterSprite = ExtResource("8_r5xg4")
 roleSprite = ExtResource("9_5q0ag")
+baseAbilities = Array[Resource]([ExtResource("5_wvhc4"), ExtResource("5_7xj60")])
 abilities = Array[Resource]([ExtResource("5_7xj60")])
 BlessingsAndCurses = []
