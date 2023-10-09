@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dxpvrdmgat8xb"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="1_46os6"]
+[ext_resource type="Texture2D" uid="uid://7sxhno7y0soi" path="res://Data/ActionIcons/Icon_37.tres" id="1_jo3r5"]
+[ext_resource type="Resource" uid="uid://cohlbs5m3pfb4" path="res://Data/Abilities/Abilities/AcidRain.tres" id="1_prbhj"]
+[ext_resource type="Resource" uid="uid://bsqp4yyio6261" path="res://Data/AbilityText/AcidRain.tres" id="2_osm0v"]
+
+[resource]
+script = ExtResource("1_46os6")
+abilityText = ExtResource("2_osm0v")
+enabled = true
+AbilityImage = ExtResource("1_jo3r5")
+Action = ExtResource("1_prbhj")

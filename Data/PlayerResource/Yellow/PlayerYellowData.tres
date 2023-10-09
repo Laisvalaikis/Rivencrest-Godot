@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://7ueya57up0ve" path="res://Data/PlayerResource/Yellow/Textures/CharacterSplashArt.tres" id="2_ovwra"]
 [ext_resource type="Texture2D" uid="uid://ckvw055ub7iue" path="res://Data/PlayerResource/Yellow/Textures/CroppedSplashArt.tres" id="3_1ahov"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_8yshn"]
-[ext_resource type="Resource" uid="uid://bxi28pjsvb74x" path="res://Data/Abilities/PlayerMovement_1.tres" id="5_bx7pq"]
+[ext_resource type="Resource" uid="uid://beg0vkhxsivlc" path="res://Data/Abilities/PlayerMovement_1.tres" id="5_bx7pq"]
 [ext_resource type="Texture2D" uid="uid://dliyw3htp21ow" path="res://Data/PlayerResource/Yellow/Textures/CharacterSprite.tres" id="12_2neps"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="13_upqkp"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="14_xtpsb"]

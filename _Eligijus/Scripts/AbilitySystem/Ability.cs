@@ -5,27 +5,27 @@ using Godot;
 
 public partial class Ability: Resource
 {
-    [Export]
-    public AbilityText abilityText;
-    [Export]
-    public bool enabled = true;
-    [Export]
-    public Texture AbilityImage;
-    [Export]
-    public BaseAction Action;
+	[Export]
+	public AbilityText abilityText;
+	[Export]
+	public bool enabled = true;
+	[Export]
+	public Texture AbilityImage;
+	[Export]
+	public BaseAction Action;
 
-    public Ability()
-    {
-        
-    }
+	public Ability()
+	{
+		
+	}
 
-    public Ability(Ability ability)
-    {
-        abilityText = ability.abilityText;
-        enabled = ability.enabled;
-        AbilityImage = ability.AbilityImage;
-        BaseAction action = ability.Action.CreateNewInstance(ability.Action);
-        Action = action;
-    }
+	public Ability(Ability ability)
+	{
+		abilityText = ability.abilityText;
+		enabled = ability.enabled;
+		AbilityImage = ability.AbilityImage;
+		BaseAction action = ability.Action.CreateNewInstance(ability.Action);
+		Action = action;
+	}
 
 }

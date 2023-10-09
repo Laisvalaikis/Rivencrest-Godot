@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://df6i4as2in2ku"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="1_a4222"]
+
+[resource]
+script = ExtResource("1_a4222")
+enabled = true

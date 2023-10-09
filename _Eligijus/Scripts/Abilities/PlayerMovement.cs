@@ -48,7 +48,7 @@ public partial class PlayerMovement : BaseAction
 		}        
 		HighlightTile hoveredChunkHighlight = hoveredChunk.GetTileHighlight();
 		if (hoveredChunkHighlight == null || previousChunk!=null && hoveredChunkHighlight == previousChunk.GetTileHighlight()) return;
-        
+		
 		if (hoveredChunkHighlight.isHighlighted)
 		{
 			ClearArrowPath();
@@ -155,7 +155,7 @@ public partial class PlayerMovement : BaseAction
 	private void UpdatePath(ChunkData newEnd, List<ChunkData> existingPath, ChunkData[,] chunkArray)
 	{
 		int expectedLength = GetExpectedPathLength(existingPath[0], newEnd);
-    
+	
 		if (existingPath.Count > expectedLength)
 		{
 			ChunkData startingPoint = existingPath[0];
@@ -182,7 +182,7 @@ public partial class PlayerMovement : BaseAction
 	{
 		var (startX, startY) = start.GetIndexes();
 		var (endX, endY) = end.GetIndexes();
-    
+	
 		return Math.Abs(endX - startX) + Math.Abs(endY - startY);
 	}
 	
@@ -214,7 +214,7 @@ public partial class PlayerMovement : BaseAction
 		var (cx, cy) = current.GetIndexes();
 		var (px, py) = prev?.GetIndexes() ?? (0, 0);
 		var (nx, ny) = next?.GetIndexes() ?? (0, 0);
-        
+		
 		if (prev == null)  // Start
 		{
 			if (cx < nx) return 1;  // Right Start
@@ -233,14 +233,14 @@ public partial class PlayerMovement : BaseAction
 		{
 			if (cx == px && cx == nx) return 9;  // Vertical Intermediate
 			if (cy == py && cy == ny) return 10; // Horizontal Intermediate
-            
+			
 			//corner math
 			if ((cx > px && cy == py && cx == nx && cy > ny) || (cx == px && cy > py && cx > nx && cy == ny))
 				return 11;
-            
+			
 			if ((px == cx && py < cy && cx < nx && cy == ny) || (px > cx && cy == py && cx == nx && cy > ny))
 				return 12;
-            
+			
 			if ((cx == px && cy < py && cx < nx && cy == ny) || (cx < px && cy == py && cx == nx && cy < ny))
 				return 14;
 

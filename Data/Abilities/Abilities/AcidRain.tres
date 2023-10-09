@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cohlbs5m3pfb4"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/AcidRain.cs" id="1_ugqgv"]
+
+[resource]
+script = ExtResource("1_ugqgv")
