@@ -1,15 +1,16 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://csy0hckqqaant"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cj33ai8wy4vs6"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/AcidRain.cs" id="1_ugqgv"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/WallSmash.cs" id="1_dlxcg"]
 
 [resource]
-script = ExtResource("1_ugqgv")
+script = ExtResource("1_dlxcg")
+damageToWall = 1
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
-attackRange = 3
-abilityCooldown = 1
-minAttackDamage = 0
+attackRange = 2
+abilityCooldown = 5
+minAttackDamage = 6
 maxAttackDamage = 0
 isAbilitySlow = true
 friendlyFire = false

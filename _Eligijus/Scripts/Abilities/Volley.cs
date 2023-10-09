@@ -158,7 +158,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
             _tileToPullTo.GetTileHighlight().TogglePreviewSprite(false);
         }
     }
-    protected override void CreateAvailableChunkList(int radius)
+    public override void CreateAvailableChunkList(int radius)
     {
         ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();

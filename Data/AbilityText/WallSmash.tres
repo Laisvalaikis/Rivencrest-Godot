@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cxfft2q2mrilc"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_ifoqp"]
+
+[resource]
+script = ExtResource("1_ifoqp")
+abilityTitle = "WALL SMASH"
+abilityDescription = "Destroy a wall and deal damage
+ to an enemy behind it.
+The damaged enemy is 
+slowed by 2."

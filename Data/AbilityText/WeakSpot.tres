@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cprc5uq02buvm"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_a1vxg"]
+
+[resource]
+script = ExtResource("1_a1vxg")
+abilityTitle = "WEAK SPOT"
+abilityDescription = "Create a WEAK SPOT on the enemy.
+Enemy with weak spot takes 
+1 more damage from all sources."
