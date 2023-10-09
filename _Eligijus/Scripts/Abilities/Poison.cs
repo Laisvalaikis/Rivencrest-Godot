@@ -1,7 +1,5 @@
 using Godot;
 
-namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
-
 public class Poison
 {
     public Node2D Poisoner;

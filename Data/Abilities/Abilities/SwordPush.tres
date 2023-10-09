@@ -1,16 +1,18 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://csy0hckqqaant"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dojlhpol7mr84"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/AcidRain.cs" id="1_ugqgv"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SwordPush.cs" id="1_bqhxg"]
 
 [resource]
-script = ExtResource("1_ugqgv")
+script = ExtResource("1_bqhxg")
+pushDamage = 15
+centerDamage = 30
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
-attackRange = 3
+attackRange = 2
 abilityCooldown = 1
-minAttackDamage = 0
-maxAttackDamage = 0
+minAttackDamage = 3
+maxAttackDamage = 3
 isAbilitySlow = true
 friendlyFire = false
 abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)

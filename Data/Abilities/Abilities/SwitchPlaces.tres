@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://doyjltq6knry1"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bxa6jyqiypxfc"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SilenceBeam.cs" id="1_jwin8"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SwitchPlaces.cs" id="1_g5e7k"]
 
 [resource]
-script = ExtResource("1_jwin8")
-laserGrid = true
+script = ExtResource("1_g5e7k")
+laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
 attackRange = 3
-abilityCooldown = 2
-minAttackDamage = 2
-maxAttackDamage = 3
-isAbilitySlow = false
-friendlyFire = true
+abilityCooldown = 3
+minAttackDamage = 0
+maxAttackDamage = 0
+isAbilitySlow = true
+friendlyFire = false
 abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
 abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)

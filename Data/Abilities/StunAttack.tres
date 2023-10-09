@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bo8itcxkid5pd"]
+
+[ext_resource type="Texture2D" uid="uid://dhjug6dbycikg" path="res://Data/ActionIcons/Icon_29.tres" id="1_13qtw"]
+[ext_resource type="Resource" uid="uid://cuvglqoj3h5g0" path="res://Data/Abilities/Abilities/StunAttack.tres" id="2_q422g"]
+[ext_resource type="Resource" uid="uid://eu53nafp0n4q" path="res://Data/AbilityText/StunAttack.tres" id="3_gjpen"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_jny5o"]
+
+[resource]
+script = ExtResource("4_jny5o")
+abilityText = ExtResource("3_gjpen")
+enabled = true
+AbilityImage = ExtResource("1_13qtw")
+Action = ExtResource("2_q422g")

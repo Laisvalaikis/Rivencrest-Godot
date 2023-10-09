@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cnhlre7dj8872"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_lad68"]
+
+[resource]
+script = ExtResource("1_lad68")
+abilityTitle = "SWITCH PLACES"
+abilityDescription = "Switch places with
+a character.
+If the character is on the enemy
+team, slow them by 1."
