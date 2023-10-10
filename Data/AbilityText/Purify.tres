@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://byipakxxoumcd"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_8xl7x"]
+
+[resource]
+script = ExtResource("1_8xl7x")
+abilityTitle = "PURIFY"
+abilityDescription = "Remove DEBUFFS from an ally."
