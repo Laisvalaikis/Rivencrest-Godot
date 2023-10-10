@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cv26p4v0ifpos"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_wlbis"]
+
+[resource]
+script = ExtResource("1_wlbis")
+abilityTitle = "SUMMON BEAR"
+abilityDescription = "Summon a BEAR and
+add it to your team."

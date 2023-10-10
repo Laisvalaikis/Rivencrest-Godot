@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://f8fubv507hqc"]
+
+[ext_resource type="Texture2D" uid="uid://cwpx8f5qpxkre" path="res://Data/ActionIcons/Icon_39.tres" id="1_i8n3w"]
+[ext_resource type="Resource" uid="uid://domol825w4mr4" path="res://Data/Abilities/Abilities/ThrowSpear.tres" id="2_q72ar"]
+[ext_resource type="Resource" uid="uid://cmrluhjoq3kh0" path="res://Data/AbilityText/ThrowSpear.tres" id="3_dqjdq"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_4qm3t"]
+
+[resource]
+script = ExtResource("4_4qm3t")
+abilityText = ExtResource("3_dqjdq")
+enabled = true
+AbilityImage = ExtResource("1_i8n3w")
+Action = ExtResource("2_q72ar")

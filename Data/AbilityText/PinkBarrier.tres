@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ctl2ti4r0humf"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_gcgck"]
+
+[resource]
+script = ExtResource("1_gcgck")
+abilityTitle = "BARRIER"
+abilityDescription = "Give BARRIER and 1 MP
+to an ally.
+Next damage they take is negated."

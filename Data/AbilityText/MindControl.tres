@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bag88rwriv208"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_k35si"]
+
+[resource]
+script = ExtResource("1_k35si")
+abilityTitle = "MIND CONTROL"
+abilityDescription = ""

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cmrluhjoq3kh0"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_twgsp"]
+
+[resource]
+script = ExtResource("1_twgsp")
+abilityTitle = "THROW SPEAR"
+abilityDescription = "Deal damage and throw
+SPEAR at the end.
+If SPEAR is picked up, the cooldown
+is decreased by 1."

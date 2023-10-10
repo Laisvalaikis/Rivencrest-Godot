@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dpi03v3tb8luh"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_x2aw8"]
+
+[resource]
+script = ExtResource("1_x2aw8")
+abilityTitle = "OIL SLOW"
+abilityDescription = "SLOW an enemy by 2 MP
+and deal damage to them."

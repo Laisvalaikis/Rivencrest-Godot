@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://csewvenbsmdgj"]
+
+[ext_resource type="Texture2D" uid="uid://dhjug6dbycikg" path="res://Data/ActionIcons/Icon_29.tres" id="1_6611j"]
+[ext_resource type="Resource" uid="uid://lch5ecstml35" path="res://Data/Abilities/Abilities/MindControl.tres" id="2_ytemc"]
+[ext_resource type="Resource" uid="uid://bag88rwriv208" path="res://Data/AbilityText/MindControl.tres" id="3_anwyn"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_fg7ew"]
+
+[resource]
+script = ExtResource("3_fg7ew")
+abilityText = ExtResource("3_anwyn")
+enabled = true
+AbilityImage = ExtResource("1_6611j")
+Action = ExtResource("2_ytemc")

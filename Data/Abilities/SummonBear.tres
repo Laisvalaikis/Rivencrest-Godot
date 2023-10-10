@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://lrulrqc4v33e"]
+
+[ext_resource type="Texture2D" uid="uid://g4ou40t6wht2" path="res://Data/ActionIcons/Icon_30.tres" id="1_4hco6"]
+[ext_resource type="Resource" uid="uid://b8cwhqh86kt2h" path="res://Data/Abilities/Abilities/SummonBear.tres" id="2_wxiv8"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_8a1ww"]
+[ext_resource type="Resource" uid="uid://cv26p4v0ifpos" path="res://Data/AbilityText/SummonBear.tres" id="3_72w36"]
+
+[resource]
+script = ExtResource("3_8a1ww")
+abilityText = ExtResource("3_72w36")
+enabled = true
+AbilityImage = ExtResource("1_4hco6")
+Action = ExtResource("2_wxiv8")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cy35jekjy4rag"]
+
+[ext_resource type="Texture2D" uid="uid://dctxjqswstx2g" path="res://Data/ActionIcons/Icon_26.tres" id="1_axik8"]
+[ext_resource type="Resource" uid="uid://bdm6rx8r4u3n4" path="res://Data/Abilities/Abilities/OilSlow.tres" id="2_5qgwf"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_auc8u"]
+[ext_resource type="Resource" uid="uid://dpi03v3tb8luh" path="res://Data/AbilityText/OilSlow.tres" id="3_ybmbm"]
+
+[resource]
+script = ExtResource("3_auc8u")
+abilityText = ExtResource("3_ybmbm")
+enabled = true
+AbilityImage = ExtResource("1_axik8")
+Action = ExtResource("2_5qgwf")
