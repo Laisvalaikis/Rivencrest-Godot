@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://oalmbcdh7f1b"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_0urlp"]
+
+[resource]
+script = ExtResource("1_0urlp")
+abilityTitle = "POWER SHOT"
+abilityDescription = "Deal damage to an enemy
+and slow them by 1 MP."

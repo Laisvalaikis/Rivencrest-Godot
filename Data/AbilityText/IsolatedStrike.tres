@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://blweh2lbyga08"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_dtqpj"]
+
+[resource]
+script = ExtResource("1_dtqpj")
+abilityTitle = "ISOLATED STRIKE"
+abilityDescription = "Deal damage to an enemy.
+Deal extra damage if the enemy
+is ISOLATED and has no adjacent allies."

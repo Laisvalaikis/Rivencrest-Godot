@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dx08k3oe7c3be"]
+
+[ext_resource type="Texture2D" uid="uid://cwpx8f5qpxkre" path="res://Data/ActionIcons/Icon_39.tres" id="1_3kd7k"]
+[ext_resource type="Resource" uid="uid://dtmyyk1asoyin" path="res://Data/Abilities/Abilities/PoisonDart.tres" id="2_yq6pr"]
+[ext_resource type="Resource" uid="uid://bgrqf4de6deql" path="res://Data/AbilityText/PoisonDart.tres" id="3_xch7s"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_hliyo"]
+
+[resource]
+script = ExtResource("4_hliyo")
+abilityText = ExtResource("3_xch7s")
+enabled = true
+AbilityImage = ExtResource("1_3kd7k")
+Action = ExtResource("2_yq6pr")

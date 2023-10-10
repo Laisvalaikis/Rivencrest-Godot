@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bs20ojvtl0ny8"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_6q06d"]
+
+[resource]
+script = ExtResource("1_6q06d")
+abilityTitle = "LONG SHOT"
+abilityDescription = "Deal damage to an enemy
+from a long range."

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0al6scu4jmot"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_nq6cs"]
+
+[resource]
+script = ExtResource("1_nq6cs")
+abilityTitle = "GROUND SLAM"
+abilityDescription = "Deal damage to all
+adjacent enemies now
+and at the start 
+of your next turn."

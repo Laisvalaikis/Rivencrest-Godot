@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c37pekh1mvg0y"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_o27do"]
+
+[resource]
+script = ExtResource("1_o27do")
+abilityTitle = "LEAP AND SLAM"
+abilityDescription = "Jump to a tile and deal
+damage to adjacent
+enemies."
