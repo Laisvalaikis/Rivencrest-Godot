@@ -1,17 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cm0l4ix5qvwm0"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bsuqnb8288pvm"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/DisarmingSlam.cs" id="1_k010w"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/Enrage.cs" id="1_j0w8j"]
 
 [resource]
-script = ExtResource("1_k010w")
+script = ExtResource("1_j0w8j")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
 attackRange = 2
 abilityCooldown = 3
-minAttackDamage = 2
-maxAttackDamage = 5
-isAbilitySlow = true
+minAttackDamage = 0
+maxAttackDamage = 0
+isAbilitySlow = false
 friendlyFire = false
 abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
 abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)

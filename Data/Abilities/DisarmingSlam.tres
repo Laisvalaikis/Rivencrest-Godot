@@ -1,3 +1,13 @@
-[gd_resource type="Resource" format=3 uid="uid://c3dawg111jpqo"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c3dawg111jpqo"]
+
+[ext_resource type="Texture2D" uid="uid://tjs65gyxptmo" path="res://Data/ActionIcons/Icon_40.tres" id="1_0rvs7"]
+[ext_resource type="Resource" uid="uid://cm0l4ix5qvwm0" path="res://Data/Abilities/Abilities/DisarmingSlam.tres" id="2_b7i5d"]
+[ext_resource type="Resource" uid="uid://bkidlce8w4g8w" path="res://Data/AbilityText/DisarmingSlam.tres" id="3_t03d8"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_b3g3s"]
 
 [resource]
+script = ExtResource("4_b3g3s")
+abilityText = ExtResource("3_t03d8")
+enabled = true
+AbilityImage = ExtResource("1_0rvs7")
+Action = ExtResource("2_b7i5d")
