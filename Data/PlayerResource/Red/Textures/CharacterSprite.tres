@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b7jxkwqhihjex"]
+
+[ext_resource type="Texture2D" uid="uid://dappjle04cofq" path="res://_Eligijus/Sprites/Red/Red.png" id="1_ppfox"]
+
+[resource]
+atlas = ExtResource("1_ppfox")
+region = Rect2(83, 68, 33, 62)

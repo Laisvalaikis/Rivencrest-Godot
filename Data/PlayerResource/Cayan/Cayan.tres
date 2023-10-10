@@ -17,5 +17,5 @@ unlockedAbilities = null
 toConfirmAbilities = 0
 blessings = null
 cost = 900
-characterIndex = 3
+characterIndex = 1
 playerInformation = ExtResource("1_cr5bw")

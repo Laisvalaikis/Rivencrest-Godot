@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://281f788htpmg"]
+
+[ext_resource type="Resource" uid="uid://bbhiystnfus4x" path="res://Data/PlayerResource/Pink/PlayerPinkData.tres" id="1_ewc2a"]
+[ext_resource type="PackedScene" uid="uid://ceukgq5dsfvpc" path="res://_Eligijus/Prefabs/Characters/PlayerPink.tscn" id="2_nubex"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_atqra"]
+
+[resource]
+script = ExtResource("3_atqra")
+prefab = ExtResource("2_nubex")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = Array[Resource]([])
+toConfirmAbilities = 0
+blessings = Array[Node]([])
+cost = 800
+characterIndex = 5
+playerInformation = ExtResource("1_ewc2a")

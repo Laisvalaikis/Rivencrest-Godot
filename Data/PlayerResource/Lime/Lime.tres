@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b3bh0c6q17w8i"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="1_m1rbs"]
+[ext_resource type="PackedScene" uid="uid://ckahpwfms43k" path="res://_Eligijus/Prefabs/Characters/PlayerLime.tscn" id="1_s6ckk"]
+[ext_resource type="Resource" uid="uid://bfod5lwskxgj6" path="res://Data/PlayerResource/Lime/PlayerLimeData.tres" id="1_vxof7"]
+
+[resource]
+script = ExtResource("1_m1rbs")
+prefab = ExtResource("1_s6ckk")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = Array[Resource]([])
+toConfirmAbilities = 0
+blessings = Array[Node]([])
+cost = 900
+characterIndex = 4
+playerInformation = ExtResource("1_vxof7")

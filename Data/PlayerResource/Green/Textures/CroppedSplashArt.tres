@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bf0442qslufn0"]
+
+[ext_resource type="Texture2D" uid="uid://b5mxljxsvoclv" path="res://_Eligijus/Sprites/TablePortraits.png" id="1_yeb6g"]
+
+[resource]
+atlas = ExtResource("1_yeb6g")
+region = Rect2(595, 702, 124, 118)

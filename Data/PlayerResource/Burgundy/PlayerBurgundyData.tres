@@ -1,13 +1,17 @@
-[gd_resource type="Resource" load_steps=9 format=3 uid="uid://b1a55n0vxj2t2"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://b1a55n0vxj2t2"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="1_7wgcq"]
 [ext_resource type="Texture2D" uid="uid://bnjidvtwmfo62" path="res://Data/PlayerResource/Burgundy/Textures/CharacterPortraitSprite.tres" id="1_mfgp1"]
 [ext_resource type="Texture2D" uid="uid://1eqogr6xnixl" path="res://Data/PlayerResource/Burgundy/Textures/CharacterSplashArt.tres" id="2_436cn"]
 [ext_resource type="Texture2D" uid="uid://c8ujalu65jxj4" path="res://Data/PlayerResource/Burgundy/Textures/CropedSplashArt.tres" id="3_apk7f"]
-[ext_resource type="Resource" uid="uid://bxi28pjsvb74x" path="res://Data/Abilities/PlayerMovement_1.tres" id="4_fdq6l"]
+[ext_resource type="Resource" uid="uid://d0nf14aky3n17" path="res://Data/Abilities/ChainHook.tres" id="4_a7je1"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_5urb6"]
+[ext_resource type="Resource" uid="uid://bo8itcxkid5pd" path="res://Data/Abilities/StunAttack.tres" id="5_pfaj8"]
+[ext_resource type="Resource" uid="uid://c7p7ggx5iiqw4" path="res://Data/Abilities/GroundSlam.tres" id="6_xcjle"]
 [ext_resource type="Texture2D" uid="uid://dq2n57m7ixtr3" path="res://Data/PlayerResource/Burgundy/Textures/CharacterSprite.tres" id="6_xkp83"]
 [ext_resource type="Texture2D" uid="uid://biudeusi4gvvk" path="res://Data/PlayerResource/Burgundy/Textures/RoleSprite.tres" id="7_vfa6i"]
+[ext_resource type="Resource" uid="uid://c7b12fgf0a00o" path="res://Data/Abilities/FlameKick.tres" id="7_x3cqy"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_hqegn"]
 
 [resource]
 script = ExtResource("1_7wgcq")
@@ -27,6 +31,6 @@ CharacterSplashArt = ExtResource("2_436cn")
 CroppedSplashArt = ExtResource("3_apk7f")
 characterSprite = ExtResource("6_xkp83")
 roleSprite = ExtResource("7_vfa6i")
-baseAbilities = Array[Resource]([ExtResource("5_5urb6"), ExtResource("4_fdq6l")])
-abilities = Array[Resource]([ExtResource("4_fdq6l")])
+baseAbilities = Array[Resource]([ExtResource("5_5urb6"), ExtResource("9_hqegn")])
+abilities = Array[Resource]([ExtResource("4_a7je1"), ExtResource("5_pfaj8"), ExtResource("6_xcjle"), ExtResource("7_x3cqy")])
 BlessingsAndCurses = []
