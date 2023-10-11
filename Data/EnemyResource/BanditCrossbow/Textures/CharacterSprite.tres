@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cf7k5bbojm75m"]
+
+[ext_resource type="Texture2D" uid="uid://bdggefosujlje" path="res://_Eligijus/Sprites/BanditCrossbow/BanditCrossbow.png" id="1_g2e5b"]
+
+[resource]
+atlas = ExtResource("1_g2e5b")
+region = Rect2(80, 65, 35, 67)
