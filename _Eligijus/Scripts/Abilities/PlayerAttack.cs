@@ -34,14 +34,4 @@ public partial class PlayerAttack : BaseAction
         return false;
     }
     
-    public override void BuffAbility()
-    {
-        if (DoesCharacterHaveBlessing("Sharp blade"))
-        {
-            minAttackDamage += 2;
-            maxAttackDamage += 2;
-        }
-        isAbilitySlow = !DoesCharacterHaveBlessing("Agility");
-    }
-    
 }

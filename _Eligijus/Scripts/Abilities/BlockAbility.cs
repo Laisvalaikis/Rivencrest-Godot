@@ -65,14 +65,7 @@ public partial class BlockAbility : BaseAction
     {
         if (_characterBeingBlocked != null)
         {
-            if (DoesCharacterHaveBlessing("Sense of safety"))
-            {
-                int randomHeal = _random.Next(3, 5);
-                bool crit = IsItCriticalStrike(ref randomHeal);
-                _characterBeingBlocked.playerInformation.Heal(randomHeal, crit);
-            }
-            // _characterBeingBlocked.playerInformation.BlockingAlly = null;
-            // player.playerInformation.Blocker = false;
+            
         }
     }
     public override void ResolveAbility(ChunkData chunk)
@@ -88,10 +81,7 @@ public partial class BlockAbility : BaseAction
             FinishAbility();
         }
     }
-    public override void BuffAbility()
-    {
-
-    }
+   
     
 }
 

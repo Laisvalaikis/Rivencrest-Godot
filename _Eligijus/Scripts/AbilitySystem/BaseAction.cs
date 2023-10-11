@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
-	public abstract partial class BaseAction: Resource
+using Array = System.Array;
+
+public abstract partial class BaseAction: Resource
 	{
 		protected Player player;
 		[Export] protected bool laserGrid = false;
@@ -31,7 +33,10 @@ using Godot.Collections;
 		protected Color otherOnGrid = new Color("#717171");
 		[Export]
 		protected Color characterOnGrid = new Color("#FF5947");
+		[Export]
+		protected Array<AbilityBlessing> _abilityBlessingsRef;
 		
+		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected List<ChunkData> _chunkList;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
@@ -76,6 +81,24 @@ using Godot.Collections;
 			_playerInformationData = new PlayerInformationData();
 			_playerInformationData.CopyData(player.playerInformation.playerInformationData);
 			_chunkList = new List<ChunkData>();
+			if (_abilityBlessingsRef != null)
+			{
+				for (int i = 0; i < _abilityBlessingsRef.Count; i++)
+				{
+					if (_abilityBlessingsRef[i].IsBlessingUnlocked())
+					{
+						if (_abilityBlessingsCreated == null)
+						{
+							_abilityBlessingsCreated = new Array<AbilityBlessing>();
+							_abilityBlessingsCreated.Add((AbilityBlessing)_abilityBlessingsRef[i].CreateNewInstance());
+						}
+						else
+						{
+							_abilityBlessingsCreated.Add((AbilityBlessing)_abilityBlessingsRef[i].CreateNewInstance());
+						}
+					}
+				}
+			}
 		}
 
 		protected virtual void HighlightGridTile(ChunkData chunkData)
@@ -142,6 +165,11 @@ using Godot.Collections;
 		public List<ChunkData> GetChunkList()
 		{
 			return _chunkList;
+		}
+
+		public Array<AbilityBlessing> GetBlessings()
+		{
+			return _abilityBlessingsCreated;
 		}
 
 		protected void GenerateDiamondPattern(ChunkData centerChunk, int radius)
@@ -457,30 +485,6 @@ using Godot.Collections;
 			{
 				chunkData.GetCurrentPlayerInformation().DealDamage(damage, crit, player);
 			}
-		}
-
-		protected bool DoesCharacterHaveBlessing(string blessingName)
-		{
-			Blessing blessing = null;
-			for (int i = 0; i < _playerInformationData.BlessingsAndCurses.Count; i++)
-			{
-				if (_playerInformationData.BlessingsAndCurses[i].blessingName == blessingName)
-				{
-					blessing = _playerInformationData.BlessingsAndCurses[i];
-					break;
-				}
-			}
-			return blessing != null;
-		}
-		
-		public virtual void BuffAbility()
-		{
-			
-		}
-		
-		public virtual BaseAction GetBuffedAbility(List<Blessing> blessings)
-		{
-			return this;
 		}
 		
 		public virtual string GetDamageString()

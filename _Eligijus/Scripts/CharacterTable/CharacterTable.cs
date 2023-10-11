@@ -400,7 +400,7 @@ public partial class CharacterTable : Node
 		maxHP += (character.level - 1) * 2;
 		for (int i = 0; i < character.blessings.Count; i++)
 		{
-			Blessing blessing = character.blessings[i];
+			BaseBlessing blessing = character.blessings[i];
 			if (blessing.blessingName == "Healthy")
 			{
 				maxHP += 3;

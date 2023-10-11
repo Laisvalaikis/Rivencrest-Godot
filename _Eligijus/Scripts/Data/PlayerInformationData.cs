@@ -1,7 +1,7 @@
-using System.Collections;
 using MonoCustomResourceRegistry;
 using Godot;
 using Godot.Collections;
+using Array = System.Array;
 
 [RegisteredType(nameof(PlayerInformationData), "", nameof(Resource))]
 public partial class PlayerInformationData: Resource
@@ -45,7 +45,9 @@ public partial class PlayerInformationData: Resource
 	[Export]
 	public Array<Ability> abilities;
 	[Export]
-	public Array<Blessing> BlessingsAndCurses = new Godot.Collections.Array<Blessing>();
+	protected Array<PlayerBlessing> blessingsAndCurses;
+
+	protected Array<PlayerBlessing> _unlockedBlessings;
 
 	public PlayerInformationData()
 	{
@@ -56,7 +58,7 @@ public partial class PlayerInformationData: Resource
 	int dodgeChance, string role, Color classColor, Color secondClassColor, Color textColor,
 	Color backgroundColor, Texture CharacterPortraitSprite, Texture CharacterSplashArt,//For character table
 	Texture CroppedSplashArt, Texture characterSprite, Texture roleSprite,
-	Godot.Collections.Array<Ability> abilities, Godot.Collections.Array<Blessing> BlessingsAndCurses)
+	Array<Ability> abilities, Array<PlayerBlessing> blessingsAndCurses)
 	{
 		this.characterType = characterType;
 		this.ClassName = ClassName;
@@ -78,7 +80,7 @@ public partial class PlayerInformationData: Resource
 		this.roleSprite = roleSprite;
 		this.abilities = abilities;
 
-		this.BlessingsAndCurses = BlessingsAndCurses;
+		this.blessingsAndCurses = blessingsAndCurses;
 	}
 	
 	public PlayerInformationData(PlayerInformationData playerInformationData)
@@ -103,7 +105,7 @@ public partial class PlayerInformationData: Resource
 		roleSprite = playerInformationData.roleSprite;
 		abilities = playerInformationData.abilities;
 
-		BlessingsAndCurses = playerInformationData.BlessingsAndCurses;
+		blessingsAndCurses = playerInformationData.blessingsAndCurses;
 	}
 	
 	public void CopyData(PlayerInformationData playerInformationData)
@@ -128,7 +130,7 @@ public partial class PlayerInformationData: Resource
 		roleSprite = playerInformationData.roleSprite;
 		abilities = playerInformationData.abilities;
 
-		BlessingsAndCurses = playerInformationData.BlessingsAndCurses;
+		blessingsAndCurses = playerInformationData.blessingsAndCurses;
 	}
 
 }

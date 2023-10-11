@@ -11,7 +11,7 @@ using Godot;
 		public SavedCharacter() { }
 
 		public SavedCharacter(Resource prefab, int level, int xP, int xPToGain, bool dead, string characterName,
-			int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int confirmedAbilities, List<Blessing> blessings, int prefabIndex, PlayerInformationData playerInformation)
+			int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int confirmedAbilities, List<BaseBlessing> blessings, int prefabIndex, PlayerInformationData playerInformation)
 			: base(level, xP, xPToGain, dead, characterName, abilityPointCount, unlockedAbilities, confirmedAbilities, blessings, prefabIndex, playerInformation)
 		{
 			this.prefab = prefab;

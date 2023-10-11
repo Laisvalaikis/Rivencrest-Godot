@@ -40,17 +40,6 @@ public partial class ChillingGust : BaseAction
                 int bonusDamage = 0;
                 DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
                 clickedPlayerInformation.ApplyDebuff("IceSlow");
-                if (DoesCharacterHaveBlessing("Tempest"))
-                {
-                    CreateDamageTileList(chunk);
-                    foreach (ChunkData c in _additionalDamageTiles)
-                    {
-                        if (CanTileBeClicked(c))
-                        {
-                            DealRandomDamageToTarget(c, minAttackDamage, maxAttackDamage);
-                        }
-                    }
-                }
             }
             FinishAbility();
     }
