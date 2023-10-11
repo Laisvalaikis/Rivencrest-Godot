@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b02cq42q46qr3" path="res://Data/PlayerResource/Pink/Textures/CharacterSplashArt.tres" id="2_xyrt8"]
 [ext_resource type="Texture2D" uid="uid://c0oydeeuwodxt" path="res://Data/PlayerResource/Pink/Textures/CropedSplashArt.tres" id="3_ktmm6"]
 [ext_resource type="Resource" uid="uid://bxs72xciv5avq" path="res://Data/Abilities/PinkBarrier.tres" id="4_u78fp"]
-[ext_resource type="Resource" path="res://Data/Abilities/Purify.tres" id="5_7hvxo"]
+[ext_resource type="Resource" uid="uid://drnkp0tjwgvjo" path="res://Data/Abilities/Purify.tres" id="5_7hvxo"]
 [ext_resource type="Resource" uid="uid://dixtxdi3v0ljh" path="res://Data/Abilities/WeakSpot.tres" id="5_i7fj1"]
 [ext_resource type="Resource" uid="uid://df6i4as2in2ku" path="res://Data/Abilities/SilenceBeam.tres" id="6_n1g0q"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="7_xirim"]
