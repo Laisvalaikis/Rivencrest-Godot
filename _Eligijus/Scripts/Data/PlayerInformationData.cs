@@ -46,66 +46,12 @@ public partial class PlayerInformationData: Resource
 	public Array<Ability> abilities;
 	[Export]
 	protected Array<PlayerBlessing> blessingsAndCurses;
-
+	
 	protected Array<PlayerBlessing> _unlockedBlessings;
 
 	public PlayerInformationData()
 	{
 		
-	}
-
-	public PlayerInformationData(CharacterType characterType, string ClassName, int MaxHealth, int critChance, int accuracy,
-	int dodgeChance, string role, Color classColor, Color secondClassColor, Color textColor,
-	Color backgroundColor, Texture CharacterPortraitSprite, Texture CharacterSplashArt,//For character table
-	Texture CroppedSplashArt, Texture characterSprite, Texture roleSprite,
-	Array<Ability> abilities, Array<PlayerBlessing> blessingsAndCurses)
-	{
-		this.characterType = characterType;
-		this.ClassName = ClassName;
-		this.MaxHealth = MaxHealth;
-		this.critChance = critChance;
-		this.accuracy = accuracy;
-		this.dodgeChance = dodgeChance;
-		this.role = role;
-
-		this.classColor = classColor;
-		this.secondClassColor = secondClassColor;
-		this.textColor = textColor;
-		this.backgroundColor = backgroundColor;
-
-		this.CharacterPortraitSprite = CharacterPortraitSprite;
-		this.CharacterSplashArt = CharacterSplashArt;
-		this.CroppedSplashArt = CroppedSplashArt;
-		this.characterSprite = characterSprite;
-		this.roleSprite = roleSprite;
-		this.abilities = abilities;
-
-		this.blessingsAndCurses = blessingsAndCurses;
-	}
-	
-	public PlayerInformationData(PlayerInformationData playerInformationData)
-	{
-		characterType = playerInformationData.characterType;
-		ClassName = playerInformationData.ClassName;
-		MaxHealth = playerInformationData.MaxHealth;
-		critChance = playerInformationData.critChance;
-		accuracy = playerInformationData.accuracy;
-		dodgeChance = playerInformationData.dodgeChance;
-		role = playerInformationData.role;
-
-		classColor = playerInformationData.classColor;
-		secondClassColor = playerInformationData.secondClassColor;
-		textColor = playerInformationData.textColor;
-		backgroundColor = playerInformationData.backgroundColor;
-
-		CharacterPortraitSprite = playerInformationData.CharacterPortraitSprite;
-		CharacterSplashArt = playerInformationData.CharacterSplashArt;
-		CroppedSplashArt = playerInformationData.CroppedSplashArt;
-		characterSprite = playerInformationData.characterSprite;
-		roleSprite = playerInformationData.roleSprite;
-		abilities = playerInformationData.abilities;
-
-		blessingsAndCurses = playerInformationData.blessingsAndCurses;
 	}
 	
 	public void CopyData(PlayerInformationData playerInformationData)
@@ -131,6 +77,39 @@ public partial class PlayerInformationData: Resource
 		abilities = playerInformationData.abilities;
 
 		blessingsAndCurses = playerInformationData.blessingsAndCurses;
+		if (blessingsAndCurses != null)
+		{
+			blessingsAndCurses = new Array<PlayerBlessing>();
+			for (int i = 0; i < blessingsAndCurses.Count; i++)
+			{
+				if (blessingsAndCurses[i].IsBlessingUnlocked())
+				{
+					if (_unlockedBlessings == null)
+					{
+						_unlockedBlessings = new Array<PlayerBlessing>();
+						_unlockedBlessings.Add((PlayerBlessing)blessingsAndCurses[i].CreateNewInstance());
+					}
+					else
+					{
+						_unlockedBlessings.Add((PlayerBlessing)blessingsAndCurses[i].CreateNewInstance());
+					}
+				}
+				else
+				{
+					
+				}
+			}
+		}
+	}
+
+	public Array<PlayerBlessing> GetBlessings()
+	{
+		return _unlockedBlessings;
+	}
+	
+	public Array<PlayerBlessing> GetAllBlessings()
+	{
+		return blessingsAndCurses;
 	}
 
 }

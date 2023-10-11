@@ -171,6 +171,11 @@ public abstract partial class BaseAction: Resource
 		{
 			return _abilityBlessingsCreated;
 		}
+		
+		public Array<AbilityBlessing> GetAllBlessings()
+		{
+			return _abilityBlessingsRef;
+		}
 
 		protected void GenerateDiamondPattern(ChunkData centerChunk, int radius)
 		{
