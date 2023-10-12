@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c00mltprkptti"]
+
+[ext_resource type="Texture2D" uid="uid://b6l1sy4fk6hu7" path="res://_Eligijus/Sprites/ForestDruid/ForestDruid.png" id="1_clyor"]
+
+[resource]
+atlas = ExtResource("1_clyor")
+region = Rect2(79, 55, 37, 75)
