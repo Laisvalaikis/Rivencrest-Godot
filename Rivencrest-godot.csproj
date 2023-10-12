@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Abilities\Abilities\" />
+    <Folder Include="_Eligijus\Scripts\Blessings\" />
     <Folder Include="_Eligijus\Scripts\UI\" />
   </ItemGroup>
 </Project>
