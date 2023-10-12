@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c6otg488o6ib1"]
+
+[ext_resource type="Texture2D" uid="uid://vcap5fs83t0x" path="res://_Eligijus/Sprites/UndeadBoss/UndeadBoss.png" id="1_qaosi"]
+
+[resource]
+atlas = ExtResource("1_qaosi")
+region = Rect2(848, 446, 83, 80)

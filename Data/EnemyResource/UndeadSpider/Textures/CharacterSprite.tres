@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://8c1upekf5yr8"]
+
+[ext_resource type="Texture2D" uid="uid://c86n0y6207bh5" path="res://_Eligijus/Sprites/UndeadSpider/UndeadSpider.png" id="1_rvrct"]
+
+[resource]
+atlas = ExtResource("1_rvrct")
+region = Rect2(72, 94, 53, 35)

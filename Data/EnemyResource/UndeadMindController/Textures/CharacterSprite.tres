@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://chmvh60lb1ny3"]
+
+[ext_resource type="Texture2D" uid="uid://blo56dnrovmx3" path="res://_Eligijus/Sprites/UndeadMindController/UndeadMindController.png" id="1_aleap"]
+
+[resource]
+atlas = ExtResource("1_aleap")
+region = Rect2(78, 65, 41, 65)

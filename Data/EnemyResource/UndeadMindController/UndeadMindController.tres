@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://by6e7yjfi4qg0"]
+
+[ext_resource type="Resource" uid="uid://c5dltab2a53o3" path="res://Data/EnemyResource/UndeadMindController/UndeadMindControllerData.tres" id="1_pwfq8"]
+[ext_resource type="PackedScene" uid="uid://fcrvawk0xkul" path="res://_Aurimas/Enemies/UndeadMindController.tscn" id="2_xjgn7"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_0vk7p"]
+
+[resource]
+script = ExtResource("3_0vk7p")
+prefab = ExtResource("2_xjgn7")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = Array[Resource]([])
+toConfirmAbilities = 0
+blessings = Array[Node]([])
+cost = 0
+characterIndex = 0
+playerInformation = ExtResource("1_pwfq8")

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://cwmttpjhca31w"]
+
+[ext_resource type="Texture2D" uid="uid://woio8f1b3b0d" path="res://Data/EnemyResource/UndeadCultist/Textures/CharacterPortraitSprite.tres" id="1_oaclh"]
+[ext_resource type="Resource" uid="uid://ddemy25a7ohw3" path="res://Data/Abilities/CometFall.tres" id="2_tpukc"]
+[ext_resource type="Resource" uid="uid://dxpvrdmgat8xb" path="res://Data/Abilities/AcidRain.tres" id="3_tblqa"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="4_ykcma"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="5_m7r5t"]
+[ext_resource type="Texture2D" uid="uid://b1w30id7eeybv" path="res://Data/EnemyResource/UndeadCultist/Textures/CharacterSprite.tres" id="6_36jjj"]
+[ext_resource type="Texture2D" uid="uid://dyudu7ncc337p" path="res://Data/EnemyResource/UndeadCultist/Textures/RoleSprite.tres" id="7_4b78p"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="8_f254r"]
+
+[resource]
+script = ExtResource("8_f254r")
+characterType = 1
+ClassName = "CULTIST"
+MaxHealth = 19
+critChance = 3
+accuracy = 100
+dodgeChance = 1
+role = "DAMAGE"
+classColor = Color(0.247059, 0.980392, 0.819608, 1)
+secondClassColor = Color(0, 0, 0, 1)
+textColor = Color(0.247059, 0.980392, 0.819608, 1)
+backgroundColor = Color(0.0627451, 0.490196, 0.45098, 1)
+CharacterPortraitSprite = ExtResource("1_oaclh")
+characterSprite = ExtResource("6_36jjj")
+roleSprite = ExtResource("7_4b78p")
+baseAbilities = Array[Resource]([ExtResource("4_ykcma"), ExtResource("5_m7r5t")])
+abilities = Array[Resource]([ExtResource("2_tpukc"), ExtResource("3_tblqa")])
+BlessingsAndCurses = []

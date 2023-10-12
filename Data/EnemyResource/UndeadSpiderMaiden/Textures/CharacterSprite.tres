@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://qo3xcgwfnfbf"]
+
+[ext_resource type="Texture2D" uid="uid://f48re4nuiurm" path="res://_Eligijus/Sprites/UndeadSpiderMaiden/UndeadSpiderMaiden.png" id="1_uo3by"]
+
+[resource]
+atlas = ExtResource("1_uo3by")
+region = Rect2(84, 68, 34, 62)
