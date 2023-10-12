@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://cja6nwf0kmeit"]
+
+[ext_resource type="Texture2D" uid="uid://dl7xnqifjrsqj" path="res://Data/EnemyResource/Merchant/Textures/CharacterPortraitSprite.tres" id="1_nthqn"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="2_6oenr"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="3_3g10n"]
+[ext_resource type="Texture2D" uid="uid://dmd34c1cd2nst" path="res://Data/EnemyResource/Merchant/Textures/CharacterSprite.tres" id="4_blmpr"]
+[ext_resource type="Texture2D" uid="uid://bwtexeujq2oea" path="res://Data/EnemyResource/Merchant/Textures/RoleSprite.tres" id="5_w8vrb"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="6_rmvpu"]
+
+[resource]
+script = ExtResource("6_rmvpu")
+characterType = 0
+ClassName = "MERCHANT"
+MaxHealth = 25
+critChance = 3
+accuracy = 100
+dodgeChance = 1
+role = "DAMAGE"
+classColor = Color(0.823529, 0.666667, 1, 1)
+secondClassColor = Color(0, 0, 0, 1)
+textColor = Color(0.823529, 0.666667, 1, 1)
+backgroundColor = Color(0.372549, 0.278431, 0.47451, 1)
+CharacterPortraitSprite = ExtResource("1_nthqn")
+characterSprite = ExtResource("4_blmpr")
+roleSprite = ExtResource("5_w8vrb")
+baseAbilities = Array[Resource]([ExtResource("2_6oenr"), ExtResource("3_3g10n")])
+abilities = Array[Resource]([])
+BlessingsAndCurses = []

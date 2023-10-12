@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://o01ilruhc0j8"]
+
+[ext_resource type="PackedScene" uid="uid://daeq2ygy58161" path="res://_Aurimas/Enemies/Merchant.tscn" id="1_vafll"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="2_7oakn"]
+
+[resource]
+script = ExtResource("2_7oakn")
+prefab = ExtResource("1_vafll")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = null
+toConfirmAbilities = 0
+blessings = null
+cost = 0
+characterIndex = 0

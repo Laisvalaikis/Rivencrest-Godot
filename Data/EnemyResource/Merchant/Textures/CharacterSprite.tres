@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dmd34c1cd2nst"]
+
+[ext_resource type="Texture2D" uid="uid://kfprthifmoml" path="res://_Eligijus/Sprites/Merchant/Merchant.png" id="1_8p4lf"]
+
+[resource]
+atlas = ExtResource("1_8p4lf")
+region = Rect2(81, 61, 29, 69)
