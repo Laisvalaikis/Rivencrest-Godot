@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=11 format=3 uid="uid://d0iaalsu1apmo"]
+
+[ext_resource type="Texture2D" uid="uid://btmfkatmdtym" path="res://Data/EnemyResource/ForestHuntress/Textures/CharacterPortraitSprite.tres" id="1_ghkxd"]
+[ext_resource type="Resource" uid="uid://4cg1r7wo7jjn" path="res://Data/Abilities/RainOfArrows.tres" id="2_8usr3"]
+[ext_resource type="Resource" uid="uid://blek17cnx6tyt" path="res://Data/Abilities/PowerShot.tres" id="3_8luyr"]
+[ext_resource type="Resource" uid="uid://1ehrtv8vdql3" path="res://Data/Abilities/Volley.tres" id="4_rl6ec"]
+[ext_resource type="Resource" uid="uid://bb3808xowarhm" path="res://Data/Abilities/LongShot.tres" id="5_v05fc"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="6_ug1be"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="7_c6ynh"]
+[ext_resource type="Texture2D" uid="uid://wgekp13e3bb7" path="res://Data/EnemyResource/ForestHuntress/Textures/CharacterSprite.tres" id="8_elpfp"]
+[ext_resource type="Texture2D" uid="uid://cacxrbiox64e2" path="res://Data/EnemyResource/ForestHuntress/Textures/RoleSprite.tres" id="9_vbk5h"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="10_aemx5"]
+
+[resource]
+script = ExtResource("10_aemx5")
+characterType = 1
+ClassName = "HUNTRESS"
+MaxHealth = 20
+critChance = 3
+accuracy = 100
+dodgeChance = 5
+role = "DAMAGE"
+classColor = Color(0.92549, 0.968627, 0.54902, 1)
+secondClassColor = Color(0, 0, 0, 1)
+textColor = Color(0.941176, 1, 0.439216, 1)
+backgroundColor = Color(0.278431, 0.509804, 0.164706, 1)
+CharacterPortraitSprite = ExtResource("1_ghkxd")
+characterSprite = ExtResource("8_elpfp")
+roleSprite = ExtResource("9_vbk5h")
+baseAbilities = Array[Resource]([ExtResource("6_ug1be"), ExtResource("7_c6ynh")])
+abilities = Array[Resource]([ExtResource("2_8usr3"), ExtResource("3_8luyr"), ExtResource("4_rl6ec"), ExtResource("5_v05fc")])
+BlessingsAndCurses = []

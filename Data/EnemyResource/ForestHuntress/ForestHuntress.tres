@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://nilhfb00he7k"]
+
+[ext_resource type="Resource" uid="uid://d0iaalsu1apmo" path="res://Data/EnemyResource/ForestHuntress/ForestHuntressData.tres" id="1_dnbvq"]
+[ext_resource type="PackedScene" uid="uid://da3lwkkcxjahp" path="res://_Aurimas/Enemies/ForestHuntress.tscn" id="2_maccw"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_nlvl0"]
+
+[resource]
+script = ExtResource("3_nlvl0")
+prefab = ExtResource("2_maccw")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = Array[Resource]([])
+toConfirmAbilities = 0
+blessings = Array[Node]([])
+cost = 0
+characterIndex = 0
+playerInformation = ExtResource("1_dnbvq")
