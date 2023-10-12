@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using Godot;
 using Godot.Collections;
@@ -39,7 +40,7 @@ public partial class GameTileMap : Node2D
 
 	private bool _updateWeight = false;
 	private int _countForTreeSpawn = 0;
-	public Player _currentSelectedCharacter;
+	public Player _currentSelectedCharacter = null;
 	private PlayerInformation _currentPlayerInformation;
 	private Vector2 _mousePosition;
 	private int chunckIndex;
@@ -91,6 +92,7 @@ public partial class GameTileMap : Node2D
 		
 	}
 
+
 	public override void _ExitTree()
 	{
 		base._ExitTree();
@@ -117,10 +119,7 @@ public partial class GameTileMap : Node2D
 		{
 			QueueRedraw();
 		}
-		else if (@event is InputEventMouseButton  keyEvent && keyEvent.ButtonIndex == MouseButton.Left && keyEvent.Pressed)
-		{
-			MouseClick();
-		}
+
 	}
 
 
@@ -544,3 +543,4 @@ public partial class GameTileMap : Node2D
 		}
 	}
 }
+

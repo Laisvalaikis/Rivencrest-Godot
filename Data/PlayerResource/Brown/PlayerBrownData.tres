@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_6xjj2"]
 [ext_resource type="Texture2D" uid="uid://m3c84mwfn12o" path="res://Data/PlayerResource/Brown/Textures/CropedSplashArt.tres" id="3_kfrgo"]
 [ext_resource type="Resource" uid="uid://co87qf0t4ms08" path="res://Data/Abilities/RaiseRock.tres" id="4_opryt"]
-[ext_resource type="Resource" uid="uid://b3myqlfam5pp8" path="res://Data/Abilities/WallSmash.tres" id="5_orifg"]
+[ext_resource type="Resource" path="res://Data/Abilities/WallSmash.tres" id="5_orifg"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_wvhc4"]
-[ext_resource type="Resource" uid="uid://c62xmd57758dl" path="res://Data/Abilities/LeapAndSlam.tres" id="6_r6ccu"]
-[ext_resource type="Resource" uid="uid://0krqpqab3cl2" path="res://Data/Abilities/WallEntrap.tres" id="7_8u366"]
+[ext_resource type="Resource" path="res://Data/Abilities/LeapAndSlam.tres" id="6_r6ccu"]
+[ext_resource type="Resource" path="res://Data/Abilities/WallEntrap.tres" id="7_8u366"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="8_3gpio"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="8_r5xg4"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="9_5q0ag"]
@@ -33,4 +33,4 @@ characterSprite = ExtResource("8_r5xg4")
 roleSprite = ExtResource("9_5q0ag")
 baseAbilities = Array[Resource]([ExtResource("5_wvhc4"), ExtResource("8_3gpio")])
 abilities = Array[Resource]([ExtResource("4_opryt"), ExtResource("5_orifg"), ExtResource("6_r6ccu"), ExtResource("7_8u366")])
-BlessingsAndCurses = []
+blessingsAndCurses = null

@@ -56,6 +56,11 @@ public partial class BaseBlessing : Resource
         
     }
 
+    public virtual void UnlockBlessing()
+    {
+        _blessingIsUnlocked = true;
+    }
+
     public bool IsBlessingUnlocked()
     {
         return _blessingIsUnlocked;
