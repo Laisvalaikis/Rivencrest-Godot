@@ -14,15 +14,6 @@ public partial class MarkEnemy : BaseAction
         MarkEnemy markEnemy = new MarkEnemy((MarkEnemy)action);
         return markEnemy;
     }
-    public override void OnTurnEnd()
-    {
-        base.OnTurnEnd();
-        // if (_target != null && _target.GetCurrentPlayerInformation()/*.Marker*/ != null)
-        // {
-        //     _target.GetCurrentPlayerInformation().Marker = null;
-        //     _target = null;
-        // }
-    }
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);

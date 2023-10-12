@@ -12,7 +12,11 @@ public partial class SummonOrb : BaseAction
     private ChunkData _orbChunkData;
     private List<ChunkData> _attackList;
     private Random _random;
-    
+
+    public SummonOrb()
+    {
+    }
+
     public SummonOrb(SummonOrb ability): base(ability)
     {
         orbPrefab = ability.orbPrefab;

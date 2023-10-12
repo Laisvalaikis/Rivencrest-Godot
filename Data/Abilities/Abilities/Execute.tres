@@ -1,3 +1,22 @@
-[gd_resource type="Resource" format=3 uid="uid://36vdwgvo3sog"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://36vdwgvo3sog"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/Execute.cs" id="1_f3lve"]
 
 [resource]
+script = ExtResource("1_f3lve")
+minimumDamage = 4
+laserGrid = false
+turnsSinceCast = 0
+turnLifetime = 1
+attackRange = 2
+abilityCooldown = 2
+minAttackDamage = 0
+maxAttackDamage = 0
+isAbilitySlow = false
+friendlyFire = false
+abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
+abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
+abilityHoverCharacter = Color(1, 0.890196, 0, 1)
+otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
+characterOnGrid = Color(1, 0.34902, 0.278431, 1)
+_abilityBlessingsRef = null

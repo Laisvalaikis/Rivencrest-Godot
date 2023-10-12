@@ -8,7 +8,11 @@ public partial class SwordPush : BaseAction
     [Export]
     public int centerDamage = 30;
     private List<ChunkData> _attackTiles;
-    
+
+    public SwordPush()
+    {
+    }
+
     public SwordPush(SwordPush ability): base(ability)
     {
         pushDamage = ability.pushDamage;

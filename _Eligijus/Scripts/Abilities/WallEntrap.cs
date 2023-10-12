@@ -5,7 +5,11 @@ public partial class WallEntrap : BaseAction
 {
     [Export] private Resource wallPrefab;
     private List<PlayerInformation> _playerInformations;
-    
+
+    public WallEntrap()
+    {
+    }
+
     public WallEntrap(WallEntrap ability): base(ability)
     {
         wallPrefab = ability.wallPrefab;

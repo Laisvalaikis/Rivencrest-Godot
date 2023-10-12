@@ -3,7 +3,11 @@ using Godot;
 public partial class IsolatedStrike : BaseAction
 {
     private int isolationDamage = 7;
-    
+
+    public IsolatedStrike()
+    {
+        
+    }
     public IsolatedStrike(IsolatedStrike ability): base(ability)
     {
         isolationDamage = ability.isolationDamage;

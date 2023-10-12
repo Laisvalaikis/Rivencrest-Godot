@@ -1,3 +1,13 @@
-[gd_resource type="Resource" format=3 uid="uid://ntqtvd5akfg7"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://ntqtvd5akfg7"]
+
+[ext_resource type="Texture2D" uid="uid://vcl6j8wvfym1" path="res://Data/ActionIcons/Icon_46.tres" id="1_5roh4"]
+[ext_resource type="Resource" uid="uid://c0hoyl5hbo8wf" path="res://Data/Abilities/Abilities/Entangle.tres" id="2_xwaid"]
+[ext_resource type="Resource" uid="uid://cybogyilxijvh" path="res://Data/AbilityText/Entangle.tres" id="3_sxjp6"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_dx5xl"]
 
 [resource]
+script = ExtResource("4_dx5xl")
+abilityText = ExtResource("3_sxjp6")
+enabled = true
+AbilityImage = ExtResource("1_5roh4")
+Action = ExtResource("2_xwaid")

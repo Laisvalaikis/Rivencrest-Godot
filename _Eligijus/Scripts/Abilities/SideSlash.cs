@@ -5,7 +5,11 @@ public partial class SideSlash : BaseAction
     [Export]
     private int spellDamage = 6;
     private ChunkData[,] _chunkArray;
-    
+
+    public SideSlash()
+    {
+    }
+
     public SideSlash(SideSlash ability): base(ability)
     {
         spellDamage = ability.spellDamage;

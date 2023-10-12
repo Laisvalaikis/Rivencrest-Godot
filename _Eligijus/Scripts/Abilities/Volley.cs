@@ -12,7 +12,11 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
     private Sprite2D _characterSpriteRenderer; 
     
     private int _globalIndex = -1;
-    
+
+    public Volley()
+    {
+    }
+
     public Volley(Volley ability): base(ability)
     {
         spellDamage = ability.spellDamage;

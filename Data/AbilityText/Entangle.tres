@@ -1,3 +1,9 @@
-[gd_resource type="Resource" format=3 uid="uid://cybogyilxijvh"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cybogyilxijvh"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_lfue1"]
 
 [resource]
+script = ExtResource("1_lfue1")
+abilityTitle = "ENTANGLE"
+abilityDescription = "Deal damage to an enemy
+and root them."

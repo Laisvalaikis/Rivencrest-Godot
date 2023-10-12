@@ -4,8 +4,11 @@ using Godot;
 
 public partial class Purify : BaseAction
 {
-    
- 
+
+    public Purify()
+    {
+        
+    }
  
     public override void ResolveAbility(ChunkData chunk)
     {

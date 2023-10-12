@@ -4,7 +4,11 @@ using Godot;
 public partial class RainOfArrows : BaseAction
 {
     private List<ChunkData> _cometTiles;
-    
+
+    public RainOfArrows()
+    {
+        
+    }
     public RainOfArrows(RainOfArrows ability): base(ability)
     {
     }

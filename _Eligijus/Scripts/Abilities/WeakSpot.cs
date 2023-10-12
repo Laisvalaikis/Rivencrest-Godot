@@ -2,7 +2,10 @@ using Godot;
 
 public partial class WeakSpot : BaseAction
 {
-    
+    public WeakSpot()
+    {
+    }
+
     public WeakSpot(WeakSpot ability): base(ability)
     {
     }

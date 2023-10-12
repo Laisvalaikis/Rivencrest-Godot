@@ -5,6 +5,10 @@ public partial class GroundSlam : BaseAction
 {
     private List<ChunkData> _chunkListCopy;
 
+    public GroundSlam()
+    {
+        
+    }
     public GroundSlam(GroundSlam ability): base(ability)
     {
     }

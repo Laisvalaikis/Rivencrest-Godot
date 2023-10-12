@@ -5,7 +5,11 @@ public partial class ChillingGust : BaseAction
 {
     private List<ChunkData> _additionalDamageTiles = new List<ChunkData>();
     private Player _protectedAlly;
-    
+
+    public ChillingGust()
+    {
+        
+    }
     public ChillingGust(ChillingGust ability): base(ability)
     {
     }

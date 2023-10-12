@@ -1,3 +1,11 @@
-[gd_resource type="Resource" format=3 uid="uid://biljb8lwmcec2"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://biljb8lwmcec2"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_0oogl"]
 
 [resource]
+script = ExtResource("1_0oogl")
+abilityTitle = "MARK"
+abilityDescription = "MARK an enemy.
+If another ally deals damage to
+the MARKED enemy,
+the enemy is ROOTED."

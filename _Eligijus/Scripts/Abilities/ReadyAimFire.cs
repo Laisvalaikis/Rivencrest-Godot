@@ -4,7 +4,11 @@ public partial class ReadyAimFire : BaseAction
 {
     private ChunkData[,] _chunkArray;
     private int _index;
-    
+
+    public ReadyAimFire()
+    {
+        
+    }
     public ReadyAimFire(ReadyAimFire ability): base(ability)
     {
     }

@@ -2,7 +2,10 @@ using Godot;
 
 public partial class OilSlow : BaseAction
 {
-   
+    public OilSlow()
+    {
+        
+    }
     public OilSlow(OilSlow ability): base(ability)
     {
     }

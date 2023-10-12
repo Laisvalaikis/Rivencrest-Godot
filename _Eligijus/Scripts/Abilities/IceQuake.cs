@@ -2,6 +2,10 @@ using Godot;
 
 public partial class IceQuake : BaseAction
 {
+    public IceQuake()
+    {
+        
+    }
     
     public IceQuake(IceQuake ability): base(ability)
     {

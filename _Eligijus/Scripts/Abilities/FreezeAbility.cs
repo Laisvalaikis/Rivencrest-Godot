@@ -5,7 +5,10 @@ public partial class FreezeAbility : BaseAction
 {
 	private List<ChunkData> _chunkListCopy;
 
-	
+	public FreezeAbility()
+	{
+		
+	}
 	public FreezeAbility(FreezeAbility ability): base(ability)
 	{
 	}

@@ -2,7 +2,10 @@ using Godot;
 
 public partial class ShadowBlink : BaseAction
 {
-    
+    public ShadowBlink()
+    {
+    }
+
     public ShadowBlink(ShadowBlink ability): base(ability)
     {
     }

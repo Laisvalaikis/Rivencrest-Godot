@@ -4,7 +4,11 @@ public partial class SummonBear : BaseAction
 {
     [Export]
     private Resource bearPrefab;
-    
+
+    public SummonBear()
+    {
+    }
+
     public SummonBear(SummonBear ability): base(ability)
     {
         bearPrefab = ability.bearPrefab;

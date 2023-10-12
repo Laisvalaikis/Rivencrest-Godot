@@ -1,8 +1,8 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://0krqpqab3cl2"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://f0fd2qtrwj1l"]
 
 [ext_resource type="Texture2D" uid="uid://ccr3ov24n73k8" path="res://Data/ActionIcons/Icon_34.tres" id="1_b3rx1"]
-[ext_resource type="Resource" uid="uid://dyvslc4xdf0di" path="res://Data/Abilities/Abilities/WallEntrap.tres" id="2_0u58r"]
-[ext_resource type="Resource" uid="uid://bsfrx74hfre2m" path="res://Data/AbilityText/WallEntrap.tres" id="3_eg4m8"]
+[ext_resource type="Resource" path="res://Data/Abilities/Abilities/WallEntrap.tres" id="2_0u58r"]
+[ext_resource type="Resource" path="res://Data/AbilityText/WallEntrap.tres" id="3_eg4m8"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_hoxx3"]
 
 [resource]

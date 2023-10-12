@@ -4,7 +4,11 @@ public partial class RaiseRock : BaseAction
 {
     [Export]
     public Resource WallPrefab;
-    
+
+    public RaiseRock()
+    {
+        
+    }
     public RaiseRock(RaiseRock ability): base(ability)
     {
         WallPrefab = ability.WallPrefab;

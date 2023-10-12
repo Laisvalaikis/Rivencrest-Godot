@@ -2,6 +2,10 @@ using Godot;
 
 public partial class PinkBarrier : BaseAction
 {
+    public PinkBarrier()
+    {
+        
+    }
     public PinkBarrier(PinkBarrier ability): base(ability)
     {
     }

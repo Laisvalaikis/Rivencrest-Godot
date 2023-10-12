@@ -3,6 +3,10 @@ using Godot;
 public partial class FromTheShadows : BaseAction
 {
 
+    public FromTheShadows()
+    {
+        
+    }
     public FromTheShadows(FromTheShadows ability): base(ability)
     {
     }

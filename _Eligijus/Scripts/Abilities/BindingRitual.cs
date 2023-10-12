@@ -2,6 +2,10 @@ using Godot;
 
 public partial class BindingRitual : BaseAction
 {
+    public BindingRitual()
+    {
+        
+    }
     
     public BindingRitual(BindingRitual ability): base(ability)
     {

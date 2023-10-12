@@ -5,8 +5,12 @@ using Godot;
 public partial class ChainHook : BaseAction
 {
     private ChunkData _tileToPullTo;
-    private Sprite2D _characterSpriteRenderer; 
-    
+    private Sprite2D _characterSpriteRenderer;
+
+    public ChainHook()
+    {
+        
+    }
     public ChainHook(ChainHook ability): base(ability)
     {
     }

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
-
 public partial class AcidRain : BaseAction
 {	
 	private List<Poison> _poisons;

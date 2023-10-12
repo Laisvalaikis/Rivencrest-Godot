@@ -1,3 +1,13 @@
-[gd_resource type="Resource" format=3 uid="uid://c7b12fgf0a00o"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c7b12fgf0a00o"]
+
+[ext_resource type="Texture2D" uid="uid://tjs65gyxptmo" path="res://Data/ActionIcons/Icon_40.tres" id="1_xxxg0"]
+[ext_resource type="Resource" uid="uid://btigy2hnt2748" path="res://Data/Abilities/Abilities/FlameKick.tres" id="2_tug8f"]
+[ext_resource type="Resource" uid="uid://bs6jp0nyc11mp" path="res://Data/AbilityText/FlameKick.tres" id="3_ybe23"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_axic7"]
 
 [resource]
+script = ExtResource("4_axic7")
+abilityText = ExtResource("3_ybe23")
+enabled = true
+AbilityImage = ExtResource("1_xxxg0")
+Action = ExtResource("2_tug8f")

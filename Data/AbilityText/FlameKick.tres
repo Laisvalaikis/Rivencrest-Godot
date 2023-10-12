@@ -1,3 +1,10 @@
-[gd_resource type="Resource" format=3 uid="uid://bs6jp0nyc11mp"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bs6jp0nyc11mp"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_xmp5f"]
 
 [resource]
+script = ExtResource("1_xmp5f")
+abilityTitle = "FLAME KICK"
+abilityDescription = "Kick an enemy by 1 tile,
+deal damage and
+AFLAME it."

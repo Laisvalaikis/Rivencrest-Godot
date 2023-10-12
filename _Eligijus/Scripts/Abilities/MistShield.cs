@@ -3,7 +3,11 @@ using Godot;
 public partial class MistShield : BaseAction
 {
     private bool isAbilityActive = false;
-    
+
+    public MistShield()
+    {
+        
+    }
     public MistShield(MistShield ability): base(ability)
     {
     }

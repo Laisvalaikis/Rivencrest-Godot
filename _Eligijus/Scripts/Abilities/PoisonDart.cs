@@ -3,7 +3,10 @@ using Godot;
 
 public partial class PoisonDart : BaseAction
 {
-    
+    public PoisonDart()
+    {
+        
+    }
     public PoisonDart(PoisonDart ability): base(ability)
     {
     }

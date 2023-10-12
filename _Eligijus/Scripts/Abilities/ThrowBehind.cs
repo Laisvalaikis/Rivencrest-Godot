@@ -4,7 +4,11 @@ using Godot;
 public partial class ThrowBehind : BaseAction
 {
     private Side _side;
-    
+
+    public ThrowBehind()
+    {
+    }
+
     public ThrowBehind(ThrowBehind ability): base(ability)
     {
         

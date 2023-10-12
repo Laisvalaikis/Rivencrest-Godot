@@ -2,7 +2,10 @@ using Godot;
 
 public partial class LeapAndSlam : BaseAction
 {
-    
+    LeapAndSlam()
+    {
+        
+    }
     public LeapAndSlam(LeapAndSlam ability): base(ability)
     {
     }

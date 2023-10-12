@@ -5,7 +5,11 @@ public partial class WallSmash : BaseAction
 {
     [Export]
     private int damageToWall = 1;
-    
+
+    public WallSmash()
+    {
+    }
+
     public WallSmash(WallSmash ability): base(ability)
     {
         damageToWall = ability.damageToWall;

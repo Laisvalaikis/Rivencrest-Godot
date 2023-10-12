@@ -2,7 +2,10 @@ using Godot;
 
 public partial class Scream : BaseAction
 {
-    
+    public Scream()
+    {
+    }
+
     public Scream(Scream ability): base(ability)
     {
     }

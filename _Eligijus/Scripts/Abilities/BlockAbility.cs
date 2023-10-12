@@ -5,7 +5,11 @@ public partial class BlockAbility : BaseAction
 {
     private Player _characterBeingBlocked;
     private Random _random;
-    
+
+    public BlockAbility()
+    {
+        
+    }
     public BlockAbility(BlockAbility ability): base(ability)
     {
     }

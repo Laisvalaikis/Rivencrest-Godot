@@ -1,3 +1,10 @@
-[gd_resource type="Resource" format=3 uid="uid://xuku47ys7p2g"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://xuku47ys7p2g"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_uisv4"]
 
 [resource]
+script = ExtResource("1_uisv4")
+abilityTitle = "FLAME BLAST"
+abilityDescription = "Deal damage to an area
+and create a danger zone
+in the middle."

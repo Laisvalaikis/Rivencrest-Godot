@@ -3,6 +3,10 @@ using Godot;
 public partial class LongShot : BaseAction
 {
 
+    public LongShot()
+    {
+        
+    }
     public LongShot(LongShot ability): base(ability)
     {
     }

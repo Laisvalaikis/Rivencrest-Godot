@@ -3,7 +3,11 @@ using Godot;
 
 public partial class PowerShot : BaseAction
 {
-    
+
+    public PowerShot()
+    {
+        
+    }
     public PowerShot(PowerShot ability): base(ability)
     {
     }

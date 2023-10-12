@@ -4,7 +4,11 @@ public partial class SwitchPlaces : BaseAction
 {
     private ChunkData _firstSeleted;
     private ChunkData _secondSelected;
-    
+
+    public SwitchPlaces()
+    {
+    }
+
     public SwitchPlaces(SwitchPlaces ability): base(ability)
     {
     }

@@ -1,3 +1,11 @@
-[gd_resource type="Resource" format=3 uid="uid://57lnjfihfbgh"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://57lnjfihfbgh"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/AbilityText.cs" id="1_7l8do"]
 
 [resource]
+script = ExtResource("1_7l8do")
+abilityTitle = "EXECUTE"
+abilityDescription = "Deal damage based on
+enemy's max health.
+If the enemy is killed, teleport to
+their place and restore health."

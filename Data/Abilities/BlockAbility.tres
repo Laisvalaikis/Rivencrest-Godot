@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c6tcopvlc7l8t"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://vrp3xvxfpts3"]
 
 [ext_resource type="Texture2D" uid="uid://dxfe1o1iwn088" path="res://Data/ActionIcons/Icon_17.tres" id="1_6o20r"]
-[ext_resource type="Resource" uid="uid://bxu3ggi50g0es" path="res://Data/Abilities/Abilities/BlockAbility.tres" id="2_pgmbs"]
+[ext_resource type="Resource" path="res://Data/Abilities/Abilities/BlockAbility.tres" id="2_pgmbs"]
 [ext_resource type="Resource" uid="uid://1wyp1ft6mien" path="res://Data/AbilityText/Block.tres" id="3_m2ol2"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_ed472"]
 

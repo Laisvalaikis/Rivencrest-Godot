@@ -4,7 +4,11 @@ using Godot;
 public partial class CometFall : BaseAction
 {
     private List<ChunkData> _damageTiles = new List<ChunkData>();
-    
+
+    public CometFall()
+    {
+        
+    }
     public CometFall(CometFall ability): base(ability)
     {
     }

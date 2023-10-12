@@ -3,7 +3,11 @@ using Godot;
 public partial class FrontSlash : BaseAction
 {
     private ChunkData[,] _chunkArray;
-    
+
+    public FrontSlash()
+    {
+        
+    }
     public FrontSlash(FrontSlash ability): base(ability)
     {
     }

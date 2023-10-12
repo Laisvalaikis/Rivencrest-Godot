@@ -3,7 +3,11 @@ using Godot;
 public partial class SpearPulse : BaseAction
 {
     private ChunkData _currentChunk;
-    
+
+    public SpearPulse()
+    {
+    }
+
     public SpearPulse(SpearPulse ability): base(ability)
     {
     }

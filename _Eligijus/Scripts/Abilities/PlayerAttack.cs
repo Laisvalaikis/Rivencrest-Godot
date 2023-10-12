@@ -3,6 +3,10 @@
 public partial class PlayerAttack : BaseAction
 {
 
+    public PlayerAttack()
+    {
+        
+    }
 
     public PlayerAttack(PlayerAttack ability): base(ability)
     {

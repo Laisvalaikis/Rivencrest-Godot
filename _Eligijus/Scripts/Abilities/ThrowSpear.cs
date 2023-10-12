@@ -4,7 +4,11 @@ public partial class ThrowSpear : BaseAction
 {
     [Export] private Resource spearPrefab;
     private bool laserGrid = true;
-    
+
+    public ThrowSpear()
+    {
+    }
+
     public ThrowSpear(ThrowSpear ability): base(ability)
     {
         spearPrefab = ability.spearPrefab;

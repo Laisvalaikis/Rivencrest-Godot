@@ -3,7 +3,11 @@ using Godot;
 public partial class MindControl : BaseAction
 {
     private PlayerInformation _playerInformation;
-    
+
+    public MindControl()
+    {
+        
+    }
     public MindControl(MindControl ability): base(ability)
     {
     }

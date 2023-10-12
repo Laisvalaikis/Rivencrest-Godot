@@ -1,3 +1,21 @@
-[gd_resource type="Resource" format=3 uid="uid://bgl7xy5cgwoc4"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bgl7xy5cgwoc4"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FlameBlast.cs" id="1_1n3ek"]
 
 [resource]
+script = ExtResource("1_1n3ek")
+laserGrid = false
+turnsSinceCast = 0
+turnLifetime = 1
+attackRange = 2
+abilityCooldown = 2
+minAttackDamage = 2
+maxAttackDamage = 4
+isAbilitySlow = true
+friendlyFire = false
+abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
+abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
+abilityHoverCharacter = Color(1, 0.890196, 0, 1)
+otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
+characterOnGrid = Color(1, 0.34902, 0.278431, 1)
+_abilityBlessingsRef = null
