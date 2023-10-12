@@ -11,7 +11,7 @@
 [resource]
 script = ExtResource("7_g4un1")
 characterType = 0
-ClassName = ""
+ClassName = "BANDIT"
 MaxHealth = 100
 critChance = 5
 accuracy = 100

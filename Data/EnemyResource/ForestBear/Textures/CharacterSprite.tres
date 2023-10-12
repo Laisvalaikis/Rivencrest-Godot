@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dy1ygt1alecee"]
+
+[ext_resource type="Texture2D" uid="uid://rhntgqxfj28b" path="res://_Eligijus/Sprites/ForestBear/ForestBear.png" id="1_08jfd"]
+
+[resource]
+atlas = ExtResource("1_08jfd")
+region = Rect2(75, 57, 46, 74)
