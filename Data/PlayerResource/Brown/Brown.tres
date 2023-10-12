@@ -17,5 +17,5 @@ unlockedAbilities = Array[Resource]([])
 toConfirmAbilities = 0
 blessings = Array[Node]([])
 cost = 1000
-characterIndex = 8
+characterIndex = 1
 playerInformation = ExtResource("1_b3he3")

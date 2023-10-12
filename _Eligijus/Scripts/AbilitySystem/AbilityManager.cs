@@ -11,25 +11,20 @@ public partial class AbilityManager : Node2D
 	private List<ChunkData> _path;
 	private List<ChunkData> _lastPath;
 	// [Export] private TurnManager turnManager;
+	
 
-	public override void _Input(InputEvent @event)
+	public override void _Ready()
 	{
-		base._Input(@event);
-		if (@event is InputEventMouseMotion eventMouseMotion)
-		{
-			OnMove();
-		}
-		else if (@event is InputEventMouseButton  keyEvent && keyEvent.ButtonIndex == MouseButton.Left && keyEvent.Pressed)
-		{
-			OnMouseClick();
-		}
+		base._Ready();
+		// InputManager.Instance.MouseMove += OnMove;
+		// InputManager.Instance.LeftMouseClick += OnMouseClick;
 	}
 
-	public void OnMove()
+	public void OnMove(Vector2 position)
 	{
 		if (_currentAbility == null) return;
-		_mousePosition = GetGlobalMousePosition();
-		ChunkData hoveredChunk = gameTileMap.GetChunk(GetGlobalMousePosition());
+		_mousePosition = position;
+		ChunkData hoveredChunk = gameTileMap.GetChunk(_mousePosition);
 		
 		_currentAbility.OnMoveArrows(hoveredChunk,_previousChunk);
 		_currentAbility.OnMoveHover(hoveredChunk,_previousChunk);
@@ -82,3 +77,4 @@ public partial class AbilityManager : Node2D
 		}
 	}
 }
+
