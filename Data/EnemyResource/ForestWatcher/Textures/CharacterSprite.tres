@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://boyyyk87dwb78"]
+
+[ext_resource type="Texture2D" uid="uid://b8qcwugmn0k6s" path="res://_Eligijus/Sprites/ForestWatcher/ForestWatcher.png" id="1_3c1dh"]
+
+[resource]
+atlas = ExtResource("1_3c1dh")
+region = Rect2(81, 60, 42, 70)

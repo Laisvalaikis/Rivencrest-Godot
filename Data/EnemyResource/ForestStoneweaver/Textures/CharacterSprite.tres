@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bkpqrlh6rxc81"]
+
+[ext_resource type="Texture2D" uid="uid://h17ebn7dmycm" path="res://_Eligijus/Sprites/ForestStoneweaver/Brown.png" id="1_2on55"]
+
+[resource]
+atlas = ExtResource("1_2on55")
+region = Rect2(82, 63, 31, 67)
