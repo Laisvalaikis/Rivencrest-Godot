@@ -1,3 +1,19 @@
-[gd_resource type="Resource" format=3 uid="uid://y2b3ghth3wfg"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://y2b3ghth3wfg"]
+
+[ext_resource type="PackedScene" uid="uid://0rbmb34iuxx1" path="res://_Aurimas/Enemies/BanditKnife.tscn" id="1_vv43a"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="1_w62y8"]
 
 [resource]
+script = ExtResource("1_w62y8")
+prefab = ExtResource("1_vv43a")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = Array[Resource]([])
+toConfirmAbilities = 0
+blessings = Array[Node]([])
+cost = 0
+characterIndex = 0
