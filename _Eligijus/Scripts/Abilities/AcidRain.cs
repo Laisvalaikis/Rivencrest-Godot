@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public partial class AcidRain : BaseAction
 {	
-	private List<Poison> _poisons;
+
 	public AcidRain()
  	{
  		

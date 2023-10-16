@@ -1,7 +1,10 @@
+using System;
 using Godot;
 
 public partial class AbilityBlessing : BaseBlessing
 {
+
+	private Random _random;
 	
     public AbilityBlessing()
     {
@@ -10,7 +13,7 @@ public partial class AbilityBlessing : BaseBlessing
     
     public AbilityBlessing(AbilityBlessing blessing): base(blessing)
     {
-	    
+	    _random = new Random();
     }
     
     public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
@@ -33,6 +36,53 @@ public partial class AbilityBlessing : BaseBlessing
     public override void ResolveBlessing(ref BaseAction baseAction)
     {
         base.ResolveBlessing(ref baseAction);
+    }
+    
+    public virtual void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+    {
+	    base.ResolveBlessing(ref baseAction);
+    }
+
+    protected void DealRandomDamageToTarget(PlayerInformation currentPlayer, ChunkData chunkData, BaseAction baseAction, int minDamage, int maxDamage)
+    {
+	    if (chunkData != null && chunkData.CharacterIsOnTile() && IsAllegianceSame(currentPlayer, chunkData, baseAction))
+	    {
+				
+		    int randomDamage = _random.Next(minDamage, maxDamage);
+		    bool crit = IsItCriticalStrike(ref randomDamage, currentPlayer);
+		    DodgeActivation(ref randomDamage, currentPlayer, chunkData.GetCurrentPlayerInformation());
+		    chunkData.GetCurrentPlayerInformation().DealDamage(randomDamage, crit, currentPlayer);
+	    }
+    }
+    
+    private void DodgeActivation(ref int damage, PlayerInformation player, PlayerInformation target) //Dodge temporarily removed
+    {
+	    int dodgeNumber = _random.Next(0, 100);
+	    if (dodgeNumber > player.playerInformationData.accuracy - target.playerInformationData.dodgeChance)
+	    {
+		    damage = -1;
+	    }
+    }
+
+    public bool IsAllegianceSame(PlayerInformation currentPlayer, ChunkData chunk, BaseAction action)
+    {
+	    return chunk == null || chunk.GetCurrentPlayerInformation().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
+    }
+    
+    protected bool IsItCriticalStrike(ref int damage, PlayerInformation playerInformation)
+    {
+	    int critNumber = _random.Next(0, 100);
+	    bool crit;
+	    if (critNumber > playerInformation.playerInformationData.critChance)
+	    {
+		    crit = false;
+	    }
+	    else
+	    {
+		    damage += 3;
+		    crit = true;
+	    }
+	    return crit;
     }
     
     public override void OnTurnStart(ref BaseAction baseAction)

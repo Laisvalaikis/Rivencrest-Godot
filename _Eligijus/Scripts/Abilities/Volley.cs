@@ -6,7 +6,6 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
 {
     [Export] private int spellDamage = 6;
     private ChunkData[,] _chunkArray;
-    private List<Poison> _poisons;
     
     private ChunkData _tileToPullTo;
     private Sprite2D _characterSpriteRenderer; 

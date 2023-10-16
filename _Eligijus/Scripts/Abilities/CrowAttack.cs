@@ -3,7 +3,6 @@ using Godot;
 
 public partial class CrowAttack : BaseAction
 {
-    private List<Poison> _poisons;
     [Export]
     public int poisonBonusDamage=2;
     

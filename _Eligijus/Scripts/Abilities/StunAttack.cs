@@ -3,7 +3,7 @@ using Godot;
 
 public partial class StunAttack : BaseAction
 {
-    private List<Poison> _poisons;
+    
 
     public StunAttack()
     {

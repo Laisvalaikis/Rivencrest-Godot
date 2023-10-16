@@ -39,7 +39,7 @@ public abstract partial class BaseAction: Resource
 		protected Array<AbilityBlessing> _abilityBlessingsRef;
 		
 		protected int AbilityPoints;
-		
+		protected List<Poison> _poisons;
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected List<ChunkData> _chunkList;
 		private PlayerInformationData _playerInformationData;
@@ -413,7 +413,12 @@ public abstract partial class BaseAction: Resource
 			RefillActionPoints();
 			turnsSinceCast++;
 		}
-		
+
+		public Player GetPlayer()
+		{
+			return player;
+		}
+
 		public virtual void RemoveActionPoints()//panaudojus action
 		{
 			// AvailableAttacks--;
@@ -441,6 +446,11 @@ public abstract partial class BaseAction: Resource
 			AbilityPoints += abilityPoints;
 		}
 
+		public void AddPoison(Poison poison)
+		{
+			_poisons.Add(poison);
+		}
+
 		protected virtual void FinishAbility()
 		{
 			GameTileMap.Tilemap.DeselectCurrentCharacter();
@@ -456,7 +466,7 @@ public abstract partial class BaseAction: Resource
 			return chunk.GetInformationType() == informationType;
 		}
 
-		protected bool IsAllegianceSame(ChunkData chunk)
+		public bool IsAllegianceSame(ChunkData chunk)
 		{
 			return chunk == null || chunk.GetCurrentPlayerInformation().GetPlayerTeam() == player.playerInformation.GetPlayerTeam() || !friendlyFire;
 		}
