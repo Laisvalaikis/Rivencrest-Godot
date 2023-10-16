@@ -1,9 +1,8 @@
-using MonoCustomResourceRegistry;
 using Godot;
 using Godot.Collections;
 using Array = System.Array;
 
-[RegisteredType(nameof(PlayerInformationData), "", nameof(Resource))]
+
 public partial class PlayerInformationData: Resource
 {
 	[Export]
