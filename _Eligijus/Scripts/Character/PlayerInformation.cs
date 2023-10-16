@@ -126,6 +126,12 @@ public partial class PlayerInformation : Node
 		}
 	   
 	}
+
+	public void AddHealth(int health)
+	{
+		_health += health;
+	}
+
 	public void ApplyDebuff(string debuff, Node DebuffApplier = null)
 	{
 	   

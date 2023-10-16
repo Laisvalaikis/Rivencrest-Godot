@@ -23,6 +23,8 @@ public abstract partial class BaseAction: Resource
 		public bool isAbilitySlow = true;
 		[Export]
 		public bool friendlyFire = false;
+		[Export] 
+		protected int AbilityCooldown = 1;
 		[Export]
 		protected Color abilityHighlight = new Color("#B25E55");
 		[Export]
@@ -35,6 +37,8 @@ public abstract partial class BaseAction: Resource
 		protected Color characterOnGrid = new Color("#FF5947");
 		[Export]
 		protected Array<AbilityBlessing> _abilityBlessingsRef;
+		
+		protected int AbilityPoints;
 		
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected List<ChunkData> _chunkList;
@@ -417,7 +421,7 @@ public abstract partial class BaseAction: Resource
 
 		public virtual void RefillActionPoints() //pradzioj ejimo
 		{
-			
+			AbilityPoints = AbilityCooldown;
 		}
 
 		public virtual void ResolveAbility(ChunkData chunk)
@@ -425,6 +429,16 @@ public abstract partial class BaseAction: Resource
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
 			GD.PushWarning("PlaySound");
 			ClearGrid();
+		}
+
+		public void SetAbilityPoints(int abilityPoints)
+		{
+			AbilityCooldown = abilityPoints;
+		}
+
+		public void AddAbilityPoints(int abilityPoints)
+		{
+			AbilityPoints += abilityPoints;
 		}
 
 		protected virtual void FinishAbility()

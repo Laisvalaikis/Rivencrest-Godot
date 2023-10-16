@@ -18,8 +18,8 @@ public partial class PlayerBlessing : BaseBlessing
         return blessing;
     }
 
-    public override void Start(ref BaseBlessing baseBlessing)
+    public virtual void Start(ref PlayerInformation playerInformation)
     {
-        base.Start(ref baseBlessing);
+        
     }
 }
