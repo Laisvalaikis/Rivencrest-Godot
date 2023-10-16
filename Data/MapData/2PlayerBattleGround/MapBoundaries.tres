@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_50u1b")
-boundries = Array[Vector4]([Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0)])
+boundries = Array[Vector4]([Vector4(150, -350, 350, -350), Vector4(50, -250, 450, -250), Vector4(-50, -150, 450, -150), Vector4(-150, -50, 450, -50), Vector4(-250, 50, 450, 50), Vector4(-350, 150, 450, 150), Vector4(-450, 250, 450, 250), Vector4(-550, 350, 450, 350), Vector4(-550, 450, 450, 450), Vector4(-550, 550, 350, 550), Vector4(-450, 650, 250, 650)])
