@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://w8umoh7s5785"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Map/CollumBoundries.cs" id="1_1bsff"]
+
+[resource]
+script = ExtResource("1_1bsff")
+boundries = Array[Vector4]([Vector4(50, -250, 350, -250), Vector4(-50, -150, 450, -150), Vector4(-150, -50, 450, -50), Vector4(-150, 50, 450, 50), Vector4(-350, 150, 450, 150), Vector4(-450, 250, 450, 250), Vector4(-550, 350, 450, 350), Vector4(-550, 450, 450, 450), Vector4(-550, 550, 450, 550), Vector4(-550, 650, 350, 650), Vector4(-450, 750, 250, 750)])
