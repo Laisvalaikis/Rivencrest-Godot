@@ -42,6 +42,21 @@ public partial class AbilityBlessing : BaseBlessing
     {
 	    base.ResolveBlessing(ref baseAction);
     }
+    
+    public override void OnTurnStart(ref BaseAction baseAction)
+    {
+	    base.OnTurnStart(ref baseAction);
+    }
+
+    public override void OnTurnEnd(ref BaseAction baseAction)
+    {
+	    base.OnTurnEnd(ref baseAction);
+    }
+
+    public virtual void PrepareForBlessing(ChunkData chunkData)
+    {
+	    
+    }
 
     protected void DealRandomDamageToTarget(PlayerInformation currentPlayer, ChunkData chunkData, BaseAction baseAction, int minDamage, int maxDamage)
     {
@@ -83,15 +98,5 @@ public partial class AbilityBlessing : BaseBlessing
 		    crit = true;
 	    }
 	    return crit;
-    }
-    
-    public override void OnTurnStart(ref BaseAction baseAction)
-    {
-	    base.OnTurnStart(ref baseAction);
-    }
-
-    public override void OnTurnEnd(ref BaseAction baseAction)
-    {
-	    base.OnTurnEnd(ref baseAction);
     }
 }

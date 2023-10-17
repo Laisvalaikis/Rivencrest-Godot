@@ -114,7 +114,7 @@ public partial class PlayerInformation : Node
 	{
 
 	}
-	public void Heal(int healAmount, bool crit)
+	public void Heal(int healAmount)
 	{
 		if (_health + healAmount >= _playerInformationData.MaxHealth)
 		{

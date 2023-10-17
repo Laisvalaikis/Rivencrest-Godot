@@ -27,8 +27,7 @@ public partial class HealingSight : BaseAction
         base.ResolveAbility(chunk);
         Random random = new Random();
         int randomHeal = random.Next(minHealAmount, maxHealAmount);
-        bool crit = IsItCriticalStrike(ref randomHeal);
-        chunk.GetCurrentPlayerInformation().Heal(randomHeal, crit);
+        chunk.GetCurrentPlayerInformation().Heal(randomHeal);
         FinishAbility();
     }
 }

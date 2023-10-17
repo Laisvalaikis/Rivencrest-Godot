@@ -29,7 +29,7 @@ public partial class Execute : BaseAction
         chunk.GetCurrentPlayerInformation().DealDamage(damage, false, player);
         if(chunk.GetCurrentPlayerInformation().GetHealth() <= 0)
         {
-            player.playerInformation.Heal(5, false);
+            player.playerInformation.Heal(5);
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
         }
         FinishAbility();

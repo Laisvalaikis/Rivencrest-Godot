@@ -30,8 +30,7 @@ public partial class HealSingle : BaseAction
         base.ResolveAbility(chunk);
         Random random = new Random();
         int randomHeal = random.Next(minHealAmount, maxHealAmount);
-        bool crit = IsItCriticalStrike(ref randomHeal);
-        _playerInformation.Heal(randomHeal,crit);
+        _playerInformation.Heal(randomHeal);
         FinishAbility();
     }
 }
