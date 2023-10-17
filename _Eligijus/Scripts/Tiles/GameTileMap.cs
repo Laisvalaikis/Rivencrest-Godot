@@ -157,7 +157,7 @@ public partial class GameTileMap : Node2D
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		if (!_threadDistance.IsAlive && !chuncksIsSetUp)
+		if (_threadDistance != null && !_threadDistance.IsAlive && !chuncksIsSetUp)
 		{
 			// StartCoroutine(SetupChunckTiles());
 			chuncksIsSetUp = true;
