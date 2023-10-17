@@ -108,6 +108,7 @@ public partial class HighlightTile : Node2D
 		{
 			preview.Hide();
 		}
+		
 	}
 	public void SetArrowSprite(int arrowType)
 	{
