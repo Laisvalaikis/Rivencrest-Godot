@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_xlgj2")
-boundries = Array[Vector4]([Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0), Vector4(0, 0, 0, 0)])
+boundries = Array[Vector4]([Vector4(150, -250, 450, -250), Vector4(50, -150, 550, -150), Vector4(-50, -50, 550, -50), Vector4(-50, 50, 550, 50), Vector4(-250, 150, 550, 150), Vector4(-350, 250, 550, 250), Vector4(-450, 350, 550, 350), Vector4(-450, 450, 550, 450), Vector4(-450, 550, 550, 550), Vector4(-450, 650, 450, 650), Vector4(-350, 750, 350, 750)])
