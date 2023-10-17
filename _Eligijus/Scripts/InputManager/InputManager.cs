@@ -18,8 +18,6 @@ public partial class InputManager: Node2D
 		if (Instance == null)
 		{
 			Instance = this;
-			LeftMouseClick += TestuojameAurimoBybi;
-			MouseMove += TestuojameAurimoBybiSuLokacija;
 		}
 		else
 		{
@@ -39,16 +37,6 @@ public partial class InputManager: Node2D
 			TrackMousePosition();
 			OnMouseMove();
 		}
-	}
-
-	public void TestuojameAurimoBybi()
-	{
-		GD.Print("Aurimo bybys nusileides");
-	}
-	
-	public void TestuojameAurimoBybiSuLokacija(Vector2 position)
-	{
-		GD.Print("Aurimo bybys po biski krypsta i: " + position + " lokacija");
 	}
 
 	public void OnLeftMouseClick()

@@ -57,6 +57,7 @@ public partial class BlockAbility : BaseAction
     {
         if(chunkData.GetCurrentCharacter()!=GameTileMap.Tilemap.GetCurrentCharacter())
         {
+            chunkData.GetTileHighlight().EnableTile(true);
             chunkData.GetTileHighlight().ActivateColorGridTile(true);
             SetNonHoveredAttackColor(chunkData);
         }
@@ -74,7 +75,7 @@ public partial class BlockAbility : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
+        if (/*CanTileBeClicked(chunk)*/chunk!=null) //currently paspaudus ant abiličio iš kart bando executint ir čia gaunas blogai
         {
             base.ResolveAbility(chunk);
             PlayerInformation playerInformationLocal = chunk.GetCurrentPlayerInformation();

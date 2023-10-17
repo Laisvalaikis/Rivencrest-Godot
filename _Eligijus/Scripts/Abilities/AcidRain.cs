@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Diagnostics;
+using Godot;
 
 public partial class AcidRain : BaseAction
 {	

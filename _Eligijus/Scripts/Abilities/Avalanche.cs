@@ -58,7 +58,7 @@ public partial class Avalanche : BaseAction
     {
         if (CheckIfSpecificInformationType(chunk, InformationType.Player))
         {
-            return true;
+            return true; //if character has a slowness debuff (debuffs not yet implemented)
         }
         return false;
     }

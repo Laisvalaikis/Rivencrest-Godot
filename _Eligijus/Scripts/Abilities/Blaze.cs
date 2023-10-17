@@ -29,7 +29,7 @@ public partial class Blaze : BaseAction
     
 
     
-    public void TriggerAflame(ChunkData centerChunk, int radius)//pakeisti ji i public override void veliau jei kels problemu
+    public void TriggerAflame(ChunkData centerChunk, int radius)//Kai bus buffai debuffai padaryti sita
     {
         if (centerChunk != null && centerChunk.GetCurrentPlayerInformation()/*.Aflame*/ != null &&
             centerChunk.GetCurrentPlayerInformation().GetHealth() > 0)

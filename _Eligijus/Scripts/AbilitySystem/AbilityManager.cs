@@ -62,7 +62,9 @@ public partial class AbilityManager : Node2D
 
 	public bool IsMovementSelected()
 	{
-		return _currentAbility.GetType() == typeof(PlayerMovement);
+		if(_currentAbility!=null)
+			return _currentAbility.GetType() == typeof(PlayerMovement);
+		return false;
 	}
 	private void ExecuteCurrentAbility()
 	{
