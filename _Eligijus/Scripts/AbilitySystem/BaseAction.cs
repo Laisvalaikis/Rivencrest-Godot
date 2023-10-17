@@ -42,6 +42,8 @@ public abstract partial class BaseAction: Resource
 		protected List<Poison> _poisons;
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected List<ChunkData> _chunkList;
+		protected bool turinIsEven = false;
+		
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
 
@@ -405,13 +407,20 @@ public abstract partial class BaseAction: Resource
 		
 		public virtual void OnTurnStart()
 		{
-			
 		}
 
 		public virtual void OnTurnEnd()
 		{
 			RefillActionPoints();
 			turnsSinceCast++;
+			if (!turinIsEven)
+			{
+				turinIsEven = true;
+			}
+			else
+			{
+				turinIsEven = false;
+			}
 		}
 
 		public Player GetPlayer()
@@ -520,7 +529,12 @@ public abstract partial class BaseAction: Resource
 		{
 			return $"{minAttackDamage}-{maxAttackDamage}";
 		}
-		
+
+		public bool TurnIsEven()
+		{
+			return turinIsEven;
+		}
+
 		// protected IEnumerator ExecuteAfterTime(float time, Action task)
 		// {
 		//     yield return new WaitForSeconds(time);

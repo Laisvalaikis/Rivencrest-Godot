@@ -29,6 +29,9 @@ public partial class Swiftness : PlayerBlessing
     public override void OnTurnStart(ref BaseAction baseAction)
     {
         base.OnTurnStart(ref baseAction);
-        baseAction.AddAbilityPoints(addAbilityPoints);
+        if (baseAction.TurnIsEven())
+        {
+            baseAction.AddAbilityPoints(addAbilityPoints);
+        }
     }
 }
