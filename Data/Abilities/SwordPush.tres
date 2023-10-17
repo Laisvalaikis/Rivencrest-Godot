@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://cj66kn5nya1kv"]
 
 [ext_resource type="Texture2D" uid="uid://bqa3l0vr7a3f3" path="res://Data/ActionIcons/Icon_15.tres" id="1_77dyd"]
-[ext_resource type="Resource" uid="uid://dojlhpol7mr84" path="res://Data/Abilities/Abilities/SwordPush.tres" id="2_yct82"]
+[ext_resource type="Resource" path="res://Data/Abilities/Abilities/SwordPush.tres" id="2_yct82"]
 [ext_resource type="Resource" uid="uid://c8hedwbtv16dk" path="res://Data/AbilityText/SwordPush.tres" id="3_0gfoa"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_360yl"]
 
