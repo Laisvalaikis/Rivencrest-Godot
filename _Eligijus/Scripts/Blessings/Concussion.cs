@@ -21,4 +21,18 @@ public partial class Concussion : AbilityBlessing
 		Concussion blessing = new Concussion(this);
 		return blessing;
 	}
+
+	public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+	{
+		base.ResolveBlessing(ref baseAction, tile);
+		if (tile.CharacterIsOnTile())
+		{
+			PlayerInformation playerInformation = tile.GetCurrentPlayerInformation();
+			if (!IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
+			{
+				// Create can't use abilities for one turn
+				GD.PrintErr("can't use abilities for one turn");
+			}
+		}
+	}
 }
