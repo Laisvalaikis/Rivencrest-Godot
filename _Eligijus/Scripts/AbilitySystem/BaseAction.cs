@@ -251,7 +251,7 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
-		protected virtual void SetHoveredAttackColor(ChunkData chunkData)
+		public virtual void SetHoveredAttackColor(ChunkData chunkData)
 		{
 			if (!chunkData.CharacterIsOnTile() || (chunkData.CharacterIsOnTile() && !CanTileBeClicked(chunkData)))
 			{
@@ -263,7 +263,32 @@ public abstract partial class BaseAction: Resource
 				EnableDamagePreview(chunkData);
 			}
 		}
+
+		public Color GetAbilityHighlightColor()
+		{
+			return abilityHighlight;
+		}
 		
+		public Color GetAbilityHighlightHoverColor()
+		{
+			return abilityHighlightHover;
+		}
+		
+		public Color GetAbilityHoverCharacterColor()
+		{
+			return abilityHoverCharacter;
+		}
+		
+		public Color GetOtherOnGridColor()
+		{
+			return otherOnGrid;
+		}
+		
+		public Color GetCharacterOnGridColor()
+		{
+			return characterOnGrid;
+		}
+
 		public virtual void OnMoveArrows(ChunkData hoveredChunk, ChunkData previousChunk)
 		{
 			
@@ -421,6 +446,11 @@ public abstract partial class BaseAction: Resource
 			{
 				turinIsEven = false;
 			}
+		}
+
+		public void SetFriendlyFire(bool friendlyFire)
+		{
+			this.friendlyFire = friendlyFire;
 		}
 
 		public Player GetPlayer()

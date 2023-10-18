@@ -38,7 +38,7 @@ public partial class BlockAbility : BaseAction
             tileHighlight.SetHighlightColor(abilityHighlight);
         }
     }
-    protected override void SetHoveredAttackColor(ChunkData chunkData)
+    public override void SetHoveredAttackColor(ChunkData chunkData)
     {
         Node2D character = chunkData.GetCurrentCharacter();
         HighlightTile tileHighlight = chunkData.GetTileHighlight();

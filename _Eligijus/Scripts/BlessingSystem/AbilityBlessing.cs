@@ -53,6 +53,10 @@ public partial class AbilityBlessing : BaseBlessing
 	    base.OnTurnEnd(ref baseAction);
     }
 
+    public virtual void OnMoveHover(ref BaseAction baseAction, ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+    }
+
     public virtual void PrepareForBlessing(ChunkData chunkData)
     {
 	    
