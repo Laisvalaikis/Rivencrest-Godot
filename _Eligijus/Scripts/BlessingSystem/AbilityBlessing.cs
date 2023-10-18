@@ -47,10 +47,22 @@ public partial class AbilityBlessing : BaseBlessing
     {
 	    base.OnTurnStart(ref baseAction);
     }
+    
+    public virtual void OnTurnStart(ref BaseAction baseAction, ChunkData tile)
+    {
+	    base.OnTurnStart(ref baseAction);
+    }
+
 
     public override void OnTurnEnd(ref BaseAction baseAction)
     {
 	    base.OnTurnEnd(ref baseAction);
+    }
+    
+    public virtual void OnTurnEnd(ref BaseAction baseAction, ChunkData chunkData)
+    {
+	    base.OnTurnEnd(ref baseAction);
+        
     }
 
     public virtual void OnMoveHover(ref BaseAction baseAction, ChunkData hoveredChunk, ChunkData previousChunk)
