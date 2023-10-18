@@ -33,6 +33,8 @@ public partial class VenomousTouch : AbilityBlessing
 	public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(ref baseAction);
+		// Need to redo abilityPoints on player
+		GD.PrintErr("Redo venomous on player");
 		baseAction.AddPoison(new Poison(tile, 2, 2));
 	}
 }
