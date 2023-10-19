@@ -11,6 +11,7 @@ public abstract partial class BaseAction: Resource
 		[Export] public int turnsSinceCast = 0;
 		[Export] public int turnLifetime = 1;
 		//private RaycastHit2D raycast;
+		[Export] protected int abilityPointsUsage = 1;
 		[Export]
 		public int attackRange = 1;
 		[Export]
