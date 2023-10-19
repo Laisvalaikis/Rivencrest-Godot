@@ -29,8 +29,6 @@ public partial class SlowDown : AbilityBlessing
     public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(ref baseAction, tile);
-        // Need to redo abilityPoints on player
-        GD.PrintErr("Redo ability points on player");
         tile.GetCurrentPlayer().actionManager.AddAbilityPoints(-slowsDown);
     }
     

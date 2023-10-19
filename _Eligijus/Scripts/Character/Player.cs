@@ -34,6 +34,11 @@ public partial class Player : Node2D
 			poison.turnsLeft--;
 		}
 	}
-	
-	
+
+	public List<Poison> GetPoisons()
+	{
+		return _poisons;
+	}
+
+
 }

@@ -34,8 +34,6 @@ public partial class ReduceCooldown : AbilityBlessing
             Player player = tile.GetCurrentPlayer();
             if (IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
             {
-                // Need to redo abilityPoints on player
-                GD.PrintErr("Redo CooldownPoints on player");
                 player.actionManager.AddAbilityCooldownPoints(-_reduceCooldown);
             }
         }

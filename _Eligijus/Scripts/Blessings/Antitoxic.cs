@@ -28,9 +28,9 @@ public partial class Antitoxic : PlayerBlessing
         
     }
     
-    public override void OnTurnStart(ref BaseAction baseAction)
+    public override void OnTurnStart(ref Player player)
     {
-	    base.OnTurnStart(ref baseAction);
-        
+        base.OnTurnStart(ref player);
+        player.GetPoisons().Clear();
     }
 }
