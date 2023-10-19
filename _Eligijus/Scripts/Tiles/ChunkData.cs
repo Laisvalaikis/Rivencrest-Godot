@@ -106,6 +106,7 @@ public class ChunkData
     public void SetCurrentCharacter(Node2D gameObject)
     {
         _currentCharacter = gameObject;
+        _currentPlayer = (Player)gameObject;
     }
 
 
