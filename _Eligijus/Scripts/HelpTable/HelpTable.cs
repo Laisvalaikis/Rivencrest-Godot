@@ -106,7 +106,7 @@ public partial class HelpTable : Node
 		icon.Texture = (AtlasTexture)ability.AbilityImage;
 		abilityTitle.Text = ability.abilityText.abilityTitle;
 		abilityDescription.Text = ability.abilityText.abilityDescription;
-		cooldownText.Text = ability.Action.abilityCooldown.ToString();
+		cooldownText.Text = ability.Action.GetPlayer().abilityCooldown.ToString();
 		if (ability.Action.maxAttackDamage == 0)
 		{
 			damageIcon.Hide();

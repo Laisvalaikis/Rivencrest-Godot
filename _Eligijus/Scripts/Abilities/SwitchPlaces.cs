@@ -41,12 +41,12 @@ public partial class SwitchPlaces : BaseAction
     }
     private void SwitchCharacters(ChunkData characterOne, ChunkData characterTwo)
     {
-        Node2D character = characterOne.GetCurrentCharacter();
-        PlayerInformation playerInformationLocal = characterOne.GetCurrentPlayerInformation();
-        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterTwo.GetPosition(), new Vector2(0, 50f), characterOne.GetCurrentCharacter());
+        Player character = characterOne.GetCurrentPlayer();
+        PlayerInformation playerInformationLocal = characterOne.GetCurrentPlayer().playerInformation;
+        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterTwo.GetPosition(), new Vector2(0, 50f), characterOne.GetCurrentPlayer());
         GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterOne.GetPosition(), new Vector2(0, 50f),
-            characterTwo.GetCurrentCharacter());
-        GameTileMap.Tilemap.SetCharacter(characterOne, characterTwo.GetCurrentCharacter(), characterTwo.GetCurrentPlayerInformation());
-        GameTileMap.Tilemap.SetCharacter(characterTwo, character, playerInformationLocal);
+            characterTwo.GetCurrentPlayer());
+        GameTileMap.Tilemap.SetCharacter(characterOne, characterTwo.GetCurrentPlayer());
+        GameTileMap.Tilemap.SetCharacter(characterTwo, character);
     }
 }

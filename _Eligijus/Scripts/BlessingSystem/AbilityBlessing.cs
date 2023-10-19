@@ -81,8 +81,8 @@ public partial class AbilityBlessing : BaseBlessing
 				
 		    int randomDamage = _random.Next(minDamage, maxDamage);
 		    bool crit = IsItCriticalStrike(ref randomDamage, currentPlayer);
-		    DodgeActivation(ref randomDamage, currentPlayer, chunkData.GetCurrentPlayerInformation());
-		    chunkData.GetCurrentPlayerInformation().DealDamage(randomDamage, crit, currentPlayer);
+		    DodgeActivation(ref randomDamage, currentPlayer, chunkData.GetCurrentPlayer().playerInformation);
+		    chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, crit, currentPlayer);
 	    }
     }
     
@@ -97,7 +97,7 @@ public partial class AbilityBlessing : BaseBlessing
 
     public bool IsAllegianceSame(PlayerInformation currentPlayer, ChunkData chunk, BaseAction action)
     {
-	    return chunk == null || chunk.GetCurrentPlayerInformation().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
+	    return chunk == null || chunk.GetCurrentPlayer().playerInformation.GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
     }
     
     protected bool IsItCriticalStrike(ref int damage, PlayerInformation playerInformation)

@@ -24,11 +24,11 @@ public partial class WallSmash : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        if (chunk.GetCurrentCharacter() != null && chunk.GetInformationType() == InformationType.Player)
+        if (chunk.GetCurrentPlayer() != null && chunk.GetInformationType() == InformationType.Player)
         {
             DealRandomDamageToTarget(chunk, minAttackDamage-2, maxAttackDamage-2);
         }
-        else if(chunk.GetCurrentCharacter() != null)
+        else if(chunk.GetCurrentPlayer() != null)
         {
             DestroyObject(chunk);
         }
@@ -48,17 +48,17 @@ public partial class WallSmash : BaseAction
         {
             ChunkData targetChunkData =
                 GameTileMap.Tilemap.GetChunkDataByIndex(position.Item1 + x, position.Item2 + y);
-            if (targetChunkData != null && targetChunkData.GetCurrentPlayerInformation() == null)
+            if (targetChunkData != null && targetChunkData.GetCurrentPlayer() == null)
             {
                 ChunkData targetChunkDataPlayer =
                     GameTileMap.Tilemap.GetChunkDataByIndex(position.Item1 * 2 + x, position.Item2 * 2 + y);
-                if (targetChunkDataPlayer != null && targetChunkDataPlayer.GetCurrentPlayerInformation() != null 
+                if (targetChunkDataPlayer != null && targetChunkDataPlayer.GetCurrentPlayer() != null 
                                                   && targetChunkDataPlayer.GetInformationType() == InformationType.Player && !IsAllegianceSame(targetChunkDataPlayer))
                 {
                     DealRandomDamageToTarget(targetChunkDataPlayer, minAttackDamage, maxAttackDamage);
                 }
             }
         }
-        chunkData.GetCurrentPlayerInformation().DealDamage(damageToWall, false, player);
+        chunkData.GetCurrentPlayer().playerInformation.DealDamage(damageToWall, false, player);
     }
 }

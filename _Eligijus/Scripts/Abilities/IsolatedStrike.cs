@@ -58,7 +58,7 @@ public partial class IsolatedStrike : BaseAction
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny]?.GetCurrentCharacter() != null && IsAllegianceSame(chunks[nx, ny]))
+            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny]?.GetCurrentPlayer() != null && IsAllegianceSame(chunks[nx, ny]))
             {
                 return false;
             }

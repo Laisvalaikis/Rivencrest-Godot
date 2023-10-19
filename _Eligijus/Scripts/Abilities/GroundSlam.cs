@@ -40,7 +40,7 @@ public partial class GroundSlam : BaseAction
         foreach (var chunk in _chunkListCopy)
         {
             SetNonHoveredAttackColor(chunk);
-            if (chunk.GetCurrentCharacter() != null && chunk!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+            if (chunk.GetCurrentPlayer() != null && chunk!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
             {
                 DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             }
@@ -48,7 +48,7 @@ public partial class GroundSlam : BaseAction
     }
     public override bool CanTileBeClicked(ChunkData chunk)
     {
-        return chunk.GetCurrentCharacter() != GameTileMap.Tilemap.GetCurrentCharacter(); //Prety sure ground slamas temamateus hittina?
+        return chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter(); //Prety sure ground slamas temamateus hittina?
     }
     public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {

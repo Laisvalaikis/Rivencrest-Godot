@@ -35,6 +35,6 @@ public partial class VenomousTouch : AbilityBlessing
 		base.ResolveBlessing(ref baseAction);
 		// Need to redo abilityPoints on player
 		GD.PrintErr("Redo venomous on player");
-		baseAction.AddPoison(new Poison(tile, 2, 2));
+		tile.GetCurrentPlayer().AddPoison(new Poison(tile, 2, 2));
 	}
 }

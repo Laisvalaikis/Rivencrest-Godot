@@ -40,7 +40,7 @@ public partial class BlockAbility : BaseAction
     }
     public override void SetHoveredAttackColor(ChunkData chunkData)
     {
-        Node2D character = chunkData.GetCurrentCharacter();
+        Node2D character = chunkData.GetCurrentPlayer();
         HighlightTile tileHighlight = chunkData.GetTileHighlight();
 
         if (character != null && IsAllegianceSame(chunkData))
@@ -55,7 +55,7 @@ public partial class BlockAbility : BaseAction
     }
     protected override void HighlightGridTile(ChunkData chunkData)
     {
-        if(chunkData.GetCurrentCharacter()!=GameTileMap.Tilemap.GetCurrentCharacter())
+        if(chunkData.GetCurrentPlayer()!=GameTileMap.Tilemap.GetCurrentCharacter())
         {
             chunkData.GetTileHighlight().EnableTile(true);
             chunkData.GetTileHighlight().ActivateColorGridTile(true);
@@ -78,10 +78,10 @@ public partial class BlockAbility : BaseAction
         if (/*CanTileBeClicked(chunk)*/chunk!=null) //currently paspaudus ant abiličio iš kart bando executint ir čia gaunas blogai
         {
             base.ResolveAbility(chunk);
-            PlayerInformation playerInformationLocal = chunk.GetCurrentPlayerInformation();
-            if (playerInformationLocal != null)
+            Player playerLocal = chunk.GetCurrentPlayer();
+            if (playerLocal != null)
                 // playerInformationLocal.BlockingAlly = GameTileMap.Tilemap.GetCurrentCharacter();
-            _characterBeingBlocked = (Player)chunk.GetCurrentCharacter();
+            _characterBeingBlocked = chunk.GetCurrentPlayer();
             // player.playerInformation.Blocker = true;
             FinishAbility();
         }

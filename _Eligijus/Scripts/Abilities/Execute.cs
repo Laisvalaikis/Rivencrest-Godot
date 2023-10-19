@@ -26,8 +26,8 @@ public partial class Execute : BaseAction
     {
         base.ResolveAbility(chunk);
         int damage = ExecuteDamage();
-        chunk.GetCurrentPlayerInformation().DealDamage(damage, false, player);
-        if(chunk.GetCurrentPlayerInformation().GetHealth() <= 0)
+        chunk.GetCurrentPlayer().playerInformation.DealDamage(damage, false, player);
+        if(chunk.GetCurrentPlayer().playerInformation.GetHealth() <= 0)
         {
             player.playerInformation.Heal(5);
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);

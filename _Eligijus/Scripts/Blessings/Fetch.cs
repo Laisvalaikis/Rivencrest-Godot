@@ -26,7 +26,7 @@ public partial class Fetch : AbilityBlessing
     public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(ref baseAction);
-        tile.GetCurrentPlayerInformation().DealDamage(1, false, baseAction.GetPlayer());
+        tile.GetCurrentPlayer().playerInformation.DealDamage(1, false, baseAction.GetPlayer());
     }
 
 }

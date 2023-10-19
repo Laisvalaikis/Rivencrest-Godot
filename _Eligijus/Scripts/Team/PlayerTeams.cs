@@ -95,7 +95,7 @@ public partial class PlayerTeams : Node
 				spawnedCharacter.playerIndex = i;
 				PlayerInformation playerInformation = spawnedCharacter.playerInformation;
 				playerInformation.SetPlayerTeam(teamIndex);
-				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter, playerInformation);
+				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characters.Add(spawnedCharacter);
 				currentCharacters.Teams[teamIndex].aliveCharacters.Add(spawnedCharacter);
 				currentCharacters.Teams[teamIndex].aliveCharactersPlayerInformation.Add(playerInformation);

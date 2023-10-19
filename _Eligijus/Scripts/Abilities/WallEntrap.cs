@@ -62,7 +62,7 @@ public partial class WallEntrap : BaseAction
                 player.GetTree().Root.CallDeferred("add_child", wall);
                 PlayerInformation tempPlayerInformation = wall.playerInformation;
                     
-                GameTileMap.Tilemap.SetCharacter(chunkData, wall, tempPlayerInformation);
+                GameTileMap.Tilemap.SetCharacter(chunkData, wall);
                 _playerInformations.Add(tempPlayerInformation);
             }
         }

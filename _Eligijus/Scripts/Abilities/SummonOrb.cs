@@ -49,7 +49,7 @@ public partial class SummonOrb : BaseAction
         player.GetTree().Root.CallDeferred("add_child", orb);
         _orbInformation = orb.playerInformation;
         _orbInformation.SetInformationType(InformationType.Object);
-        chunkData.SetCurrentCharacter(orb, _orbInformation);
+        chunkData.SetCurrentCharacter(orb);
         chunkData.GetTileHighlight().ActivatePlayerTile(true);
         _orbChunkData = chunkData;
     }
@@ -59,7 +59,7 @@ public partial class SummonOrb : BaseAction
         base.OnTurnStart();
         if (_orbChunkData != null && _orbInformation.GetHealth() > 0)
         {
-            _orbChunkData.SetCurrentCharacter(null, null);
+            _orbChunkData.SetCurrentCharacter(null);
             _orbChunkData = null;
             orb.QueueFree();
             foreach (var t in _attackList)

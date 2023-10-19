@@ -54,7 +54,7 @@ public partial class PowerShot : BaseAction
                             continue;
                         }
                         _chunkList.Add(chunk);
-                        if (chunk.GetCurrentCharacter() != null)
+                        if (chunk.GetCurrentPlayer() != null)
                         {
                             canExtend[direction] = false;
                         }
@@ -67,7 +67,6 @@ public partial class PowerShot : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
             base.ResolveAbility(chunk);
-            PlayerInformation playerInformationLocal = chunk.GetCurrentPlayerInformation();
             int bonusDamage = 0;
             DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
             FinishAbility();

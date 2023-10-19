@@ -27,7 +27,7 @@ public partial class RaiseRock : BaseAction
         Player spawnedWall = spawnResource.Instantiate<Player>();
         player.GetTree().Root.CallDeferred("add_child", spawnedWall);
         PlayerInformation tempPlayerInformation = spawnedWall.playerInformation;
-        GameTileMap.Tilemap.SetCharacter(chunk, spawnedWall, tempPlayerInformation);
+        GameTileMap.Tilemap.SetCharacter(chunk, spawnedWall);
         FinishAbility();
     }
 }

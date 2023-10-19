@@ -29,14 +29,14 @@ public partial class ReduceCooldown : AbilityBlessing
     public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(ref baseAction, tile);
-        if (tile.GetCurrentPlayerInformation() != null)
+        if (tile.GetCurrentPlayer() != null)
         {
-            PlayerInformation player = tile.GetCurrentPlayerInformation();
+            Player player = tile.GetCurrentPlayer();
             if (IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
             {
                 // Need to redo abilityPoints on player
                 GD.PrintErr("Redo CooldownPoints on player");
-                baseAction.abilityCooldown -= _reduceCooldown;
+                player.AddAbilityCooldownPoints(-_reduceCooldown);
             }
         }
     }

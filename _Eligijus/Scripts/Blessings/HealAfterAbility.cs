@@ -34,13 +34,13 @@ public partial class HealAfterAbility : AbilityBlessing
     public override void OnTurnStart(ref BaseAction baseAction, ChunkData tile)
     {
         base.OnTurnEnd(ref baseAction, tile);
-        if (tile != null && tile.GetCurrentPlayerInformation() != null)
+        if (tile != null && tile.GetCurrentPlayer() != null)
         {
-            PlayerInformation player = tile.GetCurrentPlayerInformation();
+            Player player = tile.GetCurrentPlayer();
             if (IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
             {
                 int randomHeal = _random.Next(minHeal, maxHeal);
-                player.Heal(randomHeal);
+                player.playerInformation.Heal(randomHeal);
             }
         }
     }

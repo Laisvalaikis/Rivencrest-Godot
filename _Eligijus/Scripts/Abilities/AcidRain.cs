@@ -30,7 +30,7 @@ public partial class AcidRain : BaseAction
 			{
 				if (CanTileBeClicked(tile))
 				{
-					_poisons.Add(new Poison(tile, 2, 2));
+					tile.GetCurrentPlayer().AddPoison(new Poison(tile, 2, 2));
 				}
 			}
 			FinishAbility();
@@ -38,20 +38,4 @@ public partial class AcidRain : BaseAction
 	}
 
 
-	public override void OnTurnStart()
-	{
-		base.OnTurnStart();
-		PoisonPlayer();
-	}
-	private void PoisonPlayer()
-	{
-		foreach (Poison poison in _poisons)
-		{
-			if (poison.poisonValue > 0 && poison.chunk.GetCurrentPlayerInformation().GetHealth() > 0)
-			{
-				DealDamage(poison.chunk, poison.poisonValue, false);
-			}
-			poison.turnsLeft--;
-		}
-	}
 }

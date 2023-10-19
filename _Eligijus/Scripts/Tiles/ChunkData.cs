@@ -43,7 +43,7 @@ public class ChunkData
     private bool _canUseTile = false;
     private bool _tileIsLocked = false;
     private Node2D _currentCharacter;
-    private PlayerInformation _currentPlayerInformation;
+    private Player _currentPlayer;
     private InformationType _type = InformationType.None;
     // private SpriteRenderer _tileSpriteRenderer;
     private HighlightTile _highlightTile;
@@ -87,13 +87,13 @@ public class ChunkData
         return _highlightTile;
     }
 
-    public void SetCurrentCharacter(Node2D gameObject, PlayerInformation playerInformation)
+    public void SetCurrentCharacter(Player player)
     {
-        _currentCharacter = gameObject;
-        _currentPlayerInformation = playerInformation;
-        if (playerInformation != null)
+        _currentCharacter = player;
+        _currentPlayer = player;
+        if (player != null)
         {
-            _type = playerInformation.GetInformationType(); 
+            _type = player.playerInformation.GetInformationType(); 
         }
         else
         {
@@ -115,7 +115,7 @@ public class ChunkData
     }
 
 
-    public Node2D GetCurrentCharacter()
+    public Node2D GetCurrentCharacterObject()
     {
         return _currentCharacter;
     }
@@ -125,9 +125,9 @@ public class ChunkData
         return _currentCharacter != null;
     }
 
-    public PlayerInformation GetCurrentPlayerInformation()
+    public Player GetCurrentPlayer()
     {
-        return _currentPlayerInformation;
+        return _currentPlayer;
     }
 
     public void StandingOnChunk(bool standingOnChunk)

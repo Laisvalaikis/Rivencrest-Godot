@@ -31,7 +31,7 @@ public partial class HeadStart : AbilityBlessing
         base.OnTurnStart(ref baseAction);
         if (!blessingUsed)
         {
-            baseAction.AddAbilityPoints(addMovementPoints);
+            baseAction.GetPlayer().AddAbilityPoints(addMovementPoints);
             blessingUsed = true;
         }
     }

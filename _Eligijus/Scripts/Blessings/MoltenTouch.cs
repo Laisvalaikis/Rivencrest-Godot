@@ -45,8 +45,8 @@ public partial class MoltenTouch : AbilityBlessing
             ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(directions.Item1, directions.Item2);
             if (chunkData.CharacterIsOnTile())
             {
-                PlayerInformation player = chunkData.GetCurrentPlayerInformation();
-                if (IsAllegianceSame(player, chunkData, baseAction))
+                Player player = chunkData.GetCurrentPlayer();
+                if (IsAllegianceSame(player.playerInformation, chunkData, baseAction))
                 {
                     DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, chunkData, baseAction, 2, 2);
                 }

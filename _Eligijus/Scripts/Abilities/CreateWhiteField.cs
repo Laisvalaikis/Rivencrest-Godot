@@ -26,8 +26,7 @@ public partial class CreateWhiteField : BaseAction
             PackedScene spawnResource = (PackedScene)whiteFieldPrefab;
             Player spawnedWhiteField = spawnResource.Instantiate<Player>();
             player.GetTree().Root.CallDeferred("add_child", spawnedWhiteField);
-            PlayerInformation tempPlayerInformation = spawnedWhiteField.playerInformation;
-            GameTileMap.Tilemap.SetCharacter(_chunkList[i], spawnedWhiteField, tempPlayerInformation);
+            GameTileMap.Tilemap.SetCharacter(_chunkList[i], spawnedWhiteField);
         }
         base.ResolveAbility(chunk);
         FinishAbility();

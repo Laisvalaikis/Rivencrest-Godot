@@ -30,7 +30,7 @@ public partial class Root : AbilityBlessing
         base.ResolveBlessing(ref baseAction, tile);
         if (tile.CharacterIsOnTile())
         {
-            PlayerInformation player = tile.GetCurrentPlayerInformation();
+            Player player = tile.GetCurrentPlayer();
             if (!IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
             {
                 // Create Can't move
