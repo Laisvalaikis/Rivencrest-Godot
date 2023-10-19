@@ -31,7 +31,7 @@ public partial class SlowDown : AbilityBlessing
         base.ResolveBlessing(ref baseAction, tile);
         // Need to redo abilityPoints on player
         GD.PrintErr("Redo ability points on player");
-        tile.GetCurrentPlayer().AddAbilityPoints(-slowsDown);
+        tile.GetCurrentPlayer().actionManager.AddAbilityPoints(-slowsDown);
     }
     
 }

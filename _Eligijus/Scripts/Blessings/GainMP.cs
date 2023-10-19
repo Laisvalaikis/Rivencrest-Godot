@@ -29,6 +29,6 @@ public partial class GainMP : AbilityBlessing
     public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(ref baseAction, tile);
-        baseAction.GetPlayer().AddAbilityPoints(affectMP);
+        baseAction.GetPlayer().actionManager.AddAbilityPoints(affectMP);
     }
 }

@@ -31,7 +31,7 @@ public partial class Swiftness : PlayerBlessing
         base.OnTurnStart(ref baseAction);
         if (baseAction.TurnIsEven())
         {
-            baseAction.GetPlayer().AddAbilityPoints(addAbilityPoints);
+            baseAction.GetPlayer().actionManager.AddAbilityPoints(addAbilityPoints);
         }
     }
 }

@@ -36,7 +36,7 @@ public partial class ReduceCooldown : AbilityBlessing
             {
                 // Need to redo abilityPoints on player
                 GD.PrintErr("Redo CooldownPoints on player");
-                player.AddAbilityCooldownPoints(-_reduceCooldown);
+                player.actionManager.AddAbilityCooldownPoints(-_reduceCooldown);
             }
         }
     }
