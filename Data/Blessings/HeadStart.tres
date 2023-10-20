@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bfw31a656d1if"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/HeadStart.cs" id="1_abai7"]
+
+[resource]
+script = ExtResource("1_abai7")

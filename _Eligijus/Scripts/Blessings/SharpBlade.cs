@@ -2,6 +2,9 @@ using Godot;
 
 public partial class SharpBlade : AbilityBlessing
 {
+
+    [Export] private int dealDamage = 2;
+    
     public SharpBlade()
     {
 			
@@ -9,8 +12,7 @@ public partial class SharpBlade : AbilityBlessing
     
     public SharpBlade(SharpBlade blessing): base(blessing)
     {
-
-
+        dealDamage = blessing.dealDamage;
     }
     
     public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
@@ -30,7 +32,7 @@ public partial class SharpBlade : AbilityBlessing
        base.ResolveBlessing(ref baseAction, tile);
        if (tile.CharacterIsOnTile())
        {
-           tile.GetCurrentPlayerInformation().DealDamage(2, false, baseAction.GetPlayer());
+           tile.GetCurrentPlayer().playerInformation.DealDamage(dealDamage, false, baseAction.GetPlayer());
        }
     }
 

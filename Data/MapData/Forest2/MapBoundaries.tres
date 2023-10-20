@@ -1,3 +1,7 @@
-[gd_resource type="Resource" format=3 uid="uid://dhtlkqy0rguii"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dhtlkqy0rguii"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Map/CollumBoundries.cs" id="1_eh30i"]
 
 [resource]
+script = ExtResource("1_eh30i")
+boundries = Array[Vector4]([])

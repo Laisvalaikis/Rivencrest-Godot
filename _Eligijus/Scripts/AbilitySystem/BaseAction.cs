@@ -11,10 +11,9 @@ public abstract partial class BaseAction: Resource
 		[Export] public int turnsSinceCast = 0;
 		[Export] public int turnLifetime = 1;
 		//private RaycastHit2D raycast;
+		[Export] protected int abilityPointsUsage = 1;
 		[Export]
 		public int attackRange = 1;
-		[Export]
-		public int abilityCooldown = 1;
 		[Export]
 		public int minAttackDamage = 0;
 		[Export]
@@ -37,11 +36,10 @@ public abstract partial class BaseAction: Resource
 		protected Color characterOnGrid = new Color("#FF5947");
 		[Export]
 		protected Array<AbilityBlessing> _abilityBlessingsRef;
-		
-		protected int AbilityPoints;
-		protected List<Poison> _poisons = new List<Poison>();
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected List<ChunkData> _chunkList;
+		protected bool turinIsEven = false;
+		
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
 
@@ -56,7 +54,6 @@ public abstract partial class BaseAction: Resource
 			turnsSinceCast = action.turnsSinceCast;
 			turnLifetime = action.turnLifetime;
 			attackRange = action.attackRange;
-			abilityCooldown = action.abilityCooldown;
 			minAttackDamage = action.minAttackDamage;
 			maxAttackDamage = action.maxAttackDamage;
 			isAbilitySlow = action.isAbilitySlow;
@@ -107,7 +104,7 @@ public abstract partial class BaseAction: Resource
 
 		protected virtual void HighlightGridTile(ChunkData chunkData)
 		{
-			if (chunkData.GetCurrentCharacter() != GameTileMap.Tilemap.GetCurrentCharacter())
+			if (chunkData.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
 			{
 				SetNonHoveredAttackColor(chunkData);
 				chunkData.GetTileHighlight().EnableTile(true);
@@ -239,7 +236,7 @@ public abstract partial class BaseAction: Resource
 
 		protected virtual void SetNonHoveredAttackColor(ChunkData chunkData)
 		{
-			if (chunkData.GetCurrentCharacter() == null || (chunkData.GetCurrentCharacter() != null && !CanTileBeClicked(chunkData)))
+			if (chunkData.GetCurrentPlayer() == null || (chunkData.GetCurrentPlayer() != null && !CanTileBeClicked(chunkData)))
 			{
 				chunkData.GetTileHighlight()?.SetHighlightColor(abilityHighlight);
 			}
@@ -249,7 +246,7 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
-		protected virtual void SetHoveredAttackColor(ChunkData chunkData)
+		public virtual void SetHoveredAttackColor(ChunkData chunkData)
 		{
 			if (!chunkData.CharacterIsOnTile() || (chunkData.CharacterIsOnTile() && !CanTileBeClicked(chunkData)))
 			{
@@ -261,7 +258,32 @@ public abstract partial class BaseAction: Resource
 				EnableDamagePreview(chunkData);
 			}
 		}
+
+		public Color GetAbilityHighlightColor()
+		{
+			return abilityHighlight;
+		}
 		
+		public Color GetAbilityHighlightHoverColor()
+		{
+			return abilityHighlightHover;
+		}
+		
+		public Color GetAbilityHoverCharacterColor()
+		{
+			return abilityHoverCharacter;
+		}
+		
+		public Color GetOtherOnGridColor()
+		{
+			return otherOnGrid;
+		}
+		
+		public Color GetCharacterOnGridColor()
+		{
+			return characterOnGrid;
+		}
+
 		public virtual void OnMoveArrows(ChunkData hoveredChunk, ChunkData previousChunk)
 		{
 			
@@ -353,7 +375,7 @@ public abstract partial class BaseAction: Resource
 				ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.Item1, tempIndexes.Item2);
 				if (!tempTile.CharacterIsOnTile())
 				{
-					GameTileMap.Tilemap.MoveSelectedCharacter(tempTile.GetPosition(), new Vector2(0, 0.5f), player.GetCurrentCharacter());
+					GameTileMap.Tilemap.MoveSelectedCharacter(tempTile.GetPosition(), new Vector2(0, 0.5f), player.GetCurrentPlayer());
 				}
 			}
 		}
@@ -376,7 +398,7 @@ public abstract partial class BaseAction: Resource
 					highlightTile.SetDamageText($"{minAttackDamage}-{maxAttackDamage}");
 				}
 
-				if (chunk.GetCurrentPlayerInformation().GetHealth() <= minAttackDamage)
+				if (chunk.GetCurrentPlayer().playerInformation.GetHealth() <= minAttackDamage)
 				{
 					highlightTile.ActivateDeathSkull(true);
 				}
@@ -405,13 +427,25 @@ public abstract partial class BaseAction: Resource
 		
 		public virtual void OnTurnStart()
 		{
-			
 		}
 
 		public virtual void OnTurnEnd()
 		{
-			RefillActionPoints();
+			//RefillActionPoints();
 			turnsSinceCast++;
+			if (!turinIsEven)
+			{
+				turinIsEven = true;
+			}
+			else
+			{
+				turinIsEven = false;
+			}
+		}
+
+		public void SetFriendlyFire(bool friendlyFire)
+		{
+			this.friendlyFire = friendlyFire;
 		}
 
 		public Player GetPlayer()
@@ -424,31 +458,11 @@ public abstract partial class BaseAction: Resource
 			// AvailableAttacks--;
 		}
 
-		public virtual void RefillActionPoints() //pradzioj ejimo
-		{
-			AbilityPoints = AbilityCooldown;
-		}
-
 		public virtual void ResolveAbility(ChunkData chunk)
 		{
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
 			GD.PushWarning("PlaySound");
 			ClearGrid();
-		}
-
-		public void SetAbilityPoints(int abilityPoints)
-		{
-			AbilityCooldown = abilityPoints;
-		}
-
-		public void AddAbilityPoints(int abilityPoints)
-		{
-			AbilityPoints += abilityPoints;
-		}
-
-		public void AddPoison(Poison poison)
-		{
-			_poisons.Add(poison);
 		}
 
 		protected virtual void FinishAbility()
@@ -468,7 +482,7 @@ public abstract partial class BaseAction: Resource
 
 		public bool IsAllegianceSame(ChunkData chunk)
 		{
-			return chunk == null || (chunk.GetCurrentPlayerInformation().GetPlayerTeam() == player.playerInformation.GetPlayerTeam() && !friendlyFire);
+			return chunk == null || (chunk.GetCurrentPlayer().playerInformation.GetPlayerTeam() == player.playerInformation.GetPlayerTeam() && !friendlyFire);
 		}
 
 		protected bool IsItCriticalStrike(ref int damage)
@@ -503,16 +517,16 @@ public abstract partial class BaseAction: Resource
 				
 				int randomDamage = _random.Next(minDamage, maxDamage);
 				bool crit = IsItCriticalStrike(ref randomDamage);
-				DodgeActivation(ref randomDamage, chunkData.GetCurrentPlayerInformation());
-				chunkData.GetCurrentPlayerInformation().DealDamage(randomDamage, crit, player);
+				DodgeActivation(ref randomDamage, chunkData.GetCurrentPlayer().playerInformation);
+				chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, crit, player);
 			}
 		}
 
 		protected void DealDamage(ChunkData chunkData, int damage, bool crit)
 		{
-			if (chunkData != null && chunkData.GetCurrentCharacter() != null && IsAllegianceSame(chunkData))
+			if (chunkData != null && chunkData.GetCurrentPlayer() != null && IsAllegianceSame(chunkData))
 			{
-				chunkData.GetCurrentPlayerInformation().DealDamage(damage, crit, player);
+				chunkData.GetCurrentPlayer().playerInformation.DealDamage(damage, crit, player);
 			}
 		}
 		
@@ -520,7 +534,12 @@ public abstract partial class BaseAction: Resource
 		{
 			return $"{minAttackDamage}-{maxAttackDamage}";
 		}
-		
+
+		public bool TurnIsEven()
+		{
+			return turinIsEven;
+		}
+
 		// protected IEnumerator ExecuteAfterTime(float time, Action task)
 		// {
 		//     yield return new WaitForSeconds(time);

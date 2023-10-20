@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://5ssdfeqcovuc"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/FreezingTouch.cs" id="1_4th4x"]
+
+[resource]
+script = ExtResource("1_4th4x")

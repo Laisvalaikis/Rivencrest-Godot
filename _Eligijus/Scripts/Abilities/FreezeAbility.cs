@@ -75,7 +75,7 @@ public partial class FreezeAbility : BaseAction
 		foreach (var chunk in _chunkListCopy)
 		{
 			SetNonHoveredAttackColor(chunk);
-			if (chunk.GetCurrentCharacter() != null && chunk!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+			if (chunk.GetCurrentPlayer() != null && chunk!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
 			{
 				DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 			}

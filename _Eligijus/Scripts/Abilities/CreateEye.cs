@@ -27,8 +27,7 @@ public partial class CreateEye : BaseAction
 			PackedScene spawnResource = (PackedScene)eyePrefab;
 			Player spawnedEye = spawnResource.Instantiate<Player>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedEye);
-			PlayerInformation tempPlayerInformation = spawnedEye.playerInformation;
-			GameTileMap.Tilemap.SetCharacter(chunk, spawnedEye, tempPlayerInformation);
+			GameTileMap.Tilemap.SetCharacter(chunk, spawnedEye);
 			base.ResolveAbility(chunk);
 		}
 		FinishAbility();

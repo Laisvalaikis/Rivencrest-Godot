@@ -56,7 +56,7 @@ public partial class ChainHook : BaseAction
 						}
 
 						_chunkList.Add(chunk);
-						if (chunk.GetCurrentCharacter() != null)
+						if (chunk.GetCurrentPlayer() != null)
 						{
 							canExtend[direction] = false;
 						}
@@ -69,7 +69,7 @@ public partial class ChainHook : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
-		Player character = (Player)chunk.GetCurrentCharacter();
+		Player character = chunk.GetCurrentPlayer();
 		if (character != null)
 		{
 			if (!IsAllegianceSame(chunk))
@@ -131,7 +131,7 @@ public partial class ChainHook : BaseAction
 		HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
 		HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
 
-		Player currentCharacter = (Player)hoveredChunk?.GetCurrentCharacter();
+		Player currentCharacter = hoveredChunk?.GetCurrentPlayer();
 		PlayerInformation currentPlayerInfo = currentCharacter?.playerInformation;
 
 		if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))

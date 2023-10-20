@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c6racdua8md0f"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/Swiftness.cs" id="1_fgqox"]
+
+[resource]
+script = ExtResource("1_fgqox")

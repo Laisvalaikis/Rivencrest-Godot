@@ -29,7 +29,7 @@ public partial class FreezingTouch : AbilityBlessing
     public override void OnTurnStart(ref BaseAction baseAction)
     {
         base.OnTurnStart(ref baseAction);
-        baseAction.AddAbilityPoints(-slowEnemyBy);
+        baseAction.GetPlayer().actionManager.AddAbilityPoints(-slowEnemyBy);
     }
     
 }

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b08q8gy8ss7y5"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/RangeIncrease.cs" id="1_lxq3v"]
+
+[resource]
+script = ExtResource("1_lxq3v")

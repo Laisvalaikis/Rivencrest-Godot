@@ -10,9 +10,8 @@ public partial class ActionManager : Node
 	private Array<Ability> _abilities;
 	private Array<Ability> _allAbilities;
 	[Export]
-	private int availableAttackPoints;
-	[Export]
-	private int availableMovementPoints;
+	private int availableAbilityPoints = 1;
+	private int abilityPoints;
 	private bool hasSlowAbilityBeenCast = false;
 	private int trackingCount = 0;
 
@@ -54,6 +53,11 @@ public partial class ActionManager : Node
 		}
 	}
 
+	public int GetAllAbilityPoints()
+	{
+		return availableAbilityPoints;
+	}
+
 	public Array<Ability> ReturnAllAbilities()
 	{
 		return _allAbilities;
@@ -69,16 +73,32 @@ public partial class ActionManager : Node
 		return _baseAbilities;
 	}
 	
-	public virtual void RemoveActionPoints()
-	{
-		availableAttackPoints--;
-	}
 	
 	public void RemoveAllActionPoints() 
 	{
-		availableMovementPoints = 0;
 		hasSlowAbilityBeenCast = true;
-
+		abilityPoints = 0;
 	}
+	
+	public void SetAbilityPoints(int abilityPoints)
+	{
+		availableAbilityPoints = abilityPoints;
+	}
+	
+	public void AddAbilityCooldownPoints(int abilityPoints)
+	{
+		availableAbilityPoints += abilityPoints;
+	}
+
+	public void AddAbilityPoints(int abilityPoints)
+	{
+		this.abilityPoints += abilityPoints;
+	}
+	
+	public virtual void RefillActionPoints() //pradzioj ejimo
+	{
+		abilityPoints = availableAbilityPoints;
+	}
+	
 }
 

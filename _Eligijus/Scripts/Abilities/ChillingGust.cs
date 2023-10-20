@@ -31,7 +31,7 @@ public partial class ChillingGust : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
             base.ResolveAbility(chunk);
-            Player target = (Player)chunk.GetCurrentCharacter();
+            Player target = chunk.GetCurrentPlayer();
             PlayerInformation clickedPlayerInformation = target.playerInformation;
             
             if (IsAllegianceSame(chunk))

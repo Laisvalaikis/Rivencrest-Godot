@@ -21,7 +21,6 @@ public partial class MindControl : BaseAction
     {
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        chunk.GetCurrentPlayerInformation().ApplyDebuff("MindControl", player);
         FinishAbility();
     }
 }

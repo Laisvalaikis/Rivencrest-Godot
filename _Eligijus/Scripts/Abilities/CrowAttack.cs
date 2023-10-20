@@ -78,7 +78,7 @@ public partial class CrowAttack : BaseAction
             if (t.CharacterIsOnTile() && CanTileBeClicked(t))
             {
                 int bonusDamage = 0;
-                if (_poisons.Count > 0)
+                if (t.GetCurrentPlayer().GetPoisonCount() > 0)
                 {
                     bonusDamage += poisonBonusDamage;
                 }
@@ -91,17 +91,6 @@ public partial class CrowAttack : BaseAction
     public override void OnTurnStart()
     {
         base.OnTurnStart();
-        PoisonPlayer();
     }
-    private void PoisonPlayer()
-    {
-        foreach (Poison x in _poisons)
-        {
-            if (x.poisonValue > 0 && x.chunk.GetCurrentPlayerInformation().GetHealth() > 0)
-            {
-                DealDamage(x.chunk, x.poisonValue, false);
-            }
-            x.turnsLeft--;
-        }
-    }
+
 }

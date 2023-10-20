@@ -311,6 +311,18 @@ public partial class GameTileMap : Node2D
 		return false;
 	}
 
+	public bool CheckIfWall(int x, int y)
+	{
+		if ((_chunksArray.GetLength(0)-1 == x || x == 0) 
+		                                  && (_chunksArray.GetLength(1)-1 == y || y == 0)
+		                                  && _chunksArray[x, y] != null 
+		                                  && !_chunksArray[x, y].TileIsLocked())
+		{
+			return true;
+		}
+		return false;
+	}
+
 	// public void EnableAllTiles()
 	// {
 	//     tiles.SetActive(true);
@@ -379,26 +391,26 @@ public partial class GameTileMap : Node2D
 	{
 		if (chunk != null)
 		{
-			chunk.SetCurrentCharacter(null, null);
+			chunk.SetCurrentCharacter(null);
 			chunk.GetTileHighlight().ActivatePlayerTile(false);
 		}
 	}
 	
-	public void SetCharacter(Vector2 mousePosition, Node2D character, PlayerInformation playerInformation)
+	public void SetCharacter(Vector2 mousePosition, Node2D character)
 	{
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
-			chunkData.SetCurrentCharacter(character, playerInformation);
+			chunkData.SetCurrentCharacter(character);
 			chunkData.GetTileHighlight().ActivatePlayerTile(true);
 		}
 	}
 	
-	public void SetCharacter(ChunkData chunk, Node2D character, PlayerInformation playerInformation)
+	public void SetCharacter(ChunkData chunk, Node2D character)
 	{
 		if (chunk != null)
 		{
-			chunk.SetCurrentCharacter(character, playerInformation);
+			chunk.SetCurrentCharacter(character);
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 		}
 	}
@@ -407,7 +419,7 @@ public partial class GameTileMap : Node2D
 	{
 		if (chunkData != null)
 		{
-			return chunkData.GetCurrentCharacter() != null;
+			return chunkData.GetCurrentPlayer() != null;
 		}
 		return false;
 	}
@@ -417,7 +429,7 @@ public partial class GameTileMap : Node2D
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
-			return chunkData.GetCurrentCharacter() != null && chunkData.GetCurrentCharacter() != _currentSelectedCharacter;
+			return chunkData.GetCurrentPlayer() != null && chunkData.GetCurrentPlayer() != _currentSelectedCharacter;
 		}
 		return false;
 	}
@@ -436,7 +448,7 @@ public partial class GameTileMap : Node2D
 				GameTileMap.Tilemap.GetChunk(moveCharacter.GlobalPosition);
 			Vector2 characterPosition = GetChunk(mousePosition).GetPosition() - offset;
 			moveCharacter.GlobalPosition = characterPosition;
-			SetCharacter(mousePosition, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
+			SetCharacter(mousePosition, moveCharacter);
 			if(previousCharacterChunk!=GetChunk(mousePosition))
 				ResetChunkCharacter(previousCharacterChunk);
 			
@@ -460,7 +472,7 @@ public partial class GameTileMap : Node2D
 			if (previousCharacterChunk != chunk)
 			{
 				moveCharacter.GlobalPosition = characterPosition;
-				SetCharacter(chunk, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
+				SetCharacter(chunk, moveCharacter);
 				ResetChunkCharacter(previousCharacterChunk);
 			}
 		}
@@ -489,7 +501,7 @@ public partial class GameTileMap : Node2D
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
-			_currentSelectedCharacter = (Player)chunkData.GetCurrentCharacter();
+			_currentSelectedCharacter = chunkData.GetCurrentPlayer();
 			if (_currentSelectedCharacter != null)
 			{
 				_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
@@ -514,7 +526,7 @@ public partial class GameTileMap : Node2D
 		return _currentSelectedCharacter != null;
 	}
 	
-	public Node2D GetCurrentCharacter()
+	public Player GetCurrentCharacter()
 	{
 		return _currentSelectedCharacter;
 	}
@@ -540,7 +552,7 @@ public partial class GameTileMap : Node2D
 		{
 			SelectTile(_mousePosition);
 		}
-		else if(CharacterIsSelected() && chunk!=null && GetCurrentCharacter()==chunk.GetCurrentCharacter()) // Clicking on currently selected character to deselect it
+		else if(CharacterIsSelected() && chunk!=null && GetCurrentCharacter()==chunk.GetCurrentPlayer()) // Clicking on currently selected character to deselect it
 		{
 			DeselectCurrentCharacter();
 		}

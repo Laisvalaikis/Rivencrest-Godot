@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class AbilityBlessing : BaseBlessing
@@ -42,15 +43,36 @@ public partial class AbilityBlessing : BaseBlessing
     {
 	    base.ResolveBlessing(ref baseAction);
     }
-    
+
+    public virtual void ResolveBlessing(ref BaseAction baseAction, List<ChunkData> tiles)
+    {
+	    
+    }
+
     public override void OnTurnStart(ref BaseAction baseAction)
     {
 	    base.OnTurnStart(ref baseAction);
     }
+    
+    public virtual void OnTurnStart(ref BaseAction baseAction, ChunkData tile)
+    {
+	    base.OnTurnStart(ref baseAction);
+    }
+
 
     public override void OnTurnEnd(ref BaseAction baseAction)
     {
 	    base.OnTurnEnd(ref baseAction);
+    }
+    
+    public virtual void OnTurnEnd(ref BaseAction baseAction, ChunkData chunkData)
+    {
+	    base.OnTurnEnd(ref baseAction);
+        
+    }
+
+    public virtual void OnMoveHover(ref BaseAction baseAction, ChunkData hoveredChunk, ChunkData previousChunk)
+    {
     }
 
     public virtual void PrepareForBlessing(ChunkData chunkData)
@@ -65,8 +87,8 @@ public partial class AbilityBlessing : BaseBlessing
 				
 		    int randomDamage = _random.Next(minDamage, maxDamage);
 		    bool crit = IsItCriticalStrike(ref randomDamage, currentPlayer);
-		    DodgeActivation(ref randomDamage, currentPlayer, chunkData.GetCurrentPlayerInformation());
-		    chunkData.GetCurrentPlayerInformation().DealDamage(randomDamage, crit, currentPlayer);
+		    DodgeActivation(ref randomDamage, currentPlayer, chunkData.GetCurrentPlayer().playerInformation);
+		    chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, crit, currentPlayer);
 	    }
     }
     
@@ -81,7 +103,7 @@ public partial class AbilityBlessing : BaseBlessing
 
     public bool IsAllegianceSame(PlayerInformation currentPlayer, ChunkData chunk, BaseAction action)
     {
-	    return chunk == null || chunk.GetCurrentPlayerInformation().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
+	    return chunk == null || chunk.GetCurrentPlayer().playerInformation.GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
     }
     
     protected bool IsItCriticalStrike(ref int damage, PlayerInformation playerInformation)

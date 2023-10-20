@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://btyvyoikypblx"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/AffectAllies.cs" id="1_1gt2b"]
+
+[resource]
+script = ExtResource("1_1gt2b")

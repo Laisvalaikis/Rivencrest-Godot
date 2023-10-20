@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c53sku5ga0ms0"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/DealToAdjacent.cs" id="1_tj2x2"]
+
+[resource]
+script = ExtResource("1_tj2x2")

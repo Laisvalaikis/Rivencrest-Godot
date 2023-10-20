@@ -33,6 +33,6 @@ public partial class VenomousTouch : AbilityBlessing
 	public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(ref baseAction);
-		baseAction.AddPoison(new Poison(tile, 2, 2));
+		tile.GetCurrentPlayer().AddPoison(new Poison(tile, 2, 2));
 	}
 }

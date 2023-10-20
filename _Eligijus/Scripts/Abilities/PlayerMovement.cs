@@ -77,7 +77,7 @@ public partial class PlayerMovement : BaseAction
 	
 	protected override void HighlightGridTile(ChunkData chunkData)
 	{
-		if (chunkData.GetCurrentCharacter() == null)
+		if (chunkData.GetCurrentPlayer() == null)
 		{
 			chunkData.GetTileHighlight().EnableTile(true);
 			chunkData.GetTileHighlight().ActivateColorGridTile(true);
@@ -124,7 +124,7 @@ public partial class PlayerMovement : BaseAction
 			if (x != endX)
 			{
 				stairStepPath.Add(chunkArray[y, x]);
-				if (!chunkArray[y, x + xStep].GetTileHighlight().isHighlighted && chunkArray[y,x+xStep].GetCurrentCharacter()==null)
+				if (!chunkArray[y, x + xStep].GetTileHighlight().isHighlighted && chunkArray[y,x+xStep].GetCurrentPlayer()==null)
 				{
 					y += yStep;
 				}
@@ -136,7 +136,7 @@ public partial class PlayerMovement : BaseAction
 			if (y != endY)
 			{
 				stairStepPath.Add(chunkArray[y, x]);
-				if (!chunkArray[y + yStep, x].GetTileHighlight().isHighlighted && chunkArray[y+yStep,x].GetCurrentCharacter()==null)
+				if (!chunkArray[y + yStep, x].GetTileHighlight().isHighlighted && chunkArray[y+yStep,x].GetCurrentPlayer()==null)
 				{
 					x += xStep;
 				}
