@@ -55,9 +55,9 @@ public partial class ChillingGust : BaseAction
         chunkData.GetTileHighlight().ActivateColorGridTile(true);
     }
     
-    protected override void SetHoveredAttackColor(ChunkData chunkData)
+    public override void SetHoveredAttackColor(ChunkData chunkData)
     {
-        Node2D character = chunkData.GetCurrentCharacter();
+        Node2D character = chunkData.GetCurrentPlayer();
         HighlightTile tileHighlight = chunkData.GetTileHighlight();
 
         if (character != null && IsAllegianceSame(chunkData))
