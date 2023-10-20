@@ -23,9 +23,15 @@ public partial class CryoFreeze : BaseAction
 	}
 	public override void CreateAvailableChunkList(int attackRange)
 	{
-		base.CreateAvailableChunkList(attackRange);
 		_chunkList.Add(GameTileMap.Tilemap.GetChunk(player.GlobalPosition));
 	}
+	protected override void HighlightGridTile(ChunkData chunkData)
+	{
+			SetNonHoveredAttackColor(chunkData);
+			chunkData.GetTileHighlight().EnableTile(true);
+			chunkData.GetTileHighlight().ActivateColorGridTile(true);
+	}
+	
 	public override void OnTurnStart()
 	{
 		if (_isAbilityActive && (player.playerInformation.GetHealth() > 0))
@@ -61,6 +67,17 @@ public partial class CryoFreeze : BaseAction
 		}
 		_isAbilityActive = false;
 	}
+
+	public override bool CanTileBeClicked(ChunkData chunkData)
+	{
+		return true;
+	}
+	
+	protected override void EnableDamagePreview(ChunkData chunk, string customText = null)
+	{
+		
+	}
+
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);

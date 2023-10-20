@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
+using Godot;
+
 public partial class DisarmingSlam : BaseAction
 {
-    
     public DisarmingSlam()
     {
  		
@@ -18,46 +21,77 @@ public partial class DisarmingSlam : BaseAction
     {
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(chunk));
         FinishAbility();
     }
-
-    public override void CreateAvailableChunkList(int radius)
+    private ChunkData TileToDashTo(ChunkData chunk)
     {
-        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-        (int centerX, int centerY) = centerChunk.GetIndexes();
-        _chunkList.Clear();
-        int count = attackRange; 
-        
-        ChunkData[,] chunkArray = new ChunkData[4,count];
+        Vector2 position = player.GlobalPosition;
+        ChunkData currentPlayerChunk = GameTileMap.Tilemap.GetChunk(position);
+        (int playerX, int playerY) = currentPlayerChunk.GetIndexes();
+        (int chunkX, int chunkY) = chunk.GetIndexes();
 
-        int start = 1;
-        for (int i = 0; i < count; i++) 
+        int deltaX = playerX - chunkX;
+        int deltaY = playerY - chunkY;
+
+        // Determine the direction from the player to the chunk
+        int directionX = deltaX != 0 ? deltaX / Math.Abs(deltaX) : 0;
+        int directionY = deltaY != 0 ? deltaY / Math.Abs(deltaY) : 0;
+
+        // if (deltaY == 1 || deltaY == -1)
+        // {
+        //     directionY = 0;
+        // }
+        //
+        // if (deltaX == 1 || deltaX == -1)
+        // {
+        //     directionX = 0;
+        // }
+
+        // Get the chunk next to the player in the determined direction
+        ChunkData targetChunk = GameTileMap.Tilemap.GetChunkDataByIndex(chunkX+directionX,chunkY+directionY);
+
+        return targetChunk;
+    }
+    protected override void GeneratePlusPattern(ChunkData centerChunk, int length)
+    {
+        (int centerX, int centerY) = centerChunk.GetIndexes();
+        ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray();
+        bool[] canExtend = { true, true, true, true };
+
+        for (int i = 1; i <= length; i++)
         {
-            if (GameTileMap.Tilemap.CheckBounds(centerX + i + start, centerY))
+            List<(int, int, int)> positions = new List<(int, int, int)>
             {
-                ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(centerX + i + start, centerY);
-                _chunkList.Add(chunkData);
-                chunkArray[0, i] = chunkData;
-            }
-            if (GameTileMap.Tilemap.CheckBounds(centerX - i - start, centerY))
+                (centerX, centerY + i, 0), // Up
+                (centerX, centerY - i, 1), // Down
+                (centerX + i, centerY, 2), // Right
+                (centerX - i, centerY, 3) // Left
+            };
+            foreach (var (x, y, direction) in positions)
             {
-                ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(centerX-i - start, centerY);
-                _chunkList.Add(chunkData);
-                chunkArray[1, i] = chunkData;
-            }
-            if (GameTileMap.Tilemap.CheckBounds(centerX, centerY + i + start))
-            {
-                ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(centerX, centerY + i + start);
-                _chunkList.Add(chunkData);
-                chunkArray[2, i] = chunkData;
-            }
-            if (GameTileMap.Tilemap.CheckBounds(centerX, centerY - i - start))
-            {
-                ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(centerX, centerY - i - start);
-                _chunkList.Add(chunkData);
-                chunkArray[3, i] = chunkData;
+                if (!canExtend[direction])
+                {
+                    continue;
+                }
+                if (x >= 0 && x < chunksArray.GetLength(0) && y >= 0 && y < chunksArray.GetLength(1))
+                {
+                    ChunkData chunk = chunksArray[x, y];
+                    if (chunk != null && !chunk.TileIsLocked())
+                    {
+                        if (chunk.GetInformationType() == InformationType.Object)
+                        {
+                            canExtend[direction] = false;
+                            continue;
+                        }
+                        _chunkList.Add(chunk);
+                        if (chunk.GetCurrentCharacter() != null)
+                        {
+                            canExtend[direction] = false;
+                        }
+                    }
+                }
             }
         }
-
     }
 }

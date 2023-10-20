@@ -457,9 +457,12 @@ public partial class GameTileMap : Node2D
 		{
 			ChunkData previousCharacterChunk = Tilemap.GetChunk(moveCharacter.GlobalPosition);
 			Vector2 characterPosition = chunk.GetPosition();
-			moveCharacter.GlobalPosition = characterPosition;
-			SetCharacter(chunk, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
-			ResetChunkCharacter(previousCharacterChunk);
+			if (previousCharacterChunk != chunk)
+			{
+				moveCharacter.GlobalPosition = characterPosition;
+				SetCharacter(chunk, moveCharacter, previousCharacterChunk.GetCurrentPlayerInformation());
+				ResetChunkCharacter(previousCharacterChunk);
+			}
 		}
 		// SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
 		// bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);

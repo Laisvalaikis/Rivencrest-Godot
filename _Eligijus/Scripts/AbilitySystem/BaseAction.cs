@@ -39,7 +39,7 @@ public abstract partial class BaseAction: Resource
 		protected Array<AbilityBlessing> _abilityBlessingsRef;
 		
 		protected int AbilityPoints;
-		protected List<Poison> _poisons;
+		protected List<Poison> _poisons = new List<Poison>();
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected List<ChunkData> _chunkList;
 		private PlayerInformationData _playerInformationData;

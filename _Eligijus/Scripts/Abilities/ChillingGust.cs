@@ -42,33 +42,57 @@ public partial class ChillingGust : BaseAction
             else
             {
                 int bonusDamage = 0;
+                //Calculate bonus damage based on blessings
                 DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
-                clickedPlayerInformation.ApplyDebuff("IceSlow");
             }
             FinishAbility();
+    }
+    
+    protected override void HighlightGridTile(ChunkData chunkData)
+    {
+        SetNonHoveredAttackColor(chunkData);
+        chunkData.GetTileHighlight().EnableTile(true);
+        chunkData.GetTileHighlight().ActivateColorGridTile(true);
+    }
+    
+    protected override void SetHoveredAttackColor(ChunkData chunkData)
+    {
+        Node2D character = chunkData.GetCurrentCharacter();
+        HighlightTile tileHighlight = chunkData.GetTileHighlight();
+
+        if (character != null && IsAllegianceSame(chunkData))
+        {
+            tileHighlight.SetHighlightColor(abilityHoverCharacter);
+            EnableDamagePreview(chunkData,"PROTECT");
+        }
+        else
+        {
+            tileHighlight.SetHighlightColor(abilityHighlightHover);
+        }
     }
     
     private void CreateDamageTileList(ChunkData chunk)
     {
         _additionalDamageTiles.Clear();
-        var spellDirectionVectors = new List<(int, int)>
+        
+        
+        ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
+        (int x, int y) indexes = chunk.GetIndexes();
+        int x = indexes.x;
+        int y = indexes.y;
+
+        int[] dx = { 0, 0, 1, -1 };
+        int[] dy = { 1, -1, 0, 0 };
+
+        for (int i = 0; i < 4; i++)
         {
-            (1, 0),
-            (0, 1),
-            (-1, 0),
-            (0, -1)
-        };
-        foreach (var x in spellDirectionVectors)
-        {
-            if (CheckIfSpecificInformationType(chunk, InformationType.Player))
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && CheckIfSpecificInformationType(chunks[nx,ny], InformationType.Player))
             {
                 _additionalDamageTiles.Add(chunk);
             }
         }
     }
-    public void OnTileHover(Vector3 position)
-    {
-
-    }
-    
 }

@@ -103,25 +103,25 @@ public partial class ChainHook : BaseAction
 		(int chunkX, int chunkY) = chunk.GetIndexes();
 		(int playerX, int playerY) = currentPlayerChunk.GetIndexes();
 
-		int deltaX = chunkX + playerX;
+		int deltaX = chunkX - playerX;
 		int deltaY = chunkY - playerY;
 
 		// Determine the direction from the player to the chunk
 		int directionX = deltaX != 0 ? deltaX / Math.Abs(deltaX) : 0;
 		int directionY = deltaY != 0 ? deltaY / Math.Abs(deltaY) : 0;
 
-		if (deltaY == 1 || deltaY == -1)
-		{
-			directionY = 0;
-		}
-
-		if (deltaX == 1 || deltaX == -1)
-		{
-			directionX = 0;
-		}
+		// if (deltaY == 1 || deltaY == -1)
+		// {
+		// 	directionY = 0;
+		// }
+		//
+		// if (deltaX == 1 || deltaX == -1)
+		// {
+		// 	directionX = 0;
+		// }
 
 		// Get the chunk next to the player in the determined direction
-		ChunkData targetChunk = GameTileMap.Tilemap.GetChunkDataByIndex(chunkX+directionX,chunkY+directionY);
+		ChunkData targetChunk = GameTileMap.Tilemap.GetChunkDataByIndex(playerX+directionX,playerY+directionY);
 
 		return targetChunk;
 	}
