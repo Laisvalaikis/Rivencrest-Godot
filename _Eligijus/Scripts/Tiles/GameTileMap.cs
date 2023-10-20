@@ -314,9 +314,9 @@ public partial class GameTileMap : Node2D
 	public bool CheckIfWall(int x, int y)
 	{
 		if ((_chunksArray.GetLength(0)-1 == x || x == 0) 
-		                                  && (_chunksArray.GetLength(1)-1 == y || y == 0)
-		                                  && _chunksArray[x, y] != null 
-		                                  && !_chunksArray[x, y].TileIsLocked())
+										  && (_chunksArray.GetLength(1)-1 == y || y == 0)
+										  && _chunksArray[x, y] != null 
+										  && !_chunksArray[x, y].TileIsLocked())
 		{
 			return true;
 		}
