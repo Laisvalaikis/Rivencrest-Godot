@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://hia20eopawot"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/Fetch.cs" id="1_ppqy8"]
+
+[resource]
+script = ExtResource("1_ppqy8")

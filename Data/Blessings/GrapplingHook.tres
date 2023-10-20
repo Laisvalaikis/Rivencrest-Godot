@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bmd6f3y4l6bls"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/GrapplingHook.cs" id="1_5vd36"]
+
+[resource]
+script = ExtResource("1_5vd36")

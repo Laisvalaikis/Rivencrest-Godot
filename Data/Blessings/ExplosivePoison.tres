@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cddgqhunwlxmk"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/ExplosivePoison.cs" id="1_i46x3"]
+
+[resource]
+script = ExtResource("1_i46x3")

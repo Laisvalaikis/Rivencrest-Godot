@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bswmdfys60m75"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/SharpBlade.cs" id="1_kmntf"]
+
+[resource]
+script = ExtResource("1_kmntf")

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dp05wto3rfxsn"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/Antitoxic.cs" id="1_ouoyy"]
+
+[resource]
+script = ExtResource("1_ouoyy")

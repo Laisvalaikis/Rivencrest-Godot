@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b6uff1w3b7rfk"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/HealAfterAbility.cs" id="1_u8efj"]
+
+[resource]
+script = ExtResource("1_u8efj")

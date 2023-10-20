@@ -30,7 +30,7 @@ public partial class DealToAdjacent : AbilityBlessing
 	{
 		base.ResolveBlessing(ref baseAction);
 		(int x, int y) = tile.GetIndexes();
-        
+		
 		var directionVectors = new List<(int, int)>
 		{
 			(1 + x, 0 + y),

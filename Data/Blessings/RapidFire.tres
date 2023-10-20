@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ctppshdn7decf"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/RapidFire.cs" id="1_angjd"]
+
+[resource]
+script = ExtResource("1_angjd")
