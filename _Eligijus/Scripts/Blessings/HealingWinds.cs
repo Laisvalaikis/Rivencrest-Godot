@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 using System;
 
 public partial class HealingWinds : AbilityBlessing
@@ -24,15 +25,19 @@ public partial class HealingWinds : AbilityBlessing
 		HealingWinds blessing = new HealingWinds(this);
 		return blessing;
 	}
-	public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+	
+	public override void ResolveBlessing(ref BaseAction baseAction, List<ChunkData> tiles)
 	{
 		base.ResolveBlessing(ref baseAction);
-		Player player = tile.GetCurrentPlayer();
-		if (IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
+		foreach (ChunkData tile in tiles)
 		{
-			int randomHeal = _random.Next(minHeal, maxHeal);
-			player.playerInformation.Heal(randomHeal);
+			Player player = tile.GetCurrentPlayer();
+			if (IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
+			{
+				int randomHeal = _random.Next(minHeal, maxHeal);
+				player.playerInformation.Heal(randomHeal);
+			}
 		}
-		
 	}
+	
 }

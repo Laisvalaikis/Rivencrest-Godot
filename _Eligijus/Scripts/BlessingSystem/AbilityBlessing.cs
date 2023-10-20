@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class AbilityBlessing : BaseBlessing
@@ -42,7 +43,12 @@ public partial class AbilityBlessing : BaseBlessing
     {
 	    base.ResolveBlessing(ref baseAction);
     }
-    
+
+    public virtual void ResolveBlessing(ref BaseAction baseAction, List<ChunkData> tiles)
+    {
+	    
+    }
+
     public override void OnTurnStart(ref BaseAction baseAction)
     {
 	    base.OnTurnStart(ref baseAction);
