@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://da0bykqp7ml1i"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://nsaqsngo1yxf"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/GroundSlam.cs" id="1_ce6gm"]
 
@@ -7,14 +7,16 @@ script = ExtResource("1_ce6gm")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
+abilityPointsUsage = 1
 attackRange = 1
-abilityCooldown = 3
 minAttackDamage = 3
 maxAttackDamage = 4
 isAbilitySlow = false
 friendlyFire = true
-abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
-abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
+AbilityCooldown = 1
+abilityHighlight = Color(0.572549, 0.831373, 1, 1)
+abilityHighlightHover = Color(1, 0.890196, 0, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
 otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
-characterOnGrid = Color(1, 0.34902, 0.278431, 1)
+characterOnGrid = Color(0.572549, 0.831373, 1, 1)
+_abilityBlessingsRef = null

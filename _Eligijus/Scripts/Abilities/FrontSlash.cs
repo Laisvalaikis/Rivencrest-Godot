@@ -67,7 +67,10 @@ public partial class FrontSlash : BaseAction
             for (int i = 0; i < _chunkArray.GetLength(1); i++)
             {
                 ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-                SetNonHoveredAttackColor(chunkToHighLight);
+                if (chunkToHighLight != null)
+                {
+                    SetNonHoveredAttackColor(chunkToHighLight);
+                }
             }
         }
         if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
@@ -78,7 +81,10 @@ public partial class FrontSlash : BaseAction
                 for (int i = 0; i < _chunkArray.GetLength(1); i++)
                 {
                     ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-                    SetHoveredAttackColor(chunkToHighLight);
+                    if (chunkToHighLight != null)
+                    {
+                        SetHoveredAttackColor(chunkToHighLight);
+                    }
                 }
             }
         }

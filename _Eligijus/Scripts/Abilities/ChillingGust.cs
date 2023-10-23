@@ -48,11 +48,12 @@ public partial class ChillingGust : BaseAction
             FinishAbility();
     }
     
-    protected override void HighlightGridTile(ChunkData chunkData)
+    protected override void TryAddTile(ChunkData chunk)
     {
-        SetNonHoveredAttackColor(chunkData);
-        chunkData.GetTileHighlight().EnableTile(true);
-        chunkData.GetTileHighlight().ActivateColorGridTile(true);
+        if (chunk != null && !chunk.TileIsLocked())
+        {
+            _chunkList.Add(chunk);
+        }
     }
     
     public override void SetHoveredAttackColor(ChunkData chunkData)

@@ -1,5 +1,7 @@
 public partial class FlameKick : BaseAction
 {
+    //Ability buvo remove'intas. (Player orange abilitis)
+    //Assuminu, kad del to jis nebaigtas
     public FlameKick()
     {
  		

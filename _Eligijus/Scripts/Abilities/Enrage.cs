@@ -16,11 +16,7 @@ public partial class Enrage : BaseAction
 		return enrage;
 	}
 	
-	public virtual bool CanTileBeClicked(ChunkData chunkData)
-	{
-		return !IsAllegianceSame(chunkData); //Temporary fix to a permanent problem
-		//Check if specific information type yra broken. Player yellow sako, kad yra ne player
-	}
+	
 
 	protected override void DisableDamagePreview(ChunkData chunk)
 	{

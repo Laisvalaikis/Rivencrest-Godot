@@ -104,12 +104,9 @@ public abstract partial class BaseAction: Resource
 
 		protected virtual void HighlightGridTile(ChunkData chunkData)
 		{
-			if (chunkData.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
-			{
-				SetNonHoveredAttackColor(chunkData);
-				chunkData.GetTileHighlight().EnableTile(true);
-				chunkData.GetTileHighlight().ActivateColorGridTile(true);
-			}
+			SetNonHoveredAttackColor(chunkData);
+			chunkData.GetTileHighlight().EnableTile(true);
+			chunkData.GetTileHighlight().ActivateColorGridTile(true);
 		}
 
 		protected void HighlightAllGridTiles()
@@ -195,10 +192,7 @@ public abstract partial class BaseAction: Resource
 						if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
 						{
 							ChunkData chunk = chunksArray[targetX, targetY];
-							if (chunk != null && !chunk.TileIsLocked())
-							{
-								_chunkList.Add(chunk);
-							}
+							TryAddTile(chunk);
 						}
 					}
 				}
@@ -225,12 +219,17 @@ public abstract partial class BaseAction: Resource
 					if (x >= 0 && x < chunksArray.GetLength(0) && y >= 0 && y < chunksArray.GetLength(1))
 					{
 						ChunkData chunk = chunksArray[x, y];
-						if (chunk != null && !chunk.TileIsLocked())
-						{
-							_chunkList.Add(chunk);
-						}
+						TryAddTile(chunk);
 					}
 				}
+			}
+		}
+
+		protected virtual void TryAddTile(ChunkData chunk)
+		{
+			if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
+			{
+				_chunkList.Add(chunk);
 			}
 		}
 

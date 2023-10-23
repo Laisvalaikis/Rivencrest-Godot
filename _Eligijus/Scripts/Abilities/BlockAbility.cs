@@ -53,15 +53,6 @@ public partial class BlockAbility : BaseAction
             tileHighlight.SetHighlightColor(abilityHighlightHover);
         }
     }
-    protected override void HighlightGridTile(ChunkData chunkData)
-    {
-        if(chunkData.GetCurrentPlayer()!=GameTileMap.Tilemap.GetCurrentCharacter())
-        {
-            chunkData.GetTileHighlight().EnableTile(true);
-            chunkData.GetTileHighlight().ActivateColorGridTile(true);
-            SetNonHoveredAttackColor(chunkData);
-        }
-    }
     public override bool CanTileBeClicked(ChunkData chunk)
     {
         return IsAllegianceSame(chunk);

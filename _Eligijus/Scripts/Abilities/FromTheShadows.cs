@@ -16,6 +16,14 @@ public partial class FromTheShadows : BaseAction
         return ability;
     }
     
+    protected override void TryAddTile(ChunkData chunk)
+    {
+        if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == null)
+        {
+            _chunkList.Add(chunk);
+        }
+    }
+    
     public override void ResolveAbility(ChunkData chunk)
     {
             base.ResolveAbility(chunk);

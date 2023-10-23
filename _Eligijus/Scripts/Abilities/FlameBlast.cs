@@ -1,6 +1,7 @@
 public partial class FlameBlast : BaseAction
 {
-	
+	//Ability buvo remove'intas. (Player orange abilitis)
+	//Assuminu, kad del to jis nebaigtas
 	public FlameBlast()
 	{
  		

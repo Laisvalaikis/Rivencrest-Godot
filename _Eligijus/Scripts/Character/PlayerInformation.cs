@@ -25,27 +25,22 @@ public partial class PlayerInformation : Node
 	public bool isThisObject = false;
 	
 	private Label textMeshPro;
-	private PlayerInformationData _playerInformationData;
 	private AnimationPlayer animator;
 	private int _health = 100;
 	private int _currentCharacterTeam = -1;
 	private int turnCounter = 1;
-	
-	void Awake()
+
+	public override void _Ready()
 	{
-		_playerInformationData = new PlayerInformationData();
-		_playerInformationData.CopyData(playerInformationData);
-	}
-	void Start()
-	{
+		base._Ready();
 		LoadPlayerProgression();
 		PlayerSetup();
-		_health = _playerInformationData.MaxHealth;
+		_health = playerInformationData.MaxHealth;
 	}
 
 	public float GetHealthPercentage()
 	{
-		float maxHealthDouble = _playerInformationData.MaxHealth;
+		float maxHealthDouble = playerInformationData.MaxHealth;
 		float healthDouble = _health;
 		return healthDouble / maxHealthDouble * 100;
 	}
@@ -98,7 +93,7 @@ public partial class PlayerInformation : Node
 
 	public int GetMaxHealth()
 	{
-		return _playerInformationData.MaxHealth;
+		return playerInformationData.MaxHealth;
 	}
 
 	public void DeathStart()
@@ -121,9 +116,9 @@ public partial class PlayerInformation : Node
 	}
 	public void Heal(int healAmount)
 	{
-		if (_health + healAmount >= _playerInformationData.MaxHealth)
+		if (_health + healAmount >= playerInformationData.MaxHealth)
 		{
-			_health = _playerInformationData.MaxHealth;
+			_health = playerInformationData.MaxHealth;
 		}
 		else
 		{

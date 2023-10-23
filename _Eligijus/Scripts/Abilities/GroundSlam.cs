@@ -26,7 +26,16 @@ public partial class GroundSlam : BaseAction
     protected override void HighlightGridTile(ChunkData chunkData)
     {
         SetNonHoveredAttackColor(chunkData);
+        chunkData.GetTileHighlight().EnableTile(true);
         chunkData.GetTileHighlight().ActivateColorGridTile(true);
+    }
+    
+    protected override void TryAddTile(ChunkData chunk)
+    {
+        if (chunk != null && !chunk.TileIsLocked())
+        {
+            _chunkList.Add(chunk);
+        }
     }
     public override void ResolveAbility(ChunkData chunk)
     {

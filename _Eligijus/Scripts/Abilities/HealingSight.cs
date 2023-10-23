@@ -12,6 +12,14 @@ public partial class HealingSight : BaseAction
     {
  		
     }
+    
+    protected override void TryAddTile(ChunkData chunk)
+    {
+        if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == GameTileMap.Tilemap.GetCurrentCharacter())
+        {
+            _chunkList.Add(chunk);
+        }
+    }
     public HealingSight(HealingSight healingSight): base(healingSight)
     {
         minHealAmount = healingSight.minHealAmount;

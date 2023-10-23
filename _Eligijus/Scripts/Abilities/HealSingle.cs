@@ -13,8 +13,10 @@ public partial class HealSingle : BaseAction
     
     public HealSingle()
     {
- 		
+        maxAttackDamage = maxHealAmount;
+        minAttackDamage = minHealAmount;
     }
+    
     public HealSingle(HealSingle healSingle): base(healSingle)
     {
         minHealAmount = healSingle.minHealAmount;
@@ -25,6 +27,15 @@ public partial class HealSingle : BaseAction
         HealSingle healSingle = new HealSingle((HealSingle)action);
         return healSingle;
     }
+    
+    protected override void TryAddTile(ChunkData chunk)
+    {
+        if (chunk != null && !chunk.TileIsLocked())
+        {
+            _chunkList.Add(chunk);
+        }
+    }
+    
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
