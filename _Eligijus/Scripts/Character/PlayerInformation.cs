@@ -96,6 +96,11 @@ public partial class PlayerInformation : Node
 		return _health;
 	}
 
+	public int GetMaxHealth()
+	{
+		return _playerInformationData.MaxHealth;
+	}
+
 	public void DeathStart()
 	{
 	   

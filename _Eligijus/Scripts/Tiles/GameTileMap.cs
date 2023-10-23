@@ -401,7 +401,7 @@ public partial class GameTileMap : Node2D
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
-			chunkData.SetCurrentCharacter(character);
+			chunkData.SetCurrentCharacter((Player)character);
 			chunkData.GetTileHighlight().ActivatePlayerTile(true);
 		}
 	}
@@ -410,7 +410,7 @@ public partial class GameTileMap : Node2D
 	{
 		if (chunk != null)
 		{
-			chunk.SetCurrentCharacter(character);
+			chunk.SetCurrentCharacter((Player)character);
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 		}
 	}
