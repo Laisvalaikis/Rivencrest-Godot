@@ -11,11 +11,11 @@ public partial class SelectAction : Control
 	private Player _currentPlayer;
 	private PlayerInformationData _playerInformationData;
 	[Export] private HelpTable helpTable;
-	[Export] private AbilityManager _abilityManager;
 	[Export] private TextureRect characterPortrait;
 	[Export] private Label healthBar;
 	[Export] private TextureRect staminaButtonBackground;
 	[Export] private Array<SelectActionButton> abilityButtons;
+	private ActionManager _actionManager;
 	private Data _data;
 	private void GetAbilities()
 	{
@@ -29,9 +29,10 @@ public partial class SelectAction : Control
 			_data = Data.Instance;
 		}
 
-		_playerAbilities = _currentPlayer.actionManager.ReturnAbilities();
-		_playerBaseAbilities = _currentPlayer.actionManager.ReturnBaseAbilities();
-		_playerAllAbilities = _currentPlayer.actionManager.ReturnAllAbilities();
+		_actionManager = _currentPlayer.actionManager;
+		_playerAbilities = _actionManager.ReturnAbilities();
+		_playerBaseAbilities = _actionManager.ReturnBaseAbilities();
+		_playerAllAbilities = _actionManager.ReturnAllAbilities();
 		_playerInformationData = _currentPlayer.playerInformation.playerInformationData;
 	}
 
@@ -86,7 +87,7 @@ public partial class SelectAction : Control
 
 	public void ActionSelection(BaseAction characterAction)
 	{
-		_abilityManager.SetCurrentAbility(characterAction);
+		_actionManager.SetCurrentAbility(characterAction);
 	}
 
 	public void SetCurrentCharacter(Node2D currentPlayer)
@@ -96,7 +97,7 @@ public partial class SelectAction : Control
 		SetupSelectAction();
 		GetAbilities();
 		UpdatePlayerInfo();
-		_abilityManager.SetCurrentAbility(_playerBaseAbilities[0].Action);
+		_actionManager.SetCurrentAbility(_playerBaseAbilities[0].Action);
 		GenerateActions();
 	}
 	public void DeSetCurrentCharacter()

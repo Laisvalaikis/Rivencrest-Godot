@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -8,16 +8,29 @@ public partial class ActionManager : Node
 	private Player _player;
 	private Array<Ability> _baseAbilities;
 	private Array<Ability> _abilities;
+	[Export]
 	private Array<Ability> _allAbilities;
 	[Export]
 	private int availableAbilityPoints = 1;
 	private int abilityPoints;
 	private bool hasSlowAbilityBeenCast = false;
 	private int trackingCount = 0;
-
+	
+	// for blessings
+	private int _turnCount = 0;
+	private int _turnsPassed = 0;
+	
+	private Vector2 _mousePosition;
+	private BaseAction _currentAbility;
+	private ChunkData _previousChunk;
+	
 	public override void _Ready()
 	{
 		base._Ready();
+		
+		InputManager.Instance.MouseMove += OnMove;
+		InputManager.Instance.LeftMouseClick += OnMouseClick;
+		
 		_abilities = new Array<Ability>();
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
@@ -99,6 +112,82 @@ public partial class ActionManager : Node
 	{
 		abilityPoints = availableAbilityPoints;
 	}
+
+	public void OnTurnStart()
+	{
+
+	}
 	
+	public void OnTurnEnd()
+	{
+		_turnCount++;
+		
+	}
+	
+	public void OnMove(Vector2 position)
+	{
+		if (_currentAbility == null) return;
+		_mousePosition = position;
+		ChunkData hoveredChunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
+		
+		_currentAbility.OnMoveArrows(hoveredChunk,_previousChunk);
+		_currentAbility.OnMoveHover(hoveredChunk,_previousChunk);
+		_previousChunk = hoveredChunk;
+	}
+	
+	public void OnMouseClick()
+	{
+		ExecuteCurrentAbility();
+	}
+	
+	public void SetCurrentAbility(BaseAction ability)
+	{
+		if (_currentAbility != null)
+		{
+			_currentAbility.ClearGrid();
+		}
+
+		_currentAbility = ability;
+		if (_currentAbility != null)
+		{
+			_currentAbility.CreateGrid();
+		}
+	}
+
+	public void SetTurnCounterFromThisTurn()
+	{
+		_turnsPassed = _turnCount;
+	}
+	
+	public bool IsAbilitySelected()
+	{
+		return _currentAbility != null;
+	}
+
+	public bool CanAbilityBeUsedOnTile(Vector2 position)
+	{
+		return _currentAbility.IsPositionInGrid(position);
+	}
+	
+	public bool IsMovementSelected()
+	{
+		if(_currentAbility!=null)
+			return _currentAbility.GetType() == typeof(PlayerMovement);
+		return false;
+	}
+	
+	private void ExecuteCurrentAbility()
+	{
+		if (_currentAbility != null)
+		{
+			ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
+			if (chunk != null)
+			{
+				_currentAbility.ResolveAbility(chunk);
+				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
+			}
+		}
+	}
+
 }
 

@@ -28,7 +28,6 @@ public partial class GameTileMap : Node2D
 	// [SerializeField] private SpriteRenderer[] tileSpriteRenderers;
 	// [SerializeField] private GameObject tiles;
 	[Export] private bool showChunks;
-	[Export] private AbilityManager abilityManager;
 	private int _chunkCountWidth = 0;
 	private int _chunkCountHeight = 0;
 	private List<SaveChunks> _chunks;
@@ -515,7 +514,7 @@ public partial class GameTileMap : Node2D
 		if (_currentSelectedCharacter != null)
 		{
 			_selectAction.Hide();
-			abilityManager.SetCurrentAbility(null);
+			_currentSelectedCharacter.actionManager.SetCurrentAbility(null);
 			teamInformation.SelectCharacterPortrait(_currentSelectedCharacter, false);
 			_currentSelectedCharacter = null;
 		}
@@ -544,11 +543,11 @@ public partial class GameTileMap : Node2D
 		{
 			SelectTile(_mousePosition);
 		}
-		else if (CharacterIsSelected() && OtherCharacterIsOnTile(_mousePosition) && abilityManager.IsMovementSelected()) //Clicling on a different character when you have movement ability selected
+		else if (CharacterIsSelected() && OtherCharacterIsOnTile(_mousePosition) && _currentSelectedCharacter.actionManager.IsMovementSelected()) //Clicling on a different character when you have movement ability selected
 		{
 			SelectTile(_mousePosition);
 		}
-		else if(CharacterIsSelected() && OtherCharacterIsOnTile(_mousePosition) && !abilityManager.CanAbilityBeUsedOnTile(_mousePosition)) //Clicked on character that is outside of ability grid to select it
+		else if(CharacterIsSelected() && OtherCharacterIsOnTile(_mousePosition) && !_currentSelectedCharacter.actionManager.CanAbilityBeUsedOnTile(_mousePosition)) //Clicked on character that is outside of ability grid to select it
 		{
 			SelectTile(_mousePosition);
 		}

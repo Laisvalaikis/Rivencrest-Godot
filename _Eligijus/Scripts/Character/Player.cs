@@ -16,6 +16,12 @@ public partial class Player : Node2D
 	public void OnTurnStart()
 	{
 		PoisonPlayer();
+		actionManager.OnTurnStart();
+	}
+	
+	public void OnTurnEnd()
+	{
+		actionManager.OnTurnEnd();
 	}
 
 	public int GetPoisonCount()

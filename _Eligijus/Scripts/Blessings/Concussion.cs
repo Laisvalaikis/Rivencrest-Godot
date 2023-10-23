@@ -27,7 +27,7 @@ public partial class Concussion : AbilityBlessing
 		base.ResolveBlessing(ref baseAction, tile);
 		if (tile.CharacterIsOnTile())
 		{
-			Player playerInformation = tile.GetCurrentPlayer();
+			Player player = tile.GetCurrentPlayer();
 			if (!IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
 			{
 				// Create can't use abilities for one turn
