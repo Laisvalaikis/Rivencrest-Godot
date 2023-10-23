@@ -4,7 +4,6 @@ using Godot;
 using Godot.Collections;
 public partial class SelectAction : Control
 {
-	private ActionManager _actionManagerNew;
 	private Array<Ability> _playerAllAbilities;
 	private Array<Ability> _playerBaseAbilities;
 	private Array<Ability> _playerAbilities;
@@ -103,6 +102,10 @@ public partial class SelectAction : Control
 	public void DeSetCurrentCharacter()
 	{
 		_currentPlayer = null;
+		if (_actionManager != null)
+		{
+			_actionManager.DeselectAbility();
+		}
 	}
 
 }

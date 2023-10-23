@@ -23,6 +23,7 @@ public partial class ActionManager : Node
 	private Vector2 _mousePosition;
 	private BaseAction _currentAbility;
 	private ChunkData _previousChunk;
+	private bool abilityIsSelected = false;
 	
 	public override void _Ready()
 	{
@@ -139,7 +140,12 @@ public partial class ActionManager : Node
 	{
 		ExecuteCurrentAbility();
 	}
-	
+
+	public void DeselectAbility()
+	{
+		DeselectCurrentAbility();
+	}
+
 	public void SetCurrentAbility(BaseAction ability)
 	{
 		if (_currentAbility != null)
@@ -184,10 +190,22 @@ public partial class ActionManager : Node
 			if (chunk != null)
 			{
 				_currentAbility.ResolveAbility(chunk);
+				
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
 		}
 	}
+	
+	private void DeselectCurrentAbility()
+	{
+		if (_currentAbility != null)
+		{
+			_currentAbility.DeselectAbility();
+			_currentAbility = null;
+		}
+	}
+	
+	
 
 }
 

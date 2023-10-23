@@ -500,6 +500,10 @@ public partial class GameTileMap : Node2D
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
+			if (_currentSelectedCharacter != null)
+			{
+				_currentSelectedCharacter.actionManager.DeselectAbility();
+			}
 			_currentSelectedCharacter = chunkData.GetCurrentPlayer();
 			if (_currentSelectedCharacter != null)
 			{
@@ -514,6 +518,7 @@ public partial class GameTileMap : Node2D
 		if (_currentSelectedCharacter != null)
 		{
 			_selectAction.Hide();
+			// _currentSelectedCharacter.actionManager.DeselectAbility();
 			_currentSelectedCharacter.actionManager.SetCurrentAbility(null);
 			teamInformation.SelectCharacterPortrait(_currentSelectedCharacter, false);
 			_currentSelectedCharacter = null;

@@ -67,6 +67,11 @@ public partial class PvPCharacterSelect : Button
     {
         if (_gameTileMap.GetCurrentCharacter() != characterOnBoard) // GameObject.Find("GameInformation").GetComponent<GameInformation>().canButtonsBeClicked fix this bs
         {
+            if (_gameTileMap.GetCurrentCharacter() != null)
+            {
+                _gameTileMap.GetCurrentCharacter().actionManager.DeselectAbility();
+            }
+            
             _gameTileMap.SetCurrentCharacter(characterOnBoard);
             isButtonAvailable = false;
             _selectAction.SetCurrentCharacter(characterOnBoard);

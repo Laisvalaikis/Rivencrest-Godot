@@ -465,6 +465,12 @@ public abstract partial class BaseAction: Resource
 			ClearGrid();
 		}
 
+		public virtual void DeselectAbility()
+		{
+			ClearGrid();
+		}
+
+
 		protected virtual void FinishAbility()
 		{
 			GameTileMap.Tilemap.DeselectCurrentCharacter();
@@ -512,7 +518,7 @@ public abstract partial class BaseAction: Resource
 
 		protected void DealRandomDamageToTarget(ChunkData chunkData, int minDamage, int maxDamage)
 		{
-			if (chunkData != null && chunkData.CharacterIsOnTile() && IsAllegianceSame(chunkData))
+			if (chunkData != null && chunkData.CharacterIsOnTile() && !IsAllegianceSame(chunkData))
 			{
 				
 				int randomDamage = _random.Next(minDamage, maxDamage);
