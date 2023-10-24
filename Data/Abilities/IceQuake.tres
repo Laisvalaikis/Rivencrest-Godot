@@ -1,11 +1,13 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://oafcf5g7ik8n"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://clrkmxgvkh6gt"]
 
 [ext_resource type="Texture2D" uid="uid://c6buefjxltmw" path="res://Data/ActionIcons/Icon_27.tres" id="1_2bav4"]
-[ext_resource type="Resource" uid="uid://dkkf3jmkwnqo5" path="res://Data/Abilities/Abilities/IceQuake.tres" id="2_1ifja"]
+[ext_resource type="Resource" uid="uid://cnpt30atvvnja" path="res://Data/Abilities/Abilities/IceQuake.tres" id="2_1ifja"]
+[ext_resource type="Resource" path="res://Data/AbilityText/IceQuake.tres" id="3_0ptei"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_2hl1i"]
 
 [resource]
 script = ExtResource("3_2hl1i")
+abilityText = ExtResource("3_0ptei")
 enabled = true
 AbilityImage = ExtResource("1_2bav4")
 Action = ExtResource("2_1ifja")

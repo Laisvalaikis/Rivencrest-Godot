@@ -25,10 +25,18 @@ public partial class LeapAndSlam : BaseAction
         DamageAdjacent(chunk);
         FinishAbility();
     }
+
+    protected override void TryAddTile(ChunkData chunk)
+    {
+        if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == null)
+        {
+            _chunkList.Add(chunk);
+        }
+    }
     private void DamageAdjacent(ChunkData centerChunk)
     {
         ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
-        (int y, int x) indexes = centerChunk.GetIndexes();
+        (int x, int y) indexes = centerChunk.GetIndexes();
         int x = indexes.x;
         int y = indexes.y;
 

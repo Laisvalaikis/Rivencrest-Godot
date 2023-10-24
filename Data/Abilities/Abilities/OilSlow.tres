@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bdm6rx8r4u3n4"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ce3jrqn04bq4m"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/OilSlow.cs" id="1_psjxm"]
 
@@ -7,14 +7,16 @@ script = ExtResource("1_psjxm")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
+abilityPointsUsage = 1
 attackRange = 3
-abilityCooldown = 3
 minAttackDamage = 2
 maxAttackDamage = 3
 isAbilitySlow = false
-friendlyFire = false
-abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
-abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
+friendlyFire = true
+AbilityCooldown = 1
+abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
+abilityHighlightHover = Color(0.403922, 0.533333, 0.619608, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
 otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
-characterOnGrid = Color(1, 0.34902, 0.278431, 1)
+characterOnGrid = Color(0.572549, 0.831373, 1, 1)
+_abilityBlessingsRef = null

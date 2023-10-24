@@ -26,7 +26,7 @@ public partial class PoisonDart : BaseAction
     private void PoisonAdjacent(ChunkData centerChunk)
     {
         ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
-        (int y, int x) indexes = centerChunk.GetIndexes();
+        (int x, int y) indexes = centerChunk.GetIndexes();
         int x = indexes.x;
         int y = indexes.y;
 
@@ -38,9 +38,9 @@ public partial class PoisonDart : BaseAction
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && chunks[ny, nx]?.GetCurrentPlayer() != null)
+            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && chunks[ny, nx]?.GetCurrentPlayer() != null && !IsAllegianceSame(chunks[ny, nx]))
             {
-                
+                //apply poison (cia blessingas, kuri galimai padare eligijus idk)
             }
         }
     }
