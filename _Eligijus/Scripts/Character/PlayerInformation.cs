@@ -23,6 +23,7 @@ public partial class PlayerInformation : Node
 	public bool Stasis = false;
 	public int XPToGain = 0;
 	public bool isThisObject = false;
+	private bool haveBarier = false;
 	
 	private Label textMeshPro;
 	private AnimationPlayer animator;
@@ -67,23 +68,33 @@ public partial class PlayerInformation : Node
 
 	public void DealDamage(int damage, bool crit, Node damageDealer, string specialInformation = "")
 	{
-		if (damage != -1) 
-		{ 
-			if (Protected || Stasis)
-			{ 
-				damage /= 2; 
-			} 
-			_health -= damage;
-		}
-		if (_health <= 0) // DEATH
+		if (!haveBarier)
 		{
-			DeathStart();
+
+			if (damage != -1)
+			{
+				if (Protected || Stasis)
+				{
+					damage /= 2;
+				}
+
+				_health -= damage;
+			}
+
+			if (_health <= 0) // DEATH
+			{
+				DeathStart();
+			}
+			else
+			{
+
+			}
 		}
 		else
 		{
-			
+			haveBarier = false;
 		}
-		   
+
 	}
 
 	public int GetHealth()
@@ -131,15 +142,7 @@ public partial class PlayerInformation : Node
 	{
 		_health += health;
 	}
-
-	public void ApplyDebuff(string debuff, Node DebuffApplier = null)
-	{
-	   
-	}
-	public void ToggleSelectionBorder(bool state)
-	{
-	   
-	}
+	
 	public void PlayerSetup()
 	{
 		if (CharactersTeam == "Default")
@@ -147,6 +150,12 @@ public partial class PlayerInformation : Node
 			GD.PrintErr("Fix Comment");
 		}
 	}
+
+	public void AddBarrier()
+	{
+		haveBarier = true;
+	}
+
 	public void LoadPlayerProgression()
 	{
 	   
@@ -161,14 +170,5 @@ public partial class PlayerInformation : Node
 	   
 	}
 	
-	public int TotalPoisonDamage()
-	{
-		int totalDamage = 0;
-		// foreach (Poison x in Poisons)
-		// {
-		//     totalDamage += x.poisonValue;
-		// }
-		return totalDamage;
-	}
 
 }

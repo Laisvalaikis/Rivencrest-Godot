@@ -30,6 +30,11 @@ public partial class Player : Node2D
 		return _poisons.Count;
 	}
 
+	public void AddBarrier()
+	{
+		playerInformation.AddBarrier();
+	}
+
 	private void PoisonPlayer()
 	{
 		foreach (Poison poison in _poisons)
@@ -60,6 +65,16 @@ public partial class Player : Node2D
 	public List<Poison> GetPoisons()
 	{
 		return _poisons;
+	}
+	
+	public int TotalPoisonDamage()
+	{
+		int totalDamage = 0;
+		foreach (Poison poison in _poisons)
+		{
+			totalDamage += poison.poisonValue;
+		}
+		return totalDamage;
 	}
 
 
