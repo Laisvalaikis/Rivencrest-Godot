@@ -1,3 +1,5 @@
+using Godot;
+
 public partial class FlameKick : BaseAction
 {
     //Ability buvo remove'intas. (Player orange abilitis)

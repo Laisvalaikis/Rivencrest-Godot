@@ -106,14 +106,23 @@ public partial class ActionManager : Node
 	{
 		availableAbilityPoints += abilityPoints;
 	}
+	
+	public void RemoveSlowDown()
+	{
+		_debuffs.RemoveSlowDown(this);
+	}
 
 	public void AddAbilityPoints(int abilityPoints)
 	{
 		if (abilityPoints < 0)
 		{
-			_debuffs.SlowDownPlayer();
+			_debuffs.SlowDownPlayer(abilityPoints);
 		}
-		this.abilityPoints += abilityPoints;
+
+		if (this.abilityPoints + abilityPoints <= availableAbilityPoints)
+		{
+			this.abilityPoints += abilityPoints;
+		}
 	}
 
 	public void ResetAbilityPointsBeforeAbility()

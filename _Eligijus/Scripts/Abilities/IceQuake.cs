@@ -2,6 +2,7 @@ using Godot;
 
 public partial class IceQuake : BaseAction
 {
+    [Export] private int rootDamage = 5;
     public IceQuake()
     {
         
@@ -9,7 +10,7 @@ public partial class IceQuake : BaseAction
     
     public IceQuake(IceQuake ability): base(ability)
     {
-        
+        rootDamage = ability.rootDamage;
     }
     public override BaseAction CreateNewInstance(BaseAction action)
     {
@@ -22,7 +23,18 @@ public partial class IceQuake : BaseAction
         if (CanTileBeClicked(chunk))
         {
             base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            int bonusDamage = 0;
+            if (chunk.IsStandingOnChunk())
+            {
+                Player target = chunk.GetCurrentPlayer();
+                if (target.debuffs.IsPlayerSlower())
+                {
+                    target.actionManager.RemoveSlowDown();
+                    bonusDamage += rootDamage;
+                }
+            }
+
+            DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
             FinishAbility();
         }
     }

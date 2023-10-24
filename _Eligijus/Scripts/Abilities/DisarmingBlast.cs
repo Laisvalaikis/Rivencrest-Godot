@@ -1,4 +1,6 @@
-﻿public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal ir nereikia to OnTileHover aurio pamastymai
+﻿using Godot;
+
+public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal ir nereikia to OnTileHover aurio pamastymai
 {
     public DisarmingBlast()
     {

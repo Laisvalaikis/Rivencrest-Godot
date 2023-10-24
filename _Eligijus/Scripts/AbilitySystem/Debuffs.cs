@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Debuffs : Node
@@ -6,6 +7,8 @@ public partial class Debuffs : Node
     private int _turnThreshold = 0;
     private int _turnCount = 0;
     private int _turnsPassed = 0;
+    private int _slowDownBy = 0;
+    
     private bool _playerIsSlower = false;
     private bool _playerIsSilenced = false;
     private bool _playerIsRooted = false;
@@ -24,9 +27,19 @@ public partial class Debuffs : Node
         _turnTracking = true;
         _turnThreshold = turnCount;
     }
-
-    public void SlowDownPlayer()
+    
+    public void RemoveSlowDown(ActionManager actionManager)
     {
+        if (_playerIsSlower)
+        {
+            actionManager.AddAbilityPoints(_slowDownBy);
+            _playerIsSlower = false;
+        }
+    }
+
+    public void SlowDownPlayer(int slowdownBy)
+    {
+        _slowDownBy = Math.Abs(slowdownBy);
         _playerIsSlower = true;
     }
 

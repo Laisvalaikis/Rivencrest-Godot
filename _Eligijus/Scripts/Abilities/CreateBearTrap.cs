@@ -1,6 +1,5 @@
 using Godot;
 
-namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 
 public partial class CreateBearTrap : BaseAction
 {
