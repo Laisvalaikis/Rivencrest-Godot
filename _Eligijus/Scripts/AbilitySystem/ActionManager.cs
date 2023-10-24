@@ -23,6 +23,7 @@ public partial class ActionManager : Node
 	private int _turnsPassed = 0;
 	private bool _playerIsRooted = false;
 	private bool _playerIsStunned = false;
+	private int _pointsBeforeAbility;
 	
 	private Vector2 _mousePosition;
 	private Ability _currentAbility;
@@ -114,7 +115,18 @@ public partial class ActionManager : Node
 	{
 		this.abilityPoints += abilityPoints;
 	}
-	
+
+	public void ResetAbilityPointsBeforeAbility()
+	{
+		this.abilityPoints = _pointsBeforeAbility;
+	}
+
+	private void RemoveAbilityPoints(int consumedPoints)
+	{
+		_pointsBeforeAbility = this.abilityPoints;
+		this.abilityPoints -= consumedPoints;
+	}
+
 	public virtual void RefillActionPoints() //pradzioj ejimo
 	{
 		abilityPoints = availableAbilityPoints;
