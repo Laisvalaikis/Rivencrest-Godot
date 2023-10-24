@@ -84,9 +84,9 @@ public partial class SelectAction : Control
 		staminaButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 	}
 
-	public void ActionSelection(BaseAction characterAction)
+	public void ActionSelection(Ability ability)
 	{
-		_actionManager.SetCurrentAbility(characterAction);
+		_actionManager.SetCurrentAbility(ability);
 	}
 
 	public void SetCurrentCharacter(Node2D currentPlayer)
@@ -96,7 +96,7 @@ public partial class SelectAction : Control
 		SetupSelectAction();
 		GetAbilities();
 		UpdatePlayerInfo();
-		_actionManager.SetCurrentAbility(_playerBaseAbilities[0].Action);
+		_actionManager.SetCurrentAbility(_playerBaseAbilities[0]);
 		GenerateActions();
 	}
 	public void DeSetCurrentCharacter()

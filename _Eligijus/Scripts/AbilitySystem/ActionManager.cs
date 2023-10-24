@@ -21,7 +21,7 @@ public partial class ActionManager : Node
 	private int _turnsPassed = 0;
 	
 	private Vector2 _mousePosition;
-	private BaseAction _currentAbility;
+	private Ability _currentAbility;
 	private ChunkData _previousChunk;
 	private bool abilityIsSelected = false;
 	
@@ -131,14 +131,15 @@ public partial class ActionManager : Node
 		_mousePosition = position;
 		ChunkData hoveredChunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
 		
-		_currentAbility.OnMoveArrows(hoveredChunk,_previousChunk);
-		_currentAbility.OnMoveHover(hoveredChunk,_previousChunk);
+		_currentAbility.Action.OnMoveArrows(hoveredChunk,_previousChunk);
+		_currentAbility.Action.OnMoveHover(hoveredChunk,_previousChunk);
 		_previousChunk = hoveredChunk;
 	}
 	
 	public void OnMouseClick()
 	{
 		ExecuteCurrentAbility();
+		ExecuteCurrentBaseAbility();
 	}
 
 	public void DeselectAbility()
@@ -146,17 +147,25 @@ public partial class ActionManager : Node
 		DeselectCurrentAbility();
 	}
 
-	public void SetCurrentAbility(BaseAction ability)
+	public void SetCurrentAbility(Ability ability)
 	{
 		if (_currentAbility != null)
 		{
-			_currentAbility.ClearGrid();
+			_currentAbility.Action.ClearGrid();
 		}
 
-		_currentAbility = ability;
+		if (ability != null)
+		{
+			_currentAbility = ability;
+		}
+		else
+		{
+			_currentAbility = null;
+		}
+
 		if (_currentAbility != null)
 		{
-			_currentAbility.CreateGrid();
+			_currentAbility.Action.CreateGrid();
 		}
 	}
 
@@ -172,24 +181,38 @@ public partial class ActionManager : Node
 
 	public bool CanAbilityBeUsedOnTile(Vector2 position)
 	{
-		return _currentAbility.IsPositionInGrid(position);
+		return _currentAbility.Action.IsPositionInGrid(position);
 	}
 	
 	public bool IsMovementSelected()
 	{
 		if(_currentAbility!=null)
-			return _currentAbility.GetType() == typeof(PlayerMovement);
+			return _currentAbility.Action.GetType() == typeof(PlayerMovement);
 		return false;
 	}
 	
-	private void ExecuteCurrentAbility()
+	private void ExecuteCurrentBaseAbility()
 	{
-		if (_currentAbility != null)
+		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility)
 		{
 			ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
 			if (chunk != null)
 			{
-				_currentAbility.ResolveAbility(chunk);
+				_currentAbility.Action.ResolveAbility(chunk);
+				
+				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
+			}
+		}
+	}
+	
+	private void ExecuteCurrentAbility()
+	{
+		if (_currentAbility != null && _currentAbility._type == AbilityType.Ability)
+		{
+			ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
+			if (chunk != null)
+			{
+				_currentAbility.Action.ResolveAbility(chunk);
 				
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
@@ -200,7 +223,7 @@ public partial class ActionManager : Node
 	{
 		if (_currentAbility != null)
 		{
-			_currentAbility.DeselectAbility();
+			_currentAbility.Action.DeselectAbility();
 			_currentAbility = null;
 		}
 	}

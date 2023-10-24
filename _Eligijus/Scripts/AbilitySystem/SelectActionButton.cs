@@ -34,7 +34,7 @@ public partial class SelectActionButton : Button
 
     public void OnButtonClick()
     {
-        selectAction.ActionSelection(abilityInformation.Action);
+        selectAction.ActionSelection(abilityInformation);
     }
 
     public void AbilityInformation(int abilityIndex, HelpTable helpTable, Ability characterAction, SelectAction selectedAction)
