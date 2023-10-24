@@ -97,6 +97,11 @@ public partial class PlayerInformation : Node
 
 	}
 
+	public void Revive()
+	{
+		_health = playerInformationData.MaxHealth;
+	}
+
 	public int GetHealth()
 	{
 		return _health;
@@ -109,7 +114,7 @@ public partial class PlayerInformation : Node
 
 	public void DeathStart()
 	{
-	   
+		Die();
 	}
 
 	public void Die()
@@ -121,7 +126,7 @@ public partial class PlayerInformation : Node
 		}
 	}
 
-   public void AddKillXP()
+	public void AddKillXP()
 	{
 
 	}
