@@ -378,7 +378,7 @@ public abstract partial class BaseAction: Resource
 				}
 			}
 		}
-
+		
 		protected virtual void EnableDamagePreview(ChunkData chunk, string customText = null)
 		{
 			HighlightTile highlightTile = chunk.GetTileHighlight();

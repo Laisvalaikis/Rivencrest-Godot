@@ -18,7 +18,15 @@ public partial class FlameKick : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        DealRandomDamageToTarget(chunk,minAttackDamage,maxAttackDamage);
+        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        if (!IsAllegianceSame(chunk))
+        {
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        }
+        Side side = ChunkSideByCharacter(current, chunk);
+        (int x, int y) sideVector = GetSideVector(side);
+        sideVector = (sideVector.x, sideVector.y);
+        MovePlayerToSide(chunk, sideVector);
         FinishAbility();
     }
 }
