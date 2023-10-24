@@ -20,6 +20,7 @@ public partial class WeakSpot : BaseAction
     {
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        chunk.GetCurrentPlayer().AddWeakSpot();
         FinishAbility();
     }
 }

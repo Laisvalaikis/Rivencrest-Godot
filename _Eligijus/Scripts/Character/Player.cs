@@ -7,6 +7,7 @@ public partial class Player : Node2D
 	[Export] public PlayerInformation playerInformation;
 	[Export] public ActionManager actionManager;
 	protected List<Poison> _poisons;
+	protected bool weakSpot = false;
 
 	public void AddPoison(Poison poison)
 	{
@@ -39,6 +40,21 @@ public partial class Player : Node2D
 			}
 			poison.turnsLeft--;
 		}
+	}
+
+	public void AddWeakSpot()
+	{
+		weakSpot = true;
+	}
+
+	public bool HaveWeakSpot()
+	{
+		return weakSpot;
+	}
+
+	public void RemoveWeakSpot()
+	{
+		weakSpot = true;
 	}
 
 	public List<Poison> GetPoisons()
