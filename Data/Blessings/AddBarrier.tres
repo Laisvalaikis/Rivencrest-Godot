@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c1a2lxsrlrhf6"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/AddBarrier.cs" id="1_4xax2"]
+
+[resource]
+script = ExtResource("1_4xax2")

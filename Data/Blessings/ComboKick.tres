@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bpo3bsgauo5uc"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/ComboKick.cs" id="1_2au4n"]
+
+[resource]
+script = ExtResource("1_2au4n")
