@@ -18,6 +18,12 @@ public partial class AddBarrier : AbilityBlessing
         return blessing;
     }
     
+    public override BaseBlessing CreateNewInstance()
+    {
+        AddBarrier blessing = new AddBarrier(this);
+        return blessing;
+    }
+    
     public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(ref baseAction, tile);

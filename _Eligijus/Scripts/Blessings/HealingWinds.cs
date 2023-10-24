@@ -4,8 +4,8 @@ using System;
 
 public partial class HealingWinds : AbilityBlessing
 {
-	private int minHeal = 3;
-	private int maxHeal = 5;
+	[Export] private int minHeal = 3;
+	[Export] private int maxHeal = 5;
 	private Random _random;
 	public HealingWinds()
 	{
@@ -13,7 +13,8 @@ public partial class HealingWinds : AbilityBlessing
 	}
 	public HealingWinds(HealingWinds blessing): base(blessing)
 	{
-		
+		minHeal = blessing.minHeal;
+		maxHeal = blessing.maxHeal;
 	}
 	public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
 	{

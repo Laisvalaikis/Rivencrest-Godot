@@ -12,7 +12,7 @@ public partial class MoltenTouch : AbilityBlessing
     
     public MoltenTouch(MoltenTouch blessing): base(blessing)
     {
-        
+        criticalDamage = blessing.criticalDamage;
     }
     
     public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)

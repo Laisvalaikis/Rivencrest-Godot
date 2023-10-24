@@ -26,6 +26,12 @@ public partial class BattleRage : AbilityBlessing
         return blessing;
     }
     
+    public override BaseBlessing CreateNewInstance()
+    {
+        BattleRage blessing = new BattleRage(this);
+        return blessing;
+    }
+    
     public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(ref baseAction);

@@ -121,4 +121,51 @@ public partial class AbilityBlessing : BaseBlessing
 	    }
 	    return crit;
     }
+    
+    protected Side ChunkSideByCharacter(ChunkData playerChunk, ChunkData chunkDataTarget)
+    {
+	    (int x, int y) playerChunkIndex = playerChunk.GetIndexes();
+	    (int x, int y) chunkIndex = chunkDataTarget.GetIndexes();
+	    if (playerChunkIndex.x > chunkIndex.x)
+	    {
+		    return Side.isFront;
+	    }
+	    else if (playerChunkIndex.x < chunkIndex.x)
+	    {
+		    return Side.isBack;
+	    }
+	    else if (playerChunkIndex.y < chunkIndex.y)
+	    {
+		    return Side.isRight;
+	    }
+	    else if (playerChunkIndex.y > chunkIndex.y)
+	    {
+		    return Side.isLeft;
+	    }
+	    return Side.none;
+    }
+    
+    protected (int, int) GetSideVector(Side side)
+    {
+	    (int, int) sideVector = (0, 0);
+	    switch (side)
+	    {
+		    case Side.isFront:
+			    sideVector = (-1, 0);
+			    break;
+		    case Side.isBack:
+			    sideVector = (1, 0);
+			    break;
+		    case Side.isRight:
+			    sideVector = (0, 1);
+			    break;
+		    case Side.isLeft:
+			    sideVector = (0, -1);
+			    break;
+		    case Side.none:
+			    sideVector = (0, 0);
+			    break;
+	    }
+	    return sideVector;
+    }
 }

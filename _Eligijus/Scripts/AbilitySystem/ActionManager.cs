@@ -6,6 +6,8 @@ public partial class ActionManager : Node
 {
 	[Export] 
 	private Player _player;
+	[Export] 
+	private Debuffs _debuffs;
 	private Array<Ability> _baseAbilities;
 	private Array<Ability> _abilities;
 	[Export]
@@ -17,12 +19,6 @@ public partial class ActionManager : Node
 	private int trackingCount = 0;
 	
 	// for blessings
-	private bool _turnTracking = false;
-	private int _turnThreshold = 0;
-	private int _turnCount = 0;
-	private int _turnsPassed = 0;
-	private bool _playerIsRooted = false;
-	private bool _playerIsStunned = false;
 	private int _pointsBeforeAbility;
 	
 	private Vector2 _mousePosition;
@@ -139,10 +135,10 @@ public partial class ActionManager : Node
 	
 	public void OnTurnEnd()
 	{
-		_turnCount++;
-		CheckAbilityTurns();
-		CheckBaseAbilityTurns();
-		CheckWholeAbilities();
+		_debuffs.TurnCounter();
+		_debuffs.CheckAbilityTurns();
+		_debuffs.CheckBaseAbilityTurns();
+		_debuffs.CheckWholeAbilities();
 	}
 	
 	public void OnMove(Vector2 position)
@@ -188,24 +184,7 @@ public partial class ActionManager : Node
 			_currentAbility.Action.CreateGrid();
 		}
 	}
-
-	public void SetTurnCounterFromThisTurn(int turnCount)
-	{
-		_turnsPassed = _turnCount;
-		_turnTracking = true;
-		_turnThreshold = turnCount;
-	}
-
-	public void StunPlayer()
-	{
-		_playerIsStunned = true;
-	}
-
-	public void RootPlayer()
-	{
-		_playerIsRooted = true;
-	}
-
+	
 	public bool IsAbilitySelected()
 	{
 		return _currentAbility != null;
@@ -225,7 +204,7 @@ public partial class ActionManager : Node
 	
 	private void ExecuteCurrentBaseAbility()
 	{
-		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility && CanUseBaseAbility())
+		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility && _debuffs.CanUseBaseAbility( this))
 		{
 			ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
 			if (chunk != null)
@@ -239,7 +218,7 @@ public partial class ActionManager : Node
 	
 	private void ExecuteCurrentAbility()
 	{
-		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability && CanUseAbility())
+		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability && _debuffs.CanUseAbility())
 		{
 			ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
 			if (chunk != null)
@@ -259,70 +238,6 @@ public partial class ActionManager : Node
 			_currentAbility = null;
 		}
 	}
-
-	private bool CanUseAbility()
-	{
-		bool result = false;
-		if (!_playerIsStunned)
-		{
-			if (_turnTracking && _turnCount - _turnsPassed > _turnThreshold)
-			{
-				result = true;
-			}
-			else if (!_turnTracking)
-			{
-				result = true;
-			}
-		}
-
-		return result;
-	}
-
-	private void CheckAbilityTurns()
-	{
-		if (_turnTracking && _turnCount - _turnsPassed > _turnThreshold)
-		{
-			_turnTracking = false;
-		}
-		
-	}
-
-	private bool CanUseBaseAbility()
-	{
-		bool result = false;
-
-		if (!_playerIsStunned)
-		{
-			if (!_playerIsRooted && IsMovementSelected())
-			{
-				result = true;
-			}
-			else if (!IsMovementSelected())
-			{
-				result = true;
-			}
-		}
-
-		return result;
-	}
-
-	private void CheckBaseAbilityTurns()
-	{
-		if (_playerIsRooted)
-		{
-			_playerIsRooted = false;
-		}
-	}
-
-	private void CheckWholeAbilities()
-	{
-		if (_playerIsStunned)
-		{
-			_playerIsStunned = false;
-		}
-	}
-
-
 
 }
 

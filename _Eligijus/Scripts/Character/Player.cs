@@ -5,6 +5,7 @@ public partial class Player : Node2D
 {
 	[Export] public int playerIndex = 0;
 	[Export] public PlayerInformation playerInformation;
+	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
 	protected List<Poison> _poisons;
 	protected bool weakSpot = false;
