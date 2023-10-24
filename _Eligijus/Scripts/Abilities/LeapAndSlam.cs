@@ -18,7 +18,7 @@ public partial class LeapAndSlam : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
+        if (!chunk.IsStandingOnChunk())
         {
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
         }
@@ -48,7 +48,7 @@ public partial class LeapAndSlam : BaseAction
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && chunks[ny, nx]?.GetCurrentPlayer() != null)
+            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && chunks[ny, nx].IsStandingOnChunk() != null)
             {
                 DealRandomDamageToTarget(chunks[nx, ny], minAttackDamage, maxAttackDamage);
             }
