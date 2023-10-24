@@ -19,7 +19,7 @@ public partial class RainOfArrows : BaseAction
         return ability;
     }
     
-    public override void OnTurnStart()//pradzioj ejimo
+    public override void OnTurnStart()
     {
         if (_cometTiles.Count > 0)
         {
@@ -68,5 +68,4 @@ public partial class RainOfArrows : BaseAction
         }
         return damageTiles;
     }
-    
 }

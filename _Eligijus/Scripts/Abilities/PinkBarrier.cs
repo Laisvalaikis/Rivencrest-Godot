@@ -14,7 +14,14 @@ public partial class PinkBarrier : BaseAction
         PinkBarrier ability = new PinkBarrier((PinkBarrier)action);
         return ability;
     }
-
+    
+    protected override void TryAddTile(ChunkData chunk)
+    {
+        if (chunk != null && !chunk.TileIsLocked())
+        {
+            _chunkList.Add(chunk);
+        }
+    }
     
     public override void ResolveAbility(ChunkData chunk)
     {

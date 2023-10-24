@@ -2,6 +2,7 @@ using Godot;
 
 public partial class IsolatedStrike : BaseAction
 {
+    [Export]
     private int isolationDamage = 7;
 
     public IsolatedStrike()
@@ -30,23 +31,11 @@ public partial class IsolatedStrike : BaseAction
         DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
         FinishAbility();
     }
-
-    public void OnTileHover(Vector3 position)
-    {
-        ChunkData chunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-        int showMinDamage = minAttackDamage;
-        int shownMaxDamage = maxAttackDamage;
-        if (IsTargetIsolated(chunk))
-        {
-            showMinDamage += isolationDamage;
-            shownMaxDamage += isolationDamage;
-        }
-        
-    }
+    
     private bool IsTargetIsolated(ChunkData target)
     {
         ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
-        (int y, int x) indexes = target.GetIndexes();
+        (int x, int y) indexes = target.GetIndexes();
         int x = indexes.x;
         int y = indexes.y;
 
@@ -58,7 +47,8 @@ public partial class IsolatedStrike : BaseAction
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny]?.GetCurrentPlayer() != null && IsAllegianceSame(chunks[nx, ny]))
+            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny]?.GetCurrentPlayer() != null && 
+                chunks[nx, ny].GetCurrentPlayer().playerInformation.CharactersTeam == target.GetCurrentPlayer().playerInformation.CharactersTeam)
             {
                 return false;
             }

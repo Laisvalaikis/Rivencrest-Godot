@@ -19,10 +19,9 @@ public partial class LongShot : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            FinishAbility();
-        
+        base.ResolveAbility(chunk);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        FinishAbility();
     }
 
     public override void CreateAvailableChunkList(int attackRange)
@@ -44,10 +43,7 @@ public partial class LongShot : BaseAction
                     if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
                     {
                         ChunkData chunk = chunksArray[targetX, targetY];
-                        if (chunk != null && !chunk.TileIsLocked())
-                        {
-                            _chunkList.Add(chunk);
-                        }
+                        TryAddTile(chunk);
                     }
                 }
             }

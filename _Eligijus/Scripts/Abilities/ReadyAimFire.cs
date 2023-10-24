@@ -56,7 +56,7 @@ public partial class ReadyAimFire : BaseAction
         }
         return index;
     }
-    public override void CreateGrid()
+    public override void CreateAvailableChunkList(int range)
     {
         ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();

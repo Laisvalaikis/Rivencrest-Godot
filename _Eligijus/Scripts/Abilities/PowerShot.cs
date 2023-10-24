@@ -3,7 +3,6 @@ using Godot;
 
 public partial class PowerShot : BaseAction
 {
-
     public PowerShot()
     {
         
@@ -16,12 +15,6 @@ public partial class PowerShot : BaseAction
         PowerShot ability = new PowerShot((PowerShot)action);
         return ability;
     }
-    
-    void Start()
-    {
-        laserGrid = true;
-    }
-    
     protected override void GeneratePlusPattern(ChunkData centerChunk, int length)
     {
         (int centerX, int centerY) = centerChunk.GetIndexes();
@@ -63,16 +56,11 @@ public partial class PowerShot : BaseAction
             }
         }
     }
-    
     public override void ResolveAbility(ChunkData chunk)
     {
-            base.ResolveAbility(chunk);
-            int bonusDamage = 0;
-            DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
-            FinishAbility();
-    }
-    public void OnTileHover(Vector3 position)
-    {
-
+        base.ResolveAbility(chunk);
+        int bonusDamage = 0;
+        DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
+        FinishAbility();
     }
 }

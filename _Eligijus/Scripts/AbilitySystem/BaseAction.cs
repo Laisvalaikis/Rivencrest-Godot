@@ -374,7 +374,7 @@ public abstract partial class BaseAction: Resource
 				ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.Item1, tempIndexes.Item2);
 				if (!tempTile.CharacterIsOnTile())
 				{
-					GameTileMap.Tilemap.MoveSelectedCharacter(tempTile.GetPosition(), new Vector2(0, 0.5f), player.GetCurrentPlayer());
+					GameTileMap.Tilemap.MoveSelectedCharacter(tempTile, player.GetCurrentPlayer());
 				}
 			}
 		}

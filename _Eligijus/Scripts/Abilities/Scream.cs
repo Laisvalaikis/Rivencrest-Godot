@@ -23,8 +23,37 @@ public partial class Scream : BaseAction
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        sideVector = (sideVector.x * -1, sideVector.y * -1);
-        MovePlayerToSide(current, sideVector);
+        sideVector = (sideVector.x, sideVector.y );
+        MovePlayerToSide(current, sideVector,chunk);
+        if (IsTargetIsolated(chunk))
+        {
+            //apply silenced
+        }
         FinishAbility();
     }
+    
+    private bool IsTargetIsolated(ChunkData target)
+    {
+        ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
+        (int x, int y) indexes = target.GetIndexes();
+        int x = indexes.x;
+        int y = indexes.y;
+
+        int[] dx = { 0, 0, 1, -1 };
+        int[] dy = { 1, -1, 0, 0 };
+
+        for (int i = 0; i < 4; i++)
+        {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny]?.GetCurrentPlayer() != null && 
+                chunks[nx, ny].GetCurrentPlayer().playerInformation.CharactersTeam == target.GetCurrentPlayer().playerInformation.CharactersTeam)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
+
