@@ -1,12 +1,13 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cep7bimghaobt"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cv4ho6nh10unu"]
 
 [ext_resource type="Texture2D" uid="uid://drxstan6ejcli" path="res://Data/ActionIcons/Icon_23.tres" id="1_jevlx"]
-[ext_resource type="Resource" uid="uid://hq1rycwkk1p7" path="res://Data/Abilities/Abilities/IsolatedStrike.tres" id="2_d7iik"]
-[ext_resource type="Resource" path="res://Data/AbilityText/IsolatedStrike.tres" id="3_33t6y"]
+[ext_resource type="Resource" uid="uid://ccxn1owbjr037" path="res://Data/Abilities/Abilities/IsolatedStrike.tres" id="2_d7iik"]
+[ext_resource type="Resource" uid="uid://blweh2lbyga08" path="res://Data/AbilityText/IsolatedStrike.tres" id="3_33t6y"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_f5g4m"]
 
 [resource]
 script = ExtResource("3_f5g4m")
+_type = 0
 abilityText = ExtResource("3_33t6y")
 enabled = true
 AbilityImage = ExtResource("1_jevlx")

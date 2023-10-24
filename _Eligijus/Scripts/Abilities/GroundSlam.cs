@@ -3,6 +3,7 @@ using Godot;
 
 public partial class GroundSlam : BaseAction
 {
+    private bool isAbilityActive;
     private List<ChunkData> _chunkListCopy;
 
     public GroundSlam()
@@ -37,11 +38,22 @@ public partial class GroundSlam : BaseAction
             _chunkList.Add(chunk);
         }
     }
+
+    public override void OnTurnStart()
+    {
+        base.OnTurnStart();
+        if(isAbilityActive && player.playerInformation.GetHealth() > 0)
+        {
+            DealDamageToAdjacent();
+        }
+    }
+
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
         //transform.Find("CharacterModel").GetComponent<Animator>().SetTrigger("spell3");
         DealDamageToAdjacent();
+        isAbilityActive = true;
         FinishAbility();
     }
     private void DealDamageToAdjacent()
@@ -49,7 +61,7 @@ public partial class GroundSlam : BaseAction
         foreach (var chunk in _chunkListCopy)
         {
             SetNonHoveredAttackColor(chunk);
-            if (chunk.GetCurrentPlayer() != null && chunk!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+            if (chunk.IsStandingOnChunk() && !IsAllegianceSame(chunk))
             {
                 DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             }

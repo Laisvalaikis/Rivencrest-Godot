@@ -27,7 +27,7 @@ public partial class FromTheShadows : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
             base.ResolveAbility(chunk);
-            if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
+            if (!chunk.IsStandingOnChunk())
             {
                 GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
             }
