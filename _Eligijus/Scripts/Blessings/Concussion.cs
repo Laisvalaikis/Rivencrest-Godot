@@ -30,8 +30,8 @@ public partial class Concussion : AbilityBlessing
 			Player player = tile.GetCurrentPlayer();
 			if (!IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
 			{
-				// Create can't use abilities for one turn
-				GD.PrintErr("can't use abilities for one turn");
+				player.actionManager.SetTurnCounterFromThisTurn(1);
+				// GD.PrintErr("can't use abilities for one turn");
 			}
 		}
 	}

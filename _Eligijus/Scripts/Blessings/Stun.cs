@@ -33,7 +33,8 @@ public partial class Stun : AbilityBlessing
             if (!IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
             {
                 // Create Can't move
-                GD.PrintErr("Fix can't do anything");
+                player.actionManager.StunPlayer();
+                // GD.PrintErr("Fix can't do anything");
             }
         }
     }
