@@ -109,6 +109,10 @@ public partial class ActionManager : Node
 
 	public void AddAbilityPoints(int abilityPoints)
 	{
+		if (abilityPoints < 0)
+		{
+			_debuffs.SlowDownPlayer();
+		}
 		this.abilityPoints += abilityPoints;
 	}
 

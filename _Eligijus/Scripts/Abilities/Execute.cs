@@ -3,8 +3,6 @@ using Godot;
 
 public partial class Execute : BaseAction
 {
-    [Export]
-    public int minimumDamage = 4;
     private PlayerInformation _playerInformation;
  
     public Execute()
@@ -13,7 +11,7 @@ public partial class Execute : BaseAction
     }
     public Execute(Execute execute): base(execute)
     {
-        minimumDamage = execute.minimumDamage;
+        
     }
     public override BaseAction CreateNewInstance(BaseAction action)
     {
@@ -39,8 +37,6 @@ public partial class Execute : BaseAction
             if (hoveredChunk.GetCurrentPlayer() != null)
             {
                 _playerInformation = hoveredChunk.GetCurrentPlayer().playerInformation;
-                maxAttackDamage = ExecuteDamage();
-                minAttackDamage = maxAttackDamage;
             }
             SetHoveredAttackColor(hoveredChunk);
         }
@@ -53,8 +49,7 @@ public partial class Execute : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        int damage = ExecuteDamage();
-        chunk.GetCurrentPlayer().playerInformation.DealDamage(damage, false, player);
+        chunk.GetCurrentPlayer().playerInformation.DealDamage(minAttackDamage, false, player); // sito ability damage min turetu buti 4
         if(chunk.GetCurrentPlayer().playerInformation.GetHealth() <= 0) //Cia ateity jauciu reikes updeitinti sita dali, nes dabar musu characteriai nemirsta, ju health tiesiog tampa <=0. Ateity, kai playeriai mirs, turbut nebebus galima tiesiog pacheckinti chunko playerinfo, nes ant chunko playerio tiesiog nebebus. Donelaičio pamąstymai
         {
             player.playerInformation.Heal(5);
@@ -89,10 +84,5 @@ public partial class Execute : BaseAction
                 }
             }
         }
-    }
-    private int ExecuteDamage()
-    {
-        int damage = minimumDamage + Mathf.FloorToInt(_playerInformation.GetMaxHealth() * 0.15);
-        return damage;
     }
 }

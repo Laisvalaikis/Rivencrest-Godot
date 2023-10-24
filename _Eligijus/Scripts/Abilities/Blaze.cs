@@ -24,28 +24,7 @@ public partial class Blaze : BaseAction
         if (CanTileBeClicked(chunk))
         {
             base.ResolveAbility(chunk);
-        }
-    }
-    
-
-    
-    public void TriggerAflame(ChunkData centerChunk, int radius)//Kai bus buffai debuffai padaryti sita
-    {
-        if (centerChunk != null && centerChunk.GetCurrentPlayer()/*.Aflame*/ != null &&
-            centerChunk.GetCurrentPlayer().playerInformation.GetHealth() > 0)
-        {
-            (int centerX, int centerY) = centerChunk.GetIndexes();
-
-            for (int i = 1; i <= radius; i++)
-            {
-                List<(int, int)> positions = new List<(int, int)>
-                {
-                    (centerX, centerY + i), // Up
-                    (centerX, centerY - i), // Down
-                    (centerX + i, centerY), // Right
-                    (centerX - i, centerY) // Left
-                };
-            }
+            DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
         }
     }
 }

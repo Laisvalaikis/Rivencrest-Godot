@@ -17,7 +17,7 @@ public partial class Entangle : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        DealRandomDamageToTarget(chunk,minAttackDamage,maxAttackDamage);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         FinishAbility();
     }
 }

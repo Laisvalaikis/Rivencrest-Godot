@@ -160,6 +160,11 @@ public partial class PlayerInformation : Node
 	{
 		haveBarier = true;
 	}
+	
+	public void RemoveBarrier()
+	{
+		haveBarier = false;
+	}
 
 	public void LoadPlayerProgression()
 	{

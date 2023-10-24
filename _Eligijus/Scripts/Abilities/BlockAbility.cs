@@ -12,6 +12,7 @@ public partial class BlockAbility : BaseAction
     }
     public BlockAbility(BlockAbility ability): base(ability)
     {
+        _random = new Random();
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -69,15 +70,21 @@ public partial class BlockAbility : BaseAction
         if (/*CanTileBeClicked(chunk)*/chunk!=null) //currently paspaudus ant abiličio iš kart bando executint ir čia gaunas blogai
         {
             base.ResolveAbility(chunk);
-            Player playerLocal = chunk.GetCurrentPlayer();
-            if (playerLocal != null)
-                // playerInformationLocal.BlockingAlly = GameTileMap.Tilemap.GetCurrentCharacter();
-            _characterBeingBlocked = chunk.GetCurrentPlayer();
-            // player.playerInformation.Blocker = true;
+            if (chunk.GetCurrentPlayer() != null)
+            {
+                _characterBeingBlocked.playerInformation.AddBarrier();
+            }
             FinishAbility();
         }
     }
-   
-    
+
+    public override void Die()
+    {
+        base.Die();
+        if (_characterBeingBlocked != null)
+        {
+            _characterBeingBlocked.playerInformation.RemoveBarrier();
+        }
+    }
 }
 

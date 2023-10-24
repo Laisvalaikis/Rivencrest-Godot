@@ -16,7 +16,13 @@
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        if (chunk.IsStandingOnChunk())
+        {
+            Player player = chunk.GetCurrentPlayer();
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            player.AddPoison(new Poison(chunk, 2, 2));
+        }
+
         FinishAbility();
     }
 }

@@ -15,8 +15,6 @@ public partial class Enrage : BaseAction
 		Enrage enrage = new Enrage((Enrage)action);
 		return enrage;
 	}
-	
-	
 
 	protected override void DisableDamagePreview(ChunkData chunk)
 	{
@@ -66,6 +64,13 @@ public partial class Enrage : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
+		if (chunk.IsStandingOnChunk())
+		{
+			Player targetPlayer = chunk.GetCurrentPlayer();
+			targetPlayer.actionManager.AddAbilityPoints(1);
+			player.actionManager.AddAbilityPoints(1);
+		}
+
 		FinishAbility();
 	}
 }

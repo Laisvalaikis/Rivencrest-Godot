@@ -6,6 +6,8 @@ public partial class Debuffs : Node
     private int _turnThreshold = 0;
     private int _turnCount = 0;
     private int _turnsPassed = 0;
+    private bool _playerIsSlower = false;
+    private bool _playerIsSilenced = false;
     private bool _playerIsRooted = false;
     private bool _playerIsStunned = false;
 
@@ -17,14 +19,45 @@ public partial class Debuffs : Node
 
     public void SetTurnCounterFromThisTurn(int turnCount)
     {
+        SilencePlayer();
         _turnsPassed = _turnCount;
         _turnTracking = true;
         _turnThreshold = turnCount;
     }
-    
+
+    public void SlowDownPlayer()
+    {
+        _playerIsSlower = true;
+    }
+
+    public bool IsPlayerSlower()
+    {
+        return _playerIsSlower;
+    }
+
     public void StunPlayer()
     {
         _playerIsStunned = true;
+    }
+
+    public void SilencePlayer()
+    {
+        _playerIsSilenced = true;
+    }
+    
+    public bool IsPlayerSilenced()
+    {
+        return _playerIsSilenced;
+    }
+
+    public bool IsPlayerStunned()
+    {
+       return _playerIsStunned;
+    }
+
+    public bool IsPalyerRooted()
+    {
+        return _playerIsRooted;
     }
 
     public void RootPlayer()

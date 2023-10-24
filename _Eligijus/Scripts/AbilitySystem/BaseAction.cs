@@ -545,6 +545,11 @@ public abstract partial class BaseAction: Resource
 			return turinIsEven;
 		}
 
+		public virtual void Die()
+		{
+			
+		}
+
 		// protected IEnumerator ExecuteAfterTime(float time, Action task)
 		// {
 		//     yield return new WaitForSeconds(time);

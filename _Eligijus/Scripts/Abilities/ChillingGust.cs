@@ -41,9 +41,7 @@ public partial class ChillingGust : BaseAction
             }
             else
             {
-                int bonusDamage = 0;
-                //Calculate bonus damage based on blessings
-                DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
+                DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             }
             FinishAbility();
     }

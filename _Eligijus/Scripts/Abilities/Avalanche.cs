@@ -1,7 +1,5 @@
 using Godot;
 
-namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
-
 public partial class Avalanche : BaseAction
 {
     private PlayerInformation _playerInformation; //playeris ant kurio calliname
@@ -35,7 +33,7 @@ public partial class Avalanche : BaseAction
             {
                 if (CanTileBeClicked(chunkData))
                 {
-                    DealRandomDamageToTarget(chunkData,minAttackDamage,maxAttackDamage);
+                    DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
                 }
             }
             FinishAbility();
@@ -58,7 +56,14 @@ public partial class Avalanche : BaseAction
     {
         if (CheckIfSpecificInformationType(chunk, InformationType.Player))
         {
-            return true; //if character has a slowness debuff (debuffs not yet implemented)
+            Player target = chunk.GetCurrentPlayer();
+            if (target.debuffs.IsPlayerStunned()
+                || target.debuffs.IsPalyerRooted()
+                || target.debuffs.IsPlayerSlower()
+                || target.debuffs.IsPlayerSilenced())
+            {
+                return true;
+            }
         }
         return false;
     }
