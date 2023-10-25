@@ -19,7 +19,7 @@ public partial class Scream : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition + new Vector2(0, 50f));
+        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
@@ -28,6 +28,8 @@ public partial class Scream : BaseAction
         if (IsTargetIsolated(chunk))
         {
             //apply silenced
+            Player target = chunk.GetCurrentPlayer();
+            target.debuffs.SetTurnCounterFromThisTurn(1);
         }
         FinishAbility();
     }
