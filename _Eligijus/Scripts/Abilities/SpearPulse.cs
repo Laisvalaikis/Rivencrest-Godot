@@ -20,36 +20,36 @@ public partial class SpearPulse : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
+        for (int i = 0; i < _chunkList.Count; i++)
+        {
+            DealRandomDamageToTarget(_chunkList[i], minAttackDamage, maxAttackDamage);
+        }
+        base.ResolveAbility(chunk);
+        FinishAbility();
+    }
+    
+    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        if (hoveredChunk == previousChunk) return;
+        if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
         {
             for (int i = 0; i < _chunkList.Count; i++)
             {
-                DealRandomDamageToTarget(_chunkList[i], minAttackDamage, maxAttackDamage);
+                ChunkData chunkToHighLight = _chunkList[i];
+                if (chunkToHighLight != null)
+                    SetHoveredAttackColor(chunkToHighLight);
             }
-            base.ResolveAbility(chunk);
-            FinishAbility();
         }
-    }
-    
-    public override void CreateGrid()
-    {
-        if (_currentChunk != null && _currentChunk.CharacterIsOnTile())
+        else
         {
-            CreateAvailableChunkList(attackRange);
-            HighlightAllGridTiles();
-        }
-    }
-    
-    public override void OnMoveArrows(ChunkData hoveredChunk, ChunkData previousChunk)
-    {
-        if (hoveredChunk != _currentChunk)
-        {
-            _currentChunk = hoveredChunk;
-            if (_currentChunk != null && _currentChunk.CharacterIsOnTile())
+            for (int i = 0; i < _chunkList.Count; i++)
             {
-                ClearGrid();
-                GenerateDiamondPattern(_currentChunk, attackRange);
+                ChunkData chunkToHighLight = _chunkList[i];
+                if (chunkToHighLight != null)
+                    SetNonHoveredAttackColor(chunkToHighLight);
             }
         }
+
     }
+    
 }
