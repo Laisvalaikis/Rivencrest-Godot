@@ -102,6 +102,11 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
+		public virtual void PlayerWasAttacked()
+		{
+			
+		}
+
 		protected virtual void HighlightGridTile(ChunkData chunkData)
 		{
 			SetNonHoveredAttackColor(chunkData);

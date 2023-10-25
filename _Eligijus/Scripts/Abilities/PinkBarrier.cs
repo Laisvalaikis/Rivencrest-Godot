@@ -25,9 +25,16 @@ public partial class PinkBarrier : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        base.ResolveAbility(chunk);
+       base.ResolveAbility(chunk);
         // chunk.GetCurrentPlayerInformation().BarrierProvider = gameObject;
        // GetSpecificGroundTile(position, 0, 0, blockingLayer).GetComponent<GridMovement>().AvailableMovementPoints++;
-        FinishAbility();
+       if (chunk.CharacterIsOnTile())
+       {
+           Player target = chunk.GetCurrentPlayer();
+           target.AddBarrier();
+           target.actionManager.AddAbilityPoints(1);
+       }
+
+       FinishAbility();
     }
 }

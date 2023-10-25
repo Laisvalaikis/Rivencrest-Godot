@@ -29,7 +29,15 @@ public partial class Debuffs : Node
         _turnTracking = true;
         _turnThreshold = turnCount;
     }
-    
+
+    public void RemoveSilence()
+    {
+        _playerIsSilenced = false;
+        _turnTracking = false;
+        _turnsPassed = _turnCount;
+        _turnThreshold = 0;
+    }
+
     public void RemoveSlowDown(ActionManager actionManager)
     {
         if (_playerIsSlower)
@@ -89,7 +97,7 @@ public partial class Debuffs : Node
     {
         _playerIsSilenced = true;
     }
-    
+
     public bool IsPlayerSilenced()
     {
         return _playerIsSilenced;

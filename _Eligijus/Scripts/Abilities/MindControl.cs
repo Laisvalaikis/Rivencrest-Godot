@@ -2,7 +2,7 @@ using Godot;
 
 public partial class MindControl : BaseAction
 {
-    private PlayerInformation _playerInformation;
+    private Player _target;
 
     public MindControl()
     {
@@ -23,9 +23,19 @@ public partial class MindControl : BaseAction
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         if (chunk.CharacterIsOnTile())
         {
-            
+            Player target = chunk.GetCurrentPlayer();
+            _target = target;
+            target.debuffs.SetTurnCounterFromThisTurn(1);
         }
 
         FinishAbility();
     }
+
+    public override void PlayerWasAttacked()
+    {
+        _target.debuffs.RemoveSilence();
+        _target = null;
+    }
+
+
 }

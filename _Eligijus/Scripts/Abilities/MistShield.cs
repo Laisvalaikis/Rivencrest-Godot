@@ -16,12 +16,23 @@ public partial class MistShield : BaseAction
         MistShield ability = new MistShield((MistShield)action);
         return ability;
     }
-    
+
+    public override void OnTurnStart()
+    {
+        base.OnTurnStart();
+        if (isAbilityActive)
+        {
+            player.RemoveBarrier();
+        }
+        player.playerInformation.Protected = false;
+    }
+
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
         isAbilityActive = true;
         player.playerInformation.Protected = true;
+        player.AddBarrier();
         FinishAbility();
     }
 }

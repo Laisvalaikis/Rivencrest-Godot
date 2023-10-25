@@ -35,6 +35,11 @@ public partial class Player : Node2D
 	{
 		playerInformation.AddBarrier();
 	}
+	
+	public void RemoveBarrier()
+	{
+		playerInformation.RemoveBarrier();
+	}
 
 	private void PoisonPlayer()
 	{
