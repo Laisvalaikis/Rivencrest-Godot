@@ -3,12 +3,16 @@ using Godot;
 
 public partial class PoisonDart : BaseAction
 {
+    [Export] private int _poisonTurns = 2;
+    [Export] private int _poisonDamage = 2;
     public PoisonDart()
     {
         
     }
     public PoisonDart(PoisonDart ability): base(ability)
     {
+        _poisonTurns = ability._poisonTurns;
+        _poisonDamage = ability._poisonDamage;
     }
     public override BaseAction CreateNewInstance(BaseAction action)
     {
@@ -20,29 +24,13 @@ public partial class PoisonDart : BaseAction
     {
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        FinishAbility();
-    }
-
-    private void PoisonAdjacent(ChunkData centerChunk)
-    {
-        ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
-        (int x, int y) indexes = centerChunk.GetIndexes();
-        int x = indexes.x;
-        int y = indexes.y;
-
-        int[] dx = { 0, 0, 1, -1 };
-        int[] dy = { 1, -1, 0, 0 };
-
-        for (int i = 0; i < 4; i++)
+        if (chunk.CharacterIsOnTile())
         {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && chunks[ny, nx]?.GetCurrentPlayer() != null && !IsAllegianceSame(chunks[ny, nx]))
-            {
-                //apply poison (cia blessingas, kuri galimai padare eligijus idk)
-            }
+            Player target = chunk.GetCurrentPlayer();
+            target.AddPoison(new Poison(chunk, _poisonTurns,_poisonDamage));
         }
+
+        FinishAbility();
     }
 }
 

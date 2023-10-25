@@ -12,9 +12,23 @@ public partial class Player : Node2D
 
 	public void AddPoison(Poison poison)
 	{
+		if (_poisons == null)
+		{
+			_poisons = new List<Poison>();
+		}
+
 		_poisons.Add(poison);
 	}
-	
+
+	public void ClearPoison()
+	{
+		if (_poisons == null)
+		{
+			_poisons = new List<Poison>();
+		}
+		_poisons.Clear();
+	}
+
 	public void OnTurnStart()
 	{
 		PoisonPlayer();
@@ -28,6 +42,10 @@ public partial class Player : Node2D
 
 	public int GetPoisonCount()
 	{
+		if (_poisons == null)
+		{
+			_poisons = new List<Poison>();
+		}
 		return _poisons.Count;
 	}
 
@@ -43,6 +61,10 @@ public partial class Player : Node2D
 
 	private void PoisonPlayer()
 	{
+		if (_poisons == null)
+		{
+			_poisons = new List<Poison>();
+		}
 		foreach (Poison poison in _poisons)
 		{
 			if (poison.poisonValue > 0 && poison.chunk.GetCurrentPlayer().playerInformation.GetHealth() > 0)
@@ -70,12 +92,20 @@ public partial class Player : Node2D
 
 	public List<Poison> GetPoisons()
 	{
+		if (_poisons == null)
+		{
+			_poisons = new List<Poison>();
+		}
 		return _poisons;
 	}
 	
 	public int TotalPoisonDamage()
 	{
 		int totalDamage = 0;
+		if (_poisons == null)
+		{
+			_poisons = new List<Poison>();
+		}
 		foreach (Poison poison in _poisons)
 		{
 			totalDamage += poison.poisonValue;
