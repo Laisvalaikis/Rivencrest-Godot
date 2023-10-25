@@ -14,6 +14,7 @@ public partial class Debuffs : Node
     private bool _playerIsRooted = false;
     private bool _playerIsStunned = false;
     private bool _playerIsMarked = false;
+    private bool _aFlameIsAdded = false;
 
 
     public void TurnCounter()
@@ -36,6 +37,21 @@ public partial class Debuffs : Node
             actionManager.AddAbilityPoints(_slowDownBy);
             _playerIsSlower = false;
         }
+    }
+
+    public bool PlayerHaveAFlame()
+    {
+        return _aFlameIsAdded;
+    }
+
+    public void RemoveAFlame()
+    {
+        
+    }
+
+    public void AddAFlame()
+    {
+        _aFlameIsAdded = true;
     }
 
     public bool IsMarked()

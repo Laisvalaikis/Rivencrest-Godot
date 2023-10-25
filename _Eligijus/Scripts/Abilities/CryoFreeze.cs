@@ -52,13 +52,17 @@ public partial class CryoFreeze : BaseAction
 					if (CheckIfSpecificInformationType(GetSpecificGroundTile(player.GlobalPosition), InformationType.Player)) //wrong
 					{
 						ChunkData chunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-						if (IsAllegianceSame(chunkData))
+						if (chunkData.CharacterIsOnTile())
 						{
-							DealRandomDamageToTarget(chunkData, minAttackDamage / 2, maxAttackDamage / 2);
-						}
-						else
-						{
-							DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+
+							if (IsAllegianceSame(chunkData))
+							{
+								DealRandomDamageToTarget(chunkData, minAttackDamage / 2, maxAttackDamage / 2);
+							}
+							else
+							{
+								DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+							}
 						}
 					}
 				}

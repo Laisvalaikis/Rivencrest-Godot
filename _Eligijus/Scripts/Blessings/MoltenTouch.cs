@@ -30,6 +30,19 @@ public partial class MoltenTouch : AbilityBlessing
     public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(ref baseAction);
+        if (tile.CharacterIsOnTile())
+        {
+            Player player = tile.GetCurrentPlayer();
+            player.debuffs.AddAFlame();
+        }
+
+        Aflame(ref baseAction, tile);
+
+    }
+    
+    
+    private void Aflame(ref BaseAction baseAction, ChunkData tile)
+    {
         (int x, int y) = tile.GetIndexes();
         
         var directionVectors = new List<(int, int)>
@@ -48,16 +61,14 @@ public partial class MoltenTouch : AbilityBlessing
                 Player player = chunkData.GetCurrentPlayer();
                 if (IsAllegianceSame(player.playerInformation, chunkData, baseAction))
                 {
-                    DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, chunkData, baseAction, 2, 2);
+                    DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, chunkData, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
                 }
             }
         }
         if (tile.CharacterIsOnTile())
         {
-            DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, tile, baseAction, 2, 2);
+            DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, tile, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
         }
-        
     }
-    
     
 }

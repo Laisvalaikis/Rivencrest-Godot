@@ -27,7 +27,7 @@ public partial class MarkEnemy : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        if (chunk.IsStandingOnChunk())
+        if (chunk.CharacterIsOnTile())
         {
             Player player = chunk.GetCurrentPlayer();
             _target = player;

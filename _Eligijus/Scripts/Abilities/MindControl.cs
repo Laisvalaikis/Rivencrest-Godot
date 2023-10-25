@@ -21,6 +21,11 @@ public partial class MindControl : BaseAction
     {
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        if (chunk.CharacterIsOnTile())
+        {
+            
+        }
+
         FinishAbility();
     }
 }

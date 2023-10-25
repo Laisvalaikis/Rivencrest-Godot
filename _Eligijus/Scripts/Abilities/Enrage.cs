@@ -64,7 +64,7 @@ public partial class Enrage : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
-		if (chunk.IsStandingOnChunk())
+		if (chunk.CharacterIsOnTile())
 		{
 			Player targetPlayer = chunk.GetCurrentPlayer();
 			targetPlayer.actionManager.AddAbilityPoints(1);

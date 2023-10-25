@@ -49,12 +49,18 @@ public partial class Execute : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        chunk.GetCurrentPlayer().playerInformation.DealDamage(minAttackDamage, false, player); // sito ability damage min turetu buti 4
-        if(chunk.GetCurrentPlayer().playerInformation.GetHealth() <= 0) //Cia ateity jauciu reikes updeitinti sita dali, nes dabar musu characteriai nemirsta, ju health tiesiog tampa <=0. Ateity, kai playeriai mirs, turbut nebebus galima tiesiog pacheckinti chunko playerinfo, nes ant chunko playerio tiesiog nebebus. Donelaičio pamąstymai
+
+        if (chunk.CharacterIsOnTile())
         {
-            player.playerInformation.Heal(5);
-            GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+            chunk.GetCurrentPlayer().playerInformation.DealDamage(minAttackDamage, false, player); // sito ability damage min turetu buti 4
+            if(chunk.GetCurrentPlayer().playerInformation.GetHealth() <= 0) //Cia ateity jauciu reikes updeitinti sita dali, nes dabar musu characteriai nemirsta, ju health tiesiog tampa <=0. Ateity, kai playeriai mirs, turbut nebebus galima tiesiog pacheckinti chunko playerinfo, nes ant chunko playerio tiesiog nebebus. Donelaičio pamąstymai
+            {
+                player.playerInformation.Heal(5);
+                GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+            } 
         }
+
+        
         FinishAbility();
     }
 

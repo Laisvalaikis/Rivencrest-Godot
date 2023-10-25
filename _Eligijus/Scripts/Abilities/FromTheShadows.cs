@@ -26,13 +26,13 @@ public partial class FromTheShadows : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-            base.ResolveAbility(chunk);
-            if (!chunk.IsStandingOnChunk())
-            {
-                GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
-            }
-            DamageAdjacent(chunk);
-            FinishAbility();
+        base.ResolveAbility(chunk);
+        if (!chunk.CharacterIsOnTile())
+        {
+            GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+        }
+        DamageAdjacent(chunk);
+        FinishAbility();
     }
     private void DamageAdjacent(ChunkData centerChunk)
     {

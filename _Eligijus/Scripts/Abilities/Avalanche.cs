@@ -18,12 +18,7 @@ public partial class Avalanche : BaseAction
         Avalanche avalanche = new Avalanche((Avalanche)action);
         return avalanche;
     }
-    void Start()
-    {
-        abilityHighlight = new Color(123,156, 178,255);
-        abilityHighlightHover = new Color(103, 136, 158, 255);
-        characterOnGrid = new Color(146, 212, 255, 255);
-    }
+
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
@@ -31,7 +26,7 @@ public partial class Avalanche : BaseAction
             base.ResolveAbility(chunk);
             foreach (ChunkData chunkData in _chunkList)
             {
-                if (CanTileBeClicked(chunkData))
+                if (chunkData.CharacterIsOnTile() && CanTileBeClicked(chunkData))
                 {
                     DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
                 }

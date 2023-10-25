@@ -18,7 +18,7 @@ public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        if (chunk.IsStandingOnChunk())
+        if (chunk.CharacterIsOnTile())
         {
             Player player = chunk.GetCurrentPlayer();
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);

@@ -35,7 +35,11 @@ public partial class HealingSight : BaseAction
         base.ResolveAbility(chunk);
         Random random = new Random();
         int randomHeal = random.Next(minHealAmount, maxHealAmount);
-        chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+        if (chunk.CharacterIsOnTile())
+        {
+            chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+        }
+
         FinishAbility();
     }
 }

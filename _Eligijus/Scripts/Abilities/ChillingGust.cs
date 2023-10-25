@@ -70,28 +70,4 @@ public partial class ChillingGust : BaseAction
         }
     }
     
-    private void CreateDamageTileList(ChunkData chunk)
-    {
-        _additionalDamageTiles.Clear();
-        
-        
-        ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
-        (int x, int y) indexes = chunk.GetIndexes();
-        int x = indexes.x;
-        int y = indexes.y;
-
-        int[] dx = { 0, 0, 1, -1 };
-        int[] dy = { 1, -1, 0, 0 };
-
-        for (int i = 0; i < 4; i++)
-        {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && CheckIfSpecificInformationType(chunks[nx,ny], InformationType.Player))
-            {
-                _additionalDamageTiles.Add(chunk);
-            }
-        }
-    }
 }
