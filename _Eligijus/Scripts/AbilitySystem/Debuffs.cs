@@ -13,6 +13,7 @@ public partial class Debuffs : Node
     private bool _playerIsSilenced = false;
     private bool _playerIsRooted = false;
     private bool _playerIsStunned = false;
+    private bool _playerIsMarked = false;
 
 
     public void TurnCounter()
@@ -35,6 +36,21 @@ public partial class Debuffs : Node
             actionManager.AddAbilityPoints(_slowDownBy);
             _playerIsSlower = false;
         }
+    }
+
+    public bool IsMarked()
+    {
+        return _playerIsMarked;
+    }
+
+    public void UnMark()
+    {
+        _playerIsMarked = false;
+    }
+
+    public void Mark()
+    {
+        _playerIsMarked = true;
     }
 
     public void SlowDownPlayer(int slowdownBy)

@@ -1,6 +1,6 @@
 public partial class MarkEnemy : BaseAction
 {
-    private ChunkData _target;
+    private Player _target;
  
     public MarkEnemy()
     {
@@ -14,10 +14,26 @@ public partial class MarkEnemy : BaseAction
         MarkEnemy markEnemy = new MarkEnemy((MarkEnemy)action);
         return markEnemy;
     }
-    
+
+    public override void OnTurnEnd()
+    {
+        base.OnTurnEnd();
+        if (_target != null && _target.debuffs.IsMarked())
+        {
+            _target.debuffs.UnMark();
+        }
+    }
+
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
+        if (chunk.IsStandingOnChunk())
+        {
+            Player player = chunk.GetCurrentPlayer();
+            _target = player;
+            player.debuffs.Mark();
+        }
+        
         // chunk.GetCurrentPlayerInformation().Marker = gameObject;
         FinishAbility();
     }
@@ -32,6 +48,15 @@ public partial class MarkEnemy : BaseAction
         {
             chunkData.GetTileHighlight()?.SetHighlightColor(abilityHoverCharacter);
             EnableDamagePreview(chunkData, "MARK");
+        }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        if (_target != null && _target.debuffs.IsMarked())
+        {
+            _target.debuffs.UnMark();
         }
     }
 }
