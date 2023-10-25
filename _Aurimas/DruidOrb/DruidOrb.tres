@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://4bjova22id4w"]
+
+[ext_resource type="Resource" uid="uid://13pauxoostrm" path="res://_Aurimas/DruidOrb/DruidOrbData.tres" id="1_kbfkr"]
+[ext_resource type="PackedScene" uid="uid://bwcv0hf0owwd2" path="res://_Aurimas/Enemies/ForestDruid.tscn" id="2_6cguh"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_ghoul"]
+
+[resource]
+script = ExtResource("3_ghoul")
+prefab = ExtResource("2_6cguh")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = null
+toConfirmAbilities = 0
+blessings = null
+cost = 0
+characterIndex = 0
+playerInformation = ExtResource("1_kbfkr")
