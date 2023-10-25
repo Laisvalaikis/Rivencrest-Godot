@@ -23,28 +23,28 @@ public partial class SwitchPlaces : BaseAction
     {
         if (chunk.CharacterIsOnTile())
         {
-            if (_firstSeleted == null || !_firstSeleted.CharacterIsOnTile())
-            {
-                _firstSeleted = chunk;
-            }
-            else if(_secondSelected == null || !_secondSelected.CharacterIsOnTile())
-            {
-                _secondSelected = chunk;
-                SwitchCharacters(_firstSeleted, _secondSelected);
-                FinishAbility();
-                base.ResolveAbility(chunk);
-                _firstSeleted = null;
-                _secondSelected = null;
-            }
+            // if (_firstSeleted == null || !_firstSeleted.CharacterIsOnTile())
+            // {
+            //     _firstSeleted = chunk;
+            // }
+            // else if(_secondSelected == null || !_secondSelected.CharacterIsOnTile())
+            // {
+            ChunkData chunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+            _secondSelected = chunk;
+            SwitchCharacters(chunkData, _secondSelected);
+            FinishAbility();
+            base.ResolveAbility(chunk);
+            _firstSeleted = null;
+            _secondSelected = null;
+            // }
           
         }
     }
     private void SwitchCharacters(ChunkData characterOne, ChunkData characterTwo)
     {
         Player character = characterOne.GetCurrentPlayer();
-        PlayerInformation playerInformationLocal = characterOne.GetCurrentPlayer().playerInformation;
-        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterTwo.GetPosition(), new Vector2(0, 50f), characterOne.GetCurrentPlayer());
-        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterOne.GetPosition(), new Vector2(0, 50f),
+        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterTwo.GetPosition(), new Vector2(0, 0), characterOne.GetCurrentPlayer());
+        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterOne.GetPosition(), new Vector2(0, 0),
             characterTwo.GetCurrentPlayer());
         GameTileMap.Tilemap.SetCharacter(characterOne, characterTwo.GetCurrentPlayer());
         GameTileMap.Tilemap.SetCharacter(characterTwo, character);
