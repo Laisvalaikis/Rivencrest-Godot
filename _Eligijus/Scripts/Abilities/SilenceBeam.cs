@@ -4,15 +4,17 @@ namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 
 public partial class SilenceBeam : BaseAction
 {
+	[Export] private int _additionalDamage = 2;
 	private ChunkData[,] _chunkArray;
+	private int _index = -1;
 	public SilenceBeam()
 	{
 	
 	}
 	
-	public SilenceBeam(SilenceBeam silenceBeam) : base(silenceBeam)
+	public SilenceBeam(SilenceBeam action) : base(action)
 	{
-		
+		_additionalDamage = action._additionalDamage;
 	}
 		
 	public override BaseAction CreateNewInstance(BaseAction action)
@@ -20,21 +22,37 @@ public partial class SilenceBeam : BaseAction
 		SilenceBeam silenceBeam = new SilenceBeam((SilenceBeam)action); 
 		return silenceBeam;
 	}
-	void Start()
+
+	public override void OnTurnStart()
 	{
-		abilityHighlight = new Color(123,156, 178,255);
-		abilityHighlightHover = abilityHoverCharacter;
-		characterOnGrid = abilityHighlight;
-	}
-	public override void ResolveAbility(ChunkData chunk)
-	{
-		base.ResolveAbility(chunk);
-		int index = FindChunkIndex(chunk);
-		if (index != -1)
+		base.OnTurnStart();
+		if (_index != -1)
 		{
 			for (int i = 0; i < _chunkArray.GetLength(1); i++)
 			{
-				ChunkData damageChunk = _chunkArray[index, i];
+				ChunkData damageChunk = _chunkArray[_index, i];
+				if (damageChunk.CharacterIsOnTile())
+				{
+					Player target = damageChunk.GetCurrentPlayer();
+					target.debuffs.SetTurnCounterFromThisTurn(1);
+				}
+
+				DealRandomDamageToTarget(damageChunk, minAttackDamage + _additionalDamage, maxAttackDamage + _additionalDamage);
+			}
+			_chunkArray = new ChunkData[4, attackRange];
+		}
+		
+	}
+
+	public override void ResolveAbility(ChunkData chunk)
+	{
+		base.ResolveAbility(chunk);
+		_index = FindChunkIndex(chunk);
+		if (_index != -1)
+		{
+			for (int i = 0; i < _chunkArray.GetLength(1); i++)
+			{
+				ChunkData damageChunk = _chunkArray[_index, i];
 				DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
 			}
 			FinishAbility();
@@ -111,11 +129,10 @@ public partial class SilenceBeam : BaseAction
 		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 		(int centerX, int centerY) = centerChunk.GetIndexes();
 		_chunkList.Clear();
-		int count = range;
-		_chunkArray = new ChunkData[4,count];
+		_chunkArray = new ChunkData[4,range];
 
 		int start = 1;
-		for (int i = 0; i < count; i++) 
+		for (int i = 0; i < range; i++) 
 		{
 			if (GameTileMap.Tilemap.CheckBounds(centerX + i + start, centerY))
 			{
