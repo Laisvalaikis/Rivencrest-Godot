@@ -8,6 +8,7 @@ public partial class SwordPush : BaseAction
     [Export]
     public int centerDamage = 30;
     private List<ChunkData> _attackTiles;
+    private ChunkData _adjacent;
 
     public SwordPush()
     {
@@ -40,11 +41,22 @@ public partial class SwordPush : BaseAction
                 bool crit = IsItCriticalStrike(ref damage);
                 DealDamage(_attackTiles[i], damage, crit);
                 _side = ChunkSideByCharacter(chunk, _attackTiles[i]);
+                
+
                 (int x, int y) sideVector = GetSideVector(_side);
                 MovePlayerToSide(_attackTiles[i], sideVector);
             }
             else
             {
+                CheckAdjacent(chunk);
+
+                if (_adjacent != null)
+                {
+                    _side = ChunkSideByCharacter(chunk, _adjacent);
+                    (int x, int y) sideVector = GetSideVector(_side);
+                    MovePlayerToSide(_attackTiles[i], sideVector);
+                }
+
                 int damage = centerDamage;
                 bool crit = IsItCriticalStrike(ref damage);
                 DealDamage(_attackTiles[i], damage, crit);
@@ -52,6 +64,31 @@ public partial class SwordPush : BaseAction
         }
         FinishAbility();
         // }
+    }
+
+    private void CheckAdjacent(ChunkData tile)
+    {
+        (int x, int y) = tile.GetIndexes();
+		
+        var directionVectors = new List<(int, int)>
+        {
+            (1 + x, 0 + y),
+            (0 + x, 1 + y),
+            (-1 + x, 0 + y),
+            (0 + x, -1 + y)
+        };
+        _adjacent = null;
+
+        foreach (var directions in directionVectors)
+        {
+            ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(directions.Item1, directions.Item2);
+            (int x, int y) indexes = chunkData.GetIndexes();
+            if (!chunkData.CharacterIsOnTile() && GameTileMap.Tilemap.CheckBounds(indexes.x, indexes.y))
+            {
+                _adjacent = chunkData;
+                break;
+            }
+        }
     }
 
     private void CreateAttackGrid(ChunkData selected)
