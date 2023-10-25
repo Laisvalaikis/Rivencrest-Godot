@@ -27,4 +27,4 @@ characterSprite = ExtResource("6_36jjj")
 roleSprite = ExtResource("7_4b78p")
 baseAbilities = Array[Resource]([ExtResource("4_ykcma"), ExtResource("5_m7r5t")])
 abilities = Array[Resource]([ExtResource("2_tpukc"), ExtResource("3_tblqa")])
-BlessingsAndCurses = []
+blessingsAndCurses = null

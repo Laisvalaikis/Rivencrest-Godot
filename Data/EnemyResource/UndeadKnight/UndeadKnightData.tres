@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dntrey1ghc5mh" path="res://Data/EnemyResource/UndeadKnight/Textures/CharacterPortraitSprite.tres" id="1_pt7ku"]
 [ext_resource type="Resource" uid="uid://cptrp37s44iov" path="res://Data/Abilities/MistShield.tres" id="2_4obtd"]
-[ext_resource type="Resource" uid="uid://c7p7ggx5iiqw4" path="res://Data/Abilities/GroundSlam.tres" id="3_w0ns6"]
+[ext_resource type="Resource" uid="uid://6goaufd13pcj" path="res://Data/Abilities/GroundSlam.tres" id="3_w0ns6"]
 [ext_resource type="Resource" uid="uid://blmh0ptkj3m7k" path="res://Data/Abilities/LeapAndSlam.tres" id="4_lil8d"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_vc26g"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="6_yg5xe"]
@@ -28,4 +28,4 @@ characterSprite = ExtResource("7_n0dpc")
 roleSprite = ExtResource("8_q4ope")
 baseAbilities = Array[Resource]([ExtResource("5_vc26g"), ExtResource("6_yg5xe")])
 abilities = Array[Resource]([ExtResource("2_4obtd"), ExtResource("3_w0ns6"), ExtResource("4_lil8d")])
-BlessingsAndCurses = []
+blessingsAndCurses = null
