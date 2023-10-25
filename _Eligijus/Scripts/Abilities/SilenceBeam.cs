@@ -37,7 +37,6 @@ public partial class SilenceBeam : BaseAction
 				ChunkData damageChunk = _chunkArray[index, i];
 				DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
 			}
-
 			FinishAbility();
 		}
 	}
