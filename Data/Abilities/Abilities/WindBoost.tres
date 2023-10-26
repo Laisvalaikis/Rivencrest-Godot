@@ -4,8 +4,6 @@
 
 [resource]
 script = ExtResource("1_8ndcc")
-minHeal = 3
-maxHeal = 5
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
