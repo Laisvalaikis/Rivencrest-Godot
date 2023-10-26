@@ -24,7 +24,7 @@ public partial class WallEntrap : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        SpawnAdjacentWalls();
+        SpawnAdjacentWalls(chunk);
         FinishAbility();
     }
     
@@ -40,9 +40,9 @@ public partial class WallEntrap : BaseAction
         }
     }
 
-    private void SpawnAdjacentWalls()
+    private void SpawnAdjacentWalls(ChunkData chunk)
     {
-        (int x, int y) coordinates = GameTileMap.Tilemap.GetChunk(player.GlobalPosition + new Vector2(0, 50f)).GetIndexes();
+        (int x, int y) coordinates = chunk.GetIndexes();
         var directionVectors = new List<(int, int)>
         {
             (coordinates.x + 1, coordinates.y + 0),
@@ -53,17 +53,15 @@ public partial class WallEntrap : BaseAction
         ChunkData[,] chunkDataArray = GameTileMap.Tilemap.GetChunksArray();
         foreach (var x in directionVectors)
         {
-            if (x.Item1 >= 0 && x.Item1 < chunkDataArray.GetLength(0) && x.Item2 >= 0 && x.Item2 < chunkDataArray.GetLength(1))
+            if (GameTileMap.Tilemap.CheckBounds(x.Item1,x.Item2))
             {
                 ChunkData chunkData = chunkDataArray[x.Item1, x.Item2];
-                
                 PackedScene spawnResource = (PackedScene)wallPrefab;
                 Player wall = spawnResource.Instantiate<Player>();
                 player.GetTree().Root.CallDeferred("add_child", wall);
-                PlayerInformation tempPlayerInformation = wall.playerInformation;
-                    
-                GameTileMap.Tilemap.SetCharacter(chunkData, wall);
-                _playerInformations.Add(tempPlayerInformation);
+                GameTileMap.Tilemap.MoveSelectedCharacter(chunkData, wall);
+                //PlayerInformation tempPlayerInformation = wall.playerInformation;
+                //_playerInformations.Add(tempPlayerInformation);
             }
         }
     }

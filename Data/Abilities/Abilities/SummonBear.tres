@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dvnocse4efo26"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b8cwhqh86kt2h"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SummonBear.cs" id="1_a1124"]
-[ext_resource type="PackedScene" path="res://_Aurimas/Enemies/ForestBear.tscn" id="1_d65ck"]
+[ext_resource type="PackedScene" uid="uid://b88cjxcilhaka" path="res://_Aurimas/Enemies/ForestBear.tscn" id="1_d65ck"]
 
 [resource]
 script = ExtResource("1_a1124")
