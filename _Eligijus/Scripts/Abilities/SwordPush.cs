@@ -59,6 +59,8 @@ public partial class SwordPush : BaseAction
                 }
             }
         }
+        chunk.GetTileHighlight().SetSideArrowsSprite(0);
+        chunk.GetTileHighlight().ActivateSideArrows(false);
         FinishAbility();
         // }
     }
