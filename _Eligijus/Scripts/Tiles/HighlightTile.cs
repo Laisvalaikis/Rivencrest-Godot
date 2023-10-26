@@ -9,6 +9,7 @@ public partial class HighlightTile : Node2D
 	[Export] private Sprite2D arrowTile;
 	[Export] private Sprite2D playerSelect;
 	[Export] private Sprite2D preview;
+	[Export] private Sprite2D sideArrows;
 	
 	[Export] private AtlasTexture rightStartArrow;
 	[Export] private AtlasTexture leftStartArrow;
@@ -27,6 +28,12 @@ public partial class HighlightTile : Node2D
 	[Export] private AtlasTexture bottomLeftCornerArrow;
 	[Export] private AtlasTexture topRightCornerArrow;
 	[Export] private AtlasTexture bottomRightCornerArrow;
+	
+	[Export] private AtlasTexture everyArrow;
+	[Export] private AtlasTexture withoutRightArrow;
+	[Export] private AtlasTexture withoutLeftEndArrow;
+	[Export] private AtlasTexture withoutDownEndArrow;
+	[Export] private AtlasTexture withoutUpEndArrow;
 
 	[Export] private Sprite2D skullSprite;
 	[Export] private Resource textTilePrefab;
@@ -55,6 +62,18 @@ public partial class HighlightTile : Node2D
 		else
 		{
 			skullSprite.Hide();
+		}
+	}
+
+	public void ActivateSideArrows(bool activate)
+	{
+		if (activate)
+		{
+			sideArrows.Show();
+		}
+		else
+		{
+			sideArrows.Hide();
 		}
 	}
 
@@ -110,6 +129,34 @@ public partial class HighlightTile : Node2D
 		}
 		
 	}
+	
+	public void SetSideArrowsSprite(int arrowType)
+	{
+		AtlasTexture arrowSprite = null;
+
+		switch (arrowType)
+		{
+			case 0:
+				arrowSprite = everyArrow;
+				break;
+			case 1:
+				arrowSprite = withoutRightArrow;
+				break;
+			case 2:
+				arrowSprite = withoutLeftEndArrow;
+				break;
+			case 3:
+				arrowSprite = withoutDownEndArrow;
+				break;
+			case 4:
+				arrowSprite = withoutUpEndArrow;
+				break;
+			default:
+				return;
+		}
+		sideArrows.Texture = arrowSprite;
+	}
+	
 	public void SetArrowSprite(int arrowType)
 	{
 		AtlasTexture arrowSprite = null;
