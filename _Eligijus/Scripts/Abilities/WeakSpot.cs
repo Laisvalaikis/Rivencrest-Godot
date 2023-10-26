@@ -1,7 +1,8 @@
+using System.Diagnostics;
 using Godot;
 
 public partial class WeakSpot : BaseAction
-{
+{ 
     public WeakSpot()
     {
     }
@@ -20,7 +21,12 @@ public partial class WeakSpot : BaseAction
     {
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        chunk.GetCurrentPlayer().AddWeakSpot();
+        if (chunk.CharacterIsOnTile())
+        {
+            chunk.GetCurrentPlayer().AddWeakSpot();
+        }
+
         FinishAbility();
     }
+    
 }
