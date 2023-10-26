@@ -95,6 +95,8 @@ public partial class GrapplingHook : AbilityBlessing
     private void SetHoveredChunkHighlight(BaseAction baseAction, ChunkData hoveredChunk, PlayerInformation currentPlayerInfo)
     {
         baseAction.SetHoveredAttackColor(hoveredChunk);
+        baseAction.EnableDamagePreview(hoveredChunk);
+
         if (currentPlayerInfo != null)
         {
             AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.playerInformationData.characterSprite;

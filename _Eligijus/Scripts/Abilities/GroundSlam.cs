@@ -89,6 +89,7 @@ public partial class GroundSlam : BaseAction
             foreach (var chunk in _chunkList)
             {
                 SetHoveredAttackColor(chunk);
+                EnableDamagePreview(chunk);
             }
         }
     }

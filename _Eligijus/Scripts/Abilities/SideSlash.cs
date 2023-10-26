@@ -60,7 +60,10 @@ public partial class SideSlash : BaseAction
                 {
                     ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
                     if (chunkToHighLight != null)
+                    {
                         SetHoveredAttackColor(chunkToHighLight);
+                        EnableDamagePreview(chunkToHighLight);
+                    }
                 }
             }
         }

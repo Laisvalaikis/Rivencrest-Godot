@@ -54,6 +54,7 @@ public partial class Enrage : BaseAction
 		if (hoveredChunkHighlight.isHighlighted)
 		{
 			SetHoveredAttackColor(hoveredChunk);
+			EnableDamagePreview(hoveredChunk);
 		}
 		if (previousChunkHighlight != null && hoveredChunk.GetCurrentPlayer()==null/*CanTileBeClicked(hoveredChunk)*/)
 		{

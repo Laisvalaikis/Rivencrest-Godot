@@ -111,6 +111,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
                     if (chunkToHighLight != null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
+                        EnableDamagePreview(chunkToHighLight);
                     }                
                 }
             }

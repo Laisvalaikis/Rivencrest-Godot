@@ -176,6 +176,7 @@ public partial class ChainHook : BaseAction
 	private void SetHoveredChunkHighlight(ChunkData hoveredChunk, PlayerInformation currentPlayerInfo)
 	{
 		SetHoveredAttackColor(hoveredChunk);
+		EnableDamagePreview(hoveredChunk);
 		if (currentPlayerInfo != null)
 		{
 			AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.playerInformationData.characterSprite;

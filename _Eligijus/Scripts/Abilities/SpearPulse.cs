@@ -37,7 +37,10 @@ public partial class SpearPulse : BaseAction
             {
                 ChunkData chunkToHighLight = _chunkList[i];
                 if (chunkToHighLight != null)
+                {
                     SetHoveredAttackColor(chunkToHighLight);
+                    EnableDamagePreview(chunkToHighLight);
+                }
             }
         }
         else

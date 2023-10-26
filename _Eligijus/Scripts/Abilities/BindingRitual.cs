@@ -41,6 +41,7 @@ public partial class BindingRitual : BaseAction
                 if (highlightTile != null)
                 {
                     SetHoveredAttackColor(chunk);
+                    EnableDamagePreview(chunk);
                 }
             }
         }
