@@ -46,7 +46,6 @@ public partial class WindBoost : BaseAction
             {
                 int randomHeal = _random.Next(minHeal, maxHeal);
                 player.playerInformation.Heal(randomHeal);
-                
             }
         }
     }
