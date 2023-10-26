@@ -28,7 +28,7 @@ public partial class WallSmash : BaseAction
         {
             DealRandomDamageToTarget(chunk, minAttackDamage-2, maxAttackDamage-2);
         }
-        else if(chunk.GetCurrentPlayer() != null)
+        else if(chunk.GetCurrentPlayer() != null && chunk.GetInformationType() != InformationType.Player)
         {
             DestroyObject(chunk);
         }
