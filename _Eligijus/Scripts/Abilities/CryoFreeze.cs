@@ -78,7 +78,7 @@ public partial class CryoFreeze : BaseAction
 		return true;
 	}
 	
-	protected override void EnableDamagePreview(ChunkData chunk, string customText = null)
+	public override void EnableDamagePreview(ChunkData chunk, string customText = null)
 	{
 		
 	}
