@@ -36,8 +36,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
             for (int i = 0; i < _chunkArray.GetLength(1); i++)
             {
                 ChunkData damageChunk = _chunkArray[index, i];
-//                _poisons.Add(new Poison(damageChunk, 2, 1));
-                DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+                DealDamage(damageChunk, spellDamage, false);
             }
             GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(index));
             FinishAbility();
@@ -74,9 +73,8 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
     {
         if (hoveredChunk == previousChunk) return;
 
-        Player currentCharacter = (Player)GameTileMap.Tilemap.GetCurrentCharacter();
-        PlayerInformation currentPlayerInfo = currentCharacter.playerInformation;
-        
+        ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        PlayerInformation currentPlayerInfo = player.playerInformation;
         if (_globalIndex != -1)
         {
             for (int i = 0; i < _chunkArray.GetLength(1); i++)
@@ -85,6 +83,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
                 if (chunkToHighLight != null)
                 {
                     SetNonHoveredAttackColor(chunkToHighLight);
+                    DisableDamagePreview(chunkToHighLight);
                     ResetCharacterSpriteRendererAndTilePreview();
                 }
             }
@@ -98,11 +97,14 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
                 {
                     AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.playerInformationData.characterSprite;
                     _tileToPullTo = TileToDashTo(_globalIndex);
-                    HighlightTile tileToPullToHighlight = _tileToPullTo.GetTileHighlight();
-                    tileToPullToHighlight.TogglePreviewSprite(true);
-                    tileToPullToHighlight.SetPreviewSprite(characterSprite);
-                    _characterSpriteRenderer = currentPlayerInfo.spriteRenderer;
-                    _characterSpriteRenderer.SelfModulate = new Color(1f, 1f, 1f, 0.5f);
+                    if (_tileToPullTo != playerChunk)
+                    {
+                        HighlightTile tileToPullToHighlight = _tileToPullTo.GetTileHighlight();
+                        tileToPullToHighlight.TogglePreviewSprite(true);
+                        tileToPullToHighlight.SetPreviewSprite(characterSprite);
+                        _characterSpriteRenderer = currentPlayerInfo.spriteRenderer;
+                        _characterSpriteRenderer.SelfModulate = new Color(1f, 1f, 1f, 0.5f);
+                    }
                 }
                 
                 for (int i = 0; i < _chunkArray.GetLength(1); i++)
@@ -111,7 +113,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
                     if (chunkToHighLight != null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
-                        EnableDamagePreview(chunkToHighLight);
+                        EnableDamagePreview(chunkToHighLight, $"-{spellDamage}");
                     }                
                 }
             }
