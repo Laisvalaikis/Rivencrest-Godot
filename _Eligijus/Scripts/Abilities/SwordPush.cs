@@ -244,12 +244,15 @@ public partial class SwordPush : BaseAction
                     tempTile.GetTileHighlight().SetArrowSprite(arrowType);
                     _arrowTiles.Add(tempTile.GetTileHighlight());
                 }
-                else
-                {
-                    
-                }
             }
-            // SetHoveredAttackColor(tempTile);
+        }
+        else
+        {
+            if (_attackTiles[index].CharacterIsOnTile())
+            {
+                EnableDamagePreview(_attackTiles[index], $"-{pushDamage}");
+                _text.Add(_attackTiles[index]);
+            }
         }
     }
 
