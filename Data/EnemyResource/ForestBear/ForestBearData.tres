@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=8 format=3 uid="uid://byy56wy8b318n"]
 
-[ext_resource type="Resource" uid="uid://cptrp37s44iov" path="res://Data/Abilities/MistShield.tres" id="1_34ary"]
+[ext_resource type="Resource" path="res://Data/Abilities/MistShield.tres" id="1_34ary"]
 [ext_resource type="Texture2D" uid="uid://dr3lf6ebbe7yf" path="res://Data/EnemyResource/ForestBear/Textures/CharacterPortraitSprite.tres" id="1_t84g4"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="2_2ryj6"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="3_bdo33"]
@@ -26,4 +26,4 @@ characterSprite = ExtResource("5_dhjeq")
 roleSprite = ExtResource("6_bx1nq")
 baseAbilities = Array[Resource]([ExtResource("2_2ryj6"), ExtResource("3_bdo33")])
 abilities = Array[Resource]([ExtResource("1_34ary")])
-blessingsAndCurses = null
+blessingsAndCurses = Array[Resource]([])
