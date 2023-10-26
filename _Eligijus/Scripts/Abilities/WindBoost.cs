@@ -40,13 +40,16 @@ public partial class WindBoost : BaseAction
             (-attackRange + indexes.x, indexes.y),
             (indexes.x, -attackRange + indexes.y)
         };
-        foreach (var x in pushDirectionVectors)
+        foreach (var vector in pushDirectionVectors)
         {
-            if (IsAllegianceSame(current))
+            if (GameTileMap.Tilemap.CheckBounds(vector.Item1, vector.Item2))
             {
-                int randomHeal = _random.Next(minHeal, maxHeal);
-                player.playerInformation.Heal(randomHeal);
-                
+                ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(vector.Item1, vector.Item2);
+                if (IsAllegianceSame(chunkData) && chunkData.GetCurrentPlayer() != null)
+                {
+                    int randomHeal = _random.Next(minHeal, maxHeal);
+                    chunkData.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+                }
             }
         }
     }
