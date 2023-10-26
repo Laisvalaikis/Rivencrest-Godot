@@ -48,7 +48,10 @@ public partial class HighlightTile : Node2D
 		PackedScene textTile = (PackedScene)textTilePrefab;
 		Label label = (Label)textTile.Instantiate();
 		CallDeferred("add_child", label);
+		CallDeferred("move_child", label, 0);
+		label.ZIndex = 1;
 		damageText = label;
+		// MoveChild(damageText, 1);
 		label.Hide();
 
 	}
@@ -79,6 +82,11 @@ public partial class HighlightTile : Node2D
 
 	public void SetDamageText(string text)
 	{
+		// if (damageText.GetIndex() != 1)
+		// {
+		// 	MoveChild(damageText, 1);
+		// }
+
 		damageText.Show();
 		damageText.Text = text;
 	}

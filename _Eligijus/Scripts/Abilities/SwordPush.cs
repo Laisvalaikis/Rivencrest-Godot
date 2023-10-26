@@ -9,6 +9,7 @@ public partial class SwordPush : BaseAction
     public int centerDamage = 30;
     private List<ChunkData> _attackTiles;
     private List<HighlightTile> _arrowTiles;
+    private List<ChunkData> _text;
     private ChunkData _adjacent;
 
     public SwordPush()
@@ -140,6 +141,7 @@ public partial class SwordPush : BaseAction
             {
                 previousChunk.GetTileHighlight().ActivateSideArrows(false);
                 ClearArrows();
+                ClearText();
             }
             
             for (int i = 0; i < _attackTiles.Count; i++)
@@ -148,6 +150,15 @@ public partial class SwordPush : BaseAction
             }
             
             hoveredChunk.GetTileHighlight().ActivateSideArrows(true);
+            if (hoveredChunk.CharacterIsOnTile())
+            {
+                if (_text == null)
+                {
+                    _text = new List<ChunkData>();
+                }
+                _text.Add(hoveredChunk);
+                EnableDamagePreview(hoveredChunk, $"{centerDamage}");
+            }
         }
         else if(hoveredChunk != null && !hoveredChunk.GetTileHighlight().isHighlighted)
         {
@@ -157,11 +168,13 @@ public partial class SwordPush : BaseAction
                 previousChunk.GetTileHighlight().ActivateSideArrows(false);
             }
             ClearArrows();
+            ClearText();
         }
         else if (previousChunk != null && previousChunk.GetTileHighlight().isHighlighted)
         {
             previousChunk.GetTileHighlight().ActivateSideArrows(false);
             ClearArrows();
+            ClearText();
         }
 
     }
@@ -189,6 +202,7 @@ public partial class SwordPush : BaseAction
                     {
                         int arrowType = DetermineArrowType(tempTile, _attackTiles[index]);
                         tempTile.GetTileHighlight().SetArrowSprite(arrowType);
+                        EnableDamagePreview(_attackTiles[index]);
                         int sideArrowsType = DetermineSideArrowsType(tempTile, _attackTiles[index]);
                         _arrowTiles.Add(tempTile.GetTileHighlight());
                         hoveredChunk.GetTileHighlight().SetSideArrowsSprite(sideArrowsType);
@@ -208,6 +222,10 @@ public partial class SwordPush : BaseAction
 
     private void Highlight(int index, ChunkData hoveredChunk)
     {
+        if (_text == null)
+        {
+            _text = new List<ChunkData>();
+        }
         (int x, int y) indexes = _attackTiles[index].GetIndexes();
         Side side = ChunkSideByCharacter(hoveredChunk, _attackTiles[index]);
         (int x, int y) sideVector = GetSideVector(side);
@@ -217,10 +235,19 @@ public partial class SwordPush : BaseAction
             ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.Item1, tempIndexes.Item2);
             if (_attackTiles[index].CharacterIsOnTile())
             {
+                EnableDamagePreview(_attackTiles[index], $"{pushDamage}");
+                _text.Add(_attackTiles[index]);
                 // tempTile.GetTileHighlight().SetHighlightColor(abilityHoverCharacter);
-                int arrowType = DetermineArrowType(tempTile, _attackTiles[index]);
-                tempTile.GetTileHighlight().SetArrowSprite(arrowType);
-                _arrowTiles.Add(tempTile.GetTileHighlight());
+                if (!tempTile.CharacterIsOnTile())
+                {
+                    int arrowType = DetermineArrowType(tempTile, _attackTiles[index]);
+                    tempTile.GetTileHighlight().SetArrowSprite(arrowType);
+                    _arrowTiles.Add(tempTile.GetTileHighlight());
+                }
+                else
+                {
+                    
+                }
             }
             // SetHoveredAttackColor(tempTile);
         }
@@ -235,6 +262,19 @@ public partial class SwordPush : BaseAction
                 _arrowTiles[i].DeactivateArrowTile();
             }
             _arrowTiles.Clear();
+        }
+    }
+
+    private void ClearText()
+    {
+        if (_text != null)
+        {
+            for (int i = 0; i < _text.Count; i++)
+            {
+                DisableDamagePreview(_text[i]);
+            }
+
+            _text.Clear();
         }
     }
 

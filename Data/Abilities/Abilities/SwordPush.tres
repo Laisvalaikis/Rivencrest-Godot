@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_bqhxg")
-pushDamage = 1
-centerDamage = 1
+pushDamage = 15
+centerDamage = 30
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
