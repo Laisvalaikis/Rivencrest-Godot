@@ -259,7 +259,6 @@ public abstract partial class BaseAction: Resource
 			else
 			{
 				chunkData.GetTileHighlight()?.SetHighlightColor(abilityHoverCharacter);
-				EnableDamagePreview(chunkData);
 			}
 		}
 
@@ -388,7 +387,7 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 		
-		protected virtual void EnableDamagePreview(ChunkData chunk, string customText = null)
+		public virtual void EnableDamagePreview(ChunkData chunk, string customText = null)
 		{
 			HighlightTile highlightTile = chunk.GetTileHighlight();
 			if (customText != null)
