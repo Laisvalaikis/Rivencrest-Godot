@@ -368,18 +368,22 @@ public abstract partial class BaseAction: Resource
 
 		protected void MovePlayerToSide(ChunkData player, (int, int) sideVector, ChunkData positionTile = null)
 		{
-			(int x, int y) indexes = player.GetIndexes();
-			if (positionTile != null)
+			if (player.CharacterIsOnTile())
 			{
-				indexes = positionTile.GetIndexes();
-			}
-			(int, int) tempIndexes = new (indexes.x + sideVector.Item1, indexes.y + sideVector.Item2);
-			if (GameTileMap.Tilemap.CheckBounds(tempIndexes.Item1, tempIndexes.Item2))
-			{
-				ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.Item1, tempIndexes.Item2);
-				if (!tempTile.CharacterIsOnTile())
+				(int x, int y) indexes = player.GetIndexes();
+				if (positionTile != null)
 				{
-					GameTileMap.Tilemap.MoveSelectedCharacter(tempTile, player.GetCurrentPlayer());
+					indexes = positionTile.GetIndexes();
+				}
+
+				(int, int) tempIndexes = new(indexes.x + sideVector.Item1, indexes.y + sideVector.Item2);
+				if (GameTileMap.Tilemap.CheckBounds(tempIndexes.Item1, tempIndexes.Item2))
+				{
+					ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.Item1, tempIndexes.Item2);
+					if (!tempTile.CharacterIsOnTile())
+					{
+						GameTileMap.Tilemap.MoveSelectedCharacter(tempTile, player.GetCurrentPlayer());
+					}
 				}
 			}
 		}

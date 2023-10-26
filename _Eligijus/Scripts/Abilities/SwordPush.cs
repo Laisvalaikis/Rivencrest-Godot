@@ -41,25 +41,21 @@ public partial class SwordPush : BaseAction
                 bool crit = IsItCriticalStrike(ref damage);
                 DealDamage(_attackTiles[i], damage, crit);
                 _side = ChunkSideByCharacter(chunk, _attackTiles[i]);
-                
-
                 (int x, int y) sideVector = GetSideVector(_side);
                 MovePlayerToSide(_attackTiles[i], sideVector);
             }
             else
             {
                 CheckAdjacent(chunk);
-
+                int damage = centerDamage;
+                bool crit = IsItCriticalStrike(ref damage);
+                DealDamage(_attackTiles[i], damage, crit);
                 if (_adjacent != null)
                 {
                     _side = ChunkSideByCharacter(chunk, _adjacent);
                     (int x, int y) sideVector = GetSideVector(_side);
                     MovePlayerToSide(_attackTiles[i], sideVector);
                 }
-
-                int damage = centerDamage;
-                bool crit = IsItCriticalStrike(ref damage);
-                DealDamage(_attackTiles[i], damage, crit);
             }
         }
         FinishAbility();
@@ -70,7 +66,7 @@ public partial class SwordPush : BaseAction
     {
         (int x, int y) = tile.GetIndexes();
 		
-        var directionVectors = new List<(int, int)>
+        var directionVectors = new List<(int x, int y)>
         {
             (1 + x, 0 + y),
             (0 + x, 1 + y),
@@ -81,12 +77,15 @@ public partial class SwordPush : BaseAction
 
         foreach (var directions in directionVectors)
         {
-            ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(directions.Item1, directions.Item2);
-            (int x, int y) indexes = chunkData.GetIndexes();
-            if (!chunkData.CharacterIsOnTile() && GameTileMap.Tilemap.CheckBounds(indexes.x, indexes.y))
+            if (GameTileMap.Tilemap.CheckBounds(directions.x, directions.y))
             {
-                _adjacent = chunkData;
-                break;
+
+                ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(directions.x, directions.y);
+                if (!chunkData.CharacterIsOnTile())
+                {
+                    _adjacent = chunkData;
+                    break;
+                }
             }
         }
     }
