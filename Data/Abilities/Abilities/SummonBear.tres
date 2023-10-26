@@ -1,20 +1,24 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b8cwhqh86kt2h"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dvnocse4efo26"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SummonBear.cs" id="1_a1124"]
+[ext_resource type="PackedScene" path="res://_Aurimas/Enemies/ForestBear.tscn" id="1_d65ck"]
 
 [resource]
 script = ExtResource("1_a1124")
+bearPrefab = ExtResource("1_d65ck")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
+abilityPointsUsage = 1
 attackRange = 2
-abilityCooldown = 3
 minAttackDamage = 0
 maxAttackDamage = 0
 isAbilitySlow = false
 friendlyFire = false
+AbilityCooldown = 1
 abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
 abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
 otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
 characterOnGrid = Color(1, 0.34902, 0.278431, 1)
+_abilityBlessingsRef = null
