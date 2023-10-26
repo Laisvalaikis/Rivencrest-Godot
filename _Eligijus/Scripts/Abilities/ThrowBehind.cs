@@ -22,13 +22,17 @@ public partial class ThrowBehind : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (GameTileMap.Tilemap.CharacterIsOnTile(chunk))
+        if (chunk.CharacterIsOnTile())
         {
             base.ResolveAbility(chunk);
-            ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition + new Vector2(0, 50f));
-            ChunkSideByCharacter(playerChunk, chunk);
+            ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+            _side = ChunkSideByCharacter(playerChunk, chunk);
             MoveCharacter(playerChunk, chunk);
-            // DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+            if (!IsAllegianceSame(chunk))
+            {
+                DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            }
+
             FinishAbility();
         }
     }
@@ -40,42 +44,42 @@ public partial class ThrowBehind : BaseAction
         (int x, int y) targetChunkIndex = target.GetIndexes();
         if (_side == Side.isFront)
         {
-            int range = Math.Abs(playerChunkIndex.x - targetChunkIndex.x);
-            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y) != null)
+            int range = Math.Abs(playerChunkIndex.y - targetChunkIndex.y);
+            if (GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range) != null)
             {
                 ChunkData positionChunk =
-                    GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 50f), target.GetCurrentPlayer());
+                    GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range);
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
             }
         }
         else if (_side == Side.isBack)
-        {
-            int range = Math.Abs(playerChunkIndex.x - targetChunkIndex.x);
-            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, targetChunkIndex.y) != null)
-            {
-                ChunkData positionChunk =
-                    GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, targetChunkIndex.y);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 50f), target.GetCurrentPlayer());
-            }
-        }
-        else if (_side == Side.isRight)
         {
             int range = Math.Abs(playerChunkIndex.y - targetChunkIndex.y);
             if (GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y - range) != null)
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y  - range);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 50f), target.GetCurrentPlayer());
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
+            }
+        }
+        else if (_side == Side.isRight)
+        {
+            int range = Math.Abs(playerChunkIndex.x - targetChunkIndex.x);
+            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, playerChunkIndex.y) != null)
+            {
+                ChunkData positionChunk =
+                    GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, playerChunkIndex.y);
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
             }
         }
         else if (_side == Side.isLeft)
         {
-            int range = Math.Abs(playerChunkIndex.y - targetChunkIndex.y);
-            if (GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range) != null)
+            int range = Math.Abs(playerChunkIndex.x - targetChunkIndex.x);
+            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y) != null)
             {
                 ChunkData positionChunk =
-                    GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y  + range);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 50f), target.GetCurrentPlayer());
+                    GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y);
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
             }
         }
     }

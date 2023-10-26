@@ -322,19 +322,19 @@ public abstract partial class BaseAction: Resource
 		{
 			(int x, int y) playerChunkIndex = playerChunk.GetIndexes();
 			(int x, int y) chunkIndex = chunkDataTarget.GetIndexes();
-			if (playerChunkIndex.x > chunkIndex.x)
+			if (playerChunkIndex.y > chunkIndex.y)
 			{
 				return Side.isFront;
 			}
-			else if (playerChunkIndex.x < chunkIndex.x)
+			else if (playerChunkIndex.y < chunkIndex.y)
 			{
 				return Side.isBack;
 			}
-			else if (playerChunkIndex.y < chunkIndex.y)
+			else if (playerChunkIndex.x < chunkIndex.x)
 			{
 				return Side.isRight;
 			}
-			else if (playerChunkIndex.y > chunkIndex.y)
+			else if (playerChunkIndex.x > chunkIndex.x)
 			{
 				return Side.isLeft;
 			}
@@ -347,16 +347,16 @@ public abstract partial class BaseAction: Resource
 			switch (side)
 			{
 				case Side.isFront:
-					sideVector = (-1, 0);
+					sideVector = (0, -1);
 					break;
 				case Side.isBack:
-					sideVector = (1, 0);
-					break;
-				case Side.isRight:
 					sideVector = (0, 1);
 					break;
+				case Side.isRight:
+					sideVector = (1, 0);
+					break;
 				case Side.isLeft:
-					sideVector = (0, -1);
+					sideVector = (-1, 0);
 					break;
 				case Side.none:
 					sideVector = (0, 0);
