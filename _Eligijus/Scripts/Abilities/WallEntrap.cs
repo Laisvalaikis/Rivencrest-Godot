@@ -40,6 +40,14 @@ public partial class WallEntrap : BaseAction
         }
     }
 
+    protected override void TryAddTile(ChunkData chunk)
+    {
+        if (chunk != null && !chunk.TileIsLocked())
+        {
+            _chunkList.Add(chunk);
+        }
+    }
+
     private void SpawnAdjacentWalls(ChunkData chunk)
     {
         (int x, int y) coordinates = chunk.GetIndexes();
@@ -53,7 +61,7 @@ public partial class WallEntrap : BaseAction
         ChunkData[,] chunkDataArray = GameTileMap.Tilemap.GetChunksArray();
         foreach (var x in directionVectors)
         {
-            if (GameTileMap.Tilemap.CheckBounds(x.Item1,x.Item2))
+            if (GameTileMap.Tilemap.CheckBounds(x.Item1,x.Item2) && chunkDataArray[x.Item1,x.Item2].GetCurrentPlayer()==null)
             {
                 ChunkData chunkData = chunkDataArray[x.Item1, x.Item2];
                 PackedScene spawnResource = (PackedScene)wallPrefab;
