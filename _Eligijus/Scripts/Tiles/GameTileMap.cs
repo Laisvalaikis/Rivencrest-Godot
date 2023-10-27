@@ -97,11 +97,11 @@ public partial class GameTileMap : Node2D
 		base._ExitTree();
 		
 		_updateWeight = false;
-		if (_threadDistance.IsAlive)
+		if (_threadDistance != null && _threadDistance.IsAlive)
 		{
 			_threadDistance.Abort();
 		}
-		else
+		else if(_threadDistance != null)
 		{
 			_threadDistance.Join(); 
 		}
