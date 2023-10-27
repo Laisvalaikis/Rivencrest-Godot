@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dyvslc4xdf0di"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/WallEntrap.cs" id="1_xhyrr"]
-[ext_resource type="PackedScene" uid="uid://d10c3di1pgk3h" path="res://_Aurimas/AbilityPrefabs/DestroyableWall.tscn" id="2_sj0wd"]
+[ext_resource type="PackedScene" uid="uid://bq5ocnak8dyul" path="res://_Aurimas/AbilityPrefabs/Rock.tscn" id="2_1de14"]
 
 [resource]
 script = ExtResource("1_xhyrr")
-wallPrefab = ExtResource("2_sj0wd")
+wallPrefab = ExtResource("2_1de14")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
