@@ -93,6 +93,7 @@ public partial class PlayerTeams : Node
 				Vector2 position = new Vector2(x.X, x.Y);
 				spawnedCharacter.GlobalPosition = position;
 				spawnedCharacter.playerIndex = i;
+				spawnedCharacter.SetPlayerTeam(this);
 				PlayerInformation playerInformation = spawnedCharacter.playerInformation;
 				playerInformation.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);

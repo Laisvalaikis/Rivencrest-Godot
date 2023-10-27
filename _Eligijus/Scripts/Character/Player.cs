@@ -7,6 +7,7 @@ public partial class Player : Node2D
 	[Export] public PlayerInformation playerInformation;
 	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
+	private PlayerTeams team;
 	protected List<Poison> _poisons;
 	protected bool weakSpot = false;
 
@@ -18,6 +19,16 @@ public partial class Player : Node2D
 		}
 
 		_poisons.Add(poison);
+	}
+
+	public void SetPlayerTeam(PlayerTeams teams)
+	{
+		team = teams;
+	}
+
+	public PlayerTeams GetPlayerTeams()
+	{
+		return team;
 	}
 
 	public void ClearPoison()

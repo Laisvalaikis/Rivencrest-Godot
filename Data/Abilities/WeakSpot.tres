@@ -1,8 +1,8 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dixtxdi3v0ljh"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bdpmg7b4gmdu7"]
 
 [ext_resource type="Texture2D" uid="uid://cxida5htvox51" path="res://Data/ActionIcons/Icon_47.tres" id="1_ncthd"]
-[ext_resource type="Resource" uid="uid://dmray2mtoeess" path="res://Data/Abilities/Abilities/WeakSpot.tres" id="2_kg5kk"]
-[ext_resource type="Resource" uid="uid://cprc5uq02buvm" path="res://Data/AbilityText/WeakSpot.tres" id="3_22olo"]
+[ext_resource type="Resource" uid="uid://dmi3bnwabh4k8" path="res://Data/Abilities/Abilities/WeakSpot.tres" id="2_kg5kk"]
+[ext_resource type="Resource" path="res://Data/AbilityText/WeakSpot.tres" id="3_22olo"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_dlwyi"]
 
 [resource]
