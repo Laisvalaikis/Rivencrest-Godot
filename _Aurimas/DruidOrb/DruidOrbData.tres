@@ -8,7 +8,7 @@
 script = ExtResource("3_lekwx")
 characterType = 0
 ClassName = ""
-MaxHealth = 100
+MaxHealth = 1
 critChance = 5
 accuracy = 100
 dodgeChance = 20

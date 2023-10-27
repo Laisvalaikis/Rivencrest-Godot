@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://buf50p3ljbc70"]
+
+[ext_resource type="Resource" uid="uid://7nrdyijrso0f" path="res://_Aurimas/PurpleSpear/PurpleSpearData.tres" id="1_3xhiu"]
+[ext_resource type="PackedScene" uid="uid://bbicufobukyxn" path="res://_Aurimas/AbilityPrefabs/PurpleSpear.tscn" id="2_331ho"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_r080l"]
+
+[resource]
+script = ExtResource("3_r080l")
+prefab = ExtResource("2_331ho")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = null
+toConfirmAbilities = 0
+blessings = null
+cost = 0
+characterIndex = 0
+playerInformation = ExtResource("1_3xhiu")

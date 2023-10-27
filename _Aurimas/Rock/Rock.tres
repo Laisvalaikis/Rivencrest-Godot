@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://pwckw6jwb6uq"]
+
+[ext_resource type="Resource" uid="uid://sab1bi0421t" path="res://_Aurimas/Rock/RockData.tres" id="1_k3oth"]
+[ext_resource type="PackedScene" uid="uid://bq5ocnak8dyul" path="res://_Aurimas/AbilityPrefabs/Rock.tscn" id="2_idclh"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_gjpwb"]
+
+[resource]
+script = ExtResource("3_gjpwb")
+prefab = ExtResource("2_idclh")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = null
+toConfirmAbilities = 0
+blessings = null
+cost = 0
+characterIndex = 0
+playerInformation = ExtResource("1_k3oth")
