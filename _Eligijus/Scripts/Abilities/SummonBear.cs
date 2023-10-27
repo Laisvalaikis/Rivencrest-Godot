@@ -29,17 +29,21 @@ public partial class SummonBear : BaseAction
 	}
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		int teamIndex = player.playerInformation.GetPlayerTeam();
-		base.ResolveAbility(chunk);
-		PackedScene spawnResource = (PackedScene)bearPrefab;
-		Player spawnedCharacter = spawnResource.Instantiate<Player>();
-		PlayerInformation playerInformation = spawnedCharacter.playerInformation;
-		playerInformation.SetPlayerTeam(teamIndex);
-		player.GetPlayerTeams().allCharacterList[teamIndex].characters.Add(spawnedCharacter);
-		player.GetPlayerTeams().allCharacterList[teamIndex].aliveCharacters.Add(spawnedCharacter);
-		player.GetPlayerTeams().allCharacterList[teamIndex].aliveCharactersPlayerInformation.Add(playerInformation);
-		player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-		GameTileMap.Tilemap.MoveSelectedCharacter(chunk,spawnedCharacter);
-		FinishAbility();
+		if (_chunkList.Contains(chunk))
+		{
+			int teamIndex = player.playerInformation.GetPlayerTeam();
+			base.ResolveAbility(chunk);
+			PackedScene spawnResource = (PackedScene)bearPrefab;
+			Player spawnedCharacter = spawnResource.Instantiate<Player>();
+			PlayerInformation playerInformation = spawnedCharacter.playerInformation;
+			playerInformation.SetPlayerTeam(teamIndex);
+			player.GetPlayerTeams().allCharacterList[teamIndex].characters.Add(spawnedCharacter);
+			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter);
+			player.GetPlayerTeams().AddAliveCharacterPlayerInfo(teamIndex, playerInformation);
+			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
+			player.GetPlayerTeams().portraitTeamBox.ModifyList();
+			FinishAbility();
+		}
 	}
 }

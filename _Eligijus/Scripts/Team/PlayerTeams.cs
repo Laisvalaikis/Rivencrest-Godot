@@ -137,6 +137,16 @@ public partial class PlayerTeams : Node
 		return currentCharacters.Teams[teamIndex].aliveCharactersPlayerInformation;
 	}
 
+	public void AddAliveCharacter(int teamIndex, Node2D character)
+	{
+		currentCharacters.Teams[teamIndex].aliveCharacters.Add(character);
+	}
+	
+	public void AddAliveCharacterPlayerInfo(int teamIndex, PlayerInformation character)
+	{
+		currentCharacters.Teams[teamIndex].aliveCharactersPlayerInformation.Add(character);
+	}
+
 	public string FindTeamAllegiance(string teamName)
 	{
 		for(int i = 0;i< allCharacterList.Count; i++)

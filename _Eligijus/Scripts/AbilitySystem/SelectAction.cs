@@ -89,15 +89,19 @@ public partial class SelectAction : Control
 		_actionManager.SetCurrentAbility(ability);
 	}
 
-	public void SetCurrentCharacter(Node2D currentPlayer)
+	public void SetCurrentCharacter(Player currentPlayer)
 	{
-		Show();
-		_currentPlayer = (Player)currentPlayer;
-		SetupSelectAction();
-		GetAbilities();
-		UpdatePlayerInfo();
-		_actionManager.SetCurrentAbility(_playerBaseAbilities[0]);
-		GenerateActions();
+		if (currentPlayer.actionManager.ReturnBaseAbilities() != null)
+		{
+			Show();
+			_currentPlayer = currentPlayer;
+			SetupSelectAction();
+			GetAbilities();
+			UpdatePlayerInfo();
+			_actionManager.SetCurrentAbility(_playerBaseAbilities[0]);
+			GenerateActions();
+		}
+
 	}
 	public void DeSetCurrentCharacter()
 	{

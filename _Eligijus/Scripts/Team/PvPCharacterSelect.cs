@@ -74,7 +74,7 @@ public partial class PvPCharacterSelect : Button
             
             _gameTileMap.SetCurrentCharacter(characterOnBoard);
             isButtonAvailable = false;
-            _selectAction.SetCurrentCharacter(characterOnBoard);
+            _selectAction.SetCurrentCharacter((Player)characterOnBoard);
             // GD.Print("Selected");
         }
         else if (_gameTileMap.GetCurrentCharacter() == characterOnBoard)
