@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c5iri6s8gqjjx"]
+
+[ext_resource type="Resource" uid="uid://cn3dp15j1j2ki" path="res://_Aurimas/Eye/EyeData.tres" id="1_ifxj5"]
+[ext_resource type="PackedScene" uid="uid://clfrmjkaht4bk" path="res://_Aurimas/AbilityPrefabs/Eye.tscn" id="2_wrd7s"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_1sflr"]
+
+[resource]
+script = ExtResource("3_1sflr")
+prefab = ExtResource("2_wrd7s")
+level = 0
+xP = 0
+xPToGain = 0
+characterName = ""
+dead = false
+abilityPointCount = 0
+unlockedAbilities = null
+toConfirmAbilities = 0
+blessings = null
+cost = 0
+characterIndex = 0
+playerInformation = ExtResource("1_ifxj5")
