@@ -24,6 +24,7 @@ public partial class Player : Node2D
 		{
 			chunkData.SetCurrentCharacter(null);
 			chunkData.GetTileHighlight().DisableHighlight();
+			QueueFree();
 		}
 	}
 
