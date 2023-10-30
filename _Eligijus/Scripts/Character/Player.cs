@@ -16,7 +16,15 @@ public partial class Player : Node2D
 	{
 		Hide();
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
-		team.CharacterDeath(chunkData, _currentCharacterTeam, playerIndex, this);
+		if (team != null)
+		{
+			team.CharacterDeath(chunkData, _currentCharacterTeam, playerIndex, this);
+		}
+		else
+		{
+			chunkData.SetCurrentCharacter(null);
+			chunkData.GetTileHighlight().DisableHighlight();
+		}
 	}
 
 	public void AddPoison(Poison poison)
