@@ -9,6 +9,8 @@ public partial class PlayerInformation : Node
 	[Export]
 	private InformationType type = InformationType.Player;
 	[Export]
+	private Player _player;
+	[Export]
 	public PlayerInformationData playerInformationData;
 	[Export]
 	public SavedCharacterResource savedCharacter;
@@ -54,8 +56,6 @@ public partial class PlayerInformation : Node
 	{
 		type = informationType;
 	}
-
-	
 
 	public void DealDamage(int damage, bool crit, Node damageDealer, string specialInformation = "")
 	{
