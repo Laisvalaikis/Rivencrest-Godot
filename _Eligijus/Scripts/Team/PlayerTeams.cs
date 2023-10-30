@@ -68,30 +68,36 @@ public partial class PlayerTeams : Node
 		for (int i = 0; i < allCharacterList.Count; i++)
 		{ 
 			deadCharacters.Teams.Add(new Team());
+			deadCharacters.Teams[i].characters = new Array<Player>();
+			deadCharacters.Teams[i].characterPrefabs = new Array<Resource>();
+			deadCharacters.Teams[i].coordinates = new Array<Vector2>();
 			currentCharacters.Teams.Add(new Team());
 			currentCharacters.Teams[i].characters = new Array<Player>();
+			currentCharacters.Teams[i].characterPrefabs = new Array<Resource>();
+			currentCharacters.Teams[i].coordinates = new Array<Vector2>();
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
 	}
 	private void SpawnCharacters(int teamIndex, Array<Vector2> coordinates)
 	{
-		var spawnCoordinates = coordinates;
 		// colorManager.SetPortraitBoxSprites(portraitTeamBox.gameObject, allCharacterList.Teams[teamIndex].teamName);// priskiria spalvas mygtukams ir paciam portraitboxui
 		int i = 0;
-		foreach (var x in spawnCoordinates)
+		foreach (var coordinate in coordinates)
 		{
 			if (i < allCharacterList[teamIndex].characterPrefabs.Count)
 			{
 				PackedScene spawnResource = (PackedScene)allCharacterList[teamIndex].characterPrefabs[i];
 				Player spawnedCharacter = spawnResource.Instantiate<Player>();
 				GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-				Vector2 position = new Vector2(x.X, x.Y);
+				Vector2 position = new Vector2(coordinate.X, coordinate.Y);
 				spawnedCharacter.GlobalPosition = position;
 				spawnedCharacter.playerIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
 				spawnedCharacter.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characters.Add(spawnedCharacter);
+				currentCharacters.Teams[teamIndex].characterPrefabs.Add(allCharacterList[teamIndex].characterPrefabs[i]);
+				currentCharacters.Teams[teamIndex].coordinates.Add(coordinate);
 			}
 			i++;
 		}
@@ -118,6 +124,7 @@ public partial class PlayerTeams : Node
 		deadCharacters.Teams[teamIndex].characterPrefabs.Add(playerPrefab);
 		deadCharacters.Teams[teamIndex].coordinates.Add(chunkData.GetPosition());
 		chunkData.SetCurrentCharacter(null);
+		chunkData.GetTileHighlight().DisableHighlight();
 	}
 	
 }

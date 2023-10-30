@@ -234,6 +234,19 @@ public partial class HighlightTile : Node2D
 			playerSelect.Hide();
 		}
 	}
+
+	public void DisableHighlight()
+	{
+		DeactivateArrowTile();
+		DisableDamageText();
+		ActivateDeathSkull(false);
+		ActivateSideArrows(false);
+		ActivateColorGridTile(false);
+		EnableTile(false);
+		TogglePreviewSprite(false);
+		ActivatePlayerTile(false);
+	}
+
 	public void SetHighlightColor(Color color)
 	{
 		highlight.SelfModulate = color;
