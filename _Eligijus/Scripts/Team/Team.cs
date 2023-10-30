@@ -7,15 +7,9 @@ public partial class Team : Resource
     [Export]
     public Array<Resource> characterPrefabs;
     [Export]
-    public Array<Node2D> characters;
-    [Export]
-    public Array<Node2D> aliveCharacters;
-    [Export]
-    public Array<PlayerInformation> aliveCharactersPlayerInformation;
+    public Array<Player> characters;
     [Export]
     public Array<Vector3> coordinates;
-    [Export]
-    public Array<UsedAbility> usedAbilities = new Array<UsedAbility>();
     [Export]
     public string teamName;
     [Export]

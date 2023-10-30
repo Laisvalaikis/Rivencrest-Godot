@@ -37,9 +37,7 @@ public partial class SummonBear : BaseAction
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
 			PlayerInformation playerInformation = spawnedCharacter.playerInformation;
 			playerInformation.SetPlayerTeam(teamIndex);
-			player.GetPlayerTeams().allCharacterList[teamIndex].characters.Add(spawnedCharacter);
 			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter);
-			player.GetPlayerTeams().AddAliveCharacterPlayerInfo(teamIndex, playerInformation);
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
 			player.GetPlayerTeams().portraitTeamBox.ModifyList();
