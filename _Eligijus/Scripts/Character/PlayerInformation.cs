@@ -105,16 +105,7 @@ public partial class PlayerInformation : Node
 
 	public void DeathStart()
 	{
-		Die();
-	}
-
-	public void Die()
-	{
-		spriteRenderer.Hide();
-		if (isThisObject)
-		{
-			QueueFree();
-		}
+		_player.Death();
 	}
 
 	public void AddKillXP()

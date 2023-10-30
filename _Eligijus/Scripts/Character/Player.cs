@@ -12,6 +12,13 @@ public partial class Player : Node2D
 	protected List<Poison> _poisons;
 	protected bool weakSpot = false;
 
+	public void Death()
+	{
+		Hide();
+		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
+		team.CharacterDeath(chunkData, _currentCharacterTeam, playerIndex, this);
+	}
+
 	public void AddPoison(Poison poison)
 	{
 		if (_poisons == null)
