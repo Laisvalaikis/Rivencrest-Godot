@@ -17,6 +17,5 @@ public partial class Team : Resource
     [Export]
     public bool isTeamAI;
     public int undoCount;
-    public Resource lastSelectedPlayer;
 
 }

@@ -5,7 +5,8 @@ using Godot.Collections;
 
 public partial class PlayerTeams : Node
 {
-	// [SerializeField] private TurnManager TurnManager;
+	[Export]
+	TurnManager TurnManager;
 	[Export]
 	public TeamInformation portraitTeamBox;
 	[Export]
@@ -104,7 +105,7 @@ public partial class PlayerTeams : Node
 		allCharacterList[teamIndex].undoCount = undoCount;
 		portraitTeamBox.ModifyList();
 		
-		allCharacterList[teamIndex].lastSelectedPlayer = allCharacterList[teamIndex].characterPrefabs[0];//LastSelectedPlayer
+		// allCharacterList[teamIndex].lastSelectedPlayer = allCharacterList[teamIndex].characterPrefabs[0];//LastSelectedPlayer
 	}
 	
 	public Array<Player> AliveCharacterList(int teamIndex)
