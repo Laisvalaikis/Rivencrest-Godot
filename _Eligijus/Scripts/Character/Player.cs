@@ -20,7 +20,7 @@ public partial class Player : Node2D
 		{
 			team.CharacterDeath(chunkData, _currentCharacterTeam, playerIndex, this);
 		}
-		else
+		else if(team == null && playerInformation.GetInformationType() != InformationType.Player && playerInformation.GetInformationType() != InformationType.Enemy)
 		{
 			chunkData.SetCurrentCharacter(null);
 			chunkData.GetTileHighlight().DisableHighlight();
