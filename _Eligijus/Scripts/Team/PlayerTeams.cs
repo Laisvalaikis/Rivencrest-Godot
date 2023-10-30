@@ -49,17 +49,31 @@ public partial class PlayerTeams : Node
 				}
 				
 			}
+			
 		}
 		else
 		{
+			if (allCharacterList == null)
+			{
+				allCharacterList = new Array<Team>();
+				allCharacterList.Add(new Team());
+			}
+			else if (allCharacterList != null && allCharacterList.Count == 0)
+			{
+				allCharacterList.Add(new Team());
+				allCharacterList[0].characterPrefabs = new Array<Resource>();
+			}
+
 			allCharacterList[0].characterPrefabs.Clear();
 		}
-
 		
 		foreach (var t in _data.Characters)
 		{
-			allCharacterList[0].characterPrefabs.Add(t.prefab);
+			allCharactperList[0].characterPrefabs.Add(t.prefab);
 		}
+		
+		
+		
 		currentCharacters = new TeamsList { Teams = new Array<Team>() };
 		deadCharacters = new TeamsList { Teams = new Array<Team>() };
 	}
