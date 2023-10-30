@@ -78,6 +78,8 @@ public partial class PlayerTeams : Node
 			currentCharacters.Teams[i].coordinates = new Array<Vector2>();
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
+		TurnManager.SetTeamList(currentCharacters);
+		TurnManager.SetCurrentTeam(0);
 	}
 	private void SpawnCharacters(int teamIndex, Array<Vector2> coordinates)
 	{
@@ -104,8 +106,6 @@ public partial class PlayerTeams : Node
 		}
 		allCharacterList[teamIndex].undoCount = undoCount;
 		portraitTeamBox.ModifyList();
-		
-		// allCharacterList[teamIndex].lastSelectedPlayer = allCharacterList[teamIndex].characterPrefabs[0];//LastSelectedPlayer
 	}
 	
 	public Array<Player> AliveCharacterList(int teamIndex)

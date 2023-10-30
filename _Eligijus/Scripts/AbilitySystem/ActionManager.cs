@@ -30,9 +30,6 @@ public partial class ActionManager : Node
 	{
 		base._Ready();
 		
-		InputManager.Instance.MouseMove += OnMove;
-		InputManager.Instance.LeftMouseClick += OnMouseClick;
-		
 		_abilities = new Array<Ability>();
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
@@ -164,11 +161,16 @@ public partial class ActionManager : Node
 		_currentAbility.Action.OnMoveHover(hoveredChunk,_previousChunk);
 		_previousChunk = hoveredChunk;
 	}
-	
-	public void OnMouseClick()
+
+	public Ability GetCurrentAbility()
 	{
-		ExecuteCurrentAbility();
-		ExecuteCurrentBaseAbility();
+		return _currentAbility;
+	}
+
+	public void OnMouseClick(ChunkData chunkData)
+	{
+		ExecuteCurrentAbility(chunkData);
+		ExecuteCurrentBaseAbility(chunkData);
 	}
 
 	public void DeselectAbility()
@@ -215,29 +217,26 @@ public partial class ActionManager : Node
 		return false;
 	}
 	
-	private void ExecuteCurrentBaseAbility()
+	private void ExecuteCurrentBaseAbility(ChunkData chunkData)
 	{
 		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility && _debuffs.CanUseBaseAbility( this))
 		{
-			ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
-			if (chunk != null)
+			if (chunkData != null)
 			{
-				_currentAbility.Action.ResolveAbility(chunk);
+				_currentAbility.Action.ResolveAbility(chunkData);
 				
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
 		}
 	}
 	
-	private void ExecuteCurrentAbility()
+	private void ExecuteCurrentAbility(ChunkData chunkData)
 	{
 		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability && _debuffs.CanUseAbility())
 		{
-			ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
-			if (chunk != null)
+			if (chunkData != null)
 			{
-				_currentAbility.Action.ResolveAbility(chunk);
-				
+				_currentAbility.Action.ResolveAbility(chunkData);
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
 		}

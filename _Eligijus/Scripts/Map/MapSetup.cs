@@ -50,14 +50,7 @@ public partial class MapSetup : Node
 					playerTeams.allCharacterList[i].coordinates.Add(currentMapData.mapCoordinates[i].coordinates[j]);
 				}
 			}
-			//NPC team spawning
-			// if (mapInfo.npcTeam.Count == 0)
-			// {
-			//     playerTeams.allCharacterList.teams.RemoveAt(2);
-			// }
-	
-			//AI destinations
-			// aiManager.AIDestinations = mapInfo.aiMapCoordinates.coordinates;
+			
 			CreateMap();
 		}
 		else
@@ -75,6 +68,7 @@ public partial class MapSetup : Node
 		// cameraController.panLimitX = currentMapData.panLimitX;
 		// cameraController.panLimitY = currentMapData.panLimitY;
 		// cameraController.cinemachineVirtualCamera.Follow = toFollow.transform;
+		
 		gameTileMap.SetupTiles(currentMapData.tileMapCoordinates);
 	}
 	

@@ -18,8 +18,8 @@ public partial class GameTileMap : Node2D
 			chunks = new List<ChunkData>();
 		}
 	}
-	[Export] 
-	public TileMapData currentMap;
+	[Export] public TileMapData currentMap;
+	[Export] private TurnManager _turnManager;
 	[Export] private TeamInformation teamInformation;
 	[Export] private SelectAction _selectAction;
 	[Export] private Node2D highligtHolder;
@@ -508,6 +508,7 @@ public partial class GameTileMap : Node2D
 			if (_currentSelectedCharacter != null)
 			{
 				_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
+				_turnManager.SetCurrentCharacter(_currentSelectedCharacter);
 				teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
 			}
 		}
@@ -520,6 +521,7 @@ public partial class GameTileMap : Node2D
 			_selectAction.Hide();
 			// _currentSelectedCharacter.actionManager.DeselectAbility();
 			_currentSelectedCharacter.actionManager.SetCurrentAbility(null);
+			_turnManager.SetCurrentCharacter(null);
 			teamInformation.SelectCharacterPortrait(_currentSelectedCharacter, false);
 			_currentSelectedCharacter = null;
 		}
@@ -538,6 +540,7 @@ public partial class GameTileMap : Node2D
 	public void SetCurrentCharacter(Node2D currentCharacter)
 	{
 		_currentSelectedCharacter = (Player)currentCharacter;
+		_turnManager.SetCurrentCharacter((Player)currentCharacter);
 	}
 
 	private void MouseClick()

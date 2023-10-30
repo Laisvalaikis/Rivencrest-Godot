@@ -17,5 +17,6 @@ public partial class Team : Resource
     [Export]
     public bool isTeamAI;
     public int undoCount;
+    public List<UsedAbility> usedAbilities = new List<UsedAbility>();
 
 }

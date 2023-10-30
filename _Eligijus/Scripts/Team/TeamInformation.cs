@@ -4,7 +4,6 @@ using Godot;
 using Godot.Collections;
 public partial class TeamInformation : Control
 {
-	
 	[Export] private SelectAction selectAction;
 	[Export] private PlayerTeams playerTeams;
 	[Export] private TextureRect image;
