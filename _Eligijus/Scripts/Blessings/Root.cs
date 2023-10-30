@@ -31,7 +31,7 @@ public partial class Root : AbilityBlessing
         if (tile.CharacterIsOnTile())
         {
             Player player = tile.GetCurrentPlayer();
-            if (!IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
+            if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
             {
                 // Create Can't move
                 player.debuffs.RootPlayer();

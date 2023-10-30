@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_mwvnc")
-coordinates = Array[Vector3]([Vector3(-150, 750, 2.08165e-12), Vector3(-250, 750, 2.08165e-12), Vector3(-350, 650, 2.08165e-12)])
+coordinates = Array[Vector2]([Vector2(-150, 750), Vector2(-250, 750), Vector2(-350, 650)])

@@ -59,15 +59,15 @@ public partial class MoltenTouch : AbilityBlessing
             if (chunkData.CharacterIsOnTile())
             {
                 Player player = chunkData.GetCurrentPlayer();
-                if (IsAllegianceSame(player.playerInformation, chunkData, baseAction))
+                if (IsAllegianceSame(player, chunkData, baseAction))
                 {
-                    DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, chunkData, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
+                    DealRandomDamageToTarget(baseAction.GetPlayer(), chunkData, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
                 }
             }
         }
         if (tile.CharacterIsOnTile())
         {
-            DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, tile, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
+            DealRandomDamageToTarget(baseAction.GetPlayer(), tile, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
         }
     }
     

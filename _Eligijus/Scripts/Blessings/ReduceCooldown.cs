@@ -32,7 +32,7 @@ public partial class ReduceCooldown : AbilityBlessing
         if (tile.GetCurrentPlayer() != null)
         {
             Player player = tile.GetCurrentPlayer();
-            if (IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction))
+            if (IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
             {
                 player.actionManager.AddAbilityCooldownPoints(-_reduceCooldown);
             }

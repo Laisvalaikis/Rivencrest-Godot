@@ -47,7 +47,7 @@ public partial class ExplosivePoison : AbilityBlessing
             if (chunkData.CharacterIsOnTile())
             {
                 Player player = chunkData.GetCurrentPlayer();
-                if (IsAllegianceSame(player.playerInformation, chunkData, baseAction))
+                if (IsAllegianceSame(player, chunkData, baseAction))
                 {
                     baseAction.GetPlayer().AddPoison(new Poison(chunkData, poisonTurns, poisonDamage));
                 }

@@ -80,14 +80,14 @@ public partial class AbilityBlessing : BaseBlessing
 	    
     }
 
-    protected void DealRandomDamageToTarget(PlayerInformation currentPlayer, ChunkData chunkData, BaseAction baseAction, int minDamage, int maxDamage)
+    protected void DealRandomDamageToTarget(Player currentPlayer, ChunkData chunkData, BaseAction baseAction, int minDamage, int maxDamage)
     {
 	    if (chunkData != null && chunkData.CharacterIsOnTile() && IsAllegianceSame(currentPlayer, chunkData, baseAction))
 	    {
 				
 		    int randomDamage = _random.Next(minDamage, maxDamage);
-		    bool crit = IsItCriticalStrike(ref randomDamage, currentPlayer);
-		    DodgeActivation(ref randomDamage, currentPlayer, chunkData.GetCurrentPlayer().playerInformation);
+		    bool crit = IsItCriticalStrike(ref randomDamage, currentPlayer.playerInformation);
+		    DodgeActivation(ref randomDamage, currentPlayer.playerInformation, chunkData.GetCurrentPlayer().playerInformation);
 		    chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, crit, currentPlayer);
 	    }
     }
@@ -101,9 +101,9 @@ public partial class AbilityBlessing : BaseBlessing
 	    }
     }
 
-    public bool IsAllegianceSame(PlayerInformation currentPlayer, ChunkData chunk, BaseAction action)
+    public bool IsAllegianceSame(Player currentPlayer, ChunkData chunk, BaseAction action)
     {
-	    return chunk == null || chunk.GetCurrentPlayer().playerInformation.GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
+	    return chunk == null || chunk.GetCurrentPlayer().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
     }
     
     protected bool IsItCriticalStrike(ref int damage, PlayerInformation playerInformation)

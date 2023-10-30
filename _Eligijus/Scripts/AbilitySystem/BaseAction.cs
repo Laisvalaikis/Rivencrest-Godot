@@ -495,7 +495,7 @@ public abstract partial class BaseAction: Resource
 
 		public bool IsAllegianceSame(ChunkData chunk)
 		{
-			return chunk == null || (chunk.GetCurrentPlayer().playerInformation.GetPlayerTeam() == player.playerInformation.GetPlayerTeam() && !friendlyFire);
+			return chunk == null || (chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
 		}
 
 		protected bool IsItCriticalStrike(ref int damage)

@@ -7,10 +7,7 @@
 script = ExtResource("1_xafui")
 characterPrefabs = Array[Resource]([ExtResource("1_l4b4l"), ExtResource("1_l4b4l"), ExtResource("1_l4b4l")])
 characters = Array[Node2D]([])
-aliveCharacters = Array[Node2D]([])
-aliveCharactersPlayerInformation = Array[Node]([])
-coordinates = Array[Vector3]([])
-usedAbilities = []
+coordinates = Array[Vector2]([])
 teamName = ""
 teamAllegiance = ""
 isTeamAI = true

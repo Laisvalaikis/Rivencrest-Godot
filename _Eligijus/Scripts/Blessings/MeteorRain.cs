@@ -50,7 +50,7 @@ public partial class MeteorRain : AbilityBlessing
             {
                 if (cometTiles[i].CharacterIsOnTile())
                 {
-                    DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, cometTiles[i], baseAction,
+                    DealRandomDamageToTarget(baseAction.GetPlayer(), cometTiles[i], baseAction,
                         baseAction.minAttackDamage + addToMinDamage, baseAction.maxAttackDamage + addToMaxDamage);
                 }
             }

@@ -31,12 +31,11 @@ public partial class SummonBear : BaseAction
 	{
 		if (_chunkList.Contains(chunk))
 		{
-			int teamIndex = player.playerInformation.GetPlayerTeam();
+			int teamIndex = player.GetPlayerTeam();
 			base.ResolveAbility(chunk);
 			PackedScene spawnResource = (PackedScene)bearPrefab;
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
-			PlayerInformation playerInformation = spawnedCharacter.playerInformation;
-			playerInformation.SetPlayerTeam(teamIndex);
+			spawnedCharacter.SetPlayerTeam(teamIndex);
 			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter);
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);

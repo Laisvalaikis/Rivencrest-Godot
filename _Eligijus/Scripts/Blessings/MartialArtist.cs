@@ -42,7 +42,7 @@ public partial class MartialArtist : AbilityBlessing
                 ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.x, tempIndexes.y);
                 if (tempTile.CharacterIsOnTile())
                 {
-                    DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, tempTile, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
+                    DealRandomDamageToTarget(baseAction.GetPlayer(), tempTile, baseAction, baseAction.minAttackDamage, baseAction.maxAttackDamage);
                 }
             }
         }

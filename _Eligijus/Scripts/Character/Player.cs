@@ -7,6 +7,7 @@ public partial class Player : Node2D
 	[Export] public PlayerInformation playerInformation;
 	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
+	private int _currentCharacterTeam = -1;
 	private PlayerTeams team;
 	protected List<Poison> _poisons;
 	protected bool weakSpot = false;
@@ -19,6 +20,16 @@ public partial class Player : Node2D
 		}
 
 		_poisons.Add(poison);
+	}
+	
+	public void SetPlayerTeam(int currentCharacterTeam)
+	{
+		_currentCharacterTeam = currentCharacterTeam;
+	}
+	
+	public int GetPlayerTeam()
+	{
+		return _currentCharacterTeam;
 	}
 
 	public void SetPlayerTeam(PlayerTeams teams)

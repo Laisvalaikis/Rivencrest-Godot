@@ -73,7 +73,7 @@ public partial class PlayerTeams : Node
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
 	}
-	private void SpawnCharacters(int teamIndex, Array<Vector3> coordinates)
+	private void SpawnCharacters(int teamIndex, Array<Vector2> coordinates)
 	{
 		var spawnCoordinates = coordinates;
 		// colorManager.SetPortraitBoxSprites(portraitTeamBox.gameObject, allCharacterList.Teams[teamIndex].teamName);// priskiria spalvas mygtukams ir paciam portraitboxui
@@ -89,8 +89,7 @@ public partial class PlayerTeams : Node
 				spawnedCharacter.GlobalPosition = position;
 				spawnedCharacter.playerIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
-				PlayerInformation playerInformation = spawnedCharacter.playerInformation;
-				playerInformation.SetPlayerTeam(teamIndex);
+				spawnedCharacter.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characters.Add(spawnedCharacter);
 			}
@@ -112,10 +111,14 @@ public partial class PlayerTeams : Node
 		currentCharacters.Teams[teamIndex].characters.Add(character);
 	}
 
-	// public void CharacterDeath(ChunkData chunkData, int teamIndex, Player character)
-	// {
-	// 	deadCharacters.Teams[teamIndex].
-	// }
+	public void CharacterDeath(ChunkData chunkData, int teamIndex, int characterIndex, Player character)
+	{
+		deadCharacters.Teams[teamIndex].characters.Add(character);
+		Resource playerPrefab = currentCharacters.Teams[teamIndex].characterPrefabs[characterIndex];
+		deadCharacters.Teams[teamIndex].characterPrefabs.Add(playerPrefab);
+		deadCharacters.Teams[teamIndex].coordinates.Add(chunkData.GetPosition());
+		chunkData.SetCurrentCharacter(null);
+	}
 	
 }
 

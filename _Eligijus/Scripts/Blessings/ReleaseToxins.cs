@@ -28,9 +28,9 @@ public partial class ReleaseToxins : AbilityBlessing
 	public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(ref baseAction);
-		if(tile.CharacterIsOnTile() && !IsAllegianceSame(baseAction.GetPlayer().playerInformation, tile, baseAction) && tile.GetCurrentPlayer().GetPoisonCount() > 0)
+		if(tile.CharacterIsOnTile() && !IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) && tile.GetCurrentPlayer().GetPoisonCount() > 0)
 		{
-			DealRandomDamageToTarget(baseAction.GetPlayer().playerInformation, tile, baseAction, bonusDamage, bonusDamage);
+			DealRandomDamageToTarget(baseAction.GetPlayer(), tile, baseAction, bonusDamage, bonusDamage);
 		}
 	}
 }

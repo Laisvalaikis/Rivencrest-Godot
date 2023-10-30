@@ -28,7 +28,6 @@ public partial class PlayerInformation : Node
 	private Label textMeshPro;
 	private AnimationPlayer animator;
 	private int _health = 100;
-	private int _currentCharacterTeam = -1;
 	private int turnCounter = 1;
 
 	public override void _Ready()
@@ -56,15 +55,7 @@ public partial class PlayerInformation : Node
 		type = informationType;
 	}
 
-	public void SetPlayerTeam(int currentCharacterTeam)
-	{
-		_currentCharacterTeam = currentCharacterTeam;
-	}
-
-	public int GetPlayerTeam()
-	{
-		return _currentCharacterTeam;
-	}
+	
 
 	public void DealDamage(int damage, bool crit, Node damageDealer, string specialInformation = "")
 	{

@@ -9,7 +9,7 @@ public partial class Team : Resource
     [Export]
     public Array<Player> characters;
     [Export]
-    public Array<Vector3> coordinates;
+    public Array<Vector2> coordinates;
     [Export]
     public string teamName;
     [Export]
@@ -17,7 +17,6 @@ public partial class Team : Resource
     [Export]
     public bool isTeamAI;
     public int undoCount;
-    public Node2D teamPortraitBoxGameObject;
     public Resource lastSelectedPlayer;
 
 }
