@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://f0fd2qtrwj1l" path="res://Data/Abilities/WallEntrap.tres" id="7_8u366"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="8_r5xg4"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="9_5q0ag"]
-[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_ew10o"]
+[ext_resource type="Resource" uid="uid://b5icmfvdh2xsc" path="res://Data/Abilities/ChainHook.tres" id="9_07fjf"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="10_arv31"]
 
 [resource]
@@ -31,6 +31,6 @@ CharacterSplashArt = ExtResource("2_6xjj2")
 CroppedSplashArt = ExtResource("3_kfrgo")
 characterSprite = ExtResource("8_r5xg4")
 roleSprite = ExtResource("9_5q0ag")
-baseAbilities = Array[Resource]([ExtResource("5_wvhc4"), ExtResource("9_ew10o")])
-abilities = Array[Resource]([ExtResource("4_opryt"), ExtResource("5_orifg"), ExtResource("6_r6ccu"), ExtResource("7_8u366")])
+baseAbilities = Array[Resource]([ExtResource("5_wvhc4"), ExtResource("9_07fjf")])
+abilities = Array[Resource]([ExtResource("4_opryt"), ExtResource("7_8u366"), ExtResource("6_r6ccu"), ExtResource("5_orifg")])
 blessingsAndCurses = null

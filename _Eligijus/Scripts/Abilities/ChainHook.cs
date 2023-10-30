@@ -70,7 +70,7 @@ public partial class ChainHook : BaseAction
 	{
 		base.ResolveAbility(chunk);
 		Player character = chunk.GetCurrentPlayer();
-		if (character != null)
+		if (character != null && character.playerInformation.GetInformationType() != InformationType.Object)
 		{
 			if (!IsAllegianceSame(chunk))
 			{

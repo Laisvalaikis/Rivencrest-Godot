@@ -37,28 +37,20 @@ public partial class WallSmash : BaseAction
     private void DestroyObject(ChunkData chunkData)
     {
         (int x, int y) = chunkData.GetIndexes();
-        var pushDirectionVectors = new List<(int, int)>
+        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        Side side = ChunkSideByCharacter(current, chunkData);
+        (int x, int y) sideVector = GetSideVector(side);
+        (int x, int y) coordinates = (x + sideVector.x, y + sideVector.y);
+        ChunkData targetChunkData =
+            GameTileMap.Tilemap.GetChunkDataByIndex(coordinates.Item1, coordinates.Item2);
+        if (targetChunkData != null && targetChunkData.GetCurrentPlayer() != null
+                                    && targetChunkData.GetInformationType() == InformationType.Player && !IsAllegianceSame(targetChunkData))
         {
-            (1, 0),
-            (0, 1),
-            (-1, 0),
-            (0,-1)
-        };
-        foreach (var position in pushDirectionVectors)
-        {
-            ChunkData targetChunkData =
-                GameTileMap.Tilemap.GetChunkDataByIndex(position.Item1 + x, position.Item2 + y);
-            if (targetChunkData != null && targetChunkData.GetCurrentPlayer() == null)
-            {
-                ChunkData targetChunkDataPlayer =
-                    GameTileMap.Tilemap.GetChunkDataByIndex(position.Item1 * 2 + x, position.Item2 * 2 + y);
-                if (targetChunkDataPlayer != null && targetChunkDataPlayer.GetCurrentPlayer() != null 
-                                                  && targetChunkDataPlayer.GetInformationType() == InformationType.Player && !IsAllegianceSame(targetChunkDataPlayer))
-                {
-                    DealRandomDamageToTarget(targetChunkDataPlayer, minAttackDamage, maxAttackDamage);
-                }
-            }
+               
+            DealRandomDamageToTarget(targetChunkData, minAttackDamage, maxAttackDamage);
+                
         }
+        
         chunkData.GetCurrentPlayer().playerInformation.DealDamage(damageToWall, false, player);
     }
 }

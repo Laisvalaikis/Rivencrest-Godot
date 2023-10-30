@@ -68,8 +68,6 @@ public partial class WallEntrap : BaseAction
                 Player wall = spawnResource.Instantiate<Player>();
                 player.GetTree().Root.CallDeferred("add_child", wall);
                 GameTileMap.Tilemap.MoveSelectedCharacter(chunkData, wall);
-                //PlayerInformation tempPlayerInformation = wall.playerInformation;
-                //_playerInformations.Add(tempPlayerInformation);
             }
         }
     }

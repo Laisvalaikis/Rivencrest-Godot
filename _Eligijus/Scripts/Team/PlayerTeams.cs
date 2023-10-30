@@ -112,9 +112,12 @@ public partial class PlayerTeams : Node
 		return currentCharacters.Teams[teamIndex].characters;
 	}
 
-	public void AddAliveCharacter(int teamIndex, Player character)
+	public void AddAliveCharacter(int teamIndex, Player character, Resource characterPrefab)
 	{
 		currentCharacters.Teams[teamIndex].characters.Add(character);
+		currentCharacters.Teams[teamIndex].characterPrefabs.Add(characterPrefab);
+		character.playerIndex = currentCharacters.Teams[teamIndex].characters.Count - 1;
+		character.SetPlayerTeam(teamIndex);
 	}
 
 	public void CharacterDeath(ChunkData chunkData, int teamIndex, int characterIndex, Player character)
