@@ -4,11 +4,9 @@ using Godot;
 
 public partial class AcidRain : BaseAction
 {	
-
 	public AcidRain()
- 	{
- 		
- 	}
+	{
+	}
  	public AcidRain(AcidRain acidRain): base(acidRain)
  	{
 		
@@ -19,7 +17,11 @@ public partial class AcidRain : BaseAction
  		AcidRain acidRain = new AcidRain((AcidRain)action);
  		return acidRain;
  	}
- 	
+	public override void Start()
+	{
+		base.Start();
+		customText = "POISON";
+	}
 
 	public override void ResolveAbility(ChunkData chunk)
 	{
@@ -36,6 +38,4 @@ public partial class AcidRain : BaseAction
 			FinishAbility();
 		}
 	}
-
-
 }

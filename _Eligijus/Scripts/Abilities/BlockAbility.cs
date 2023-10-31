@@ -25,6 +25,7 @@ public partial class BlockAbility : BaseAction
     {
         base.Start();
         _random = new Random();
+        customText = "BLOCK";
     }
 
     protected override void SetNonHoveredAttackColor(ChunkData chunkData)
@@ -47,7 +48,6 @@ public partial class BlockAbility : BaseAction
         if (character != null && IsAllegianceSame(chunkData))
         {
             tileHighlight.SetHighlightColor(abilityHoverCharacter);
-            EnableDamagePreview(chunkData,"BLOCK");
         }
         else
         {

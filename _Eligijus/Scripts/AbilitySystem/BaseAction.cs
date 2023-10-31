@@ -39,7 +39,7 @@ public abstract partial class BaseAction: Resource
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected List<ChunkData> _chunkList;
 		protected bool turinIsEven = false;
-		
+		protected string customText = null;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
 
@@ -309,6 +309,10 @@ public abstract partial class BaseAction: Resource
 			if (hoveredChunkHighlight.isHighlighted)
 			{
 				SetHoveredAttackColor(hoveredChunk);
+				if (CanTileBeClicked(hoveredChunk))
+				{
+					EnableDamagePreview(hoveredChunk);
+				}
 			}
 			if (previousChunkHighlight != null)
 			{
@@ -387,7 +391,7 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 		
-		public virtual void EnableDamagePreview(ChunkData chunk, string customText = null)
+		public virtual void EnableDamagePreview(ChunkData chunk, string text = null)
 		{
 			HighlightTile highlightTile = chunk.GetTileHighlight();
 			if (customText != null)
@@ -412,11 +416,11 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 		
-		protected virtual void EnableDamagePreview(List<ChunkData> chunks, string customText=null)
+		protected virtual void EnableDamagePreview(List<ChunkData> chunks)
 		{
 			foreach(ChunkData chunk in chunks)
 			{
-				EnableDamagePreview(chunk, customText);
+				EnableDamagePreview(chunk);
 			}
 		}
 
@@ -495,7 +499,7 @@ public abstract partial class BaseAction: Resource
 
 		public bool IsAllegianceSame(ChunkData chunk)
 		{
-			return chunk == null || (chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
+			return chunk == null || (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
 		}
 
 		protected bool IsItCriticalStrike(ref int damage)
@@ -557,12 +561,5 @@ public abstract partial class BaseAction: Resource
 		{
 			
 		}
-
-		// protected IEnumerator ExecuteAfterTime(float time, Action task)
-		// {
-		//     yield return new WaitForSeconds(time);
-		//     task();
-		// }
-		
 	}
 

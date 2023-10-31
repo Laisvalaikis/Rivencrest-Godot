@@ -69,7 +69,7 @@ public partial class PlayerTeams : Node
 		
 		foreach (var t in _data.Characters)
 		{
-			allCharactperList[0].characterPrefabs.Add(t.prefab);
+			allCharacterList[0].characterPrefabs.Add(t.prefab);
 		}
 		
 		

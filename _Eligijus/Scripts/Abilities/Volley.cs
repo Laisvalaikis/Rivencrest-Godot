@@ -11,14 +11,16 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
     private Sprite2D _characterSpriteRenderer; 
     
     private int _globalIndex = -1;
-
+    
     public Volley()
     {
+        customText = $"-{spellDamage}";
     }
 
     public Volley(Volley ability): base(ability)
     {
         spellDamage = ability.spellDamage;
+        customText = ability.customText;
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -113,7 +115,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
                     if (chunkToHighLight != null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
-                        EnableDamagePreview(chunkToHighLight, $"-{spellDamage}");
+                        EnableDamagePreview(chunkToHighLight);
                     }                
                 }
             }
