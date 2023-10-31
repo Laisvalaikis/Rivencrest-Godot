@@ -1,9 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://domol825w4mr4"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://domol825w4mr4"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/ThrowSpear.cs" id="1_rb73k"]
+[ext_resource type="PackedScene" uid="uid://bbicufobukyxn" path="res://_Aurimas/AbilityPrefabs/PurpleSpear.tscn" id="2_yly7w"]
 
 [resource]
 script = ExtResource("1_rb73k")
+spearPrefab = ExtResource("2_yly7w")
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
