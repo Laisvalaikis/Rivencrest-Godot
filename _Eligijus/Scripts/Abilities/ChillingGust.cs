@@ -54,19 +54,37 @@ public partial class ChillingGust : BaseAction
         }
     }
     
-    public override void SetHoveredAttackColor(ChunkData chunkData)
+    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {
-        Node2D character = chunkData.GetCurrentPlayer();
-        HighlightTile tileHighlight = chunkData.GetTileHighlight();
+        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
+        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
 
-        if (character != null && IsAllegianceSame(chunkData))
+        if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))
         {
-            tileHighlight.SetHighlightColor(abilityHoverCharacter);
-            EnableDamagePreview(chunkData,"PROTECT");
+            SetNonHoveredAttackColor(previousChunk);
+            DisableDamagePreview(previousChunk);
         }
-        else
+        if (hoveredChunkHighlight == null || hoveredChunk == previousChunk)
         {
-            tileHighlight.SetHighlightColor(abilityHighlightHover);
+            return;
+        }
+        if (hoveredChunkHighlight.isHighlighted)
+        {
+            SetHoveredAttackColor(hoveredChunk);
+            if (CanTileBeClicked(hoveredChunk))
+            {
+                if (hoveredChunk.GetCurrentPlayer()  .GetPlayerTeam() == player.GetPlayerTeam())
+                {
+                    customText = "PROTECT";
+                }
+                EnableDamagePreview(hoveredChunk);
+                customText = null;
+            }
+        }
+        if (previousChunkHighlight != null)
+        {
+            SetNonHoveredAttackColor(previousChunk);
+            DisableDamagePreview(previousChunk);
         }
     }
     

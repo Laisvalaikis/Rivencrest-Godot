@@ -41,7 +41,10 @@ public partial class BindingRitual : BaseAction
                 if (highlightTile != null)
                 {
                     SetHoveredAttackColor(chunk);
-                    EnableDamagePreview(chunk);
+                    if (chunk.GetCurrentPlayer() != null)
+                    {
+                        EnableDamagePreview(chunk);
+                    }
                 }
             }
         }
@@ -53,6 +56,7 @@ public partial class BindingRitual : BaseAction
                 if (highlightTile != null)
                 {
                     SetNonHoveredAttackColor(chunk);
+                    DisableDamagePreview(chunk);
                 }
             }
         }
@@ -74,13 +78,10 @@ public partial class BindingRitual : BaseAction
                     int targetY = centerY + y;
 
                     // Ensuring we don't go out of array bounds.
-                    if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
+                    if (GameTileMap.Tilemap.CheckBounds(targetX, targetY))
                     {
                         ChunkData chunk = chunksArray[targetX, targetY];
-                        if (chunk != null && !chunk.TileIsLocked())
-                        {
-                            _chunkList.Add(chunk);
-                        }
+                        TryAddTile(chunk);
                     }
                 }
             }
