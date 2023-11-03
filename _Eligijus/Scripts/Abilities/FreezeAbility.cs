@@ -60,6 +60,7 @@ public partial class FreezeAbility : BaseAction
 			foreach (var chunk in _chunkList)
 			{
 				SetNonHoveredAttackColor(chunk);
+				DisableDamagePreview(chunk);
 			}
 		}
 		else if ((hoveredChunkHighlight!=null && previousChunkHighlight!=null && hoveredChunkHighlight.isHighlighted && !previousChunkHighlight.isHighlighted) || (hoveredChunkHighlight!=null && previousChunkHighlight==null && hoveredChunkHighlight.isHighlighted))
@@ -67,7 +68,10 @@ public partial class FreezeAbility : BaseAction
 			foreach (var chunk in _chunkList)
 			{
 				SetHoveredAttackColor(chunk);
-				EnableDamagePreview(chunk);
+				if (chunk.GetCurrentPlayer() != null)
+				{
+					EnableDamagePreview(chunk);
+				}
 			}
 		}
 	}

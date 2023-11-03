@@ -22,18 +22,22 @@ public partial class Enrage : BaseAction
 		highlightTile.DisableDamageText();
 		GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetTileHighlight().DisableDamageText();
 	}
-	public override void SetHoveredAttackColor(ChunkData chunkData)
+
+	public override void Start()
 	{
-		if (!chunkData.CharacterIsOnTile() || (chunkData.CharacterIsOnTile() && !CanTileBeClicked(chunkData)))
+		base.Start();
+		customText = "+1 MP";
+	}
+	
+	public override void EnableDamagePreview(ChunkData chunk, string text = null)
+	{
+		HighlightTile highlightTile = chunk.GetTileHighlight();
+		HighlightTile gamerHighlight = GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetTileHighlight();
+		if (customText != null)
 		{
-			chunkData.GetTileHighlight()?.SetHighlightColor(abilityHighlightHover);
-		}
-		else
-		{
-			chunkData.GetTileHighlight()?.SetHighlightColor(abilityHoverCharacter);
-			EnableDamagePreview(chunkData, "+1 MP");
-			GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetTileHighlight().EnableTile(true);
-			EnableDamagePreview(GameTileMap.Tilemap.GetChunk(player.GlobalPosition),"+1 MP");
+			highlightTile.SetDamageText(customText);
+			gamerHighlight.EnableTile(true);
+			gamerHighlight.SetDamageText(customText);
 		}
 	}
 	
@@ -54,9 +58,12 @@ public partial class Enrage : BaseAction
 		if (hoveredChunkHighlight.isHighlighted)
 		{
 			SetHoveredAttackColor(hoveredChunk);
-			EnableDamagePreview(hoveredChunk);
+			if (CanTileBeClicked(hoveredChunk))
+			{
+				EnableDamagePreview(hoveredChunk);
+			}
 		}
-		if (previousChunkHighlight != null && hoveredChunk.GetCurrentPlayer()==null/*CanTileBeClicked(hoveredChunk)*/)
+		if (previousChunkHighlight != null && hoveredChunk.GetCurrentPlayer()==null)
 		{
 			SetNonHoveredAttackColor(previousChunk);
 			DisableDamagePreview(previousChunk);

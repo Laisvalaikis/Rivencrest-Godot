@@ -73,7 +73,7 @@ public partial class ChillingGust : BaseAction
             SetHoveredAttackColor(hoveredChunk);
             if (CanTileBeClicked(hoveredChunk))
             {
-                if (hoveredChunk.GetCurrentPlayer()  .GetPlayerTeam() == player.GetPlayerTeam())
+                if (hoveredChunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam())
                 {
                     customText = "PROTECT";
                 }

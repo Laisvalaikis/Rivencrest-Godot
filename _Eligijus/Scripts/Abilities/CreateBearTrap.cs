@@ -28,7 +28,7 @@ public partial class CreateBearTrap : BaseAction
 		PackedScene spawnCharacter = (PackedScene)bearTrapPrefab;
 		spawnedBear = spawnCharacter.Instantiate<Player>();
 		player.GetTree().Root.CallDeferred("add_child", spawnedBear);
-		GameTileMap.Tilemap.SetCharacter(chunk, spawnedBear);
+		GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedBear);
 		i = 0;
 		FinishAbility();
 	}

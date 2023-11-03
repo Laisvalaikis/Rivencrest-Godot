@@ -41,7 +41,7 @@ public partial class CreateFog : BaseAction
         PackedScene spawnCharacter = (PackedScene)fogPrefab;
         spawnedFog = spawnCharacter.Instantiate<Player>();
         player.GetTree().Root.CallDeferred("add_child", spawnedFog);
-        GameTileMap.Tilemap.SetCharacter(chunk, spawnedFog);        
+        GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedFog);        
         FinishAbility();
         isFogActive = true;
         i = 0;

@@ -4,7 +4,6 @@ using Godot;
 
 public partial class CryoFreeze : BaseAction
 {
-	private PlayerInformation _playerInformation;
 	private bool _isAbilityActive = false;
 
 	public CryoFreeze()
@@ -80,14 +79,14 @@ public partial class CryoFreeze : BaseAction
 	
 	public override void EnableDamagePreview(ChunkData chunk, string customText = null)
 	{
-		
+		//Intentionally left empty. Ability does damage, but we do not preview it.
 	}
 
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
 		_isAbilityActive = true;
-		_playerInformation.Stasis = true;
+		player.playerInformation.Stasis = true;
 		FinishAbility();
 	}
 }

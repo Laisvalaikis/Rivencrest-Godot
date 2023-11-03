@@ -1,6 +1,24 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0uq0mnl00q4o"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://0uq0mnl00q4o"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateWhiteField.cs" id="1_esa87"]
+[ext_resource type="PackedScene" uid="uid://86bmv8kysrby" path="res://_Aurimas/AbilityPrefabs/WhiteField.tscn" id="2_8odeq"]
 
 [resource]
 script = ExtResource("1_esa87")
+whiteFieldPrefab = ExtResource("2_8odeq")
+laserGrid = false
+turnsSinceCast = 0
+turnLifetime = 1
+abilityPointsUsage = 1
+attackRange = 2
+minAttackDamage = 0
+maxAttackDamage = 0
+isAbilitySlow = true
+friendlyFire = false
+AbilityCooldown = 1
+abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
+abilityHighlightHover = Color(1, 0.890196, 0, 1)
+abilityHoverCharacter = Color(1, 0.890196, 0, 1)
+otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
+characterOnGrid = Color(0.482353, 0.611765, 0.698039, 1)
+_abilityBlessingsRef = null

@@ -30,7 +30,7 @@ public partial class CreateEye : BaseAction
 			spawnedEye = spawnResource.Instantiate<Player>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedEye);
 			spawnedEye.GlobalPosition = chunk.GetPosition();
-			GameTileMap.Tilemap.SetCharacter(chunk, spawnedEye);
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedEye);
 			base.ResolveAbility(chunk);
 		}
 		FinishAbility();

@@ -26,10 +26,31 @@ public partial class CreateWhiteField : BaseAction
             PackedScene spawnResource = (PackedScene)whiteFieldPrefab;
             Player spawnedWhiteField = spawnResource.Instantiate<Player>();
             player.GetTree().Root.CallDeferred("add_child", spawnedWhiteField);
-            GameTileMap.Tilemap.SetCharacter(_chunkList[i], spawnedWhiteField);
+            GameTileMap.Tilemap.MoveSelectedCharacter(_chunkList[i], spawnedWhiteField);
         }
         base.ResolveAbility(chunk);
         FinishAbility();
+    }
+    
+    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        if (hoveredChunk == previousChunk) return;
+        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
+        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
+        if ((hoveredChunkHighlight == null && previousChunkHighlight!=null && previousChunkHighlight.isHighlighted) || (hoveredChunkHighlight!=null && previousChunkHighlight!=null && !hoveredChunkHighlight.isHighlighted && previousChunkHighlight.isHighlighted))
+        {
+            foreach (var chunk in _chunkList)
+            {
+                SetNonHoveredAttackColor(chunk);
+            }
+        }
+        else if ((hoveredChunkHighlight!=null && previousChunkHighlight!=null && hoveredChunkHighlight.isHighlighted && !previousChunkHighlight.isHighlighted) || (hoveredChunkHighlight!=null && previousChunkHighlight==null && hoveredChunkHighlight.isHighlighted))
+        {
+            foreach (var chunk in _chunkList)
+            {
+                SetHoveredAttackColor(chunk);
+            }
+        }
     }
 
 }

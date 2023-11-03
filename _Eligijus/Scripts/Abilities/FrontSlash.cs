@@ -70,6 +70,7 @@ public partial class FrontSlash : BaseAction
                 if (chunkToHighLight != null)
                 {
                     SetNonHoveredAttackColor(chunkToHighLight);
+                    DisableDamagePreview(chunkToHighLight);
                 }
             }
         }
@@ -84,7 +85,10 @@ public partial class FrontSlash : BaseAction
                     if (chunkToHighLight != null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
-                        EnableDamagePreview(chunkToHighLight);
+                        if (CanTileBeClicked(chunkToHighLight))
+                        {
+                            EnableDamagePreview(chunkToHighLight);
+                        }
                     }
                 }
             }

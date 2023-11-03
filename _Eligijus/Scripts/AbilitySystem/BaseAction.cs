@@ -409,7 +409,7 @@ public abstract partial class BaseAction: Resource
 					highlightTile.SetDamageText($"{minAttackDamage}-{maxAttackDamage}");
 				}
 
-				if (chunk.GetCurrentPlayer().playerInformation.GetHealth() <= minAttackDamage)
+				if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().playerInformation.GetHealth() <= minAttackDamage)
 				{
 					highlightTile.ActivateDeathSkull(true);
 				}
