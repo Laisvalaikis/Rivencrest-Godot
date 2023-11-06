@@ -31,7 +31,7 @@ public partial class PlayerAttack : BaseAction
     public override bool CanTileBeClicked(ChunkData chunk)
     {
         if (((CheckIfSpecificInformationType(chunk, InformationType.Player) || CheckIfSpecificInformationType(chunk, InformationType.Object))
-            && IsAllegianceSame(chunk)) || friendlyFire)
+            && !IsAllegianceSame(chunk)) || friendlyFire)
         {
             return true;
         }
