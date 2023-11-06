@@ -11,6 +11,7 @@
 [resource]
 script = ExtResource("1_61yk3")
 mapName = "Meadow"
+enemies = Array[Resource]([null, null, null, null])
 suitableEnemies = Array[String](["ForestDruid", "ForestBear", "ForestWatcher", "ForestBear", "ForestHuntress"])
 npcTeam = Array[Node]([])
 suitableLevels = Array[int]([1, 2, 3])

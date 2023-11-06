@@ -1,4 +1,3 @@
-using System.Collections;
 using Godot;
 using Godot.Collections;
 
@@ -6,6 +5,8 @@ public partial class MapData : Resource
 {
 	[Export]
 	public string mapName;
+	[Export]
+	public MapEnemyData[] enemies;
 	[Export]
 	public Array<string> suitableEnemies;
 	[Export]

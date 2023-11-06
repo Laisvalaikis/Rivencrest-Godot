@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://3nldv1vbxvw3"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="1_2wdy6"]
+
+[resource]
+script = ExtResource("1_2wdy6")
+level = 1
+enemyCount = 2
+enemies = null
