@@ -13,8 +13,6 @@ public partial class Team : Resource
     [Export]
     public string teamName;
     [Export]
-    public string teamAllegiance;
-    [Export]
     public bool isTeamAI;
     [Export] 
     private bool isTeamUsed = false;

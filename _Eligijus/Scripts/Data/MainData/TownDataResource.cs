@@ -5,7 +5,7 @@ public partial class TownDataResource: Resource
 	[Export]
 	public string teamColor;
 	[Export]
-	public string slotName;
+	public string teamName;
 	//Town info
 	[Export]
 	public int difficultyLevel;
@@ -58,7 +58,7 @@ public partial class TownDataResource: Resource
 	public TownDataResource(TownDataResource data)
 	{
 		teamColor = data.teamColor;
-		slotName = data.slotName;
+		teamName = data.teamName;
 		difficultyLevel = data.difficultyLevel;
 		townGold = data.townGold;
 		day = data.day;
@@ -86,7 +86,7 @@ public partial class TownDataResource: Resource
 	public TownDataResource(TownData data)
 	{
 		teamColor = data.teamColor;
-		slotName = data.slotName;
+		teamName = data.teamName;
 		difficultyLevel = data.difficultyLevel;
 		townGold = data.townGold;
 		day = data.day;

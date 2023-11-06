@@ -29,8 +29,8 @@ public partial class EncounterController : Control
 		base._Ready();
 		_random = new Random();
 		_data = Data.Instance;
-		_data.townData.generatedEncounters = Setup();
 		mapDatas = _data.allMapDatas;
+		_data.townData.generatedEncounters = Setup();
 		ChangeSelectedEncounter(null);
 	}
 

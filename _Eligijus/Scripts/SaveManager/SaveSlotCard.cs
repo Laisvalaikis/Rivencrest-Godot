@@ -27,7 +27,7 @@ public partial class SaveSlotCard : Control
 		SetActive(_slotMenu, saveExist);
 		if(saveExist)
 		{
-			_slotTitle.Text = SaveSystem.LoadTownData(_slotIndex).slotName;
+			_slotTitle.Text = SaveSystem.LoadTownData(_slotIndex).teamName;
 		}
 	}
 

@@ -80,7 +80,7 @@ public partial class CharacterTeams : Node
 		}
 		
 		allCharacterList[0].SetTeamIsUsed(true);
-		
+		allCharacterList[0].teamName = _data.townData.teamName;
 		
 		currentCharacters = new TeamsList { Teams = new Array<Team>() };
 		deadCharacters = new TeamsList { Teams = new Array<Team>() };
@@ -96,6 +96,7 @@ public partial class CharacterTeams : Node
 			{
 				int index = _random.Next(0, enemyData.enemies.Count);
 				enemyTeam.characterPrefabs.Add(enemyData.enemies[index]);
+				enemyTeam.SetTeamIsUsed(true);
 			}
 		}
 		// _data.allMapDatas[MapName];

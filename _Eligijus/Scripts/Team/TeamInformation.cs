@@ -49,6 +49,7 @@ public partial class TeamInformation : Control
 
 	public void EndTurn(int newTeamIndex)
 	{
+		GameTileMap.Tilemap.DeselectCurrentCharacter();
 		teamIndex = newTeamIndex;
 		ModifyList();
 	}

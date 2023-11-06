@@ -7,7 +7,7 @@ using System;
 	{
 		//Slot info
 		public string teamColor { get; set; }
-		public string slotName { get; set; }
+		public string teamName { get; set; }
 		//Town info
 		public int difficultyLevel { get; set; }
 		public int townGold { get; set; }
@@ -37,7 +37,7 @@ using System;
 		public TownData(int difficultyLevel, int townGold, int day, List<SavedCharacter> characters, List<int> charactersOnLastMission,
 			bool wasLastMissionSuccessful, bool newGame, string selectedMission, TownHallData townHall,
 			List<SavedCharacter> rcCharacters, List<int> enemies, bool allowEnemySelection, bool allowDuplicates, string teamColor,
-			string slotName, Encounter selectedEncounter, List<Encounter> pastEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
+			string teamName, Encounter selectedEncounter, List<Encounter> pastEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
 			GameSettings gameSettings)
 		{
 			this.difficultyLevel = difficultyLevel;
@@ -57,7 +57,7 @@ using System;
 			this.allowEnemySelection = allowEnemySelection;
 			this.allowDuplicates = allowDuplicates;
 			this.teamColor = teamColor;
-			this.slotName = slotName;
+			this.teamName = teamName;
 			this.selectedEncounter = selectedEncounter;
 			this.pastEncounters = pastEncounters;
 			this.generateNewEncounters = generateNewEncounters;
@@ -69,7 +69,7 @@ using System;
 		public TownData(TownDataResource data)
 		{
 			teamColor = data.teamColor;
-			slotName = data.slotName;
+			teamName = data.teamName;
 			difficultyLevel = data.difficultyLevel;
 			townGold = data.townGold;
 			day = data.day;
@@ -115,7 +115,7 @@ using System;
 			gameSettings = new GameSettings(data.gameSettings);
 		}
 
-		public static TownData NewGameData(string color, int difficulty, string slotName)
+		public static TownData NewGameData(string color, int difficulty, string teamName)
 		{
 			return new TownData
 			{
@@ -135,7 +135,7 @@ using System;
 				allowEnemySelection = false,
 				allowDuplicates = false,
 				teamColor = color,
-				slotName = slotName,
+				teamName = teamName,
 				selectedEncounter = new Encounter(),
 				pastEncounters = new List<Encounter>(),
 				generateNewEncounters = true,
