@@ -12,8 +12,6 @@ public partial class MapData : Resource
 	[Export]
 	public Array<MapCoordinates> mapCoordinates;
 	[Export]
-	public MapCoordinates aiMapCoordinates;
-	[Export]
 	public TileMapData tileMapCoordinates;
 	[Export]
 	public Vector3 toFollowStartPosition;
@@ -43,7 +41,6 @@ public partial class MapData : Resource
 		npcTeam = mapData.npcTeam;
 		suitableLevels = mapData.suitableLevels;
 		mapCoordinates = mapData.mapCoordinates;
-		aiMapCoordinates = mapData.aiMapCoordinates;
 		toFollowStartPosition = mapData.toFollowStartPosition;
 		panLimitX = mapData.panLimitX;
 		panLimitY = mapData.panLimitY;

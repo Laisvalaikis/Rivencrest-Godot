@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=11 format=3 uid="uid://ddr0wwuf3tmcy"]
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://ddr0wwuf3tmcy"]
 
-[ext_resource type="Resource" uid="uid://sge1y06qj7ww" path="res://Data/MapData/Meadow/AI_Coordinates.tres" id="1_4cuyo"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_61yk3"]
 [ext_resource type="Resource" uid="uid://bgce7qac0io1a" path="res://Data/MapData/Meadow/Coordinates_0.tres" id="1_435hm"]
 [ext_resource type="Resource" uid="uid://vnh5nyvhw6hm" path="res://Data/MapData/Meadow/Level_1_Enemies.tres" id="2_5vnhm"]
@@ -8,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://3nldv1vbxvw3" path="res://Data/MapData/Meadow/Level_2_Enemies.tres" id="3_oqtnj"]
 [ext_resource type="Resource" uid="uid://cbwyx6wu5n1r3" path="res://Data/MapData/Meadow/Level_3_Enemies.tres" id="4_5xqig"]
 [ext_resource type="Texture2D" uid="uid://7p7tdenva8qi" path="res://_Eligijus/Sprites/Map/Meadow.png" id="4_40qgj"]
-[ext_resource type="PackedScene" uid="uid://0nfqcq3srxjt" path="res://_Eligijus/Prefabs/Maps/Meadow.tscn" id="5_eyd6t"]
+[ext_resource type="PackedScene" uid="uid://0nfqcq3srxjt" path="res://Maps/Meadow.tscn" id="4_vhnit"]
 [ext_resource type="Resource" uid="uid://bwy5abfecgyrf" path="res://Data/MapData/Meadow/MapGeneration.tres" id="7_453ag"]
 
 [resource]
@@ -21,7 +20,6 @@ suitableLevels = {
 }
 npcTeam = Array[Node]([])
 mapCoordinates = Array[Resource]([ExtResource("1_435hm"), ExtResource("2_qv035")])
-aiMapCoordinates = ExtResource("1_4cuyo")
 tileMapCoordinates = ExtResource("7_453ag")
 toFollowStartPosition = Vector3(1.22, 2.32, 0)
 panLimitX = Vector2(-0.5, 5.5)
@@ -31,4 +29,4 @@ mapCategory = "Forest"
 allowDuplicates = false
 mapImage = ExtResource("4_40qgj")
 informationText = ""
-mapPrefab = ExtResource("5_eyd6t")
+mapPrefab = ExtResource("4_vhnit")

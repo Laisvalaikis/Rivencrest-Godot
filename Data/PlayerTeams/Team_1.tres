@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bipnpb46pmk11"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bipnpb46pmk11"]
 
-[ext_resource type="PackedScene" uid="uid://blfhaa4s8ndvg" path="res://_Eligijus/Prefabs/Characters/PlayerYellow.tscn" id="1_l4b4l"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Team/Team.cs" id="1_xafui"]
 
 [resource]
 script = ExtResource("1_xafui")
-characterPrefabs = Array[Resource]([ExtResource("1_l4b4l"), ExtResource("1_l4b4l"), ExtResource("1_l4b4l")])
+characterPrefabs = Array[Resource]([])
 characters = Array[Node2D]([])
 coordinates = Array[Vector2]([])
 teamName = ""
 teamAllegiance = ""
 isTeamAI = true
+isTeamUsed = false

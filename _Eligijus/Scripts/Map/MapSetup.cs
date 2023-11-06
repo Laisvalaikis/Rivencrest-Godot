@@ -39,7 +39,7 @@ public partial class MapSetup : Node
 		{
 			currentMapData = mapDatas[MapName];
 			//coordinates
-			for (int i = 0; i < _characterTeams.allCharacterList.Count && !_characterTeams.allCharacterList[i].isTeamAI; i++)
+			for (int i = 0; i < _characterTeams.allCharacterList.Count; i++)
 			{
 				_characterTeams.allCharacterList[i].coordinates.Clear();
 				for (int j = 0; j < currentMapData.mapCoordinates[i].coordinates.Count; j++)

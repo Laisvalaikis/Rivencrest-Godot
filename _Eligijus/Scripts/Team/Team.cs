@@ -16,7 +16,19 @@ public partial class Team : Resource
     public string teamAllegiance;
     [Export]
     public bool isTeamAI;
+    [Export] 
+    private bool isTeamUsed = false;
     public int undoCount;
     public List<UsedAbility> usedAbilities = new List<UsedAbility>();
+
+    public bool IsTeamUsed()
+    {
+        return isTeamUsed;
+    }
+
+    public void SetTeamIsUsed(bool usedTeam)
+    {
+        isTeamUsed = usedTeam;
+    }
 
 }

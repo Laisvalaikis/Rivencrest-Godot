@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -23,6 +22,13 @@ public partial class CharacterTeams : Node
 	private TeamsList deadCharacters;
 	private Data _data;
 	private bool setupComplete = false;
+	private Random _random;
+
+	public override void _Ready()
+	{
+		base._Ready();
+		_random = new Random();
+	}
 
 	public override void _Process(double delta)
 	{
@@ -30,6 +36,7 @@ public partial class CharacterTeams : Node
 		if (!setupComplete && GameTileMap.Tilemap.ChunksIsSetuped())
 		{
 			InitializeCharacterLists();
+			GenerateEnemies();
 			SpawnAllCharacters();
 			isGameOver = false;
 			setupComplete = true;
@@ -72,6 +79,7 @@ public partial class CharacterTeams : Node
 			allCharacterList[0].characterPrefabs.Add(t.prefab);
 		}
 		
+		allCharacterList[0].SetTeamIsUsed(true);
 		
 		
 		currentCharacters = new TeamsList { Teams = new Array<Team>() };
@@ -80,7 +88,30 @@ public partial class CharacterTeams : Node
 
 	private void GenerateEnemies()
 	{
+		MapEnemyData enemyData = _data.GetCurrentMapEnemyData();
+		Team enemyTeam = GetAvailableTeam();
+		if (enemyData != null && enemyTeam != null)
+		{
+			for (int i = 0; i < enemyData.enemyCount; i++)
+			{
+				int index = _random.Next(0, enemyData.enemies.Count);
+				enemyTeam.characterPrefabs.Add(enemyData.enemies[index]);
+			}
+		}
 		// _data.allMapDatas[MapName];
+	}
+
+	private Team GetAvailableTeam()
+	{
+		for (int i = 0; i < allCharacterList.Count; i++)
+		{
+			if (!allCharacterList[i].IsTeamUsed())
+			{
+				return allCharacterList[i];
+			}
+		}
+
+		return null;
 	}
 
 	private void SpawnAllCharacters()
