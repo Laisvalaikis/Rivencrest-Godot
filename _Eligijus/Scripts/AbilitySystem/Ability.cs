@@ -15,6 +15,7 @@ public partial class Ability: Resource
 	public Texture AbilityImage;
 	[Export]
 	public BaseAction Action;
+	
 
 	public Ability()
 	{
