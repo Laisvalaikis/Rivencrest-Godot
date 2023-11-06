@@ -8,7 +8,7 @@ public partial class Player : Node2D
 	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
 	private int _currentCharacterTeam = -1;
-	private PlayerTeams team;
+	private CharacterTeams team;
 	protected List<Poison> _poisons;
 	protected bool weakSpot = false;
 
@@ -48,12 +48,12 @@ public partial class Player : Node2D
 		return _currentCharacterTeam;
 	}
 
-	public void SetPlayerTeam(PlayerTeams teams)
+	public void SetPlayerTeam(CharacterTeams teams)
 	{
 		team = teams;
 	}
 
-	public PlayerTeams GetPlayerTeams()
+	public CharacterTeams GetPlayerTeams()
 	{
 		return team;
 	}

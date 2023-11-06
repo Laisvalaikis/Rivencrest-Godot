@@ -27,7 +27,6 @@ public partial class SaveData : Node
 	//SAVESYSTEM
 	public void SaveGameData()
 	{
-		_data.selectedEnemies = new Array<int>();
 		List<SavedCharacter> savedCharacters = new List<SavedCharacter>();
 		for (int i = 0; i < _data.Characters.Count; i++)
 		{

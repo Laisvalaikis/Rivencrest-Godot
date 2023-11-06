@@ -16,8 +16,7 @@ public partial class EncounterController : Control
 	public Label numOfEnemies;
 	[Export]
 	public Label missionInfo;
-	[Export]
-	public MapDataController mapSetup;
+	private Dictionary<string, MapData> mapDatas;
 	[Export]
 	public Array<EncounterButton> encounterSelections;
 	
@@ -31,6 +30,7 @@ public partial class EncounterController : Control
 		_random = new Random();
 		_data = Data.Instance;
 		_data.townData.generatedEncounters = Setup();
+		mapDatas = _data.allMapDatas;
 		ChangeSelectedEncounter(null);
 	}
 
@@ -70,11 +70,11 @@ public partial class EncounterController : Control
 					newEncounter.missionCategory = tempCategory;
 					newEncounter.encounterLevel = i;
 					Array<MapData> suitableMaps = new Array<MapData>();
-					foreach (string key in mapSetup.mapDatas.Keys)
+					foreach (string key in mapDatas.Keys)
 					{
-						if (mapSetup.mapDatas[key].mapCategory == tempCategory && mapSetup.mapDatas[key].suitableLevels.ContainsKey(i))
+						if (mapDatas[key].mapCategory == tempCategory && mapDatas[key].suitableLevels.ContainsKey(i))
 						{
-							suitableMaps.Add(mapSetup.mapDatas[key]);
+							suitableMaps.Add(mapDatas[key]);
 						}
 					}
 					MapData suitableMap = suitableMaps[_random.Next(0, suitableMaps.Count)];
@@ -107,7 +107,7 @@ public partial class EncounterController : Control
 			missionName.Text = _data.townData.selectedEncounter.mapName;
 			level.Text = _data.townData.selectedEncounter.encounterLevel.ToString();
 			category.Text = _data.townData.selectedEncounter.missionCategory;
-			numOfEnemies.Text = mapSetup.mapDatas[_data.townData.selectedEncounter.mapName]
+			numOfEnemies.Text = mapDatas[_data.townData.selectedEncounter.mapName]
 				.suitableLevels[_data.townData.selectedEncounter.encounterLevel].enemyCount.ToString();
 			missionInfo.Text = _data.townData.selectedEncounter.missionText;
 		}

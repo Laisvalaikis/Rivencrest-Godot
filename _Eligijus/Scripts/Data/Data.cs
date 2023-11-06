@@ -33,7 +33,7 @@ public partial class Data : Node
 	public int minCharacterCount;
 	public bool createNewRCcharacters = false;
 	[Export]
-	public Array<int> selectedEnemies;
+	public Dictionary<string, MapData> allMapDatas;
 	public Statistics statistics;
 	public Statistics globalStatistics;
 	[Export]
@@ -64,6 +64,16 @@ public partial class Data : Node
 		{
 			Instance = null;
 		}
+	}
+
+	public MapEnemyData GetCurrentMapEnemyData()
+	{
+		if (allMapDatas != null && allMapDatas.Keys.Count > 0 && townData != null && townData.selectedEncounter != null)
+		{
+			return allMapDatas[townData.selectedEncounter.mapName]
+				.suitableLevels[townData.selectedEncounter.encounterLevel];
+		}
+		return null;
 	}
 
 }

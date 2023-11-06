@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-public partial class PlayerTeams : Node
+public partial class CharacterTeams : Node
 {
 	[Export]
 	TurnManager TurnManager;
@@ -77,7 +77,12 @@ public partial class PlayerTeams : Node
 		currentCharacters = new TeamsList { Teams = new Array<Team>() };
 		deadCharacters = new TeamsList { Teams = new Array<Team>() };
 	}
-	
+
+	private void GenerateEnemies()
+	{
+		// _data.allMapDatas[MapName];
+	}
+
 	private void SpawnAllCharacters()
 	{
 		for (int i = 0; i < allCharacterList.Count; i++)

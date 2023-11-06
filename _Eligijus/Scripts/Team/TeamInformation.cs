@@ -5,7 +5,7 @@ using Godot.Collections;
 public partial class TeamInformation : Control
 {
 	[Export] private SelectAction selectAction;
-	[Export] private PlayerTeams playerTeams;
+	[Export] private CharacterTeams _characterTeams;
 	[Export] private TextureRect image;
 	[Export] private GameTileMap gameTileMap;
 	[Export] private Array<PvPCharacterSelect> pvpCharacterSelects;
@@ -18,7 +18,7 @@ public partial class TeamInformation : Control
 	
 	public void ModifyList()
 	{
-		Array<Player> characterOnBoardList = playerTeams.AliveCharacterList(teamIndex);
+		Array<Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
 		for(int i = 0; i < pvpCharacterSelects.Count; i++)
 		{
 			if (i < characterOnBoardList.Count)
@@ -49,7 +49,7 @@ public partial class TeamInformation : Control
 
 	public void SelectCharacterPortrait(Node2D character, bool select = true)
 	{
-		Array<Player> characterOnBoardList = playerTeams.AliveCharacterList(teamIndex);
+		Array<Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
 		for (int i = 0; i < characterOnBoardList.Count; i++)
 		{
 			if (pvpCharacterSelects[i].GetCharacter() == character)
