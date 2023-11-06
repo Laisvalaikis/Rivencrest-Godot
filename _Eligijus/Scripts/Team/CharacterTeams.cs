@@ -152,13 +152,20 @@ public partial class CharacterTeams : Node
 				currentCharacters.Teams[teamIndex].characters.Add(spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characterPrefabs.Add(allCharacterList[teamIndex].characterPrefabs[i]);
 				currentCharacters.Teams[teamIndex].coordinates.Add(coordinate);
+				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
+				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
 			}
 			i++;
 		}
 		allCharacterList[teamIndex].undoCount = undoCount;
 		portraitTeamBox.ModifyList();
 	}
-	
+
+	public bool TeamIsAI(int teamIndex)
+	{
+		return currentCharacters.Teams[teamIndex].isTeamAI;
+	}
+
 	public Array<Player> AliveCharacterList(int teamIndex)
 	{
 		return currentCharacters.Teams[teamIndex].characters;
@@ -178,8 +185,14 @@ public partial class CharacterTeams : Node
 		Resource playerPrefab = currentCharacters.Teams[teamIndex].characterPrefabs[characterIndex];
 		deadCharacters.Teams[teamIndex].characterPrefabs.Add(playerPrefab);
 		deadCharacters.Teams[teamIndex].coordinates.Add(chunkData.GetPosition());
+		
+		currentCharacters.Teams[teamIndex].characters.RemoveAt(characterIndex);
+		currentCharacters.Teams[teamIndex].coordinates.RemoveAt(characterIndex);
+		currentCharacters.Teams[teamIndex].characterPrefabs.RemoveAt(characterIndex);
+		
 		chunkData.SetCurrentCharacter(null);
 		chunkData.GetTileHighlight().DisableHighlight();
+		portraitTeamBox.ModifyList();
 	}
 	
 }

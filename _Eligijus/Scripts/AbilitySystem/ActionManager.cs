@@ -25,15 +25,21 @@ public partial class ActionManager : Node
 	private Ability _currentAbility;
 	private ChunkData _previousChunk;
 	private bool abilityIsSelected = false;
+	private Array<UnlockedAbilitiesResource> unlockedAbilityList;
+	private Data _data;
 	
 	public override void _Ready()
 	{
 		base._Ready();
-		
+		if (Data.Instance != null)
+		{
+			_data = Data.Instance;
+		}
 		_abilities = new Array<Ability>();
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
 		Array<Ability> baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
+		unlockedAbilityList = _data.Characters[_player.playerIndex].unlockedAbilities;
 		allAbilities.AddRange(baseAbilities);
 		allAbilities.AddRange(_player.playerInformation.playerInformationData.abilities);
 		if (allAbilities != null && allAbilities.Count != 0)
@@ -140,7 +146,25 @@ public partial class ActionManager : Node
 
 	public void OnTurnStart()
 	{
-
+		ActionOnTurnStart();
+	}
+	
+	private void ActionOnTurnStart()
+	{
+		for (int i = 0; i < _baseAbilities.Count; i++)
+		{
+			if (_baseAbilities[i].enabled)
+			{
+				_baseAbilities[i].Action.OnTurnStart();
+			}
+		}
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
+			{
+				_abilities[i].Action.OnTurnStart();
+			}
+		}
 	}
 	
 	public void OnTurnEnd()
@@ -149,8 +173,35 @@ public partial class ActionManager : Node
 		_debuffs.CheckAbilityTurns();
 		_debuffs.CheckBaseAbilityTurns();
 		_debuffs.CheckWholeAbilities();
+		ActionOnTurnEnd();
 	}
-	
+
+	private void ActionOnTurnEnd()
+	{
+		for (int i = 0; i < _baseAbilities.Count; i++)
+		{
+			if (_baseAbilities[i].enabled)
+			{
+				_baseAbilities[i].Action.OnTurnEnd();
+			}
+		}
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
+			{
+				_abilities[i].Action.OnTurnEnd();
+			}
+		}
+	}
+
+	public void Die()
+	{
+		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability)
+		{
+			_currentAbility.Action.Die();
+		}
+	}
+
 	public void OnMove(Vector2 position)
 	{
 		if (_currentAbility == null) return;

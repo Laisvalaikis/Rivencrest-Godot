@@ -496,20 +496,23 @@ public partial class GameTileMap : Node2D
 
 	public void SelectTile(Vector2 mousePosition)
 	{
-		
 		if (GetChunk(mousePosition) != null)
-		{
-			ChunkData chunkData = GetChunk(mousePosition);
-			if (_currentSelectedCharacter != null)
+		{ 
+			if (!_turnManager.IsCurrentTeamAI())
 			{
-				_currentSelectedCharacter.actionManager.DeselectAbility();
-			}
-			_currentSelectedCharacter = chunkData.GetCurrentPlayer();
-			if (_currentSelectedCharacter != null)
-			{
-				_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
-				_turnManager.SetCurrentCharacter(_currentSelectedCharacter);
-				teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
+				ChunkData chunkData = GetChunk(mousePosition);
+				if (_currentSelectedCharacter != null)
+				{
+					_currentSelectedCharacter.actionManager.DeselectAbility();
+				}
+
+				_currentSelectedCharacter = chunkData.GetCurrentPlayer();
+				if (_currentSelectedCharacter != null)
+				{
+					_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
+					_turnManager.SetCurrentCharacter(_currentSelectedCharacter);
+					teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
+				}
 			}
 		}
 	}
@@ -559,7 +562,7 @@ public partial class GameTileMap : Node2D
 		{
 			SelectTile(_mousePosition);
 		}
-		else if(CharacterIsSelected() && chunk!=null && GetCurrentCharacter()==chunk.GetCurrentPlayer()) // Clicking on currently selected character to deselect it
+		else if(CharacterIsSelected() && chunk != null && GetCurrentCharacter() == chunk.GetCurrentPlayer() && !_turnManager.IsCurrentTeamAI()) // Clicking on currently selected character to deselect it
 		{
 			DeselectCurrentCharacter();
 		}

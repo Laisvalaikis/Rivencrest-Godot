@@ -50,11 +50,17 @@ public partial class PvPCharacterSelect : Button
             isButtonAvailable = false;
         }
     }
-
+    
     public void SetPortraitCharacter(Node2D character, PlayerInformation characterInformation)
     {
         characterOnBoard = character;
         _playerInformation = characterInformation;
+    }
+    
+    public void DisableCharacterPortrait()
+    {
+        characterButtonParent.Hide();
+        isButtonAvailable = false;
     }
 
     public Node2D GetCharacter()

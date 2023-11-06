@@ -8,5 +8,5 @@ characterPrefabs = Array[Resource]([])
 characters = Array[Node2D]([])
 coordinates = Array[Vector2]([])
 teamName = "Enemy"
-isTeamAI = true
+isTeamAI = false
 isTeamUsed = false

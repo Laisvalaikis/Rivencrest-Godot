@@ -8,6 +8,7 @@ public partial class TurnManager : Node
 	[Export] private int _currentTeamIndex = 0;
 	[Export] private TeamsList _teamsList;
 	[Export] private Player _currentPlayer;
+	private bool isAiTurn = false;
 	private Vector2 _mousePosition;
 
 	public override void _Ready()
@@ -63,9 +64,22 @@ public partial class TurnManager : Node
 			_currentTeamIndex = 0;
 		}
 		_currentTeam = _teamsList.Teams[_currentTeamIndex];
+		if (_currentTeam.isTeamAI)
+		{
+			isAiTurn = true;
+		}
+		else
+		{
+			isAiTurn = false;
+		}
 		_teamInformation.EndTurn(_currentTeamIndex);
 		OnTurnStart();
 		
+	}
+
+	public bool IsCurrentTeamAI()
+	{
+		return isAiTurn;
 	}
 
 	public void OnTurnStart()

@@ -15,6 +15,7 @@ public partial class Player : Node2D
 	public void Death()
 	{
 		Hide();
+		actionManager.Die();
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		if (team != null)
 		{

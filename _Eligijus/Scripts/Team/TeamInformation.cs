@@ -10,6 +10,8 @@ public partial class TeamInformation : Control
 	[Export] private GameTileMap gameTileMap;
 	[Export] private Array<PvPCharacterSelect> pvpCharacterSelects;
 	public int teamIndex;
+	private int characterCount;
+	private bool changedTeams = false;
 
 	void Awake()
 	{
@@ -19,38 +21,48 @@ public partial class TeamInformation : Control
 	public void ModifyList()
 	{
 		Array<Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
-		for(int i = 0; i < pvpCharacterSelects.Count; i++)
+		bool teamIsAI = _characterTeams.TeamIsAI(teamIndex);
+		if (characterCount != characterOnBoardList.Count || changedTeams)
 		{
-			if (i < characterOnBoardList.Count)
+
+			for (int i = 0; i < pvpCharacterSelects.Count; i++)
 			{
-				GD.Print(pvpCharacterSelects[i].Name);
-				pvpCharacterSelects[i].SetPortraitCharacter(characterOnBoardList[i], characterOnBoardList[i].playerInformation);
-				pvpCharacterSelects[i].CreateCharatersPortrait();
-				pvpCharacterSelects[i].SetSelectAction(selectAction);
-				pvpCharacterSelects[i].SetGameTilemap(gameTileMap);
+				if (i < characterOnBoardList.Count)
+				{
+					GD.Print(pvpCharacterSelects[i].Name);
+					pvpCharacterSelects[i].SetPortraitCharacter(characterOnBoardList[i],
+						characterOnBoardList[i].playerInformation);
+					pvpCharacterSelects[i].CreateCharatersPortrait();
+					pvpCharacterSelects[i].SetSelectAction(selectAction);
+					pvpCharacterSelects[i].SetGameTilemap(gameTileMap);
+					pvpCharacterSelects[i].Disabled = teamIsAI;
+				}
+				else
+				{
+					pvpCharacterSelects[i].SetPortraitCharacter(null, null);
+					pvpCharacterSelects[i].DisableCharacterPortrait();
+				}
+
+			}
+
+			if (characterOnBoardList.Count != 0)
+			{
+				image.Show();
 			}
 			else
 			{
-				pvpCharacterSelects[i].SetPortraitCharacter( null, null);
+				image.Hide();
 			}
-			
 		}
-
-		if (characterOnBoardList.Count != 0)
-		{
-			image.Show();
-		}
-		else
-		{
-			image.Hide();
-		}
-		
+		characterCount = characterOnBoardList.Count;
+		changedTeams = false;
 	}
 
 	public void EndTurn(int newTeamIndex)
 	{
 		GameTileMap.Tilemap.DeselectCurrentCharacter();
 		teamIndex = newTeamIndex;
+		changedTeams = true;
 		ModifyList();
 	}
 
