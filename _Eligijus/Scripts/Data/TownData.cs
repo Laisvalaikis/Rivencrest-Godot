@@ -8,7 +8,6 @@ using System;
 		//Slot info
 		public string teamColor { get; set; }
 		public string slotName { get; set; }
-		public bool singlePlayer { get; set; }//cia sita gal kazkaip istrint reiks ¯\_(ツ)_/¯
 		//Town info
 		public int difficultyLevel { get; set; }
 		public int townGold { get; set; }
@@ -36,7 +35,7 @@ using System;
 		public TownData() { }
 
 		public TownData(int difficultyLevel, int townGold, int day, List<SavedCharacter> characters, List<int> charactersOnLastMission,
-			bool wasLastMissionSuccessful, bool newGame, bool singlePlayer, string selectedMission, TownHallData townHall,
+			bool wasLastMissionSuccessful, bool newGame, string selectedMission, TownHallData townHall,
 			List<SavedCharacter> rcCharacters, List<int> enemies, bool allowEnemySelection, bool allowDuplicates, string teamColor,
 			string slotName, Encounter selectedEncounter, List<Encounter> pastEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
 			GameSettings gameSettings)
@@ -49,7 +48,6 @@ using System;
 			this.charactersOnLastMission = new List<int>(charactersOnLastMission);
 			this.wereCharactersOnAMission = charactersOnLastMission.Count > 0;
 			this.newGame = newGame;
-			this.singlePlayer = singlePlayer;
 			this.selectedMission = selectedMission;
 			this.townHall = townHall;
 			if(rcCharacters != null)
@@ -84,7 +82,6 @@ using System;
 			charactersOnLastMission = new List<int>(data.charactersOnLastMission);
 			wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
 			newGame = data.newGame;
-			singlePlayer = data.singlePlayer;
 			selectedMission = data.selectedMission;
 			townHall = new TownHallData(data.townHall);
 			if (data.rcCharacters != null)
@@ -130,7 +127,6 @@ using System;
 				wasLastMissionSuccessful = false,
 				wereCharactersOnAMission = false,
 				newGame = true,
-				singlePlayer = false,
 				selectedMission = "",
 				townHall = new TownHallData(), // Sita reikes perdaryti
 				rcCharacters = { },

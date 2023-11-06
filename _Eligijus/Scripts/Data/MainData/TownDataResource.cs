@@ -6,8 +6,6 @@ public partial class TownDataResource: Resource
 	public string teamColor;
 	[Export]
 	public string slotName;
-	[Export]
-	public bool singlePlayer;//cia sita gal kazkaip istrint reiks ¯\_(ツ)_/¯
 	//Town info
 	[Export]
 	public int difficultyLevel;
@@ -69,7 +67,6 @@ public partial class TownDataResource: Resource
 		charactersOnLastMission = new Array<int>(data.charactersOnLastMission);
 		wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
 		newGame = data.newGame;
-		singlePlayer = data.singlePlayer;
 		selectedMission = data.selectedMission;
 		townHall = data.townHall;
 		if(data.rcCharacters != null)
@@ -123,7 +120,6 @@ public partial class TownDataResource: Resource
 		}
 
 		newGame = data.newGame;
-		singlePlayer = data.singlePlayer;
 		selectedMission = data.selectedMission;
 		townHall = new TownHallDataResource(data.townHall);
 		if (data.rcCharacters != null)

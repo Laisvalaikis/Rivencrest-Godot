@@ -52,9 +52,7 @@ public partial class EncounterController : Control
 		encounter.missionCategory = encounterCategory;
 		encounter.encounterLevel = encounterLevel;
 		encounter.mapName = map.ResourceName;
-		encounter.enemyPool = new Array<string>(map.suitableEnemies);
 		encounter.allowDuplicates = map.allowDuplicates;
-		encounter.numOfEnemies = map.numberOfEnemies;
 		
 		
 	}
@@ -62,7 +60,8 @@ public partial class EncounterController : Control
 	private void GenerateEncounters(out Array<EncounterResource> encounterListToPopulate)
 	{
 	   encounterListToPopulate = new Array<EncounterResource>();
-		for (int i = 3; i <= 5; i++)
+	   GD.PrintErr("Need to change this place for map and map level generation");
+		for (int i = 1; i <= 3; i++)
 		{
 			foreach (string tempCategory in encounterCategories)
 			{
@@ -73,16 +72,14 @@ public partial class EncounterController : Control
 					Array<MapData> suitableMaps = new Array<MapData>();
 					foreach (string key in mapSetup.mapDatas.Keys)
 					{
-						if (mapSetup.mapDatas[key].mapCategory == tempCategory && mapSetup.mapDatas[key].suitableLevels.Contains(1))
+						if (mapSetup.mapDatas[key].mapCategory == tempCategory && mapSetup.mapDatas[key].suitableLevels.ContainsKey(i))
 						{
 							suitableMaps.Add(mapSetup.mapDatas[key]);
 						}
 					}
 					MapData suitableMap = suitableMaps[_random.Next(0, suitableMaps.Count)];
 					newEncounter.mapName = suitableMap.mapName;
-					newEncounter.enemyPool = new Array<string>(suitableMap.suitableEnemies);
 					newEncounter.allowDuplicates = suitableMap.allowDuplicates;
-					newEncounter.numOfEnemies = suitableMap.numberOfEnemies;
 					newEncounter.missionText = suitableMap.informationText;
 					encounterListToPopulate.Add(newEncounter);
 			   
@@ -110,7 +107,8 @@ public partial class EncounterController : Control
 			missionName.Text = _data.townData.selectedEncounter.mapName;
 			level.Text = _data.townData.selectedEncounter.encounterLevel.ToString();
 			category.Text = _data.townData.selectedEncounter.missionCategory;
-			numOfEnemies.Text = _data.townData.selectedEncounter.numOfEnemies.ToString();
+			numOfEnemies.Text = mapSetup.mapDatas[_data.townData.selectedEncounter.mapName]
+				.suitableLevels[_data.townData.selectedEncounter.encounterLevel].enemyCount.ToString();
 			missionInfo.Text = _data.townData.selectedEncounter.missionText;
 		}
 		selectedEncounter = encounter;

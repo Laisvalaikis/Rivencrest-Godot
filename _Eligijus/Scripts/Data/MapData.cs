@@ -6,14 +6,9 @@ public partial class MapData : Resource
 	[Export]
 	public string mapName;
 	[Export]
-	public MapEnemyData[] enemies;
-	[Export]
-	public Array<string> suitableEnemies;
+	public Dictionary<int, MapEnemyData> suitableLevels;
 	[Export]
 	public Array<Node> npcTeam;
-	
-	[Export]
-	public Array<int> suitableLevels;
 	[Export]
 	public Array<MapCoordinates> mapCoordinates;
 	[Export]
@@ -44,7 +39,7 @@ public partial class MapData : Resource
 	public void CopyData(MapData mapData)
 	{
 		
-		suitableEnemies = mapData.suitableEnemies;
+		suitableLevels = mapData.suitableLevels;
 		npcTeam = mapData.npcTeam;
 		suitableLevels = mapData.suitableLevels;
 		mapCoordinates = mapData.mapCoordinates;

@@ -10,11 +10,7 @@ public partial class EncounterResource: Resource
 	[Export]
 	public int encounterLevel;
 	[Export]
-	public Array<string> enemyPool;
-	[Export]
 	public bool allowDuplicates;
-	[Export]
-	public int numOfEnemies;
 	[Export]
 	public string missionText;
 	
@@ -28,9 +24,7 @@ public partial class EncounterResource: Resource
 		mapName = data.mapName;
 		missionCategory = data.missionCategory;
 		encounterLevel = data.encounterLevel;
-		enemyPool = new Array<string>(data.enemyPool);
 		allowDuplicates = data.allowDuplicates;
-		numOfEnemies = data.numOfEnemies;
 		missionText = data.missionText;
 	}
 
@@ -39,9 +33,7 @@ public partial class EncounterResource: Resource
 		mapName = data.mapName;
 		missionCategory = data.missionCategory;
 		encounterLevel = data.encounterLevel;
-		enemyPool = new Array<string>(data.enemyPool);
 		allowDuplicates = data.allowDuplicates;
-		numOfEnemies = data.numOfEnemies;
 		missionText = data.missionText;
 	}
 

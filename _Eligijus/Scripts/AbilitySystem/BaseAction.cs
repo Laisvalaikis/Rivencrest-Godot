@@ -23,7 +23,7 @@ public abstract partial class BaseAction: Resource
 		[Export]
 		public bool friendlyFire = false;
 		[Export] 
-		protected int AbilityCooldown = 1;
+		protected int abilityCooldown = 1;
 		[Export]
 		protected Color abilityHighlight = new Color("#B25E55");
 		[Export]
@@ -285,6 +285,11 @@ public abstract partial class BaseAction: Resource
 		public Color GetCharacterOnGridColor()
 		{
 			return characterOnGrid;
+		}
+
+		public int GetAbilityCooldown()
+		{
+			return abilityCooldown;
 		}
 
 		public virtual void OnMoveArrows(ChunkData hoveredChunk, ChunkData previousChunk)

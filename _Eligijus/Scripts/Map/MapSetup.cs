@@ -16,8 +16,6 @@ public partial class MapSetup : Node
 	// private CameraController cameraController;
 	[Export]
 	private PlayerTeams playerTeams;
-	// [Export]
-	// private AIManager aiManager;=
 	private MapData currentMapData;
 	private Data _data;
 
