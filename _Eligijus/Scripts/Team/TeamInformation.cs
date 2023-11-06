@@ -47,6 +47,12 @@ public partial class TeamInformation : Control
 		
 	}
 
+	public void EndTurn(int newTeamIndex)
+	{
+		teamIndex = newTeamIndex;
+		ModifyList();
+	}
+
 	public void SelectCharacterPortrait(Node2D character, bool select = true)
 	{
 		Array<Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);

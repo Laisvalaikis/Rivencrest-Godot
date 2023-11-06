@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public partial class TurnManager : Node
 {
+	[Export] private TeamInformation _teamInformation;
 	[Export] private Team _currentTeam;
 	[Export] private int _currentTeamIndex = 0;
 	[Export] private TeamsList _teamsList;
@@ -62,6 +63,7 @@ public partial class TurnManager : Node
 			_currentTeamIndex = 0;
 		}
 		_currentTeam = _teamsList.Teams[_currentTeamIndex];
+		_teamInformation.EndTurn(_currentTeamIndex);
 		OnTurnStart();
 		
 	}
