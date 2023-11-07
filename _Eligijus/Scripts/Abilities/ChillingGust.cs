@@ -71,7 +71,7 @@ public partial class ChillingGust : BaseAction
         if (hoveredChunkHighlight.isHighlighted)
         {
             SetHoveredAttackColor(hoveredChunk);
-            if (CanTileBeClicked(hoveredChunk))
+            if (hoveredChunk.GetCurrentPlayer()!=null)
             {
                 if (hoveredChunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam())
                 {

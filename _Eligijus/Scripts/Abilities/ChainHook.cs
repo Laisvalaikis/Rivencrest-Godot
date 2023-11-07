@@ -6,7 +6,7 @@ public partial class ChainHook : BaseAction
 {
 	private ChunkData _tileToPullTo;
 	private Sprite2D _characterSpriteRenderer;
-
+	private int multiplier=0;
 	public ChainHook()
 	{
 
@@ -65,7 +65,6 @@ public partial class ChainHook : BaseAction
 			}
 		}
 	}
-
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
@@ -74,26 +73,26 @@ public partial class ChainHook : BaseAction
 		{
 			if (!IsAllegianceSame(chunk))
 			{
-				int multiplier = GetMultiplier(chunk.GetPosition());
+				multiplier = GetMultiplier(chunk.GetPosition());
 				if (multiplier != 0)
 				{
-					DealRandomDamageToTarget(chunk, minAttackDamage + multiplier * 2, maxAttackDamage + multiplier * 2);
+					DealRandomDamageToTarget(chunk, minAttackDamage + multiplier, maxAttackDamage + multiplier);
 				}
 			}
 
 			ChunkData chunkToPullTo = TileToPullTo(chunk);
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo.GetPosition(), new Vector2(0, 0), character);
 			ResetCharacterSpriteRendererAndTilePreview();
+			DisableDamagePreview(chunk);
 			FinishAbility();
 		}
-
 	}
 
 	private int GetMultiplier(Vector2 position)
 	{
 		Vector2 vector2 = position - player.GlobalPosition;
 		int multiplier = Mathf.Abs((int)vector2.X + (int)vector2.Y) - 1;
-		return multiplier;
+		return multiplier/100;
 	}
 
 	private ChunkData TileToPullTo(ChunkData chunk)
@@ -109,17 +108,7 @@ public partial class ChainHook : BaseAction
 		// Determine the direction from the player to the chunk
 		int directionX = deltaX != 0 ? deltaX / Math.Abs(deltaX) : 0;
 		int directionY = deltaY != 0 ? deltaY / Math.Abs(deltaY) : 0;
-
-		// if (deltaY == 1 || deltaY == -1)
-		// {
-		// 	directionY = 0;
-		// }
-		//
-		// if (deltaX == 1 || deltaX == -1)
-		// {
-		// 	directionX = 0;
-		// }
-
+		
 		// Get the chunk next to the player in the determined direction
 		ChunkData targetChunk = GameTileMap.Tilemap.GetChunkDataByIndex(playerX+directionX,playerY+directionY);
 
@@ -138,6 +127,7 @@ public partial class ChainHook : BaseAction
 		{
 			previousChunkHighlight.SetHighlightColor(abilityHighlight);
 			ResetCharacterSpriteRendererAndTilePreview();
+			DisableDamagePreview(previousChunk);
 		}
 		if (hoveredChunkHighlight == null || hoveredChunk == previousChunk)
 		{
@@ -157,6 +147,7 @@ public partial class ChainHook : BaseAction
 					_characterSpriteRenderer.SelfModulate = new Color(1f, 1f, 1f, 1f);
 				}
 			}
+			DisableDamagePreview(previousChunk);
 			previousChunkHighlight.SetHighlightColor(abilityHighlight);
 		}
 	}
@@ -172,15 +163,44 @@ public partial class ChainHook : BaseAction
 			_tileToPullTo.GetTileHighlight().TogglePreviewSprite(false);
 		}
 	}
+	
+	public override void EnableDamagePreview(ChunkData chunk, string text = null)
+	{
+		HighlightTile highlightTile = chunk.GetTileHighlight();
+		if (customText != null)
+		{
+			highlightTile.SetDamageText(customText);
+		}
+		else
+		{
+			if (maxAttackDamage == minAttackDamage)
+			{
+				highlightTile.SetDamageText((maxAttackDamage+multiplier).ToString());
+			}
+			else
+			{
+				highlightTile.SetDamageText($"{minAttackDamage+multiplier}-{maxAttackDamage+multiplier}");
+			}
+
+			if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().playerInformation.GetHealth() <= minAttackDamage)
+			{
+				highlightTile.ActivateDeathSkull(true);
+			}
+		}
+	}
 
 	private void SetHoveredChunkHighlight(ChunkData hoveredChunk, PlayerInformation currentPlayerInfo)
 	{
 		SetHoveredAttackColor(hoveredChunk);
-		EnableDamagePreview(hoveredChunk);
 		if (currentPlayerInfo != null)
 		{
 			AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.playerInformationData.characterSprite;
 			_tileToPullTo = TileToPullTo(hoveredChunk);
+			multiplier = GetMultiplier(hoveredChunk.GetPosition());
+			if (!IsAllegianceSame(hoveredChunk))
+			{
+				EnableDamagePreview(hoveredChunk);
+			}
 			HighlightTile tileToPullToHighlight = _tileToPullTo.GetTileHighlight();
 			tileToPullToHighlight.TogglePreviewSprite(true);
 			tileToPullToHighlight.SetPreviewSprite(characterSprite);
@@ -188,5 +208,4 @@ public partial class ChainHook : BaseAction
 			_characterSpriteRenderer.SelfModulate = new Color(1f, 1f, 1f, 0.5f);
 		}
 	}
-	
 }
