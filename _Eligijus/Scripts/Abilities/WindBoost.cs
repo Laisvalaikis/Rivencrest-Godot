@@ -13,6 +13,7 @@ public partial class WindBoost : BaseAction
 
     public WindBoost(WindBoost ability): base(ability)
     {
+        _random = new Random();
         minHeal = ability.minHeal;
         maxHeal = ability.maxHeal;
     }
@@ -45,7 +46,7 @@ public partial class WindBoost : BaseAction
             if (GameTileMap.Tilemap.CheckBounds(vector.Item1, vector.Item2))
             {
                 ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(vector.Item1, vector.Item2);
-                if (IsAllegianceSame(chunkData) && chunkData.GetCurrentPlayer() != null)
+                if (chunkData.GetCurrentPlayer() != null && chunkData.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam())
                 {
                     int randomHeal = _random.Next(minHeal, maxHeal);
                     chunkData.GetCurrentPlayer().playerInformation.Heal(randomHeal);
