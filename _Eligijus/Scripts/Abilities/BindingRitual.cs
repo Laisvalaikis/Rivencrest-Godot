@@ -23,7 +23,11 @@ public partial class BindingRitual : BaseAction
          {
              foreach (ChunkData tile in GetChunkList())
              {
-                 DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
+                 if (CanTileBeClicked(tile))
+                 {
+                     DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
+                     tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
+                 }
              }
              base.ResolveAbility(chunk);
              FinishAbility();
@@ -41,7 +45,7 @@ public partial class BindingRitual : BaseAction
                 if (highlightTile != null)
                 {
                     SetHoveredAttackColor(chunk);
-                    if (chunk.GetCurrentPlayer() != null)
+                    if (CanTileBeClicked(chunk))
                     {
                         EnableDamagePreview(chunk);
                     }

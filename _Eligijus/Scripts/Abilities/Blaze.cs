@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public partial class Blaze : BaseAction
+public partial class Blaze : BaseAction //removed ability
 {
     [Export] public int bonusDamage = 4;
     public Blaze()

@@ -73,7 +73,6 @@ public partial class AcidRain : BaseAction
 	{
 		if (CanTileBeClicked(chunk))
 		{
-			base.ResolveAbility(chunk);
 			foreach (ChunkData tile in _chunkList)
 			{
 				if (CanTileBeClicked(tile))
@@ -81,6 +80,7 @@ public partial class AcidRain : BaseAction
 					tile.GetCurrentPlayer().AddPoison(new Poison(tile, 2, 2));
 				}
 			}
+			base.ResolveAbility(chunk);
 			FinishAbility();
 		}
 	}

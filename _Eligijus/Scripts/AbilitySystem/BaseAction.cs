@@ -504,6 +504,11 @@ public abstract partial class BaseAction: Resource
 
 		public bool IsAllegianceSame(ChunkData chunk)
 		{
+			return chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam();
+		}
+		
+		public bool IsAllegianceSameForBuffs(ChunkData chunk)
+		{
 			return chunk == null || (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
 		}
 

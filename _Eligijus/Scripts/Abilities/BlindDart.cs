@@ -1,4 +1,4 @@
-public partial class BlindDart : BaseAction
+public partial class BlindDart : BaseAction // need fog of war for this one
 {
     public BlindDart()
     {

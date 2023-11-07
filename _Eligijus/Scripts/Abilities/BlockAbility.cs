@@ -62,16 +62,17 @@ public partial class BlockAbility : BaseAction
     {
         if (_characterBeingBlocked != null)
         {
-            
+            _characterBeingBlocked.playerInformation.RemoveBarrier();
         }
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (/*CanTileBeClicked(chunk)*/chunk!=null) //currently paspaudus ant abiličio iš kart bando executint ir čia gaunas blogai
+        if (CanTileBeClicked(chunk)) //currently paspaudus ant abiličio iš kart bando executint ir čia gaunas blogai
         {
             base.ResolveAbility(chunk);
             if (chunk.GetCurrentPlayer() != null)
             {
+                _characterBeingBlocked = chunk.GetCurrentPlayer();
                 _characterBeingBlocked.playerInformation.AddBarrier();
             }
             FinishAbility();
