@@ -24,7 +24,6 @@ public partial class CreateBearTrap : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
-
 		PackedScene spawnCharacter = (PackedScene)bearTrapPrefab;
 		spawnedBear = spawnCharacter.Instantiate<Player>();
 		player.GetTree().Root.CallDeferred("add_child", spawnedBear);
