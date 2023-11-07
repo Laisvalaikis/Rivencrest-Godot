@@ -551,7 +551,7 @@ public abstract partial class BaseAction: Resource
 
 		protected void DealDamage(ChunkData chunkData, int damage, bool crit)
 		{
-			if (chunkData != null && chunkData.GetCurrentPlayer() != null && IsAllegianceSame(chunkData))
+			if (chunkData != null && chunkData.GetCurrentPlayer() != null && !IsAllegianceSame(chunkData))
 			{
 				chunkData.GetCurrentPlayer().playerInformation.DealDamage(damage, crit, player);
 			}

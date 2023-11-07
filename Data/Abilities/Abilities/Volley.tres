@@ -4,17 +4,17 @@
 
 [resource]
 script = ExtResource("1_kul5h")
-spellDamage = 6
+spellDamage = 28
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
 abilityPointsUsage = 1
 attackRange = 1
-minAttackDamage = 0
-maxAttackDamage = 0
+minAttackDamage = 28
+maxAttackDamage = 28
 isAbilitySlow = true
 friendlyFire = true
-AbilityCooldown = 2
+abilityCooldown = 1
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(1, 0.890196, 0, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
