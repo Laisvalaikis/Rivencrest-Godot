@@ -9,6 +9,7 @@ public partial class PlayerMovement : BaseAction
 	private bool isFacingRight = true;
 	private GameTileMap _gameTileMap;
 	private List<ChunkData> _path;
+	private int movementRange = 0;
 	private ChunkData[,] _chunkArray;
 
 	public PlayerMovement()
@@ -84,7 +85,13 @@ public partial class PlayerMovement : BaseAction
 			chunkData.GetTileHighlight().SetHighlightColor(abilityHighlight);
 		}
 	}
-	
+
+	public override void OnTurnStart()
+	{
+		movingPoints = attackRange;
+		base.OnTurnStart();
+	}
+
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		ClearArrowPath();
@@ -93,16 +100,34 @@ public partial class PlayerMovement : BaseAction
 		if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
 		{
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+			movingPoints -= movementRange;
 		}
 		FinishAbility();
 		CreateGrid();
 	}
-	
+
+	public override bool CheckIfAbilityIsActive()
+	{
+		if (abilityCooldown == cooldownCount || movingPoints != 0 && abilityCooldown != cooldownCount)
+		{
+			cooldownCount = 0;
+			return true;
+		}
+
+		return false;
+	}
+
 	protected override void FinishAbility()
 	{
 		//Remove movement points?
 	}
-	
+
+	public override void CreateGrid()
+	{
+		CreateAvailableChunkList(movingPoints);
+		HighlightAllGridTiles();
+	}
+
 	private List<ChunkData> GetDiagonalPath(ChunkData start, ChunkData end, ChunkData[,] chunkArray)
 	{
 		List<ChunkData> stairStepPath = new List<ChunkData>();
@@ -196,15 +221,18 @@ public partial class PlayerMovement : BaseAction
 	
 	private void SetTileArrow(List<ChunkData> path, int start, int end)
 	{
+		movementRange = 0;
 		for (int i = start; i <= end; i++)
 		{
 			ChunkData current = path[i];
 			ChunkData prev = i > 0 ? path[i - 1] : null;
 			ChunkData next = i < path.Count - 1 ? path[i + 1] : null;
-	
+			movementRange++;
 			int arrowType = DetermineArrowType(current, prev, next);
 			path[i].GetTileHighlight().SetArrowSprite(arrowType);
+			
 		}
+		movementRange--; // nes jis pradeda nuo character
 	}
 	
 	private int DetermineArrowType(ChunkData current, ChunkData prev, ChunkData next)

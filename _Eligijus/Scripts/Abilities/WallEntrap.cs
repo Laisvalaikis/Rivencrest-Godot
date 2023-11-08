@@ -31,7 +31,7 @@ public partial class WallEntrap : BaseAction
     public override void OnTurnStart()
     {
         base.OnTurnStart();
-        if (_playerInformations.Count > 0)
+        if (_playerInformations != null && _playerInformations.Count > 0)
         {
             foreach (PlayerInformation x in _playerInformations)
             {

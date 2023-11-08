@@ -57,6 +57,7 @@ public partial class ActionManager : Node
 				{
 					_allAbilities.Add(ability);
 				}
+				ability.Action.OnTurnStart();
 			}
 			
 			for (int i = 0; i < baseAbilities.Count; i++)
@@ -274,8 +275,11 @@ public partial class ActionManager : Node
 		{
 			if (chunkData != null)
 			{
-				_currentAbility.Action.ResolveAbility(chunkData);
-				
+				if (_currentAbility.Action.CheckIfAbilityIsActive())
+				{
+					_currentAbility.Action.ResolveAbility(chunkData);
+				}
+
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
 		}
@@ -287,7 +291,10 @@ public partial class ActionManager : Node
 		{
 			if (chunkData != null)
 			{
-				_currentAbility.Action.ResolveAbility(chunkData);
+				if (_currentAbility.Action.CheckIfAbilityIsActive())
+				{
+					_currentAbility.Action.ResolveAbility(chunkData);
+				}
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
 		}

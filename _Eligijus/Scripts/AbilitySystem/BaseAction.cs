@@ -40,6 +40,9 @@ public abstract partial class BaseAction: Resource
 		protected List<ChunkData> _chunkList;
 		protected bool turinIsEven = false;
 		protected string customText = null;
+		protected int movingPoints = 0;
+		protected int cooldownCount = 0;
+		private bool firstTimeUsage = false;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
 
@@ -63,6 +66,8 @@ public abstract partial class BaseAction: Resource
 			abilityHoverCharacter = action.abilityHoverCharacter;
 			otherOnGrid = action.otherOnGrid;
 			characterOnGrid = action.characterOnGrid;
+			firstTimeUsage = true;
+			movingPoints = attackRange;
 		}
 
 		public virtual BaseAction CreateNewInstance(BaseAction action)
@@ -443,11 +448,17 @@ public abstract partial class BaseAction: Resource
 		
 		public virtual void OnTurnStart()
 		{
+			if (firstTimeUsage)
+			{
+				cooldownCount = abilityCooldown;
+				firstTimeUsage = false;
+			}
 		}
 
 		public virtual void OnTurnEnd()
 		{
 			//RefillActionPoints();
+			cooldownCount++;
 			turnsSinceCast++;
 			if (!turinIsEven)
 			{
@@ -479,6 +490,32 @@ public abstract partial class BaseAction: Resource
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
 			GD.PushWarning("PlaySound");
 			ClearGrid();
+		}
+
+		public void ResetCooldown()
+		{
+			cooldownCount = 0;
+		}
+		
+		public int GetCoolDown()
+		{
+			return abilityCooldown;
+		}
+
+		public virtual bool CheckIfAbilityIsActive()
+		{
+			if (abilityCooldown == cooldownCount)
+			{
+				cooldownCount = 0;
+				return true;
+			}
+
+			return false;
+		}
+
+		public int GetCoolDownCount()
+		{
+			return cooldownCount;
 		}
 
 		public virtual void DeselectAbility()
