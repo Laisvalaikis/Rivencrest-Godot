@@ -6,7 +6,7 @@ public partial class ThrowSpear : BaseAction
 	private bool laserGrid = true;
 	private Player spawnedCharacter;
 	private ChunkData[,] _chunkArray;
-
+	private int _globalIndex = -1;
 	public ThrowSpear()
 	{
 	}
@@ -101,5 +101,77 @@ public partial class ThrowSpear : BaseAction
 
 		}
 		return index;
+	}
+	public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+	{
+		if (hoveredChunk == previousChunk) return;
+		if (_globalIndex != -1)
+		{
+			for (int i = 0; i < _chunkArray.GetLength(1); i++)
+			{
+				ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
+				if (chunkToHighLight != null)
+				{
+					SetNonHoveredAttackColor(chunkToHighLight);
+					DisableDamagePreview(chunkToHighLight);
+				}
+			}
+		}
+		if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
+		{
+			_globalIndex = FindChunkIndex(hoveredChunk);
+			if (_globalIndex != -1)
+			{
+				for (int i = 0; i < _chunkArray.GetLength(1); i++)
+				{
+					ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
+					if (chunkToHighLight != null)
+					{
+						SetHoveredAttackColor(chunkToHighLight);
+						if (CanTileBeClicked(chunkToHighLight))
+						{
+							EnableDamagePreview(chunkToHighLight);
+						}
+					}
+				}
+			}
+		}
+	}
+	private void OnAbility(ChunkData chunk,int index)
+	{
+		if (chunk.CharacterIsOnTile())// priesas nemirsta ir spear vienu i virsu varo
+		{
+			(int x, int y) indexes = chunk.GetIndexes();
+			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
+			(int x, int y) sideVector = GetSideVector(side);
+			ChunkData chunkData =
+				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
+			PackedScene spawnResource = (PackedScene)spearPrefab;
+			spawnedCharacter = spawnResource.Instantiate<Player>();
+			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunkData, spawnedCharacter);
+		}
+
+		if (!chunk.CharacterIsOnTile()) //priesas mirsta
+		{
+			PackedScene spawnResource = (PackedScene)spearPrefab;
+			spawnedCharacter = spawnResource.Instantiate<Player>();
+			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
+		}
+
+		if (chunk.CharacterIsOnTile() && !IsAllegianceSame(chunk))     // priesas nemirsta ir virs jo yra mapBorder
+		{
+			(int x, int y) indexes = chunk.GetIndexes();
+			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
+			(int x, int y) sideVector = GetSideVector(side);
+			ChunkData chunkData =
+				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
+			for (int i = 0; i < _chunkArray.GetLength(1); i++)
+			{
+				ChunkData damageChunk = _chunkArray[index, i];
+				DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+			}
+		}
 	}
 }
