@@ -108,7 +108,7 @@ public partial class PlayerMovement : BaseAction
 
 	public override bool CheckIfAbilityIsActive()
 	{
-		if (abilityCooldown == cooldownCount || movingPoints != 0 && abilityCooldown != cooldownCount)
+		if (abilityCooldown <= cooldownCount || movingPoints != 0 && abilityCooldown >= cooldownCount)
 		{
 			cooldownCount = 0;
 			return true;

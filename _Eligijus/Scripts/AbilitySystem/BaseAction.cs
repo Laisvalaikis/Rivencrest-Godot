@@ -504,7 +504,7 @@ public abstract partial class BaseAction: Resource
 
 		public virtual bool CheckIfAbilityIsActive()
 		{
-			if (abilityCooldown == cooldownCount)
+			if (abilityCooldown <= cooldownCount)
 			{
 				cooldownCount = 0;
 				return true;
