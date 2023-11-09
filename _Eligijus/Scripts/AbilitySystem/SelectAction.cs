@@ -14,6 +14,7 @@ public partial class SelectAction : Control
 	[Export] private TextureProgressBar healthBar;
 	[Export] private Label healthText;
 	[Export] private TextureProgressBar abilityPointsBar;
+	[Export] private TextureProgressBar abilityPointsUseBar;
 	[Export] private Label abilityPointsText;
 	[Export] private TextureRect staminaButtonBackground;
 	[Export] private Array<SelectActionButton> abilityButtons;
@@ -90,9 +91,24 @@ public partial class SelectAction : Control
 		abilityPointsText.Text = _currentPlayer.actionManager.GetAbilityPoints().ToString();
 		int abilityPercentage = GetProcentage(_currentPlayer.actionManager.GetAbilityPoints(),
 			_currentPlayer.actionManager.GetAllAbilityPoints());
-		// reikia apskaiciuoti dynamiskai fillo ilgi, pradzia, ir value ability panaudojimo parodymui
 		abilityPointsBar.Value = abilityPercentage;
+		abilityPointsUseBar.Value = abilityPercentage;
 		staminaButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
+	}
+
+	private void UpdateSelectedActionAbilityPoints(Ability ability)
+	{
+		int abilityPercentage = GetProcentage(_currentPlayer.actionManager.GetAbilityPoints() - ability.Action.GetAbilityPoints(),
+			_currentPlayer.actionManager.GetAllAbilityPoints());
+		abilityPointsBar.Value = abilityPercentage;
+	}
+
+	private void ResetAbilityPointsView()
+	{
+		int abilityPercentage = GetProcentage(_currentPlayer.actionManager.GetAbilityPoints(),
+			_currentPlayer.actionManager.GetAllAbilityPoints());
+		abilityPointsBar.Value = abilityPercentage;
+		abilityPointsUseBar.Value = abilityPercentage;
 	}
 
 	private int GetProcentage(float min, float max)
@@ -103,6 +119,14 @@ public partial class SelectAction : Control
 	public void ActionSelection(Ability ability)
 	{
 		_actionManager.SetCurrentAbility(ability);
+		if (ability._type != AbilityType.BaseAbility)
+		{
+			UpdateSelectedActionAbilityPoints(ability);
+		}
+		else
+		{
+			ResetAbilityPointsView();
+		}
 	}
 
 	public void SetCurrentCharacter(Player currentPlayer)
