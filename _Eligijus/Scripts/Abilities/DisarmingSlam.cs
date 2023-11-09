@@ -22,7 +22,7 @@ public partial class DisarmingSlam : BaseAction
 		base.ResolveAbility(chunk);
 		DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 		GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(chunk));
-		chunk.GetCurrentPlayer().debuffs.SilencePlayer(); //cia jei disarmina
+		chunk.GetCurrentPlayer().debuffs.SetTurnCounterFromThisTurn(1);
 		FinishAbility();
 	}
 	private ChunkData TileToDashTo(ChunkData chunk)

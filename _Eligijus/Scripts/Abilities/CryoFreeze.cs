@@ -5,7 +5,6 @@ using Godot;
 public partial class CryoFreeze : BaseAction
 {
 	private bool _isAbilityActive = false;
-
 	public CryoFreeze()
 	{
  		
@@ -20,6 +19,7 @@ public partial class CryoFreeze : BaseAction
 		CryoFreeze cryoFreeze = new CryoFreeze((CryoFreeze)action);
 		return cryoFreeze;
 	}
+
 	public override void CreateAvailableChunkList(int attackRange)
 	{
 		_chunkList.Add(GameTileMap.Tilemap.GetChunk(player.GlobalPosition));
@@ -34,44 +34,49 @@ public partial class CryoFreeze : BaseAction
 	
 	public override void OnTurnStart()
 	{
+		
 		if (_isAbilityActive && (player.playerInformation.GetHealth() > 0))
 		{
+			ChunkData temp = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 			Thread thread = new Thread(() =>
 			{
-				Thread.Sleep(40);
-				var pushDirectionVectors = new List<(int, int)>
-				{
-					(attackRange, 0),
-					(0, attackRange),
-					(-attackRange, 0),
-					(0, -attackRange)
-				};
-				foreach (var x in pushDirectionVectors)
-				{
-					if (CheckIfSpecificInformationType(GetSpecificGroundTile(player.GlobalPosition), InformationType.Player)) //wrong
-					{
-						ChunkData chunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-						if (chunkData.CharacterIsOnTile())
-						{
-
-							if (IsAllegianceSame(chunkData))
-							{
-								DealRandomDamageToTarget(chunkData, minAttackDamage / 2, maxAttackDamage / 2);
-							}
-							else
-							{
-								DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
-							}
-						}
-					}
-				}
+				// Thread.Sleep(40); // for animation
+				DamageAdjacent(temp);
 			});
 			thread.Start();
 			ThreadManager.InsertThread(thread);
 		}
 		_isAbilityActive = false;
 	}
+	private void DamageAdjacent(ChunkData centerChunk)
+	{
+		ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
+		(int x, int y) indexes = centerChunk.GetIndexes();
+		int x = indexes.x;
+		int y = indexes.y;
 
+		int[] dx = { 0, 0, 1, -1 };
+		int[] dy = { 1, -1, 0, 0 };
+
+		for (int i = 0; i < 4; i++)
+		{
+			int nx = x + dx[i];
+			int ny = y + dy[i];
+
+			if (GameTileMap.Tilemap.CheckBounds(nx, ny) && GameTileMap.Tilemap.GetChunkDataByIndex(nx,ny).CharacterIsOnTile())
+			{
+				ChunkData chunkData = chunks[nx, ny];
+				if (IsAllegianceSame(chunkData))
+				{
+					DealRandomDamageToTarget(chunkData, minAttackDamage / 2, maxAttackDamage / 2);
+				}
+				else
+				{
+					DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+				}
+			}
+		}
+	}
 	public override bool CanTileBeClicked(ChunkData chunkData)
 	{
 		return true;

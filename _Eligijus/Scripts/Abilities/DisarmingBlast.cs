@@ -18,12 +18,11 @@ public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
-        if (chunk.CharacterIsOnTile())
+        if (CanTileBeClicked(chunk))
         {
             Player target = chunk.GetCurrentPlayer();
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            //target.AddPoison(new Poison(chunk, 2, 2)); //assumming that poisonValue = 2 is "disarmed" debuff
-            target.debuffs.SilencePlayer(); // cia gal disarmas?
+            target.debuffs.SetTurnCounterFromThisTurn(1);
         }
         FinishAbility();
     }

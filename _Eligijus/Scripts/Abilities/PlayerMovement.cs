@@ -35,7 +35,6 @@ public partial class PlayerMovement : BaseAction
 		base.Start();
 		// AttackHighlight = new Color32(130, 255, 95, 255);
 		// AttackHighlightHover = new Color32(255, 227, 0, 255);
-		// AttackAbility = true;
 		_gameTileMap = GameTileMap.Tilemap;
 		_chunkArray = _gameTileMap.GetChunksArray();
 	}
@@ -86,12 +85,6 @@ public partial class PlayerMovement : BaseAction
 		}
 	}
 
-	public override void OnTurnStart()
-	{
-		movingPoints = attackRange;
-		base.OnTurnStart();
-	}
-
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		ClearArrowPath();
@@ -100,7 +93,7 @@ public partial class PlayerMovement : BaseAction
 		if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
 		{
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
-			movingPoints -= movementRange;
+			player.ChangeMovementPoints(movementRange*(-1));
 		}
 		FinishAbility();
 		CreateGrid();
@@ -108,7 +101,7 @@ public partial class PlayerMovement : BaseAction
 
 	public override bool CheckIfAbilityIsActive()
 	{
-		if (abilityCooldown <= cooldownCount || movingPoints != 0 && abilityCooldown >= cooldownCount)
+		if (abilityCooldown <= cooldownCount || player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
 		{
 			cooldownCount = 0;
 			return true;
@@ -124,7 +117,7 @@ public partial class PlayerMovement : BaseAction
 
 	public override void CreateGrid()
 	{
-		CreateAvailableChunkList(movingPoints);
+		CreateAvailableChunkList(player.GetMovementPoints());
 		HighlightAllGridTiles();
 	}
 

@@ -40,7 +40,6 @@ public abstract partial class BaseAction: Resource
 		protected List<ChunkData> _chunkList;
 		protected bool turinIsEven = false;
 		protected string customText = null;
-		protected int movingPoints = 0;
 		protected int cooldownCount = 0;
 		private bool firstTimeUsage = false;
 		private PlayerInformationData _playerInformationData;
@@ -67,7 +66,6 @@ public abstract partial class BaseAction: Resource
 			otherOnGrid = action.otherOnGrid;
 			characterOnGrid = action.characterOnGrid;
 			firstTimeUsage = true;
-			movingPoints = attackRange;
 		}
 
 		public virtual BaseAction CreateNewInstance(BaseAction action)
@@ -448,7 +446,7 @@ public abstract partial class BaseAction: Resource
 
 		public virtual bool CanTileBeClicked(ChunkData chunkData)
 		{
-			return CheckIfSpecificInformationType(chunkData, InformationType.Player) && !IsAllegianceSame(chunkData);
+			return CheckIfSpecificInformationType(chunkData, InformationType.Player) && (!IsAllegianceSame(chunkData) || friendlyFire);
 		}
 		
 		public virtual void OnTurnStart()
@@ -581,7 +579,7 @@ public abstract partial class BaseAction: Resource
 
 		protected void DealRandomDamageToTarget(ChunkData chunkData, int minDamage, int maxDamage)
 		{
-			if (chunkData != null && chunkData.CharacterIsOnTile() && !IsAllegianceSame(chunkData))
+			if (chunkData != null && chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
 				
 				int randomDamage = _random.Next(minDamage, maxDamage);
@@ -593,7 +591,7 @@ public abstract partial class BaseAction: Resource
 
 		protected void DealDamage(ChunkData chunkData, int damage, bool crit)
 		{
-			if (chunkData != null && chunkData.GetCurrentPlayer() != null && !IsAllegianceSame(chunkData))
+			if (chunkData != null && chunkData.GetCurrentPlayer() != null && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
 				chunkData.GetCurrentPlayer().playerInformation.DealDamage(damage, crit, player);
 			}

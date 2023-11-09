@@ -11,6 +11,7 @@ public partial class Player : Node2D
 	private CharacterTeams team;
 	protected List<Poison> _poisons;
 	protected bool weakSpot = false;
+	private int movementPoints=3;
 
 	public void Death()
 	{
@@ -27,6 +28,16 @@ public partial class Player : Node2D
 			chunkData.GetTileHighlight().DisableHighlight();
 			QueueFree();
 		}
+	}
+
+	public int GetMovementPoints()
+	{
+		return movementPoints;
+	}
+
+	public void ChangeMovementPoints(int points)
+	{
+		movementPoints += points;
 	}
 
 	public void AddPoison(Poison poison)
@@ -70,6 +81,7 @@ public partial class Player : Node2D
 
 	public void OnTurnStart()
 	{
+		movementPoints = actionManager.ReturnBaseAbilities()[0].Action.attackRange;
 		PoisonPlayer();
 		actionManager.OnTurnStart();
 	}

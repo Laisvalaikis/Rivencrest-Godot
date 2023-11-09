@@ -17,6 +17,7 @@ public partial class Team : Resource
     [Export] 
     private bool isTeamUsed = false;
     public int undoCount;
+    
     public List<UsedAbility> usedAbilities = new List<UsedAbility>();
 
     public bool IsTeamUsed()

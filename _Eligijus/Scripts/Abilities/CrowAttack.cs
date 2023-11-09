@@ -20,6 +20,7 @@ public partial class CrowAttack : BaseAction
         return crowAttack;
     }
     
+    //dieve padek
     public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {
         HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
@@ -71,7 +72,6 @@ public partial class CrowAttack : BaseAction
             }
         }
     }
-    
     public override void ResolveAbility(ChunkData chunk)
     {
         foreach (var t in _chunkList)
@@ -89,9 +89,4 @@ public partial class CrowAttack : BaseAction
         base.ResolveAbility(chunk);
         FinishAbility();
     }
-    public override void OnTurnStart()
-    {
-        base.OnTurnStart();
-    }
-
 }
