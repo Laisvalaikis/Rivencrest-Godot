@@ -35,6 +35,7 @@ public partial class ActionManager : Node
 		{
 			_data = Data.Instance;
 		}
+		RefillActionPoints();
 		_abilities = new Array<Ability>();
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
@@ -136,8 +137,17 @@ public partial class ActionManager : Node
 
 	private void RemoveAbilityPoints(int consumedPoints)
 	{
-		_pointsBeforeAbility = this.abilityPoints;
-		this.abilityPoints -= consumedPoints;
+		_pointsBeforeAbility = abilityPoints;
+		if (abilityPoints >= consumedPoints)
+		{
+			abilityPoints -= consumedPoints;
+		}
+		else
+		{
+			abilityPoints = 0;
+		}
+
+		
 	}
 
 	public virtual void RefillActionPoints() //pradzioj ejimo
@@ -291,9 +301,10 @@ public partial class ActionManager : Node
 		{
 			if (chunkData != null)
 			{
-				if (_currentAbility.Action.CheckIfAbilityIsActive())
+				if (_currentAbility.Action.CheckIfAbilityIsActive() && abilityPoints >= _currentAbility.Action.GetAbilityPoints())
 				{
 					_currentAbility.Action.ResolveAbility(chunkData);
+					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
 				}
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}

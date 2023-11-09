@@ -1,12 +1,13 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://blmh0ptkj3m7k"]
 
 [ext_resource type="Texture2D" uid="uid://5feh0eu5g8ie" path="res://Data/ActionIcons/Icon_38.tres" id="1_b1ysq"]
-[ext_resource type="Resource" path="res://Data/Abilities/Abilities/LeapAndSlam.tres" id="2_p45h0"]
-[ext_resource type="Resource" path="res://Data/AbilityText/LeapAndSlam.tres" id="3_axlpi"]
+[ext_resource type="Resource" uid="uid://cp05l0w6llywb" path="res://Data/Abilities/Abilities/LeapAndSlam.tres" id="2_p45h0"]
+[ext_resource type="Resource" uid="uid://c37pekh1mvg0y" path="res://Data/AbilityText/LeapAndSlam.tres" id="3_axlpi"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_o28lo"]
 
 [resource]
 script = ExtResource("4_o28lo")
+_type = 0
 abilityText = ExtResource("3_axlpi")
 enabled = true
 AbilityImage = ExtResource("1_b1ysq")
