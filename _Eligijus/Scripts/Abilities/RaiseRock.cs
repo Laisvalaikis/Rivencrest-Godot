@@ -28,7 +28,7 @@ public partial class RaiseRock : BaseAction
 			PackedScene spawnResource = (PackedScene)WallPrefab;
 			Player spawnedWall = spawnResource.Instantiate<Player>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedWall);
-			GameTileMap.Tilemap.SetCharacter(chunk, spawnedWall);
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedWall);
 			FinishAbility();
 		}
 	}

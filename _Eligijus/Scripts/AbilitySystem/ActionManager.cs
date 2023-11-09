@@ -303,8 +303,8 @@ public partial class ActionManager : Node
 			{
 				if (_currentAbility.Action.CheckIfAbilityIsActive() && abilityPoints >= _currentAbility.Action.GetAbilityPoints())
 				{
-					_currentAbility.Action.ResolveAbility(chunkData);
 					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
+					_currentAbility.Action.ResolveAbility(chunkData);
 				}
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
