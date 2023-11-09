@@ -80,6 +80,11 @@ public partial class ActionManager : Node
 		return availableAbilityPoints;
 	}
 
+	public int GetAbilityPoints()
+	{
+		return abilityPoints;
+	}
+
 	public Array<Ability> ReturnAllAbilities()
 	{
 		return _allAbilities;

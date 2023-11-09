@@ -11,7 +11,10 @@ public partial class SelectAction : Control
 	private PlayerInformationData _playerInformationData;
 	[Export] private HelpTable helpTable;
 	[Export] private TextureRect characterPortrait;
-	[Export] private Label healthBar;
+	[Export] private TextureProgressBar healthBar;
+	[Export] private Label healthText;
+	[Export] private TextureProgressBar abilityPointsBar;
+	[Export] private Label abilityPointsText;
 	[Export] private TextureRect staminaButtonBackground;
 	[Export] private Array<SelectActionButton> abilityButtons;
 	private ActionManager _actionManager;
@@ -80,8 +83,17 @@ public partial class SelectAction : Control
 	private void UpdatePlayerInfo()
 	{
 		characterPortrait.Texture = (AtlasTexture)_playerInformationData.CharacterPortraitSprite;
-		healthBar.Text = _playerInformationData.MaxHealth.ToString();
+		healthText.Text = _playerInformationData.MaxHealth.ToString();
+		abilityPointsText.Text = _currentPlayer.actionManager.GetAbilityPoints().ToString();
+		int abilityPercentage = GetProcentage(_currentPlayer.actionManager.GetAbilityPoints(),
+			_currentPlayer.actionManager.GetAllAbilityPoints());
+		abilityPointsBar.Value = abilityPercentage;
 		staminaButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
+	}
+
+	private int GetProcentage(float min, float max)
+	{
+		return (int)(min / max * 100);
 	}
 
 	public void ActionSelection(Ability ability)

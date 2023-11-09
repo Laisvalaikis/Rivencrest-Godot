@@ -123,6 +123,7 @@ public partial class TurnManager : Node
 		}
 	}
 	
+	
 	public void AddUsedAbility(UsedAbility usedAbility)
 	{
 		_currentTeam.usedAbilities.Add(usedAbility);
