@@ -157,6 +157,7 @@ public partial class ActionManager : Node
 
 	public void OnTurnStart()
 	{
+		RefillActionPoints();
 		ActionOnTurnStart();
 	}
 	
