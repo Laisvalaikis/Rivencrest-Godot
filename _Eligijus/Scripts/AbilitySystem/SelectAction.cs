@@ -83,10 +83,14 @@ public partial class SelectAction : Control
 	private void UpdatePlayerInfo()
 	{
 		characterPortrait.Texture = (AtlasTexture)_playerInformationData.CharacterPortraitSprite;
-		healthText.Text = _playerInformationData.MaxHealth.ToString();
+		healthText.Text = _currentPlayer.playerInformation.GetHealth().ToString();
+		int healthPercentage = GetProcentage(_currentPlayer.playerInformation.GetHealth(),
+			_currentPlayer.playerInformation.GetMaxHealth());
+		healthBar.Value = healthPercentage;
 		abilityPointsText.Text = _currentPlayer.actionManager.GetAbilityPoints().ToString();
 		int abilityPercentage = GetProcentage(_currentPlayer.actionManager.GetAbilityPoints(),
 			_currentPlayer.actionManager.GetAllAbilityPoints());
+		// reikia apskaiciuoti dynamiskai fillo ilgi, pradzia, ir value ability panaudojimo parodymui
 		abilityPointsBar.Value = abilityPercentage;
 		staminaButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 	}
