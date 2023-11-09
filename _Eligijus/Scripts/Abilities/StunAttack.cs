@@ -28,6 +28,7 @@ public partial class StunAttack : BaseAction
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             DealDamage(chunk, spellDamage, false);
+            chunk.GetCurrentPlayer().debuffs.RootPlayer();
             FinishAbility();
         }
     }

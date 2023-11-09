@@ -4,18 +4,18 @@
 
 [resource]
 script = ExtResource("1_bqhxg")
-pushDamage = 15
-centerDamage = 30
+pushDamage = 5
+centerDamage = 9
 laserGrid = false
 turnsSinceCast = 0
 turnLifetime = 1
-abilityPointsUsage = 1
+abilityPoints = 1
 attackRange = 2
 minAttackDamage = 3
 maxAttackDamage = 3
 isAbilitySlow = true
 friendlyFire = true
-AbilityCooldown = 1
+abilityCooldown = 1
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHoverCharacter = Color(0.992157, 1, 0.231373, 1)
