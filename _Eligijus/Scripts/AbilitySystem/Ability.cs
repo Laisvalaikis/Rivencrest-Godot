@@ -6,7 +6,7 @@ using Godot;
 public partial class Ability: Resource
 {
 	[Export] 
-	public AbilityType _type = AbilityType.BaseAbility;
+	public AbilityType _type = AbilityType.None;
 	[Export]
 	public AbilityText abilityText;
 	[Export]

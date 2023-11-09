@@ -10,6 +10,10 @@ public partial class SelectActionButton : Button
     public TextureRect abilityButtonBackground;
     [Export]
     public TextureRect AbilityButtonImage;
+    [Export] 
+    public ColorRect colorRect;
+    [Export] 
+    public Label turnLabel;
     private SelectAction selectAction;
     private int abilityIndex;
     private Ability abilityInformation;
@@ -34,7 +38,42 @@ public partial class SelectActionButton : Button
 
     public void OnButtonClick()
     {
-        selectAction.ActionSelection(abilityInformation);
+        selectAction.ActionSelection(abilityInformation, this);
+    }
+
+    public void UpdateAbilityPointsInformation(int availableAbilityPoints)
+    {
+        if (abilityInformation != null)
+        {
+            UpdateAbilityCooldownInformation();
+            if (abilityInformation.Action.CheckIfAbilityIsActive() &&
+                availableAbilityPoints < abilityInformation.Action.GetAbilityPoints())
+            {
+                colorRect.Show();
+                turnLabel.Show();
+                turnLabel.Text = "1"; // default text 
+                Disabled = true;
+            }
+        }
+    }
+
+    public void UpdateAllButtonsByPoints(int availableAbilityPoints)
+    {
+        selectAction.UpdateAllAbilityButtonsByPoints(availableAbilityPoints);
+    }
+
+    public void UpdateAbilityCooldownInformation()
+    {
+        if (!abilityInformation.Action.CheckIfAbilityIsActive())
+        {
+            colorRect.Show();
+            turnLabel.Show();
+            int abilityCooldown = abilityInformation.Action.GetCoolDown();
+            int cooldown = abilityInformation.Action.GetCoolDownCount();
+            int leftCooldown = abilityCooldown - cooldown;
+            turnLabel.Text = leftCooldown.ToString();
+            Disabled = true;
+        }
     }
 
     public void AbilityInformation(int abilityIndex, HelpTable helpTable, Ability characterAction, SelectAction selectedAction)

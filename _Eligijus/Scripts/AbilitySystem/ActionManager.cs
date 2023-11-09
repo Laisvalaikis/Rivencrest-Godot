@@ -23,6 +23,7 @@ public partial class ActionManager : Node
 	
 	private Vector2 _mousePosition;
 	private Ability _currentAbility;
+	private SelectActionButton _currentAbilitySelectActionButton;
 	private ChunkData _previousChunk;
 	private bool abilityIsSelected = false;
 	private Array<UnlockedAbilitiesResource> unlockedAbilityList;
@@ -246,7 +247,7 @@ public partial class ActionManager : Node
 		DeselectCurrentAbility();
 	}
 
-	public void SetCurrentAbility(Ability ability)
+	public void SetCurrentAbility(Ability ability, SelectActionButton selectActionButton)
 	{
 		if (_currentAbility != null)
 		{
@@ -256,10 +257,12 @@ public partial class ActionManager : Node
 		if (ability != null)
 		{
 			_currentAbility = ability;
+			_currentAbilitySelectActionButton = selectActionButton;
 		}
 		else
 		{
 			_currentAbility = null;
+			_currentAbilitySelectActionButton = null;
 		}
 
 		if (_currentAbility != null)
@@ -291,9 +294,9 @@ public partial class ActionManager : Node
 		{
 			if (chunkData != null)
 			{
-				if (_currentAbility.Action.CheckIfAbilityIsActive())
+				if (_currentAbility.Action.AbilityCanBeActivated())
 				{
-					_currentAbility.Action.ResolveAbility(chunkData);
+					_currentAbility.Action.ExecuteAbility(chunkData, _currentAbilitySelectActionButton);
 				}
 
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
@@ -307,10 +310,11 @@ public partial class ActionManager : Node
 		{
 			if (chunkData != null)
 			{
-				if (_currentAbility.Action.CheckIfAbilityIsActive() && abilityPoints >= _currentAbility.Action.GetAbilityPoints())
+				if (_currentAbility.Action.AbilityCanBeActivated() && abilityPoints >= _currentAbility.Action.GetAbilityPoints())
 				{
 					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
-					_currentAbility.Action.ResolveAbility(chunkData);
+					_currentAbilitySelectActionButton.UpdateAllButtonsByPoints(abilityPoints);
+					_currentAbility.Action.ExecuteAbility(chunkData, _currentAbilitySelectActionButton);
 				}
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}
@@ -323,6 +327,7 @@ public partial class ActionManager : Node
 		{
 			_currentAbility.Action.DeselectAbility();
 			_currentAbility = null;
+			_currentAbilitySelectActionButton = null;
 		}
 	}
 

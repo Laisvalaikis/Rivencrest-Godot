@@ -494,6 +494,12 @@ public abstract partial class BaseAction: Resource
 			GD.PushWarning("PlaySound");
 			ClearGrid();
 		}
+		
+		public virtual void ExecuteAbility(ChunkData chunk, SelectActionButton selectActionButton)
+		{
+			selectActionButton.UpdateAbilityCooldownInformation();
+			ResolveAbility(chunk);
+		}
 
 		public void ResetCooldown()
 		{
@@ -505,7 +511,7 @@ public abstract partial class BaseAction: Resource
 			return abilityCooldown;
 		}
 
-		public virtual bool CheckIfAbilityIsActive()
+		public virtual bool AbilityCanBeActivated()
 		{
 			if (abilityCooldown <= cooldownCount)
 			{
@@ -513,6 +519,16 @@ public abstract partial class BaseAction: Resource
 				return true;
 			}
 
+			return false;
+		}
+		
+		public virtual bool CheckIfAbilityIsActive()
+		{
+			if (abilityCooldown <= cooldownCount)
+			{
+				return true;
+			}
+		
 			return false;
 		}
 

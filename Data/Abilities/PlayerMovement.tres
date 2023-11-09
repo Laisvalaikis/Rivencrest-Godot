@@ -11,7 +11,7 @@ region = Rect2(40, 2, 9, 12)
 
 [resource]
 script = ExtResource("3_w3mwt")
-_type = 0
+_type = 2
 abilityText = ExtResource("3_e7d4j")
 enabled = true
 AbilityImage = SubResource("AtlasTexture_yubrb")

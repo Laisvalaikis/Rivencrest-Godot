@@ -2,5 +2,6 @@
 public enum AbilityType
 {
     BaseAbility,
-    Ability
+    Ability,
+    None
 }

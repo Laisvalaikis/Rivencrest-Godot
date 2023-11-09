@@ -17,7 +17,9 @@ public partial class SelectAction : Control
 	[Export] private TextureProgressBar abilityPointsUseBar;
 	[Export] private Label abilityPointsText;
 	[Export] private TextureRect staminaButtonBackground;
-	[Export] private Array<SelectActionButton> abilityButtons;
+	[Export] private Array<SelectActionButton> allAbilityButtons;
+	private Array<SelectActionButton> baseAbilityButtons;
+	private Array<SelectActionButton> abilityButtons;
 	private ActionManager _actionManager;
 	private Data _data;
 	private void GetAbilities()
@@ -44,20 +46,41 @@ public partial class SelectAction : Control
 		int buttonIndex = 0;
 		Array<UnlockedAbilitiesResource> unlockedAbilityList =
 			_data.Characters[_currentPlayer.playerIndex].unlockedAbilities;
+		
+		if (baseAbilityButtons == null)
+		{
+			baseAbilityButtons = new Array<SelectActionButton>();
+		}
+		else
+		{
+			baseAbilityButtons.Clear();
+		}
+		
+		if (abilityButtons == null)
+		{
+			abilityButtons = new Array<SelectActionButton>();
+		}
+		else
+		{
+			abilityButtons.Clear();
+		}
+
 		// Selects first ability button
 		if (_playerBaseAbilities.Count > 0)
 		{
-			abilityButtons[buttonIndex].AbilityInformationFirstSelect();
+			allAbilityButtons[buttonIndex].AbilityInformationFirstSelect();
 		}
 
 		for (int i = 0; i < _playerBaseAbilities.Count; i++)
 		{
 			if (_playerBaseAbilities[i].enabled)
 			{
-				abilityButtons[buttonIndex].buttonParent.Show();
-				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
-				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;
-				abilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
+				allAbilityButtons[buttonIndex].buttonParent.Show();
+				allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
+				allAbilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;
+				allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
+				allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
+				baseAbilityButtons.Add(allAbilityButtons[buttonIndex]);
 				buttonIndex++;
 			}
 		}
@@ -66,17 +89,19 @@ public partial class SelectAction : Control
 		{
 			if (_playerAbilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
 			{
-				abilityButtons[buttonIndex].buttonParent.Show();
-				abilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
-				abilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerAbilities[i].AbilityImage;
-				abilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
+				allAbilityButtons[buttonIndex].buttonParent.Show();
+				allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
+				allAbilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerAbilities[i].AbilityImage;
+				allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
+				allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
+				abilityButtons.Add(allAbilityButtons[buttonIndex]);
 				buttonIndex++;
 			}
 		}
 
-		for (int i = buttonIndex; i < abilityButtons.Count; i++)
+		for (int i = buttonIndex; i < allAbilityButtons.Count; i++)
 		{
-			abilityButtons[i].buttonParent.Hide();
+			allAbilityButtons[i].buttonParent.Hide();
 		}
 		
 	}
@@ -102,6 +127,14 @@ public partial class SelectAction : Control
 			_currentPlayer.actionManager.GetAllAbilityPoints());
 		abilityPointsBar.Value = abilityPercentage;
 	}
+	
+	public void UpdateAllAbilityButtonsByPoints(int availableAbilityPoints)
+	{
+		for (int i = 0; i < abilityButtons.Count; i++)
+		{
+			abilityButtons[i].UpdateAbilityPointsInformation(availableAbilityPoints);
+		}
+	}
 
 	private void ResetAbilityPointsView()
 	{
@@ -116,9 +149,9 @@ public partial class SelectAction : Control
 		return (int)(min / max * 100);
 	}
 
-	public void ActionSelection(Ability ability)
+	public void ActionSelection(Ability ability, SelectActionButton selectActionButton)
 	{
-		_actionManager.SetCurrentAbility(ability);
+		_actionManager.SetCurrentAbility(ability, selectActionButton);
 		if (ability._type != AbilityType.BaseAbility)
 		{
 			UpdateSelectedActionAbilityPoints(ability);
@@ -138,8 +171,8 @@ public partial class SelectAction : Control
 			SetupSelectAction();
 			GetAbilities();
 			UpdatePlayerInfo();
-			_actionManager.SetCurrentAbility(_playerBaseAbilities[0]);
 			GenerateActions();
+			_actionManager.SetCurrentAbility(_playerBaseAbilities[0], allAbilityButtons[0]);
 		}
 
 	}

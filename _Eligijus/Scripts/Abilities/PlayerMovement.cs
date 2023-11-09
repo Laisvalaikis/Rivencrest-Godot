@@ -99,7 +99,7 @@ public partial class PlayerMovement : BaseAction
 		CreateGrid();
 	}
 
-	public override bool CheckIfAbilityIsActive()
+	public override bool AbilityCanBeActivated()
 	{
 		if (abilityCooldown <= cooldownCount || player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
 		{
@@ -109,7 +109,23 @@ public partial class PlayerMovement : BaseAction
 
 		return false;
 	}
-
+	
+	public override bool CheckIfAbilityIsActive()
+	{
+		if (abilityCooldown <= cooldownCount || player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public override void ExecuteAbility(ChunkData chunk, SelectActionButton selectActionButton)
+	{
+		ResolveAbility(chunk);
+		selectActionButton.UpdateAbilityCooldownInformation();
+	}
+	
 	protected override void FinishAbility()
 	{
 		//Remove movement points?
