@@ -283,21 +283,6 @@ public partial class GameTileMap : Node2D
 		return _chunksArray[x, y];
 	}
 
-	public bool CheckBounds(Vector3 position)
-	{
-		int widthChunk = Mathf.CeilToInt((position.X - currentMap._initialPosition.X)/currentMap._chunkSize)-1;
-		int heightChunk = Mathf.CeilToInt((position.Y - currentMap._initialPosition.Y) / currentMap._chunkSize)-1;
-		if (_chunksArray.GetLength(0) > widthChunk && widthChunk >= 0 
-												   &&_chunksArray.GetLength(1) > heightChunk && heightChunk >= 0 
-												   && _chunksArray[widthChunk, heightChunk] != null 
-												   && !_chunksArray[widthChunk, heightChunk].TileIsLocked())
-		{
-			return true;
-		}
-
-		return false;
-	}
-
 	public bool CheckBounds(int x, int y)
 	{
 		if (_chunksArray.GetLength(0) > x && x >= 0 

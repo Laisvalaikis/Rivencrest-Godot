@@ -68,11 +68,12 @@ public partial class ThrowSpear : BaseAction
 				ChunkData damageChunk = _chunkArray[index, i];
 				DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
 			}
-			ChunkData spawnChunk = _chunkArray[index, _chunkArray.GetLength(1) - 1];
-			PackedScene spawnResource = (PackedScene)spearPrefab;
-			spawnedCharacter = spawnResource.Instantiate<Player>();
-			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-			GameTileMap.Tilemap.MoveSelectedCharacter(spawnChunk, spawnedCharacter);
+			OnAbility(chunk, index);
+			// ChunkData spawnChunk = _chunkArray[index, _chunkArray.GetLength(1) - 1];
+			// PackedScene spawnResource = (PackedScene)spearPrefab;
+			// spawnedCharacter = spawnResource.Instantiate<Player>();
+			// player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			// GameTileMap.Tilemap.MoveSelectedCharacter(spawnChunk, spawnedCharacter);
 		}
 		FinishAbility();
 	}
@@ -146,10 +147,13 @@ public partial class ThrowSpear : BaseAction
 			(int x, int y) sideVector = GetSideVector(side);
 			ChunkData chunkData =
 				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
-			PackedScene spawnResource = (PackedScene)spearPrefab;
-			spawnedCharacter = spawnResource.Instantiate<Player>();
-			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunkData, spawnedCharacter);
+			if (GameTileMap.Tilemap.CheckBounds(indexes.x + sideVector.x, indexes.y + sideVector.y) && !chunkData.CharacterIsOnTile())
+			{
+				PackedScene spawnResource = (PackedScene)spearPrefab;
+				spawnedCharacter = spawnResource.Instantiate<Player>();
+				player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+				GameTileMap.Tilemap.MoveSelectedCharacter(chunkData, spawnedCharacter);
+			}
 		}
 
 		if (!chunk.CharacterIsOnTile()) //priesas mirsta
@@ -160,17 +164,30 @@ public partial class ThrowSpear : BaseAction
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
 		}
 
-		if (chunk.CharacterIsOnTile() && !IsAllegianceSame(chunk))     // priesas nemirsta ir virs jo yra mapBorder
+		if (chunk.CharacterIsOnTile())     // priesas nemirsta ir virs jo yra mapBorder
 		{
 			(int x, int y) indexes = chunk.GetIndexes();
 			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
 			(int x, int y) sideVector = GetSideVector(side);
 			ChunkData chunkData =
 				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
-			for (int i = 0; i < _chunkArray.GetLength(1); i++)
+			if (!GameTileMap.Tilemap.CheckBounds(indexes.x+ sideVector.x, indexes.y + sideVector.y))
 			{
-				ChunkData damageChunk = _chunkArray[index, i];
-				DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+				return;
+			}
+			
+		}
+
+		if (chunk.CharacterIsOnTile()) // priesas nemirsta ir virs jo yra enemy
+		{
+			(int x, int y) indexes = chunk.GetIndexes();
+			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
+			(int x, int y) sideVector = GetSideVector(side);
+			ChunkData chunkData =
+				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
+			if (chunkData.CharacterIsOnTile())
+			{
+				return;
 			}
 		}
 	}
