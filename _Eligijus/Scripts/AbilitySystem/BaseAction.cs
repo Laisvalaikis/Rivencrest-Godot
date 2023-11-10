@@ -497,7 +497,7 @@ public abstract partial class BaseAction: Resource
 		
 		public virtual void ExecuteAbility(ChunkData chunk, SelectActionButton selectActionButton)
 		{
-			selectActionButton.UpdateAbilityCooldownInformation();
+			selectActionButton.DisableAbility();
 			ResolveAbility(chunk);
 		}
 

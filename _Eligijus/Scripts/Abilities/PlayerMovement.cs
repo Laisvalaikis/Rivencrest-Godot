@@ -123,7 +123,7 @@ public partial class PlayerMovement : BaseAction
 	public override void ExecuteAbility(ChunkData chunk, SelectActionButton selectActionButton)
 	{
 		ResolveAbility(chunk);
-		selectActionButton.UpdateAbilityCooldownInformation();
+		selectActionButton.DisableAbility();
 	}
 	
 	protected override void FinishAbility()

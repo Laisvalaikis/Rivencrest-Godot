@@ -45,35 +45,82 @@ public partial class SelectActionButton : Button
     {
         if (abilityInformation != null)
         {
-            UpdateAbilityCooldownInformation();
+            DisableAbility();
             if (abilityInformation.Action.CheckIfAbilityIsActive() &&
                 availableAbilityPoints < abilityInformation.Action.GetAbilityPoints())
             {
-                colorRect.Show();
-                turnLabel.Show();
-                turnLabel.Text = "1"; // default text 
-                Disabled = true;
+                DisableAbility("1");
             }
         }
     }
-
     public void UpdateAllButtonsByPoints(int availableAbilityPoints)
     {
         selectAction.UpdateAllAbilityButtonsByPoints(availableAbilityPoints);
     }
 
-    public void UpdateAbilityCooldownInformation()
+    public void DisableAbility()
     {
         if (!abilityInformation.Action.CheckIfAbilityIsActive())
         {
-            colorRect.Show();
-            turnLabel.Show();
             int abilityCooldown = abilityInformation.Action.GetCoolDown();
             int cooldown = abilityInformation.Action.GetCoolDownCount();
             int leftCooldown = abilityCooldown - cooldown;
-            turnLabel.Text = leftCooldown.ToString();
-            Disabled = true;
+            DisableAbility(leftCooldown.ToString());
         }
+    }
+    
+    public void UpdateAbilityCooldownInformationActive()
+    {
+        if (abilityInformation.Action.CheckIfAbilityIsActive())
+        {
+            EnableAbility();
+        }
+        else
+        {
+            int abilityCooldown = abilityInformation.Action.GetCoolDown();
+            int cooldown = abilityInformation.Action.GetCoolDownCount();
+            int leftCooldown = abilityCooldown - cooldown;
+            DisableAbility(leftCooldown.ToString());
+        }
+    }
+    
+    public void UpdateAbilityCooldownWithPoints(int availableAbilityPoints)
+    {
+        if (abilityInformation.Action.CheckIfAbilityIsActive() &&
+            availableAbilityPoints < abilityInformation.Action.GetAbilityPoints())
+        {
+            int abilityCooldown = abilityInformation.Action.GetCoolDown();
+            int cooldown = abilityInformation.Action.GetCoolDownCount();
+            int leftCooldown = abilityCooldown - cooldown;
+            DisableAbility(leftCooldown.ToString());
+        }
+        else if (!abilityInformation.Action.CheckIfAbilityIsActive())
+        {
+            int abilityCooldown = abilityInformation.Action.GetCoolDown();
+            int cooldown = abilityInformation.Action.GetCoolDownCount();
+            int leftCooldown = abilityCooldown - cooldown;
+            DisableAbility(leftCooldown.ToString());
+        }
+        else
+        {
+            EnableAbility();
+        }
+    }
+
+    private void DisableAbility(string turnNumber)
+    {
+        colorRect.Show();
+        turnLabel.Show();
+        turnLabel.Text = turnNumber; // default text 
+        Disabled = true;
+    }
+    
+    private void EnableAbility()
+    {
+        colorRect.Hide();
+        turnLabel.Hide();
+        turnLabel.Text = "1"; // default text 
+        Disabled = false;
     }
 
     public void AbilityInformation(int abilityIndex, HelpTable helpTable, Ability characterAction, SelectAction selectedAction)
