@@ -55,11 +55,13 @@ public abstract partial class BaseAction: Resource
 			laserGrid = action.laserGrid;
 			turnsSinceCast = action.turnsSinceCast;
 			turnLifetime = action.turnLifetime;
+			abilityPoints = action.abilityPoints;
 			attackRange = action.attackRange;
 			minAttackDamage = action.minAttackDamage;
 			maxAttackDamage = action.maxAttackDamage;
 			isAbilitySlow = action.isAbilitySlow;
 			friendlyFire = action.friendlyFire;
+			abilityCooldown = action.abilityCooldown;
 			abilityHighlight = action.abilityHighlight;
 			abilityHighlightHover = action.abilityHighlightHover;
 			abilityHoverCharacter = action.abilityHoverCharacter;
