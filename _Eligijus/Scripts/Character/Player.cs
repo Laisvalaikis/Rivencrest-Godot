@@ -98,6 +98,17 @@ public partial class Player : Node2D
 		actionManager.OnTurnStart();
 	}
 	
+	public void OnAfterResolve()
+	{
+		actionManager.OnAfterResolve();
+	}
+	
+	public void OnBeforeStart()
+	{
+		actionManager.OnBeforeStart();
+	}
+
+	
 	public void OnTurnEnd()
 	{
 		actionManager.OnTurnEnd();

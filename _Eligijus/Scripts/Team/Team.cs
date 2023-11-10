@@ -18,7 +18,9 @@ public partial class Team : Resource
     private bool isTeamUsed = false;
     public int undoCount;
     
-    public List<UsedAbility> usedAbilities = new List<UsedAbility>();
+    public LinkedList<UsedAbility> usedAbilitiesBeforeStartTurn = new LinkedList<UsedAbility>();
+    public LinkedList<UsedAbility> usedAbilitiesAfterResolve = new LinkedList<UsedAbility>();
+    public LinkedList<UsedAbility> usedAbilitiesEndTurn = new LinkedList<UsedAbility>();
 
     public bool IsTeamUsed()
     {

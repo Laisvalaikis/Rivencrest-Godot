@@ -8,8 +8,8 @@ public abstract partial class BaseAction: Resource
 	{
 		protected Player player;
 		[Export] protected bool laserGrid = false;
-		[Export] public int turnsSinceCast = 0;
-		[Export] public int turnLifetime = 1;
+		[Export] protected int turnBeforeStartLifetime = 1;
+		[Export] protected int turnAfterResolveLifetime = 1;
 		//private RaycastHit2D raycast;
 		[Export] protected int abilityPoints = 1;
 		[Export]
@@ -43,6 +43,8 @@ public abstract partial class BaseAction: Resource
 		protected int cooldownCount = 0;
 		protected SelectActionButton _selectActionButton;
 		protected TurnManager _turnManager;
+		protected int _turnsSinceCastAfterResolve = 0;
+		protected int _turnsSinceCastBeforeStart = 0;
 		private bool firstTimeUsage = false;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
@@ -55,8 +57,8 @@ public abstract partial class BaseAction: Resource
 		public BaseAction(BaseAction action)
 		{
 			laserGrid = action.laserGrid;
-			turnsSinceCast = action.turnsSinceCast;
-			turnLifetime = action.turnLifetime;
+			turnBeforeStartLifetime = action.turnBeforeStartLifetime;
+			turnAfterResolveLifetime = action.turnAfterResolveLifetime;
 			abilityPoints = action.abilityPoints;
 			attackRange = action.attackRange;
 			minAttackDamage = action.minAttackDamage;
@@ -464,6 +466,11 @@ public abstract partial class BaseAction: Resource
 			return false;
 		}
 
+		public virtual void OnBeforeStart(ChunkData chunkData)
+		{
+			
+		}
+
 		public virtual void OnTurnStart(ChunkData chunkData)
 		{
 			if (firstTimeUsage)
@@ -477,7 +484,6 @@ public abstract partial class BaseAction: Resource
 		{
 			//RefillActionPoints();
 			cooldownCount++;
-			turnsSinceCast++;
 			if (!turinIsEven)
 			{
 				turinIsEven = true;
@@ -486,6 +492,51 @@ public abstract partial class BaseAction: Resource
 			{
 				turinIsEven = false;
 			}
+		}
+
+		public void IncreaseCastCountAfterResolve()
+		{
+			_turnsSinceCastAfterResolve++;
+		}
+
+		public void ResetCastCountAfterResolve()
+		{
+			_turnsSinceCastAfterResolve = 0;
+		}
+		
+		public int GetCastCountAfterResolve()
+		{
+			return _turnsSinceCastAfterResolve;
+		}
+
+		public int GetLifetimeAfterResolve()
+		{
+			return _turnsSinceCastAfterResolve;
+		}
+
+		public void IncreaseCastCountBeforeTurn()
+		{
+			_turnsSinceCastBeforeStart++;
+		}
+		
+		public void ResetCastCountBeforeTurn()
+		{
+			_turnsSinceCastBeforeStart = 0;
+		}
+
+		public int GetCastCountBeforeStart()
+		{
+			return _turnsSinceCastBeforeStart;
+		}
+		
+		public int GetLifetimeBeforeStart()
+		{
+			return _turnsSinceCastBeforeStart;
+		}
+
+		public virtual void OnAfterResolve(ChunkData chunkData)
+		{
+			GD.Print("SMTH");
 		}
 
 		public void SetFriendlyFire(bool friendlyFire)
@@ -512,6 +563,7 @@ public abstract partial class BaseAction: Resource
 			}
 			GD.PushWarning("PlaySound");
 			ClearGrid();
+			_turnManager.AddUsedAbility(new UsedAbility(this, chunk));
 		}
 
 		public void UpdateAbilityButton()

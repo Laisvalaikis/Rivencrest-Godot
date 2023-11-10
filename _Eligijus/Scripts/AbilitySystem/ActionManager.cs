@@ -61,6 +61,7 @@ public partial class ActionManager : Node
 					_allAbilities.Add(ability);
 				}
 				ability.Action.AddTurnManager(_turnManager);
+				ability.Action.OnBeforeStart(null);
 				ability.Action.OnTurnStart(null);
 			}
 			
@@ -168,6 +169,11 @@ public partial class ActionManager : Node
 		abilityPoints = availableAbilityPoints;
 	}
 
+	public void OnBeforeStart()
+	{
+		
+	}
+
 	public void OnTurnStart()
 	{
 		RefillActionPoints();
@@ -198,26 +204,31 @@ public partial class ActionManager : Node
 		_debuffs.CheckAbilityTurns();
 		_debuffs.CheckBaseAbilityTurns();
 		_debuffs.CheckWholeAbilities();
-		ActionOnTurnEnd();
+		// ActionOnTurnEnd();
 	}
 
-	private void ActionOnTurnEnd()
+	public void OnAfterResolve()
 	{
-		for (int i = 0; i < _baseAbilities.Count; i++)
-		{
-			if (_baseAbilities[i].enabled)
-			{
-				_baseAbilities[i].Action.OnTurnEnd(null);
-			}
-		}
-		for (int i = 0; i < _abilities.Count; i++)
-		{
-			if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
-			{
-				_abilities[i].Action.OnTurnEnd(null);
-			}
-		}
+		
 	}
+
+	// private void ActionOnTurnEnd()
+	// {
+	// 	for (int i = 0; i < _baseAbilities.Count; i++)
+	// 	{
+	// 		if (_baseAbilities[i].enabled)
+	// 		{
+	// 			_baseAbilities[i].Action.OnTurnEnd(null);
+	// 		}
+	// 	}
+	// 	for (int i = 0; i < _abilities.Count; i++)
+	// 	{
+	// 		if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
+	// 		{
+	// 			_abilities[i].Action.OnTurnEnd(null);
+	// 		}
+	// 	}
+	// }
 
 	public void Die()
 	{
