@@ -24,13 +24,14 @@ public partial class Scream : BaseAction
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        sideVector = (sideVector.x, sideVector.y );
+        sideVector = (sideVector.x*-2, sideVector.y *-2);
         MovePlayerToSide(current, sideVector,chunk);
         if (IsTargetIsolated(chunk))
         {
             //apply silenced
             Player target = chunk.GetCurrentPlayer();
             target.debuffs.SetTurnCounterFromThisTurn(1);
+            target.debuffs.SilencePlayer();
         }
         FinishAbility();
     }
