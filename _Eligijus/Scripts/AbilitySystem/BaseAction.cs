@@ -42,6 +42,7 @@ public abstract partial class BaseAction: Resource
 		protected string customText = null;
 		protected int cooldownCount = 0;
 		protected SelectActionButton _selectActionButton;
+		protected TurnManager _turnManager;
 		private bool firstTimeUsage = false;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
@@ -112,7 +113,12 @@ public abstract partial class BaseAction: Resource
 		{
 			
 		}
-		
+
+		public void AddTurnManager(TurnManager turnManager)
+		{
+			_turnManager = turnManager;
+		}
+
 		public int GetAbilityPoints()
 		{
 			return abilityPoints;
