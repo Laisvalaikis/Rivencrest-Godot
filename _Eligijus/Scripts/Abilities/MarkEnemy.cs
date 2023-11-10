@@ -15,9 +15,9 @@ public partial class MarkEnemy : BaseAction
         return markEnemy;
     }
 
-    public override void OnTurnEnd()
+    public override void OnTurnEnd(ChunkData chunkData)
     {
-        base.OnTurnEnd();
+        base.OnTurnEnd(chunkData);
         if (_target != null && _target.debuffs.IsMarked())
         {
             _target.debuffs.UnMark();

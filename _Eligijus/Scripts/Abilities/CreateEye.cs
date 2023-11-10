@@ -37,9 +37,9 @@ public partial class CreateEye : BaseAction
 		FinishAbility();
 	}
 
-	public override void OnTurnEnd()
+	public override void OnTurnEnd(ChunkData chunkData)
 	{
-		base.OnTurnEnd();
+		base.OnTurnEnd(chunkData);
 		spawnedEye.QueueFree();
 	}
 

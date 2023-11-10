@@ -473,7 +473,7 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
-		public virtual void OnTurnEnd()
+		public virtual void OnTurnEnd(ChunkData chunkData)
 		{
 			//RefillActionPoints();
 			cooldownCount++;

@@ -208,14 +208,14 @@ public partial class ActionManager : Node
 		{
 			if (_baseAbilities[i].enabled)
 			{
-				_baseAbilities[i].Action.OnTurnEnd();
+				_baseAbilities[i].Action.OnTurnEnd(null);
 			}
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
 			if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
 			{
-				_abilities[i].Action.OnTurnEnd();
+				_abilities[i].Action.OnTurnEnd(null);
 			}
 		}
 	}
