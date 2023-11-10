@@ -76,6 +76,14 @@ public partial class ActionManager : Node
 		}
 	}
 
+	public void AddTurnManager(TurnManager turnManager)
+	{
+		for (int i = 0; i < _allAbilities.Count; i++)
+		{
+			_allAbilities[i].Action.AddTurnManager(turnManager);
+		}
+	}
+
 	public int GetAllAbilityPoints()
 	{
 		return availableAbilityPoints;
