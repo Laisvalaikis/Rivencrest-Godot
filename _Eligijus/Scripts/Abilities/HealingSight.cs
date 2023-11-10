@@ -12,7 +12,11 @@ public partial class HealingSight : BaseAction
     {
  		
     }
-    
+
+    public override void EnableDamagePreview(ChunkData chunk, string text = null)
+    {
+        //intentionally left empty
+    }
     protected override void TryAddTile(ChunkData chunk)
     {
         if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == GameTileMap.Tilemap.GetCurrentCharacter())
@@ -32,14 +36,17 @@ public partial class HealingSight : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        base.ResolveAbility(chunk);
-        Random random = new Random();
-        int randomHeal = random.Next(minHealAmount, maxHealAmount);
-        if (chunk.CharacterIsOnTile())
+        if (_chunkList.Contains(chunk))
         {
-            chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
-        }
+            base.ResolveAbility(chunk);
+            Random random = new Random();
+            int randomHeal = random.Next(minHealAmount, maxHealAmount);
+            if (chunk.CharacterIsOnTile())
+            {
+                chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+            }
 
-        FinishAbility();
+            FinishAbility();
+        }
     }
 }

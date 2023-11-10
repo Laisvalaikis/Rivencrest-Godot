@@ -37,7 +37,7 @@ public partial class FromTheShadows : BaseAction
     private void DamageAdjacent(ChunkData centerChunk)
     {
         ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
-        (int y, int x) indexes = centerChunk.GetIndexes();
+        (int x, int y) indexes = centerChunk.GetIndexes();
         int x = indexes.x;
         int y = indexes.y;
 
@@ -49,7 +49,7 @@ public partial class FromTheShadows : BaseAction
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if (GameTileMap.Tilemap.CheckBounds(ny, nx) && chunks[ny, nx]?.GetCurrentPlayer() != null && !IsAllegianceSame(chunks[ny,nx]))
+            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny]?.GetCurrentPlayer() != null && !IsAllegianceSame(chunks[nx,ny]))
             {
                 DealRandomDamageToTarget(chunks[nx, ny], minAttackDamage, maxAttackDamage);
             }

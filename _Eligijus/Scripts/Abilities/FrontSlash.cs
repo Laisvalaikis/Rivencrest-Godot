@@ -16,7 +16,6 @@ public partial class FrontSlash : BaseAction
         FrontSlash ability = new FrontSlash((FrontSlash)action);
         return ability;
     }
-    
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
@@ -31,7 +30,6 @@ public partial class FrontSlash : BaseAction
             FinishAbility();
         }
     }
-    
     private int FindChunkIndex(ChunkData chunkData)
     {
         int index = -1;

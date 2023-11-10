@@ -50,18 +50,19 @@ public partial class GroundSlam : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        base.ResolveAbility(chunk);
-        //transform.Find("CharacterModel").GetComponent<Animator>().SetTrigger("spell3");
-        DealDamageToAdjacent();
-        isAbilityActive = true;
-        FinishAbility();
+        if (_chunkList.Contains(chunk))
+        {
+            base.ResolveAbility(chunk);
+            DealDamageToAdjacent();
+            isAbilityActive = true;
+            FinishAbility();
+        }
     }
     private void DealDamageToAdjacent()
     {
         foreach (var chunk in _chunkListCopy)
         {
-            SetNonHoveredAttackColor(chunk);
-            if (chunk.IsStandingOnChunk() && !IsAllegianceSame(chunk))
+            if (chunk.CharacterIsOnTile() && !IsAllegianceSame(chunk))
             {
                 DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             }
@@ -89,7 +90,10 @@ public partial class GroundSlam : BaseAction
             foreach (var chunk in _chunkList)
             {
                 SetHoveredAttackColor(chunk);
-                EnableDamagePreview(chunk);
+                if (chunk.CharacterIsOnTile() && chunk.GetCurrentPlayer() != player)
+                {
+                    EnableDamagePreview(chunk);
+                }
             }
         }
     }

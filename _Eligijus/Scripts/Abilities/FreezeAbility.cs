@@ -2,9 +2,7 @@ using System.Collections.Generic;
 using Godot;
 
 public partial class FreezeAbility : BaseAction
-{
-	private List<ChunkData> _chunkListCopy;
-
+{ 
 	public FreezeAbility()
 	{
 		
@@ -18,37 +16,31 @@ public partial class FreezeAbility : BaseAction
 		return ability;
 	}
 	
-	public override void CreateAvailableChunkList(int attackRange)
+	public override void CreateAvailableChunkList(int range)
 	{
 		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 		_chunkList.Clear();
 		(int centerX, int centerY) = centerChunk.GetIndexes();
 		ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
-		for (int y = -attackRange; y <= attackRange; y++)
+		for (int y = -range; y <= range; y++)
 		{
-			for (int x = -attackRange; x <= attackRange; x++)
+			for (int x = -range; x <= range; x++)
 			{
 				// Skip the center chunk
 				if (x == 0 && y == 0)
 				{
 					continue;
 				}
-
 				int targetX = centerX + x;
 				int targetY = centerY + y;
-
 				// Ensuring we don't go out of array bounds.
 				if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
 				{
 					ChunkData chunk = chunksArray[targetX, targetY];
-					if (chunk != null && !chunk.TileIsLocked())
-					{
-						_chunkList.Add(chunk);
-					}
+					TryAddTile(chunk);
 				}
 			}
 		}
-		_chunkListCopy = new List<ChunkData>(_chunkList);
 	}
 	public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
 	{
@@ -75,21 +67,16 @@ public partial class FreezeAbility : BaseAction
 			}
 		}
 	}
-	private void DealDamageToList()
-	{
-		foreach (var chunk in _chunkListCopy)
-		{
-			SetNonHoveredAttackColor(chunk);
-			if (chunk.GetCurrentPlayer() != null && chunk!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
-			{
-				DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-			}
-		}
-	}
 	public override void ResolveAbility(ChunkData chunk)
 	{
+		foreach (var chunkData in _chunkList)
+		{
+			if (chunkData.GetCurrentPlayer() != null && chunkData!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+			{
+				DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+			}
+		}		
 		base.ResolveAbility(chunk);
-		DealDamageToList();
 		FinishAbility();
 	}
 }

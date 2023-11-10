@@ -1,12 +1,13 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://bcka6hd7ykmin"]
 
 [ext_resource type="Texture2D" uid="uid://bpcfbm8bd4su2" path="res://Data/ActionIcons/Icon_4.tres" id="1_h7xbd"]
-[ext_resource type="Resource" path="res://Data/Abilities/Abilities/FreezeAbility.tres" id="2_gabdu"]
+[ext_resource type="Resource" uid="uid://c8yfcxxdgbgr4" path="res://Data/Abilities/Abilities/FreezeAbility.tres" id="2_gabdu"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_wn84e"]
-[ext_resource type="Resource" path="res://Data/AbilityText/FreezeAbility.tres" id="3_y6p7x"]
+[ext_resource type="Resource" uid="uid://cac6m0t0206m" path="res://Data/AbilityText/FreezeAbility.tres" id="3_y6p7x"]
 
 [resource]
 script = ExtResource("3_wn84e")
+_type = 2
 abilityText = ExtResource("3_y6p7x")
 enabled = true
 AbilityImage = ExtResource("1_h7xbd")
