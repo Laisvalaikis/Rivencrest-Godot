@@ -24,6 +24,15 @@ public partial class ReadyAimFire : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         _index = FindChunkIndex(chunk);
+        if (_index != -1)
+        {
+            for (int i = 0; i < _chunkArray.GetLength(1); i++)
+            {
+                ChunkData damageChunk = _chunkArray[_index, i];
+                DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+            }
+            FinishAbility();
+        }
         FinishAbility();
     }
      private int FindChunkIndex(ChunkData chunkData)
@@ -94,20 +103,22 @@ public partial class ReadyAimFire : BaseAction
             }
         }
     }
-    public override void OnTurnStart(ChunkData chunkData)
-    {
-        base.OnTurnStart(chunkData);
-        if (_index != -1)
-        {
-            for (int i = 0; i < _chunkArray.GetLength(1); i++)
-            {
-                if (_chunkArray[_index, i].CharacterIsOnTile())
-                {
-                    DealRandomDamageToTarget(_chunkArray[_index, i], minAttackDamage, maxAttackDamage);
-                    break;
-                }
-            }
-        }
-    }
+    // public override void OnTurnStart(ChunkData chunkData)
+    // {
+    //     base.OnTurnStart(chunkData);
+    //     if (_index != -1)
+    //     {
+    //         for (int i = 0; i < _chunkArray.GetLength(1); i++)
+    //         {
+    //             if (_chunkArray[_index, i].CharacterIsOnTile())
+    //             {
+    //                 DealRandomDamageToTarget(_chunkArray[_index, i], minAttackDamage, maxAttackDamage);
+    //                 break;
+    //             }
+    //         }
+    //         
+    //     }
+    // }
+    
 
 }
