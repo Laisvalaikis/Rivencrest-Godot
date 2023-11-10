@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyrshjwfw7mlm"
-path="res://.godot/imported/HealthBarBottomCorner.png-1f76e897ed173939ee4316550cd649e4.ctex"
+uid="uid://chstt1x5id72n"
+path="res://.godot/imported/HealthBarBottomCornerWhite.png-0b0bca4b934b77e8043cfb469ef7c3ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_Eligijus/Sprites/HealthBarBottomCorner.png"
-dest_files=["res://.godot/imported/HealthBarBottomCorner.png-1f76e897ed173939ee4316550cd649e4.ctex"]
+source_file="res://_Eligijus/Sprites/HealthBarBottomCornerWhite.png"
+dest_files=["res://.godot/imported/HealthBarBottomCornerWhite.png-0b0bca4b934b77e8043cfb469ef7c3ad.ctex"]
 
 [params]
 
