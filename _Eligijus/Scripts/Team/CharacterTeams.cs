@@ -5,7 +5,7 @@ using Godot.Collections;
 public partial class CharacterTeams : Node
 {
 	[Export]
-	TurnManager TurnManager;
+	TurnManager _turnManager;
 	[Export]
 	public TeamInformation portraitTeamBox;
 	[Export]
@@ -129,8 +129,8 @@ public partial class CharacterTeams : Node
 			currentCharacters.Teams[i].coordinates = new Array<Vector2>();
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
-		TurnManager.SetTeamList(currentCharacters);
-		TurnManager.SetCurrentTeam(0);
+		_turnManager.SetTeamList(currentCharacters);
+		_turnManager.SetCurrentTeam(0);
 	}
 	private void SpawnCharacters(int teamIndex, Array<Vector2> coordinates)
 	{
@@ -154,6 +154,7 @@ public partial class CharacterTeams : Node
 				currentCharacters.Teams[teamIndex].coordinates.Add(coordinate);
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
 				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
+				spawnedCharacter.actionManager.AddTurnManager(_turnManager);
 			}
 			i++;
 		}
