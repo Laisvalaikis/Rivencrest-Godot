@@ -41,6 +41,7 @@ public partial class SelectActionButton : Button
         selectAction.ActionSelection(abilityInformation, this);
     }
 
+    // Disable abiliteies after usage
     public void UpdateAbilityPointsInformation(int availableAbilityPoints)
     {
         if (abilityInformation != null)
@@ -57,7 +58,7 @@ public partial class SelectActionButton : Button
     {
         selectAction.UpdateAllAbilityButtonsByPoints(availableAbilityPoints);
     }
-
+    
     public void DisableAbility()
     {
         if (!abilityInformation.Action.CheckIfAbilityIsActive())
@@ -68,6 +69,7 @@ public partial class SelectActionButton : Button
             DisableAbility(leftCooldown.ToString());
         }
     }
+    //
     
     public void UpdateAbilityCooldownInformationActive()
     {
@@ -77,10 +79,7 @@ public partial class SelectActionButton : Button
         }
         else
         {
-            int abilityCooldown = abilityInformation.Action.GetCoolDown();
-            int cooldown = abilityInformation.Action.GetCoolDownCount();
-            int leftCooldown = abilityCooldown - cooldown;
-            DisableAbility(leftCooldown.ToString());
+            DisableAbility("1");
         }
     }
     
@@ -89,10 +88,7 @@ public partial class SelectActionButton : Button
         if (abilityInformation.Action.CheckIfAbilityIsActive() &&
             availableAbilityPoints < abilityInformation.Action.GetAbilityPoints())
         {
-            int abilityCooldown = abilityInformation.Action.GetCoolDown();
-            int cooldown = abilityInformation.Action.GetCoolDownCount();
-            int leftCooldown = abilityCooldown - cooldown;
-            DisableAbility(leftCooldown.ToString());
+            DisableAbility("1");
         }
         else if (!abilityInformation.Action.CheckIfAbilityIsActive())
         {
@@ -107,10 +103,17 @@ public partial class SelectActionButton : Button
         }
     }
 
-    private void DisableAbility(string turnNumber)
+    private void DisableAbility(string turnNumber, bool showText = true)
     {
         colorRect.Show();
-        turnLabel.Show();
+        if (showText)
+        {
+            turnLabel.Show();
+        }
+        else
+        {
+            turnLabel.Hide();
+        }
         turnLabel.Text = turnNumber; // default text 
         Disabled = true;
     }
