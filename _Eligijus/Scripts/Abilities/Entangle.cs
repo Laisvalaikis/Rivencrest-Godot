@@ -16,6 +16,7 @@ public partial class Entangle : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         chunk.GetCurrentPlayer().debuffs.RootPlayer();

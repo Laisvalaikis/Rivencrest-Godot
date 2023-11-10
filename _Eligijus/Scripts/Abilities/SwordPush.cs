@@ -32,6 +32,7 @@ public partial class SwordPush : BaseAction
     {
         // if (CanTileBeClicked(position))
         // {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         Side _side = Side.none;
         CreateAttackGrid(chunk);

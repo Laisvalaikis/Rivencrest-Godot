@@ -24,6 +24,7 @@ public partial class WallSmash : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
+        UpdateAbilityButton();
         if (chunk.GetCurrentPlayer() != null && chunk.GetInformationType() == InformationType.Player)
         {
             DealRandomDamageToTarget(chunk, minAttackDamage-2, maxAttackDamage-2);

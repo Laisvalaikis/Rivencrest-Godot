@@ -69,6 +69,7 @@ public partial class BlockAbility : BaseAction
     {
         if (CanTileBeClicked(chunk)) //currently paspaudus ant abiličio iš kart bando executint ir čia gaunas blogai
         {
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
             if (chunk.GetCurrentPlayer() != null)
             {

@@ -37,6 +37,7 @@ public partial class CreateFog : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         PackedScene spawnCharacter = (PackedScene)fogPrefab;
         spawnedFog = spawnCharacter.Instantiate<Player>();

@@ -73,6 +73,7 @@ public partial class AcidRain : BaseAction
 	{
 		if (CanTileBeClicked(chunk))
 		{
+			UpdateAbilityButton();
 			foreach (ChunkData tile in _chunkList)
 			{
 				if (CanTileBeClicked(tile))

@@ -19,6 +19,7 @@ public partial class MindControl : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         if (chunk.CharacterIsOnTile())

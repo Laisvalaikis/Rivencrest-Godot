@@ -81,6 +81,7 @@ public partial class SelectAction : Control
 				allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 				allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
 				baseAbilityButtons.Add(allAbilityButtons[buttonIndex]);
+				_playerAbilities[i].Action.SetSelectActionButton(allAbilityButtons[buttonIndex]);
 				allAbilityButtons[buttonIndex].UpdateAbilityCooldownInformationActive();
 				buttonIndex++;
 			}
@@ -96,6 +97,7 @@ public partial class SelectAction : Control
 				allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 				allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
 				abilityButtons.Add(allAbilityButtons[buttonIndex]);
+				_playerAbilities[i].Action.SetSelectActionButton(allAbilityButtons[buttonIndex]);
 				allAbilityButtons[buttonIndex].UpdateAbilityCooldownWithPoints(_actionManager.GetAbilityPoints());
 				buttonIndex++;
 			}

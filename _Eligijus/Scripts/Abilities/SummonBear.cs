@@ -31,6 +31,7 @@ public partial class SummonBear : BaseAction
 	{
 		if (_chunkList.Contains(chunk))
 		{
+			UpdateAbilityButton();
 			int teamIndex = player.GetPlayerTeam();
 			base.ResolveAbility(chunk);
 			PackedScene spawnResource = (PackedScene)bearPrefab;

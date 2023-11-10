@@ -52,6 +52,7 @@ public partial class GroundSlam : BaseAction
     {
         if (_chunkList.Contains(chunk))
         {
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
             DealDamageToAdjacent();
             isAbilityActive = true;

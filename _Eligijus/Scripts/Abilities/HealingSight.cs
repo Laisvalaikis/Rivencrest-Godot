@@ -38,6 +38,7 @@ public partial class HealingSight : BaseAction
     {
         if (_chunkList.Contains(chunk))
         {
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
             Random random = new Random();
             int randomHeal = random.Next(minHealAmount, maxHealAmount);

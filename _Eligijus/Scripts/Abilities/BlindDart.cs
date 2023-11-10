@@ -19,6 +19,7 @@ public partial class BlindDart : BaseAction // need fog of war for this one
     {
         if (CanTileBeClicked(chunk))
         {
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
 
         }

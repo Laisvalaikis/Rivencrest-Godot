@@ -28,6 +28,7 @@ public partial class SilenceBeam : BaseAction
 		base.OnTurnStart();
 		if (_index != -1)
 		{
+			UpdateAbilityButton();
 			for (int i = 0; i < _chunkArray.GetLength(1); i++)
 			{
 				ChunkData damageChunk = _chunkArray[_index, i];

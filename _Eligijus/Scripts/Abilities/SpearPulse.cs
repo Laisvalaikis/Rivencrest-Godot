@@ -20,6 +20,7 @@ public partial class SpearPulse : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         for (int i = 0; i < _chunkList.Count; i++)
         {
             DealRandomDamageToTarget(_chunkList[i], minAttackDamage, maxAttackDamage); //pirmus 2 naikina

@@ -56,6 +56,7 @@ public partial class WindBoost : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         isAbilityActive = true;
         FinishAbility();

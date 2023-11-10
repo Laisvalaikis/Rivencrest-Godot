@@ -41,6 +41,7 @@ public abstract partial class BaseAction: Resource
 		protected bool turinIsEven = false;
 		protected string customText = null;
 		protected int cooldownCount = 0;
+		protected SelectActionButton _selectActionButton;
 		private bool firstTimeUsage = false;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
@@ -448,9 +449,15 @@ public abstract partial class BaseAction: Resource
 
 		public virtual bool CanTileBeClicked(ChunkData chunkData)
 		{
-			return CheckIfSpecificInformationType(chunkData, InformationType.Player) && (!IsAllegianceSame(chunkData) || friendlyFire);
+			return (CheckIfSpecificInformationType(chunkData, InformationType.Player) || 
+			        CheckIfSpecificInformationType(chunkData, InformationType.Object)) && (!IsAllegianceSame(chunkData) || friendlyFire);
 		}
-		
+
+		protected virtual bool CheckAbilityBounds(ChunkData chunkData)
+		{
+			return false;
+		}
+
 		public virtual void OnTurnStart()
 		{
 			if (firstTimeUsage)
@@ -500,11 +507,15 @@ public abstract partial class BaseAction: Resource
 			GD.PushWarning("PlaySound");
 			ClearGrid();
 		}
-		
-		public virtual void ExecuteAbility(ChunkData chunk, SelectActionButton selectActionButton)
+
+		public void UpdateAbilityButton()
 		{
-			selectActionButton.DisableAbility();
-			ResolveAbility(chunk);
+			_selectActionButton.DisableAbility();
+		}
+
+		public void SetSelectActionButton(SelectActionButton selectActionButton)
+		{
+			_selectActionButton = selectActionButton;
 		}
 
 		public void ResetCooldown()

@@ -23,6 +23,7 @@ public partial class Blaze : BaseAction //removed ability
     {
         if (CanTileBeClicked(chunk))
         {
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
             if (chunk.CharacterIsOnTile())
             {

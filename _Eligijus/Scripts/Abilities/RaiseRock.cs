@@ -25,6 +25,7 @@ public partial class RaiseRock : BaseAction
 		base.ResolveAbility(chunk);
 		if (!chunk.CharacterIsOnTile())
 		{
+			UpdateAbilityButton();
 			PackedScene spawnResource = (PackedScene)WallPrefab;
 			Player spawnedWall = spawnResource.Instantiate<Player>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedWall);

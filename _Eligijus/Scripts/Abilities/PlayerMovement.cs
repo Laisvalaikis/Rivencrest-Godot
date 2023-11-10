@@ -87,16 +87,30 @@ public partial class PlayerMovement : BaseAction
 
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		ClearArrowPath();
-		_path = null;
-		if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
+		if (CheckAbilityBounds(chunk))
 		{
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
-			player.AddMovementPoints(movementRange*(-1));
+			ClearArrowPath();
+			_path = null;
+			if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
+			{
+				GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+				player.AddMovementPoints(movementRange * (-1));
+			}
+
+			base.ResolveAbility(chunk);
+			FinishAbility();
+			CreateGrid();
+			UpdateAbilityButton();
 		}
-		base.ResolveAbility(chunk);
-		FinishAbility();
-		CreateGrid();
+	}
+
+	protected override bool CheckAbilityBounds(ChunkData chunkData)
+	{
+		if (_path.Contains(chunkData) && CanTileBeClicked(chunkData))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	public override bool AbilityCanBeActivated()
@@ -120,15 +134,9 @@ public partial class PlayerMovement : BaseAction
 		return false;
 	}
 	
-	public override void ExecuteAbility(ChunkData chunk, SelectActionButton selectActionButton)
-	{
-		ResolveAbility(chunk);
-		selectActionButton.DisableAbility();
-	}
-	
 	protected override void FinishAbility()
 	{
-		//Remove movement points?
+	
 	}
 
 	public override void CreateGrid()

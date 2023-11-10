@@ -29,6 +29,7 @@ public partial class MarkEnemy : BaseAction
         base.ResolveAbility(chunk);
         if (chunk.CharacterIsOnTile())
         {
+            UpdateAbilityButton();
             Player player = chunk.GetCurrentPlayer();
             _target = player;
             player.debuffs.Mark();

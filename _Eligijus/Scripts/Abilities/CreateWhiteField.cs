@@ -21,6 +21,7 @@ public partial class CreateWhiteField : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         for (int i = 0; i < _chunkList.Count; i++)
         {
             PackedScene spawnResource = (PackedScene)whiteFieldPrefab;

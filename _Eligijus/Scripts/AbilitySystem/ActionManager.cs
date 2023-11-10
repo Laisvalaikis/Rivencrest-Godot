@@ -296,7 +296,7 @@ public partial class ActionManager : Node
 			{
 				if (_currentAbility.Action.AbilityCanBeActivated())
 				{
-					_currentAbility.Action.ExecuteAbility(chunkData, _currentAbilitySelectActionButton);
+					_currentAbility.Action.ResolveAbility(chunkData);
 				}
 
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
@@ -314,7 +314,7 @@ public partial class ActionManager : Node
 				{
 					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
 					_currentAbilitySelectActionButton.UpdateAllButtonsByPoints(abilityPoints);
-					_currentAbility.Action.ExecuteAbility(chunkData, _currentAbilitySelectActionButton);
+					_currentAbility.Action.ResolveAbility(chunkData);
 				}
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}

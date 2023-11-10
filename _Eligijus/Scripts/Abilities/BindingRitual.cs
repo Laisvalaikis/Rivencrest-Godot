@@ -21,6 +21,7 @@ public partial class BindingRitual : BaseAction
     {
          if (CanTileBeClicked(chunk))
          {
+             UpdateAbilityButton();
              foreach (ChunkData tile in GetChunkList())
              {
                  if (CanTileBeClicked(tile))

@@ -69,6 +69,7 @@ public partial class FreezeAbility : BaseAction
 	}
 	public override void ResolveAbility(ChunkData chunk)
 	{
+		UpdateAbilityButton();
 		foreach (var chunkData in _chunkList)
 		{
 			if (chunkData.GetCurrentPlayer() != null && chunkData!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))

@@ -38,6 +38,7 @@ public partial class HealSingle : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         Random random = new Random();
         int randomHeal = random.Next(minHealAmount, maxHealAmount);

@@ -74,6 +74,7 @@ public partial class Enrage : BaseAction
 		base.ResolveAbility(chunk);
 		if (chunk.CharacterIsOnTile())
 		{
+			UpdateAbilityButton();
 			Player targetPlayer = chunk.GetCurrentPlayer();
 			targetPlayer.AddMovementPoints(1);
 			player.AddMovementPoints(1);

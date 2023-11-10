@@ -23,6 +23,7 @@ public partial class WallEntrap : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         SpawnAdjacentWalls(chunk);
         FinishAbility();

@@ -21,6 +21,7 @@ public partial class ReadyAimFire : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         _index = FindChunkIndex(chunk);
         FinishAbility();

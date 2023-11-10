@@ -24,6 +24,7 @@ public partial class StunAttack : BaseAction
     {
         if (CanTileBeClicked(chunk))
         {
+            UpdateAbilityButton();
             GD.PrintErr("SMTH Happens");
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);

@@ -26,6 +26,7 @@ public partial class CreateEye : BaseAction
 	{
 		if (_chunkList.Contains(chunk) && !chunk.CharacterIsOnTile())
 		{
+			UpdateAbilityButton();
 			PackedScene spawnResource = (PackedScene)eyePrefab;
 			spawnedEye = spawnResource.Instantiate<Player>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedEye);

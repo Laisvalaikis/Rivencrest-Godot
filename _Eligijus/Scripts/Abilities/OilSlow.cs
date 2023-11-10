@@ -21,6 +21,7 @@ public partial class OilSlow : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         FinishAbility();

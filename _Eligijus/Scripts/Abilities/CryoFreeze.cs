@@ -89,6 +89,7 @@ public partial class CryoFreeze : BaseAction
 
 	public override void ResolveAbility(ChunkData chunk)
 	{
+		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
 		_isAbilityActive = true;
 		player.playerInformation.Stasis = true;

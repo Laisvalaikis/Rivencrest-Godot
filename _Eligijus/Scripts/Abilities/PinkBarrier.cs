@@ -30,6 +30,7 @@ public partial class PinkBarrier : BaseAction
        // GetSpecificGroundTile(position, 0, 0, blockingLayer).GetComponent<GridMovement>().AvailableMovementPoints++;
        if (chunk.CharacterIsOnTile())
        {
+           UpdateAbilityButton();
            Player target = chunk.GetCurrentPlayer();
            target.AddBarrier();
            target.actionManager.AddAbilityPoints(1);

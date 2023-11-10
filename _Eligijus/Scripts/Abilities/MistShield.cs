@@ -29,6 +29,7 @@ public partial class MistShield : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         isAbilityActive = true;
         player.playerInformation.Protected = true;

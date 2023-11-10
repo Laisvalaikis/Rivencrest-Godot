@@ -24,6 +24,7 @@ public partial class ThrowBehind : BaseAction
     {
         if (chunk.CharacterIsOnTile())
         {
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
             ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
             _side = ChunkSideByCharacter(playerChunk, chunk);

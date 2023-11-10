@@ -72,6 +72,7 @@ public partial class Avalanche : BaseAction
     {
         if (CanTileBeClicked(chunk))
         {
+            UpdateAbilityButton();
             foreach (ChunkData chunkData in _chunkList)
             {
                 if (CanTileBeClicked(chunkData))

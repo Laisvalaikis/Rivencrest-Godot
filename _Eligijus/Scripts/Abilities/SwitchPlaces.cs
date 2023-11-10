@@ -29,6 +29,7 @@ public partial class SwitchPlaces : BaseAction
             // }
             // else if(_secondSelected == null || !_secondSelected.CharacterIsOnTile())
             // {
+            UpdateAbilityButton();
             ChunkData chunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
             _secondSelected = chunk;
             SwitchCharacters(chunkData, _secondSelected);

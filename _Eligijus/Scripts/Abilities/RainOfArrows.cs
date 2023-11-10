@@ -33,6 +33,7 @@ public partial class RainOfArrows : BaseAction
       
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         _cometTiles.Clear();
         List<ChunkData> damageChunks = CreateDamageTileList(chunk);

@@ -63,6 +63,7 @@ public partial class ThrowSpear : BaseAction
 		int index = FindChunkIndex(chunk);
 		if (index != -1)
 		{
+			UpdateAbilityButton();
 			for (int i = 0; i < _chunkArray.GetLength(1); i++)
 			{
 				ChunkData damageChunk = _chunkArray[index, i];

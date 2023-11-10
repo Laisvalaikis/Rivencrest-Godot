@@ -20,6 +20,7 @@ public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal
         base.ResolveAbility(chunk);
         if (CanTileBeClicked(chunk))
         {
+            UpdateAbilityButton();
             Player target = chunk.GetCurrentPlayer();
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             target.debuffs.SetTurnCounterFromThisTurn(1);

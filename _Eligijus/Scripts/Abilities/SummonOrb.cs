@@ -36,6 +36,7 @@ public partial class SummonOrb : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         SpawnOrb(chunk);
         GenerateAttackGrid(chunk);

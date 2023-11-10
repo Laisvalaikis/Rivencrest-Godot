@@ -26,6 +26,7 @@ public partial class FromTheShadows : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         if (!chunk.CharacterIsOnTile())
         {

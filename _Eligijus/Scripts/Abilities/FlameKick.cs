@@ -19,6 +19,7 @@ public partial class FlameKick : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         if (!IsAllegianceSame(chunk))

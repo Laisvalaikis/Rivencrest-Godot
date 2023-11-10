@@ -71,6 +71,7 @@ public partial class ChainHook : BaseAction
 		Player character = chunk.GetCurrentPlayer();
 		if (character != null && character.playerInformation.GetInformationType() != InformationType.Object)
 		{
+			UpdateAbilityButton();
 			if (!IsAllegianceSame(chunk))
 			{
 				multiplier = GetMultiplier(chunk.GetPosition());

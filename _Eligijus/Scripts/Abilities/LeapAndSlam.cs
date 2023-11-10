@@ -17,6 +17,7 @@ public partial class LeapAndSlam : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         if (!chunk.CharacterIsOnTile())
         {

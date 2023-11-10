@@ -19,6 +19,7 @@ public partial class DisarmingSlam : BaseAction
 	}
 	public override void ResolveAbility(ChunkData chunk)
 	{
+		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
 		DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 		GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(chunk));

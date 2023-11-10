@@ -18,6 +18,7 @@ public partial class ShadowBlink : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         Side side = ChunkSideByCharacter(current, chunk);

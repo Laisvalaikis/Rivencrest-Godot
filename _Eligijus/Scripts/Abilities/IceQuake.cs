@@ -22,6 +22,7 @@ public partial class IceQuake : BaseAction
     {
         if (CanTileBeClicked(chunk))
         {
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
             int bonusDamage = 0;
             if (chunk.IsStandingOnChunk())

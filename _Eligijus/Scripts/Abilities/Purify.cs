@@ -24,6 +24,7 @@ public partial class Purify : BaseAction
         base.ResolveAbility(chunk);
         if (chunk.CharacterIsOnTile())
         {
+            UpdateAbilityButton();
             Player target = chunk.GetCurrentPlayer();
             target.RemoveWeakSpot();
             target.debuffs.RemoveSilence();

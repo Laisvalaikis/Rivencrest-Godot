@@ -41,6 +41,7 @@ public partial class CometFall : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         base.ResolveAbility(chunk);
         _damageTiles.Clear();
         _damageTiles.Add(chunk);

@@ -74,6 +74,7 @@ public partial class CrowAttack : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
+        UpdateAbilityButton();
         foreach (var t in _chunkList)
         {
             if (t.CharacterIsOnTile() && CanTileBeClicked(t))
