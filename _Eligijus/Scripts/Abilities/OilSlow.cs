@@ -15,9 +15,9 @@ public partial class OilSlow : BaseAction
         return ability;
     }
     
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
-
+        base.OnTurnStart(chunkData);
     }
     public override void ResolveAbility(ChunkData chunk)
     {

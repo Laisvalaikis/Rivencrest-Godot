@@ -58,8 +58,9 @@ public partial class BlockAbility : BaseAction
     {
         return IsAllegianceSame(chunk);
     }
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
+        base.OnTurnStart(chunkData);
         if (_characterBeingBlocked != null)
         {
             _characterBeingBlocked.playerInformation.RemoveBarrier();

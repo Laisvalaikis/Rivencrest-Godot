@@ -28,6 +28,7 @@ public partial class ActionManager : Node
 	private bool abilityIsSelected = false;
 	private Array<UnlockedAbilitiesResource> unlockedAbilityList;
 	private Data _data;
+	private TurnManager _turnManager;
 	
 	public override void _Ready()
 	{
@@ -59,7 +60,8 @@ public partial class ActionManager : Node
 				{
 					_allAbilities.Add(ability);
 				}
-				ability.Action.OnTurnStart();
+				ability.Action.AddTurnManager(_turnManager);
+				ability.Action.OnTurnStart(null);
 			}
 			
 			for (int i = 0; i < baseAbilities.Count; i++)
@@ -78,10 +80,7 @@ public partial class ActionManager : Node
 
 	public void AddTurnManager(TurnManager turnManager)
 	{
-		for (int i = 0; i < _allAbilities.Count; i++)
-		{
-			_allAbilities[i].Action.AddTurnManager(turnManager);
-		}
+		_turnManager = turnManager;
 	}
 
 	public int GetAllAbilityPoints()
@@ -181,14 +180,14 @@ public partial class ActionManager : Node
 		{
 			if (_baseAbilities[i].enabled)
 			{
-				_baseAbilities[i].Action.OnTurnStart();
+				_baseAbilities[i].Action.OnTurnStart(null);
 			}
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
 			if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
 			{
-				_abilities[i].Action.OnTurnStart();
+				_abilities[i].Action.OnTurnStart(null);
 			}
 		}
 	}

@@ -20,8 +20,9 @@ public partial class ChillingGust : BaseAction
         return ability;
     }
 
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
+        base.OnTurnStart(chunkData);
         if (_protectedAlly != null)
         {
             _protectedAlly.playerInformation.Protected = false;

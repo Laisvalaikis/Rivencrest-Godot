@@ -464,7 +464,7 @@ public abstract partial class BaseAction: Resource
 			return false;
 		}
 
-		public virtual void OnTurnStart()
+		public virtual void OnTurnStart(ChunkData chunkData)
 		{
 			if (firstTimeUsage)
 			{

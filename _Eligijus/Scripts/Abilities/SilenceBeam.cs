@@ -23,9 +23,9 @@ public partial class SilenceBeam : BaseAction
 		return silenceBeam;
 	}
 
-	public override void OnTurnStart()
+	public override void OnTurnStart(ChunkData chunkData)
 	{
-		base.OnTurnStart();
+		base.OnTurnStart(chunkData);
 		if (_index != -1)
 		{
 			UpdateAbilityButton();

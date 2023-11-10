@@ -19,10 +19,11 @@ public partial class RainOfArrows : BaseAction
         return ability;
     }
     
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
         if (_cometTiles.Count > 0)
         {
+            base.OnTurnStart(chunkData);
             foreach (ChunkData tile in _cometTiles)
             {
                 DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);

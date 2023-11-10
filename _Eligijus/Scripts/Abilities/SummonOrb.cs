@@ -55,9 +55,9 @@ public partial class SummonOrb : BaseAction
         _orbChunkData = chunkData;
     }
     
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
-        base.OnTurnStart();
+        base.OnTurnStart(chunkData);
         if (_orbChunkData != null && _orbInformation.GetHealth() > 0)
         {
             _orbChunkData.SetCurrentCharacter(null);

@@ -94,9 +94,9 @@ public partial class ReadyAimFire : BaseAction
             }
         }
     }
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
-        base.OnTurnStart();
+        base.OnTurnStart(chunkData);
         if (_index != -1)
         {
             for (int i = 0; i < _chunkArray.GetLength(1); i++)

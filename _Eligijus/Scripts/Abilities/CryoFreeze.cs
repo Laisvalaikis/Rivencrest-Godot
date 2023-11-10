@@ -32,9 +32,9 @@ public partial class CryoFreeze : BaseAction
 		}
 	}
 	
-	public override void OnTurnStart()
+	public override void OnTurnStart(ChunkData chunkData)
 	{
-		
+		base.OnTurnStart(chunkData);
 		if (_isAbilityActive && (player.playerInformation.GetHealth() > 0))
 		{
 			ChunkData temp = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);

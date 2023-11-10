@@ -27,9 +27,9 @@ public partial class WindBoost : BaseAction
     {
         _chunkList.Add(GameTileMap.Tilemap.GetChunk(player.GlobalPosition));
     }
-    public override void OnTurnStart()//pradzioj ejimo
+    public override void OnTurnStart(ChunkData chunkData)//pradzioj ejimo
     {
-        base.OnTurnStart();
+        base.OnTurnStart(null);
         isAbilityActive = false;
         ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         (int x, int y) indexes = current.GetIndexes();
@@ -45,11 +45,11 @@ public partial class WindBoost : BaseAction
         {
             if (GameTileMap.Tilemap.CheckBounds(vector.Item1, vector.Item2))
             {
-                ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(vector.Item1, vector.Item2);
-                if (chunkData.GetCurrentPlayer() != null && chunkData.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam())
+                ChunkData chunk = GameTileMap.Tilemap.GetChunkDataByIndex(vector.Item1, vector.Item2);
+                if (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam())
                 {
                     int randomHeal = _random.Next(minHeal, maxHeal);
-                    chunkData.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+                    chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
                 }
             }
         }

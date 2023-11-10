@@ -29,9 +29,9 @@ public partial class WallEntrap : BaseAction
         FinishAbility();
     }
     
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
-        base.OnTurnStart();
+        base.OnTurnStart(chunkData);
         if (_playerInformations != null && _playerInformations.Count > 0)
         {
             foreach (PlayerInformation x in _playerInformations)

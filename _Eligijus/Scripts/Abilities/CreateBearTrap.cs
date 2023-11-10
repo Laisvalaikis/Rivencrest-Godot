@@ -33,8 +33,9 @@ public partial class CreateBearTrap : BaseAction
 		FinishAbility();
 	}
 
-	public override void OnTurnStart()
+	public override void OnTurnStart(ChunkData chunkData)
 	{
+		base.OnTurnStart(chunkData);
 		if (spawnedBear != null)
 		{
 			i++;

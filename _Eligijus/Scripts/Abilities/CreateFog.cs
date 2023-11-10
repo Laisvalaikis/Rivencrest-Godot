@@ -22,8 +22,9 @@ public partial class CreateFog : BaseAction
         return createFog;
     }
     
-    public override void OnTurnStart()//reikes veliau tvarkyt kai bus animacijos ir fog of war
+    public override void OnTurnStart(ChunkData chunkData)//reikes veliau tvarkyt kai bus animacijos ir fog of war
     {
+        base.OnTurnStart(chunkData);
         if (isFogActive)
         {
             i++;

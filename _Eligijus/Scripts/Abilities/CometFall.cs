@@ -19,8 +19,9 @@ public partial class CometFall : BaseAction
         return ability;
     }
     
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
+        base.OnTurnStart(chunkData);
         if (_damageTiles.Count > 0)
         {
             foreach (ChunkData chunk in _damageTiles)

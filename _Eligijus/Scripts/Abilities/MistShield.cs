@@ -17,9 +17,9 @@ public partial class MistShield : BaseAction
         return ability;
     }
 
-    public override void OnTurnStart()
+    public override void OnTurnStart(ChunkData chunkData)
     {
-        base.OnTurnStart();
+        base.OnTurnStart(chunkData);
         if (isAbilityActive)
         {
             player.RemoveBarrier();
