@@ -247,7 +247,7 @@ public partial class ActionManager : Node
 		DeselectCurrentAbility();
 	}
 
-	public void SetCurrentAbility(Ability ability, SelectActionButton selectActionButton)
+	public void SetCurrentAbility(Ability ability)
 	{
 		if (_currentAbility != null)
 		{
@@ -257,7 +257,6 @@ public partial class ActionManager : Node
 		if (ability != null)
 		{
 			_currentAbility = ability;
-			_currentAbilitySelectActionButton = selectActionButton;
 		}
 		else
 		{
@@ -313,7 +312,7 @@ public partial class ActionManager : Node
 				if (_currentAbility.Action.AbilityCanBeActivated() && abilityPoints >= _currentAbility.Action.GetAbilityPoints())
 				{
 					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
-					_currentAbilitySelectActionButton.UpdateAllButtonsByPoints(abilityPoints);
+					_currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(abilityPoints);
 					_currentAbility.Action.ResolveAbility(chunkData);
 				}
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));

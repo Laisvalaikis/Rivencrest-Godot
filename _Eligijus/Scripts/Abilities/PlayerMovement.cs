@@ -106,7 +106,7 @@ public partial class PlayerMovement : BaseAction
 
 	protected override bool CheckAbilityBounds(ChunkData chunkData)
 	{
-		if (_path.Contains(chunkData) && CanTileBeClicked(chunkData))
+		if (_path.Contains(chunkData))
 		{
 			return true;
 		}

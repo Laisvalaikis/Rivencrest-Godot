@@ -81,7 +81,7 @@ public partial class SelectAction : Control
 				allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 				allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
 				baseAbilityButtons.Add(allAbilityButtons[buttonIndex]);
-				_playerAbilities[i].Action.SetSelectActionButton(allAbilityButtons[buttonIndex]);
+				_playerBaseAbilities[i].Action.SetSelectActionButton(allAbilityButtons[buttonIndex]);
 				allAbilityButtons[buttonIndex].UpdateAbilityCooldownInformationActive();
 				buttonIndex++;
 			}
@@ -153,9 +153,9 @@ public partial class SelectAction : Control
 		return (int)(min / max * 100);
 	}
 
-	public void ActionSelection(Ability ability, SelectActionButton selectActionButton)
+	public void ActionSelection(Ability ability)
 	{
-		_actionManager.SetCurrentAbility(ability, selectActionButton);
+		_actionManager.SetCurrentAbility(ability);
 		if (ability._type != AbilityType.BaseAbility)
 		{
 			UpdateSelectedActionAbilityPoints(ability);
@@ -176,7 +176,7 @@ public partial class SelectAction : Control
 			GetAbilities();
 			UpdatePlayerInfo();
 			GenerateActions();
-			_actionManager.SetCurrentAbility(_playerBaseAbilities[0], allAbilityButtons[0]);
+			_actionManager.SetCurrentAbility(_playerBaseAbilities[0]);
 		}
 
 	}

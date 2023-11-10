@@ -518,6 +518,11 @@ public abstract partial class BaseAction: Resource
 			_selectActionButton = selectActionButton;
 		}
 
+		public SelectActionButton GetActionButton()
+		{
+			return _selectActionButton;
+		}
+
 		public void ResetCooldown()
 		{
 			cooldownCount = 0;
