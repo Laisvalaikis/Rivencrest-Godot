@@ -5,7 +5,6 @@ namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 
 public partial class HealSingle : BaseAction
 {
-    private PlayerInformation _playerInformation;
     [Export]
     public int minHealAmount = 3;
     [Export]
@@ -35,14 +34,24 @@ public partial class HealSingle : BaseAction
             _chunkList.Add(chunk);
         }
     }
-    
+    public override void EnableDamagePreview(ChunkData chunk, string text = null)
+    {
+        //intentionally left empty
+    }
+    public override bool CanTileBeClicked(ChunkData chunkData)
+    {
+        return CheckIfSpecificInformationType(chunkData, InformationType.Player) && IsAllegianceSameForBuffs(chunkData);
+    }
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
-        base.ResolveAbility(chunk);
-        Random random = new Random();
-        int randomHeal = random.Next(minHealAmount, maxHealAmount);
-        _playerInformation.Heal(randomHeal);
-        FinishAbility();
+        if (CanTileBeClicked(chunk))
+        {
+            UpdateAbilityButton();
+            base.ResolveAbility(chunk);
+            Random random = new Random();
+            int randomHeal = random.Next(minHealAmount, maxHealAmount);
+            chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+            FinishAbility();
+        }
     }
 }
