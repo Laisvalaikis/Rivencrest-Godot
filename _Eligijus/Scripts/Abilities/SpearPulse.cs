@@ -22,37 +22,89 @@ public partial class SpearPulse : BaseAction
     {
         for (int i = 0; i < _chunkList.Count; i++)
         {
-            DealRandomDamageToTarget(_chunkList[i], minAttackDamage, maxAttackDamage);
+            DealRandomDamageToTarget(_chunkList[i], minAttackDamage, maxAttackDamage); //pirmus 2 naikina
         }
         base.ResolveAbility(chunk);
         FinishAbility();
     }
     
+    // public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+    // {
+    //     if (hoveredChunk == previousChunk) return;
+    //     if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
+    //     {
+    //         for (int i = 0; i < _chunkList.Count; i++)
+    //         {
+    //             ChunkData chunkToHighLight = _chunkList[i];
+    //             if (chunkToHighLight != null)
+    //             {
+    //                 SetHoveredAttackColor(chunkToHighLight);
+    //                 EnableDamagePreview(chunkToHighLight);
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         for (int i = 0; i < _chunkList.Count; i++)
+    //         {
+    //             ChunkData chunkToHighLight = _chunkList[i];
+    //             if (chunkToHighLight != null)
+    //                 SetNonHoveredAttackColor(chunkToHighLight);
+    //             DisableDamagePreview(chunkToHighLight);
+    //         }
+    //     }
+    //
+    // }
     public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {
-        if (hoveredChunk == previousChunk) return;
-        if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
+        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
+        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
+
+        if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted)) // nuhoverinome off-grid
         {
-            for (int i = 0; i < _chunkList.Count; i++)
+            foreach (var chunk in _chunkList)
             {
-                ChunkData chunkToHighLight = _chunkList[i];
-                if (chunkToHighLight != null)
+                SetNonHoveredAttackColor(chunk);
+                DisableDamagePreview(chunk);
+            }
+        }
+        if (hoveredChunkHighlight == null || hoveredChunk == previousChunk) //Hoveriname ant to pacio ar siaip kazkoks gaidys ivyko
+        {
+            return;
+        }
+        if (hoveredChunkHighlight.isHighlighted) //Jei uzhoverinome ant grido
+        {
+            if (CanTileBeClicked(hoveredChunk)) //Ant uzhoverinto langelio characteris
+            {
+                foreach (var chunk in _chunkList)
                 {
-                    SetHoveredAttackColor(chunkToHighLight);
-                    EnableDamagePreview(chunkToHighLight);
+                    if (CanTileBeClicked(chunk))
+                    {
+                        SetHoveredAttackColor(chunk);
+                        EnableDamagePreview(chunk);
+                    }
                 }
             }
-        }
-        else
-        {
-            for (int i = 0; i < _chunkList.Count; i++)
+            else //ant uzhoverinto langelio ne characteris
             {
-                ChunkData chunkToHighLight = _chunkList[i];
-                if (chunkToHighLight != null)
-                    SetNonHoveredAttackColor(chunkToHighLight);
+                hoveredChunkHighlight.SetHighlightColor(abilityHighlightHover);
             }
         }
-
+        if (previousChunkHighlight != null) // Jei pries tai irgi buvome ant grido
+        {
+            if (CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Jei ten buvo veikėjas, be to, dabar nebe ant veikėjo esame
+            {
+                foreach (var chunk in _chunkList)
+                {
+                    SetNonHoveredAttackColor(chunk);
+                    DisableDamagePreview(chunk);
+                }
+            }
+            else if(!CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Nei buvo veikejas ant praeito, nei yra ant dabartinio
+            {
+                SetNonHoveredAttackColor(previousChunk);
+            }
+        }
     }
     
 }

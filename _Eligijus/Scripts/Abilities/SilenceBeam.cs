@@ -35,8 +35,8 @@ public partial class SilenceBeam : BaseAction
 				{
 					Player target = damageChunk.GetCurrentPlayer();
 					target.debuffs.SetTurnCounterFromThisTurn(1);
+					target.debuffs.SilencePlayer();
 				}
-
 				DealRandomDamageToTarget(damageChunk, minAttackDamage + _additionalDamage, maxAttackDamage + _additionalDamage);
 			}
 			_chunkArray = new ChunkData[4, attackRange];
@@ -104,6 +104,7 @@ public partial class SilenceBeam : BaseAction
 				if (chunkToHighLight != null)
 				{
 					SetNonHoveredAttackColor(chunkToHighLight);
+					DisableDamagePreview(chunkToHighLight);
 				}
 			}
 		}
@@ -115,7 +116,7 @@ public partial class SilenceBeam : BaseAction
 				for (int i = 0; i < _chunkArray.GetLength(1); i++)
 				{
 					ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-					if (chunkToHighLight != null)
+					if (chunkToHighLight.GetCurrentPlayer()!=null)
 					{
 						SetHoveredAttackColor(chunkToHighLight);
 						EnableDamagePreview(chunkToHighLight);
@@ -124,6 +125,41 @@ public partial class SilenceBeam : BaseAction
 			}
 		}
 	}
+	// public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+	// {
+	// 	if (hoveredChunk == previousChunk) return;
+	// 	if (_globalIndex != -1)
+	// 	{
+	// 		for (int i = 0; i < _chunkArray.GetLength(1); i++)
+	// 		{
+	// 			ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
+	// 			if (chunkToHighLight != null)
+	// 			{
+	// 				SetNonHoveredAttackColor(chunkToHighLight);
+	// 				DisableDamagePreview(chunkToHighLight);
+	// 			}
+	// 		}
+	// 	}
+	// 	if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
+	// 	{
+	// 		_globalIndex = FindChunkIndex(hoveredChunk);
+	// 		if (_globalIndex != -1)
+	// 		{
+	// 			for (int i = 0; i < _chunkArray.GetLength(1); i++)
+	// 			{
+	// 				ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
+	// 				if (chunkToHighLight != null)
+	// 				{
+	// 					SetHoveredAttackColor(chunkToHighLight);
+	// 					if (chunkToHighLight.GetCurrentPlayer()!=null)
+	// 					{
+	// 						EnableDamagePreview(chunkToHighLight);
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	public override void CreateAvailableChunkList(int range)
 	{

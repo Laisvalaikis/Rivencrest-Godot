@@ -4,17 +4,17 @@
 
 [resource]
 script = ExtResource("1_jwin8")
-_additionalDamage = 2
+_additionalDamage = 10
 laserGrid = true
 turnsSinceCast = 0
 turnLifetime = 1
-abilityPointsUsage = 1
+abilityPoints = 1
 attackRange = 3
-minAttackDamage = 2
-maxAttackDamage = 3
+minAttackDamage = 10
+maxAttackDamage = 10
 isAbilitySlow = false
 friendlyFire = true
-AbilityCooldown = 1
+abilityCooldown = 1
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(1, 0.890196, 0, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
