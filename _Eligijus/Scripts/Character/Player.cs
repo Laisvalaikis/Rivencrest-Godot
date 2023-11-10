@@ -37,7 +37,14 @@ public partial class Player : Node2D
 
 	public void AddMovementPoints(int points)
 	{
-		movementPoints += points;
+		if (movementPoints + points > 0)
+		{
+			movementPoints += points;
+		}
+		else
+		{
+			movementPoints = 0;
+		}
 	}
 
 	public void SetMovementPoints(int points)

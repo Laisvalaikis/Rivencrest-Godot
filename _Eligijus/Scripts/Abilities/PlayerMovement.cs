@@ -89,12 +89,12 @@ public partial class PlayerMovement : BaseAction
 	{
 		ClearArrowPath();
 		_path = null;
-		base.ResolveAbility(chunk);
 		if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
 		{
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
 			player.AddMovementPoints(movementRange*(-1));
 		}
+		base.ResolveAbility(chunk);
 		FinishAbility();
 		CreateGrid();
 	}
