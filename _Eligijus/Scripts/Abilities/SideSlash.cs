@@ -48,7 +48,10 @@ public partial class SideSlash : BaseAction
             {
                 ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
                 if (chunkToHighLight != null)
+                {
                     SetNonHoveredAttackColor(chunkToHighLight);
+                    DisableDamagePreview(chunkToHighLight);
+                }
             }
         }
         if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
@@ -60,7 +63,7 @@ public partial class SideSlash : BaseAction
                 for (int i = 0; i < _chunkArray.GetLength(1); i++)
                 {
                     ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-                    if (chunkToHighLight != null)
+                    if (chunkToHighLight!=null && chunkToHighLight.GetCurrentPlayer()!=null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
                         EnableDamagePreview(chunkToHighLight);
@@ -69,6 +72,57 @@ public partial class SideSlash : BaseAction
             }
         }
     }
+    // public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+    // {
+    //     HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
+    //     HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
+    //
+    //     if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted)) // nuhoverinome off-grid
+    //     {
+    //         foreach (var chunk in _chunkList)
+    //         {
+    //             SetNonHoveredAttackColor(chunk);
+    //             DisableDamagePreview(chunk);
+    //         }
+    //     }
+    //     if (hoveredChunkHighlight == null || hoveredChunk == previousChunk) //Hoveriname ant to pacio ar siaip kazkoks gaidys ivyko
+    //     {
+    //         return;
+    //     }
+    //     if (hoveredChunkHighlight.isHighlighted) //Jei uzhoverinome ant grido
+    //     {
+    //         if (CanTileBeClicked(hoveredChunk)) //Ant uzhoverinto langelio characteris
+    //         {
+    //             foreach (var chunk in _chunkList)
+    //             {
+    //                 if (CanTileBeClicked(chunk))
+    //                 {
+    //                     SetHoveredAttackColor(chunk);
+    //                     EnableDamagePreview(chunk);
+    //                 }
+    //             }
+    //         }
+    //         else //ant uzhoverinto langelio ne characteris
+    //         {
+    //             hoveredChunkHighlight.SetHighlightColor(abilityHighlightHover);
+    //         }
+    //     }
+    //     if (previousChunkHighlight != null) // Jei pries tai irgi buvome ant grido
+    //     {
+    //         if (CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Jei ten buvo veikėjas, be to, dabar nebe ant veikėjo esame
+    //         {
+    //             foreach (var chunk in _chunkList)
+    //             {
+    //                 SetNonHoveredAttackColor(chunk);
+    //                 DisableDamagePreview(chunk);
+    //             }
+    //         }
+    //         else if(!CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Nei buvo veikejas ant praeito, nei yra ant dabartinio
+    //         {
+    //             SetNonHoveredAttackColor(previousChunk);
+    //         }
+    //     }
+    // }
 
     private int FindChunkIndex(ChunkData chunkData)
     {
