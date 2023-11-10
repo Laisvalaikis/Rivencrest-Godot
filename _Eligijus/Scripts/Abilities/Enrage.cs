@@ -75,8 +75,8 @@ public partial class Enrage : BaseAction
 		if (chunk.CharacterIsOnTile())
 		{
 			Player targetPlayer = chunk.GetCurrentPlayer();
-			targetPlayer.ChangeMovementPoints(1);
-			player.ChangeMovementPoints(1);
+			targetPlayer.AddMovementPoints(1);
+			player.AddMovementPoints(1);
 		}
 
 		FinishAbility();

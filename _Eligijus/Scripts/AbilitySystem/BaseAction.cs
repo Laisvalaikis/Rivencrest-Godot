@@ -493,6 +493,10 @@ public abstract partial class BaseAction: Resource
 		public virtual void ResolveAbility(ChunkData chunk)
 		{
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
+			if (isAbilitySlow)
+			{
+				player.SetMovementPoints(0);
+			}
 			GD.PushWarning("PlaySound");
 			ClearGrid();
 		}

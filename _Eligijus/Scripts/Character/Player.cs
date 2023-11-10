@@ -35,9 +35,14 @@ public partial class Player : Node2D
 		return movementPoints;
 	}
 
-	public void ChangeMovementPoints(int points)
+	public void AddMovementPoints(int points)
 	{
 		movementPoints += points;
+	}
+
+	public void SetMovementPoints(int points)
+	{
+		movementPoints = 0;
 	}
 
 	public void AddPoison(Poison poison)

@@ -93,7 +93,7 @@ public partial class PlayerMovement : BaseAction
 		if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
 		{
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
-			player.ChangeMovementPoints(movementRange*(-1));
+			player.AddMovementPoints(movementRange*(-1));
 		}
 		FinishAbility();
 		CreateGrid();
@@ -112,7 +112,7 @@ public partial class PlayerMovement : BaseAction
 	
 	public override bool CheckIfAbilityIsActive()
 	{
-		if (abilityCooldown <= cooldownCount || player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
+		if (player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
 		{
 			return true;
 		}
