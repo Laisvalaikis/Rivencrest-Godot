@@ -1,5 +1,4 @@
 using Godot;
-using System.Collections.Generic;
 
 public partial class TurnManager : Node
 {
@@ -84,18 +83,18 @@ public partial class TurnManager : Node
 
 	public void OnTurnStart()
 	{
-		foreach (var usedAbility in _currentTeam.usedAbilitiesBeforeStartTurn)
-		{
-			if (usedAbility.Ability.GetCastCountBeforeStart() < usedAbility.Ability.GetLifetimeBeforeStart())
-			{
-				usedAbility.Ability.OnBeforeStart(usedAbility.Chunk);
-				usedAbility.Ability.IncreaseCastCountBeforeTurn();
-			}
-			if(usedAbility.Ability.GetCastCountBeforeStart() >= usedAbility.Ability.GetLifetimeBeforeStart())
-			{
-				_currentTeam.usedAbilitiesBeforeStartTurn.Remove(usedAbility);
-			}
-		}
+		// foreach (var usedAbility in _currentTeam.usedAbilitiesBeforeStartTurn)
+		// {
+		// 	if (usedAbility.Ability.GetCastCountBeforeStart() < usedAbility.Ability.GetLifetimeBeforeStart())
+		// 	{
+		// 		usedAbility.Ability.OnBeforeStart(usedAbility.Chunk);
+		// 		usedAbility.Ability.IncreaseCastCountBeforeTurn();
+		// 	}
+		// 	if(usedAbility.Ability.GetCastCountBeforeStart() >= usedAbility.Ability.GetLifetimeBeforeStart())
+		// 	{
+		// 		_currentTeam.usedAbilitiesBeforeStartTurn.Remove(usedAbility);
+		// 	}
+		// }
 		
 		foreach (Player character in _currentTeam.characters)
 		{
@@ -109,34 +108,17 @@ public partial class TurnManager : Node
 		if (_currentTeam.usedAbilitiesAfterResolve.Count > 0)
 		{
 			// Fix LinkedLists
-			for (LinkedListNode<UsedAbility> element = _currentTeam.usedAbilitiesAfterResolve.First; element != null && element.Next != null; element = element.Next)
+			for (LinkedListNode<UsedAbility> element = _currentTeam.usedAbilitiesAfterResolve.First; element != null; element = element.Next)
 			{
 				UsedAbility usedAbility = element.Value;
-				if (usedAbility.Ability.GetCastCountAfterResolve() < usedAbility.Ability.GetLifetimeAfterResolve())
+				if (usedAbility.GetCastCountAfterResolve() < usedAbility.Ability.GetLifetimeAfterResolve())
 				{
 					usedAbility.Ability.OnAfterResolve(usedAbility.Chunk);
-					usedAbility.Ability.IncreaseCastCountAfterResolve();
+					usedAbility.IncreaseCastCountAfterResolve();
 				}
-				if(usedAbility.Ability.GetCastCountAfterResolve() >= usedAbility.Ability.GetLifetimeAfterResolve())
+				if(usedAbility.GetCastCountAfterResolve() >= usedAbility.Ability.GetLifetimeAfterResolve())
 				{
-					LinkedListNode<UsedAbility> removingElement = element;
-					if (element.Next != null)
-					{
-						element = element.Next;
-					}
-					_currentTeam.usedAbilitiesAfterResolve.Remove(removingElement);
-					
-					// Galas
-					if (element.Next == null)
-					{
-						usedAbility = element.Value;
-						if (usedAbility.Ability.GetCastCountAfterResolve() < usedAbility.Ability.GetLifetimeAfterResolve())
-						{
-							usedAbility.Ability.OnAfterResolve(usedAbility.Chunk);
-							usedAbility.Ability.IncreaseCastCountAfterResolve();
-						}
-						_currentTeam.usedAbilitiesAfterResolve.Remove(usedAbility);
-					}
+					_currentTeam.usedAbilitiesAfterResolve.Remove(element);
 				}
 			}
 		}

@@ -43,8 +43,6 @@ public abstract partial class BaseAction: Resource
 		protected int cooldownCount = 0;
 		protected SelectActionButton _selectActionButton;
 		protected TurnManager _turnManager;
-		protected int _turnsSinceCastAfterResolve = 0;
-		protected int _turnsSinceCastBeforeStart = 0;
 		private bool firstTimeUsage = false;
 		private PlayerInformationData _playerInformationData;
 		private Random _random;
@@ -494,44 +492,14 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
-		public void IncreaseCastCountAfterResolve()
-		{
-			_turnsSinceCastAfterResolve++;
-		}
-
-		public void ResetCastCountAfterResolve()
-		{
-			_turnsSinceCastAfterResolve = 0;
-		}
-		
-		public int GetCastCountAfterResolve()
-		{
-			return _turnsSinceCastAfterResolve;
-		}
-
 		public int GetLifetimeAfterResolve()
 		{
-			return _turnsSinceCastAfterResolve;
-		}
-
-		public void IncreaseCastCountBeforeTurn()
-		{
-			_turnsSinceCastBeforeStart++;
-		}
-		
-		public void ResetCastCountBeforeTurn()
-		{
-			_turnsSinceCastBeforeStart = 0;
-		}
-
-		public int GetCastCountBeforeStart()
-		{
-			return _turnsSinceCastBeforeStart;
+			return turnAfterResolveLifetime;
 		}
 		
 		public int GetLifetimeBeforeStart()
 		{
-			return _turnsSinceCastBeforeStart;
+			return turnBeforeStartLifetime;
 		}
 
 		public virtual void OnAfterResolve(ChunkData chunkData)
