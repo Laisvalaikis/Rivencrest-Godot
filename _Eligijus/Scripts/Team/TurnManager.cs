@@ -111,12 +111,12 @@ public partial class TurnManager : Node
 			for (LinkedListNode<UsedAbility> element = _currentTeam.usedAbilitiesAfterResolve.First; element != null; element = element.Next)
 			{
 				UsedAbility usedAbility = element.Value;
-				if (usedAbility.GetCastCountAfterResolve() < usedAbility.Ability.GetLifetimeAfterResolve())
+				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
 				{
-					usedAbility.Ability.OnAfterResolve(usedAbility.Chunk);
-					usedAbility.IncreaseCastCountAfterResolve();
+					usedAbility.ability.OnAfterResolve(usedAbility.chunk);
+					usedAbility.IncreaseCastCount();
 				}
-				if(usedAbility.GetCastCountAfterResolve() >= usedAbility.Ability.GetLifetimeAfterResolve())
+				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
 				{
 					_currentTeam.usedAbilitiesAfterResolve.Remove(element);
 				}
@@ -163,11 +163,11 @@ public partial class TurnManager : Node
 	}
 	
 	
-	public void AddUsedAbility(UsedAbility usedAbility)
+	public void AddUsedAbility(UsedAbility usedAbility, int afterResolveLifetime, int beforeStartLifetime)
 	{
-		_currentTeam.usedAbilitiesBeforeStartTurn.AddLast(usedAbility);
-		_currentTeam.usedAbilitiesAfterResolve.AddLast(usedAbility);
-		_currentTeam.usedAbilitiesEndTurn.AddLast(usedAbility);
+		_currentTeam.usedAbilitiesBeforeStartTurn.AddLast(new UsedAbility(usedAbility, beforeStartLifetime));
+		_currentTeam.usedAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, afterResolveLifetime));
+		_currentTeam.usedAbilitiesEndTurn.AddLast(new UsedAbility(usedAbility));
 	}
 
 }

@@ -3,46 +3,59 @@ using Godot;
 
 public partial class UsedAbility : Resource
 {
-	public BaseAction Ability { get; set; }
-	public ChunkData Chunk { get; set; }
+	public BaseAction ability { get; set; }
+	public ChunkData chunk { get; set; }
+	private int _turnLifetime ;
+	private int _turnsSinceCast = 0;
 	
-	private int _turnsSinceCastAfterResolve = 0;
-	private int _turnsSinceCastBeforeStart = 0;
-
 	public UsedAbility(BaseAction ability, ChunkData chunk)
 	{
-		Ability = ability;
-		Chunk = chunk;
+		this.ability = ability;
+		this.chunk = chunk;
+		_turnLifetime = 1;
+	}
+
+	public UsedAbility(BaseAction ability, ChunkData chunk, int turnLifetime)
+	{
+		this.ability = ability;
+		this.chunk = chunk;
+		_turnLifetime = turnLifetime;
+	}
+
+	public UsedAbility(UsedAbility usedAbility)
+	{
+		ability = usedAbility.ability;
+		chunk = usedAbility.chunk;
+		_turnLifetime = usedAbility._turnLifetime;
+		_turnsSinceCast = usedAbility._turnsSinceCast;
 	}
 	
-	public void IncreaseCastCountAfterResolve()
+	public UsedAbility(UsedAbility usedAbility, int turnLifetime)
 	{
-		_turnsSinceCastAfterResolve++;
+		ability = usedAbility.ability;
+		chunk = usedAbility.chunk;
+		_turnLifetime = turnLifetime;
+		_turnsSinceCast = usedAbility._turnsSinceCast;
 	}
 
-	public void ResetCastCountAfterResolve()
+	public void IncreaseCastCount()
 	{
-		_turnsSinceCastAfterResolve = 0;
+		_turnsSinceCast++;
+	}
+
+	public void ResetCastCount()
+	{
+		_turnsSinceCast = 0;
 	}
 		
-	public int GetCastCountAfterResolve()
+	public int GetCastCount()
 	{
-		return _turnsSinceCastAfterResolve;
+		return _turnsSinceCast;
 	}
-
-	public void IncreaseCastCountBeforeTurn()
+	
+	public int GetTurnLifetime()
 	{
-		_turnsSinceCastBeforeStart++;
-	}
-		
-	public void ResetCastCountBeforeTurn()
-	{
-		_turnsSinceCastBeforeStart = 0;
-	}
-
-	public int GetCastCountBeforeStart()
-	{
-		return _turnsSinceCastBeforeStart;
+		return _turnLifetime;
 	}
 
 }
