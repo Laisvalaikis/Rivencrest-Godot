@@ -531,7 +531,10 @@ public abstract partial class BaseAction: Resource
 			}
 			GD.PushWarning("PlaySound");
 			ClearGrid();
-			_turnManager.AddUsedAbility(new UsedAbility(this, chunk), turnAfterResolveLifetime, turnBeforeStartLifetime);
+			UsedAbility usedAbility = new UsedAbility(this, chunk);
+			_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
+			_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
+			_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);
 		}
 
 		public void UpdateAbilityButton()

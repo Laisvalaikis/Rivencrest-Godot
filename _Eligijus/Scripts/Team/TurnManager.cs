@@ -95,16 +95,7 @@ public partial class TurnManager : Node
 			character.OnAfterResolve();
 			character.OnTurnEnd();
 		}
-		
-		if (_currentTeam.usedAbilitiesEndTurn.Count > 0)
-		{
-			for (LinkedListNode<UsedAbility> element = _currentTeam.usedAbilitiesEndTurn.First; element != null; element = element.Next)
-			{
-				UsedAbility usedAbility = element.Value;
-				usedAbility.ability.OnTurnEnd(usedAbility.chunk);
-				_currentTeam.usedAbilitiesEndTurn.Remove(element);
-			}
-		}
+		ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn);
 	}
 
 	private void ActionsAfterResolve(LinkedList<UsedAbility> abilities)
@@ -146,6 +137,26 @@ public partial class TurnManager : Node
 			}
 		}
 	}
+	
+	private void ActionsEndTurn(LinkedList<UsedAbility> abilities)
+	{
+		if (abilities.Count > 0)
+		{
+			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; element = element.Next)
+			{
+				UsedAbility usedAbility = element.Value;
+				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
+				{
+					usedAbility.ability.OnTurnEnd(usedAbility.chunk);
+					usedAbility.IncreaseCastCount();
+				}
+				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
+				{
+					abilities.Remove(element);
+				}
+			}
+		}
+	}
 
 	public void OnMove(Vector2 position)
 	{
@@ -171,12 +182,19 @@ public partial class TurnManager : Node
 		}
 	}
 	
-	
-	public void AddUsedAbility(UsedAbility usedAbility, int afterResolveLifetime, int beforeStartLifetime)
+	public void AddUsedAbilityBeforeStartTurn(UsedAbility usedAbility, int lifetime)
 	{
-		_currentTeam.usedAbilitiesBeforeStartTurn.AddLast(new UsedAbility(usedAbility, beforeStartLifetime));
-		_currentTeam.usedAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, afterResolveLifetime));
-		_currentTeam.usedAbilitiesEndTurn.AddLast(new UsedAbility(usedAbility));
+		_currentTeam.usedAbilitiesBeforeStartTurn.AddLast(new UsedAbility(usedAbility, lifetime));
+	}
+
+	public void AddUsedAbilityAfterResolve(UsedAbility usedAbility, int lifetime)
+	{
+		_currentTeam.usedAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, lifetime));
+	}
+	
+	public void AddUsedAbilityOnTurnEnd(UsedAbility usedAbility, int lifetime)
+	{
+		_currentTeam.usedAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, lifetime));
 	}
 
 }
