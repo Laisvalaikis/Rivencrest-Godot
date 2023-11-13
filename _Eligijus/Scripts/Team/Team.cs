@@ -5,6 +5,8 @@ public partial class Team : Resource
     [Export]
     public Dictionary<int, Resource> characterPrefabs;
     [Export]
+    public Dictionary<int, SavedCharacterResource> characterResources;
+    [Export]
     public Dictionary<int, Player> characters;
     [Export]
     public Dictionary<int, Vector2> coordinates;

@@ -55,8 +55,13 @@ public partial class CharacterTeams : Node
 				if (allCharacterList[0].characterPrefabs == null)
 				{
 					allCharacterList[0].characterPrefabs = new Dictionary<int, Resource>();
+					
 				}
-				
+				if (allCharacterList[0].characterResources == null)
+				{
+					allCharacterList[0].characterResources = new Dictionary<int, SavedCharacterResource>();
+				}
+
 			}
 			
 		}
@@ -71,15 +76,19 @@ public partial class CharacterTeams : Node
 			{
 				allCharacterList.Add(new Team());
 				allCharacterList[0].characterPrefabs = new Dictionary<int, Resource>();
+				allCharacterList[0].characterResources = new Dictionary<int, SavedCharacterResource>();
 			}
 
 			allCharacterList[0].characterPrefabs.Clear();
+			allCharacterList[0].characterResources.Clear();
 		}
 
+		// allCharacterList[0].characterResources = new Dictionary<int, SavableCharacterResource>();
 		int index = 0;
 		foreach (var t in _data.Characters)
 		{
 			allCharacterList[0].characterPrefabs.Add(index, t.prefab);
+			allCharacterList[0].characterResources.Add(index, t);
 			index++;
 		}
 		
@@ -130,10 +139,12 @@ public partial class CharacterTeams : Node
 			deadCharacters.Teams[i].characters = new Dictionary<int, Player>();
 			deadCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
 			deadCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
+			deadCharacters.Teams[i].characterResources = new Dictionary<int, SavedCharacterResource>();
 			currentCharacters.Teams.Add(i, new Team());
 			currentCharacters.Teams[i].characters = new Dictionary<int, Player>();
 			currentCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
 			currentCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
+			currentCharacters.Teams[i].characterResources = new Dictionary<int, SavedCharacterResource>();
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
 		_turnManager.SetTeamList(currentCharacters);
@@ -159,10 +170,18 @@ public partial class CharacterTeams : Node
 				currentCharacters.Teams[teamIndex].characters.Add(i, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characterPrefabs.Add(i, allCharacterList[teamIndex].characterPrefabs[i]);
 				currentCharacters.Teams[teamIndex].coordinates.Add(i, coordinate.Value);
+				if (allCharacterList[teamIndex].characterResources != null && allCharacterList[teamIndex].characterResources.Count != 0)
+				{
+					currentCharacters.Teams[teamIndex].characterResources
+						.Add(i, allCharacterList[teamIndex].characterResources[i]);
+				}
+
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
 				currentCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
 				currentCharacters.Teams[teamIndex].teamColor = allCharacterList[teamIndex].teamColor;
 				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
+				deadCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
+				deadCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
 				if (allCharacterList[teamIndex].isEnemies)
 				{
 					currentCharacters.enemyTeamCount++;
@@ -202,10 +221,14 @@ public partial class CharacterTeams : Node
 		Resource playerPrefab = currentCharacters.Teams[teamIndex].characterPrefabs[characterIndex];
 		deadCharacters.Teams[teamIndex].characterPrefabs.Add(index, playerPrefab);
 		deadCharacters.Teams[teamIndex].coordinates.Add(index, chunkData.GetPosition());
-		
+		if (currentCharacters.Teams[teamIndex].characterResources.ContainsKey(characterIndex))
+		{
+			deadCharacters.Teams[teamIndex].characterResources.Add(index, currentCharacters.Teams[teamIndex].characterResources[characterIndex]);
+		}
 		currentCharacters.Teams[teamIndex].characters.Remove(characterIndex);
 		currentCharacters.Teams[teamIndex].coordinates.Remove(characterIndex);
 		currentCharacters.Teams[teamIndex].characterPrefabs.Remove(characterIndex);
+		currentCharacters.Teams[teamIndex].characterResources.Remove(characterIndex);
 		if (currentCharacters.Teams[teamIndex].characters.Count <= 0)
 		{
 			Team diedTeam = currentCharacters.Teams[teamIndex];
@@ -226,13 +249,13 @@ public partial class CharacterTeams : Node
 			{
 				foreach (int key in currentCharacters.Teams.Keys)
 				{
-					gameEnd.Win(currentCharacters.Teams[key].teamName, currentCharacters.Teams[key].teamColor);
+					gameEnd.Win(deadCharacters, currentCharacters.Teams[key].teamName, currentCharacters.Teams[key].teamColor);
 					break;
 				}
 			}
 			else
 			{
-				gameEnd.Death();
+				gameEnd.Death(deadCharacters);
 			}
 		}
 		

@@ -17,6 +17,8 @@ public partial class TownDataResource: Resource
 	public bool newGame;
 	[Export]
 	public Array<SavableCharacterResource> characters;
+	[Export]
+	public Array<SavableCharacterResource> deadCharacters;
 	// public string townHall;
 	[Export]
 	public TownHallDataResource townHall;
@@ -64,6 +66,7 @@ public partial class TownDataResource: Resource
 		day = data.day;
 		wasLastMissionSuccessful = data.wasLastMissionSuccessful;
 		characters = new Array<SavableCharacterResource>(data.characters);
+		deadCharacters = new Array<SavableCharacterResource>(data.deadCharacters);
 		charactersOnLastMission = new Array<int>(data.charactersOnLastMission);
 		wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
 		newGame = data.newGame;
@@ -92,12 +95,21 @@ public partial class TownDataResource: Resource
 		day = data.day;
 		wasLastMissionSuccessful = data.wasLastMissionSuccessful;
 		characters = new Array<SavableCharacterResource>();
+		deadCharacters = new Array<SavableCharacterResource>();
 		if (data.characters != null)
 		{
 			for (int i = 0; i < data.characters.Count; i++)
 			{
 				int characterIndex = data.characters[i].characterIndex;
 				characters.Add(new SavableCharacterResource(data.characters[i], Data.Instance.AllAvailableCharacters[characterIndex].playerInformation));
+			}
+		}
+		if (data.deadCharacters != null)
+		{
+			for (int i = 0; i < data.deadCharacters.Count; i++)
+			{
+				int characterIndex = data.deadCharacters[i].characterIndex;
+				deadCharacters.Add(new SavableCharacterResource(data.deadCharacters[i], Data.Instance.AllAvailableCharacters[characterIndex].playerInformation));
 			}
 		}
 

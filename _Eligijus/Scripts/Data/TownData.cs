@@ -15,6 +15,7 @@ using Godot;
 		public int day { get; set; }
 		public bool newGame { get; set; }
 		public List<SavableCharacter> characters { get; set; }
+		public List<SavableCharacter> deadCharacters { get; set; }
 		// public string townHall;
 		public TownHallData townHall { get; set; }
 		public List<SavableCharacter> rcCharacters { get; set; }
@@ -35,7 +36,7 @@ using Godot;
 
 		public TownData() { }
 
-		public TownData(int difficultyLevel, int townGold, int day, List<SavedCharacter> characters, List<int> charactersOnLastMission,
+		public TownData(int difficultyLevel, int townGold, int day, List<SavedCharacter> characters, List<SavedCharacter> deadCharacters, List<int> charactersOnLastMission,
 			bool wasLastMissionSuccessful, bool newGame, string selectedMission, TownHallData townHall,
 			List<SavedCharacter> rcCharacters, List<int> enemies, bool allowEnemySelection, bool allowDuplicates, string teamColor,
 			string teamName, Encounter selectedEncounter, List<Encounter> pastEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
@@ -46,6 +47,7 @@ using Godot;
 			this.day = day;
 			this.wasLastMissionSuccessful = wasLastMissionSuccessful;
 			this.characters = new List<SavableCharacter>(characters);
+			this.deadCharacters = new List<SavableCharacter>(deadCharacters);
 			this.charactersOnLastMission = new List<int>(charactersOnLastMission);
 			this.wereCharactersOnAMission = charactersOnLastMission.Count > 0;
 			this.newGame = newGame;
@@ -76,9 +78,14 @@ using Godot;
 			day = data.day;
 			wasLastMissionSuccessful = data.wasLastMissionSuccessful;
 			characters = new List<SavableCharacter>();
+			deadCharacters = new List<SavableCharacter>();
 			for (int i = 0; i < data.characters.Count; i++)
 			{
 				characters.Add(new SavableCharacter(data.characters[i], null));
+			}
+			for (int i = 0; i < data.deadCharacters.Count; i++)
+			{
+				deadCharacters.Add(new SavableCharacter(data.deadCharacters[i], null));
 			}
 			charactersOnLastMission = new List<int>(data.charactersOnLastMission);
 			wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
@@ -124,6 +131,7 @@ using Godot;
 				townGold = 3500,
 				day = 1,
 				characters = { },
+				deadCharacters = { },
 				charactersOnLastMission = { },
 				wasLastMissionSuccessful = false,
 				wereCharactersOnAMission = false,
