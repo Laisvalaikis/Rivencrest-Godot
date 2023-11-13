@@ -3,8 +3,7 @@ using Godot;
 
 public partial class RainOfArrows : BaseAction
 {
-    private List<ChunkData> _cometTiles;
-
+    private List<ChunkData> _cometTiles=new List<ChunkData>();
     public RainOfArrows()
     {
         
@@ -21,9 +20,9 @@ public partial class RainOfArrows : BaseAction
     
     public override void OnTurnStart(ChunkData chunkData)
     {
-        if (_cometTiles.Count > 0)
+        base.OnTurnStart(chunkData);
+        if (_cometTiles.Count!=0)
         {
-            base.OnTurnStart(chunkData);
             foreach (ChunkData tile in _cometTiles)
             {
                 DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
@@ -36,7 +35,6 @@ public partial class RainOfArrows : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        _cometTiles.Clear();
         List<ChunkData> damageChunks = CreateDamageTileList(chunk);
         foreach (ChunkData chunkData in damageChunks)
         {
