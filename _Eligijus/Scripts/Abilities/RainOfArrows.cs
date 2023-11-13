@@ -3,7 +3,7 @@ using Godot;
 
 public partial class RainOfArrows : BaseAction
 {
-    private List<ChunkData> _cometTiles=new List<ChunkData>();
+    private List<ChunkData> _cometTiles = new List<ChunkData>();
     public RainOfArrows()
     {
         
