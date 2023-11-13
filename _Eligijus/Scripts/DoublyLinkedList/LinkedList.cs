@@ -52,11 +52,7 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
         }
         else
         {
-            if (First.Next == null)
-            {
-                First.Next = node;
-                
-            }
+            Last.Next = node;
             node.Previous = Last;
             Last = node;
         }
@@ -79,6 +75,22 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
         {
             next.Previous = prev;
         }
+
+        if (next is null)
+        {
+            Last = prev;
+            if (prev is not null && prev.Previous is null)
+            {
+                First = prev;
+            }
+            else if(prev is null)
+            {
+                First = prev;
+            }
+        }
+
+        
+
         Count--;
         
     }
