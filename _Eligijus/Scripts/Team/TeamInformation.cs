@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 public partial class TeamInformation : Control
@@ -20,18 +20,18 @@ public partial class TeamInformation : Control
 	
 	public void ModifyList()
 	{
-		Array<Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
+		Dictionary<int, Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
 		bool teamIsAI = _characterTeams.TeamIsAI(teamIndex);
+		int[] keyArray = characterOnBoardList.Keys.ToArray();
 		if (characterCount != characterOnBoardList.Count || changedTeams)
 		{
-
 			for (int i = 0; i < pvpCharacterSelects.Count; i++)
 			{
 				if (i < characterOnBoardList.Count)
 				{
-					GD.Print(pvpCharacterSelects[i].Name);
-					pvpCharacterSelects[i].SetPortraitCharacter(characterOnBoardList[i],
-						characterOnBoardList[i].playerInformation);
+					Player character = characterOnBoardList[keyArray[i]];
+					pvpCharacterSelects[i].SetPortraitCharacter(character,
+						character.playerInformation);
 					pvpCharacterSelects[i].CreateCharatersPortrait();
 					pvpCharacterSelects[i].SetSelectAction(selectAction);
 					pvpCharacterSelects[i].SetGameTilemap(gameTileMap);
@@ -42,7 +42,6 @@ public partial class TeamInformation : Control
 					pvpCharacterSelects[i].SetPortraitCharacter(null, null);
 					pvpCharacterSelects[i].DisableCharacterPortrait();
 				}
-
 			}
 
 			if (characterOnBoardList.Count != 0)
@@ -68,7 +67,7 @@ public partial class TeamInformation : Control
 
 	public void SelectCharacterPortrait(Node2D character, bool select = true)
 	{
-		Array<Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
+		Dictionary<int, Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
 		for (int i = 0; i < characterOnBoardList.Count; i++)
 		{
 			if (pvpCharacterSelects[i].GetCharacter() == character)

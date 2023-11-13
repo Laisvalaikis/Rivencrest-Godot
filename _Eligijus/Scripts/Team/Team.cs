@@ -3,9 +3,9 @@ using Godot.Collections;
 public partial class Team : Resource
 {
     [Export]
-    public Array<Resource> characterPrefabs;
+    public Dictionary<int, Resource> characterPrefabs;
     [Export]
-    public Array<Player> characters;
+    public Dictionary<int, Player> characters;
     [Export]
     public Array<Vector2> coordinates;
     [Export]

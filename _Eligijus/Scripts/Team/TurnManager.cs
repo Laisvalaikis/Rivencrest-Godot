@@ -32,7 +32,7 @@ public partial class TurnManager : Node
 
 	public void SetCurrentCharacter(Player character)
 	{
-		if (_currentTeam.characters.Contains(character))
+		if (_currentTeam.characters.Values.Contains(character))
 		{
 			_currentPlayer = character;
 		}
@@ -51,7 +51,7 @@ public partial class TurnManager : Node
 	
 	public void SetCurrentEnemy(Player character)
 	{
-		if (!_currentTeam.characters.Contains(character))
+		if (!_currentTeam.characters.Values.Contains(character))
 		{
 			_currentPlayer = null;
 			_currentEnemy = character;
@@ -97,7 +97,7 @@ public partial class TurnManager : Node
 	{
 		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
 		
-		foreach (Player character in _currentTeam.characters)
+		foreach (Player character in _currentTeam.characters.Values)
 		{
 			character.OnTurnStart();
 		}
@@ -107,7 +107,7 @@ public partial class TurnManager : Node
 	{
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
 
-		foreach (Player character in _currentTeam.characters)
+		foreach (Player character in _currentTeam.characters.Values)
 		{
 			character.OnAfterResolve();
 			character.OnTurnEnd();

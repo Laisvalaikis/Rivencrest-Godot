@@ -52,7 +52,7 @@ public partial class CharacterTeams : Node
 			{
 				if (allCharacterList[0].characterPrefabs == null)
 				{
-					allCharacterList[0].characterPrefabs = new Array<Resource>();
+					allCharacterList[0].characterPrefabs = new Dictionary<int, Resource>();
 				}
 				
 			}
@@ -68,15 +68,17 @@ public partial class CharacterTeams : Node
 			else if (allCharacterList != null && allCharacterList.Count == 0)
 			{
 				allCharacterList.Add(new Team());
-				allCharacterList[0].characterPrefabs = new Array<Resource>();
+				allCharacterList[0].characterPrefabs = new Dictionary<int, Resource>();
 			}
 
 			allCharacterList[0].characterPrefabs.Clear();
 		}
-		
+
+		int index = 0;
 		foreach (var t in _data.Characters)
 		{
-			allCharacterList[0].characterPrefabs.Add(t.prefab);
+			allCharacterList[0].characterPrefabs.Add(index, t.prefab);
+			index++;
 		}
 		
 		allCharacterList[0].SetTeamIsUsed(true);
@@ -95,7 +97,7 @@ public partial class CharacterTeams : Node
 			for (int i = 0; i < enemyData.enemyCount; i++)
 			{
 				int index = _random.Next(0, enemyData.enemies.Count);
-				enemyTeam.characterPrefabs.Add(enemyData.enemies[index]);
+				enemyTeam.characterPrefabs.Add(i, enemyData.enemies[index]);
 				enemyTeam.SetTeamIsUsed(true);
 			}
 		}
@@ -120,12 +122,12 @@ public partial class CharacterTeams : Node
 		for (int i = 0; i < allCharacterList.Count; i++)
 		{ 
 			deadCharacters.Teams.Add(new Team());
-			deadCharacters.Teams[i].characters = new Array<Player>();
-			deadCharacters.Teams[i].characterPrefabs = new Array<Resource>();
+			deadCharacters.Teams[i].characters = new Dictionary<int, Player>();
+			deadCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
 			deadCharacters.Teams[i].coordinates = new Array<Vector2>();
 			currentCharacters.Teams.Add(new Team());
-			currentCharacters.Teams[i].characters = new Array<Player>();
-			currentCharacters.Teams[i].characterPrefabs = new Array<Resource>();
+			currentCharacters.Teams[i].characters = new Dictionary<int, Player>();
+			currentCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
 			currentCharacters.Teams[i].coordinates = new Array<Vector2>();
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
@@ -149,8 +151,8 @@ public partial class CharacterTeams : Node
 				spawnedCharacter.SetPlayerTeam(this);
 				spawnedCharacter.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
-				currentCharacters.Teams[teamIndex].characters.Add(spawnedCharacter);
-				currentCharacters.Teams[teamIndex].characterPrefabs.Add(allCharacterList[teamIndex].characterPrefabs[i]);
+				currentCharacters.Teams[teamIndex].characters.Add(i, spawnedCharacter);
+				currentCharacters.Teams[teamIndex].characterPrefabs.Add(i, allCharacterList[teamIndex].characterPrefabs[i]);
 				currentCharacters.Teams[teamIndex].coordinates.Add(coordinate);
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
 				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
@@ -167,29 +169,31 @@ public partial class CharacterTeams : Node
 		return currentCharacters.Teams[teamIndex].isTeamAI;
 	}
 
-	public Array<Player> AliveCharacterList(int teamIndex)
+	public Dictionary<int, Player> AliveCharacterList(int teamIndex)
 	{
 		return currentCharacters.Teams[teamIndex].characters;
 	}
 
 	public void AddAliveCharacter(int teamIndex, Player character, Resource characterPrefab)
 	{
-		currentCharacters.Teams[teamIndex].characters.Add(character);
-		currentCharacters.Teams[teamIndex].characterPrefabs.Add(characterPrefab);
-		character.playerIndex = currentCharacters.Teams[teamIndex].characters.Count - 1;
+		int index = currentCharacters.Teams[teamIndex].characters.Count - 1;
+		currentCharacters.Teams[teamIndex].characters.Add(index, character);
+		character.playerIndex = index;
+		currentCharacters.Teams[teamIndex].characterPrefabs.Add(index, characterPrefab);
 		character.SetPlayerTeam(teamIndex);
 	}
 
 	public void CharacterDeath(ChunkData chunkData, int teamIndex, int characterIndex, Player character)
 	{
-		deadCharacters.Teams[teamIndex].characters.Add(character);
+		int index = deadCharacters.Teams[teamIndex].characterPrefabs.Count;
+		deadCharacters.Teams[teamIndex].characters.Add(index, character);
 		Resource playerPrefab = currentCharacters.Teams[teamIndex].characterPrefabs[characterIndex];
-		deadCharacters.Teams[teamIndex].characterPrefabs.Add(playerPrefab);
+		deadCharacters.Teams[teamIndex].characterPrefabs.Add(index, playerPrefab);
 		deadCharacters.Teams[teamIndex].coordinates.Add(chunkData.GetPosition());
 		
-		currentCharacters.Teams[teamIndex].characters.RemoveAt(characterIndex);
+		currentCharacters.Teams[teamIndex].characters.Remove(characterIndex);
 		currentCharacters.Teams[teamIndex].coordinates.RemoveAt(characterIndex);
-		currentCharacters.Teams[teamIndex].characterPrefabs.RemoveAt(characterIndex);
+		currentCharacters.Teams[teamIndex].characterPrefabs.Remove(characterIndex);
 		
 		chunkData.SetCurrentCharacter(null);
 		chunkData.GetTileHighlight().DisableHighlight();
