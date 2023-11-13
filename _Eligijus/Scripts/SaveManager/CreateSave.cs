@@ -7,13 +7,13 @@ public partial class CreateSave : Node
 	[Export]
 	private SaveManager _saveManager;
 	private int _difficulty;
-	private string _color;
+	private Color _color;
 	private string _teamName;
 
 	public override void _Ready()
 	{
 		_difficulty = -1;
-		_color = "";
+		_color = Colors.Black;
 		if (buttonForCreation != null) buttonForCreation.Disabled = true;
 	}
 
@@ -27,7 +27,7 @@ public partial class CreateSave : Node
 
 		text = text.ToUpper();
 		_teamName = text;
-		if (text != "" && _difficulty != -1 && _color != "")
+		if (text != "" && _difficulty != -1 && _color != Colors.Black)
 			buttonForCreation.Disabled = false;
 		else
 			buttonForCreation.Disabled = true;
@@ -36,16 +36,16 @@ public partial class CreateSave : Node
 	public void SetDifficulty(int difficulty)
 	{
 		_difficulty = difficulty;
-		if (_teamName != "" && difficulty != -1 && _color != "")
+		if (_teamName != "" && difficulty != -1 && _color != Colors.Black)
 			buttonForCreation.Disabled = false;
 		else
 			buttonForCreation.Disabled = true;
 	}
 
-	public void SetColor(string color)
+	public void SetColor(Color color)
 	{
 		_color = color;
-		if (_teamName != "" && _difficulty != -1 && color != "")
+		if (_teamName != "" && _difficulty != -1 && color != Colors.Black)
 			buttonForCreation.Disabled = false;
 		else
 			buttonForCreation.Disabled = true;
@@ -54,7 +54,7 @@ public partial class CreateSave : Node
 	public void ResetData()
 	{
 		_difficulty = -1;
-		_color = "";
+		_color = Colors.Black;
 		buttonForCreation.Disabled = false;
 	}
 

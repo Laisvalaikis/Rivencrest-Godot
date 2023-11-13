@@ -34,10 +34,10 @@ public partial class SaveManager: Node
 		SaveSystem.ClearGameData();
 	}
 
-	public void CreateSave(string color, int difficulty, string teamName)
+	public void CreateSave(Color color, int difficulty, string teamName)
 	{
 		// SaveSystem.SaveTownData(TownData.NewGameData(color, difficulty, teamName));
-		SaveSystem.SaveTownDataThread(TownData.NewGameData(color, difficulty, teamName));
+		SaveSystem.SaveTownDataThread(TownData.NewGameData(color.ToString(), difficulty, teamName));
 	}
 }
 

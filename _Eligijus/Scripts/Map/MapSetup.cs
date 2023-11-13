@@ -44,7 +44,7 @@ public partial class MapSetup : Node
 				_characterTeams.allCharacterList[i].coordinates.Clear();
 				for (int j = 0; j < currentMapData.mapCoordinates[i].coordinates.Count; j++)
 				{
-					_characterTeams.allCharacterList[i].coordinates.Add(currentMapData.mapCoordinates[i].coordinates[j]);
+					_characterTeams.allCharacterList[i].coordinates.Add(j, currentMapData.mapCoordinates[i].coordinates[j]);
 				}
 			}
 			

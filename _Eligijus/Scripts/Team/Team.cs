@@ -7,11 +7,15 @@ public partial class Team : Resource
     [Export]
     public Dictionary<int, Player> characters;
     [Export]
-    public Array<Vector2> coordinates;
+    public Dictionary<int, Vector2> coordinates;
     [Export]
     public string teamName;
     [Export]
     public bool isTeamAI;
+    [Export]
+    public bool isEnemies;
+    [Export] 
+    public Color teamColor;
     [Export] 
     private bool isTeamUsed = false;
     public int undoCount;

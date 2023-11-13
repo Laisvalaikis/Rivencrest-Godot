@@ -8,6 +8,8 @@ public partial class CharacterTeams : Node
 	TurnManager _turnManager;
 	[Export]
 	public TeamInformation portraitTeamBox;
+	[Export] 
+	private GameEnd gameEnd;
 	[Export]
 	public Array<Team> allCharacterList;
 	[Export]
@@ -83,6 +85,7 @@ public partial class CharacterTeams : Node
 		
 		allCharacterList[0].SetTeamIsUsed(true);
 		allCharacterList[0].teamName = _data.townData.teamName;
+		allCharacterList[0].teamColor = Color.FromString(_data.townData.teamColor, Colors.Blue);
 		
 		currentCharacters = new TeamsList { Teams = new Array<Team>() };
 		deadCharacters = new TeamsList { Teams = new Array<Team>() };
@@ -101,6 +104,8 @@ public partial class CharacterTeams : Node
 				enemyTeam.SetTeamIsUsed(true);
 			}
 		}
+		enemyTeam.teamName = "Enemies";
+		enemyTeam.isEnemies = true;
 		// _data.allMapDatas[MapName];
 	}
 
@@ -124,17 +129,17 @@ public partial class CharacterTeams : Node
 			deadCharacters.Teams.Add(new Team());
 			deadCharacters.Teams[i].characters = new Dictionary<int, Player>();
 			deadCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
-			deadCharacters.Teams[i].coordinates = new Array<Vector2>();
+			deadCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
 			currentCharacters.Teams.Add(new Team());
 			currentCharacters.Teams[i].characters = new Dictionary<int, Player>();
 			currentCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
-			currentCharacters.Teams[i].coordinates = new Array<Vector2>();
+			currentCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
 		_turnManager.SetTeamList(currentCharacters);
 		_turnManager.SetCurrentTeam(0);
 	}
-	private void SpawnCharacters(int teamIndex, Array<Vector2> coordinates)
+	private void SpawnCharacters(int teamIndex, Dictionary<int, Vector2> coordinates)
 	{
 		// colorManager.SetPortraitBoxSprites(portraitTeamBox.gameObject, allCharacterList.Teams[teamIndex].teamName);// priskiria spalvas mygtukams ir paciam portraitboxui
 		int i = 0;
@@ -145,7 +150,7 @@ public partial class CharacterTeams : Node
 				PackedScene spawnResource = (PackedScene)allCharacterList[teamIndex].characterPrefabs[i];
 				Player spawnedCharacter = spawnResource.Instantiate<Player>();
 				GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-				Vector2 position = new Vector2(coordinate.X, coordinate.Y);
+				Vector2 position = new Vector2(coordinate.Value.X, coordinate.Value.Y);
 				spawnedCharacter.GlobalPosition = position;
 				spawnedCharacter.playerIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
@@ -153,8 +158,10 @@ public partial class CharacterTeams : Node
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characters.Add(i, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characterPrefabs.Add(i, allCharacterList[teamIndex].characterPrefabs[i]);
-				currentCharacters.Teams[teamIndex].coordinates.Add(coordinate);
+				currentCharacters.Teams[teamIndex].coordinates.Add(i, coordinate.Value);
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
+				currentCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
+				currentCharacters.Teams[teamIndex].teamColor = allCharacterList[teamIndex].teamColor;
 				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
 				spawnedCharacter.actionManager.AddTurnManager(_turnManager);
 			}
@@ -189,17 +196,39 @@ public partial class CharacterTeams : Node
 		deadCharacters.Teams[teamIndex].characters.Add(index, character);
 		Resource playerPrefab = currentCharacters.Teams[teamIndex].characterPrefabs[characterIndex];
 		deadCharacters.Teams[teamIndex].characterPrefabs.Add(index, playerPrefab);
-		deadCharacters.Teams[teamIndex].coordinates.Add(chunkData.GetPosition());
+		deadCharacters.Teams[teamIndex].coordinates.Add(index, chunkData.GetPosition());
 		
 		currentCharacters.Teams[teamIndex].characters.Remove(characterIndex);
-		currentCharacters.Teams[teamIndex].coordinates.RemoveAt(characterIndex);
+		currentCharacters.Teams[teamIndex].coordinates.Remove(characterIndex);
 		currentCharacters.Teams[teamIndex].characterPrefabs.Remove(characterIndex);
-		
+		if (currentCharacters.Teams[teamIndex].characters.Count <= 0)
+		{
+			Team diedTeam = currentCharacters.Teams[teamIndex];
+			currentCharacters.Teams.RemoveAt(teamIndex);
+			TeamDied(diedTeam);
+		}
+
 		chunkData.SetCurrentCharacter(null);
 		chunkData.GetTileHighlight().DisableHighlight();
 		portraitTeamBox.ModifyList();
 	}
-	
+
+	public void TeamDied(Team team)
+	{
+		if (currentCharacters.Teams.Count == 1)
+		{
+			if (team.isEnemies)
+			{
+				gameEnd.Win(currentCharacters.Teams[0].teamName, currentCharacters.Teams[0].teamColor);
+			}
+			else
+			{
+				gameEnd.Death();
+			}
+		}
+		
+	}
+
 }
 
 

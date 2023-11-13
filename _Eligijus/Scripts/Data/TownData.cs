@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System;
+using Godot;
 
 
-	[Serializable]
+[Serializable]
 	public class TownData
 	{
 		//Slot info
