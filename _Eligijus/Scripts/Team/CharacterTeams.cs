@@ -87,8 +87,8 @@ public partial class CharacterTeams : Node
 		allCharacterList[0].teamName = _data.townData.teamName;
 		allCharacterList[0].teamColor = Color.FromString(_data.townData.teamColor, Colors.Blue);
 		
-		currentCharacters = new TeamsList { Teams = new Array<Team>() };
-		deadCharacters = new TeamsList { Teams = new Array<Team>() };
+		currentCharacters = new TeamsList { Teams = new Dictionary<int, Team>()};
+		deadCharacters = new TeamsList { Teams = new Dictionary<int, Team>() };
 	}
 
 	private void GenerateEnemies()
@@ -126,11 +126,11 @@ public partial class CharacterTeams : Node
 	{
 		for (int i = 0; i < allCharacterList.Count; i++)
 		{ 
-			deadCharacters.Teams.Add(new Team());
+			deadCharacters.Teams.Add(i, new Team());
 			deadCharacters.Teams[i].characters = new Dictionary<int, Player>();
 			deadCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
 			deadCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
-			currentCharacters.Teams.Add(new Team());
+			currentCharacters.Teams.Add(i, new Team());
 			currentCharacters.Teams[i].characters = new Dictionary<int, Player>();
 			currentCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
 			currentCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
@@ -204,7 +204,7 @@ public partial class CharacterTeams : Node
 		if (currentCharacters.Teams[teamIndex].characters.Count <= 0)
 		{
 			Team diedTeam = currentCharacters.Teams[teamIndex];
-			currentCharacters.Teams.RemoveAt(teamIndex);
+			currentCharacters.Teams.Remove(teamIndex);
 			TeamDied(diedTeam);
 		}
 
@@ -219,7 +219,11 @@ public partial class CharacterTeams : Node
 		{
 			if (team.isEnemies)
 			{
-				gameEnd.Win(currentCharacters.Teams[0].teamName, currentCharacters.Teams[0].teamColor);
+				foreach (int key in currentCharacters.Teams.Keys)
+				{
+					gameEnd.Win(currentCharacters.Teams[key].teamName, currentCharacters.Teams[key].teamColor);
+					break;
+				}
 			}
 			else
 			{
