@@ -6,7 +6,7 @@
 script = ExtResource("1_j76vu")
 laserGrid = false
 turnBeforeStartLifetime = 1
-turnAfterResolveLifetime = 2
+turnAfterResolveLifetime = 1
 abilityPoints = 1
 attackRange = 2
 minAttackDamage = 4
