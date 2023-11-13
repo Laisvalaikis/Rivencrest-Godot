@@ -3,8 +3,8 @@ using Godot;
 
 public partial class UsedAbility : Resource
 {
-	public BaseAction ability { get; set; }
-	public ChunkData chunk { get; set; }
+	public BaseAction ability { get; }
+	public ChunkData chunk { get; }
 	private int _turnLifetime ;
 	private int _turnsSinceCast = 0;
 	
@@ -58,4 +58,18 @@ public partial class UsedAbility : Resource
 		return _turnLifetime;
 	}
 
+	public override bool Equals(object obj)
+	{
+		if (obj is not null)
+		{
+			UsedAbility usedAbility = (UsedAbility)obj;
+			return ability.Equals(usedAbility.ability);
+		}
+		return false;
+	}
+
+	public override int GetHashCode()
+	{
+		return ability.GetHashCode();
+	}
 }

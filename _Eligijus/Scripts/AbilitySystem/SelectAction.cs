@@ -71,6 +71,7 @@ public partial class SelectAction : Control
 			allAbilityButtons[buttonIndex].AbilityInformationFirstSelect();
 		}
 
+		GD.PushError("Need to Optimize method, because it starts every time player was selected even if player is same");
 		for (int i = 0; i < _playerBaseAbilities.Count; i++)
 		{
 			if (_playerBaseAbilities[i].enabled)

@@ -59,6 +59,34 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
         Count++;
     }
     
+    public void AddLast(LinkedListNode<T> node)
+    {
+        if (First is null)
+        {
+            First = node;
+            Last = node;
+        }
+        else
+        {
+            Last.Next = node;
+            node.Previous = Last;
+            Last = node;
+        }
+        Count++;
+    }
+
+    public bool Contains(T value)
+    {
+        for (LinkedListNode<T> element = First; element != null; element = element.Next)
+        {
+            if (element.Value.Equals(value))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void Remove(LinkedListNode<T> valueToRemove)
     {
         if (valueToRemove is null)
@@ -88,14 +116,28 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
                 First = prev;
             }
         }
-
-        
-
         Count--;
         
     }
+
+    public void MoveToEnd(LinkedListNode<T> node)
+    {
+        Remove(node);
+        AddLast(node);
+    }
     
-    
+    public LinkedListNode<T>? Find(T valueToFind)
+    {
+        for (LinkedListNode<T> element = First; element != null; element = element.Next)
+        {
+            if (element.Value.Equals(valueToFind))
+            {
+                return element;
+            }
+        }
+        return null;
+    }
+
     public LinkedListNode<T>? Find(LinkedListNode<T> valueToFind)
     {
         var aux = First;

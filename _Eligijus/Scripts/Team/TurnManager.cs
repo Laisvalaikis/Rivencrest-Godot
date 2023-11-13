@@ -194,7 +194,16 @@ public partial class TurnManager : Node
 	
 	public void AddUsedAbilityOnTurnEnd(UsedAbility usedAbility, int lifetime)
 	{
-		_currentTeam.usedAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, lifetime));
+		LinkedListNode<UsedAbility> findElement =
+			_currentTeam.usedAbilitiesEndTurn.Find(new UsedAbility(usedAbility, lifetime));
+		if (findElement == null)
+		{
+			_currentTeam.usedAbilitiesEndTurn.AddLast(new UsedAbility(usedAbility, lifetime));
+		}
+		else
+		{
+			_currentTeam.usedAbilitiesEndTurn.MoveToEnd(findElement);
+		}
 	}
 
 }
