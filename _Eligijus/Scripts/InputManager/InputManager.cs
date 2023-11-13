@@ -37,6 +37,7 @@ public partial class InputManager: Node2D
 			TrackMousePosition();
 			OnMouseMove();
 		}
+		
 	}
 
 	public void OnLeftMouseClick()

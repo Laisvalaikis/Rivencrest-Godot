@@ -163,6 +163,11 @@ public partial class CharacterTeams : Node
 				currentCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
 				currentCharacters.Teams[teamIndex].teamColor = allCharacterList[teamIndex].teamColor;
 				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
+				if (allCharacterList[teamIndex].isEnemies)
+				{
+					currentCharacters.enemyTeamCount++;
+				}
+
 				spawnedCharacter.actionManager.AddTurnManager(_turnManager);
 			}
 			i++;
