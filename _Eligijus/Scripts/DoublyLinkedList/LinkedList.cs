@@ -151,5 +151,11 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
         }
         return default;
     }
-    
+
+    public void Clear()
+    {
+        First = null;
+        Last = null;
+    }
+
 }

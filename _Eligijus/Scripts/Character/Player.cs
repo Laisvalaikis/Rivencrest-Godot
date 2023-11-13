@@ -1,5 +1,4 @@
 using Godot;
-using System.Collections.Generic;
 
 public partial class Player : Node2D
 {
@@ -9,7 +8,7 @@ public partial class Player : Node2D
 	[Export] public ActionManager actionManager;
 	private int _currentCharacterTeam = -1;
 	private CharacterTeams team;
-	protected List<Poison> _poisons;
+	protected LinkedList<Poison> _poisons;
 	protected bool weakSpot = false;
 	private int movementPoints=3;
 
@@ -56,10 +55,10 @@ public partial class Player : Node2D
 	{
 		if (_poisons == null)
 		{
-			_poisons = new List<Poison>();
+			_poisons = new LinkedList<Poison>();
 		}
 
-		_poisons.Add(poison);
+		_poisons.AddLast(poison);
 	}
 	
 	public void SetPlayerTeam(int currentCharacterTeam)
@@ -86,7 +85,7 @@ public partial class Player : Node2D
 	{
 		if (_poisons == null)
 		{
-			_poisons = new List<Poison>();
+			_poisons = new LinkedList<Poison>();
 		}
 		_poisons.Clear();
 	}
@@ -118,7 +117,7 @@ public partial class Player : Node2D
 	{
 		if (_poisons == null)
 		{
-			_poisons = new List<Poison>();
+			_poisons = new LinkedList<Poison>();
 		}
 		return _poisons.Count;
 	}
@@ -137,15 +136,21 @@ public partial class Player : Node2D
 	{
 		if (_poisons == null)
 		{
-			_poisons = new List<Poison>();
+			_poisons = new LinkedList<Poison>();
 		}
-		foreach (Poison poison in _poisons)
+		
+		for (LinkedListNode<Poison> element = _poisons.First; element != null; element = element.Next)
 		{
+			Poison poison = element.Value;
 			if (poison.poisonValue > 0 && poison.chunk.GetCurrentPlayer().playerInformation.GetHealth() > 0)
 			{
 				playerInformation.DealDamage(poison.poisonValue, false, poison.Poisoner);
+				poison.turnsLeft--;
 			}
-			poison.turnsLeft--;
+			if(poison.turnsLeft == 0)
+			{
+				_poisons.Remove(element);
+			}
 		}
 	}
 
@@ -164,11 +169,11 @@ public partial class Player : Node2D
 		weakSpot = true;
 	}
 
-	public List<Poison> GetPoisons()
+	public LinkedList<Poison> GetPoisons()
 	{
 		if (_poisons == null)
 		{
-			_poisons = new List<Poison>();
+			_poisons = new LinkedList<Poison>();
 		}
 		return _poisons;
 	}
@@ -178,10 +183,11 @@ public partial class Player : Node2D
 		int totalDamage = 0;
 		if (_poisons == null)
 		{
-			_poisons = new List<Poison>();
+			_poisons = new LinkedList<Poison>();
 		}
-		foreach (Poison poison in _poisons)
+		for (LinkedListNode<Poison> element = _poisons.First; element != null; element = element.Next)
 		{
+			Poison poison = element.Value;
 			totalDamage += poison.poisonValue;
 		}
 		return totalDamage;
