@@ -81,7 +81,14 @@ public partial class PlayerMovement : BaseAction
 		{
 			chunkData.GetTileHighlight().EnableTile(true);
 			chunkData.GetTileHighlight().ActivateColorGridTile(true);
-			chunkData.GetTileHighlight().SetHighlightColor(abilityHighlight);
+			if (_turnManager.GetCurrentTeamIndex() == player.GetPlayerTeam())
+			{
+				chunkData.GetTileHighlight().SetHighlightColor(abilityHighlight);
+			}
+			else
+			{
+				chunkData.GetTileHighlight().SetHighlightColor(otherTeamAbilityHighlight);	
+			}
 		}
 	}
 
