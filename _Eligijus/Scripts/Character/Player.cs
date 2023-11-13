@@ -1,11 +1,13 @@
 using Godot;
+using Godot.Collections;
 
 public partial class Player : Node2D
 {
-	[Export] public int playerIndex = 0;
+	[Export] public int playerInTeamIndex = 0;
 	[Export] public PlayerInformation playerInformation;
 	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
+	public Array<UnlockedAbilitiesResource> unlockedAbilityList;
 	private int _currentCharacterTeam = -1;
 	private CharacterTeams team;
 	protected LinkedList<Poison> _poisons;
@@ -19,7 +21,7 @@ public partial class Player : Node2D
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		if (team != null)
 		{
-			team.CharacterDeath(chunkData, _currentCharacterTeam, playerIndex, this);
+			team.CharacterDeath(chunkData, _currentCharacterTeam, playerInTeamIndex, this);
 		}
 		else if(team == null && playerInformation.GetInformationType() != InformationType.Player && playerInformation.GetInformationType() != InformationType.Enemy)
 		{

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://cbwyx6wu5n1r3"]
 
-[ext_resource type="PackedScene" uid="uid://bwcv0hf0owwd2" path="res://_Aurimas/Enemies/ForestDruid.tscn" id="1_8jm3f"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="1_wx25i"]
-[ext_resource type="PackedScene" uid="uid://cq2i4tjm3ffco" path="res://_Aurimas/Enemies/ForestBear.tscn" id="2_y7fcf"]
-[ext_resource type="PackedScene" uid="uid://dfkp4kk3cgxkc" path="res://_Aurimas/Enemies/ForestWatcher.tscn" id="3_fjs36"]
-[ext_resource type="PackedScene" uid="uid://da3lwkkcxjahp" path="res://_Aurimas/Enemies/ForestHuntress.tscn" id="4_xnrhc"]
+[ext_resource type="Resource" uid="uid://ctpoay6sbjwt3" path="res://Data/EnemyResource/ForestDruid/ForestDruid.tres" id="5_o4hiq"]
+[ext_resource type="Resource" uid="uid://d00kq2i1pfkxe" path="res://Data/EnemyResource/ForestBear/ForestBear.tres" id="6_fr7gq"]
+[ext_resource type="Resource" uid="uid://k3v4t7vq6n6o" path="res://Data/EnemyResource/ForestWatcher/ForestWatcher.tres" id="7_46i2g"]
+[ext_resource type="Resource" uid="uid://nilhfb00he7k" path="res://Data/EnemyResource/ForestHuntress/ForestHuntress.tres" id="8_p5kfb"]
 
 [resource]
 script = ExtResource("1_wx25i")
 level = 1
 enemyCount = 3
-enemies = Array[Resource]([ExtResource("1_8jm3f"), ExtResource("2_y7fcf"), ExtResource("3_fjs36"), ExtResource("2_y7fcf"), ExtResource("4_xnrhc")])
+enemyResource = Array[Resource]([ExtResource("5_o4hiq"), ExtResource("6_fr7gq"), ExtResource("7_46i2g"), ExtResource("6_fr7gq"), ExtResource("8_p5kfb")])

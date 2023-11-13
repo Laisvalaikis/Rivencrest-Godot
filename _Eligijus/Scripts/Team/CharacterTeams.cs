@@ -106,10 +106,20 @@ public partial class CharacterTeams : Node
 		Team enemyTeam = GetAvailableTeam();
 		if (enemyData != null && enemyTeam != null)
 		{
+			if (enemyTeam.characterResources != null)
+			{
+				enemyTeam.characterResources.Clear();
+			}
+			else
+			{
+				enemyTeam.characterResources = new Dictionary<int, SavedCharacterResource>();
+			}
+			
 			for (int i = 0; i < enemyData.enemyCount; i++)
 			{
-				int index = _random.Next(0, enemyData.enemies.Count);
-				enemyTeam.characterPrefabs.Add(i, enemyData.enemies[index]);
+				int index = _random.Next(0, enemyData.enemyResource.Count);
+				enemyTeam.characterPrefabs.Add(i, enemyData.enemyResource[index].prefab);
+				enemyTeam.characterResources.Add(i, enemyData.enemyResource[index]);
 				enemyTeam.SetTeamIsUsed(true);
 			}
 		}
@@ -163,7 +173,7 @@ public partial class CharacterTeams : Node
 				GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 				Vector2 position = new Vector2(coordinate.Value.X, coordinate.Value.Y);
 				spawnedCharacter.GlobalPosition = position;
-				spawnedCharacter.playerIndex = i;
+				spawnedCharacter.playerInTeamIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
 				spawnedCharacter.SetPlayerTeam(teamIndex);
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
@@ -174,6 +184,8 @@ public partial class CharacterTeams : Node
 				{
 					currentCharacters.Teams[teamIndex].characterResources
 						.Add(i, allCharacterList[teamIndex].characterResources[i]);
+					spawnedCharacter.unlockedAbilityList =
+						allCharacterList[teamIndex].characterResources[i].unlockedAbilities;
 				}
 
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
@@ -185,6 +197,10 @@ public partial class CharacterTeams : Node
 				if (allCharacterList[teamIndex].isEnemies)
 				{
 					currentCharacters.enemyTeamCount++;
+				}
+				else
+				{
+					currentCharacters.characterTeamCount++;
 				}
 
 				spawnedCharacter.actionManager.AddTurnManager(_turnManager);
@@ -207,9 +223,9 @@ public partial class CharacterTeams : Node
 
 	public void AddAliveCharacter(int teamIndex, Player character, Resource characterPrefab)
 	{
-		int index = currentCharacters.Teams[teamIndex].characters.Count - 1;
+		int index = currentCharacters.Teams[teamIndex].characters.Count;
 		currentCharacters.Teams[teamIndex].characters.Add(index, character);
-		character.playerIndex = index;
+		character.playerInTeamIndex = index;
 		currentCharacters.Teams[teamIndex].characterPrefabs.Add(index, characterPrefab);
 		character.SetPlayerTeam(teamIndex);
 	}
@@ -233,7 +249,18 @@ public partial class CharacterTeams : Node
 		{
 			Team diedTeam = currentCharacters.Teams[teamIndex];
 			currentCharacters.Teams.Remove(teamIndex);
-			TeamDied(diedTeam);
+			if (diedTeam.isEnemies)
+			{
+				currentCharacters.enemyTeamCount--;
+			}
+			else
+			{
+				currentCharacters.characterTeamCount++;
+			}
+			if (currentCharacters.characterTeamCount == 0 || currentCharacters.enemyTeamCount == 0)
+			{
+				TeamDied();
+			}
 		}
 
 		chunkData.SetCurrentCharacter(null);
@@ -241,24 +268,20 @@ public partial class CharacterTeams : Node
 		portraitTeamBox.ModifyList();
 	}
 
-	public void TeamDied(Team team)
+	public void TeamDied()
 	{
-		if (currentCharacters.Teams.Count == 1)
+		if (currentCharacters.enemyTeamCount == 0)
 		{
-			if (team.isEnemies)
+			foreach (int key in currentCharacters.Teams.Keys)
 			{
-				foreach (int key in currentCharacters.Teams.Keys)
-				{
-					gameEnd.Win(deadCharacters, currentCharacters.Teams[key].teamName, currentCharacters.Teams[key].teamColor);
-					break;
-				}
-			}
-			else
-			{
-				gameEnd.Death(deadCharacters);
+				gameEnd.Win(deadCharacters, currentCharacters.Teams[key].teamName, currentCharacters.Teams[key].teamColor);
+				break;
 			}
 		}
-		
+		else
+		{
+			gameEnd.Death(deadCharacters);
+		}
 	}
 
 }

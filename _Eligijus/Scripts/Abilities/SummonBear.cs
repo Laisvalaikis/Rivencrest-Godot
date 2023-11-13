@@ -3,7 +3,7 @@ using Godot;
 public partial class SummonBear : BaseAction
 {
 	[Export]
-	private Resource bearPrefab;
+	private SavedCharacterResource bearResource;
 
 	public SummonBear()
 	{
@@ -11,7 +11,7 @@ public partial class SummonBear : BaseAction
 
 	public SummonBear(SummonBear ability): base(ability)
 	{
-		bearPrefab = ability.bearPrefab;
+		bearResource = ability.bearResource;
 	}
 	public override BaseAction CreateNewInstance(BaseAction action)
 	{
@@ -34,10 +34,12 @@ public partial class SummonBear : BaseAction
 			UpdateAbilityButton();
 			int teamIndex = player.GetPlayerTeam();
 			base.ResolveAbility(chunk);
-			PackedScene spawnResource = (PackedScene)bearPrefab;
+			PackedScene spawnResource = (PackedScene)bearResource.prefab;
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
+			spawnedCharacter.actionManager.AddTurnManager(_turnManager);
+			spawnedCharacter.unlockedAbilityList = bearResource.unlockedAbilities;
 			spawnedCharacter.SetPlayerTeam(teamIndex);
-			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearPrefab);
+			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearResource.prefab);
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
 			player.GetPlayerTeams().portraitTeamBox.ModifyList();

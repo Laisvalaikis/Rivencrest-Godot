@@ -8,5 +8,5 @@ public partial class MapEnemyData : Resource
     [Export]
     public int enemyCount;
     [Export]
-    public Array<Resource> enemies;
+    public Array<SavedCharacterResource> enemyResource;
 }

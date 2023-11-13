@@ -42,7 +42,7 @@ public partial class ActionManager : Node
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
 		Array<Ability> baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
-		unlockedAbilityList = _data.Characters[_player.playerIndex].unlockedAbilities;
+		unlockedAbilityList = _player.unlockedAbilityList;
 		allAbilities.AddRange(baseAbilities);
 		allAbilities.AddRange(_player.playerInformation.playerInformationData.abilities);
 		if (allAbilities != null && allAbilities.Count != 0)
@@ -191,9 +191,13 @@ public partial class ActionManager : Node
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled && i < unlockedAbilityList.Count && unlockedAbilityList[i].abilityConfirmed)
 			{
 				_abilities[i].Action.OnTurnStart(null);
+			}
+			else
+			{
+				break;
 			}
 		}
 	}

@@ -44,8 +44,6 @@ public partial class SelectAction : Control
 	private void GenerateActions()
 	{
 		int buttonIndex = 0;
-		Array<UnlockedAbilitiesResource> unlockedAbilityList =
-			_data.Characters[_currentPlayer.playerIndex].unlockedAbilities;
 		
 		if (baseAbilityButtons == null)
 		{
@@ -88,19 +86,29 @@ public partial class SelectAction : Control
 			}
 		}
 
-		for (int i = 0; i < _playerAbilities.Count; i++)
+		if (_currentPlayer.unlockedAbilityList != null && _currentPlayer.unlockedAbilityList.Count > 0)
 		{
-			if (_playerAbilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
+
+			for (int i = 0; i < _playerAbilities.Count; i++)
 			{
-				allAbilityButtons[buttonIndex].buttonParent.Show();
-				allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
-				allAbilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerAbilities[i].AbilityImage;
-				allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
-				allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
-				abilityButtons.Add(allAbilityButtons[buttonIndex]);
-				_playerAbilities[i].Action.SetSelectActionButton(allAbilityButtons[buttonIndex]);
-				allAbilityButtons[buttonIndex].UpdateAbilityCooldownWithPoints(_actionManager.GetAbilityPoints());
-				buttonIndex++;
+				if (_playerAbilities[i].enabled &&  i < _currentPlayer.unlockedAbilityList.Count && _currentPlayer.unlockedAbilityList[i].abilityConfirmed)
+				{
+					allAbilityButtons[buttonIndex].buttonParent.Show();
+					allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
+					allAbilityButtons[buttonIndex].AbilityButtonImage.Texture =
+						(AtlasTexture)_playerAbilities[i].AbilityImage;
+					allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate =
+						_playerInformationData.backgroundColor;
+					allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
+					abilityButtons.Add(allAbilityButtons[buttonIndex]);
+					_playerAbilities[i].Action.SetSelectActionButton(allAbilityButtons[buttonIndex]);
+					allAbilityButtons[buttonIndex].UpdateAbilityCooldownWithPoints(_actionManager.GetAbilityPoints());
+					buttonIndex++;
+				}
+				else
+				{
+					break;
+				}
 			}
 		}
 

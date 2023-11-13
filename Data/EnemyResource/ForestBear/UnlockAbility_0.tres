@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cptwd81pxejjd"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/UnlockedAbilitiesResource.cs" id="1_ksg51"]
+
+[resource]
+script = ExtResource("1_ksg51")
+abilityUnlocked = true
+abilityConfirmed = true
