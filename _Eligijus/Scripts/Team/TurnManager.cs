@@ -46,11 +46,6 @@ public partial class TurnManager : Node
 		}
 	}
 
-	public void StartTurn()
-	{
-		OnTurnStart();
-	}
-
 	public void EndTurn()
 	{
 		OnTurnEnd();
@@ -83,18 +78,7 @@ public partial class TurnManager : Node
 
 	public void OnTurnStart()
 	{
-		// foreach (var usedAbility in _currentTeam.usedAbilitiesBeforeStartTurn)
-		// {
-		// 	if (usedAbility.Ability.GetCastCountBeforeStart() < usedAbility.Ability.GetLifetimeBeforeStart())
-		// 	{
-		// 		usedAbility.Ability.OnBeforeStart(usedAbility.Chunk);
-		// 		usedAbility.Ability.IncreaseCastCountBeforeTurn();
-		// 	}
-		// 	if(usedAbility.Ability.GetCastCountBeforeStart() >= usedAbility.Ability.GetLifetimeBeforeStart())
-		// 	{
-		// 		_currentTeam.usedAbilitiesBeforeStartTurn.Remove(usedAbility);
-		// 	}
-		// }
+		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
 		
 		foreach (Player character in _currentTeam.characters)
 		{
@@ -104,11 +88,30 @@ public partial class TurnManager : Node
 
 	public void OnTurnEnd()
 	{
+		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
 
-		if (_currentTeam.usedAbilitiesAfterResolve.Count > 0)
+		foreach (Player character in _currentTeam.characters)
 		{
-			// Fix LinkedLists
-			for (LinkedListNode<UsedAbility> element = _currentTeam.usedAbilitiesAfterResolve.First; element != null; element = element.Next)
+			character.OnAfterResolve();
+			character.OnTurnEnd();
+		}
+		
+		if (_currentTeam.usedAbilitiesEndTurn.Count > 0)
+		{
+			for (LinkedListNode<UsedAbility> element = _currentTeam.usedAbilitiesEndTurn.First; element != null; element = element.Next)
+			{
+				UsedAbility usedAbility = element.Value;
+				usedAbility.ability.OnTurnEnd(usedAbility.chunk);
+				_currentTeam.usedAbilitiesEndTurn.Remove(element);
+			}
+		}
+	}
+
+	private void ActionsAfterResolve(LinkedList<UsedAbility> abilities)
+	{
+		if (abilities.Count > 0)
+		{
+			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; element = element.Next)
 			{
 				UsedAbility usedAbility = element.Value;
 				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
@@ -118,25 +121,32 @@ public partial class TurnManager : Node
 				}
 				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
 				{
-					_currentTeam.usedAbilitiesAfterResolve.Remove(element);
+					abilities.Remove(element);
 				}
 			}
 		}
-
-
-		foreach (Player character in _currentTeam.characters)
-		{
-			character.OnAfterResolve();
-			character.OnTurnEnd();
-		}
-
-		// foreach (var usedAbility in _currentTeam.usedAbilitiesEndTurn)
-		// {
-		// 	usedAbility.Ability.OnTurnEnd(usedAbility.Chunk);
-		// 	_currentTeam.usedAbilitiesEndTurn.Remove(usedAbility);
-		// }
 	}
 	
+	private void ActionsBeforeStart(LinkedList<UsedAbility> abilities)
+	{
+		if (abilities.Count > 0)
+		{
+			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; element = element.Next)
+			{
+				UsedAbility usedAbility = element.Value;
+				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
+				{
+					usedAbility.ability.OnBeforeStart(usedAbility.chunk);
+					usedAbility.IncreaseCastCount();
+				}
+				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
+				{
+					abilities.Remove(element);
+				}
+			}
+		}
+	}
+
 	public void OnMove(Vector2 position)
 	{
 		_mousePosition = position;
@@ -156,9 +166,8 @@ public partial class TurnManager : Node
 		ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
 		if (_currentPlayer != null)
 		{
-			// Ability currentAbility = _currentPlayer.actionManager.GetCurrentAbility();
-			// AddUsedAbility(new UsedAbility(currentAbility.Action, chunk));
 			_currentPlayer.actionManager.OnMouseClick(chunk);
+			
 		}
 	}
 	

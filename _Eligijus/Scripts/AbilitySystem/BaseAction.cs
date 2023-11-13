@@ -466,7 +466,7 @@ public abstract partial class BaseAction: Resource
 
 		public virtual void OnBeforeStart(ChunkData chunkData)
 		{
-			
+			GD.Print("SMTH");
 		}
 
 		public virtual void OnTurnStart(ChunkData chunkData)
