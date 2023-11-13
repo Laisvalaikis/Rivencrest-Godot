@@ -7,6 +7,7 @@ public partial class TurnManager : Node
 	[Export] private int _currentTeamIndex = 0;
 	[Export] private TeamsList _teamsList;
 	[Export] private Player _currentPlayer;
+	[Export] private Player _currentEnemy;
 	private bool isAiTurn = false;
 	private Vector2 _mousePosition;
 
@@ -38,11 +39,27 @@ public partial class TurnManager : Node
 		else if (character != null)
 		{
 			_currentPlayer = null;
+			_currentEnemy = character;
 			GD.PrintErr("Character is not in team");
 		}
 		else
 		{
 			_currentPlayer = null;
+			_currentEnemy = null;
+		}
+	}
+	
+	public void SetCurrentEnemy(Player character)
+	{
+		if (!_currentTeam.characters.Contains(character))
+		{
+			_currentPlayer = null;
+			_currentEnemy = character;
+			GD.PrintErr("Character is not in team");
+		}
+		else
+		{
+			_currentEnemy = null;
 		}
 	}
 
@@ -165,11 +182,21 @@ public partial class TurnManager : Node
 		{
 			_currentPlayer.actionManager.OnMove(_mousePosition);
 		}
+
+		if (_currentEnemy != null)
+		{
+			_currentEnemy.actionManager.OnMove(_mousePosition);
+		}
 	}
 	
 	public void OnMouseClick()
 	{
 		ResolveAbility();
+	}
+
+	public int GetCurrentTeamIndex()
+	{
+		return _currentTeamIndex;
 	}
 
 	private void ResolveAbility()

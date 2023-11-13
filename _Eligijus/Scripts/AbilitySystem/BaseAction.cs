@@ -31,9 +31,17 @@ public abstract partial class BaseAction: Resource
 		[Export]
 		protected Color abilityHoverCharacter = new Color("#FFE300");
 		[Export]
-		protected Color otherOnGrid = new Color("#717171");
-		[Export]
 		protected Color characterOnGrid = new Color("#FF5947");
+		// Other Team
+		[Export]
+		protected Color otherTeamAbilityHighlight = new Color("#5d5d5d");
+		[Export]
+		protected Color otherTeamHighlightHover = new Color("#3a3a3a");
+		[Export]
+		protected Color otherTeamHoverCharacter = new Color("#CB36D6");
+		[Export]
+		protected Color otherTeamCharacterOnGrid = new Color("#141414");
+		//
 		[Export]
 		protected Array<AbilityBlessing> _abilityBlessingsRef;
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
@@ -67,8 +75,11 @@ public abstract partial class BaseAction: Resource
 			abilityHighlight = action.abilityHighlight;
 			abilityHighlightHover = action.abilityHighlightHover;
 			abilityHoverCharacter = action.abilityHoverCharacter;
-			otherOnGrid = action.otherOnGrid;
 			characterOnGrid = action.characterOnGrid;
+			otherTeamAbilityHighlight = action.otherTeamAbilityHighlight;
+			otherTeamHighlightHover = action.otherTeamHighlightHover;
+			otherTeamHoverCharacter = action.otherTeamHoverCharacter;
+			otherTeamCharacterOnGrid = action.otherTeamCharacterOnGrid;
 			firstTimeUsage = true;
 		}
 
@@ -257,6 +268,18 @@ public abstract partial class BaseAction: Resource
 
 		protected virtual void SetNonHoveredAttackColor(ChunkData chunkData)
 		{
+			if (_turnManager.GetCurrentTeamIndex() == player.GetPlayerTeam())
+			{
+				SetCurrentTeamNonHoverAttackColor(chunkData);
+			}
+			else
+			{
+				SetOtherTeamNonHoverAttackColor(chunkData);
+			}
+		}
+
+		protected virtual void SetCurrentTeamNonHoverAttackColor(ChunkData chunkData)
+		{
 			if (chunkData.GetCurrentPlayer() == null || (chunkData.GetCurrentPlayer() != null && !CanTileBeClicked(chunkData)))
 			{
 				chunkData.GetTileHighlight()?.SetHighlightColor(abilityHighlight);
@@ -266,8 +289,32 @@ public abstract partial class BaseAction: Resource
 				chunkData.GetTileHighlight()?.SetHighlightColor(characterOnGrid);
 			}
 		}
+		
+		protected virtual void SetOtherTeamNonHoverAttackColor(ChunkData chunkData)
+		{
+			if (chunkData.GetCurrentPlayer() == null || (chunkData.GetCurrentPlayer() != null && !CanTileBeClicked(chunkData)))
+			{
+				chunkData.GetTileHighlight()?.SetHighlightColor(otherTeamAbilityHighlight);
+			}
+			else
+			{
+				chunkData.GetTileHighlight()?.SetHighlightColor(otherTeamCharacterOnGrid);
+			}
+		}
 
 		public virtual void SetHoveredAttackColor(ChunkData chunkData)
+		{
+			if (_turnManager.GetCurrentTeamIndex() == player.GetPlayerTeam())
+			{
+				SetCurrentTeamHoveredAttackColor(chunkData);
+			}
+			else
+			{
+				SetOtherTeamHoveredAttackColor(chunkData);
+			}
+		}
+
+		protected virtual void SetCurrentTeamHoveredAttackColor(ChunkData chunkData)
 		{
 			if (!chunkData.CharacterIsOnTile() || (chunkData.CharacterIsOnTile() && !CanTileBeClicked(chunkData)))
 			{
@@ -278,6 +325,19 @@ public abstract partial class BaseAction: Resource
 				chunkData.GetTileHighlight()?.SetHighlightColor(abilityHoverCharacter);
 			}
 		}
+		
+		protected virtual void SetOtherTeamHoveredAttackColor(ChunkData chunkData)
+		{
+			if (!chunkData.CharacterIsOnTile() || (chunkData.CharacterIsOnTile() && !CanTileBeClicked(chunkData)))
+			{
+				chunkData.GetTileHighlight()?.SetHighlightColor(otherTeamHighlightHover);
+			}
+			else
+			{
+				chunkData.GetTileHighlight()?.SetHighlightColor(otherTeamHoverCharacter);
+			}
+		}
+
 
 		public Color GetAbilityHighlightColor()
 		{
@@ -294,15 +354,12 @@ public abstract partial class BaseAction: Resource
 			return abilityHoverCharacter;
 		}
 		
-		public Color GetOtherOnGridColor()
-		{
-			return otherOnGrid;
-		}
 		
 		public Color GetCharacterOnGridColor()
 		{
 			return characterOnGrid;
 		}
+		
 
 		public int GetAbilityCooldown()
 		{
