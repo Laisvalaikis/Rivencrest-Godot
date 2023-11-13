@@ -62,6 +62,11 @@ public partial class PowerShot : BaseAction
         base.ResolveAbility(chunk);
         int bonusDamage = 0;
         DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
+        if (chunk.CharacterIsOnTile())
+        {
+            Player target = chunk.GetCurrentPlayer();
+            target.debuffs.SlowDownPlayer(1);
+        }
         FinishAbility();
     }
 }

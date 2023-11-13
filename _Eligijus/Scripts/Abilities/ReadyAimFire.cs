@@ -3,7 +3,7 @@ using Godot;
 public partial class ReadyAimFire : BaseAction
 {
     private ChunkData[,] _chunkArray;
-    private int _index;
+    private int _index =-1;
 
     public ReadyAimFire()
     {
@@ -11,8 +11,8 @@ public partial class ReadyAimFire : BaseAction
     }
     public ReadyAimFire(ReadyAimFire ability): base(ability)
     {
+        
     }
-
     public override BaseAction CreateNewInstance(BaseAction action)
     {
         ReadyAimFire ability = new ReadyAimFire((ReadyAimFire)action);
@@ -24,15 +24,6 @@ public partial class ReadyAimFire : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         _index = FindChunkIndex(chunk);
-        if (_index != -1)
-        {
-            for (int i = 0; i < _chunkArray.GetLength(1); i++)
-            {
-                ChunkData damageChunk = _chunkArray[_index, i];
-                DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
-            }
-            FinishAbility();
-        }
         FinishAbility();
     }
      private int FindChunkIndex(ChunkData chunkData)
@@ -103,22 +94,24 @@ public partial class ReadyAimFire : BaseAction
             }
         }
     }
-    // public override void OnTurnStart(ChunkData chunkData)
-    // {
-    //     base.OnTurnStart(chunkData);
-    //     if (_index != -1)
-    //     {
-    //         for (int i = 0; i < _chunkArray.GetLength(1); i++)
-    //         {
-    //             if (_chunkArray[_index, i].CharacterIsOnTile())
-    //             {
-    //                 DealRandomDamageToTarget(_chunkArray[_index, i], minAttackDamage, maxAttackDamage);
-    //                 break;
-    //             }
-    //         }
-    //         
-    //     }
-    // }
+    public override void OnTurnStart(ChunkData chunkData)
+    {
+        base.OnTurnStart(chunkData);
+        //_index = FindChunkIndex(chunkData);
+        if (_index != -1)
+        {
+            for (int i = 0; i < _chunkArray.GetLength(1); i++)
+            {
+                if (_chunkArray[_index, i].CharacterIsOnTile())
+                {
+                    DealRandomDamageToTarget(_chunkArray[_index, i], minAttackDamage, maxAttackDamage);
+                    break;
+                }
+            }
+            _chunkArray = new ChunkData[4, attackRange];
+        }
+        
+    }
     
 
 }
