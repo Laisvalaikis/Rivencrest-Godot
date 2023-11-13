@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_xafui")
-characterPrefabs = Array[Resource]([])
-characters = Array[Node2D]([])
+characterPrefabs = null
+characters = null
 coordinates = Array[Vector2]([])
 teamName = "Enemy"
 isTeamAI = false
