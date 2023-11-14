@@ -69,6 +69,7 @@ public partial class DeBuffManager : Node
 
 	public void AddDeBuff(BaseDeBuff deBuff)
 	{
+		deBuff.SetPLayer(_player);
 		debufList.Add(deBuff);
 	}
 
