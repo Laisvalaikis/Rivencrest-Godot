@@ -194,18 +194,17 @@ public partial class CharacterTeams : Node
 				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
 				deadCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
 				deadCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
-				if (allCharacterList[teamIndex].isEnemies)
-				{
-					currentCharacters.enemyTeamCount++;
-				}
-				else
-				{
-					currentCharacters.characterTeamCount++;
-				}
-
 				spawnedCharacter.actionManager.AddTurnManager(_turnManager);
 			}
 			i++;
+		}
+		if (allCharacterList[teamIndex].isEnemies)
+		{
+			currentCharacters.enemyTeamCount++;
+		}
+		else
+		{
+			currentCharacters.characterTeamCount++;
 		}
 		allCharacterList[teamIndex].undoCount = undoCount;
 		portraitTeamBox.ModifyList();
@@ -255,7 +254,7 @@ public partial class CharacterTeams : Node
 			}
 			else
 			{
-				currentCharacters.characterTeamCount++;
+				currentCharacters.characterTeamCount--;
 			}
 			if (currentCharacters.characterTeamCount == 0 || currentCharacters.enemyTeamCount == 0)
 			{
