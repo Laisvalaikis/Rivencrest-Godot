@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_db3ha")
-coordinates = Array[Vector3]([Vector3(2.5, 6, 0), Vector3(5.5, 6, 0), Vector3(7.5, 8, 0)])
+coordinates = Array[Vector2]([Vector2(-50, 50), Vector2(250, 50), Vector2(350, -50)])

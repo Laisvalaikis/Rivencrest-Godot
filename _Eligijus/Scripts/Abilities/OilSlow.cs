@@ -24,6 +24,7 @@ public partial class OilSlow : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        chunk.GetCurrentPlayer().AddMovementPoints(-2);
         FinishAbility();
 
         

@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_mfmpi")
-coordinates = Array[Vector3]([Vector3(6.5, 9, 0), Vector3(7.5, 5, 0), Vector3(11.5, 7, 0)])
+coordinates = Array[Vector2]([Vector2(-50, -450), Vector2(50, -50), Vector2(450, -250)])
