@@ -734,7 +734,7 @@ public abstract partial class BaseAction: Resource
 				int randomDamage = _random.Next(minDamage, maxDamage);
 				bool crit = IsItCriticalStrike(ref randomDamage);
 				DodgeActivation(ref randomDamage, chunkData.GetCurrentPlayer().playerInformation);
-				chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, crit, player);
+				chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, player);
 			}
 		}
 
@@ -742,7 +742,7 @@ public abstract partial class BaseAction: Resource
 		{
 			if (chunkData != null && chunkData.GetCurrentPlayer() != null && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
-				chunkData.GetCurrentPlayer().playerInformation.DealDamage(damage, crit, player);
+				chunkData.GetCurrentPlayer().playerInformation.DealDamage(damage, player);
 			}
 		}
 		

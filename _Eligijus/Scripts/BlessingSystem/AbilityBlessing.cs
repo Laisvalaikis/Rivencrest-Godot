@@ -88,7 +88,7 @@ public partial class AbilityBlessing : BaseBlessing
 		    int randomDamage = _random.Next(minDamage, maxDamage);
 		    bool crit = IsItCriticalStrike(ref randomDamage, currentPlayer.playerInformation);
 		    DodgeActivation(ref randomDamage, currentPlayer.playerInformation, chunkData.GetCurrentPlayer().playerInformation);
-		    chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, crit, currentPlayer);
+		    chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, currentPlayer);
 	    }
     }
     

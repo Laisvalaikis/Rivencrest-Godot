@@ -36,7 +36,7 @@ public partial class WallEntrap : BaseAction
         {
             foreach (PlayerInformation x in _playerInformations)
             {
-                x.DealDamage(1, false, player);
+                x.DealDamage(1, player);
             }
         }
     }

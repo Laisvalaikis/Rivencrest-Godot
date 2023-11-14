@@ -57,7 +57,7 @@ public partial class PlayerInformation : Node
 		type = informationType;
 	}
 
-	public void DealDamage(int damage, bool crit, Node damageDealer, string specialInformation = "")
+	public void DealDamage(int damage, Player damageDealer)
 	{
 		if (!haveBarier)
 		{
@@ -75,7 +75,7 @@ public partial class PlayerInformation : Node
 
 			if (_health <= 0) // DEATH
 			{
-				DeathStart();
+				DeathStart(damageDealer);
 			}
 			else
 			{
@@ -104,8 +104,9 @@ public partial class PlayerInformation : Node
 		return playerInformationData.MaxHealth;
 	}
 
-	public void DeathStart()
+	public void DeathStart(Player damageDealer)
 	{
+		damageDealer.playerInformation.AddKillXP();
 		_player.Death();
 	}
 	
@@ -113,11 +114,12 @@ public partial class PlayerInformation : Node
 	{
 		_player.PlayerWasDamaged();
 	}
-
+	
 	public void AddKillXP()
 	{
-
+		XPToGain += playerInformationData.killXP;
 	}
+	
 	public void Heal(int healAmount)
 	{
 		if (_health + healAmount >= playerInformationData.MaxHealth)

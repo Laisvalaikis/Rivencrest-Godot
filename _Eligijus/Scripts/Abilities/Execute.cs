@@ -52,7 +52,7 @@ public partial class Execute : BaseAction
         if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
-            chunk.GetCurrentPlayer().playerInformation.DealDamage(minAttackDamage, false,player);
+            chunk.GetCurrentPlayer().playerInformation.DealDamage(minAttackDamage,player);
             if(chunk.GetCurrentPlayer() == null)
             {
                 player.playerInformation.Heal(5);

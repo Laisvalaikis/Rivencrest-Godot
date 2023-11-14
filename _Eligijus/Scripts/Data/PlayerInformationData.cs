@@ -17,6 +17,8 @@ public partial class PlayerInformationData: Resource
 	public int accuracy = 100;
 	[Export]
 	public int dodgeChance = 20;
+	[Export] 
+	public int killXP = 50;
 	[Export]
 	public string role;
 	

@@ -156,7 +156,7 @@ public partial class Player : Node2D
 			Poison poison = element.Value;
 			if (poison.poisonValue > 0 && poison.chunk.GetCurrentPlayer().playerInformation.GetHealth() > 0)
 			{
-				playerInformation.DealDamage(poison.poisonValue, false, poison.Poisoner);
+				playerInformation.DealDamage(poison.poisonValue, poison.Poisoner);
 				poison.turnsLeft--;
 			}
 			if(poison.turnsLeft == 0)

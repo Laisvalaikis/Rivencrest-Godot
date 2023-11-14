@@ -52,6 +52,6 @@ public partial class WallSmash : BaseAction
                 
         }
         
-        chunkData.GetCurrentPlayer().playerInformation.DealDamage(damageToWall, false, player);
+        chunkData.GetCurrentPlayer().playerInformation.DealDamage(damageToWall, player);
     }
 }

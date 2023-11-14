@@ -31,7 +31,7 @@ public partial class PainfulSpot : AbilityBlessing
             Player player = tile.GetCurrentPlayer();
             if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) && player.HaveWeakSpot())
             {
-                tile.GetCurrentPlayer().playerInformation.DealDamage(damage, false, baseAction.GetPlayer());
+                tile.GetCurrentPlayer().playerInformation.DealDamage(damage, baseAction.GetPlayer());
             }
         }
     }

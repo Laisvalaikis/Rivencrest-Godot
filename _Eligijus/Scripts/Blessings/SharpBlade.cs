@@ -32,7 +32,7 @@ public partial class SharpBlade : AbilityBlessing
        base.ResolveBlessing(baseAction, tile);
        if (tile.CharacterIsOnTile())
        {
-           tile.GetCurrentPlayer().playerInformation.DealDamage(dealDamage, false, baseAction.GetPlayer());
+           tile.GetCurrentPlayer().playerInformation.DealDamage(dealDamage, baseAction.GetPlayer());
        }
     }
 

@@ -2,7 +2,7 @@ using Godot;
 
 public class Poison
 {
-    public Node2D Poisoner;
+    public Player Poisoner;
     public ChunkData chunk;
     public int turnsLeft;
     public int poisonValue;
