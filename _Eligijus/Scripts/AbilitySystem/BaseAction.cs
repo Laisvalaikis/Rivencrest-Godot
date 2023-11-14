@@ -81,6 +81,7 @@ public abstract partial class BaseAction: Resource
 			otherTeamHoverCharacter = action.otherTeamHoverCharacter;
 			otherTeamCharacterOnGrid = action.otherTeamCharacterOnGrid;
 			firstTimeUsage = true;
+			_abilityBlessingsRef = action._abilityBlessingsRef;
 		}
 
 		public virtual BaseAction CreateNewInstance(BaseAction action)
