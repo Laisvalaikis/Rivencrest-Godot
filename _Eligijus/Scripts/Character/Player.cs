@@ -7,6 +7,7 @@ public partial class Player : Node2D
 	[Export] public PlayerInformation playerInformation;
 	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
+	[Export] public DeBuffManager deBuffManager;
 	public Array<UnlockedAbilitiesResource> unlockedAbilityList;
 	private int _currentCharacterTeam = -1;
 	private CharacterTeams team;
@@ -18,6 +19,7 @@ public partial class Player : Node2D
 	{
 		Hide();
 		actionManager.PlayerDied();
+		deBuffManager.PlayerDied();
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		if (team != null)
 		{
@@ -34,6 +36,7 @@ public partial class Player : Node2D
 	public void PlayerWasDamaged()
 	{
 		actionManager.PlayerWasAttacked();
+		deBuffManager.PlayerWasAttacked();
 	}
 
 	public int GetMovementPoints()
@@ -102,6 +105,7 @@ public partial class Player : Node2D
 		movementPoints = actionManager.ReturnBaseAbilities()[0].Action.attackRange;
 		PoisonPlayer();
 		actionManager.OnTurnStart();
+		deBuffManager.OnTurnStart();
 	}
 	
 	public void OnAfterResolve()
@@ -118,6 +122,7 @@ public partial class Player : Node2D
 	public void OnTurnEnd()
 	{
 		actionManager.OnTurnEnd();
+		deBuffManager.OnTurnEnd();
 	}
 
 	public int GetPoisonCount()
