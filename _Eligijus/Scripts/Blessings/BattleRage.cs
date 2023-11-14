@@ -32,9 +32,9 @@ public partial class BattleRage : AbilityBlessing
         return blessing;
     }
     
-    public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+    public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
-        base.ResolveBlessing(ref baseAction);
+        base.ResolveBlessing(baseAction);
        
         if (!secondTime)
         {

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c50yw217sifjj"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Debuffs/PlayerStun.cs" id="1_x70sw"]
+
+[resource]
+script = ExtResource("1_x70sw")
+lifetime = 1

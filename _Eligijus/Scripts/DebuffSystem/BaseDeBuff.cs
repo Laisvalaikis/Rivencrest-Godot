@@ -15,6 +15,7 @@ public partial class BaseDeBuff : Resource
 
 	public BaseDeBuff(BaseDeBuff blessing)
 	{
+		lifetime = blessing.lifetime;
 	}
 
 	public virtual BaseDeBuff CreateNewInstance(BaseDeBuff baseBlessing)

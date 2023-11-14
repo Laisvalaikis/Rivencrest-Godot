@@ -23,14 +23,14 @@ public partial class Antitoxic : PlayerBlessing
         return blessing;
     }
     
-    public override void Start(ref PlayerInformation playerInformation)
+    public override void Start(PlayerInformation playerInformation)
     {
         
     }
     
-    public override void OnTurnStart(ref Player player)
+    public override void OnTurnStart(Player player)
     {
-        base.OnTurnStart(ref player);
+        base.OnTurnStart(player);
         player.GetPoisons().Clear();
     }
 }

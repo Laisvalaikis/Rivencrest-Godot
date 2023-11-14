@@ -36,22 +36,22 @@ public partial class BaseBlessing : Resource
         throw new NotImplementedException();
     }
 
-    public virtual void Start(ref BaseBlessing baseBlessing)
+    public virtual void Start(BaseBlessing baseBlessing)
     {
 
     }
     
-    public virtual void ResolveBlessing(ref BaseAction baseAction)
+    public virtual void ResolveBlessing(BaseAction baseAction)
     {
         
     }
     
-    public virtual void OnTurnStart(ref BaseAction baseAction)
+    public virtual void OnTurnStart(BaseAction baseAction)
     {
 			
     }
 
-    public virtual void OnTurnEnd(ref BaseAction baseAction)
+    public virtual void OnTurnEnd(BaseAction baseAction)
     {
         
     }

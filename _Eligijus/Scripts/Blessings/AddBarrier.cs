@@ -24,9 +24,9 @@ public partial class AddBarrier : AbilityBlessing
         return blessing;
     }
     
-    public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+    public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
-        base.ResolveBlessing(ref baseAction, tile);
+        base.ResolveBlessing(baseAction, tile);
         baseAction.GetPlayer().AddBarrier();
     }
 }

@@ -27,9 +27,9 @@ public partial class HealingWinds : AbilityBlessing
 		return blessing;
 	}
 	
-	public override void ResolveBlessing(ref BaseAction baseAction, List<ChunkData> tiles)
+	public override void ResolveBlessing(BaseAction baseAction, List<ChunkData> tiles)
 	{
-		base.ResolveBlessing(ref baseAction);
+		base.ResolveBlessing(baseAction);
 		foreach (ChunkData tile in tiles)
 		{
 			Player player = tile.GetCurrentPlayer();

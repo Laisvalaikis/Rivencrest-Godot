@@ -26,9 +26,9 @@ public partial class AffectAllies : AbilityBlessing
 		return blessing;
 	}
 
-	public override void OnTurnStart(ref BaseAction baseAction)
+	public override void OnTurnStart(BaseAction baseAction)
 	{
-		base.OnTurnStart(ref baseAction);
+		base.OnTurnStart(baseAction);
 		baseAction.SetFriendlyFire(affectAllies);
 	}
 }

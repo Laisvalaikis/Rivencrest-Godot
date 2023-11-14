@@ -533,6 +533,13 @@ public abstract partial class BaseAction: Resource
 				cooldownCount = abilityCooldown;
 				firstTimeUsage = false;
 			}
+			if (_abilityBlessingsCreated != null)
+			{
+				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
+				{
+					_abilityBlessingsCreated[i].OnTurnStart(this);
+				}
+			}
 		}
 
 		public virtual void OnTurnEnd(ChunkData chunkData)
@@ -546,6 +553,13 @@ public abstract partial class BaseAction: Resource
 			else
 			{
 				turinIsEven = false;
+			}
+			if (_abilityBlessingsCreated != null)
+			{
+				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
+				{
+					_abilityBlessingsCreated[i].OnTurnEnd(this);
+				}
 			}
 		}
 
@@ -589,6 +603,13 @@ public abstract partial class BaseAction: Resource
 			GD.PushWarning("PlaySound");
 			ClearGrid();
 			UsedAbility usedAbility = new UsedAbility(this, chunk);
+			if (_abilityBlessingsCreated != null)
+			{
+				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
+				{
+					_abilityBlessingsCreated[i].OnTurnStart(this);
+				}
+			}
 			_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
 			_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
 			_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);

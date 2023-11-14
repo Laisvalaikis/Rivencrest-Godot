@@ -29,49 +29,49 @@ public partial class AbilityBlessing : BaseBlessing
 	    return blessing;
     }
     
-    public override void Start(ref BaseBlessing baseBlessing)
+    public override void Start(BaseBlessing baseBlessing)
     {
-	    base.Start(ref baseBlessing);
+	    base.Start(baseBlessing);
     }
     
-    public override void ResolveBlessing(ref BaseAction baseAction)
+    public override void ResolveBlessing(BaseAction baseAction)
     {
-        base.ResolveBlessing(ref baseAction);
+        base.ResolveBlessing(baseAction);
     }
     
-    public virtual void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+    public virtual void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
-	    base.ResolveBlessing(ref baseAction);
+	    base.ResolveBlessing(baseAction);
     }
 
-    public virtual void ResolveBlessing(ref BaseAction baseAction, List<ChunkData> tiles)
+    public virtual void ResolveBlessing(BaseAction baseAction, List<ChunkData> tiles)
     {
 	    
     }
 
-    public override void OnTurnStart(ref BaseAction baseAction)
+    public override void OnTurnStart(BaseAction baseAction)
     {
-	    base.OnTurnStart(ref baseAction);
+	    base.OnTurnStart(baseAction);
     }
     
-    public virtual void OnTurnStart(ref BaseAction baseAction, ChunkData tile)
+    public virtual void OnTurnStart(BaseAction baseAction, ChunkData tile)
     {
-	    base.OnTurnStart(ref baseAction);
+	    base.OnTurnStart(baseAction);
     }
 
 
-    public override void OnTurnEnd(ref BaseAction baseAction)
+    public override void OnTurnEnd(BaseAction baseAction)
     {
-	    base.OnTurnEnd(ref baseAction);
+	    base.OnTurnEnd(baseAction);
     }
     
-    public virtual void OnTurnEnd(ref BaseAction baseAction, ChunkData chunkData)
+    public virtual void OnTurnEnd(BaseAction baseAction, ChunkData chunkData)
     {
-	    base.OnTurnEnd(ref baseAction);
+	    base.OnTurnEnd(baseAction);
         
     }
 
-    public virtual void OnMoveHover(ref BaseAction baseAction, ChunkData hoveredChunk, ChunkData previousChunk)
+    public virtual void OnMoveHover(BaseAction baseAction, ChunkData hoveredChunk, ChunkData previousChunk)
     {
     }
 

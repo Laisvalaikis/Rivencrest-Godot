@@ -26,9 +26,9 @@ public partial class HeadStart : AbilityBlessing
         return blessing;
     }
 
-    public override void OnTurnStart(ref BaseAction baseAction)
+    public override void OnTurnStart(BaseAction baseAction)
     {
-        base.OnTurnStart(ref baseAction);
+        base.OnTurnStart(baseAction);
         if (!blessingUsed)
         {
             baseAction.GetPlayer().actionManager.AddAbilityPoints(addMovementPoints);

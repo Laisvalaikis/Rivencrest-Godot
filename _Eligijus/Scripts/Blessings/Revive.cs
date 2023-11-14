@@ -18,7 +18,7 @@ public partial class Revive : PlayerBlessing
         return blessing;
     }
     
-    public override void Start(ref PlayerInformation playerInformation)
+    public override void Start(PlayerInformation playerInformation)
     {
         playerInformation.Revive();
     }

@@ -31,9 +31,9 @@ public partial class HealAfterAbility : AbilityBlessing
         return blessing;
     }
 
-    public override void OnTurnStart(ref BaseAction baseAction, ChunkData tile)
+    public override void OnTurnStart(BaseAction baseAction, ChunkData tile)
     {
-        base.OnTurnEnd(ref baseAction, tile);
+        base.OnTurnEnd(baseAction, tile);
         if (tile != null && tile.GetCurrentPlayer() != null)
         {
             Player player = tile.GetCurrentPlayer();

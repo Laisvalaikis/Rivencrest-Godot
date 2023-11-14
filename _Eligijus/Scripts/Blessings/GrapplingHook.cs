@@ -29,9 +29,9 @@ public partial class GrapplingHook : AbilityBlessing
         return blessing;
     }
     
-    public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+    public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
-        base.ResolveBlessing(ref baseAction, tile);
+        base.ResolveBlessing(baseAction, tile);
         if (baseAction.GetPlayer() != null)
         {
             ChunkData chunkToPullTo = TileToPullTo(tile, baseAction.GetPlayer());
@@ -45,7 +45,7 @@ public partial class GrapplingHook : AbilityBlessing
         }
     }
     
-    public override void OnMoveHover(ref BaseAction baseAction, ChunkData hoveredChunk, ChunkData previousChunk)
+    public override void OnMoveHover(BaseAction baseAction, ChunkData hoveredChunk, ChunkData previousChunk)
     {
         HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
         HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();

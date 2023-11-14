@@ -31,9 +31,9 @@ public partial class MeteorRain : AbilityBlessing
         return blessing;
     }
     
-    public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+    public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
-        base.ResolveBlessing(ref baseAction, tile);
+        base.ResolveBlessing(baseAction, tile);
         if (tile.CharacterIsOnTile())
         {
             tile.GetCurrentPlayer().playerInformation.DealDamage(2, false, baseAction.GetPlayer());
@@ -41,9 +41,9 @@ public partial class MeteorRain : AbilityBlessing
     }
 
 
-    public override void OnTurnStart(ref BaseAction baseAction)
+    public override void OnTurnStart(BaseAction baseAction)
     {
-        base.OnTurnStart(ref baseAction);
+        base.OnTurnStart(baseAction);
         if (cometTiles != null && cometTiles.Count > 0)
         {
             for (int i = 0; i < cometTiles.Count; i++)

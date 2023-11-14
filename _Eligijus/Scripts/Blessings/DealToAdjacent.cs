@@ -26,9 +26,9 @@ public partial class DealToAdjacent : AbilityBlessing
 		DealToAdjacent blessing = new DealToAdjacent(this);
 		return blessing;
 	}
-	public override void ResolveBlessing(ref BaseAction baseAction, ChunkData tile)
+	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
-		base.ResolveBlessing(ref baseAction);
+		base.ResolveBlessing(baseAction);
 		(int x, int y) = tile.GetIndexes();
 		
 		var directionVectors = new List<(int, int)>

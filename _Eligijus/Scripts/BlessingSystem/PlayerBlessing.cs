@@ -18,12 +18,12 @@ public partial class PlayerBlessing : BaseBlessing
         return blessing;
     }
 
-    public virtual void OnTurnStart(ref Player player)
+    public virtual void OnTurnStart(Player player)
     {
         
     }
 
-    public virtual void Start(ref PlayerInformation playerInformation)
+    public virtual void Start(PlayerInformation playerInformation)
     {
         
     }

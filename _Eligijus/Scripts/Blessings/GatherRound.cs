@@ -31,14 +31,14 @@ public partial class GatherRound : AbilityBlessing
         return blessing;
     }
     
-    public override void ResolveBlessing(ref BaseAction baseAction)
+    public override void ResolveBlessing(BaseAction baseAction)
     {
         if (_random == null)
         {
             _random = new Random();
         }
 
-        base.ResolveBlessing(ref baseAction);
+        base.ResolveBlessing(baseAction);
         List<ChunkData> chunks = baseAction.GetChunkList();
         int randomHeal = _random.Next(minHealAmount, maxHealAmount);
         foreach (ChunkData tile in chunks)
