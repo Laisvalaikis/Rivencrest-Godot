@@ -69,9 +69,9 @@ public partial class GroundSlam : BaseAction
             }
         }
     }
-    public override bool CanTileBeClicked(ChunkData chunk)
+    public override bool CanTileBeClicked(ChunkData chunkData)
     {
-        return chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter(); //Prety sure ground slamas temamateus hittina?
+        return chunkData.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() && chunkData.GetTileHighlight().isHighlighted; //Prety sure ground slamas temamateus hittina?
     }
     public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {

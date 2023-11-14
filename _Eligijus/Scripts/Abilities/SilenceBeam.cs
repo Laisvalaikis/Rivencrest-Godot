@@ -89,8 +89,7 @@ public partial class SilenceBeam : BaseAction
 
 	public override bool CanTileBeClicked(ChunkData chunkData)
 	{
-		return true;
-		
+		return chunkData.GetTileHighlight().isHighlighted;
 	}
 
 	private int _globalIndex = -1;

@@ -208,7 +208,7 @@ public abstract partial class BaseAction: Resource
 			return _abilityBlessingsRef;
 		}
 
-		protected void GenerateDiamondPattern(ChunkData centerChunk, int radius)
+		protected virtual void GenerateDiamondPattern(ChunkData centerChunk, int radius)
 		{
 			(int centerX, int centerY) = centerChunk.GetIndexes();
 			ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
@@ -512,7 +512,7 @@ public abstract partial class BaseAction: Resource
 
 		public virtual bool CanTileBeClicked(ChunkData chunkData)
 		{
-			return (CheckIfSpecificInformationType(chunkData, InformationType.Player) || 
+			return chunkData.GetTileHighlight().isHighlighted && (CheckIfSpecificInformationType(chunkData, InformationType.Player) || 
 			        CheckIfSpecificInformationType(chunkData, InformationType.Object)) && (!IsAllegianceSame(chunkData) || friendlyFire);
 		}
 
