@@ -38,21 +38,22 @@ public partial class PlayerStun : BaseDeBuff
     
 	public override void OnTurnStart()
 	{
-			
+		base.OnTurnStart();
+		_player.SetMovementPoints(0);
 	}
 
 	public override void OnTurnEnd()
 	{
-        
+        base.OnTurnEnd();
 	}
 	
 	public override void PlayerWasAttacked()
 	{
-			
+		base.PlayerWasAttacked();
 	}
 	
 	public override void PlayerDied()
 	{
-			
+		base.PlayerDied();
 	}
 }
