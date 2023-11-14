@@ -15,6 +15,12 @@ public partial class MarkEnemy : BaseAction
         return markEnemy;
     }
 
+    public override void Start()
+    {
+        base.Start();
+        customText = "MARK";
+    }
+
     public override void OnTurnEnd(ChunkData chunkData)
     {
         base.OnTurnEnd(chunkData);
@@ -26,33 +32,18 @@ public partial class MarkEnemy : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        base.ResolveAbility(chunk);
-        if (chunk.CharacterIsOnTile())
+        if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
-            Player player = chunk.GetCurrentPlayer();
-            _target = player;
+            base.ResolveAbility(chunk);
+            _target = chunk.GetCurrentPlayer();
             player.debuffs.Mark();
+            FinishAbility();
         }
-        
         // chunk.GetCurrentPlayerInformation().Marker = gameObject;
-        FinishAbility();
-    }
-    
-    public override void SetHoveredAttackColor(ChunkData chunkData)
-    {
-        if (!chunkData.CharacterIsOnTile() || (chunkData.CharacterIsOnTile() && !CanTileBeClicked(chunkData)))
-        {
-            chunkData.GetTileHighlight()?.SetHighlightColor(abilityHighlightHover);
-        }
-        else
-        {
-            chunkData.GetTileHighlight()?.SetHighlightColor(abilityHoverCharacter);
-            EnableDamagePreview(chunkData, "MARK");
-        }
     }
 
-    public override void Die()
+    public override void Die() // probably ateity kitaip bus daroma
     {
         base.Die();
         if (_target != null && _target.debuffs.IsMarked())

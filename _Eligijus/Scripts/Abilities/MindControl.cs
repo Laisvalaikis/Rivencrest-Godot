@@ -17,19 +17,17 @@ public partial class MindControl : BaseAction
         return ability;
     }
     
-    public override void ResolveAbility(ChunkData chunk)
+    public override void ResolveAbility(ChunkData chunk) //Sitas ability reikalauja further testing po to kai bus PlayerWasAttacked. Bet siaip lyg veikia?
     {
-        UpdateAbilityButton();
-        base.ResolveAbility(chunk);
-        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        if (chunk.CharacterIsOnTile())
+        if (CanTileBeClicked(chunk))
         {
-            Player target = chunk.GetCurrentPlayer();
-            _target = target;
-            target.debuffs.SetTurnCounterFromThisTurn(1);
+            UpdateAbilityButton();
+            base.ResolveAbility(chunk);
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            _target = chunk.GetCurrentPlayer();
+            _target.debuffs.SetTurnCounterFromThisTurn(2);
+            FinishAbility();
         }
-
-        FinishAbility();
     }
 
     public override void PlayerWasAttacked()
@@ -37,6 +35,4 @@ public partial class MindControl : BaseAction
         _target.debuffs.RemoveSilence();
         _target = null;
     }
-
-
 }

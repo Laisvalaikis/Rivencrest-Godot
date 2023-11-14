@@ -16,7 +16,10 @@ public partial class MistShield : BaseAction
         MistShield ability = new MistShield((MistShield)action);
         return ability;
     }
-
+    public override void CreateAvailableChunkList(int attackRange)
+    {
+        _chunkList.Add(GameTileMap.Tilemap.GetChunk(player.GlobalPosition));
+    }
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
@@ -29,11 +32,14 @@ public partial class MistShield : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
-        base.ResolveAbility(chunk);
-        isAbilityActive = true;
-        player.playerInformation.Protected = true;
-        player.AddBarrier();
-        FinishAbility();
+        if (CanTileBeClicked(chunk))
+        {
+            UpdateAbilityButton();
+            base.ResolveAbility(chunk);
+            isAbilityActive = true;
+            player.playerInformation.Protected = true;
+            player.AddBarrier();
+            FinishAbility();
+        }
     }
 }

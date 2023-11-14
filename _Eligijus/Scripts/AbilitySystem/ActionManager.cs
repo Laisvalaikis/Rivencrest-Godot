@@ -247,8 +247,11 @@ public partial class ActionManager : Node
 		if (_currentAbility == null) return;
 		_mousePosition = position;
 		ChunkData hoveredChunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
-		
-		_currentAbility.Action.OnMoveArrows(hoveredChunk,_previousChunk);
+
+		if (_turnManager.GetCurrentTeamIndex() == _player.GetPlayerTeam())
+		{
+			_currentAbility.Action.OnMoveArrows(hoveredChunk,_previousChunk);
+		}
 		_currentAbility.Action.OnMoveHover(hoveredChunk,_previousChunk);
 		_previousChunk = hoveredChunk;
 	}
