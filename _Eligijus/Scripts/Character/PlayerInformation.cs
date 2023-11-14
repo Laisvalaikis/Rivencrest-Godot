@@ -70,6 +70,7 @@ public partial class PlayerInformation : Node
 				}
 
 				_health -= damage;
+				PLayerDamaged();
 			}
 
 			if (_health <= 0) // DEATH
@@ -106,6 +107,11 @@ public partial class PlayerInformation : Node
 	public void DeathStart()
 	{
 		_player.Death();
+	}
+	
+	public void PLayerDamaged()
+	{
+		_player.PlayerWasDamaged();
 	}
 
 	public void AddKillXP()

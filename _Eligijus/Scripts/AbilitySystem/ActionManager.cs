@@ -201,7 +201,29 @@ public partial class ActionManager : Node
 			}
 		}
 	}
-	
+
+	public void PlayerWasAttacked()
+	{
+		for (int i = 0; i < _baseAbilities.Count; i++)
+		{
+			if (_baseAbilities[i].enabled)
+			{
+				_baseAbilities[i].Action.PlayerWasAttacked();
+			}
+		}
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			if (_abilities[i].enabled && i < unlockedAbilityList.Count && unlockedAbilityList[i].abilityConfirmed)
+			{
+				_abilities[i].Action.PlayerWasAttacked();
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+
 	public void OnTurnEnd()
 	{
 		_debuffs.TurnCounter();
@@ -233,12 +255,25 @@ public partial class ActionManager : Node
 	// 		}
 	// 	}
 	// }
-
-	public void Die()
+	public void PlayerDied()
 	{
-		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability)
+		for (int i = 0; i < _baseAbilities.Count; i++)
 		{
-			_currentAbility.Action.Die();
+			if (_baseAbilities[i].enabled)
+			{
+				_baseAbilities[i].Action.Die();
+			}
+		}
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			if (_abilities[i].enabled && i < unlockedAbilityList.Count && unlockedAbilityList[i].abilityConfirmed)
+			{
+				_abilities[i].Action.Die();
+			}
+			else
+			{
+				break;
+			}
 		}
 	}
 

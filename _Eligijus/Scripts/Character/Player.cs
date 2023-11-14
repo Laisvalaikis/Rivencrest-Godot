@@ -17,7 +17,7 @@ public partial class Player : Node2D
 	public void Death()
 	{
 		Hide();
-		actionManager.Die();
+		actionManager.PlayerDied();
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		if (team != null)
 		{
@@ -29,6 +29,11 @@ public partial class Player : Node2D
 			chunkData.GetTileHighlight().DisableHighlight();
 			QueueFree();
 		}
+	}
+
+	public void PlayerWasDamaged()
+	{
+		actionManager.PlayerWasAttacked();
 	}
 
 	public int GetMovementPoints()
