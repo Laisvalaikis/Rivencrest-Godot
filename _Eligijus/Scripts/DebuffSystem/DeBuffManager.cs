@@ -11,6 +11,13 @@ public partial class DeBuffManager : Node
 		{
 			debufList = new Array<BaseDeBuff>();
 		}
+		else
+		{
+			for (int i = 0; i < debufList.Count; i++)
+			{
+				debufList[i].OnTurnStart();
+			}
+		}
 	}
 	
 	public void OnTurnStart()
