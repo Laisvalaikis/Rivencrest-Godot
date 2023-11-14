@@ -10,10 +10,4 @@
   <ItemGroup>
     <Folder Include="Data\Abilities\Abilities\" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="_Eligijus\Scripts\Debuffs\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Remove="_Eligijus\Scripts\Debuffs\**" />
-  </ItemGroup>
 </Project>

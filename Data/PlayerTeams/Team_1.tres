@@ -5,8 +5,11 @@
 [resource]
 script = ExtResource("1_xafui")
 characterPrefabs = null
+characterResources = null
 characters = null
-coordinates = Array[Vector2]([])
+coordinates = null
 teamName = "Enemy"
 isTeamAI = false
+isEnemies = false
+teamColor = Color(0, 0, 0, 0)
 isTeamUsed = false

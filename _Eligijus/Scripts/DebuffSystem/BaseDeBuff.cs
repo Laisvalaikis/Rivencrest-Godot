@@ -12,12 +12,12 @@ public partial class BaseDeBuff : Resource
 	{
 	}
 
-	public virtual BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
+	public virtual BaseDeBuff CreateNewInstance(BaseDeBuff baseBlessing)
 	{
 		throw new NotImplementedException();
 	}
 
-	public virtual BaseBlessing CreateNewInstance()
+	public virtual BaseDeBuff CreateNewInstance()
 	{
 		throw new NotImplementedException();
 	}

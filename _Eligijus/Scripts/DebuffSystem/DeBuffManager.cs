@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public partial class DeBuffManager : Node
 {
+	[Export] 
+	private Player _player;
 	private Array<BaseDeBuff> debufList;
 
 	public override void _Ready()
