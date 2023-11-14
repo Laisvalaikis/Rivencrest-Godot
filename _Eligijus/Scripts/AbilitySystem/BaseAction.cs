@@ -539,6 +539,7 @@ public abstract partial class BaseAction: Resource
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
 				{
 					_abilityBlessingsCreated[i].OnTurnStart(this);
+					_abilityBlessingsCreated[i].OnTurnStart(this, chunkData);
 				}
 			}
 		}
@@ -560,6 +561,7 @@ public abstract partial class BaseAction: Resource
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
 				{
 					_abilityBlessingsCreated[i].OnTurnEnd(this);
+					_abilityBlessingsCreated[i].OnTurnEnd(this, chunkData);
 				}
 			}
 		}
@@ -608,7 +610,8 @@ public abstract partial class BaseAction: Resource
 			{
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
 				{
-					_abilityBlessingsCreated[i].OnTurnStart(this);
+					_abilityBlessingsCreated[i].ResolveBlessing(this);
+					_abilityBlessingsCreated[i].ResolveBlessing(this, chunk);
 				}
 			}
 			_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
