@@ -86,9 +86,10 @@ public partial class Avalanche : BaseAction
     }
     public override bool CanTileBeClicked(ChunkData chunk)
     {
-        if (CheckIfSpecificInformationType(chunk, InformationType.Player) &&
+        if (chunk.GetTileHighlight().isHighlighted && 
             !IsAllegianceSame(chunk) &&
-            IsCharacterAffectedByCrowdControl(chunk))
+            IsCharacterAffectedByCrowdControl(chunk) && 
+            chunk.GetTileHighlight().isHighlighted)
         {
             return true;
         }

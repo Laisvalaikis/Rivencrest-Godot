@@ -54,9 +54,9 @@ public partial class BlockAbility : BaseAction
             tileHighlight.SetHighlightColor(abilityHighlightHover);
         }
     }
-    public override bool CanTileBeClicked(ChunkData chunk)
+    public override bool CanTileBeClicked(ChunkData chunkData)
     {
-        return IsAllegianceSame(chunk);
+        return chunkData.GetTileHighlight().isHighlighted && IsAllegianceSame(chunkData);
     }
     public override void OnTurnStart(ChunkData chunkData)
     {

@@ -49,8 +49,8 @@ public partial class CometFall : BaseAction
         FinishAbility();
     }
 
-    public override bool CanTileBeClicked(ChunkData chunk)
+    public override bool CanTileBeClicked(ChunkData chunkData)
     {
-        return true; //might be bullshit
+        return chunkData.GetTileHighlight().isHighlighted; //might be bullshit
     }
 }

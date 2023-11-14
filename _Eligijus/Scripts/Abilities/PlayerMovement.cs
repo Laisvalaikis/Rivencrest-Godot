@@ -151,6 +151,66 @@ public partial class PlayerMovement : BaseAction
 		CreateAvailableChunkList(player.GetMovementPoints());
 		HighlightAllGridTiles();
 	}
+	
+	protected override void GenerateDiamondPattern(ChunkData centerChunk, int radius)
+	{
+		Queue<(ChunkData chunk, int distance)> queue = new Queue<(ChunkData, int)>();
+		HashSet<ChunkData> visited = new HashSet<ChunkData>();
+
+		queue.Enqueue((centerChunk, 0));
+		visited.Add(centerChunk);
+
+		while (queue.Count > 0)
+		{
+			(ChunkData currentChunk, int currentDistance) = queue.Dequeue();
+			if (currentDistance > radius)
+			{
+				continue;
+			}
+
+			TryAddTile(currentChunk);
+
+			foreach (ChunkData adjacentChunk in GetAdjacentChunks(currentChunk))
+			{
+				if (!visited.Contains(adjacentChunk) && adjacentChunk.GetInformationType() != InformationType.Player)
+				{
+					queue.Enqueue((adjacentChunk, currentDistance + 1));
+					visited.Add(adjacentChunk);
+				}
+			}
+		}
+	}
+	//player.GetPlayerTeam() !=
+	private IEnumerable<ChunkData> GetAdjacentChunks(ChunkData chunk)
+	{
+		ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray();
+		(int chunkX, int chunkY) = chunk.GetIndexes();
+
+		// Check and return the chunk above
+		if (GameTileMap.Tilemap.CheckBounds(chunkX, chunkY - 1))
+		{
+			yield return chunksArray[chunkX, chunkY - 1];
+		}
+
+		// Check and return the chunk below
+		if (GameTileMap.Tilemap.CheckBounds(chunkX, chunkY + 1))
+		{
+			yield return chunksArray[chunkX, chunkY + 1];
+		}
+
+		// Check and return the chunk to the left
+		if (GameTileMap.Tilemap.CheckBounds(chunkX - 1, chunkY))
+		{
+			yield return chunksArray[chunkX - 1, chunkY];
+		}
+
+		// Check and return the chunk to the right
+		if (GameTileMap.Tilemap.CheckBounds(chunkX + 1, chunkY))
+		{
+			yield return chunksArray[chunkX + 1, chunkY];
+		}
+	}
+
 
 	private List<ChunkData> GetDiagonalPath(ChunkData start, ChunkData end, ChunkData[,] chunkArray)
 	{

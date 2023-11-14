@@ -79,7 +79,7 @@ public partial class CryoFreeze : BaseAction
 	}
 	public override bool CanTileBeClicked(ChunkData chunkData)
 	{
-		return true;
+		return chunkData.GetTileHighlight().isHighlighted;
 	}
 	
 	public override void EnableDamagePreview(ChunkData chunk, string customText = null)
