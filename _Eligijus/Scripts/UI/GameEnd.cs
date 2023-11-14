@@ -22,7 +22,7 @@ public partial class GameEnd : Control
         }
     }
 
-    public void Death(TeamsList deadCharacters)
+    public void Death(TeamsList deadCharacters, TeamsList currentCharacters)
     {
         Show();
         text.Text = loseText;
@@ -32,13 +32,14 @@ public partial class GameEnd : Control
         endOfGame = true;
     }
 
-    public void Win(TeamsList deadCharacters, string team, Color teamColor)
+    public void Win(TeamsList deadCharacters, TeamsList currentCharacters, string team, Color teamColor)
     {
         Show();
         text.Text = team + victoryText;
         textureRect.SelfModulate = teamColor;
         text.LabelSettings.FontColor = teamColor;
         DeadCharacters(deadCharacters);
+        SaveCharacterData(currentCharacters);
         endOfGame = true;
     }
 
@@ -56,6 +57,22 @@ public partial class GameEnd : Control
                     {
                         _data.Characters.Remove(deadCharacter);
                     }
+                }
+            }
+        }
+    }
+
+    private void SaveCharacterData(TeamsList currentCharacters)
+    {
+        for (int i = 0; i < currentCharacters.Teams.Count; i++)
+        {
+            if (!currentCharacters.Teams[i].isTeamAI && !currentCharacters.Teams[i].isTeamAI)
+            {
+                for (int j = 0; j < currentCharacters.Teams[i].characterResources.Count; j++)
+                {
+                    Player player = currentCharacters.Teams[i].characters[j];
+                    SavedCharacterResource character = currentCharacters.Teams[i].characterResources[j];
+                    character.xPToGain = player.playerInformation.GainXP();
                 }
             }
         }

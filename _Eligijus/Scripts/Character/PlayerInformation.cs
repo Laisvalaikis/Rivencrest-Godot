@@ -13,8 +13,6 @@ public partial class PlayerInformation : Node
 	[Export]
 	public PlayerInformationData playerInformationData;
 	[Export]
-	public SavedCharacterResource savedCharacter;
-	[Export]
 	public Sprite2D spriteRenderer;
 	[Export]
 	public string CharactersTeam = "Default";
@@ -119,7 +117,12 @@ public partial class PlayerInformation : Node
 	{
 		XPToGain += playerInformationData.killXP;
 	}
-	
+
+	public int GainXP()
+	{
+		return XPToGain;
+	}
+
 	public void Heal(int healAmount)
 	{
 		if (_health + healAmount >= playerInformationData.MaxHealth)

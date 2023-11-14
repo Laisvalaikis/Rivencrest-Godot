@@ -274,13 +274,13 @@ public partial class CharacterTeams : Node
 		{
 			foreach (int key in currentCharacters.Teams.Keys)
 			{
-				gameEnd.Win(deadCharacters, currentCharacters.Teams[key].teamName, currentCharacters.Teams[key].teamColor);
+				gameEnd.Win(deadCharacters, currentCharacters, currentCharacters.Teams[key].teamName, currentCharacters.Teams[key].teamColor);
 				break;
 			}
 		}
 		else
 		{
-			gameEnd.Death(deadCharacters);
+			gameEnd.Death(deadCharacters, currentCharacters);
 		}
 	}
 
