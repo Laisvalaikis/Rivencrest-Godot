@@ -44,7 +44,7 @@ public partial class BaseDeBuff : Resource
 
 	public virtual void OnTurnEnd()
 	{
-        
+		
 	}
 	
 	public virtual void PlayerWasAttacked()

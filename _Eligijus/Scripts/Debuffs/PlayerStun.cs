@@ -40,6 +40,7 @@ public partial class PlayerStun : BaseDeBuff
 	{
 		base.OnTurnStart();
 		_player.SetMovementPoints(0);
+		lifetimeCount++;
 	}
 
 	public override void OnTurnEnd()

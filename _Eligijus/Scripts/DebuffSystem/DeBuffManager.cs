@@ -5,28 +5,42 @@ public partial class DeBuffManager : Node
 {
 	[Export] 
 	private Player _player;
-	private Array<BaseDeBuff> debufList;
+	private LinkedList<BaseDeBuff> debufList;
 
 	public override void _Ready()
 	{
 		if (debufList == null)
 		{
-			debufList = new Array<BaseDeBuff>();
+			debufList = new LinkedList<BaseDeBuff>();
 		}
 		else
 		{
-			for (int i = 0; i < debufList.Count; i++)
+			for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
 			{
-				debufList[i].OnTurnStart();
+				if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+				{
+					element.Value.OnTurnStart();
+				}
+				if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+				{
+					debufList.Remove(element);
+				}
 			}
 		}
 	}
 	
 	public void OnTurnStart()
 	{
-		for (int i = 0; i < debufList.Count; i++)
+		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
 		{
-			debufList[i].OnTurnStart();
+			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			{
+				element.Value.OnTurnStart();
+			}
+			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			{
+				debufList.Remove(element);
+			}
 		}
 	}
 	
@@ -37,40 +51,68 @@ public partial class DeBuffManager : Node
 
 	public void OnTurnEnd()
 	{
-		for (int i = 0; i < debufList.Count; i++)
+		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
 		{
-			debufList[i].OnTurnEnd();
+			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			{
+				element.Value.OnTurnEnd();
+			}
+			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			{
+				debufList.Remove(element);
+			}
 		}
 	}
 
 	private void ExecuteDeBuffs(ChunkData chunkData)
 	{
-		for (int i = 0; i < debufList.Count; i++)
+		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
 		{
-			debufList[i].ResolveDeBuff(chunkData);
+			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			{
+				element.Value.ResolveDeBuff(chunkData);
+			}
+			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			{
+				debufList.Remove(element);
+			}
 		}
 	}
 
 	public virtual void PlayerWasAttacked()
 	{
-		for (int i = 0; i < debufList.Count; i++)
+		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
 		{
-			debufList[i].PlayerWasAttacked();
+			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			{
+				element.Value.PlayerWasAttacked();
+			}
+			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			{
+				debufList.Remove(element);
+			}
 		}
 	}
 	
 	public virtual void PlayerDied()
 	{
-		for (int i = 0; i < debufList.Count; i++)
+		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
 		{
-			debufList[i].PlayerDied();
-		}	
+			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			{
+				element.Value.PlayerDied();
+			}
+			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			{
+				debufList.Remove(element);
+			}
+		}
 	}
 
 	public void AddDeBuff(BaseDeBuff deBuff)
 	{
 		deBuff.SetPLayer(_player);
-		debufList.Add(deBuff);
+		debufList.AddLast(deBuff);
 	}
 
 	public bool ContainsDeBuff(BaseDeBuff deBuff)
@@ -78,14 +120,5 @@ public partial class DeBuffManager : Node
 		return debufList.Contains(deBuff);
 	}
 	
-	public bool ContainsDeBuff(string deBuffName)
-	{
-		for (int i = 0; i < debufList.Count; i++)
-		{
-			if (debufList[i].ResourceName == deBuffName)
-				return true;
-		}
-		return false;
-	}
 	
 }
