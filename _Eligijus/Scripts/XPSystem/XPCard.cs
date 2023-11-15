@@ -31,7 +31,7 @@ public partial class XPCard : Control
         DelayMethod();
     }
 
-    private async void DelayMethod()
+    private async Task DelayMethod()
     {
         while (_characterResource.xP < _characterResource.xP + _tempXPToGain)
         {
