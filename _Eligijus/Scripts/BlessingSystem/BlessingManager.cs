@@ -5,7 +5,7 @@ using Array = System.Array;
 
 public partial class BlessingManager : Node
 {
-    
+    [Export] private Array<BlessingCard> _blessingCards;
     private Array<PlayerBlessing> _playerBlessings;
     private Array<AbilityBlessing> _abilityBlessings;
     
