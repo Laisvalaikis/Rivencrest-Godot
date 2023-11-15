@@ -41,4 +41,12 @@ public partial class XPManager : Node
         }
     }
 
+    public void SkipShowingXP()
+    {
+        for (int i = 0; i < _data.Characters.Count; i++)
+        {
+            xpCards[i].UpdateXP();
+        }
+    }
+
 }
