@@ -13,7 +13,8 @@ public partial class Player : Node2D
 	private CharacterTeams team;
 	protected LinkedList<Poison> _poisons;
 	protected bool weakSpot = false;
-	private int movementPoints=3;
+	private int movementPoints = 3; //track movement points here in this class
+	private int previousMovementPoints = 3;
 
 	public void Death()
 	{
@@ -44,8 +45,14 @@ public partial class Player : Node2D
 		return movementPoints;
 	}
 
+	public int GetPreviousMovementPoints()
+	{
+		return previousMovementPoints;
+	}
+
 	public void AddMovementPoints(int points)
 	{
+		previousMovementPoints = movementPoints;
 		if (movementPoints + points > 0)
 		{
 			movementPoints += points;
@@ -58,7 +65,8 @@ public partial class Player : Node2D
 
 	public void SetMovementPoints(int points)
 	{
-		movementPoints = 0;
+		previousMovementPoints = movementPoints;
+		movementPoints = points;
 	}
 
 	public void AddPoison(Poison poison)
@@ -103,6 +111,7 @@ public partial class Player : Node2D
 	public void OnTurnStart()
 	{
 		movementPoints = actionManager.ReturnBaseAbilities()[0].Action.attackRange;
+		previousMovementPoints = movementPoints;
 		PoisonPlayer();
 		actionManager.OnTurnStart();
 		deBuffManager.OnTurnStart();
