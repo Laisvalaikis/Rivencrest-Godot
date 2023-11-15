@@ -4,3 +4,6 @@
 
 [resource]
 script = ExtResource("1_pa88e")
+minHeal = 3
+maxHeal = 5
+_blessingIsUnlocked = true

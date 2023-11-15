@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_8611l")
+dealDamage = 2
+_blessingIsUnlocked = true
