@@ -5,9 +5,11 @@ public partial class XPManager : Node
 {
     [Export] private Array<XPCard> xpCards;
     [Export] private int goldToAdd = 1400;
+    [Export] private TwoClickButton button;
     [Export] private Label earnedGold;
     private Data _data;
-
+    private int characterCount = 0;
+    private int updatedCount = 0;
     public override void _Ready()
     {
         base._Ready();
@@ -27,8 +29,9 @@ public partial class XPManager : Node
         {
             if (index < _data.Characters.Count)
             {
-                xpCards[index].UpdateXPCard(_data.Characters[index]);
+                xpCards[index].UpdateXPCard(_data.Characters[index], this);
                 index++;
+                characterCount = index;
             }
             else
             {
@@ -38,6 +41,18 @@ public partial class XPManager : Node
         for (int i = index; i < _data.Characters.Count; i++)
         {
             xpCards[i].Hide();
+        }
+    }
+
+    public void UpdatedXP()
+    {
+        if (updatedCount < characterCount)
+        {
+            updatedCount++;
+            if (updatedCount >= characterCount)
+            {
+                button.SetButtonForSecondClick();
+            }
         }
     }
 

@@ -15,7 +15,7 @@ public partial class XPCard : Control
     private Data _data;
     private bool updatingXp = false;
 
-    public void UpdateXPCard(SavedCharacterResource savedCharacterResource)
+    public void UpdateXPCard(SavedCharacterResource savedCharacterResource, XPManager xpManager)
     {
         if (Data.Instance != null)
         {
@@ -31,10 +31,10 @@ public partial class XPCard : Control
         int currentXP = _data.XPToLevelUp[_characterResource.level] -
                         (_data.XPToLevelUp[_characterResource.level] - _characterResource.xP);
         xp.Text = currentXP + "/" + _data.XPToLevelUp[_characterResource.level] + " XP";
-        UpdateXPGradualy();
+        UpdateXPGradualy(xpManager);
     }
 
-    private async Task UpdateXPGradualy()
+    private async Task UpdateXPGradualy(XPManager xpManager)
     {
         _tempCurrentXp = _characterResource.xP;
         int tempXp = _tempCurrentXp + _tempXPToGain;
@@ -58,6 +58,7 @@ public partial class XPCard : Control
                         levelText.Text = _characterResource.level.ToString();
                         if (_characterResource.level >= _data.XPToLevelUp.Count)
                         {
+                            _characterResource.xP = tempXp;
                             xp.Text = "Max Level";
                             break;
                         }
@@ -71,6 +72,7 @@ public partial class XPCard : Control
                     {
                         levelText.Text = _characterResource.level.ToString();
                         xp.Text = "Max Level";
+                        _characterResource.xP = tempXp;
                         break;
                     }
                 }
@@ -83,6 +85,8 @@ public partial class XPCard : Control
         {
             _characterResource.xPToGain = 0;
             _tempXPToGain = 0;
+            updatingXp = false;
+            xpManager.UpdatedXP();
         }
     }
 

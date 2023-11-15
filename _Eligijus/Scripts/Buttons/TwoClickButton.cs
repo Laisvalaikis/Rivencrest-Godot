@@ -22,4 +22,14 @@ public partial class TwoClickButton : Button
             timesPressed = 0;
         }
     }
+
+    public void SetButtonForSecondClick()
+    {
+        timesPressed = 1;
+    }
+    
+    public void SetButtonForFirstClick()
+    {
+        timesPressed = 0;
+    }
 }
