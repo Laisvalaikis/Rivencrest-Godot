@@ -48,6 +48,7 @@ public partial class XPCard : Control
                 if (_characterResource.level < _data.XPToLevelUp.Count)
                 {
                     _characterResource.level++;
+                    _characterResource.abilityPointCount++;
                     levelText.Text = _characterResource.level.ToString();
                 }
                 else
