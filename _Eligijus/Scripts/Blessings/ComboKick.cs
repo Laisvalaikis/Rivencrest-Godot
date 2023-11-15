@@ -45,7 +45,21 @@ public partial class ComboKick : AbilityBlessing
                 ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.x, tempIndexes.y);
                 if (tempTile.CharacterIsOnTile())
                 {
-                    baseAction.GetPlayer().playerInformation.DealDamage(attackDamage, baseAction.GetPlayer());
+                    Player tempPlayer = tempTile.GetCurrentPlayer();
+                    tempPlayer.playerInformation.DealDamage(attackDamage, baseAction.GetPlayer());
+                }
+                if (tile.CharacterIsOnTile())
+                {
+                    Player tempPlayer = tile.GetCurrentPlayer();
+                    tempPlayer.playerInformation.DealDamage(attackDamage, baseAction.GetPlayer());
+                }
+            }
+            else
+            {
+                if (tile.CharacterIsOnTile())
+                {
+                    Player tempPlayer = tile.GetCurrentPlayer();
+                    tempPlayer.playerInformation.DealDamage(attackDamage, baseAction.GetPlayer());
                 }
             }
         }
