@@ -78,7 +78,12 @@ public partial class XPCard : Control
 
             await Task.Delay(TimeSpan.FromMilliseconds(updateTextInMs)); // wait for 500ms 
         }
-        _characterResource.xPToGain = 0;
+
+        if (_characterResource.xP >= tempXp)
+        {
+            _characterResource.xPToGain = 0;
+            _tempXPToGain = 0;
+        }
     }
 
     public void UpdateXP()
@@ -87,7 +92,9 @@ public partial class XPCard : Control
         {
             updatingXp = false;
         }
-        int tempXp = _tempCurrentXp + _tempXPToGain;
+
+        _characterResource.xP = _tempCurrentXp;
+        int tempXp = _characterResource.xP + _tempXPToGain;
         while (_characterResource.xP < tempXp)
         {
             int leftTillNextLevel = _data.XPToLevelUp[_characterResource.level] - _characterResource.xP;
@@ -101,7 +108,7 @@ public partial class XPCard : Control
                     levelText.Text = _characterResource.level.ToString();
                     if (_characterResource.level < _data.XPToLevelUp.Count)
                     {
-                        xp.Text = tempXp + "/" + _data.XPToLevelUp[_characterResource.level] + " XP"; 
+                        xp.Text = "0/" + _data.XPToLevelUp[_characterResource.level] + " XP"; 
                     }
                     else
                     {
@@ -125,5 +132,6 @@ public partial class XPCard : Control
             }
         }
         _characterResource.xPToGain = 0;
+        _tempXPToGain = 0;
     }
 }
