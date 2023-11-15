@@ -33,7 +33,8 @@ public partial class XPCard : Control
 
     private async Task DelayMethod()
     {
-        while (_characterResource.xP < _characterResource.xP + _tempXPToGain)
+        int tempXp = _characterResource.xP + _tempXPToGain;
+        while (_characterResource.xP < tempXp)
         {
             if (_data.XPToLevelUp[_characterResource.level] > _characterResource.xP)
             {
@@ -54,8 +55,8 @@ public partial class XPCard : Control
                     break;
                 }
             }
-            _characterResource.xPToGain = 0;
-            await Task.Delay(TimeSpan.FromMilliseconds(500)); // wait for 500ms 
+            await Task.Delay(TimeSpan.FromMilliseconds(100)); // wait for 500ms 
         }
+        _characterResource.xPToGain = 0;
     }
 }
