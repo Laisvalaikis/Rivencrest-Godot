@@ -36,15 +36,15 @@ public partial class SavedCharacterResource : SavableCharacterResource
         this.playerInformation = playerInformation;
     }
     
-    public string CharacterTableBlessingString()
-    {
-        string blessingsInOneString = "";
-        for(int i = 0; i < blessings.Count; i++)
-        {
-            blessingsInOneString += blessings[i].blessingName;
-            if (i != blessings.Count - 1) blessingsInOneString += "\n";
-        }
-        return blessingsInOneString;
-    }
+    // public string CharacterTableBlessingString()
+    // {
+    //     // string blessingsInOneString = "";
+    //     // for(int i = 0; i < blessings.Count; i++)
+    //     // {
+    //     //     blessingsInOneString += blessings[i].blessingName;
+    //     //     if (i != blessings.Count - 1) blessingsInOneString += "\n";
+    //     // }
+    //     return "blessingsInOneString";
+    // }
     
 }

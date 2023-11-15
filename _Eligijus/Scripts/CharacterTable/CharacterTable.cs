@@ -368,14 +368,14 @@ public partial class CharacterTable : Node
 		roleIcon.Texture.Set("atlas", data.roleSprite.Get("atlas"));
 		level.Text = "LEVEL: " + character.level;
 		level.LabelSettings.FontColor = color;
-		maxHP.Text = "MAX HP: " + CalculateMaxHP(character);
+		maxHP.Text = "MAX HP: " + character.playerInformation.MaxHealth; // CalculateMaxHP(character);
 		maxHP.LabelSettings.FontColor = color;
 		xpProgress.Text = (character.level >= GameManager.currentMaxLevel()) ? "MAX LEVEL" : character.xP + "/" + _data.XPToLevelUp[character.level - 1] + " XP";
 		xpProgress.LabelSettings.FontColor = color;
 		abilityPointCount.Text = character.abilityPointCount.ToString();
 		abilityPointCount.LabelSettings.FontColor = color;
 		characterArt.Texture.Set("region", data.CharacterSplashArt.Get("region"));
-		blessingList.Text = character.CharacterTableBlessingString();
+		// blessingList.Text = character.CharacterTableBlessingString();
 		
 		for (int i = 0; i < abilityButtonBackgroundImages.Count; i++)
 		{
@@ -394,20 +394,20 @@ public partial class CharacterTable : Node
 	}
 
 
-	private int CalculateMaxHP(SavedCharacterResource character)
-	{
-		int maxHP = character.playerInformation.MaxHealth; // fix this
-		maxHP += (character.level - 1) * 2;
-		for (int i = 0; i < character.blessings.Count; i++)
-		{
-			BaseBlessing blessing = character.blessings[i];
-			if (blessing.blessingName == "Healthy")
-			{
-				maxHP += 3;
-			}
-		}
-		return maxHP;
-	}
+	// private int CalculateMaxHP(SavedCharacterResource character)
+	// {
+	// 	int maxHP = character.playerInformation.MaxHealth; // fix this
+	// 	maxHP += (character.level - 1) * 2;
+	// 	// for (int i = 0; i < character.blessings.Count; i++)
+	// 	// {
+	// 	// 	BaseBlessing blessing = character.blessings[i];
+	// 	// 	if (blessing.blessingName == "Healthy")
+	// 	// 	{
+	// 	// 		maxHP += 3;
+	// 	// 	}
+	// 	// }
+	// 	return maxHP;
+	// }
 	private void UpgradeAbility(int abilityIndex)
 	{
 		_data.Characters[characterIndex].unlockedAbilities[abilityIndex].abilityUnlocked = true;
