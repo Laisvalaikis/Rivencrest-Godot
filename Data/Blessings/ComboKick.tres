@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_2au4n")
+attackDamage = 3
+_blessingIsUnlocked = false

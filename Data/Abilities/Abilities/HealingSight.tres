@@ -1,24 +1,28 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ofh2urcex0dt"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ofh2urcex0dt"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/HealingSight.cs" id="1_hao48"]
+[ext_resource type="Resource" uid="uid://c53sku5ga0ms0" path="res://Data/Blessings/DealToAdjacent.tres" id="1_su780"]
 
 [resource]
 script = ExtResource("1_hao48")
 minHealAmount = 3
 maxHealAmount = 7
 laserGrid = false
-turnsSinceCast = 0
-turnLifetime = 1
-abilityPointsUsage = 1
+turnBeforeStartLifetime = 1
+turnAfterResolveLifetime = 1
+abilityPoints = 1
 attackRange = 1
 minAttackDamage = 0
 maxAttackDamage = 0
 isAbilitySlow = false
 friendlyFire = true
-AbilityCooldown = 1
+abilityCooldown = 1
 abilityHighlight = Color(0.572549, 0.831373, 1, 1)
 abilityHighlightHover = Color(1, 0.890196, 0, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
-otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
 characterOnGrid = Color(0.572549, 0.831373, 1, 1)
-_abilityBlessingsRef = null
+otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
+otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
+otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
+otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_su780")])

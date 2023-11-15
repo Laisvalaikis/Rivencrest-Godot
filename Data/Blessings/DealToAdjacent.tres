@@ -4,3 +4,4 @@
 
 [resource]
 script = ExtResource("1_tj2x2")
+_blessingIsUnlocked = true
