@@ -25,14 +25,12 @@ public partial class Agility : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction, tile);
-        if (!tile.CharacterIsOnTile())
+        if (baseAction.isAbilitySlow)
         {
             Player player = baseAction.GetPlayer();
             // restore movement points
-            if (player.actionManager.IsMovementSelected())
-            {
-                player.actionManager.ResetAbilityPointsBeforeAbility();
-            }
+            int previousMovementPoints = player.GetPreviousMovementPoints();
+            player.SetMovementPoints(previousMovementPoints);
         }
     }
 

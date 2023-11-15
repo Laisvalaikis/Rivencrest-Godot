@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_1gt2b")
+affectAllies = false
+_blessingIsUnlocked = true
