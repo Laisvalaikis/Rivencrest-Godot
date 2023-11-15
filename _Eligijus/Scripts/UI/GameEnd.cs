@@ -38,7 +38,7 @@ public partial class GameEnd : Control
         text.Text = team + victoryText;
         textureRect.SelfModulate = teamColor;
         text.LabelSettings.FontColor = teamColor;
-        DeadCharacters(deadCharacters);
+        DeadCharacters(deadCharacters); 
         SaveCharacterData(currentCharacters);
         endOfGame = true;
     }
