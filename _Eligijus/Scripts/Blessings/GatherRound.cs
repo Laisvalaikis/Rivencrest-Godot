@@ -37,11 +37,10 @@ public partial class GatherRound : AbilityBlessing
         {
             _random = new Random();
         }
-
         base.ResolveBlessing(baseAction);
         List<ChunkData> chunks = baseAction.GetChunkList();
         int randomHeal = _random.Next(minHealAmount, maxHealAmount);
-        foreach (ChunkData tile in chunks)
+        foreach (ChunkData tile in chunks) //chunks 0
         {
             tile.GetCurrentPlayer().playerInformation.Heal(randomHeal);
         }

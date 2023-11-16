@@ -4,3 +4,6 @@
 
 [resource]
 script = ExtResource("1_umr8w")
+minHealAmount = 5
+maxHealAmount = 5
+_blessingIsUnlockedLocaly = true

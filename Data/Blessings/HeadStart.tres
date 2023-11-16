@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_abai7")
+addMovementPoints = 2
+_blessingIsUnlockedLocaly = true
