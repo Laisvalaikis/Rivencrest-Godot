@@ -9,7 +9,7 @@ public partial class BaseBlessing : Resource
     public string spellName;
     public string condition;
     public string description;
-    [Export] protected bool _blessingIsUnlocked;
+    [Export] protected bool _blessingIsUnlockedLocaly;
     
     public BaseBlessing()
     {
@@ -55,15 +55,10 @@ public partial class BaseBlessing : Resource
     {
         
     }
-
-    public virtual void UnlockBlessing()
-    {
-        _blessingIsUnlocked = true;
-    }
-
+    
     public bool IsBlessingUnlocked()
     {
-        return _blessingIsUnlocked;
+        return _blessingIsUnlockedLocaly;
     }
 
 

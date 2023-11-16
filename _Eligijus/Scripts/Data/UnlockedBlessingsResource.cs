@@ -2,7 +2,11 @@
 
 public partial class UnlockedBlessingsResource : Resource
 {
-    public bool blessingUnlocked = false; 
+    [Export ]public string blessingName;
+    [Export] public int rarity;
+    [Export] public string condition;
+    [Export] public string description;
+    [Export] public bool blessingUnlocked = false; 
     
     public UnlockedBlessingsResource()
     {
@@ -11,11 +15,19 @@ public partial class UnlockedBlessingsResource : Resource
 
     public UnlockedBlessingsResource(UnlockedBlessingsResource data)
     {
+        blessingName = data.blessingName;
+        rarity = data.rarity;
+        condition = data.condition;
+        description = data.description;
         blessingUnlocked = data.blessingUnlocked;
     }
 
     public UnlockedBlessingsResource(UnlockedBlessings data)
     {
+        blessingName = data.blessingName;
+        rarity = data.rarity;
+        condition = data.condition;
+        description = data.description;
         blessingUnlocked = data.blessingUnlocked;
     }
 
