@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="1_js1hn"]
 [ext_resource type="Resource" uid="uid://b1a55n0vxj2t2" path="res://Data/PlayerResource/Burgundy/PlayerBurgundyData.tres" id="1_tt2eb"]
-[ext_resource type="PackedScene" uid="uid://d084krr65mqbg" path="res://_Eligijus/Prefabs/Characters/PlayerBurgundy.tscn" id="2_ukibv"]
+[ext_resource type="PackedScene" uid="uid://cbwqgnwjv2xc1" path="res://_Eligijus/Prefabs/Characters/PlayerBurgundy.tscn" id="2_ukibv"]
 
 [resource]
 script = ExtResource("1_js1hn")
@@ -15,7 +15,8 @@ dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 toConfirmAbilities = 0
-blessings = Array[Node]([])
+baseAbilityBlessings = Array[Resource]([])
+characterBlessings = Array[Resource]([])
 cost = 1000
 characterIndex = 7
 playerInformation = ExtResource("1_tt2eb")

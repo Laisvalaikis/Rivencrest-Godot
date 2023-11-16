@@ -46,7 +46,8 @@ public partial class SavableCharacterResource : Resource
 		abilityPointCount = data.abilityPointCount;
 		unlockedAbilities = data.unlockedAbilities;
 		toConfirmAbilities = data.toConfirmAbilities;
-		characterBlessings = this.characterBlessings = new Array<UnlockedBlessingsResource>(data.characterBlessings);
+		baseAbilityBlessings = new Array<UnlockedBlessingsResource>(data.baseAbilityBlessings);
+		characterBlessings = new Array<UnlockedBlessingsResource>(data.characterBlessings);
 		cost = data.cost;
 		characterIndex = data.characterIndex;
 		playerInformation = data.playerInformation;

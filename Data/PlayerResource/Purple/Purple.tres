@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://dnrqsowcscykn"]
 
 [ext_resource type="Resource" uid="uid://bh2r2k40sy4a5" path="res://Data/PlayerResource/Purple/PlayerPurpleData.tres" id="1_kdy32"]
-[ext_resource type="PackedScene" uid="uid://8j5eywyx8sh4" path="res://_Eligijus/Prefabs/Characters/PlayerPurple.tscn" id="2_t0fth"]
+[ext_resource type="PackedScene" uid="uid://bp3jcwdnwbl4v" path="res://_Eligijus/Prefabs/Characters/PlayerPurple.tscn" id="2_t0fth"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_togjy"]
 
 [resource]
@@ -15,7 +15,8 @@ dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 toConfirmAbilities = 0
-blessings = Array[Node]([])
+baseAbilityBlessings = Array[Resource]([])
+characterBlessings = Array[Resource]([])
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_kdy32")
