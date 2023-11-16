@@ -356,6 +356,7 @@ public partial class ActionManager : Node
 				if (_currentAbility.Action.AbilityCanBeActivated())
 				{
 					_currentAbility.Action.ResolveAbility(chunkData);
+					// _currentAbility.Action.ResolveBlessings(chunkData, unlockedBaseBlessingList);
 				}
 
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
@@ -374,6 +375,7 @@ public partial class ActionManager : Node
 					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
 					_currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(abilityPoints);
 					_currentAbility.Action.ResolveAbility(chunkData);
+					// unlockedAbilityList
 				}
 				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
 			}

@@ -606,17 +606,25 @@ public abstract partial class BaseAction: Resource
 			GD.PushWarning("PlaySound");
 			ClearGrid();
 			UsedAbility usedAbility = new UsedAbility(this, chunk);
+			
+			_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
+			_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
+			_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);
+		}
+
+		public virtual void ResolveBlessings(ChunkData chunk, Array<UnlockedBlessingsResource> unlockedBlessingsList)
+		{
 			if (_abilityBlessingsCreated != null)
 			{
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
 				{
-					_abilityBlessingsCreated[i].ResolveBlessing(this);
-					_abilityBlessingsCreated[i].ResolveBlessing(this, chunk);
+					if (unlockedBlessingsList[i].blessingUnlocked)
+					{
+						_abilityBlessingsCreated[i].ResolveBlessing(this);
+						_abilityBlessingsCreated[i].ResolveBlessing(this, chunk);
+					}
 				}
 			}
-			_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
-			_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
-			_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);
 		}
 
 		public void UpdateAbilityButton()

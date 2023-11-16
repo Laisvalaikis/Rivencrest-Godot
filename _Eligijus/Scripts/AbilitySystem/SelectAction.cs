@@ -74,6 +74,8 @@ public partial class SelectAction : Control
 		{
 			if (_playerBaseAbilities[i].enabled)
 			{
+				_playerAbilities[i].unlockedBlessingsResources =
+					_currentPlayer.unlockedBlessingList;
 				allAbilityButtons[buttonIndex].buttonParent.Show();
 				allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
 				allAbilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;
@@ -88,7 +90,6 @@ public partial class SelectAction : Control
 
 		if (_currentPlayer.unlockedAbilityList != null && _currentPlayer.unlockedAbilityList.Count > 0)
 		{
-
 			for (int i = 0; i < _playerAbilities.Count; i++)
 			{
 				if (_playerAbilities[i].enabled &&  i < _currentPlayer.unlockedAbilityList.Count && _currentPlayer.unlockedAbilityList[i].abilityConfirmed)

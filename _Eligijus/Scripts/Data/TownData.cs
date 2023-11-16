@@ -164,8 +164,8 @@ using Godot;
 		public bool dead { get; set; }
 		public int abilityPointCount { get; set; }
 		public List<UnlockedAbilities> unlockedAbilities { get; set; }
+		public List<UnlockedBlessings> abilityBlessings;
 		public int toConfirmAbilities { get; set; }
-		public List<UnlockedBlessings> baseAbilityBlessings { get; set; }
 		public List<UnlockedBlessings> characterBlessings { get; set; }
 		public int cost { get; set; }
 		public int characterIndex { get; set; }
@@ -174,7 +174,7 @@ using Godot;
 		public SavableCharacter() { }
 
 		public SavableCharacter(int level, int xP, int xPToGain, bool dead, string characterName,
-			int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int toConfirmAbilities, List<UnlockedBlessings> characterBlessings,List<UnlockedBlessings> baseAbilityBlessings, int characterIndex, PlayerInformationData playerInformation)
+			int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int toConfirmAbilities, List<UnlockedBlessings> characterBlessings,List<UnlockedBlessings> abilityBlessings, int characterIndex, PlayerInformationData playerInformation)
 		{
 			this.level = level;
 			this.xP = xP;
@@ -184,7 +184,7 @@ using Godot;
 			this.abilityPointCount = abilityPointCount;
 			this.unlockedAbilities = unlockedAbilities;
 			this.toConfirmAbilities = toConfirmAbilities;
-			this.baseAbilityBlessings = new List<UnlockedBlessings>(baseAbilityBlessings);
+			this.abilityBlessings = new List<UnlockedBlessings>(abilityBlessings);
 			this.characterBlessings = new List<UnlockedBlessings>(characterBlessings);
 			this.cost = 1000;
 			this.characterIndex = characterIndex;
@@ -205,10 +205,10 @@ using Godot;
 				this.unlockedAbilities.Add(new UnlockedAbilities(data.unlockedAbilities[i]));
 			}
 			this.toConfirmAbilities = data.toConfirmAbilities;
-			baseAbilityBlessings = new List<UnlockedBlessings>();
-			for (int i = 0; i < data.baseAbilityBlessings.Count; i++)
+			abilityBlessings = new List<UnlockedBlessings>();
+			for (int i = 0; i < data.abilityBlessings.Count; i++)
 			{
-				this.baseAbilityBlessings.Add(new UnlockedBlessings(data.baseAbilityBlessings[i]));
+				this.abilityBlessings.Add(new UnlockedBlessings(data.abilityBlessings[i]));
 			}
 			this.characterBlessings = new List<UnlockedBlessings>();
 			for (int i = 0; i < data.characterBlessings.Count; i++)
@@ -234,10 +234,10 @@ using Godot;
 				this.unlockedAbilities.Add(new UnlockedAbilities(data.unlockedAbilities[i]));
 			}
 			this.toConfirmAbilities = data.toConfirmAbilities;
-			this.baseAbilityBlessings = new List<UnlockedBlessings>();
-			for (int i = 0; i < data.baseAbilityBlessings.Count; i++)
+			this.abilityBlessings = new List<UnlockedBlessings>();
+			for (int i = 0; i < data.abilityBlessings.Count; i++)
 			{
-				this.baseAbilityBlessings.Add(new UnlockedBlessings(data.baseAbilityBlessings[i]));
+				this.abilityBlessings.Add(new UnlockedBlessings(data.abilityBlessings[i]));
 			}
 			this.characterBlessings = new List<UnlockedBlessings>();
 			for (int i = 0; i < data.characterBlessings.Count; i++)

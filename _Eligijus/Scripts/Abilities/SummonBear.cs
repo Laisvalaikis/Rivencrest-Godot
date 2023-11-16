@@ -38,6 +38,7 @@ public partial class SummonBear : BaseAction
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
 			spawnedCharacter.actionManager.AddTurnManager(_turnManager);
 			spawnedCharacter.unlockedAbilityList = bearResource.unlockedAbilities;
+			spawnedCharacter.unlockedBlessingList = bearResource.abilityBlessings;
 			spawnedCharacter.SetPlayerTeam(teamIndex);
 			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearResource.prefab);
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);

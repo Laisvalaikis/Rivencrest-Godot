@@ -9,6 +9,7 @@ public partial class Player : Node2D
 	[Export] public ActionManager actionManager;
 	[Export] public DeBuffManager deBuffManager;
 	public Array<UnlockedAbilitiesResource> unlockedAbilityList;
+	public Array<UnlockedBlessingsResource> unlockedBlessingList;
 	private int _currentCharacterTeam = -1;
 	private CharacterTeams team;
 	protected LinkedList<Poison> _poisons;
