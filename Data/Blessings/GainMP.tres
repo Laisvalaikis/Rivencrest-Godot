@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_jyvfr")
-affectMP = 4
-_blessingIsUnlocked = true
+affectMP = 1
+_blessingIsUnlockedLocaly = true
