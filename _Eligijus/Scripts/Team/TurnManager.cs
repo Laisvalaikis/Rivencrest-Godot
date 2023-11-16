@@ -166,7 +166,7 @@ public partial class TurnManager : Node
 				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
 				{
 					usedAbility.ability.OnTurnEnd(usedAbility.chunk);
-					usedAbility.ability.BlessingOnTurnStart(null);
+					usedAbility.ability.BlessingOnTurnEnd(usedAbility.chunk);
 					usedAbility.IncreaseCastCount();
 				}
 				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())

@@ -3,6 +3,7 @@ using Godot.Collections;
 
 public partial class AbilityBlessingsResource : Resource
 {
+    [Export]
     public Array<UnlockedBlessingsResource> UnlockedBlessingsList { get; set; }
 
     public AbilityBlessingsResource()
