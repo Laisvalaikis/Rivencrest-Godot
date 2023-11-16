@@ -21,7 +21,9 @@ public partial class SavableCharacterResource : Resource
 	[Export]
 	public int toConfirmAbilities = 0;
 	[Export]
-	public Array<UnlockedBlessingsResource> blessings;
+	public Array<UnlockedBlessingsResource> baseAbilityBlessings;
+	[Export]
+	public Array<UnlockedBlessingsResource> characterBlessings;
 	[Export]
 	public int cost;
 	[Export]
@@ -44,7 +46,7 @@ public partial class SavableCharacterResource : Resource
 		abilityPointCount = data.abilityPointCount;
 		unlockedAbilities = data.unlockedAbilities;
 		toConfirmAbilities = data.toConfirmAbilities;
-		blessings = this.blessings = new Array<UnlockedBlessingsResource>(data.blessings);
+		characterBlessings = this.characterBlessings = new Array<UnlockedBlessingsResource>(data.characterBlessings);
 		cost = data.cost;
 		characterIndex = data.characterIndex;
 		playerInformation = data.playerInformation;
@@ -64,10 +66,15 @@ public partial class SavableCharacterResource : Resource
 			unlockedAbilities.Add(new UnlockedAbilitiesResource(data.unlockedAbilities[i]));
 		}
 		toConfirmAbilities = data.toConfirmAbilities;
-		blessings = new Array<UnlockedBlessingsResource>();
-		for (int i = 0; i < data.blessings.Count; i++)
+		baseAbilityBlessings = new Array<UnlockedBlessingsResource>();
+		for (int i = 0; i < data.characterBlessings.Count; i++)
 		{
-			blessings.Add(new UnlockedBlessingsResource(data.blessings[i]));
+			baseAbilityBlessings.Add(new UnlockedBlessingsResource(data.baseAbilityBlessings[i]));
+		}
+		characterBlessings = new Array<UnlockedBlessingsResource>();
+		for (int i = 0; i < data.characterBlessings.Count; i++)
+		{
+			characterBlessings.Add(new UnlockedBlessingsResource(data.characterBlessings[i]));
 		}
 		cost = data.cost;
 		characterIndex = data.characterIndex;
@@ -89,10 +96,15 @@ public partial class SavableCharacterResource : Resource
 			unlockedAbilities.Add(new UnlockedAbilitiesResource(data.unlockedAbilities[i]));
 		}
 		toConfirmAbilities = data.toConfirmAbilities;
-		blessings = new Array<UnlockedBlessingsResource>();
-		for (int i = 0; i < data.blessings.Count; i++)
+		baseAbilityBlessings = new Array<UnlockedBlessingsResource>();
+		for (int i = 0; i < data.baseAbilityBlessings.Count; i++)
 		{
-			blessings.Add(new UnlockedBlessingsResource(data.blessings[i]));
+			baseAbilityBlessings.Add(new UnlockedBlessingsResource(baseAbilityBlessings[i]));
+		}
+		characterBlessings = new Array<UnlockedBlessingsResource>();
+		for (int i = 0; i < data.characterBlessings.Count; i++)
+		{
+			characterBlessings.Add(new UnlockedBlessingsResource(characterBlessings[i]));
 		}
 		cost = data.cost;
 		characterIndex = data.characterIndex;

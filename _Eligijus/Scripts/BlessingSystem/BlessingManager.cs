@@ -34,13 +34,13 @@ public partial class BlessingManager : Node
             {
                 PlayerInformationData playerInformationData = _data.Characters[i].playerInformation;
                 SetupPlayerBlessings(playerInformationData.GetAllBlessings());
-                SetupAbilityBlessings(playerInformationData.baseAbilities);
-                SetupAbilityBlessings(playerInformationData.abilities);
+                SetupAbilityBlessings(playerInformationData.baseAbilities, _data.Characters[i]);
+                SetupAbilityBlessings(playerInformationData.abilities, _data.Characters[i]);
             }
         }
     }
 
-    private void SetupAbilityBlessings(Array<Ability> baseAbility)
+    private void SetupAbilityBlessings(Array<Ability> baseAbility, SavedCharacterResource character) // patikrinti ar ability yra unlocked
     {
         if (baseAbility != null)
         {
@@ -53,7 +53,7 @@ public partial class BlessingManager : Node
                 if (baseAbility[i].Action.GetAllBlessings() != null)
                 {
                     Array<AbilityBlessing> abilityBlessings = baseAbility[i].Action.GetAllBlessings();
-                    for (int blessingIndex = 0; blessingIndex < abilityBlessings.Count;blessingIndex++)
+                    for (int blessingIndex = 0; blessingIndex < abilityBlessings.Count; blessingIndex++)
                     {
                         _abilityBlessings.Add(abilityBlessings[blessingIndex]);
                     }
