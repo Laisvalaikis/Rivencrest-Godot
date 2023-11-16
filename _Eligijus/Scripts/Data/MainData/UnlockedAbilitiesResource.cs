@@ -13,7 +13,7 @@ public partial class UnlockedAbilitiesResource: Resource
 
     public UnlockedAbilitiesResource()
     {
-        
+        unlockedBlessings = new Array<UnlockedBlessingsResource>();
     }
 
     public UnlockedAbilitiesResource(UnlockedAbilitiesResource data)
