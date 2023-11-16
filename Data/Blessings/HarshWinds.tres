@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_ixa8l")
+dealDamage = 10
+_blessingIsUnlockedLocaly = true
