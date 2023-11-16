@@ -25,6 +25,4 @@ public class UnlockedAbilities
 	   abilityUnlocked = data.abilityUnlocked;
 	}
 	
-	
-
 }

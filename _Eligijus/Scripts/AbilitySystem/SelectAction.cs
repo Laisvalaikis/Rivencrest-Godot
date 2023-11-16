@@ -74,8 +74,6 @@ public partial class SelectAction : Control
 		{
 			if (_playerBaseAbilities[i].enabled)
 			{
-				_playerAbilities[i].unlockedBlessingsResources =
-					_currentPlayer.unlockedBlessingList;
 				allAbilityButtons[buttonIndex].buttonParent.Show();
 				allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
 				allAbilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;

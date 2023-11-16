@@ -16,12 +16,9 @@ public partial class Ability : Resource
 	public Texture AbilityImage;
 	[Export]
 	public BaseAction Action;
-	[Export] 
-	public Array<UnlockedBlessingsResource> unlockedBlessingsResources;
 
 	public Ability()
 	{
-		unlockedBlessingsResources = new Array<UnlockedBlessingsResource>();
 	}
 
 	public Ability(Ability ability)
@@ -32,7 +29,6 @@ public partial class Ability : Resource
 		AbilityImage = ability.AbilityImage;
 		BaseAction action = ability.Action.CreateNewInstance(ability.Action);
 		Action = action;
-		unlockedBlessingsResources = ability.unlockedBlessingsResources;
 	}
 
 }
