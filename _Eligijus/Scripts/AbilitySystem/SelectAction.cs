@@ -75,7 +75,7 @@ public partial class SelectAction : Control
 			if (_playerBaseAbilities[i].enabled)
 			{
 				allAbilityButtons[buttonIndex].buttonParent.Show();
-				allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerBaseAbilities[i], this);
+				allAbilityButtons[buttonIndex].AbilityInformation(buttonIndex, helpTable, _playerBaseAbilities[i], this);
 				allAbilityButtons[buttonIndex].AbilityButtonImage.Texture = (AtlasTexture)_playerBaseAbilities[i].AbilityImage;
 				allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;
 				allAbilityButtons[buttonIndex].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
@@ -93,7 +93,7 @@ public partial class SelectAction : Control
 				if (_playerAbilities[i].enabled &&  i < _currentPlayer.unlockedAbilityList.Count && _currentPlayer.unlockedAbilityList[i].abilityConfirmed)
 				{
 					allAbilityButtons[buttonIndex].buttonParent.Show();
-					allAbilityButtons[buttonIndex].AbilityInformation(i, helpTable, _playerAbilities[i], this);
+					allAbilityButtons[buttonIndex].AbilityInformation(buttonIndex, helpTable, _playerAbilities[i], this);
 					allAbilityButtons[buttonIndex].AbilityButtonImage.Texture =
 						(AtlasTexture)_playerAbilities[i].AbilityImage;
 					allAbilityButtons[buttonIndex].abilityButtonBackground.SelfModulate =
@@ -161,9 +161,9 @@ public partial class SelectAction : Control
 		return (int)(min / max * 100);
 	}
 
-	public void ActionSelection(Ability ability)
+	public void ActionSelection(Ability ability, int abilityIndex)
 	{
-		_actionManager.SetCurrentAbility(ability);
+		_actionManager.SetCurrentAbility(ability, abilityIndex);
 		if (ability._type != AbilityType.BaseAbility)
 		{
 			UpdateSelectedActionAbilityPoints(ability);
@@ -184,7 +184,7 @@ public partial class SelectAction : Control
 			GetAbilities();
 			UpdatePlayerInfo();
 			GenerateActions();
-			_actionManager.SetCurrentAbility(_playerBaseAbilities[0]);
+			_actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
 		}
 
 	}

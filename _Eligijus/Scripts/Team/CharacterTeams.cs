@@ -186,6 +186,8 @@ public partial class CharacterTeams : Node
 						.Add(i, allCharacterList[teamIndex].characterResources[i]);
 					spawnedCharacter.unlockedAbilityList =
 						allCharacterList[teamIndex].characterResources[i].unlockedAbilities;
+					spawnedCharacter.unlockedBlessingList =
+						allCharacterList[teamIndex].characterResources[i].abilityBlessings;
 				}
 
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;

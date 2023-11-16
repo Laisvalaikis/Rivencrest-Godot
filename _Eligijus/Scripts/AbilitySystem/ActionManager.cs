@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -13,10 +12,10 @@ public partial class ActionManager : Node
 	[Export]
 	private Array<Ability> _allAbilities;
 	[Export]
-	private int availableAbilityPoints = 1;
-	private int abilityPoints;
-	private bool hasSlowAbilityBeenCast = false;
-	private int trackingCount = 0;
+	private int _availableAbilityPoints = 1;
+	private int _abilityPoints;
+	private bool _hasSlowAbilityBeenCast;
+	private int _trackingCount;
 	
 	// for blessings
 	private int _pointsBeforeAbility;
@@ -25,8 +24,8 @@ public partial class ActionManager : Node
 	private Ability _currentAbility;
 	private SelectActionButton _currentAbilitySelectActionButton;
 	private ChunkData _previousChunk;
-	private bool abilityIsSelected = false;
-	private Array<UnlockedAbilitiesResource> unlockedAbilityList;
+	private bool _abilityIsSelected;
+	private Array<UnlockedAbilitiesResource> _unlockedAbilityList;
 	private Data _data;
 	private TurnManager _turnManager;
 	
@@ -42,15 +41,16 @@ public partial class ActionManager : Node
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
 		Array<Ability> baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
-		unlockedAbilityList = _player.unlockedAbilityList;
+		Array<AbilityBlessingsResource> unlockedBlessings = _player.unlockedBlessingList;
+		_unlockedAbilityList = _player.unlockedAbilityList;
 		allAbilities.AddRange(baseAbilities);
 		allAbilities.AddRange(_player.playerInformation.playerInformationData.abilities);
-		if (allAbilities != null && allAbilities.Count != 0)
+		if (allAbilities.Count != 0)
 		{
 			for (int i = 0; i < allAbilities.Count; i++)
 			{
 				Ability ability = new Ability(allAbilities[i]);
-				ability.Action.SetupAbility(_player);
+				ability.Action.SetupAbility(_player, i);
 				if (_allAbilities == null)
 				{
 					_allAbilities = new Array<Ability>();
@@ -63,6 +63,7 @@ public partial class ActionManager : Node
 				ability.Action.AddTurnManager(_turnManager);
 				ability.Action.OnBeforeStart(null);
 				ability.Action.OnTurnStart(null);
+				ability.Action.BlessingOnTurnStart(null);
 			}
 			
 			for (int i = 0; i < baseAbilities.Count; i++)
@@ -86,12 +87,12 @@ public partial class ActionManager : Node
 
 	public int GetAllAbilityPoints()
 	{
-		return availableAbilityPoints;
+		return _availableAbilityPoints;
 	}
 
 	public int GetAbilityPoints()
 	{
-		return abilityPoints;
+		return _abilityPoints;
 	}
 
 	public Array<Ability> ReturnAllAbilities()
@@ -112,18 +113,18 @@ public partial class ActionManager : Node
 	
 	public void RemoveAllActionPoints() 
 	{
-		hasSlowAbilityBeenCast = true;
-		abilityPoints = 0;
+		_hasSlowAbilityBeenCast = true;
+		_abilityPoints = 0;
 	}
 	
 	public void SetAbilityPoints(int abilityPoints)
 	{
-		availableAbilityPoints = abilityPoints;
+		_availableAbilityPoints = abilityPoints;
 	}
 	
 	public void AddAbilityCooldownPoints(int abilityPoints)
 	{
-		availableAbilityPoints += abilityPoints;
+		_availableAbilityPoints += abilityPoints;
 	}
 	
 	public void RemoveSlowDown()
@@ -138,35 +139,35 @@ public partial class ActionManager : Node
 			_debuffs.SlowDownPlayer(abilityPoints);
 		}
 
-		if (this.abilityPoints + abilityPoints <= availableAbilityPoints)
+		if (_abilityPoints + abilityPoints <= _availableAbilityPoints)
 		{
-			this.abilityPoints += abilityPoints;
+			_abilityPoints += abilityPoints;
 		}
 	}
 
 	public void ResetAbilityPointsBeforeAbility()
 	{
-		this.abilityPoints = _pointsBeforeAbility;
+		_abilityPoints = _pointsBeforeAbility;
 	}
 
 	private void RemoveAbilityPoints(int consumedPoints)
 	{
-		_pointsBeforeAbility = abilityPoints;
-		if (abilityPoints >= consumedPoints)
+		_pointsBeforeAbility = _abilityPoints;
+		if (_abilityPoints >= consumedPoints)
 		{
-			abilityPoints -= consumedPoints;
+			_abilityPoints -= consumedPoints;
 		}
 		else
 		{
-			abilityPoints = 0;
+			_abilityPoints = 0;
 		}
 
 		
 	}
 
-	public virtual void RefillActionPoints() //pradzioj ejimo
+	public virtual void RefillActionPoints()
 	{
-		abilityPoints = availableAbilityPoints;
+		_abilityPoints = _availableAbilityPoints;
 	}
 
 	public void OnBeforeStart()
@@ -187,13 +188,15 @@ public partial class ActionManager : Node
 			if (_baseAbilities[i].enabled)
 			{
 				_baseAbilities[i].Action.OnTurnStart(null);
+				_baseAbilities[i].Action.BlessingOnTurnStart(null);
 			}
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && i < unlockedAbilityList.Count && unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
 			{
 				_abilities[i].Action.OnTurnStart(null);
+				_baseAbilities[i].Action.BlessingOnTurnStart(null);
 			}
 			else
 			{
@@ -213,7 +216,7 @@ public partial class ActionManager : Node
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && i < unlockedAbilityList.Count && unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
 			{
 				_abilities[i].Action.PlayerWasAttacked();
 			}
@@ -230,31 +233,13 @@ public partial class ActionManager : Node
 		_debuffs.CheckAbilityTurns();
 		_debuffs.CheckBaseAbilityTurns();
 		_debuffs.CheckWholeAbilities();
-		// ActionOnTurnEnd();
 	}
 
 	public void OnAfterResolve()
 	{
 		
 	}
-
-	// private void ActionOnTurnEnd()
-	// {
-	// 	for (int i = 0; i < _baseAbilities.Count; i++)
-	// 	{
-	// 		if (_baseAbilities[i].enabled)
-	// 		{
-	// 			_baseAbilities[i].Action.OnTurnEnd(null);
-	// 		}
-	// 	}
-	// 	for (int i = 0; i < _abilities.Count; i++)
-	// 	{
-	// 		if (_abilities[i].enabled && unlockedAbilityList[i].abilityConfirmed)
-	// 		{
-	// 			_abilities[i].Action.OnTurnEnd(null);
-	// 		}
-	// 	}
-	// }
+	
 	public void PlayerDied()
 	{
 		for (int i = 0; i < _baseAbilities.Count; i++)
@@ -266,7 +251,7 @@ public partial class ActionManager : Node
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && i < unlockedAbilityList.Count && unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
 			{
 				_abilities[i].Action.Die();
 			}
@@ -307,7 +292,7 @@ public partial class ActionManager : Node
 		DeselectCurrentAbility();
 	}
 
-	public void SetCurrentAbility(Ability ability)
+	public void SetCurrentAbility(Ability ability, int abilityIndex)
 	{
 		if (_currentAbility != null)
 		{
@@ -351,33 +336,27 @@ public partial class ActionManager : Node
 	{
 		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility && _debuffs.CanUseBaseAbility( this))
 		{
-			if (chunkData != null)
+			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated())
 			{
-				if (_currentAbility.Action.AbilityCanBeActivated())
-				{
-					_currentAbility.Action.ResolveAbility(chunkData);
-					// _currentAbility.Action.ResolveBlessings(chunkData, unlockedBaseBlessingList);
-				}
-
-				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
+				Ability tempAbility = _currentAbility;
+				_currentAbility.Action.ResolveAbility(chunkData);
+				tempAbility.Action.ResolveBlessings(chunkData);
 			}
 		}
 	}
-	
+
 	private void ExecuteCurrentAbility(ChunkData chunkData)
 	{
 		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability && _debuffs.CanUseAbility())
 		{
-			if (chunkData != null)
+			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated() && _abilityPoints >= _currentAbility.Action.GetAbilityPoints())
 			{
-				if (_currentAbility.Action.AbilityCanBeActivated() && abilityPoints >= _currentAbility.Action.GetAbilityPoints())
-				{
-					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
-					_currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(abilityPoints);
-					_currentAbility.Action.ResolveAbility(chunkData);
-					// unlockedAbilityList
-				}
-				// turnManager.AddUsedAbility(new UsedAbility(_currentAbility, chunk));
+				Ability tempAbility = _currentAbility;
+				RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
+				_currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(_abilityPoints);
+				_currentAbility.Action.ResolveAbility(chunkData);
+				tempAbility.Action.ResolveBlessings(chunkData);
+				
 			}
 		}
 	}

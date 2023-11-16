@@ -38,7 +38,7 @@ public partial class SelectActionButton : Button
 
     public void OnButtonClick()
     {
-        selectAction.ActionSelection(abilityInformation);
+        selectAction.ActionSelection(abilityInformation, abilityIndex);
     }
 
     // Disable abiliteies after usage

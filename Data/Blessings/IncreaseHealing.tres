@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_kf02q")
+bonusHealing = 3
+_blessingIsUnlockedLocaly = false

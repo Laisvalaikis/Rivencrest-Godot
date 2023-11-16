@@ -508,7 +508,7 @@ public partial class GameTileMap : Node2D
 		{
 			_selectAction.Hide();
 			// _currentSelectedCharacter.actionManager.DeselectAbility();
-			_currentSelectedCharacter.actionManager.SetCurrentAbility(null);
+			_currentSelectedCharacter.actionManager.SetCurrentAbility(null, -1);
 			_turnManager.SetCurrentCharacter(null);
 			teamInformation.SelectCharacterPortrait(_currentSelectedCharacter, false);
 			_currentSelectedCharacter = null;

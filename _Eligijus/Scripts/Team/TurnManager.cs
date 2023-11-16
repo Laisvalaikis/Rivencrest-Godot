@@ -162,9 +162,11 @@ public partial class TurnManager : Node
 			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; element = element.Next)
 			{
 				UsedAbility usedAbility = element.Value;
+				
 				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
 				{
 					usedAbility.ability.OnTurnEnd(usedAbility.chunk);
+					usedAbility.ability.BlessingOnTurnStart(null);
 					usedAbility.IncreaseCastCount();
 				}
 				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())

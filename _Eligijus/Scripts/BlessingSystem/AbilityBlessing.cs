@@ -44,11 +44,6 @@ public partial class AbilityBlessing : BaseBlessing
 	    base.ResolveBlessing(baseAction);
     }
 
-    public virtual void ResolveBlessing(BaseAction baseAction, List<ChunkData> tiles)
-    {
-	    
-    }
-
     public override void OnTurnStart(BaseAction baseAction)
     {
 	    base.OnTurnStart(baseAction);

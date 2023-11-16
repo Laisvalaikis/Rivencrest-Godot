@@ -10,7 +10,6 @@ public abstract partial class BaseAction: Resource
 		[Export] protected bool laserGrid = false;
 		[Export] protected int turnBeforeStartLifetime = 1;
 		[Export] protected int turnAfterResolveLifetime = 1;
-		//private RaycastHit2D raycast;
 		[Export] protected int abilityPoints = 1;
 		[Export]
 		public int attackRange = 1;
@@ -45,6 +44,7 @@ public abstract partial class BaseAction: Resource
 		[Export]
 		protected Array<AbilityBlessing> _abilityBlessingsRef;
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
+		protected Array<UnlockedBlessingsResource> unlockedBlessingsList;
 		protected List<ChunkData> _chunkList;
 		protected bool turinIsEven = false;
 		protected string customText = null;
@@ -89,9 +89,19 @@ public abstract partial class BaseAction: Resource
 			throw new NotImplementedException();
 		}
 
-		public void SetupAbility(Player player)
+		public void SetupAbility(Player player, int abilityIndex)
 		{
 			this.player = player;
+			if (player.unlockedBlessingList.Count > abilityIndex)
+			{
+				unlockedBlessingsList = player.unlockedBlessingList[abilityIndex].UnlockedBlessingsList;
+			}
+			else
+			{
+				unlockedBlessingsList = new Array<UnlockedBlessingsResource>();
+			}
+
+			
 			Start();
 		}
 
@@ -154,12 +164,6 @@ public abstract partial class BaseAction: Resource
 		public bool IsPositionInGrid(Vector2 position)
 		{
 			return _chunkList.Contains(GameTileMap.Tilemap.GetChunk(position));
-		}
-		
-		public virtual void CreateGrid(ChunkData chunkData, int radius)
-		{
-			CreateAvailableChunkList(attackRange);
-			HighlightAllGridTiles();
 		}
 
 		public virtual void CreateGrid()
@@ -534,6 +538,11 @@ public abstract partial class BaseAction: Resource
 				cooldownCount = abilityCooldown;
 				firstTimeUsage = false;
 			}
+			
+		}
+
+		public virtual void BlessingOnTurnStart(ChunkData chunkData)
+		{
 			if (_abilityBlessingsCreated != null)
 			{
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
@@ -546,7 +555,6 @@ public abstract partial class BaseAction: Resource
 
 		public virtual void OnTurnEnd(ChunkData chunkData)
 		{
-			//RefillActionPoints();
 			cooldownCount++;
 			if (!turinIsEven)
 			{
@@ -556,6 +564,10 @@ public abstract partial class BaseAction: Resource
 			{
 				turinIsEven = false;
 			}
+		}
+		
+		public virtual void BlessingOnTurnEnd(ChunkData chunkData)
+		{
 			if (_abilityBlessingsCreated != null)
 			{
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
@@ -590,12 +602,7 @@ public abstract partial class BaseAction: Resource
 		{
 			return player;
 		}
-
-		public virtual void RemoveActionPoints()//panaudojus action
-		{
-			// AvailableAttacks--;
-		}
-
+		
 		public virtual void ResolveAbility(ChunkData chunk)
 		{
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
@@ -605,14 +612,13 @@ public abstract partial class BaseAction: Resource
 			}
 			GD.PushWarning("PlaySound");
 			ClearGrid();
-			UsedAbility usedAbility = new UsedAbility(this, chunk);
-			
+			UsedAbility usedAbility = new UsedAbility(this, chunk, player);
 			_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
 			_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
 			_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);
 		}
 
-		public virtual void ResolveBlessings(ChunkData chunk, Array<UnlockedBlessingsResource> unlockedBlessingsList)
+		public virtual void ResolveBlessings(ChunkData chunk)
 		{
 			if (_abilityBlessingsCreated != null)
 			{
