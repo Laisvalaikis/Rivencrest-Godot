@@ -129,6 +129,11 @@ public partial class Recruitment : Node
 			//
 			characterToAdd.abilityPointCount = 1;
 			characterToAdd.unlockedAbilities = new Array<UnlockedAbilitiesResource>();
+			Array<Ability> baseAbilities = characterToAdd.playerInformation.baseAbilities;
+			for (int j = 0; j < baseAbilities.Count; j++)
+			{
+				characterToAdd.abilityBlessings.Add(new AbilityBlessingsResource());
+			}
 			for (int j = 0; j < _data.townData.maxAbilityCount; j++)
 			{
 				characterToAdd.unlockedAbilities.Add(new UnlockedAbilitiesResource());
