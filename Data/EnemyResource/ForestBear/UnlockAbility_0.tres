@@ -6,3 +6,4 @@
 script = ExtResource("1_ksg51")
 abilityUnlocked = true
 abilityConfirmed = true
+unlockedBlessings = Array[Resource]([])
