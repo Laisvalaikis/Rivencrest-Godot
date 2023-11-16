@@ -20,7 +20,7 @@ public partial class MapSetup : Node
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		if (_data == null)
+		if (Data.Instance != null)
 		{
 			_data = Data.Instance;
 			mapDatas = _data.allMapDatas;
