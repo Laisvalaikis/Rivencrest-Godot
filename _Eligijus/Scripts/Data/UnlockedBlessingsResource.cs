@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class UnlockedBlessingsResource : Resource
+public partial class UnlockedBlessingsResource : Resource
 {
     public bool blessingUnlocked = false; 
     
