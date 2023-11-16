@@ -14,6 +14,7 @@ using Godot;
 		public int townGold { get; set; }
 		public int day { get; set; }
 		public bool newGame { get; set; }
+		public int maxAbilityCount { get; set; } = 4;
 		public List<SavableCharacter> characters { get; set; }
 		public List<SavableCharacter> deadCharacters { get; set; }
 		// public string townHall;
@@ -37,7 +38,7 @@ using Godot;
 		public TownData() { }
 
 		public TownData(int difficultyLevel, int townGold, int day, List<SavedCharacter> characters, List<SavedCharacter> deadCharacters, List<int> charactersOnLastMission,
-			bool wasLastMissionSuccessful, bool newGame, string selectedMission, TownHallData townHall,
+			bool wasLastMissionSuccessful, bool newGame, int maxAbilityCount, string selectedMission, TownHallData townHall,
 			List<SavedCharacter> rcCharacters, List<int> enemies, bool allowEnemySelection, bool allowDuplicates, string teamColor,
 			string teamName, Encounter selectedEncounter, List<Encounter> pastEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
 			GameSettings gameSettings)
@@ -51,6 +52,7 @@ using Godot;
 			this.charactersOnLastMission = new List<int>(charactersOnLastMission);
 			this.wereCharactersOnAMission = charactersOnLastMission.Count > 0;
 			this.newGame = newGame;
+			this.maxAbilityCount = maxAbilityCount;
 			this.selectedMission = selectedMission;
 			this.townHall = townHall;
 			if(rcCharacters != null)
@@ -90,6 +92,7 @@ using Godot;
 			charactersOnLastMission = new List<int>(data.charactersOnLastMission);
 			wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
 			newGame = data.newGame;
+			maxAbilityCount = data.maxAbilityCount;
 			selectedMission = data.selectedMission;
 			townHall = new TownHallData(data.townHall);
 			if (data.rcCharacters != null)
@@ -136,6 +139,7 @@ using Godot;
 				wasLastMissionSuccessful = false,
 				wereCharactersOnAMission = false,
 				newGame = true,
+				maxAbilityCount = 4,
 				selectedMission = "",
 				townHall = new TownHallData(), // Sita reikes perdaryti
 				rcCharacters = { },

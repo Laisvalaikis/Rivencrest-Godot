@@ -16,6 +16,8 @@ public partial class TownDataResource: Resource
 	[Export]
 	public bool newGame;
 	[Export]
+	public int maxAbilityCount = 4;
+	[Export]
 	public Array<SavableCharacterResource> characters;
 	[Export]
 	public Array<SavableCharacterResource> deadCharacters;
@@ -70,6 +72,7 @@ public partial class TownDataResource: Resource
 		charactersOnLastMission = new Array<int>(data.charactersOnLastMission);
 		wereCharactersOnAMission = data.charactersOnLastMission.Count > 0;
 		newGame = data.newGame;
+		maxAbilityCount = data.maxAbilityCount;
 		selectedMission = data.selectedMission;
 		townHall = data.townHall;
 		if(data.rcCharacters != null)
@@ -132,6 +135,7 @@ public partial class TownDataResource: Resource
 		}
 
 		newGame = data.newGame;
+		maxAbilityCount = data.maxAbilityCount;
 		selectedMission = data.selectedMission;
 		townHall = new TownHallDataResource(data.townHall);
 		if (data.rcCharacters != null)

@@ -129,9 +129,10 @@ public partial class Recruitment : Node
 			//
 			characterToAdd.abilityPointCount = 1;
 			characterToAdd.unlockedAbilities = new Array<UnlockedAbilitiesResource>();
-			for (int j = 0; j < 4; j++)
+			for (int j = 0; j < _data.townData.maxAbilityCount; j++)
 			{
 				characterToAdd.unlockedAbilities.Add(new UnlockedAbilitiesResource());
+				characterToAdd.abilityBlessings.Add(new AbilityBlessingsResource());
 			}
 			// GD.PrintErr("Need to redo Unlocked Abilities");
 			//

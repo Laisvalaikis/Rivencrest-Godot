@@ -5,7 +5,12 @@ using System.Collections.Generic;
 public class AbilityBlessings
 {
     public List<UnlockedBlessings> UnlockedBlessingsList { get; set; }
-    
+
+    public AbilityBlessings()
+    {
+        UnlockedBlessingsList = new List<UnlockedBlessings>();
+    }
+
     public AbilityBlessings(AbilityBlessings data)
     {
         UnlockedBlessingsList = new List<UnlockedBlessings>(data.UnlockedBlessingsList);
