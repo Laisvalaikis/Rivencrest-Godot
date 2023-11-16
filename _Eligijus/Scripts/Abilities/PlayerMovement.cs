@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+
+
+
 public partial class PlayerMovement : BaseAction
 {
 	private bool isFacingRight = true;
@@ -11,6 +14,7 @@ public partial class PlayerMovement : BaseAction
 	private List<ChunkData> _path;
 	private int movementRange = 0;
 	private ChunkData[,] _chunkArray;
+	private PathCache cache=new PathCache();
 
 	public PlayerMovement()
 	{
@@ -52,15 +56,11 @@ public partial class PlayerMovement : BaseAction
 		if (hoveredChunkHighlight.isHighlighted)
 		{
 			ClearArrowPath();
-			if (_path != null && _path.Any() && IsAdjacent(hoveredChunk, _path[^1]))
+			_path = AStarSearch(GameTileMap.Tilemap.GetChunk(player.Position), hoveredChunk);
+			if (_path != null)
 			{
-				UpdatePath(hoveredChunk, _path, _chunkArray);
+				SetTileArrow(_path,0,_path.Count-1);
 			}
-			else
-			{
-				_path = GetDiagonalPath(_gameTileMap.GetChunk(player.GlobalPosition), hoveredChunk, _chunkArray);
-			}
-			SetTileArrow(_path,0,_path.Count-1);
 		}
 	}
 	
@@ -172,7 +172,7 @@ public partial class PlayerMovement : BaseAction
 
 			foreach (ChunkData adjacentChunk in GetAdjacentChunks(currentChunk))
 			{
-				if (!visited.Contains(adjacentChunk) && adjacentChunk.GetInformationType() != InformationType.Player)
+				if (!visited.Contains(adjacentChunk) && adjacentChunk.GetInformationType() != InformationType.Object && (IsAllegianceSame(adjacentChunk)||adjacentChunk.GetCurrentPlayer()==null))
 				{
 					queue.Enqueue((adjacentChunk, currentDistance + 1));
 					visited.Add(adjacentChunk);
@@ -180,7 +180,7 @@ public partial class PlayerMovement : BaseAction
 			}
 		}
 	}
-	//player.GetPlayerTeam() !=
+
 	private IEnumerable<ChunkData> GetAdjacentChunks(ChunkData chunk)
 	{
 		ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray();
@@ -216,10 +216,10 @@ public partial class PlayerMovement : BaseAction
 	{
 		List<ChunkData> stairStepPath = new List<ChunkData>();
 		// Get the starting and ending indexes
-		int startX = start.GetIndexes().Item2;
-		int startY = start.GetIndexes().Item1;
-		int endX = end.GetIndexes().Item2;
-		int endY = end.GetIndexes().Item1;
+		int startX = start.GetIndexes().Item1;
+		int startY = start.GetIndexes().Item2;
+		int endX = end.GetIndexes().Item1;
+		int endY = end.GetIndexes().Item2;
 	
 		int x = startX, y = startY;
 	
@@ -229,11 +229,10 @@ public partial class PlayerMovement : BaseAction
 	
 		while (x != endX || y != endY)
 		{
-			// Checking the corners for out-of-bounds and deciding the path accordingly
 			if (x != endX)
 			{
-				stairStepPath.Add(chunkArray[y, x]);
-				if (!chunkArray[y, x + xStep].GetTileHighlight().isHighlighted && chunkArray[y,x+xStep].GetCurrentPlayer()==null)
+				stairStepPath.Add(chunkArray[x, y]);
+				if (!chunkArray[x + xStep,y].GetTileHighlight().isHighlighted && chunkArray[x + xStep,y].GetCurrentPlayer()==null)
 				{
 					y += yStep;
 				}
@@ -244,8 +243,8 @@ public partial class PlayerMovement : BaseAction
 			}
 			if (y != endY)
 			{
-				stairStepPath.Add(chunkArray[y, x]);
-				if (!chunkArray[y + yStep, x].GetTileHighlight().isHighlighted && chunkArray[y+yStep,x].GetCurrentPlayer()==null)
+				stairStepPath.Add(chunkArray[x, y]);
+				if (!chunkArray[x, y + yStep].GetTileHighlight().isHighlighted && chunkArray[x, y + yStep].GetCurrentPlayer()==null)
 				{
 					x += xStep;
 				}
@@ -256,7 +255,7 @@ public partial class PlayerMovement : BaseAction
 			}
 		}
 		// Add the end point
-		stairStepPath.Add(chunkArray[endY, endX]);
+		stairStepPath.Add(chunkArray[endX, endY]);
 		return stairStepPath;
 	}
 	
@@ -314,7 +313,6 @@ public partial class PlayerMovement : BaseAction
 			movementRange++;
 			int arrowType = DetermineArrowType(current, prev, next);
 			path[i].GetTileHighlight().SetArrowSprite(arrowType);
-			
 		}
 		movementRange--; // nes jis pradeda nuo character
 	}
@@ -362,4 +360,159 @@ public partial class PlayerMovement : BaseAction
 		return 0;  
 	}
 	
+	public List<ChunkData> AStarSearch(ChunkData start, ChunkData goal)
+{
+    // Check if route has already once been found and return it from cache
+    if (cache.IsCached(start, goal)) return cache.Get(start, goal);
+
+    // Setup to begin A* Search
+    Dictionary<ChunkData, ChunkData> parentMap = new Dictionary<ChunkData, ChunkData>();
+    HashSet<ChunkData> visited = new HashSet<ChunkData>();
+    Dictionary<ChunkData, int> distances = InitializeAllToInfinity();
+
+    // Using a priority queue to manage nodes to explore
+    PriorityQueue<ChunkData, int> priorityQueue = new PriorityQueue<ChunkData, int>();
+
+    // Enqueue StartNode, with distance 0
+    distances[start] = 0;
+    priorityQueue.Enqueue(start, 0);
+    ChunkData current = null;
+
+    while (priorityQueue.Count > 0)
+    {
+        priorityQueue.TryDequeue(out current, out _);
+
+        if (!visited.Contains(current))
+        {
+            visited.Add(current);
+
+            // Check if there is cached route from this node to the end
+            if (cache.IsCached(current, goal)) return MergePathWithCache(goal, start, parentMap, current);
+
+            // If last element in PQ reached
+            if (current!=null && current.Equals(goal)) return ReconstructPath(parentMap, start, goal).ToList();
+
+            foreach (var neighbor in GetAdjacentChunks(current))
+            {
+                if (!visited.Contains(neighbor) && neighbor.GetInformationType() != InformationType.Object && (IsAllegianceSame(neighbor)||neighbor.GetCurrentPlayer()==null))
+                {
+                    // Calculate predicted distance to the end node (heuristic)
+                    int predictedDistance = GetExpectedPathLength(neighbor, goal);
+
+                    // Calculate distance to neighbor and total distance from start
+                    int neighborDistance = Distance(current, neighbor);
+                    int totalDistance = distances[current] + neighborDistance;
+
+                    // Check if total distance is smaller than the current known distance
+                    if (totalDistance + predictedDistance < distances[neighbor])
+                    {
+                        // Update distance
+                        distances[neighbor] = totalDistance + predictedDistance;
+                        // Set parent
+                        parentMap[neighbor] = current;
+                        // Enqueue with new priority
+                        priorityQueue.Enqueue(neighbor, totalDistance + predictedDistance);
+                    }
+                }
+            }
+        }
+    }
+
+    return null; // Path not found
+}
+
+private Dictionary<ChunkData, int> InitializeAllToInfinity()
+{
+    var distances = new Dictionary<ChunkData, int>();
+    // Assuming you have a method to get all ChunkData objects
+    foreach (var chunk in _chunkList)
+    {
+        distances[chunk] = int.MaxValue;
+    }
+    return distances;
+}
+
+// Define your Heuristic method here
+
+
+// Define your Distance method here
+	private int Distance(ChunkData a, ChunkData b)
+	{
+		var (ax, ay) = a.GetIndexes();
+		var (bx, by) = b.GetIndexes();
+
+		// Assuming each move costs '1', the distance between two adjacent nodes is always 1
+		// Non-adjacent nodes are not directly reachable
+		return Math.Abs(ax - bx) + Math.Abs(ay - by) == 1 ? 1 : Int32.MaxValue;
+	}
+
+
+	
+	private List<ChunkData> MergePathWithCache(ChunkData goal, ChunkData startNode,
+		Dictionary<ChunkData, ChunkData> parentMap, ChunkData current)
+	{
+		List<ChunkData> newRoute = ReconstructPath(parentMap, startNode, current);
+		List<ChunkData> cachedSubRoute = cache.Get(current, goal);
+
+		// Remove last element if newRoute is not empty to avoid duplication with the cachedSubRoute
+		if (newRoute.Count > 0)
+		{
+			newRoute.RemoveAt(newRoute.Count-1);
+		}
+    
+		// Combine with cached route
+		foreach (var chunk in cachedSubRoute)
+		{
+			newRoute.Add(chunk);
+		}
+
+		// Cache the whole route
+		cache.Put(startNode, goal, newRoute);
+    
+		// Return result
+		return newRoute;
+	}
+
+	private List<ChunkData> ReconstructPath(Dictionary<ChunkData, ChunkData> parentMap,
+		ChunkData startNode, ChunkData current)
+	{
+		List<ChunkData> path = new List<ChunkData>();
+		// Reconstruct the path from startNode to current by following the parentMap
+		for (ChunkData node = current; !node.Equals(startNode); node = parentMap[node])
+		{
+			path.Insert(0,node);
+		}
+		path.Insert(0,startNode); // Add the start node at the beginning
+		return path;
+	}
+
+
+	public class PathCache
+	{
+		// from, to -> list of tiles representing the path
+		private Dictionary<ChunkData, Dictionary<ChunkData, List<ChunkData>>> pathCache = new Dictionary<ChunkData, Dictionary<ChunkData, List<ChunkData>>>();
+
+		public void Put(ChunkData start, ChunkData end, List<ChunkData> path)
+		{
+			if (!pathCache.ContainsKey(start))
+			{
+				pathCache[start] = new Dictionary<ChunkData, List<ChunkData>>();
+			}
+			pathCache[start][end] = new List<ChunkData>(path); // Creates a copy of the path
+		}
+
+		public List<ChunkData> Get(ChunkData start, ChunkData end)
+		{
+			if (IsCached(start, end))
+			{
+				return new List<ChunkData>(pathCache[start][end]); // Return a copy to prevent external modification
+			}
+			return new List<ChunkData>();
+		}
+
+		public bool IsCached(ChunkData start, ChunkData end)
+		{
+			return pathCache.ContainsKey(start) && pathCache[start].ContainsKey(end);
+		}
+	}
 }

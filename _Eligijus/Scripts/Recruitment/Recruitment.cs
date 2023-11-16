@@ -130,14 +130,35 @@ public partial class Recruitment : Node
 			characterToAdd.abilityPointCount = 1;
 			characterToAdd.unlockedAbilities = new Array<UnlockedAbilitiesResource>();
 			Array<Ability> baseAbilities = characterToAdd.playerInformation.baseAbilities;
+			Array<Ability> abilities = characterToAdd.playerInformation.abilities;
 			for (int j = 0; j < baseAbilities.Count; j++)
 			{
 				characterToAdd.abilityBlessings.Add(new AbilityBlessingsResource());
+				Array<AbilityBlessing> abilityBlessings = baseAbilities[j].Action.GetAllBlessings();
+				if (abilityBlessings != null)
+				{
+					for (int k = 0; k < abilityBlessings.Count; k++)
+					{
+						characterToAdd.abilityBlessings[j].UnlockedBlessingsList.Add(new UnlockedBlessingsResource());
+					}
+				}
 			}
 			for (int j = 0; j < _data.townData.maxAbilityCount; j++)
 			{
 				characterToAdd.unlockedAbilities.Add(new UnlockedAbilitiesResource());
 				characterToAdd.abilityBlessings.Add(new AbilityBlessingsResource());
+				if (abilities != null && abilities.Count > j)
+				{
+					Array<AbilityBlessing> abilityBlessings = abilities[j].Action.GetAllBlessings();
+					if (abilityBlessings != null)
+					{
+						for (int k = 0; k < abilityBlessings.Count; k++)
+						{
+							characterToAdd.abilityBlessings[j].UnlockedBlessingsList
+								.Add(new UnlockedBlessingsResource());
+						}
+					}
+				}
 			}
 			// GD.PrintErr("Need to redo Unlocked Abilities");
 			//
