@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://hhueis26wdkw"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://hhueis26wdkw"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/WindBoost.cs" id="1_8ndcc"]
-[ext_resource type="Resource" uid="uid://bc8er6qpm0pkm" path="res://Data/Blessings/IncreaseHealing.tres" id="1_d6lp2"]
 
 [resource]
 script = ExtResource("1_8ndcc")
@@ -25,4 +24,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_d6lp2")])
+_abilityBlessingsRef = Array[Resource]([null])

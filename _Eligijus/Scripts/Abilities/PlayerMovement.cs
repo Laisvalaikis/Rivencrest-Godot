@@ -419,23 +419,17 @@ public partial class PlayerMovement : BaseAction
     }
 
     return null; // Path not found
+	}
+
+	private Dictionary<ChunkData, int> InitializeAllToInfinity()
+	{
+		var distances = new Dictionary<ChunkData, int>();
+		foreach (var chunk in _chunkList)
+		{
+			distances[chunk] = int.MaxValue;
+		}
+		return distances;
 }
-
-private Dictionary<ChunkData, int> InitializeAllToInfinity()
-{
-    var distances = new Dictionary<ChunkData, int>();
-    // Assuming you have a method to get all ChunkData objects
-    foreach (var chunk in _chunkList)
-    {
-        distances[chunk] = int.MaxValue;
-    }
-    return distances;
-}
-
-// Define your Heuristic method here
-
-
-// Define your Distance method here
 	private int Distance(ChunkData a, ChunkData b)
 	{
 		var (ax, ay) = a.GetIndexes();
@@ -456,12 +450,12 @@ private Dictionary<ChunkData, int> InitializeAllToInfinity()
 
 		// Remove last element if newRoute is not empty to avoid duplication with the cachedSubRoute
 		if (newRoute.Count > 0)
-		{
+		{ 
 			newRoute.RemoveAt(newRoute.Count-1);
 		}
     
 		// Combine with cached route
-		foreach (var chunk in cachedSubRoute)
+		foreach (var chunk in cachedSubRoute) 
 		{
 			newRoute.Add(chunk);
 		}
@@ -485,8 +479,7 @@ private Dictionary<ChunkData, int> InitializeAllToInfinity()
 		path.Insert(0,startNode); // Add the start node at the beginning
 		return path;
 	}
-
-
+	
 	public class PathCache
 	{
 		// from, to -> list of tiles representing the path

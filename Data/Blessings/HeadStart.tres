@@ -5,4 +5,10 @@
 [resource]
 script = ExtResource("1_abai7")
 addMovementPoints = 2
-_blessingIsUnlockedLocaly = true
+blessingName = ""
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = true

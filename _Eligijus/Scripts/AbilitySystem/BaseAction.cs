@@ -173,7 +173,6 @@ public abstract partial class BaseAction: Resource
 			foreach (var chunk in _chunkList)
 			{
 				HighlightTile highlightTile = chunk.GetTileHighlight();
-				highlightTile.EnableTile(false);
 				highlightTile.ActivateColorGridTile(false);
 				DisableDamagePreview(chunk);
 			}

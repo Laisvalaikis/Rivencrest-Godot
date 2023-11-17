@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://berlnlh5ig7j7"]
 
-[ext_resource type="Resource" uid="uid://cr4iotfxu308i" path="res://Data/Blessings/GatherRound.tres" id="1_6mfgu"]
+[ext_resource type="Resource" uid="uid://bc8er6qpm0pkm" path="res://Data/Blessings/IncreaseHealing.tres" id="1_joxjc"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/HealSingle.cs" id="1_ujv8x"]
 
 [resource]
@@ -25,4 +25,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_6mfgu")])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_joxjc")])
