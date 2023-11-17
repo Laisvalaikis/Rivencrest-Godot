@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public partial class CharacterTeams : Node
 {
@@ -118,14 +119,40 @@ public partial class CharacterTeams : Node
 			for (int i = 0; i < enemyData.enemyCount; i++)
 			{
 				int index = _random.Next(0, enemyData.enemyResource.Count);
+				SavedCharacterResource characterResource = enemyData.enemyResource[index];
 				enemyTeam.characterPrefabs.Add(i, enemyData.enemyResource[index].prefab);
 				enemyTeam.characterResources.Add(i, enemyData.enemyResource[index]);
+				characterResource.abilityBlessings = new Array<AbilityBlessingsResource>();
+				
+				Array<Ability> baseAbilities = characterResource.playerInformation.baseAbilities;
+				Array<Ability> abilities = characterResource.playerInformation.abilities;
+				Array<Ability> allAbilities = new Array<Ability>();
+				allAbilities.AddRange(baseAbilities);
+				allAbilities.AddRange(abilities);
+				GenerateBlessingsLockUnlock(allAbilities, characterResource);
 				enemyTeam.SetTeamIsUsed(true);
 			}
 		}
 		enemyTeam.teamName = "Enemies";
 		enemyTeam.isEnemies = true;
 		// _data.allMapDatas[MapName];
+	}
+
+	private void GenerateBlessingsLockUnlock(Array<Ability> allAbilities, SavedCharacterResource characterResource)
+	{
+		for (int j = 0; j < allAbilities.Count; j++)
+		{
+			characterResource.abilityBlessings.Add(new AbilityBlessingsResource());
+			Array<AbilityBlessing> abilityBlessings = allAbilities[j].Action.GetAllBlessings();
+			if (abilityBlessings != null)
+			{
+				for (int k = 0; k < abilityBlessings.Count; k++)
+				{
+					characterResource.abilityBlessings[j].UnlockedBlessingsList
+						.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
+				}
+			}
+		}
 	}
 
 	private Team GetAvailableTeam()

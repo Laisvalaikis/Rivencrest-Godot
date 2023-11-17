@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
-using Array = System.Array;
 
 public abstract partial class BaseAction: Resource
 	{
@@ -544,12 +543,11 @@ public abstract partial class BaseAction: Resource
 			{
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
 				{
-					// if (unlockedBlessingsList[i].blessingUnlocked)
-					// {
-						GD.PushError("Blessing unlock doesn't work");
+					if (unlockedBlessingsList[i].blessingUnlocked)
+					{
 						_abilityBlessingsCreated[i].OnTurnStart(this);
 						_abilityBlessingsCreated[i].OnTurnStart(this, chunkData);
-					// }
+					}
 				}
 			}
 		}

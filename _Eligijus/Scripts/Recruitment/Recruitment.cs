@@ -131,6 +131,7 @@ public partial class Recruitment : Node
 			characterToAdd.unlockedAbilities = new Array<UnlockedAbilitiesResource>();
 			Array<Ability> baseAbilities = characterToAdd.playerInformation.baseAbilities;
 			Array<Ability> abilities = characterToAdd.playerInformation.abilities;
+			int abilityIndex = 0;
 			for (int j = 0; j < baseAbilities.Count; j++)
 			{
 				characterToAdd.abilityBlessings.Add(new AbilityBlessingsResource());
@@ -139,9 +140,10 @@ public partial class Recruitment : Node
 				{
 					for (int k = 0; k < abilityBlessings.Count; k++)
 					{
-						characterToAdd.abilityBlessings[j].UnlockedBlessingsList.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
+						characterToAdd.abilityBlessings[abilityIndex].UnlockedBlessingsList.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
 					}
 				}
+				abilityIndex++;
 			}
 			for (int j = 0; j < _data.townData.maxAbilityCount; j++)
 			{
@@ -154,10 +156,11 @@ public partial class Recruitment : Node
 					{
 						for (int k = 0; k < abilityBlessings.Count; k++)
 						{
-							characterToAdd.abilityBlessings[j].UnlockedBlessingsList
+							characterToAdd.abilityBlessings[abilityIndex].UnlockedBlessingsList
 								.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
 						}
 					}
+					abilityIndex++;
 				}
 			}
 			

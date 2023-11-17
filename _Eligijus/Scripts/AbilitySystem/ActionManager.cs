@@ -62,7 +62,7 @@ public partial class ActionManager : Node
 				ability.Action.AddTurnManager(_turnManager);
 				ability.Action.OnBeforeStart(null);
 				ability.Action.OnTurnStart(null);
-				// ability.Action.BlessingOnTurnStart(null);
+				ability.Action.BlessingOnTurnStart(null);
 			}
 			
 			for (int i = 0; i < baseAbilities.Count; i++)

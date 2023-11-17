@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 public partial class SummonBear : BaseAction
 {
@@ -38,13 +39,33 @@ public partial class SummonBear : BaseAction
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
 			spawnedCharacter.actionManager.AddTurnManager(_turnManager);
 			spawnedCharacter.unlockedAbilityList = bearResource.unlockedAbilities;
-			spawnedCharacter.unlockedBlessingList = bearResource.abilityBlessings;
+			Array<Ability> allAbilities = new Array<Ability>();
+			allAbilities.AddRange(spawnedCharacter.playerInformation.playerInformationData.baseAbilities);
+			allAbilities.AddRange(spawnedCharacter.playerInformation.playerInformationData.abilities);
+			GenerateBlessingsLockUnlock(allAbilities, bearResource);
 			spawnedCharacter.SetPlayerTeam(teamIndex);
 			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearResource.prefab);
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
 			player.GetPlayerTeams().portraitTeamBox.ModifyList();
 			FinishAbility();
+		}
+	}
+	
+	private void GenerateBlessingsLockUnlock(Array<Ability> allAbilities, SavedCharacterResource characterResource)
+	{
+		for (int j = 0; j < allAbilities.Count; j++)
+		{
+			characterResource.abilityBlessings.Add(new AbilityBlessingsResource());
+			Array<AbilityBlessing> abilityBlessings = allAbilities[j].Action.GetAllBlessings();
+			if (abilityBlessings != null)
+			{
+				for (int k = 0; k < abilityBlessings.Count; k++)
+				{
+					characterResource.abilityBlessings[j].UnlockedBlessingsList
+						.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
+				}
+			}
 		}
 	}
 }
