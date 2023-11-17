@@ -174,7 +174,7 @@ public partial class BlessingManager : Node
             }
             else
             {
-                int correctIndex = _playerBlessings.Count - abilityBlessingsTemp.Count - index;
+                int correctIndex = _playerBlessings.Count - 1 + abilityBlessingsTemp.Count - index;
                 if (!_generatedBlessings.Contains(globalBlessings[correctIndex]))
                 {
                     _generatedBlessings.Add(globalBlessings[correctIndex]);
