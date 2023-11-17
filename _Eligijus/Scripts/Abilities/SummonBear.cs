@@ -43,6 +43,7 @@ public partial class SummonBear : BaseAction
 			allAbilities.AddRange(spawnedCharacter.playerInformation.playerInformationData.baseAbilities);
 			allAbilities.AddRange(spawnedCharacter.playerInformation.playerInformationData.abilities);
 			GenerateBlessingsLockUnlock(allAbilities, bearResource);
+			GenerateCharacterBlessingsLockUnlock(bearResource);
 			spawnedCharacter.SetPlayerTeam(teamIndex);
 			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearResource.prefab);
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
@@ -66,6 +67,16 @@ public partial class SummonBear : BaseAction
 						.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
 				}
 			}
+		}
+	}
+	
+	private void GenerateCharacterBlessingsLockUnlock(SavedCharacterResource characterResource)
+	{
+		Array<PlayerBlessing> playerBlessings = characterResource.playerInformation.GetAllBlessings();
+		characterResource.characterBlessings = new Array<UnlockedBlessingsResource>();
+		for (int i = 0; i < playerBlessings.Count; i++)
+		{
+			characterResource.characterBlessings.Add(new UnlockedBlessingsResource(playerBlessings[i]));
 		}
 	}
 }

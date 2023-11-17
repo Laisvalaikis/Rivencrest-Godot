@@ -129,7 +129,7 @@ public partial class CharacterTeams : Node
 				Array<Ability> allAbilities = new Array<Ability>();
 				allAbilities.AddRange(baseAbilities);
 				allAbilities.AddRange(abilities);
-				GenerateBlessingsLockUnlock(allAbilities, characterResource);
+				GenerateAbilityBlessingsLockUnlock(allAbilities, characterResource);
 				enemyTeam.SetTeamIsUsed(true);
 			}
 		}
@@ -138,7 +138,7 @@ public partial class CharacterTeams : Node
 		// _data.allMapDatas[MapName];
 	}
 
-	private void GenerateBlessingsLockUnlock(Array<Ability> allAbilities, SavedCharacterResource characterResource)
+	private void GenerateAbilityBlessingsLockUnlock(Array<Ability> allAbilities, SavedCharacterResource characterResource)
 	{
 		for (int j = 0; j < allAbilities.Count; j++)
 		{
@@ -152,6 +152,15 @@ public partial class CharacterTeams : Node
 						.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
 				}
 			}
+		}
+	}
+	private void GenerateCharacterBlessingsLockUnlock(SavedCharacterResource characterResource)
+	{
+		Array<PlayerBlessing> playerBlessings = characterResource.playerInformation.GetAllBlessings();
+		characterResource.characterBlessings = new Array<UnlockedBlessingsResource>();
+		for (int i = 0; i < playerBlessings.Count; i++)
+		{
+			characterResource.characterBlessings.Add(new UnlockedBlessingsResource(playerBlessings[i]));
 		}
 	}
 
@@ -215,6 +224,8 @@ public partial class CharacterTeams : Node
 						allCharacterList[teamIndex].characterResources[i].unlockedAbilities;
 					spawnedCharacter.unlockedBlessingList =
 						allCharacterList[teamIndex].characterResources[i].abilityBlessings;
+					spawnedCharacter.unlockedPLayerBlessings =
+						allCharacterList[teamIndex].characterResources[i].characterBlessings;
 				}
 
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
