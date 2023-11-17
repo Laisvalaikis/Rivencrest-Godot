@@ -15,7 +15,7 @@ public partial class BaseBlessing : Resource
     public string condition;
     [Export]
     public string description;
-    [Export] protected bool _blessingIsUnlockedLocaly;
+    [Export] protected bool _blessingIsUnlocked;
     
     public BaseBlessing()
     {
@@ -64,7 +64,7 @@ public partial class BaseBlessing : Resource
     
     public bool IsBlessingUnlocked()
     {
-        return _blessingIsUnlockedLocaly;
+        return _blessingIsUnlocked;
     }
 
 

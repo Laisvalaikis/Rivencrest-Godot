@@ -37,6 +37,6 @@ public partial class UnlockedBlessingsResource : Resource
         rarity = data.rarity;
         condition = data.condition;
         description = data.description;
-        blessingUnlocked = false;
+        blessingUnlocked = data.IsBlessingUnlocked();
     }
 }

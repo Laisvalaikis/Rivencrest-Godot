@@ -115,17 +115,14 @@ public abstract partial class BaseAction: Resource
 			{
 				for (int i = 0; i < _abilityBlessingsRef.Count; i++)
 				{
-					if (_abilityBlessingsRef[i].IsBlessingUnlocked())
+					if (_abilityBlessingsCreated == null)
 					{
-						if (_abilityBlessingsCreated == null)
-						{
-							_abilityBlessingsCreated = new Array<AbilityBlessing>();
-							_abilityBlessingsCreated.Add((AbilityBlessing)_abilityBlessingsRef[i].CreateNewInstance());
-						}
-						else
-						{
-							_abilityBlessingsCreated.Add((AbilityBlessing)_abilityBlessingsRef[i].CreateNewInstance());
-						}
+						_abilityBlessingsCreated = new Array<AbilityBlessing>();
+						_abilityBlessingsCreated.Add((AbilityBlessing)_abilityBlessingsRef[i].CreateNewInstance());
+					}
+					else
+					{
+						_abilityBlessingsCreated.Add((AbilityBlessing)_abilityBlessingsRef[i].CreateNewInstance());
 					}
 				}
 			}

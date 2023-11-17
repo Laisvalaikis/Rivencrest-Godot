@@ -139,7 +139,7 @@ public partial class Recruitment : Node
 				{
 					for (int k = 0; k < abilityBlessings.Count; k++)
 					{
-						characterToAdd.abilityBlessings[j].UnlockedBlessingsList.Add(new UnlockedBlessingsResource());
+						characterToAdd.abilityBlessings[j].UnlockedBlessingsList.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
 					}
 				}
 			}
@@ -155,7 +155,7 @@ public partial class Recruitment : Node
 						for (int k = 0; k < abilityBlessings.Count; k++)
 						{
 							characterToAdd.abilityBlessings[j].UnlockedBlessingsList
-								.Add(new UnlockedBlessingsResource());
+								.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
 						}
 					}
 				}

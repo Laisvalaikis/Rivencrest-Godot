@@ -4,4 +4,10 @@
 
 [resource]
 script = ExtResource("1_ouoyy")
+blessingName = ""
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
 _blessingIsUnlocked = true
