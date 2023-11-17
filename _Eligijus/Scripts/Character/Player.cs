@@ -116,10 +116,13 @@ public partial class Player : Node2D
 		previousMovementPoints = movementPoints;
 		PoisonPlayer();
 		actionManager.OnTurnStart();
-		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetBlessings();
+		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
-			playerBlessings[i].OnTurnStart(this);
+			if (unlockedPLayerBlessings[i].blessingUnlocked)
+			{
+				playerBlessings[i].OnTurnStart(this);
+			}
 		}
 		deBuffManager.OnTurnStart();
 		
@@ -139,10 +142,13 @@ public partial class Player : Node2D
 	public void OnTurnEnd()
 	{
 		actionManager.OnTurnEnd();
-		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetBlessings();
+		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
-			playerBlessings[i].OnTurnEnd(this);
+			if (unlockedPLayerBlessings[i].blessingUnlocked)
+			{
+				playerBlessings[i].OnTurnStart(this);
+			}
 		}
 		deBuffManager.OnTurnEnd();
 	}
