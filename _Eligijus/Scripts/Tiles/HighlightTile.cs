@@ -38,6 +38,10 @@ public partial class HighlightTile : Node2D
 	[Export] private Sprite2D skullSprite;
 	[Export] private Resource textTilePrefab;
 	[Export] private Label damageText;
+
+	[Export] private AtlasTexture characterSelected;
+	[Export] private AtlasTexture characterNotSelected;
+
 	
 	public bool isHighlighted = false;
 	public string activeState;
@@ -134,6 +138,18 @@ public partial class HighlightTile : Node2D
 		else
 		{
 			preview.Hide();
+		}
+	}
+
+	public void ToggleSelectedPlayerUI(bool selected)
+	{
+		if (selected)
+		{
+			playerSelect.Texture = characterSelected;
+		}
+		else
+		{
+			playerSelect.Texture = characterNotSelected;
 		}
 	}
 	

@@ -484,22 +484,22 @@ public partial class GameTileMap : Node2D
 
 	public void SelectTile(Vector2 mousePosition)
 	{
-		if (GetChunk(mousePosition) != null)
+		ChunkData chunk = GetChunk(mousePosition);
+		if (chunk != null)
 		{ 
 			if (!_turnManager.IsCurrentTeamAI())
 			{
-				ChunkData chunkData = GetChunk(mousePosition);
 				if (_currentSelectedCharacter != null)
 				{
 					_currentSelectedCharacter.actionManager.DeselectAbility();
 				}
-
-				_currentSelectedCharacter = chunkData.GetCurrentPlayer();
+				_currentSelectedCharacter = chunk.GetCurrentPlayer();
 				if (_currentSelectedCharacter != null)
 				{
 					_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
 					_turnManager.SetCurrentCharacter(_currentSelectedCharacter);
 					teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
+					chunk.GetTileHighlight().ToggleSelectedPlayerUI(true);
 				}
 			}
 		}
@@ -514,6 +514,7 @@ public partial class GameTileMap : Node2D
 			_currentSelectedCharacter.actionManager.SetCurrentAbility(null, -1);
 			_turnManager.SetCurrentCharacter(null);
 			teamInformation.SelectCharacterPortrait(_currentSelectedCharacter, false);
+			GetChunk(_currentSelectedCharacter.GlobalPosition).GetTileHighlight().ToggleSelectedPlayerUI(false);
 			_currentSelectedCharacter = null;
 		}
 	}
