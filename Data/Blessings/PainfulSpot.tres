@@ -4,3 +4,11 @@
 
 [resource]
 script = ExtResource("1_6rc3r")
+damage = 2
+blessingName = ""
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = true

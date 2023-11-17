@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_j6nme")
 laserGrid = false
-turnsSinceCast = 0
-turnLifetime = 1
-abilityPointsUsage = 1
+turnBeforeStartLifetime = 1
+turnAfterResolveLifetime = 1
+abilityPoints = 1
 attackRange = 1
 minAttackDamage = 10
 maxAttackDamage = 20
@@ -17,6 +17,9 @@ abilityCooldown = 1
 abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)
 abilityHighlightHover = Color(0.619608, 0.290196, 0.254902, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
-otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
 characterOnGrid = Color(1, 0.34902, 0.278431, 1)
-_abilityBlessingsRef = null
+otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
+otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
+otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
+otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
+_abilityBlessingsRef = Array[Resource]([])

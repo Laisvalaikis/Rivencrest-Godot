@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://cr5vqkluu24y6"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/Purify.cs" id="1_o4fh4"]
-[ext_resource type="Resource" uid="uid://4j37mt60eqi8" path="res://Data/Blessings/Enlighten.tres" id="1_owunk"]
+[ext_resource type="Resource" uid="uid://b08q8gy8ss7y5" path="res://Data/Blessings/RangeIncrease.tres" id="1_pa8rx"]
 
 [resource]
 script = ExtResource("1_o4fh4")
@@ -23,4 +23,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_owunk")])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_pa8rx")])
