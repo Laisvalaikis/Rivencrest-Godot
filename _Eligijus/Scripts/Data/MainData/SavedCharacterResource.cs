@@ -9,6 +9,11 @@ public partial class SavedCharacterResource : SavableCharacterResource
     {
         
     }
+    
+    public SavedCharacterResource(SavableCharacterResource x) : base(x)
+    {
+     
+    }
 
     public SavedCharacterResource(Resource prefab, SavableCharacterResource data) : base(data)
     {

@@ -34,6 +34,8 @@ public partial class Data : Node
 	public bool createNewRCcharacters = false;
 	[Export]
 	public Dictionary<string, MapData> allMapDatas;
+	[Export]
+	public Array<BaseBlessing> globalBlessings;
 	public Statistics statistics;
 	public Statistics globalStatistics;
 	[Export]

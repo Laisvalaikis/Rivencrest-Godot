@@ -1,6 +1,6 @@
+using Godot;
 
-
-public class GlobalBlessing : BaseBlessing
+public partial class GlobalBlessing : BaseBlessing
 {
     public GlobalBlessing()
     {
