@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public partial class Revive : PlayerBlessing
+public partial class Revive : GlobalBlessing
 {
     public Revive()
     {
@@ -22,5 +22,4 @@ public partial class Revive : PlayerBlessing
     {
         playerInformation.Revive();
     }
-    
 }
