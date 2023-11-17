@@ -1,6 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cw04nf1gn1yto"]
-
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/MartialArtist.cs" id="1_nqo55"]
-
-[resource]
-script = ExtResource("1_nqo55")

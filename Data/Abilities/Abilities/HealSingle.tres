@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_ujv8x")
-minHealAmount = 3
-maxHealAmount = 7
+minHealAmount = 1
+maxHealAmount = 1
 laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1

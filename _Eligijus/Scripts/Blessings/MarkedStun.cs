@@ -33,6 +33,7 @@ public partial class MarkedStun : AbilityBlessing
 			if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
 			{
 				// Create Can't move
+				player.debuffs.StunPlayer();
 				GD.PrintErr("Fix can't do anything");
 			}
 		}

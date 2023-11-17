@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://btigy2hnt2748"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://btigy2hnt2748"]
 
+[ext_resource type="Resource" uid="uid://bpo3bsgauo5uc" path="res://Data/Blessings/ComboKick.tres" id="1_5pxo3"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FlameKick.cs" id="1_o66rg"]
 
 [resource]
@@ -22,4 +23,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = null
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_5pxo3")])
