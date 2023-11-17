@@ -3,11 +3,17 @@ using System;
 
 public partial class BaseBlessing : Resource
 {
+    [Export]
     public string blessingName;
+    [Export]
     public int rarity;
+    [Export]
     public string className;
+    [Export]
     public string spellName;
+    [Export]
     public string condition;
+    [Export]
     public string description;
     [Export] protected bool _blessingIsUnlockedLocaly;
     

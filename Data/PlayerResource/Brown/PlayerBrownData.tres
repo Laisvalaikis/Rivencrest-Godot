@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=13 format=3 uid="uid://t6kp41je1xv2"]
+[gd_resource type="Resource" load_steps=14 format=3 uid="uid://t6kp41je1xv2"]
 
 [ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_rc31j"]
 [ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_6xjj2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="9_5q0ag"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_15cw3"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="10_arv31"]
+[ext_resource type="Resource" uid="uid://dp05wto3rfxsn" path="res://Data/Blessings/Antitoxic.tres" id="11_hh2dj"]
 
 [resource]
 script = ExtResource("10_arv31")
@@ -34,4 +35,4 @@ characterSprite = ExtResource("8_r5xg4")
 roleSprite = ExtResource("9_5q0ag")
 baseAbilities = Array[Resource]([ExtResource("5_wvhc4"), ExtResource("9_15cw3")])
 abilities = Array[Resource]([ExtResource("4_opryt"), ExtResource("7_8u366"), ExtResource("6_r6ccu"), ExtResource("5_orifg")])
-playerBlessings = Array[Resource]([])
+playerBlessings = Array[Resource]([ExtResource("11_hh2dj")])

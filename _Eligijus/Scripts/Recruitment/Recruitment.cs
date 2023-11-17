@@ -162,9 +162,14 @@ public partial class Recruitment : Node
 			}
 			
 			Array<PlayerBlessing> playerBlessings = characterToAdd.playerInformation.GetAllBlessings();
+			if (characterToAdd.characterBlessings == null)
+			{
+				characterToAdd.characterBlessings = new Array<UnlockedBlessingsResource>();
+			}
+
 			for (int j = 0; j < playerBlessings.Count; j++)
 			{
-				characterToAdd.characterBlessings.Add(new UnlockedBlessingsResource(playerBlessings[i]));
+				characterToAdd.characterBlessings.Add(new UnlockedBlessingsResource(playerBlessings[j]));
 			}
 			// GD.PrintErr("Need to redo Unlocked Abilities");
 			//
