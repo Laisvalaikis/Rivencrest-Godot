@@ -78,26 +78,23 @@ public partial class PlayerInformationData: Resource
 		abilities = playerInformationData.abilities;
 
 		playerBlessings = playerInformationData.playerBlessings;
+		_unlockedBlessings = new Array<PlayerBlessing>();
 		if (playerBlessings != null)
 		{
 			playerBlessings = new Array<PlayerBlessing>();
 			for (int i = 0; i < playerBlessings.Count; i++)
 			{
-				if (_unlockedBlessings == null)
-				{
-					_unlockedBlessings = new Array<PlayerBlessing>();
-					_unlockedBlessings.Add((PlayerBlessing)playerBlessings[i].CreateNewInstance());
-				}
-				else
-				{
-					_unlockedBlessings.Add((PlayerBlessing)playerBlessings[i].CreateNewInstance());
-				}
+				_unlockedBlessings.Add((PlayerBlessing)playerBlessings[i].CreateNewInstance());
 			}
 		}
 	}
 
 	public Array<PlayerBlessing> GetBlessings()
 	{
+		if (_unlockedBlessings == null)
+		{
+			_unlockedBlessings = new Array<PlayerBlessing>();
+		}
 		return _unlockedBlessings;
 	}
 	

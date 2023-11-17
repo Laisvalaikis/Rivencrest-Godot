@@ -544,11 +544,12 @@ public abstract partial class BaseAction: Resource
 			{
 				for (int i = 0; i < _abilityBlessingsCreated.Count; i++)
 				{
-					if (unlockedBlessingsList[i].blessingUnlocked)
-					{
+					// if (unlockedBlessingsList[i].blessingUnlocked)
+					// {
+						GD.PushError("Blessing unlock doesn't work");
 						_abilityBlessingsCreated[i].OnTurnStart(this);
 						_abilityBlessingsCreated[i].OnTurnStart(this, chunkData);
-					}
+					// }
 				}
 			}
 		}

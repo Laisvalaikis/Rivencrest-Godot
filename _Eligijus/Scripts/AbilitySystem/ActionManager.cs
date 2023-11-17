@@ -41,7 +41,6 @@ public partial class ActionManager : Node
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
 		Array<Ability> baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
-		Array<AbilityBlessingsResource> unlockedBlessings = _player.unlockedBlessingList;
 		_unlockedAbilityList = _player.unlockedAbilityList;
 		allAbilities.AddRange(baseAbilities);
 		allAbilities.AddRange(_player.playerInformation.playerInformationData.abilities);
@@ -63,7 +62,7 @@ public partial class ActionManager : Node
 				ability.Action.AddTurnManager(_turnManager);
 				ability.Action.OnBeforeStart(null);
 				ability.Action.OnTurnStart(null);
-				ability.Action.BlessingOnTurnStart(null);
+				// ability.Action.BlessingOnTurnStart(null);
 			}
 			
 			for (int i = 0; i < baseAbilities.Count; i++)
