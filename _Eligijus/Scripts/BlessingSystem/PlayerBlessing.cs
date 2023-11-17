@@ -22,6 +22,11 @@ public partial class PlayerBlessing : BaseBlessing
     {
         
     }
+    
+    public virtual void OnTurnEnd(Player player)
+    {
+        
+    }
 
     public virtual void Start(PlayerInformation playerInformation)
     {

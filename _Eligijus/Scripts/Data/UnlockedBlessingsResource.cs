@@ -30,5 +30,13 @@ public partial class UnlockedBlessingsResource : Resource
         description = data.description;
         blessingUnlocked = data.blessingUnlocked;
     }
-
+    
+    public UnlockedBlessingsResource(BaseBlessing data)
+    {
+        blessingName = data.blessingName;
+        rarity = data.rarity;
+        condition = data.condition;
+        description = data.description;
+        blessingUnlocked = false;
+    }
 }

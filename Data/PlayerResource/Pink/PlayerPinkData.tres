@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c0oydeeuwodxt" path="res://Data/PlayerResource/Pink/Textures/CropedSplashArt.tres" id="3_ktmm6"]
 [ext_resource type="Resource" uid="uid://bxs72xciv5avq" path="res://Data/Abilities/PinkBarrier.tres" id="4_u78fp"]
 [ext_resource type="Resource" uid="uid://drnkp0tjwgvjo" path="res://Data/Abilities/Purify.tres" id="5_7hvxo"]
-[ext_resource type="Resource" uid="uid://dixtxdi3v0ljh" path="res://Data/Abilities/WeakSpot.tres" id="5_i7fj1"]
+[ext_resource type="Resource" uid="uid://bdpmg7b4gmdu7" path="res://Data/Abilities/WeakSpot.tres" id="5_i7fj1"]
 [ext_resource type="Resource" uid="uid://df6i4as2in2ku" path="res://Data/Abilities/SilenceBeam.tres" id="6_n1g0q"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="7_xirim"]
 [ext_resource type="Resource" uid="uid://do8p8wi12qypr" path="res://Data/Abilities/HealSingle.tres" id="8_84eqk"]
@@ -22,6 +22,7 @@ MaxHealth = 19
 critChance = 3
 accuracy = 100
 dodgeChance = 5
+killXP = 50
 role = "SUPPORT"
 classColor = Color(1, 0.568627, 0.74902, 1)
 secondClassColor = Color(1, 0.380392, 0.639216, 1)
@@ -34,4 +35,4 @@ characterSprite = ExtResource("9_81sc1")
 roleSprite = ExtResource("10_rwdnt")
 baseAbilities = Array[Resource]([ExtResource("7_xirim"), ExtResource("8_snunr")])
 abilities = Array[Resource]([ExtResource("4_u78fp"), ExtResource("5_7hvxo"), ExtResource("5_i7fj1"), ExtResource("6_n1g0q"), ExtResource("8_84eqk")])
-BlessingsAndCurses = []
+playerBlessings = Array[Resource]([])

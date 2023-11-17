@@ -46,7 +46,7 @@ public partial class PlayerInformationData: Resource
 	[Export]
 	public Array<Ability> abilities;
 	[Export]
-	protected Array<PlayerBlessing> blessingsAndCurses;
+	protected Array<PlayerBlessing> playerBlessings;
 	
 	protected Array<PlayerBlessing> _unlockedBlessings;
 
@@ -77,22 +77,22 @@ public partial class PlayerInformationData: Resource
 		roleSprite = playerInformationData.roleSprite;
 		abilities = playerInformationData.abilities;
 
-		blessingsAndCurses = playerInformationData.blessingsAndCurses;
-		if (blessingsAndCurses != null)
+		playerBlessings = playerInformationData.playerBlessings;
+		if (playerBlessings != null)
 		{
-			blessingsAndCurses = new Array<PlayerBlessing>();
-			for (int i = 0; i < blessingsAndCurses.Count; i++)
+			playerBlessings = new Array<PlayerBlessing>();
+			for (int i = 0; i < playerBlessings.Count; i++)
 			{
-				if (blessingsAndCurses[i].IsBlessingUnlocked())
+				if (playerBlessings[i].IsBlessingUnlocked())
 				{
 					if (_unlockedBlessings == null)
 					{
 						_unlockedBlessings = new Array<PlayerBlessing>();
-						_unlockedBlessings.Add((PlayerBlessing)blessingsAndCurses[i].CreateNewInstance());
+						_unlockedBlessings.Add((PlayerBlessing)playerBlessings[i].CreateNewInstance());
 					}
 					else
 					{
-						_unlockedBlessings.Add((PlayerBlessing)blessingsAndCurses[i].CreateNewInstance());
+						_unlockedBlessings.Add((PlayerBlessing)playerBlessings[i].CreateNewInstance());
 					}
 				}
 				else
@@ -110,7 +110,7 @@ public partial class PlayerInformationData: Resource
 	
 	public Array<PlayerBlessing> GetAllBlessings()
 	{
-		return blessingsAndCurses;
+		return playerBlessings;
 	}
 
 }

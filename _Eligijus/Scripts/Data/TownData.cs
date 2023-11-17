@@ -169,8 +169,8 @@ using Godot;
 		public int abilityPointCount { get; set; }
 		public List<UnlockedAbilities> unlockedAbilities { get; set; }
 		public List<AbilityBlessings> abilityBlessings;
-		public int toConfirmAbilities { get; set; }
 		public List<UnlockedBlessings> characterBlessings { get; set; }
+		public int toConfirmAbilities { get; set; }
 		public int cost { get; set; }
 		public int characterIndex { get; set; }
 		public PlayerInformationData playerInformation { get; set; }

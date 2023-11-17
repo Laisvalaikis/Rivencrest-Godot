@@ -147,8 +147,6 @@ public partial class BlessingManager : Node
             _generatedBlessings = new Array<BlessingData>();
         }
         
-
-
         for (int i = 0; i < _blessingCards.Count; i++)
         {
 

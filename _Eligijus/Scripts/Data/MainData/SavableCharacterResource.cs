@@ -21,9 +21,9 @@ public partial class SavableCharacterResource : Resource
 	[Export]
 	public Array<AbilityBlessingsResource> abilityBlessings;
 	[Export]
-	public int toConfirmAbilities = 0;
-	[Export]
 	public Array<UnlockedBlessingsResource> characterBlessings;
+	[Export]
+	public int toConfirmAbilities = 0;
 	[Export]
 	public int cost;
 	[Export]
