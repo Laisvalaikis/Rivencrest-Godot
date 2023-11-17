@@ -3,4 +3,13 @@
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/SharpBlade.cs" id="1_kmntf"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_kmntf")
+dealDamage = 15
+blessingName = ""
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = true
