@@ -35,7 +35,9 @@ public partial class Data : Node
 	[Export]
 	public Dictionary<string, MapData> allMapDatas;
 	[Export]
-	public Array<BaseBlessing> globalBlessings;
+	public Array<GlobalBlessing> globalBlessings;
+	[Export]
+	public Array<GlobalBlessing> deathGlobalBlessings;
 	public Statistics statistics;
 	public Statistics globalStatistics;
 	[Export]

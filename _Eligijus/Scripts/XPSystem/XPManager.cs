@@ -22,25 +22,20 @@ public partial class XPManager : Node
 
     public void UpdateData()
     {
-        int index = 0;
+    
         earnedGold.Text = "+" + goldToAdd + "g";
         _data.townData.townGold += goldToAdd;
-        while (index < xpCards.Count)
+        for (int i = 0; i < xpCards.Count; i++)
         {
-            if (index < _data.Characters.Count)
+            if (i < _data.Characters.Count)
             {
-                xpCards[index].UpdateXPCard(_data.Characters[index], this);
-                index++;
-                characterCount = index;
+                xpCards[i].UpdateXPCard(_data.Characters[i], this);
+                characterCount = i;
             }
             else
             {
-                break;
+                xpCards[i].Hide();    
             }
-        }
-        for (int i = index; i < _data.Characters.Count; i++)
-        {
-            xpCards[i].Hide();
         }
     }
 

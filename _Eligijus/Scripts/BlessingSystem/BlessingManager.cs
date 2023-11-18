@@ -4,7 +4,7 @@ using Godot;
 using Godot.Collections;
 using Array = System.Array;
 
-public partial class BlessingManager : Node
+public partial class BlessingManager : Control
 {
     [Export] private Array<BlessingCard> _blessingCards;
     private Array<BlessingData> _playerBlessings;
@@ -14,9 +14,10 @@ public partial class BlessingManager : Node
     private Data _data;
     private Array<BlessingData> _generatedBlessings;
     private Random _random;
-    public override void _Ready()
+
+    public override void _EnterTree()
     {
-        base._Ready();
+        base._EnterTree();
         if (Data.Instance != null)
         {
             _data = Data.Instance;
@@ -25,16 +26,26 @@ public partial class BlessingManager : Node
         }
     }
 
+    public override void _Draw()
+    {
+        base._Draw();
+        ShowBlessings();
+    }
+
     public void SetupBlessingLists()
     {
         if (_data.Characters != null)
         {
+            _playerBlessings = new Array<BlessingData>();
+            _abilityBlessings = new Array<BlessingData>();
+            _globalBlessings = new Array<BlessingData>();
             for (int i = 0; i < _data.Characters.Count; i++)
             {
                 PlayerInformationData playerInformationData = _data.Characters[i].playerInformation;
                 SetupPlayerBlessings(playerInformationData.GetAllBlessings(), _data.Characters[i]);
                 SetupBaseAbilityBlessings(playerInformationData.baseAbilities, _data.Characters[i]);
                 SetupAbilityBlessings(playerInformationData.abilities, _data.Characters[i]);
+                SetupGlobalBlessings(_data.Characters[i]);
             }
         }
 
@@ -43,7 +54,7 @@ public partial class BlessingManager : Node
             for (int i = 0; i < _data.townData.deadCharacters.Count; i++)
             {
                 PlayerInformationData playerInformationData = _data.townData.deadCharacters[i].playerInformation;
-                SetupGlobalBlessings(_data.townData.deadCharacters[i]);
+                SetupGlobalBlessingsWithDeath(_data.townData.deadCharacters[i]);
             }
         }
     }
@@ -127,15 +138,37 @@ public partial class BlessingManager : Node
             _globalBlessings = new Array<BlessingData>();
         }
 
-        Array<BaseBlessing> baseBlessings = _data.globalBlessings;
-        for (int i = 0; i < baseBlessings.Count; i++)
+        if (_data.globalBlessings != null)
         {
-            BlessingData blessingData =
-                new BlessingData(new SavedCharacterResource(character), baseBlessings[i], i);
-            _globalBlessings.Add(blessingData);
+            Array<GlobalBlessing> globalBlessings = _data.globalBlessings;
+            for (int i = 0; i < globalBlessings.Count; i++)
+            {
+                BlessingData blessingData =
+                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], i);
+                _globalBlessings.Add(blessingData);
+            }
         }
-        
+
     }
+    private void SetupGlobalBlessingsWithDeath(SavableCharacterResource character)
+    {
+        if (_globalBlessings == null)
+        {
+            _globalBlessings = new Array<BlessingData>();
+        }
+        if (_data.deathGlobalBlessings != null)
+        {
+            Array<GlobalBlessing> globalBlessings = _data.deathGlobalBlessings;
+            for (int i = 0; i < globalBlessings.Count; i++)
+            {
+                BlessingData blessingData =
+                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], i);
+                _globalBlessings.Add(blessingData);
+            }
+        }
+
+    }
+    
 
     private void GenerateBlessingList()
     {
@@ -149,10 +182,9 @@ public partial class BlessingManager : Node
         
         for (int i = 0; i < _blessingCards.Count; i++)
         {
-
-            int maxRange = abilityBlessingsTemp.Count + playerBlessingsTemp.Count - 1 + globalBlessings.Count - 1;
+            int maxRange = abilityBlessingsTemp.Count + playerBlessingsTemp.Count + globalBlessings.Count;
             int index = _random.Next(0, maxRange);
-
+            
             if (index < playerBlessingsTemp.Count)
             {
                 if (!_generatedBlessings.Contains(playerBlessingsTemp[index]))
@@ -161,18 +193,18 @@ public partial class BlessingManager : Node
                     playerBlessingsTemp.RemoveAt(index);
                 }
             }
-            else if (index >= playerBlessingsTemp.Count)
+            else if (index >= playerBlessingsTemp.Count && index < playerBlessingsTemp.Count + abilityBlessingsTemp.Count)
             {
-                int correctIndex = _playerBlessings.Count - index;
+                int correctIndex = index - playerBlessingsTemp.Count;
                 if (!_generatedBlessings.Contains(abilityBlessingsTemp[correctIndex]))
                 {
                     _generatedBlessings.Add(abilityBlessingsTemp[correctIndex]);
                     abilityBlessingsTemp.RemoveAt(correctIndex);
                 }
             }
-            else
+            else if(index >= playerBlessingsTemp.Count + abilityBlessingsTemp.Count && index < playerBlessingsTemp.Count + abilityBlessingsTemp.Count + globalBlessings.Count)
             {
-                int correctIndex = _playerBlessings.Count - 1 + abilityBlessingsTemp.Count - index;
+                int correctIndex = index - (playerBlessingsTemp.Count + abilityBlessingsTemp.Count);
                 if (!_generatedBlessings.Contains(globalBlessings[correctIndex]))
                 {
                     _generatedBlessings.Add(globalBlessings[correctIndex]);
@@ -183,8 +215,21 @@ public partial class BlessingManager : Node
 
     }
 
-    private Array<BlessingData> GeneratedBlessings()
+    private void ShowBlessings()
     {
-        return _generatedBlessings;
+        GenerateBlessingList();
+        for (int i = 0; i < _blessingCards.Count; i++)
+        {
+            if (i < _generatedBlessings.Count)
+            {
+                _blessingCards[i].UpdateInformation(_generatedBlessings[i]);
+            }
+            else
+            {
+                _blessingCards[i].Hide();
+            }
+
+            
+        }
     }
 }

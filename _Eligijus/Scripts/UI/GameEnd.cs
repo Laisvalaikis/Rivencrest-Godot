@@ -47,7 +47,7 @@ public partial class GameEnd : Control
     {
         for (int i = 0; i < deadCharacters.Teams.Count; i++)
         {
-            if (!deadCharacters.Teams[i].isTeamAI && !deadCharacters.Teams[i].isTeamAI)
+            if (!deadCharacters.Teams[i].isTeamAI && !deadCharacters.Teams[i].isEnemies)
             {
                 for (int j = 0; j < deadCharacters.Teams[i].characterResources.Count; j++)
                 {

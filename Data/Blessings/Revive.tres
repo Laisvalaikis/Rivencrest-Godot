@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dkmalhbxebh2y"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Blessings/Revive.cs" id="1_65fhx"]
+
+[resource]
+script = ExtResource("1_65fhx")
+blessingName = "Revive"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false
