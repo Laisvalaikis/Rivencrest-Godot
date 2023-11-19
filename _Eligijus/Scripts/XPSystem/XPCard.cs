@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Godot;
 public partial class XPCard : Control
 {
+    [Export] private Color deadCharacterColor = Colors.Gray;
     [Export] private Label className;
     [Export] private TextureRect portrait;
     [Export] private Label xp;
@@ -11,16 +12,30 @@ public partial class XPCard : Control
     [Export] private int updateTextInMs = 10;
     private int _tempXPToGain;
     private int _tempCurrentXp;
-    private SavedCharacterResource _characterResource;
+    private SavableCharacterResource _characterResource;
     private Data _data;
     private bool updatingXp = false;
+    private XPManager _xPManager;
 
-    public void UpdateXPCard(SavedCharacterResource savedCharacterResource, XPManager xpManager)
+    public void UpdateXPCard(SavableCharacterResource savedCharacterResource, bool deadCharacter, XPManager xPManager)
     {
         if (Data.Instance != null)
         {
             _data = Data.Instance;
         }
+        _xPManager = xPManager;
+        if (!deadCharacter)
+        {
+            AliveCharacter(savedCharacterResource);
+        }
+        else
+        {
+            DeadCharacter(savedCharacterResource);
+        }
+    }
+
+    public void AliveCharacter(SavableCharacterResource savedCharacterResource)
+    {
         _tempXPToGain = savedCharacterResource.xPToGain;
         _characterResource = savedCharacterResource;
         portrait.Texture = (Texture2D)savedCharacterResource.playerInformation.CharacterPortraitSprite;
@@ -31,7 +46,20 @@ public partial class XPCard : Control
         int currentXP = _data.XPToLevelUp[_characterResource.level] -
                         (_data.XPToLevelUp[_characterResource.level] - _characterResource.xP);
         xp.Text = currentXP + "/" + _data.XPToLevelUp[_characterResource.level] + " XP";
-        UpdateXPGradualy(xpManager);
+        UpdateXPGradualy(_xPManager);
+    }
+    
+    public void DeadCharacter(SavableCharacterResource savedCharacterResource)
+    {
+        _characterResource = savedCharacterResource;
+        portrait.Texture = (Texture2D)savedCharacterResource.playerInformation.CharacterPortraitSprite;
+        className.LabelSettings.FontColor = deadCharacterColor;
+        className.Text = savedCharacterResource.playerInformation.ClassName;
+        xpToGain.LabelSettings.FontColor = deadCharacterColor;
+        xpToGain.Text = "DEAD";
+        levelText.Text = savedCharacterResource.level.ToString();
+        xp.LabelSettings.FontColor = deadCharacterColor;
+        xp.Text = 0 + "/" + _data.XPToLevelUp[_characterResource.level] + " XP";
     }
 
     private async Task UpdateXPGradualy(XPManager xpManager)

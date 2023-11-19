@@ -29,8 +29,13 @@ public partial class XPManager : Node
         {
             if (i < _data.Characters.Count)
             {
-                xpCards[i].UpdateXPCard(_data.Characters[i], this);
+                xpCards[i].UpdateXPCard(_data.Characters[i], false, this);
                 characterCount = i;
+            }
+            else if (_data.townData.deadCharacters != null && _data.townData.deadCharacters.Count > 0 && i >= _data.Characters.Count && i < _data.Characters.Count + _data.townData.deadCharacters.Count)
+            {
+                int index = i - _data.Characters.Count;
+                xpCards[i].UpdateXPCard(_data.townData.deadCharacters[index], true, this);
             }
             else
             {
