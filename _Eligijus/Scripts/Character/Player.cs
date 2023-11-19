@@ -17,7 +17,12 @@ public partial class Player : Object
 	protected bool weakSpot = false;
 	private int movementPoints = 3; //track movement points here in this class
 	private int previousMovementPoints = 3;
-	
+
+	public override void SetupObject()
+	{
+		playerInformation.SetupData();
+	}
+
 	public override void Death()
 	{
 		Hide();

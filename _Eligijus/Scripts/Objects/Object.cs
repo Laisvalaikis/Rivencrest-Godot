@@ -12,6 +12,11 @@ public partial class Object : Node2D
         objectInformation = new ObjectInformation<ObjectData>(objectData);
     }
 
+    public virtual void SetupObject()
+    {
+        
+    }
+
     public virtual void PlayerWasDamaged()
     {
        

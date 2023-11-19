@@ -212,6 +212,7 @@ public partial class CharacterTeams : Node
 				spawnedCharacter.playerInTeamIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
 				spawnedCharacter.SetPlayerTeam(teamIndex);
+				spawnedCharacter.SetupObject();
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characters.Add(i, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characterPrefabs.Add(i, allCharacterList[teamIndex].characterPrefabs[i]);

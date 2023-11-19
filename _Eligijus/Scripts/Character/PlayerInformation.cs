@@ -30,10 +30,14 @@ public partial class PlayerInformation : Node
 	private int _health = 100;
 	private int turnCounter = 1;
 
+	public void SetupData()
+	{
+		objectData = new ObjectInformation<ObjectData>(playerInformationData);
+	}
+
 	public override void _Ready()
 	{
 		base._Ready();
-		objectData = new ObjectInformation<ObjectData>(playerInformationData);
 		LoadPlayerProgression();
 		PlayerSetup();
 		_health = playerInformationData.maxHealth;
