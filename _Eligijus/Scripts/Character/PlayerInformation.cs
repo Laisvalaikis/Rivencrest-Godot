@@ -25,7 +25,6 @@ public partial class PlayerInformation : Node
 	public bool isThisObject = false;
 	private bool haveBarier = false;
 	
-	private Label textMeshPro;
 	private AnimationPlayer animator;
 	private int _health = 100;
 	private int turnCounter = 1;

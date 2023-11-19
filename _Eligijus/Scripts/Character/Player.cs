@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class Player : Node2D
+public partial class Player : Object
 {
 	[Export] public int playerInTeamIndex = 0;
 	[Export] public PlayerInformation playerInformation;
@@ -18,7 +18,7 @@ public partial class Player : Node2D
 	private int movementPoints = 3; //track movement points here in this class
 	private int previousMovementPoints = 3;
 
-	public void Death()
+	public override void Death()
 	{
 		Hide();
 		actionManager.PlayerDied();
@@ -36,7 +36,7 @@ public partial class Player : Node2D
 		}
 	}
 
-	public void PlayerWasDamaged()
+	public override void PlayerWasDamaged()
 	{
 		actionManager.PlayerWasAttacked();
 		deBuffManager.PlayerWasAttacked();
@@ -110,7 +110,7 @@ public partial class Player : Node2D
 		_poisons.Clear();
 	}
 
-	public void OnTurnStart()
+	public override void OnTurnStart()
 	{
 		movementPoints = actionManager.ReturnBaseAbilities()[0].Action.attackRange;
 		previousMovementPoints = movementPoints;
@@ -139,7 +139,7 @@ public partial class Player : Node2D
 	}
 
 	
-	public void OnTurnEnd()
+	public override void OnTurnEnd()
 	{
 		actionManager.OnTurnEnd();
 		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllBlessings();
