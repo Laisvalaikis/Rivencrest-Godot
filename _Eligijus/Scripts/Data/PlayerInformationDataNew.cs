@@ -10,8 +10,6 @@ public partial class PlayerInformationDataNew : ObjectData
 	[Export]
 	public string ClassName;
 	[Export]
-	public int MaxHealth = 100;
-	[Export]
 	public int critChance = 5;
 	[Export]
 	public int accuracy = 100;
@@ -43,7 +41,7 @@ public partial class PlayerInformationDataNew : ObjectData
 	{
 		characterType = playerInformationData.characterType;
 		ClassName = playerInformationData.ClassName;
-		MaxHealth = playerInformationData.MaxHealth;
+		maxHealth = playerInformationData.maxHealth;
 		critChance = playerInformationData.critChance;
 		accuracy = playerInformationData.accuracy;
 		dodgeChance = playerInformationData.dodgeChance;
@@ -65,33 +63,7 @@ public partial class PlayerInformationDataNew : ObjectData
 		playerBlessings = playerInformationData.playerBlessings;
 	}
 	
-	public void CopyData(PlayerInformationData playerInformationData)
-	{
-		characterType = playerInformationData.characterType;
-		ClassName = playerInformationData.ClassName;
-		MaxHealth = playerInformationData.MaxHealth;
-		critChance = playerInformationData.critChance;
-		accuracy = playerInformationData.accuracy;
-		dodgeChance = playerInformationData.dodgeChance;
-		killXP = playerInformationData.killXP;
-		role = playerInformationData.role;
-
-		classColor = playerInformationData.classColor;
-		secondClassColor = playerInformationData.secondClassColor;
-		textColor = playerInformationData.textColor;
-		backgroundColor = playerInformationData.backgroundColor;
-
-		CharacterPortraitSprite = playerInformationData.CharacterPortraitSprite;
-		CharacterSplashArt = playerInformationData.CharacterSplashArt;
-		CroppedSplashArt = playerInformationData.CroppedSplashArt;
-		characterSprite = playerInformationData.characterSprite;
-		roleSprite = playerInformationData.roleSprite;
-		baseAbilities = playerInformationData.baseAbilities;
-		abilities = playerInformationData.abilities;
-		playerBlessings = playerInformationData.GetAllPlayerBlessings();
-	}
-	
-	public Array<PlayerBlessing> GetAllBlessings()
+	public Array<PlayerBlessing> GetAllPlayerBlessings()
 	{
 		return playerBlessings;
 	}

@@ -17,7 +17,7 @@ ResourceScriptDirectories=["res://", "res://Data"]
 [application]
 
 config/name="Rivencrest-godot"
-run/main_scene="res://Scenes/MissionEnd.tscn"
+run/main_scene="res://Scenes/Encounter.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 

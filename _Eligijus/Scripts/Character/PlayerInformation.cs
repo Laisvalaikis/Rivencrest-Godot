@@ -11,7 +11,7 @@ public partial class PlayerInformation : Node
 	[Export]
 	private Player _player;
 	[Export]
-	public PlayerInformationData playerInformationData;
+	public PlayerInformationDataNew playerInformationData;
 	[Export]
 	public Sprite2D spriteRenderer;
 	[Export]
@@ -34,12 +34,12 @@ public partial class PlayerInformation : Node
 		base._Ready();
 		LoadPlayerProgression();
 		PlayerSetup();
-		_health = playerInformationData.MaxHealth;
+		_health = playerInformationData.maxHealth;
 	}
 
 	public float GetHealthPercentage()
 	{
-		float maxHealthDouble = playerInformationData.MaxHealth;
+		float maxHealthDouble = playerInformationData.maxHealth;
 		float healthDouble = _health;
 		return healthDouble / maxHealthDouble * 100;
 	}
@@ -88,7 +88,7 @@ public partial class PlayerInformation : Node
 
 	public void Revive()
 	{
-		_health = playerInformationData.MaxHealth;
+		_health = playerInformationData.maxHealth;
 	}
 
 	public int GetHealth()
@@ -98,7 +98,7 @@ public partial class PlayerInformation : Node
 
 	public int GetMaxHealth()
 	{
-		return playerInformationData.MaxHealth;
+		return playerInformationData.maxHealth;
 	}
 
 	public void DeathStart(Player damageDealer)
@@ -124,9 +124,9 @@ public partial class PlayerInformation : Node
 
 	public void Heal(int healAmount)
 	{
-		if (_health + healAmount >= playerInformationData.MaxHealth)
+		if (_health + healAmount >= playerInformationData.maxHealth)
 		{
-			_health = playerInformationData.MaxHealth;
+			_health = playerInformationData.maxHealth;
 		}
 		else
 		{

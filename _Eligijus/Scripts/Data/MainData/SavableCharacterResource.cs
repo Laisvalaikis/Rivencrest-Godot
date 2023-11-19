@@ -27,7 +27,7 @@ public partial class SavableCharacterResource : Resource
 	[Export]
 	public int characterIndex;
 	[Export]
-	public PlayerInformationData playerInformation;
+	public PlayerInformationDataNew playerInformation;
 
 	public SavableCharacterResource()
 	{
@@ -79,7 +79,7 @@ public partial class SavableCharacterResource : Resource
 	}
 	
 	
-	public SavableCharacterResource(SavableCharacter data, PlayerInformationData playerInformation)
+	public SavableCharacterResource(SavableCharacter data, PlayerInformationDataNew playerInformation)
 	{
 		level = data.level;
 		xP = data.xP;

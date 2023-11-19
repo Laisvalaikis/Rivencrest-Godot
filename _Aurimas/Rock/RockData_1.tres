@@ -1,20 +1,13 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://sab1bi0421t"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="1_2f6gb"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_unhnb"]
 
 [resource]
-script = ExtResource("1_2f6gb")
-characterType = 0
-ClassName = ""
-MaxHealth = 1
-critChance = 5
-accuracy = 100
-dodgeChance = 20
-role = ""
+script = ExtResource("1_unhnb")
+maxHealth = 1
 classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
 backgroundColor = Color(0, 0, 0, 0)
-baseAbilities = null
 abilities = null
-blessingsAndCurses = null
+blessings = null

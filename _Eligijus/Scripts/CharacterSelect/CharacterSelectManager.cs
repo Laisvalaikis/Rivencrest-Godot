@@ -70,7 +70,7 @@ public partial class CharacterSelectManager : Node
 		return null;
 	}
 	
-	public void AddCharacter(PlayerInformationData playerinformation, int charIndex)
+	public void AddCharacter(PlayerInformationDataNew playerinformation, int charIndex)
 	{
 		if (FindFirstUnoccupied() != null)
 		{
@@ -157,7 +157,7 @@ public partial class CharacterSelectManager : Node
 		{
 			if (x.characterIndex != -1)
 			{
-				PlayerInformationData tempInformation = x.playerInformation;
+				PlayerInformationDataNew tempInformation = x.playerInformation;
 				int tempIndex = x.characterIndex;
 				x.characterImage.Texture = null;
 				x.playerInformation = null;

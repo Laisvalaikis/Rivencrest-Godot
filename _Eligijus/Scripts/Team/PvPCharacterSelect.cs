@@ -12,7 +12,7 @@ public partial class PvPCharacterSelect : Button
     private TextureRect characterPortraitSprite;
     private Node2D characterOnBoard;
     private PlayerInformation _playerInformation;
-    private PlayerInformationData _playerInformationData;
+    private PlayerInformationDataNew _playerInformationData;
     private SelectAction _selectAction;
     private bool isButtonAvailable = true;
 

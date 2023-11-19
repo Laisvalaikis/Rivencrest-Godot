@@ -357,7 +357,7 @@ public partial class CharacterTable : Node
 	{
 		SavedCharacterResource character = _data.Characters[characterIndex];
 		originalName = character.characterName;
-		PlayerInformationData data = character.playerInformation;
+		PlayerInformationDataNew data = character.playerInformation;
 		Color color = data.classColor;
 		tableBoarder.SelfModulate = data.secondClassColor;
 		nameInput.Text = character.characterName;
@@ -368,7 +368,7 @@ public partial class CharacterTable : Node
 		roleIcon.Texture.Set("atlas", data.roleSprite.Get("atlas"));
 		level.Text = "LEVEL: " + character.level;
 		level.LabelSettings.FontColor = color;
-		maxHP.Text = "MAX HP: " + character.playerInformation.MaxHealth; // CalculateMaxHP(character);
+		maxHP.Text = "MAX HP: " + character.playerInformation.maxHealth; // CalculateMaxHP(character);
 		maxHP.LabelSettings.FontColor = color;
 		xpProgress.Text = (character.level >= GameManager.currentMaxLevel()) ? "MAX LEVEL" : character.xP + "/" + _data.XPToLevelUp[character.level - 1] + " XP";
 		xpProgress.LabelSettings.FontColor = color;

@@ -11,7 +11,7 @@ public partial class PortraitButton: Button
     [Export]
     public TextureRect characterImage;
     [Export]
-    public PlayerInformationData playerInformation;
+    public PlayerInformationDataNew playerInformation;
     [Export]
     public int buttonIndex;
     [Export]

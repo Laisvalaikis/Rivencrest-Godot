@@ -31,7 +31,7 @@ public partial class RecruitButton : TextureRect
 
 	public void UpdateRecruitButton()
 	{
-			PlayerInformationData charInformation = character.playerInformation;
+		PlayerInformationDataNew charInformation = character.playerInformation;
 			className.Text = charInformation.ClassName;
 			className.LabelSettings.FontColor = charInformation.classColor;
 			StyleBoxTexture styleBox = NewTexture(charInformation, Colors.White);
@@ -50,7 +50,7 @@ public partial class RecruitButton : TextureRect
 			}
 	}
 
-	private StyleBoxTexture NewTexture(PlayerInformationData playerInformationData, Color pressedColor)
+	private StyleBoxTexture NewTexture(PlayerInformationDataNew playerInformationData, Color pressedColor)
 	{
 		StyleBoxTexture styleBox = new StyleBoxTexture();
 		AtlasTexture atlas = new AtlasTexture();

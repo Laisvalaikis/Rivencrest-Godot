@@ -125,12 +125,22 @@ public class ChunkData
 
     public Player GetCurrentPlayer()
     {
-        return _currentPlayer.GetPlayer();
+        if (_currentPlayer != null)
+        {
+            return _currentPlayer.GetPlayer();
+        }
+
+        return null;
     }
     
     public Object GetCurrentObject()
     {
-        return _currentPlayer.GetObject();
+        if (_currentPlayer != null)
+        {
+            return _currentPlayer.GetObject();
+        }
+
+        return null;
     }
 
     public void StandingOnChunk(bool standingOnChunk)

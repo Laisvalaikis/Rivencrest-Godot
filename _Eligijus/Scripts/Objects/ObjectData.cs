@@ -16,9 +16,9 @@ public partial class ObjectData : Resource
     [Export]
     public Texture CharacterPortraitSprite;
     [Export]
-    protected Array<Ability> abilities;
+    public Array<Ability> abilities;
     [Export]
-    protected Array<PlayerBlessing> blessings;
+    public Array<PlayerBlessing> blessings;
     
     public ObjectData()
     {

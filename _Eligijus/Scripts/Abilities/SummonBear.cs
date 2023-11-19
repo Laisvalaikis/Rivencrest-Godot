@@ -72,7 +72,7 @@ public partial class SummonBear : BaseAction
 	
 	private void GenerateCharacterBlessingsLockUnlock(SavedCharacterResource characterResource)
 	{
-		Array<PlayerBlessing> playerBlessings = characterResource.playerInformation.GetAllBlessings();
+		Array<PlayerBlessing> playerBlessings = characterResource.playerInformation.GetAllPlayerBlessings();
 		characterResource.characterBlessings = new Array<UnlockedBlessingsResource>();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{

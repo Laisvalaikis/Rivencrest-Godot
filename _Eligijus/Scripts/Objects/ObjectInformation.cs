@@ -8,9 +8,9 @@ public class ObjectInformation<T>
         return objectData as ObjectData;
     }
     
-    public PlayerInformationData GetPlayerInformationData()
+    public PlayerInformationDataNew GetPlayerInformationData()
     {
-        return objectData as PlayerInformationData;
+        return objectData as PlayerInformationDataNew;
     }
 
 }

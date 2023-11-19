@@ -35,7 +35,7 @@ public partial class SavedCharacterResource : SavableCharacterResource
         this.prefab = data.prefab;
     }
     
-    public SavedCharacterResource(SavableCharacterResource x, Resource prefab, PlayerInformationData playerInformation) : base(x)
+    public SavedCharacterResource(SavableCharacterResource x, Resource prefab, PlayerInformationDataNew playerInformation) : base(x)
     {
         this.prefab = prefab;
         this.playerInformation = playerInformation;

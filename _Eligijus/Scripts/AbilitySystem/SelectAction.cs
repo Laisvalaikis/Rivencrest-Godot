@@ -8,7 +8,7 @@ public partial class SelectAction : Control
 	private Array<Ability> _playerBaseAbilities;
 	private Array<Ability> _playerAbilities;
 	private Player _currentPlayer;
-	private PlayerInformationData _playerInformationData;
+	private PlayerInformationDataNew _playerInformationData;
 	[Export] private HelpTable helpTable;
 	[Export] private TextureRect characterPortrait;
 	[Export] private TextureProgressBar healthBar;

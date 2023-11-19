@@ -172,12 +172,12 @@ using Godot;
 		public int toConfirmAbilities { get; set; }
 		public int cost { get; set; }
 		public int characterIndex { get; set; }
-		public PlayerInformationData playerInformation { get; set; }
+		public PlayerInformationDataNew playerInformation { get; set; }
 
 		public SavableCharacter() { }
 
 		public SavableCharacter(int level, int xP, int xPToGain, bool dead, string characterName,
-			int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int toConfirmAbilities, List<UnlockedBlessings> characterBlessings,List<AbilityBlessings> abilityBlessings, int characterIndex, PlayerInformationData playerInformation)
+			int abilityPointCount, List<UnlockedAbilities> unlockedAbilities, int toConfirmAbilities, List<UnlockedBlessings> characterBlessings,List<AbilityBlessings> abilityBlessings, int characterIndex, PlayerInformationDataNew playerInformation)
 		{
 			this.level = level;
 			this.xP = xP;
@@ -221,7 +221,7 @@ using Godot;
 			this.playerInformation = data.playerInformation;
 		}
 		
-		public SavableCharacter(SavableCharacterResource data, PlayerInformationData playerInformation)
+		public SavableCharacter(SavableCharacterResource data, PlayerInformationDataNew playerInformation)
 		{
 			this.level = data.level;
 			this.xP = data.xP;

@@ -51,7 +51,7 @@ public abstract partial class BaseAction: Resource
 		protected SelectActionButton _selectActionButton;
 		protected TurnManager _turnManager;
 		private bool firstTimeUsage = false;
-		private PlayerInformationData _playerInformationData;
+		private PlayerInformationDataNew _playerInformationData;
 		private Random _random;
 
 		public BaseAction()
@@ -107,7 +107,7 @@ public abstract partial class BaseAction: Resource
 		public virtual void Start()
 		{
 			_random = new Random();
-			_playerInformationData = new PlayerInformationData();
+			_playerInformationData = new PlayerInformationDataNew();
 			_playerInformationData.CopyData(player.playerInformation.playerInformationData);
 			_chunkList = new List<ChunkData>();
 			if (_abilityBlessingsRef != null)

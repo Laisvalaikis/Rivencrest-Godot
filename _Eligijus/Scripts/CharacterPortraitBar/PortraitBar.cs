@@ -76,7 +76,7 @@ public partial class PortraitBar : TextureRect
 		int index = _lastElement + 1;
 		if (index < _data.Characters.Count && index < townPortraits.Count)
 		{
-			GD.Print(_data.Characters[index].playerInformation.ResourceName);
+			// GD.Print(_data.Characters[index].playerInformation.ResourceName);
 			UpdatePortrait(index, index);
 			_lastElement = index;
 			

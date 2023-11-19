@@ -64,7 +64,7 @@ public partial class CharacterInspectInShop : Node
 		recruitment.SetSelectedCharacterIndex(index);
 		_currentCharacterInShop = index;
 		_currentCharacterIndex = recruitment.GetRealCharacterIndex(index);
-		PlayerInformationData character = savedCharacter.playerInformation;
+		PlayerInformationDataNew character = savedCharacter.playerInformation;
 		view.OpenView();
 		AtlasTexture styleBoxTexture = NewAtlas((CompressedTexture2D)character.CroppedSplashArt.Get("atlas"), (Rect2)character.CroppedSplashArt.Get("region"));
 		characterArt.Texture = styleBoxTexture;
@@ -100,7 +100,7 @@ public partial class CharacterInspectInShop : Node
 			support.Hide();
 		}
 
-		maxHP.Text = character.MaxHealth + 4 + " HP";
+		maxHP.Text = character.maxHealth + 4 + " HP";
 		maxHP.LabelSettings.FontColor = character.classColor;
 		bool melee = character.characterType == CharacterType.Melee;
 		range.Text = melee ? "MELEE" : "RANGED";

@@ -41,8 +41,8 @@ public partial class BlessingManager : Control
             _globalBlessings = new Array<BlessingData>();
             for (int i = 0; i < _data.Characters.Count; i++)
             {
-                PlayerInformationData playerInformationData = _data.Characters[i].playerInformation;
-                SetupPlayerBlessings(playerInformationData.GetAllBlessings(), _data.Characters[i]);
+                PlayerInformationDataNew playerInformationData = _data.Characters[i].playerInformation;
+                SetupPlayerBlessings(playerInformationData.GetAllPlayerBlessings(), _data.Characters[i]);
                 SetupAbilityBlessings(playerInformationData.baseAbilities, playerInformationData.abilities, _data.Characters[i]);
                 SetupGlobalBlessings(_data.Characters[i]);
             }

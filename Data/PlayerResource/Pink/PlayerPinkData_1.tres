@@ -1,38 +1,39 @@
 [gd_resource type="Resource" load_steps=14 format=3 uid="uid://bbhiystnfus4x"]
 
-[ext_resource type="Texture2D" uid="uid://ckgu7akm3kvw2" path="res://Data/PlayerResource/Pink/Textures/CharacterPortraitSprite.tres" id="1_g1nxw"]
-[ext_resource type="Texture2D" uid="uid://b02cq42q46qr3" path="res://Data/PlayerResource/Pink/Textures/CharacterSplashArt.tres" id="2_xyrt8"]
-[ext_resource type="Texture2D" uid="uid://c0oydeeuwodxt" path="res://Data/PlayerResource/Pink/Textures/CropedSplashArt.tres" id="3_ktmm6"]
-[ext_resource type="Resource" uid="uid://bxs72xciv5avq" path="res://Data/Abilities/PinkBarrier.tres" id="4_u78fp"]
-[ext_resource type="Resource" uid="uid://drnkp0tjwgvjo" path="res://Data/Abilities/Purify.tres" id="5_7hvxo"]
-[ext_resource type="Resource" uid="uid://bdpmg7b4gmdu7" path="res://Data/Abilities/WeakSpot.tres" id="5_i7fj1"]
-[ext_resource type="Resource" uid="uid://df6i4as2in2ku" path="res://Data/Abilities/SilenceBeam.tres" id="6_n1g0q"]
-[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="7_xirim"]
-[ext_resource type="Resource" uid="uid://do8p8wi12qypr" path="res://Data/Abilities/HealSingle.tres" id="8_84eqk"]
-[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="8_snunr"]
-[ext_resource type="Texture2D" uid="uid://dsy12g3ufwxnc" path="res://Data/PlayerResource/Pink/Textures/CharacterSprite.tres" id="9_81sc1"]
-[ext_resource type="Texture2D" uid="uid://s5uwng3jk5xw" path="res://Data/PlayerResource/Pink/Textures/RoleSprite.tres" id="10_rwdnt"]
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="11_0gsvq"]
+[ext_resource type="Texture2D" uid="uid://ckgu7akm3kvw2" path="res://Data/PlayerResource/Pink/Textures/CharacterPortraitSprite.tres" id="1_0piao"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_08aj7"]
+[ext_resource type="Texture2D" uid="uid://b02cq42q46qr3" path="res://Data/PlayerResource/Pink/Textures/CharacterSplashArt.tres" id="2_xfhf8"]
+[ext_resource type="Texture2D" uid="uid://c0oydeeuwodxt" path="res://Data/PlayerResource/Pink/Textures/CropedSplashArt.tres" id="3_loy1b"]
+[ext_resource type="Resource" uid="uid://bxs72xciv5avq" path="res://Data/Abilities/PinkBarrier.tres" id="4_dioqm"]
+[ext_resource type="Resource" uid="uid://drnkp0tjwgvjo" path="res://Data/Abilities/Purify.tres" id="5_nqcw5"]
+[ext_resource type="Resource" uid="uid://bdpmg7b4gmdu7" path="res://Data/Abilities/WeakSpot.tres" id="6_8w5uj"]
+[ext_resource type="Resource" uid="uid://df6i4as2in2ku" path="res://Data/Abilities/SilenceBeam.tres" id="7_7818h"]
+[ext_resource type="Resource" uid="uid://do8p8wi12qypr" path="res://Data/Abilities/HealSingle.tres" id="8_l26hy"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="9_uo7y4"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="10_ym200"]
+[ext_resource type="Texture2D" uid="uid://dsy12g3ufwxnc" path="res://Data/PlayerResource/Pink/Textures/CharacterSprite.tres" id="11_ocjtg"]
+[ext_resource type="Texture2D" uid="uid://s5uwng3jk5xw" path="res://Data/PlayerResource/Pink/Textures/RoleSprite.tres" id="12_hfwok"]
 
 [resource]
-script = ExtResource("11_0gsvq")
+script = ExtResource("1_08aj7")
 characterType = 0
 ClassName = "ENCHANTRESS"
-MaxHealth = 19
 critChance = 3
 accuracy = 100
 dodgeChance = 5
 killXP = 50
 role = "SUPPORT"
+CharacterSplashArt = ExtResource("2_xfhf8")
+CroppedSplashArt = ExtResource("3_loy1b")
+characterSprite = ExtResource("11_ocjtg")
+roleSprite = ExtResource("12_hfwok")
+baseAbilities = Array[Resource]([ExtResource("9_uo7y4"), ExtResource("10_ym200")])
+playerBlessings = Array[Resource]([])
+maxHealth = 19
 classColor = Color(1, 0.568627, 0.74902, 1)
 secondClassColor = Color(1, 0.380392, 0.639216, 1)
 textColor = Color(0.976471, 0.729412, 1, 1)
 backgroundColor = Color(0.843137, 0.196078, 0.513726, 1)
-CharacterPortraitSprite = ExtResource("1_g1nxw")
-CharacterSplashArt = ExtResource("2_xyrt8")
-CroppedSplashArt = ExtResource("3_ktmm6")
-characterSprite = ExtResource("9_81sc1")
-roleSprite = ExtResource("10_rwdnt")
-baseAbilities = Array[Resource]([ExtResource("7_xirim"), ExtResource("8_snunr")])
-abilities = Array[Resource]([ExtResource("4_u78fp"), ExtResource("5_7hvxo"), ExtResource("5_i7fj1"), ExtResource("6_n1g0q"), ExtResource("8_84eqk")])
-playerBlessings = Array[Resource]([])
+CharacterPortraitSprite = ExtResource("1_0piao")
+abilities = Array[Resource]([ExtResource("4_dioqm"), ExtResource("5_nqcw5"), ExtResource("6_8w5uj"), ExtResource("7_7818h"), ExtResource("8_l26hy")])
+blessings = []
