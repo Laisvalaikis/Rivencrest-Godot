@@ -3,7 +3,7 @@ using Godot.Collections;
 using Array = System.Array;
 
 
-public partial class PlayerInformationData: Resource
+public partial class PlayerInformationDataNew: Resource
 {
 	[Export]
 	public CharacterType characterType;
