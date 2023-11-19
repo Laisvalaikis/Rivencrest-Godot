@@ -17,13 +17,7 @@ public partial class Player : Object
 	protected bool weakSpot = false;
 	private int movementPoints = 3; //track movement points here in this class
 	private int previousMovementPoints = 3;
-
-	public override void _EnterTree()
-	{
-		base._EnterTree();
-		// objectInformation.objectData = playerInformation.playerInformationData;
-	}
-
+	
 	public override void Death()
 	{
 		Hide();
@@ -122,7 +116,7 @@ public partial class Player : Object
 		previousMovementPoints = movementPoints;
 		PoisonPlayer();
 		actionManager.OnTurnStart();
-		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllPlayerBlessings();
+		Array<PlayerBlessing> playerBlessings = playerInformation.objectData.GetPlayerInformationData().GetAllPlayerBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
 			if (unlockedPLayerBlessings[i].blessingUnlocked)
@@ -148,7 +142,7 @@ public partial class Player : Object
 	public override void OnTurnEnd()
 	{
 		actionManager.OnTurnEnd();
-		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllPlayerBlessings();
+		Array<PlayerBlessing> playerBlessings = playerInformation.objectData.GetPlayerInformationData().GetAllPlayerBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
 			if (unlockedPLayerBlessings[i].blessingUnlocked)

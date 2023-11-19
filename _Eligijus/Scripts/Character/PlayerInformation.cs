@@ -11,7 +11,8 @@ public partial class PlayerInformation : Node
 	[Export]
 	private Player _player;
 	[Export]
-	public PlayerInformationDataNew playerInformationData;
+	private PlayerInformationDataNew playerInformationData;
+	public ObjectInformation<ObjectData> objectData;
 	[Export]
 	public Sprite2D spriteRenderer;
 	[Export]
@@ -32,6 +33,7 @@ public partial class PlayerInformation : Node
 	public override void _Ready()
 	{
 		base._Ready();
+		objectData = new ObjectInformation<ObjectData>(playerInformationData);
 		LoadPlayerProgression();
 		PlayerSetup();
 		_health = playerInformationData.maxHealth;

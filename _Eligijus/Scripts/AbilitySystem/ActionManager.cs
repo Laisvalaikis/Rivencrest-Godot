@@ -40,10 +40,10 @@ public partial class ActionManager : Node
 		_abilities = new Array<Ability>();
 		_baseAbilities = new Array<Ability>();
 		Array<Ability> allAbilities = new Array<Ability>();
-		Array<Ability> baseAbilities = _player.playerInformation.playerInformationData.baseAbilities;
+		Array<Ability> baseAbilities = _player.playerInformation.objectData.GetPlayerInformationData().baseAbilities;
 		_unlockedAbilityList = _player.unlockedAbilityList;
 		allAbilities.AddRange(baseAbilities);
-		allAbilities.AddRange(_player.playerInformation.playerInformationData.abilities);
+		allAbilities.AddRange(_player.playerInformation.objectData.GetPlayerInformationData().abilities);
 		if (allAbilities.Count != 0)
 		{
 			for (int i = 0; i < allAbilities.Count; i++)

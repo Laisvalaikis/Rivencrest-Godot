@@ -195,7 +195,7 @@ public partial class ChainHook : BaseAction
 		SetHoveredAttackColor(hoveredChunk);
 		if (currentPlayerInfo != null)
 		{
-			AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.playerInformationData.characterSprite;
+			AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.objectData.GetPlayerInformationData().characterSprite;
 			_tileToPullTo = TileToPullTo(hoveredChunk);
 			multiplier = GetMultiplier(hoveredChunk.GetPosition());
 			if (!IsAllegianceSame(hoveredChunk))

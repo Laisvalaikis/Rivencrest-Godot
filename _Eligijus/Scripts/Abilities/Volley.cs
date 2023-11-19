@@ -98,7 +98,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
             {
                 if (currentPlayerInfo != null)
                 {
-                    AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.playerInformationData.characterSprite;
+                    AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.objectData.GetPlayerInformationData().characterSprite;
                     _tileToPullTo = TileToDashTo(_globalIndex);
                     if (_tileToPullTo != playerChunk)
                     {

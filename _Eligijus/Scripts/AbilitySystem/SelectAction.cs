@@ -38,7 +38,7 @@ public partial class SelectAction : Control
 		_playerAbilities = _actionManager.ReturnAbilities();
 		_playerBaseAbilities = _actionManager.ReturnBaseAbilities();
 		_playerAllAbilities = _actionManager.ReturnAllAbilities();
-		_playerInformationData = _currentPlayer.playerInformation.playerInformationData;
+		_playerInformationData = _currentPlayer.playerInformation.objectData.GetPlayerInformationData();
 	}
 
 	private void GenerateActions()

@@ -99,7 +99,7 @@ public partial class GrapplingHook : AbilityBlessing
 
         if (currentPlayerInfo != null)
         {
-            AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.playerInformationData.characterSprite;
+            AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.objectData.GetPlayerInformationData().characterSprite;
             _tileToPullTo = TileToPullTo(hoveredChunk, baseAction.GetPlayer());
             HighlightTile tileToPullToHighlight = _tileToPullTo.GetTileHighlight();
             tileToPullToHighlight.TogglePreviewSprite(true);

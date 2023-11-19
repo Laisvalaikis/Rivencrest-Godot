@@ -90,7 +90,7 @@ public partial class AbilityBlessing : BaseBlessing
     private void DodgeActivation(ref int damage, PlayerInformation player, PlayerInformation target) //Dodge temporarily removed
     {
 	    int dodgeNumber = _random.Next(0, 100);
-	    if (dodgeNumber > player.playerInformationData.accuracy - target.playerInformationData.dodgeChance)
+	    if (dodgeNumber > player.objectData.GetPlayerInformationData().accuracy - target.objectData.GetPlayerInformationData().dodgeChance)
 	    {
 		    damage = -1;
 	    }
@@ -105,7 +105,7 @@ public partial class AbilityBlessing : BaseBlessing
     {
 	    int critNumber = _random.Next(0, 100);
 	    bool crit;
-	    if (critNumber > playerInformation.playerInformationData.critChance)
+	    if (critNumber > playerInformation.objectData.GetPlayerInformationData().critChance)
 	    {
 		    crit = false;
 	    }

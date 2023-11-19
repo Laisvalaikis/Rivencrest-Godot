@@ -108,7 +108,7 @@ public abstract partial class BaseAction: Resource
 		{
 			_random = new Random();
 			_playerInformationData = new PlayerInformationDataNew();
-			_playerInformationData.CopyData(player.playerInformation.playerInformationData);
+			_playerInformationData.CopyData(player.playerInformation.objectData.GetPlayerInformationData());
 			_chunkList = new List<ChunkData>();
 			if (_abilityBlessingsRef != null)
 			{
@@ -735,7 +735,7 @@ public abstract partial class BaseAction: Resource
 		private void DodgeActivation(ref int damage, PlayerInformation target) //Dodge temporarily removed
 		{
 			int dodgeNumber = _random.Next(0, 100);
-			if (dodgeNumber > _playerInformationData.accuracy - target.playerInformationData.dodgeChance)
+			if (dodgeNumber > _playerInformationData.accuracy - target.objectData.GetPlayerInformationData().dodgeChance)
 			{
 				damage = -1;
 			}

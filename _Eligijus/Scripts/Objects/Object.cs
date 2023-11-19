@@ -9,8 +9,7 @@ public partial class Object : Node2D
     public override void _EnterTree()
     {
         base._EnterTree();
-        objectInformation = new ObjectInformation<ObjectData>();
-        objectInformation.objectData = objectData;
+        objectInformation = new ObjectInformation<ObjectData>(objectData);
     }
 
     public virtual void PlayerWasDamaged()

@@ -38,7 +38,7 @@ public partial class PvPCharacterSelect : Button
         if (characterOnBoard != null)
         {
             
-            _playerInformationData = _playerInformation.playerInformationData;
+            _playerInformationData = _playerInformation.objectData.GetPlayerInformationData();
             characterPortraitSprite.Texture = (AtlasTexture)_playerInformationData.CharacterPortraitSprite;
             
             characterButtonParent.Show();
