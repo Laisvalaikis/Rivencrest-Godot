@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
-using Array = System.Array;
 
 public partial class BlessingManager : Control
 {
@@ -219,7 +218,7 @@ public partial class BlessingManager : Control
         {
             if (i < _generatedBlessings.Count)
             {
-                _blessingCards[i].UpdateInformation(_generatedBlessings[i]);
+                _blessingCards[i].UpdateInformation(_generatedBlessings[i], this);
             }
             else
             {
@@ -229,4 +228,9 @@ public partial class BlessingManager : Control
             
         }
     }
-}
+    
+    public void BlessingFinished()
+    {
+        _data.townData.deadCharacters.Clear();
+    }
+} 

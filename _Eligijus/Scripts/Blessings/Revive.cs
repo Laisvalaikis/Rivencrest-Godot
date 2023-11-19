@@ -25,6 +25,8 @@ public partial class Revive : GlobalBlessing
             Data _data = Data.Instance;
             if (_data.townData.deadCharacters.Contains(playerInformation))
             {
+                playerInformation.xPToGain = 0;
+                _data.Characters.Add(new SavedCharacterResource(_data.AllAvailableCharacters[playerInformation.characterIndex].prefab, playerInformation));
                 _data.townData.characters.Add(playerInformation);
                 _data.townData.deadCharacters.Remove(playerInformation);
             }

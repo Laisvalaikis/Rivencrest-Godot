@@ -2,6 +2,8 @@
 
 public partial class BlessingCard : Control
 {
+    [Signal]
+    public delegate void BlessingSelectedEventHandler();
     [Export] private Button claimButton;
     [Export] private TextureRect portrait;
     [Export] private TextureRect highlight;
@@ -10,8 +12,9 @@ public partial class BlessingCard : Control
     [Export] private Label blessingName;
     [Export] private Label blessingDescription;
     private BlessingData blessingData;
+    private BlessingManager _blessingManager;
 
-    public void UpdateInformation(BlessingData blessingData)
+    public void UpdateInformation(BlessingData blessingData, BlessingManager blessingManager)
     {
         this.blessingData = blessingData;
         characterName.Text = blessingData.playerResource.characterName;
@@ -19,6 +22,7 @@ public partial class BlessingCard : Control
         highlight.SelfModulate = blessingData.playerResource.playerInformation.classColor;
         blessingName.Text = blessingData.blessing.blessingName;
         blessingDescription.Text = blessingData.blessing.description;
+        _blessingManager = blessingManager;
         claimButton.Pressed += PressButton;
     }
 
@@ -33,6 +37,8 @@ public partial class BlessingCard : Control
             GlobalBlessing globalBlessing = (GlobalBlessing)blessingData.blessing;
             globalBlessing.Start(blessingData.playerResource);
         }
+        _blessingManager.BlessingFinished();
+        EmitSignal("BlessingSelected");
     }
 
 }
