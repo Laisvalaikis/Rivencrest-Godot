@@ -2,14 +2,14 @@ using Godot;
 
 public partial class BlessingData : Resource
 {
-   [Export] public SavedCharacterResource playerResource;
+   [Export] public SavableCharacterResource playerResource;
    [Export] public UnlockedBlessingsResource unlockedBlessingsResource;
    [Export] public bool playerBlessing = false;
    [Export] public bool abilityBlessing = false;
    [Export] public bool globalBlessing = false;
    [Export] public BaseBlessing blessing;
 
-   public BlessingData(SavedCharacterResource playerResource, BaseBlessing blessing, UnlockedBlessingsResource unlockedBlessingsResource)
+   public BlessingData(SavableCharacterResource playerResource, BaseBlessing blessing, UnlockedBlessingsResource unlockedBlessingsResource)
    {
       this.playerResource = playerResource;
       this.blessing = blessing;

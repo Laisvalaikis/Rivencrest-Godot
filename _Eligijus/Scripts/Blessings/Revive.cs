@@ -18,8 +18,16 @@ public partial class Revive : GlobalBlessing
         return blessing;
     }
     
-    public override void Start(SavedCharacterResource playerInformation)
+    public override void Start(SavableCharacterResource playerInformation)
     {
-        GD.Print("Plays");
+        if (Data.Instance != null)
+        {
+            Data _data = Data.Instance;
+            if (_data.townData.deadCharacters.Contains(playerInformation))
+            {
+                _data.townData.characters.Add(playerInformation);
+                _data.townData.deadCharacters.Remove(playerInformation);
+            }
+        }
     }
 }

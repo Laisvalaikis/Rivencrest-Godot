@@ -45,11 +45,11 @@ public partial class GameEnd : Control
 
     private void DeadCharacters(TeamsList deadCharacters)
     {
-        for (int i = 0; i < deadCharacters.Teams.Count; i++)
+        foreach (int i in deadCharacters.Teams.Keys) 
         {
             if (!deadCharacters.Teams[i].isTeamAI && !deadCharacters.Teams[i].isEnemies)
             {
-                for (int j = 0; j < deadCharacters.Teams[i].characterResources.Count; j++)
+                foreach (int j in deadCharacters.Teams[i].characterResources.Keys)
                 {
                     SavedCharacterResource deadCharacter = deadCharacters.Teams[i].characterResources[j];
                     _data.townData.deadCharacters.Add(deadCharacter);
@@ -64,12 +64,13 @@ public partial class GameEnd : Control
 
     private void SaveCharacterData(TeamsList currentCharacters)
     {
-        for (int i = 0; i < currentCharacters.Teams.Count; i++)
+        foreach (int i in currentCharacters.Teams.Keys) 
         {
             if (!currentCharacters.Teams[i].isTeamAI && !currentCharacters.Teams[i].isTeamAI)
             {
-                for (int j = 0; j < currentCharacters.Teams[i].characterResources.Count; j++)
+                foreach (int j in currentCharacters.Teams[i].characterResources.Keys)
                 {
+                    
                     Player player = currentCharacters.Teams[i].characters[j];
                     SavedCharacterResource character = currentCharacters.Teams[i].characterResources[j];
                     character.xPToGain = player.playerInformation.GainXP();

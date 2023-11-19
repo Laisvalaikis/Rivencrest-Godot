@@ -165,7 +165,6 @@ using Godot;
 		public int xP { get; set; }
 		public int xPToGain { get; set; }
 		public string characterName { get; set; }
-		public bool dead { get; set; }
 		public int abilityPointCount { get; set; }
 		public List<UnlockedAbilities> unlockedAbilities { get; set; }
 		public List<AbilityBlessings> abilityBlessings;
@@ -183,7 +182,6 @@ using Godot;
 			this.level = level;
 			this.xP = xP;
 			this.xPToGain = xPToGain;
-			this.dead = dead;
 			this.characterName = characterName;
 			this.abilityPointCount = abilityPointCount;
 			this.unlockedAbilities = unlockedAbilities;
@@ -200,7 +198,6 @@ using Godot;
 			this.level = data.level;
 			this.xP = data.xP;
 			this.xPToGain = data.xPToGain;
-			this.dead = data.dead;
 			this.characterName = data.characterName;
 			this.abilityPointCount = data.abilityPointCount;
 			this.unlockedAbilities = new List<UnlockedAbilities>();
@@ -229,7 +226,6 @@ using Godot;
 			this.level = data.level;
 			this.xP = data.xP;
 			this.xPToGain = data.xPToGain;
-			this.dead = data.dead;
 			this.characterName = data.characterName;
 			this.abilityPointCount = data.abilityPointCount;
 			this.unlockedAbilities = new List<UnlockedAbilities>();
@@ -258,7 +254,6 @@ using Godot;
 			this.level = data.level;
 			this.xP = data.xP;
 			this.xPToGain = data.xPToGain;
-			this.dead = data.dead;
 			this.characterName = data.characterName;
 			this.abilityPointCount = data.abilityPointCount;
 			this.unlockedAbilities = data.unlockedAbilities;

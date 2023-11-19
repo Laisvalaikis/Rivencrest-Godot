@@ -52,7 +52,6 @@ public partial class BlessingManager : Control
         {
             for (int i = 0; i < _data.townData.deadCharacters.Count; i++)
             {
-                PlayerInformationData playerInformationData = _data.townData.deadCharacters[i].playerInformation;
                 SetupGlobalBlessingsWithDeath(_data.townData.deadCharacters[i]);
             }
         }
@@ -140,7 +139,7 @@ public partial class BlessingManager : Control
             for (int i = 0; i < globalBlessings.Count; i++)
             {
                 BlessingData blessingData =
-                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], null);
+                    new BlessingData(character, globalBlessings[i], null);
                 blessingData.SetupGlobalBlessing();
                 _globalBlessings.Add(blessingData);
             }
@@ -159,7 +158,7 @@ public partial class BlessingManager : Control
             for (int i = 0; i < globalBlessings.Count; i++)
             {
                 BlessingData blessingData =
-                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], null);
+                    new BlessingData(character, globalBlessings[i], null);
                 blessingData.SetupGlobalBlessing();
                 _globalBlessings.Add(blessingData);
             }

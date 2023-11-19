@@ -28,7 +28,7 @@ public partial class GlobalBlessing : BaseBlessing
 		base.ResolveBlessing(baseAction);
 	}
 
-	public virtual void Start(SavedCharacterResource playerInformation)
+	public virtual void Start(SavableCharacterResource playerInformation)
 	{
 		
 	}

@@ -13,8 +13,6 @@ public partial class SavableCharacterResource : Resource
 	[Export]
 	public string characterName;
 	[Export]
-	public bool dead;
-	[Export]
 	public int abilityPointCount;
 	[Export]
 	public Array<UnlockedAbilitiesResource> unlockedAbilities;
@@ -41,7 +39,6 @@ public partial class SavableCharacterResource : Resource
 		level = data.level;
 		xP = data.xP;
 		xPToGain = data.xPToGain;
-		dead = data.dead;
 		characterName = data.characterName;
 		abilityPointCount = data.abilityPointCount;
 		unlockedAbilities = data.unlockedAbilities;
@@ -58,7 +55,6 @@ public partial class SavableCharacterResource : Resource
 		level = data.level;
 		xP = data.xP;
 		xPToGain = data.xPToGain;
-		dead = data.dead;
 		characterName = data.characterName;
 		abilityPointCount = data.abilityPointCount;
 		unlockedAbilities = new Array<UnlockedAbilitiesResource>();
@@ -88,7 +84,6 @@ public partial class SavableCharacterResource : Resource
 		level = data.level;
 		xP = data.xP;
 		xPToGain = data.xPToGain;
-		dead = data.dead;
 		characterName = data.characterName;
 		abilityPointCount = data.abilityPointCount;
 		unlockedAbilities = new Array<UnlockedAbilitiesResource>();
