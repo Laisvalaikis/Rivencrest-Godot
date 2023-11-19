@@ -122,7 +122,7 @@ public partial class Player : Object
 		previousMovementPoints = movementPoints;
 		PoisonPlayer();
 		actionManager.OnTurnStart();
-		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllBlessings();
+		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllPlayerBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
 			if (unlockedPLayerBlessings[i].blessingUnlocked)
@@ -148,7 +148,7 @@ public partial class Player : Object
 	public override void OnTurnEnd()
 	{
 		actionManager.OnTurnEnd();
-		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllBlessings();
+		Array<PlayerBlessing> playerBlessings = playerInformation.playerInformationData.GetAllPlayerBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
 			if (unlockedPLayerBlessings[i].blessingUnlocked)

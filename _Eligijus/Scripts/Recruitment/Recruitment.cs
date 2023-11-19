@@ -164,7 +164,7 @@ public partial class Recruitment : Node
 				}
 			}
 			
-			Array<PlayerBlessing> playerBlessings = characterToAdd.playerInformation.GetAllBlessings();
+			Array<PlayerBlessing> playerBlessings = characterToAdd.playerInformation.GetAllPlayerBlessings();
 			if (characterToAdd.characterBlessings == null)
 			{
 				characterToAdd.characterBlessings = new Array<UnlockedBlessingsResource>();

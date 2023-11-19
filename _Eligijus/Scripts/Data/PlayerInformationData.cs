@@ -79,7 +79,7 @@ public partial class PlayerInformationData: Resource
 		playerBlessings = playerInformationData.playerBlessings;
 	}
 	
-	public Array<PlayerBlessing> GetAllBlessings()
+	public Array<PlayerBlessing> GetAllPlayerBlessings()
 	{
 		return playerBlessings;
 	}
