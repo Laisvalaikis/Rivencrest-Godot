@@ -3,7 +3,7 @@ using Godot.Collections;
 using Array = System.Array;
 
 
-public partial class PlayerInformationDataNew: Resource
+public partial class PlayerInformationDataNew : ObjectData
 {
 	[Export]
 	public CharacterType characterType;
@@ -21,18 +21,6 @@ public partial class PlayerInformationDataNew: Resource
 	public int killXP = 50;
 	[Export]
 	public string role;
-	
-	[Export]
-	public Color classColor;
-	[Export]
-	public Color secondClassColor;
-	[Export]
-	public Color textColor;
-	[Export]
-	public Color backgroundColor;
-	
-	[Export]
-	public Texture CharacterPortraitSprite;
 	[Export]
 	public Texture CharacterSplashArt;//For character table
 	[Export]
@@ -44,16 +32,14 @@ public partial class PlayerInformationDataNew: Resource
 	[Export]
 	public Array<Ability> baseAbilities;
 	[Export]
-	public Array<Ability> abilities;
-	[Export]
 	protected Array<PlayerBlessing> playerBlessings;
 
-	public PlayerInformationData()
+	public PlayerInformationDataNew()
 	{
 		
 	}
 	
-	public void CopyData(PlayerInformationData playerInformationData)
+	public void CopyData(PlayerInformationDataNew playerInformationData)
 	{
 		characterType = playerInformationData.characterType;
 		ClassName = playerInformationData.ClassName;

@@ -18,6 +18,12 @@ public partial class Player : Object
 	private int movementPoints = 3; //track movement points here in this class
 	private int previousMovementPoints = 3;
 
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		// objectInformation.objectData = playerInformation.playerInformationData;
+	}
+
 	public override void Death()
 	{
 		Hide();
