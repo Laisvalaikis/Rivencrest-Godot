@@ -5,4 +5,10 @@
 [resource]
 script = ExtResource("1_1gt2b")
 affectAllies = false
-_blessingIsUnlocked = true
+blessingName = "Affect Allies"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

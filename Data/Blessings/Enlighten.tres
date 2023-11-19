@@ -6,4 +6,10 @@
 script = ExtResource("1_pa88e")
 minHeal = 3
 maxHeal = 5
-_blessingIsUnlocked = true
+blessingName = "Enlighten"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

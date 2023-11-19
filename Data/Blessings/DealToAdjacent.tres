@@ -4,4 +4,10 @@
 
 [resource]
 script = ExtResource("1_tj2x2")
-_blessingIsUnlocked = true
+blessingName = "Deal To Adjacent"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

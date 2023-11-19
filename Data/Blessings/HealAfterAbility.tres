@@ -6,4 +6,10 @@
 script = ExtResource("1_u8efj")
 minHeal = 3
 maxHeal = 4
-_blessingIsUnlockedLocaly = true
+blessingName = "Heal After Ability"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

@@ -5,4 +5,10 @@
 [resource]
 script = ExtResource("1_jyvfr")
 affectMP = 1
-_blessingIsUnlockedLocaly = true
+blessingName = "Gain Movement Points"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

@@ -4,3 +4,11 @@
 
 [resource]
 script = ExtResource("1_fgqox")
+addAbilityPoints = 1
+blessingName = "Swiftness"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

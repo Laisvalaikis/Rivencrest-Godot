@@ -5,4 +5,10 @@
 [resource]
 script = ExtResource("1_8611l")
 dealDamage = 2
-_blessingIsUnlocked = true
+blessingName = "Frostbite"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

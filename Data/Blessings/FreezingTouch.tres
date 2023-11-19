@@ -4,3 +4,11 @@
 
 [resource]
 script = ExtResource("1_4th4x")
+slowEnemyBy = 0
+blessingName = "Freezing Touch"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

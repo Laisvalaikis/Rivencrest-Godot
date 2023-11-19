@@ -4,3 +4,11 @@
 
 [resource]
 script = ExtResource("1_epo1h")
+criticalDamage = 0
+blessingName = "Molten Touch"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

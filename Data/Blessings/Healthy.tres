@@ -4,3 +4,11 @@
 
 [resource]
 script = ExtResource("1_wnj3m")
+grantMaxHealth = 3
+blessingName = "Healthy"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

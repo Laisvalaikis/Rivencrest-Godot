@@ -4,3 +4,11 @@
 
 [resource]
 script = ExtResource("1_t5nuv")
+slowsDown = 2
+blessingName = "Slow Down"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

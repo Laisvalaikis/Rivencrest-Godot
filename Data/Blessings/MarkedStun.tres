@@ -4,3 +4,10 @@
 
 [resource]
 script = ExtResource("1_ko0wy")
+blessingName = "Marked Stun"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

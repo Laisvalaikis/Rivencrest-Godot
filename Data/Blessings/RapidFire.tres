@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_angjd")
-blessingName = ""
+blessingName = "Rapid Fire"
 rarity = 0
 className = ""
 spellName = ""
 condition = ""
 description = ""
-_blessingIsUnlocked = true
+_blessingIsUnlocked = false

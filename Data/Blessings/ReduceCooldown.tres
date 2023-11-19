@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_afj4f")
 _reduceCooldown = 2
-blessingName = ""
+blessingName = "Reduce Cooldown"
 rarity = 0
 className = ""
 spellName = ""
 condition = ""
 description = ""
-_blessingIsUnlocked = true
+_blessingIsUnlocked = false

@@ -6,4 +6,10 @@
 script = ExtResource("1_i46x3")
 poisonTurns = 2
 poisonDamage = 2
-_blessingIsUnlocked = true
+blessingName = "Exlosive Poison"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

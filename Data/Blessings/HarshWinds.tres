@@ -5,4 +5,10 @@
 [resource]
 script = ExtResource("1_ixa8l")
 dealDamage = 10
-_blessingIsUnlockedLocaly = true
+blessingName = "Harsh Wind"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

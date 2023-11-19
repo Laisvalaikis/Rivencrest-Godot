@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ouoyy")
-blessingName = ""
+blessingName = "Antitoxic"
 rarity = 0
 className = ""
 spellName = ""

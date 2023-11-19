@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_2au4n")
 attackDamage = 3
-blessingName = ""
+blessingName = "Combo Kick"
 rarity = 0
 className = ""
 spellName = ""
 condition = ""
 description = ""
-_blessingIsUnlocked = true
+_blessingIsUnlocked = false

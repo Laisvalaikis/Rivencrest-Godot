@@ -43,8 +43,7 @@ public partial class BlessingManager : Control
             {
                 PlayerInformationData playerInformationData = _data.Characters[i].playerInformation;
                 SetupPlayerBlessings(playerInformationData.GetAllBlessings(), _data.Characters[i]);
-                SetupBaseAbilityBlessings(playerInformationData.baseAbilities, _data.Characters[i]);
-                SetupAbilityBlessings(playerInformationData.abilities, _data.Characters[i]);
+                SetupAbilityBlessings(playerInformationData.baseAbilities, playerInformationData.abilities, _data.Characters[i]);
                 SetupGlobalBlessings(_data.Characters[i]);
             }
         }
@@ -59,58 +58,53 @@ public partial class BlessingManager : Control
         }
     }
 
-    private void SetupAbilityBlessings(Array<Ability> ability, SavedCharacterResource character) // patikrinti ar ability yra unlocked
+    private void SetupAbilityBlessings(Array<Ability> baseAbility, Array<Ability> ability, SavedCharacterResource character) // patikrinti ar ability yra unlocked
     {
-        if (ability != null)
-        {
+        Array<Ability> abilities = new Array<Ability>();
+        abilities.AddRange(baseAbility);
+        abilities.AddRange(ability);
+    
             if (_abilityBlessings == null)
             {
                 _abilityBlessings = new Array<BlessingData>();
             }
 
             Array<UnlockedAbilitiesResource> unlockedAbilitiesList = character.unlockedAbilities;
-            for (int i = 0; i < ability.Count; i++)
+            Array<AbilityBlessingsResource> abilityBlessingsResources = character.abilityBlessings;
+            for (int i = 0; i < abilities.Count; i++)
             {
-                if (ability[i].Action.GetAllBlessings() != null && unlockedAbilitiesList[i].abilityUnlocked && unlockedAbilitiesList[i].abilityConfirmed)
+                if (i < baseAbility.Count)
                 {
-                    Array<AbilityBlessing> abilityBlessings = ability[i].Action.GetAllBlessings();
-                    for (int blessingIndex = 0; blessingIndex < abilityBlessings.Count; blessingIndex++)
+                    if (abilities[i].Action.GetAllBlessings() != null)
                     {
-                        BlessingData blessingData =
-                            new BlessingData(character, abilityBlessings[blessingIndex], blessingIndex);
-                        blessingData.SetupAbilityBlessing();
-                        _abilityBlessings.Add(blessingData);
+                        Array<AbilityBlessing> abilityBlessings = abilities[i].Action.GetAllBlessings();
+                        for (int blessingIndex = 0; blessingIndex < abilityBlessings.Count; blessingIndex++)
+                        {
+                            BlessingData blessingData =
+                                new BlessingData(character, abilityBlessings[blessingIndex], abilityBlessingsResources[i].UnlockedBlessingsList[blessingIndex]);
+                            blessingData.SetupAbilityBlessing();
+                            _abilityBlessings.Add(blessingData);
+                        }
                     }
                 }
-            }
-            
-        }
-    }
-    
-    private void SetupBaseAbilityBlessings(Array<Ability> baseAbility, SavedCharacterResource character) // patikrinti ar ability yra unlocked
-    {
-        if (baseAbility != null)
-        {
-            if (_abilityBlessings == null)
-            {
-                _abilityBlessings = new Array<BlessingData>();
-            }
-            for (int i = 0; i < baseAbility.Count; i++)
-            {
-                if (baseAbility[i].Action.GetAllBlessings() != null)
+                else
                 {
-                    Array<AbilityBlessing> abilityBlessings = baseAbility[i].Action.GetAllBlessings();
-                    for (int blessingIndex = 0; blessingIndex < abilityBlessings.Count; blessingIndex++)
+                    int unlockedAbilityIndex = i - baseAbility.Count;
+                    if (abilities[i].Action.GetAllBlessings() != null && unlockedAbilitiesList[unlockedAbilityIndex].abilityUnlocked && unlockedAbilitiesList[unlockedAbilityIndex].abilityConfirmed)
                     {
-                        BlessingData blessingData =
-                            new BlessingData(character, abilityBlessings[blessingIndex], blessingIndex);
-                        blessingData.SetupBaseAbilityBlessing();
-                        _abilityBlessings.Add(new BlessingData(character, abilityBlessings[blessingIndex], blessingIndex));
+                        Array<AbilityBlessing> abilityBlessings = abilities[i].Action.GetAllBlessings();
+                        for (int blessingIndex = 0; blessingIndex < abilityBlessings.Count; blessingIndex++)
+                        {
+                            BlessingData blessingData =
+                                new BlessingData(character, abilityBlessings[blessingIndex],  abilityBlessingsResources[i].UnlockedBlessingsList[blessingIndex]);
+                            blessingData.SetupAbilityBlessing();
+                            _abilityBlessings.Add(blessingData);
+                        }
                     }
                 }
+                
             }
-            
-        }
+
     }
     
     private void SetupPlayerBlessings(Array<PlayerBlessing> playerBlessings, SavedCharacterResource character)
@@ -121,10 +115,12 @@ public partial class BlessingManager : Control
             {
                 _playerBlessings = new Array<BlessingData>();
             }
+
+            Array<UnlockedBlessingsResource> lockUnlockPlayerBlessings = character.characterBlessings;
             for (int i = 0; i < playerBlessings.Count; i++)
             {
                 BlessingData blessingData =
-                    new BlessingData(character, playerBlessings[i], i);
+                    new BlessingData(character, playerBlessings[i], lockUnlockPlayerBlessings[i]);
                 blessingData.SetupPlayerBlessing();
                 _playerBlessings.Add(blessingData);
             }
@@ -144,7 +140,8 @@ public partial class BlessingManager : Control
             for (int i = 0; i < globalBlessings.Count; i++)
             {
                 BlessingData blessingData =
-                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], i);
+                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], null);
+                blessingData.SetupGlobalBlessing();
                 _globalBlessings.Add(blessingData);
             }
         }
@@ -162,7 +159,8 @@ public partial class BlessingManager : Control
             for (int i = 0; i < globalBlessings.Count; i++)
             {
                 BlessingData blessingData =
-                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], i);
+                    new BlessingData(new SavedCharacterResource(character), globalBlessings[i], null);
+                blessingData.SetupGlobalBlessing();
                 _globalBlessings.Add(blessingData);
             }
         }

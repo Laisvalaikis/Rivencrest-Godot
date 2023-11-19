@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_kf02q")
 bonusHealing = 3
-blessingName = ""
+blessingName = "Increase Healing"
 rarity = 0
 className = ""
 spellName = ""
 condition = ""
 description = ""
-_blessingIsUnlocked = true
+_blessingIsUnlocked = false

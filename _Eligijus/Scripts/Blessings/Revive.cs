@@ -18,8 +18,8 @@ public partial class Revive : GlobalBlessing
         return blessing;
     }
     
-    public override void Start(PlayerInformation playerInformation)
+    public override void Start(SavedCharacterResource playerInformation)
     {
-        playerInformation.Revive();
+        GD.Print("Plays");
     }
 }

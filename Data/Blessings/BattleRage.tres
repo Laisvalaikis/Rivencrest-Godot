@@ -6,4 +6,10 @@
 script = ExtResource("1_xc8ig")
 minHeal = 3
 maxHeal = 4
+blessingName = "Battle Rage"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
 _blessingIsUnlocked = false

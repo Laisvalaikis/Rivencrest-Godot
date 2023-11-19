@@ -3,17 +3,17 @@ using Godot;
 public partial class BlessingData : Resource
 {
    [Export] public SavedCharacterResource playerResource;
-   [Export] public int blessingIndex = -1;
+   [Export] public UnlockedBlessingsResource unlockedBlessingsResource;
    [Export] public bool playerBlessing = false;
-   [Export] public bool baseAbilityBlessing = false;
    [Export] public bool abilityBlessing = false;
+   [Export] public bool globalBlessing = false;
    [Export] public BaseBlessing blessing;
 
-   public BlessingData(SavedCharacterResource playerResource, BaseBlessing blessing, int blessingIndex)
+   public BlessingData(SavedCharacterResource playerResource, BaseBlessing blessing, UnlockedBlessingsResource unlockedBlessingsResource)
    {
       this.playerResource = playerResource;
       this.blessing = blessing;
-      this.blessingIndex = blessingIndex;
+      this.unlockedBlessingsResource = unlockedBlessingsResource;
    }
 
    public void SetupPlayerBlessing()
@@ -23,12 +23,12 @@ public partial class BlessingData : Resource
 
    public void SetupAbilityBlessing()
    {
-      baseAbilityBlessing = true;
+      abilityBlessing = true;
    }
-   
-   public void SetupBaseAbilityBlessing()
+
+   public void SetupGlobalBlessing()
    {
-      playerBlessing = true;
+      globalBlessing = true;
    }
 
 }

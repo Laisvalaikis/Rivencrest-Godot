@@ -6,4 +6,10 @@
 script = ExtResource("1_umr8w")
 minHealAmount = 5
 maxHealAmount = 5
-_blessingIsUnlockedLocaly = true
+blessingName = "Gather Round"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

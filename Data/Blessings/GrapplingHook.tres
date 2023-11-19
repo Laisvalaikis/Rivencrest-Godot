@@ -4,3 +4,10 @@
 
 [resource]
 script = ExtResource("1_5vd36")
+blessingName = "Grapling Hook"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

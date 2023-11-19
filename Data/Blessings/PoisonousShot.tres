@@ -4,3 +4,13 @@
 
 [resource]
 script = ExtResource("1_hgipv")
+poisonCounut = 1
+poisonTurns = 2
+poisonDamage = 2
+blessingName = "Poisonous Shot"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

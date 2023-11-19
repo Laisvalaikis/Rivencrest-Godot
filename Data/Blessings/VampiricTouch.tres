@@ -4,3 +4,11 @@
 
 [resource]
 script = ExtResource("1_6wq8f")
+lifeSteal = 3
+blessingName = "Vampiric Touch"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

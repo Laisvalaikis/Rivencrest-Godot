@@ -6,4 +6,10 @@
 script = ExtResource("1_6jqtb")
 minHeal = 3
 maxHeal = 5
-_blessingIsUnlockedLocaly = true
+blessingName = "Healing Winds"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false

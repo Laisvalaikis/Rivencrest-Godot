@@ -6,10 +6,10 @@
 resource_local_to_scene = true
 script = ExtResource("1_kmntf")
 dealDamage = 15
-blessingName = ""
+blessingName = "Sharp Blade"
 rarity = 0
 className = ""
 spellName = ""
 condition = ""
 description = ""
-_blessingIsUnlocked = true
+_blessingIsUnlocked = false

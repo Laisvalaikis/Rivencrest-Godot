@@ -4,3 +4,12 @@
 
 [resource]
 script = ExtResource("1_avt23")
+addToMinDamage = 3
+addToMaxDamage = 3
+blessingName = "Meteor Rain"
+rarity = 0
+className = ""
+spellName = ""
+condition = ""
+description = ""
+_blessingIsUnlocked = false
