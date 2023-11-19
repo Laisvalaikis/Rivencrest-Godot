@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://du4gu30ss1geb"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="1_5o7ql"]
-[ext_resource type="Resource" uid="uid://b2b0clksql7f4" path="res://Data/EnemyResource/ForestWitch/ForestWitchData.tres" id="1_xsixb"]
+[ext_resource type="Resource" uid="uid://b2b0clksql7f4" path="res://Data/EnemyResource/ForestWitch/ForestWitchData_1.tres" id="1_xsixb"]
 [ext_resource type="PackedScene" uid="uid://30rgstmdo5yq" path="res://_Aurimas/Enemies/ForestWitch.tscn" id="2_led10"]
+
 
 [resource]
 script = ExtResource("1_5o7ql")

@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://d3nlau4n7i3n"]
 
-[ext_resource type="Resource" uid="uid://dnprdw3031h16" path="res://Data/EnemyResource/UndeadSpider/UndeadSpiderData.tres" id="1_lgjom"]
+[ext_resource type="Resource" uid="uid://dnprdw3031h16" path="res://Data/EnemyResource/UndeadSpider/UndeadSpiderData_1.tres" id="1_lgjom"]
 [ext_resource type="PackedScene" uid="uid://dd6td6gqp7obi" path="res://_Aurimas/Enemies/UndeadSpider.tscn" id="2_k2wjs"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_rgduf"]
+
 
 [resource]
 script = ExtResource("3_rgduf")

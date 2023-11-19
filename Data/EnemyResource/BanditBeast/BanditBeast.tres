@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://rq3c8pn1pql7"]
 
-[ext_resource type="Resource" uid="uid://demi6ujh544u0" path="res://Data/EnemyResource/BanditBeast/BanditBeastData.tres" id="1_cfqdj"]
+[ext_resource type="Resource" uid="uid://demi6ujh544u0" path="res://Data/EnemyResource/BanditBeast/BanditBeastData_1.tres" id="1_cfqdj"]
 [ext_resource type="PackedScene" uid="uid://s3rum0ddtha4" path="res://_Aurimas/Enemies/BanditBeast.tscn" id="2_jrn37"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_amdpk"]
+
 
 [resource]
 script = ExtResource("3_amdpk")

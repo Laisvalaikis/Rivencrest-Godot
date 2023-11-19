@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://bi43okgeclhbl"]
+
+[ext_resource type="Texture2D" uid="uid://cgt7obxmmno5m" path="res://Data/EnemyResource/UndeadBoss/Textures/CharacterPortraitSprite.tres" id="1_dv7kl"]
+[ext_resource type="Resource" uid="uid://clk76sgplbv81" path="res://Data/Abilities/DisarmingBlast.tres" id="2_3uexg"]
+[ext_resource type="Resource" uid="uid://dmq4p8h6hoft5" path="res://Data/Abilities/FrontSlash.tres" id="3_77pri"]
+[ext_resource type="Resource" uid="uid://cva2da40sol4w" path="res://Data/Abilities/SideSlash.tres" id="4_qc5ip"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="6_sa01f"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="7_c7m1n"]
+[ext_resource type="Texture2D" uid="uid://c6otg488o6ib1" path="res://Data/EnemyResource/UndeadBoss/Textures/CharacterSprite.tres" id="8_5j8bq"]
+[ext_resource type="Texture2D" uid="uid://m53142oknh02" path="res://Data/EnemyResource/UndeadBoss/Textures/RoleSprite.tres" id="9_weo77"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="10_wmh33"]
+
+[resource]
+script = ExtResource("10_wmh33")
+characterType = 0
+ClassName = "FALLEN KING"
+MaxHealth = 22
+critChance = 3
+accuracy = 100
+dodgeChance = 1
+killXP = 50
+role = "DAMAGE"
+classColor = Color(0.247059, 0.980392, 0.819608, 1)
+secondClassColor = Color(0, 0, 0, 1)
+textColor = Color(0.247059, 0.980392, 0.819608, 1)
+backgroundColor = Color(0.0627451, 0.490196, 0.45098, 1)
+CharacterPortraitSprite = ExtResource("1_dv7kl")
+characterSprite = ExtResource("8_5j8bq")
+roleSprite = ExtResource("9_weo77")
+baseAbilities = Array[Resource]([ExtResource("6_sa01f"), ExtResource("7_c7m1n")])
+abilities = Array[Resource]([ExtResource("2_3uexg"), ExtResource("3_77pri"), ExtResource("4_qc5ip"), null])
+playerBlessings = Array[Resource]([])

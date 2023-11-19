@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c3cv8lj6lrx3"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/TestObject.cs" id="1_5f678"]
+
+[resource]
+script = ExtResource("1_5f678")

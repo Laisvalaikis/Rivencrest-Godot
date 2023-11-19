@@ -47,6 +47,7 @@ public partial class PlayerInformationDataNew : ObjectData
 		critChance = playerInformationData.critChance;
 		accuracy = playerInformationData.accuracy;
 		dodgeChance = playerInformationData.dodgeChance;
+		killXP = playerInformationData.killXP;
 		role = playerInformationData.role;
 
 		classColor = playerInformationData.classColor;
@@ -59,6 +60,7 @@ public partial class PlayerInformationDataNew : ObjectData
 		CroppedSplashArt = playerInformationData.CroppedSplashArt;
 		characterSprite = playerInformationData.characterSprite;
 		roleSprite = playerInformationData.roleSprite;
+		baseAbilities = playerInformationData.baseAbilities;
 		abilities = playerInformationData.abilities;
 		playerBlessings = playerInformationData.playerBlessings;
 	}

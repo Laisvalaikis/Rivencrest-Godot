@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://b2b0clksql7f4"]
+
+[ext_resource type="Texture2D" uid="uid://b4t41vaaxofj4" path="res://Data/EnemyResource/ForestWitch/Textures/CharacterPortraitSprite.tres" id="1_1ilja"]
+[ext_resource type="Resource" uid="uid://lrulrqc4v33e" path="res://Data/Abilities/SummonBear.tres" id="2_l57pj"]
+[ext_resource type="Resource" uid="uid://dx08k3oe7c3be" path="res://Data/Abilities/PoisonDart.tres" id="3_wepxa"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="4_4f5wu"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="5_c8upf"]
+[ext_resource type="Texture2D" uid="uid://l1cgaiovc3ua" path="res://Data/EnemyResource/ForestWitch/Textures/CharacterSprite.tres" id="6_q8mr6"]
+[ext_resource type="Texture2D" uid="uid://bi20fhsdwqqjj" path="res://Data/EnemyResource/ForestWitch/Textures/RoleSprite.tres" id="7_xyt5c"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="8_0dipr"]
+
+[resource]
+script = ExtResource("8_0dipr")
+characterType = 1
+ClassName = "WITCH"
+MaxHealth = 19
+critChance = 3
+accuracy = 100
+dodgeChance = 1
+killXP = 50
+role = "DAMAGE"
+classColor = Color(0.364706, 1, 0.133333, 1)
+secondClassColor = Color(0.364706, 1, 0.133333, 1)
+textColor = Color(0.941176, 1, 0.439216, 1)
+backgroundColor = Color(0.941176, 1, 0.439216, 1)
+CharacterPortraitSprite = ExtResource("1_1ilja")
+characterSprite = ExtResource("6_q8mr6")
+roleSprite = ExtResource("7_xyt5c")
+baseAbilities = Array[Resource]([ExtResource("4_4f5wu"), ExtResource("5_c8upf")])
+abilities = Array[Resource]([ExtResource("2_l57pj"), ExtResource("3_wepxa")])
+playerBlessings = Array[Resource]([])

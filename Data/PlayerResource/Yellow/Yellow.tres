@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://bextsbhbwu4wv"]
 
-[ext_resource type="Resource" uid="uid://fpvleus21ol2" path="res://Data/PlayerResource/Yellow/PlayerYellowData.tres" id="1_oqy3e"]
+[ext_resource type="Resource" uid="uid://fpvleus21ol2" path="res://Data/PlayerResource/Yellow/PlayerYellowData_1.tres" id="1_oqy3e"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="2_2p3v8"]
 [ext_resource type="PackedScene" uid="uid://blfhaa4s8ndvg" path="res://_Eligijus/Prefabs/Characters/PlayerYellow.tscn" id="2_caoni"]
 
@@ -11,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 800
 characterIndex = 0
 playerInformation = ExtResource("1_oqy3e")

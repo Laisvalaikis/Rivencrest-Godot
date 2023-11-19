@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://dj5nd5wwcrqyn"]
 
-[ext_resource type="Resource" uid="uid://dfgkakdo3764q" path="res://Data/EnemyResource/UndeadKnight/UndeadKnightData.tres" id="1_1poru"]
+[ext_resource type="Resource" uid="uid://dfgkakdo3764q" path="res://Data/EnemyResource/UndeadKnight/UndeadKnightData_1.tres" id="1_1poru"]
 [ext_resource type="PackedScene" uid="uid://de7evax6rlkug" path="res://_Aurimas/Enemies/UndeadKnight.tscn" id="2_xn6pc"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_70i8w"]
+
 
 [resource]
 script = ExtResource("3_70i8w")

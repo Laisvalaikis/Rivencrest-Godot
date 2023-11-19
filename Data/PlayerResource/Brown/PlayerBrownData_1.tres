@@ -1,0 +1,38 @@
+[gd_resource type="Resource" load_steps=14 format=3 uid="uid://t6kp41je1xv2"]
+
+[ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_04yxe"]
+[ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_to8m1"]
+[ext_resource type="Texture2D" uid="uid://m3c84mwfn12o" path="res://Data/PlayerResource/Brown/Textures/CropedSplashArt.tres" id="3_8g487"]
+[ext_resource type="Resource" uid="uid://co87qf0t4ms08" path="res://Data/Abilities/RaiseRock.tres" id="4_bbta1"]
+[ext_resource type="Resource" uid="uid://f0fd2qtrwj1l" path="res://Data/Abilities/WallEntrap.tres" id="5_wsd21"]
+[ext_resource type="Resource" uid="uid://blmh0ptkj3m7k" path="res://Data/Abilities/LeapAndSlam.tres" id="6_k1rwd"]
+[ext_resource type="Resource" uid="uid://dr6wblc8yb3my" path="res://Data/Abilities/WallSmash.tres" id="7_rvb7n"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_1gi1n"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_wyuio"]
+[ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="10_4o5tv"]
+[ext_resource type="Resource" uid="uid://dp05wto3rfxsn" path="res://Data/Blessings/Antitoxic.tres" id="11_l3657"]
+[ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="12_j5kce"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="13_1m40j"]
+
+[resource]
+script = ExtResource("13_1m40j")
+characterType = 0
+ClassName = "STONEWEAVER"
+MaxHealth = 28
+critChance = 3
+accuracy = 100
+dodgeChance = 5
+killXP = 50
+role = "TANK"
+classColor = Color(0.843137, 0.682353, 0.52549, 1)
+secondClassColor = Color(0.992157, 0.803922, 0.639216, 1)
+textColor = Color(1, 0.807843, 0.623529, 1)
+backgroundColor = Color(0.470588, 0.313726, 0.211765, 1)
+CharacterPortraitSprite = ExtResource("1_04yxe")
+CharacterSplashArt = ExtResource("2_to8m1")
+CroppedSplashArt = ExtResource("3_8g487")
+characterSprite = ExtResource("10_4o5tv")
+roleSprite = ExtResource("12_j5kce")
+baseAbilities = Array[Resource]([ExtResource("8_1gi1n"), ExtResource("9_wyuio")])
+abilities = Array[Resource]([ExtResource("4_bbta1"), ExtResource("5_wsd21"), ExtResource("6_k1rwd"), ExtResource("7_rvb7n")])
+playerBlessings = Array[Resource]([ExtResource("11_l3657")])

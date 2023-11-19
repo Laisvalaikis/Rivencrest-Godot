@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://c5dltab2a53o3"]
+
+[ext_resource type="Texture2D" uid="uid://bl3flf83y2sre" path="res://Data/EnemyResource/UndeadMindController/Textures/CharacterPortraitSprite.tres" id="1_km55d"]
+[ext_resource type="Resource" uid="uid://ddemy25a7ohw3" path="res://Data/Abilities/CometFall.tres" id="2_4i3km"]
+[ext_resource type="Resource" uid="uid://csewvenbsmdgj" path="res://Data/Abilities/MindControl.tres" id="3_8kawe"]
+[ext_resource type="Resource" uid="uid://cppecgy3ebl5t" path="res://Data/Abilities/BindingRitual.tres" id="4_f24cw"]
+[ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_njgij"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="6_rwth3"]
+[ext_resource type="Texture2D" uid="uid://chmvh60lb1ny3" path="res://Data/EnemyResource/UndeadMindController/Textures/CharacterSprite.tres" id="7_30xvp"]
+[ext_resource type="Texture2D" uid="uid://cf1cqul40cph4" path="res://Data/EnemyResource/UndeadMindController/Textures/RoleSprite.tres" id="8_r3rln"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationData.cs" id="9_j8qjd"]
+
+[resource]
+script = ExtResource("9_j8qjd")
+characterType = 1
+ClassName = "MIND CONTROLLER"
+MaxHealth = 19
+critChance = 3
+accuracy = 100
+dodgeChance = 1
+killXP = 50
+role = "DAMAGE"
+classColor = Color(0.247059, 0.980392, 0.819608, 1)
+secondClassColor = Color(0, 0, 0, 1)
+textColor = Color(0.247059, 0.980392, 0.819608, 1)
+backgroundColor = Color(0.0627451, 0.490196, 0.45098, 1)
+CharacterPortraitSprite = ExtResource("1_km55d")
+characterSprite = ExtResource("7_30xvp")
+roleSprite = ExtResource("8_r3rln")
+baseAbilities = Array[Resource]([ExtResource("5_njgij"), ExtResource("6_rwth3")])
+abilities = Array[Resource]([ExtResource("2_4i3km"), ExtResource("3_8kawe"), ExtResource("4_f24cw")])
+playerBlessings = Array[Resource]([])

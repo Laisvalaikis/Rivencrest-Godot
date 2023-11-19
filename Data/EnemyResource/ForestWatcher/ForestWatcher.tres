@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://k3v4t7vq6n6o"]
 
-[ext_resource type="Resource" uid="uid://2y7adeqtef08" path="res://Data/EnemyResource/ForestWatcher/ForestWatcherData.tres" id="1_ncon3"]
+[ext_resource type="Resource" uid="uid://2y7adeqtef08" path="res://Data/EnemyResource/ForestWatcher/ForestWatcherData_1.tres" id="1_ncon3"]
 [ext_resource type="PackedScene" uid="uid://dfkp4kk3cgxkc" path="res://_Aurimas/Enemies/ForestWatcher.tscn" id="2_ws437"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_rie3e"]
+
 
 [resource]
 script = ExtResource("3_rie3e")

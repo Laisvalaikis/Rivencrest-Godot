@@ -1,8 +1,9 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://cmevp8xktp7h6"]
 
-[ext_resource type="Resource" uid="uid://7oe3f2oik0ie" path="res://_Aurimas/Fog/FogData.tres" id="1_ij8gc"]
+[ext_resource type="Resource" uid="uid://7oe3f2oik0ie" path="res://_Aurimas/Fog/FogData_1.tres" id="1_ij8gc"]
 [ext_resource type="PackedScene" uid="uid://cd3ubhdi062c" path="res://_Aurimas/AbilityPrefabs/Fog.tscn" id="2_x8ff4"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_qn2de"]
+
 
 [resource]
 script = ExtResource("3_qn2de")
