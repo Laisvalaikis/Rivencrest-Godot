@@ -6,10 +6,11 @@ using Godot.Collections;
 public partial class BlessingManager : Control
 {
     [Export] private Array<BlessingCard> _blessingCards;
+    [Export] private SaveData saveData;
+    [Export] private ChangeScene changeScene;
     private Array<BlessingData> _playerBlessings;
     private Array<BlessingData> _abilityBlessings;
     private Array<BlessingData> _globalBlessings;
-    
     private Data _data;
     private Array<BlessingData> _generatedBlessings;
     private Random _random;
@@ -224,6 +225,12 @@ public partial class BlessingManager : Control
 
     private void ShowBlessings()
     {
+        if (_abilityBlessings.Count == 0 && _playerBlessings.Count == 0 && _globalBlessings.Count == 0)
+        {
+            NoBlessingsWasGenerated();
+            return;
+        }
+
         GenerateBlessingList();
         for (int i = 0; i < _blessingCards.Count; i++)
         {
@@ -243,5 +250,12 @@ public partial class BlessingManager : Control
     public void BlessingFinished()
     {
         _data.townData.deadCharacters.Clear();
+    }
+
+    public void NoBlessingsWasGenerated()
+    {
+        _data.townData.deadCharacters.Clear();
+        saveData.SaveGameData();
+        changeScene.SceneTransition();
     }
 } 
