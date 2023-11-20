@@ -37,8 +37,7 @@ public partial class GrapplingHook : AbilityBlessing
             ChunkData chunkToPullTo = TileToPullTo(tile, baseAction.GetPlayer());
             if (chunkToPullTo != null)
             {
-                GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo.GetPosition(), new Vector2(0, 0),
-                    baseAction.GetPlayer());
+                GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, baseAction.GetPlayer());
                 // ResetCharacterSpriteRendererAndTilePreview();
                 // FinishAbility();
             }

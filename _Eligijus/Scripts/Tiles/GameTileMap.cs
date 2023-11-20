@@ -358,29 +358,6 @@ public partial class GameTileMap : Node2D
 		}
 		return false;
 	}
-
-	public void MoveSelectedCharacter(Vector2 mousePosition, Vector2 offset = default, Node2D character = null)
-	{
-		Node2D moveCharacter = _currentSelectedCharacter;
-		if (character != null)
-		{
-			moveCharacter = character;
-		}
-	
-		if (GetChunk(mousePosition) != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
-		{
-			ChunkData previousCharacterChunk = Tilemap.GetChunk(moveCharacter.GlobalPosition);
-			Vector2 characterPosition = GetChunk(mousePosition).GetPosition() - offset;
-			moveCharacter.GlobalPosition = characterPosition;
-			SetCharacter(mousePosition, moveCharacter);
-			if (previousCharacterChunk != GetChunk(mousePosition))
-			{
-				ResetChunk(previousCharacterChunk);
-			}
-		}
-		// SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
-		// bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
-	}
 	
 	public void MoveSelectedCharacter(ChunkData chunk, Player character = null)
 	{
