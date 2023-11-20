@@ -19,6 +19,7 @@ public partial class Object : Node2D
     {
         objectInformation = new ObjectInformation<ObjectData>(objectData, typeof(Object));
         _abilities = new Array<Ability>();
+        _playerBlessings = new Array<PlayerBlessing>();
         for (int i = 0; i < objectData.abilities.Count; i++)
         {
             Ability ability = new Ability(objectData.abilities[i]);

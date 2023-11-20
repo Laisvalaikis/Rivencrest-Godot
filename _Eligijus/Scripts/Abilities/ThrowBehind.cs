@@ -50,7 +50,7 @@ public partial class ThrowBehind : BaseAction
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk, target.GetCurrentPlayer());
             }
         }
         else if (_side == Side.isBack)
@@ -60,7 +60,7 @@ public partial class ThrowBehind : BaseAction
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y  - range);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk, target.GetCurrentPlayer());
             }
         }
         else if (_side == Side.isRight)
@@ -70,7 +70,7 @@ public partial class ThrowBehind : BaseAction
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, playerChunkIndex.y);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk, target.GetCurrentPlayer());
             }
         }
         else if (_side == Side.isLeft)
@@ -80,7 +80,7 @@ public partial class ThrowBehind : BaseAction
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk.GetPosition(), new Vector2(0, 0f), target.GetCurrentPlayer());
+                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk, target.GetCurrentPlayer());
             }
         }
     }

@@ -82,7 +82,7 @@ public partial class ChainHook : BaseAction
 			}
 
 			ChunkData chunkToPullTo = TileToPullTo(chunk);
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo.GetPosition(), new Vector2(0, 0), character);
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character);
 			ResetCharacterSpriteRendererAndTilePreview();
 			DisableDamagePreview(chunk);
 			FinishAbility();
