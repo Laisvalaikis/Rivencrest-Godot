@@ -13,7 +13,7 @@ public partial class Object : Node2D
 
     public virtual void SetupObject()
     {
-        
+        objectInformation = new ObjectInformation<ObjectData>(objectData, typeof(Object));
     }
 
     public virtual void PlayerWasDamaged()

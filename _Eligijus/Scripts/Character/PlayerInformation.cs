@@ -7,8 +7,6 @@ public partial class PlayerInformation : Node
 {
 	
 	[Export]
-	private InformationType type = InformationType.Player;
-	[Export]
 	private Player _player;
 	[Export]
 	private PlayerInformationDataNew playerInformationData;
@@ -50,14 +48,18 @@ public partial class PlayerInformation : Node
 		return healthDouble / maxHealthDouble * 100;
 	}
 
-	public InformationType GetInformationType()
+	public Type GetInformationType()
 	{
-		return type;
+		if (objectData != null)
+		{
+			return objectData.objectType;
+		}
+		return null;
 	}
 	
-	public void SetInformationType(InformationType informationType)
+	public void SetInformationType(Type informationType)
 	{
-		type = informationType;
+		objectData.objectType = informationType;
 	}
 
 	public void DealDamage(int damage, Player damageDealer)

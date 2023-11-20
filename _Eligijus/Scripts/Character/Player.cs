@@ -33,7 +33,7 @@ public partial class Player : Object
 		{
 			team.CharacterDeath(chunkData, _currentCharacterTeam, playerInTeamIndex, this);
 		}
-		else if(team == null && playerInformation.GetInformationType() != InformationType.Player && playerInformation.GetInformationType() != InformationType.Enemy)
+		else if(team == null && playerInformation.GetInformationType() != typeof(Player))
 		{
 			chunkData.SetCurrentCharacter(null);
 			chunkData.GetTileHighlight().DisableHighlight();
