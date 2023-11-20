@@ -40,7 +40,7 @@ public partial class HealSingle : BaseAction
     }
     public override bool CanTileBeClicked(ChunkData chunkData)
     {
-        return CheckIfSpecificInformationType(chunkData, InformationType.Player) && IsAllegianceSameForBuffs(chunkData) && chunkData.GetTileHighlight().isHighlighted;
+        return CheckIfSpecificInformationType(chunkData, typeof(Player)) && IsAllegianceSameForBuffs(chunkData) && chunkData.GetTileHighlight().isHighlighted;
     }
     public override void ResolveAbility(ChunkData chunk)
     {

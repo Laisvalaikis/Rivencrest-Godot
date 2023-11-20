@@ -172,7 +172,7 @@ public partial class PlayerMovement : BaseAction
 
 			foreach (ChunkData adjacentChunk in GetAdjacentChunks(currentChunk))
 			{
-				if (!visited.Contains(adjacentChunk) && adjacentChunk.GetInformationType() != InformationType.Object && (IsAllegianceSame(adjacentChunk)||adjacentChunk.GetCurrentPlayer()==null))
+				if (!visited.Contains(adjacentChunk) && adjacentChunk.GetCharacterType() != typeof(Object) && (IsAllegianceSame(adjacentChunk)||adjacentChunk.GetCurrentPlayer()==null))
 				{
 					queue.Enqueue((adjacentChunk, currentDistance + 1));
 					visited.Add(adjacentChunk);
@@ -394,7 +394,7 @@ public partial class PlayerMovement : BaseAction
 
             foreach (var neighbor in GetAdjacentChunks(current))
             {
-                if (!visited.Contains(neighbor) && neighbor.GetInformationType() != InformationType.Object && (IsAllegianceSame(neighbor)||neighbor.GetCurrentPlayer()==null))
+                if (!visited.Contains(neighbor) && neighbor.GetCharacterType() != typeof(Object) && (IsAllegianceSame(neighbor)||neighbor.GetCurrentPlayer()==null))
                 {
                     // Calculate predicted distance to the end node (heuristic)
                     int predictedDistance = GetExpectedPathLength(neighbor, goal);

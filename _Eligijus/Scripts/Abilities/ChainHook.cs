@@ -49,7 +49,7 @@ public partial class ChainHook : BaseAction
 					ChunkData chunk = chunksArray[x, y];
 					if (chunk != null && !chunk.TileIsLocked())
 					{
-						if (chunk.GetInformationType() == InformationType.Object)
+						if (chunk.GetCharacterType() == typeof(Object))
 						{
 							canExtend[direction] = false;
 							continue;

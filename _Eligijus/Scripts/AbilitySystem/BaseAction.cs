@@ -512,8 +512,8 @@ public abstract partial class BaseAction: Resource
 
 		public virtual bool CanTileBeClicked(ChunkData chunkData)
 		{
-			return chunkData.GetTileHighlight().isHighlighted && (CheckIfSpecificInformationType(chunkData, InformationType.Player) || 
-			        CheckIfSpecificInformationType(chunkData, InformationType.Object)) && (!IsAllegianceSame(chunkData) || friendlyFire);
+			return chunkData.GetTileHighlight().isHighlighted && (CheckIfSpecificInformationType(chunkData, typeof(Player)) || 
+			        CheckIfSpecificInformationType(chunkData, typeof(Object))) && (!IsAllegianceSame(chunkData) || friendlyFire);
 		}
 
 		protected virtual bool CheckAbilityBounds(ChunkData chunkData)
@@ -701,9 +701,9 @@ public abstract partial class BaseAction: Resource
 			return GameTileMap.Tilemap.GetChunk(position);
 		}
 
-		protected static bool CheckIfSpecificInformationType(ChunkData chunk, InformationType informationType)
+		protected static bool CheckIfSpecificInformationType(ChunkData chunk, Type type)
 		{
-			return chunk.GetInformationType() == informationType;
+			return chunk.GetCharacterType() == type;
 		}
 
 		public bool IsAllegianceSame(ChunkData chunk)

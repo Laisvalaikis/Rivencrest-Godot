@@ -148,7 +148,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
         if (GameTileMap.Tilemap.CheckBounds(x, y))
         {
             tileToDashTo = GameTileMap.Tilemap.GetChunkDataByIndex(x, y);
-            if (tileToDashTo.GetInformationType() == InformationType.None)
+            if (tileToDashTo.GetCharacterType() == null)
             {
                 return tileToDashTo;
             }

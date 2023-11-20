@@ -97,7 +97,7 @@ public partial class Avalanche : BaseAction
     }
     private bool IsCharacterAffectedByCrowdControl(ChunkData chunk)
     {
-        if (CheckIfSpecificInformationType(chunk, InformationType.Player))
+        if (CheckIfSpecificInformationType(chunk, typeof(Player)))
         {
             Player target = chunk.GetCurrentPlayer();
             if (target.debuffs.IsPlayerStunned()

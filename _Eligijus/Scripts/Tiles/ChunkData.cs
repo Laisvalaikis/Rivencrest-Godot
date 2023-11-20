@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Godot;
@@ -38,7 +39,7 @@ public class ChunkData
     private bool _canUseTile = false;
     private bool _tileIsLocked = false;
     private ObjectType<Object> _currentPlayer;
-    private InformationType _type = InformationType.None;
+    private ObjectType<Object> _currentObject;
     private HighlightTile _highlightTile;
 
     public Vector2 GetPosition()
@@ -82,49 +83,47 @@ public class ChunkData
             _currentPlayer.objectType = typeof(Player);
         }
         _currentPlayer.data = player;
-        if (player != null)
-        {
-            _type = player.playerInformation.GetInformationType(); 
-        }
-        else
-        {
-            _type = InformationType.None;
-        }
-    
-        
     }
     
     public void SetCurrentObject(Object objectRef)
     {
-        if (_currentPlayer == null)
+        if (_currentObject == null)
         {
-            _currentPlayer = new ObjectType<Object>(objectRef, typeof(Object));
+            _currentObject = new ObjectType<Object>(objectRef, typeof(Object));
         }
         else
         {
-            _currentPlayer.data = objectRef;
-            _currentPlayer.objectType = typeof(Player);
+            _currentObject.data = objectRef;
+            _currentObject.objectType = typeof(Player);
         }
-        // if (objectRef != null)
-        // {
-        //     _type = objectRef.objectInformation.GetObjectData().GetInformationType(); 
-        // }
-        // else
-        // {
-        //     _type = InformationType.None;
-        // }
-    
-        
     }
 
-    public InformationType GetInformationType()
+    public Type GetCharacterType()
     {
-        return _type;
+        if (_currentPlayer != null)
+        {
+            return _currentPlayer.objectType;
+        }
+        return null;
+    }
+    
+    public Type GetObjectType()
+    {
+        if (_currentObject != null)
+        {
+            return _currentObject.objectType;
+        }
+        return null;
     }
 
     public bool CharacterIsOnTile()
     {
         return _currentPlayer != null;
+    }
+    
+    public bool ObjectIsOnTile()
+    {
+        return _currentObject != null;
     }
 
     public Player GetCurrentPlayer()

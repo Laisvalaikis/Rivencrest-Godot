@@ -4,7 +4,6 @@ public partial class Object : Node2D
 {
     [Export] private ObjectData objectData;
     public ObjectInformation<ObjectData> objectInformation;
-    [Export] private bool canStepOn = false;
 
     public override void _EnterTree()
     {
@@ -49,7 +48,7 @@ public partial class Object : Node2D
 
     public bool CanStepOn()
     {
-        return canStepOn;
+        return objectInformation.objectData.canStepOnObject;
     }
     
 }

@@ -27,12 +27,12 @@ public partial class CometFall : BaseAction
             foreach (ChunkData chunk in _damageTiles)
             {
                 //Enemy
-                if (CheckIfSpecificInformationType(chunk, InformationType.Player) && !IsAllegianceSame(chunk))
+                if (CheckIfSpecificInformationType(chunk, typeof(Player)) && !IsAllegianceSame(chunk))
                 {
                     DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
                 }
                 //Ally
-                else if (CheckIfSpecificInformationType(chunk, InformationType.Player) && IsAllegianceSame(chunk))
+                else if (CheckIfSpecificInformationType(chunk, typeof(Player)) && IsAllegianceSame(chunk))
                 {
                     DealRandomDamageToTarget(chunk, minAttackDamage/3, maxAttackDamage/3);
                 }

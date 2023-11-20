@@ -25,11 +25,11 @@ public partial class WallSmash : BaseAction
     {
         base.ResolveAbility(chunk);
         UpdateAbilityButton();
-        if (chunk.GetCurrentPlayer() != null && chunk.GetInformationType() == InformationType.Player)
+        if (chunk.GetCurrentPlayer() != null && chunk.GetCharacterType() == typeof(Player))
         {
             DealRandomDamageToTarget(chunk, minAttackDamage-2, maxAttackDamage-2);
         }
-        else if(chunk.GetCurrentPlayer() != null && chunk.GetInformationType() != InformationType.Player)
+        else if(chunk.GetCurrentPlayer() != null && chunk.GetCharacterType() != typeof(Player))
         {
             DestroyObject(chunk);
         }
@@ -45,7 +45,7 @@ public partial class WallSmash : BaseAction
         ChunkData targetChunkData =
             GameTileMap.Tilemap.GetChunkDataByIndex(coordinates.Item1, coordinates.Item2);
         if (targetChunkData != null && targetChunkData.GetCurrentPlayer() != null
-                                    && targetChunkData.GetInformationType() == InformationType.Player && !IsAllegianceSame(targetChunkData))
+                                    && targetChunkData.GetCharacterType() == typeof(Player) && !IsAllegianceSame(targetChunkData))
         {
                
             DealRandomDamageToTarget(targetChunkData, minAttackDamage, maxAttackDamage);
