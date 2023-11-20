@@ -1,13 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://5x5hmqyixtid"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://5x5hmqyixtid"]
 
+[ext_resource type="Resource" uid="uid://iem7lurqv28a" path="res://Data/Blessings/SlowDown.tres" id="1_6xyvt"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SilenceBeam.cs" id="1_jwin8"]
 
 [resource]
 script = ExtResource("1_jwin8")
 _additionalDamage = 10
 laserGrid = true
-turnsSinceCast = 0
-turnLifetime = 1
+turnBeforeStartLifetime = 1
+turnAfterResolveLifetime = 1
 abilityPoints = 1
 attackRange = 3
 minAttackDamage = 10
@@ -18,6 +19,9 @@ abilityCooldown = 1
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(1, 0.890196, 0, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
-otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
 characterOnGrid = Color(0.572549, 0.831373, 1, 1)
-_abilityBlessingsRef = null
+otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
+otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
+otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
+otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_6xyvt")])

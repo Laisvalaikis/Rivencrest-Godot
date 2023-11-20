@@ -29,7 +29,8 @@ public partial class SlowDown : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction, tile);
-        tile.GetCurrentPlayer().actionManager.AddAbilityPoints(-slowsDown);
+  //      tile.GetCurrentPlayer().actionManager.AddAbilityPoints(-slowsDown);
+        tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
     }
     
 }
