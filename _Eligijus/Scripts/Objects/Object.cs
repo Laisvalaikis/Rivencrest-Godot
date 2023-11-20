@@ -6,7 +6,7 @@ public partial class Object : Node2D
     [Export] private ObjectData objectData;
     public ObjectInformation<ObjectData> objectInformation;
     private Array<Ability> _abilities;
-    
+    private Array<PlayerBlessing> _playerBlessings;
 
     public override void _EnterTree()
     {
@@ -23,6 +23,10 @@ public partial class Object : Node2D
             Ability ability = new Ability(objectData.abilities[i]);
             _abilities.Add(ability);
         }
+        for (int i = 0; i < objectData.blessings.Count; i++)
+        {
+            _playerBlessings.Add(new PlayerBlessing(objectData.blessings[i]));
+        }
     }
 
     private void ExecuteOnTurnStart()
@@ -35,6 +39,10 @@ public partial class Object : Node2D
                 _abilities[i].Action.BlessingOnTurnStart(null);
             }
         }
+        for (int i = 0; i < _playerBlessings.Count; i++)
+        {
+            _playerBlessings[i].OnTurnStart(null);
+        }
     }
     
     private void ExecuteOnTurnEnd()
@@ -46,6 +54,10 @@ public partial class Object : Node2D
                 _abilities[i].Action.OnTurnEnd(null);
                 _abilities[i].Action.BlessingOnTurnEnd(null);
             }
+        }
+        for (int i = 0; i < _playerBlessings.Count; i++)
+        {
+            _playerBlessings[i].OnTurnEnd(null);
         }
     }
     
