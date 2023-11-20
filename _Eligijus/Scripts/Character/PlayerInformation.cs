@@ -12,20 +12,12 @@ public partial class PlayerInformation : Node
 	public ObjectDataType<ObjectData> objectData;
 	[Export]
 	public Sprite2D spriteRenderer;
-	[Export]
-	public string CharactersTeam = "Default";
-	
 	public Node TeamManager;
-	public Node FlagInHand = null;
 	public bool Protected = false;
 	public bool Stasis = false;
 	public int XPToGain = 0;
-	public bool isThisObject = false;
 	private bool haveBarier = false;
-	
-	private AnimationPlayer animator;
 	private int _health = 100;
-	private int turnCounter = 1;
 
 	public void SetupData()
 	{
@@ -141,10 +133,7 @@ public partial class PlayerInformation : Node
 	
 	public void PlayerSetup()
 	{
-		if (CharactersTeam == "Default")
-		{
-			GD.PrintErr("Fix Comment");
-		}
+		
 	}
 
 	public void AddBarrier()

@@ -704,6 +704,11 @@ public abstract partial class BaseAction: Resource
 			return chunk.GetCurrentPlayer() != null && player != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam();
 		}
 		
+		public bool IsAllegianceSame(ChunkData chunk, ChunkData seconChunck)
+		{
+			return chunk.GetCurrentPlayer() != null && seconChunck.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == seconChunck.GetCurrentPlayer().GetPlayerTeam();
+		}
+		
 		public bool IsAllegianceSameForBuffs(ChunkData chunk)
 		{
 			return chunk == null || (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
