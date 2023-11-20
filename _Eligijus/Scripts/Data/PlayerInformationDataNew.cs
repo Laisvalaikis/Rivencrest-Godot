@@ -12,8 +12,6 @@ public partial class PlayerInformationDataNew : ObjectData
 	[Export]
 	public int critChance = 5;
 	[Export]
-	public int accuracy = 100;
-	[Export]
 	public int dodgeChance = 20;
 	[Export] 
 	public int killXP = 50;
