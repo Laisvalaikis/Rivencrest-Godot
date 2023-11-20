@@ -15,6 +15,8 @@ public partial class ObjectData : Resource
     public Color backgroundColor;
     [Export]
     public Texture CharacterPortraitSprite;
+    [Export] 
+    public bool canStepOnObject = false;
     [Export]
     public Array<Ability> abilities;
     [Export]
@@ -29,7 +31,9 @@ public partial class ObjectData : Resource
     {
         maxHealth = informationData.maxHealth;
         classColor = informationData.classColor;
+        secondClassColor = informationData.secondClassColor;
         textColor = informationData.textColor;
+        backgroundColor = informationData.backgroundColor;
         CharacterPortraitSprite = informationData.CharacterPortraitSprite;
         abilities = informationData.abilities;
         blessings = informationData.blessings;

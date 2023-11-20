@@ -29,8 +29,6 @@ public partial class PlayerInformationDataNew : ObjectData
 	public Texture roleSprite;
 	[Export]
 	public Array<Ability> baseAbilities;
-	[Export]
-	protected Array<PlayerBlessing> playerBlessings;
 
 	public PlayerInformationDataNew()
 	{
@@ -41,31 +39,23 @@ public partial class PlayerInformationDataNew : ObjectData
 	{
 		characterType = playerInformationData.characterType;
 		ClassName = playerInformationData.ClassName;
-		maxHealth = playerInformationData.maxHealth;
 		critChance = playerInformationData.critChance;
 		accuracy = playerInformationData.accuracy;
 		dodgeChance = playerInformationData.dodgeChance;
 		killXP = playerInformationData.killXP;
 		role = playerInformationData.role;
-
-		classColor = playerInformationData.classColor;
-		secondClassColor = playerInformationData.secondClassColor;
-		textColor = playerInformationData.textColor;
-		backgroundColor = playerInformationData.backgroundColor;
-
-		CharacterPortraitSprite = playerInformationData.CharacterPortraitSprite;
+		
 		CharacterSplashArt = playerInformationData.CharacterSplashArt;
 		CroppedSplashArt = playerInformationData.CroppedSplashArt;
 		characterSprite = playerInformationData.characterSprite;
 		roleSprite = playerInformationData.roleSprite;
 		baseAbilities = playerInformationData.baseAbilities;
-		abilities = playerInformationData.abilities;
-		playerBlessings = playerInformationData.playerBlessings;
+		base.CopyData(playerInformationData);
 	}
 	
 	public Array<PlayerBlessing> GetAllPlayerBlessings()
 	{
-		return playerBlessings;
+		return blessings;
 	}
 
 }

@@ -36,4 +36,4 @@ textColor = Color(1, 0.807843, 0.623529, 1)
 backgroundColor = Color(0.470588, 0.313726, 0.211765, 1)
 CharacterPortraitSprite = ExtResource("1_mprbp")
 abilities = Array[Resource]([ExtResource("4_jj2vi"), ExtResource("5_2gj4o"), ExtResource("6_2ny3w"), ExtResource("7_0yelt")])
-blessings = []
+blessings = Array[Resource]([ExtResource("11_nvowa")])
