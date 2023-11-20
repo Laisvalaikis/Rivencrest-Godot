@@ -4,7 +4,7 @@ using Godot.Collections;
 public partial class Object : Node2D
 {
     [Export] private ObjectData objectData;
-    public ObjectInformation<ObjectData> objectInformation;
+    public ObjectDataType<ObjectData> ObjectDataType;
     private TurnManager _turnManager;
     private Array<Ability> _abilities;
     private Array<PlayerBlessing> _playerBlessings;
@@ -12,12 +12,12 @@ public partial class Object : Node2D
     public override void _EnterTree()
     {
         base._EnterTree();
-        objectInformation = new ObjectInformation<ObjectData>(objectData, typeof(Object));
+        ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Object));
     }
 
     public virtual void SetupObject()
     {
-        objectInformation = new ObjectInformation<ObjectData>(objectData, typeof(Object));
+        ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Object));
         _abilities = new Array<Ability>();
         _playerBlessings = new Array<PlayerBlessing>();
         for (int i = 0; i < objectData.abilities.Count; i++)
@@ -95,7 +95,10 @@ public partial class Object : Node2D
     
     public virtual void Death()
     {
-        Hide();
+        ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
+        chunkData.SetCurrentObject(null);
+        _turnManager.RemoveObject(this);
+        QueueFree();
     }
 
     public virtual void OnTurnStart()
@@ -120,7 +123,7 @@ public partial class Object : Node2D
 
     public bool CanStepOn()
     {
-        return objectInformation.objectData.canStepOnObject;
+        return ObjectDataType.objectData.canStepOnObject;
     }
     
 }

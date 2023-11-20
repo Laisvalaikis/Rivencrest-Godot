@@ -112,7 +112,7 @@ public abstract partial class BaseAction: Resource
 				resource.blessingUnlocked = true;
 				unlockedBlessingsList.Add(resource);
 			}
-			SetObjectInformationData(player.objectInformation.GetObjectData());
+			SetObjectInformationData(player.ObjectDataType.GetObjectData());
 			Start();
 		}
 

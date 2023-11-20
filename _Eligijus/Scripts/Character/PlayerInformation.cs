@@ -5,12 +5,11 @@ using Godot;
 
 public partial class PlayerInformation : Node
 {
-	
 	[Export]
 	private Player _player;
 	[Export]
 	private PlayerInformationDataNew playerInformationData;
-	public ObjectInformation<ObjectData> objectData;
+	public ObjectDataType<ObjectData> objectData;
 	[Export]
 	public Sprite2D spriteRenderer;
 	[Export]
@@ -30,7 +29,7 @@ public partial class PlayerInformation : Node
 
 	public void SetupData()
 	{
-		objectData = new ObjectInformation<ObjectData>(playerInformationData, typeof(Player));
+		objectData = new ObjectDataType<ObjectData>(playerInformationData, typeof(Player));
 	}
 
 	public override void _Ready()
@@ -80,11 +79,8 @@ public partial class PlayerInformation : Node
 
 			if (_health <= 0) // DEATH
 			{
+				_health = 0;
 				DeathStart(damageDealer);
-			}
-			else
-			{
-
 			}
 		}
 		else
@@ -92,11 +88,6 @@ public partial class PlayerInformation : Node
 			haveBarier = false;
 		}
 
-	}
-
-	public void Revive()
-	{
-		_health = playerInformationData.maxHealth;
 	}
 
 	public int GetHealth()

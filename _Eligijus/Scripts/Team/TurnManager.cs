@@ -64,6 +64,18 @@ public partial class TurnManager : Node
 		_objects.Add(currentObject);
 	}
 
+	public void RemoveObject(Object currentObject)
+	{
+		if (_objects == null)
+		{
+			_objects = new Array<Object>();
+		}
+		else
+		{
+			_objects.Remove(currentObject);
+		}
+	}
+
 	public void SetCurrentEnemy(Player character)
 	{
 		if (!_currentTeam.characters.Values.Contains(character))
