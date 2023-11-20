@@ -9,5 +9,6 @@ classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
 backgroundColor = Color(0, 0, 0, 0)
+canStepOnObject = true
 abilities = null
 blessings = null

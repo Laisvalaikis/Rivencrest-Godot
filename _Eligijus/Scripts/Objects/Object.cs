@@ -5,6 +5,7 @@ public partial class Object : Node2D
 {
     [Export] private ObjectData objectData;
     public ObjectInformation<ObjectData> objectInformation;
+    private TurnManager _turnManager;
     private Array<Ability> _abilities;
     private Array<PlayerBlessing> _playerBlessings;
 
@@ -27,6 +28,11 @@ public partial class Object : Node2D
         {
             _playerBlessings.Add(new PlayerBlessing(objectData.blessings[i]));
         }
+    }
+
+    public void AddTurnManager(TurnManager turnManager)
+    {
+        _turnManager = turnManager;
     }
 
     private void ExecuteOnTurnStart()

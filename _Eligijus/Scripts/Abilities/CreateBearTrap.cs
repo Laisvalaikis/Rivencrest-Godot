@@ -3,9 +3,8 @@ using Godot;
 
 public partial class CreateBearTrap : BaseAction
 {
-	//reikia bearTrap sukurti kaip ir praeitame projekte
 	[Export] private Resource bearTrapPrefab;
-	private Player spawnedBear;
+	private Object spawnedBearTrap;
 	private int i = 0; //Naudojama, kad bear trap dingtu po keliu turn'u
 	
 	public CreateBearTrap()
@@ -26,24 +25,24 @@ public partial class CreateBearTrap : BaseAction
 		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
 		PackedScene spawnCharacter = (PackedScene)bearTrapPrefab;
-		spawnedBear = spawnCharacter.Instantiate<Player>();
-		player.GetTree().Root.CallDeferred("add_child", spawnedBear);
-		GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedBear);
+		spawnedBearTrap = spawnCharacter.Instantiate<Object>();
+		player.GetTree().Root.CallDeferred("add_child", spawnedBearTrap);
+		GameTileMap.Tilemap.SpawnObject(spawnedBearTrap, chunk);
 		i = 0;
 		FinishAbility();
 	}
 
-	public override void OnTurnStart(ChunkData chunkData)
-	{
-		base.OnTurnStart(chunkData);
-		if (spawnedBear != null)
-		{
-			i++;
-			if (i >= 2)
-			{
-				spawnedBear.QueueFree();
-				i = 0;
-			}
-		}
-	}
+	// public override void OnTurnStart(ChunkData chunkData)
+	// {
+	// 	base.OnTurnStart(chunkData);
+	// 	if (spawnedBear != null)
+	// 	{
+	// 		i++;
+	// 		if (i >= 2)
+	// 		{
+	// 			spawnedBear.QueueFree();
+	// 			i = 0;
+	// 		}
+	// 	}
+	// }
 }

@@ -167,17 +167,7 @@ public partial class GameTileMap : Node2D
 	{
 		return chuncksIsSetUp;
 	}
-
-	// IEnumerator SetupChunckTiles()
-	// {
-	//     for (int i = 0; i < _allChunks.Count; i++)
-	//     {
-	//         _allChunks[i].SetupChunk();
-	//         yield return null;
-	//     }
-	//     chunckSetupFinished = true;
-	//     EnableAllTiles();
-	// }
+	
 
 	void CalculateDistance()
 	{
@@ -306,76 +296,14 @@ public partial class GameTileMap : Node2D
 		}
 		return false;
 	}
+	
 
-	// public void EnableAllTiles()
-	// {
-	//     tiles.SetActive(true);
-	// }
-	//
-	// public void DisableAllTiles()
-	// {
-	//     tiles.SetActive(false);
-	// }
-
-	public ChunkData GetRandomChunkAround(int indexX, int indexY)
-	{
-		
-		lock (_chunksArray)
-		{
-			
-			int randomX = _random.Next(-2,2);
-			int randomY = _random.Next(-2,2);
-			int tempIndexX = indexX + randomX;
-			int tempIndexY = indexY + randomY;
-			while (tempIndexX == indexX && tempIndexY == indexY || tempIndexX < 0 || tempIndexY < 0 || tempIndexX >= _chunks.Count || tempIndexY >= _chunks[indexX].chunks.Count)
-			{
-				randomX = _random.Next(-2,2);
-				randomY = _random.Next(-2,2);
-				tempIndexX = indexX + randomX;
-				tempIndexY = indexY + randomY;
-			}
-			return _chunks[tempIndexY].chunks[tempIndexX];
-		}
-	}
-
-	public void GenerateChunks()
-	{
-		if (currentMap._chunkSize > 0 && _threadDistance == null || currentMap._chunkSize > 0 && !_threadDistance.IsAlive)
-		{
-			_chunks = new List<SaveChunks>();
-			_allChunks = new List<ChunkData>();
-			_chunkCountWidth = Mathf.CeilToInt(currentMap._mapWidth / currentMap._chunkSize);
-			_chunkCountHeight = Mathf.CeilToInt(currentMap._mapHeight / currentMap._chunkSize);
-			// _avlTree = new AVL();
-			// _maxHeap = new MaxHeap(_chunkCountWidth*_chunkCountHeight*2);
-			_chunksArray = new ChunkData[_chunkCountWidth, _chunkCountHeight];
-			_threadDistance = new Thread(CalculateDistance);
-			_threadDistance.Start();
-		   
-		}
-	}
-
-	public void ResetChunks()
-	{
-		_chunks = new List<SaveChunks>();
-		_allChunks = new List<ChunkData>();
-		_chunkCountWidth = Mathf.CeilToInt(currentMap._mapWidth / currentMap._chunkSize);
-		_chunkCountHeight = Mathf.CeilToInt(currentMap._mapHeight / currentMap._chunkSize);
-		_chunksArray = new ChunkData[_chunkCountWidth, _chunkCountHeight];
-	}
-
-	private ChunkData GetRandomChunk()
-	{
-		int randomX = _random.Next(0, _chunks.Count);
-		int randomY = _random.Next(0, _chunks[randomX].chunks.Count);
-		return _chunks[randomX].chunks[randomY];
-	}
-
-	public void ResetChunkCharacter(ChunkData chunk)
+	public void ResetChunk(ChunkData chunk)
 	{
 		if (chunk != null)
 		{
 			chunk.SetCurrentCharacter(null);
+			chunk.SetCurrentObject(null);
 			chunk.GetTileHighlight().ActivatePlayerTile(false);
 			chunk.GetTileHighlight().EnableTile(false);
 		}
@@ -392,11 +320,21 @@ public partial class GameTileMap : Node2D
 		}
 	}
 	
-	public void SetCharacter(ChunkData chunk, Node2D character)
+	public void SetCharacter(ChunkData chunk, Player character)
 	{
 		if (chunk != null)
 		{
-			chunk.SetCurrentCharacter((Player)character);
+			chunk.SetCurrentCharacter(character);
+			chunk.GetTileHighlight().ActivatePlayerTile(true);
+			chunk.GetTileHighlight().EnableTile(true);
+		}
+	}
+	
+	public void SetObject(ChunkData chunk, Object setObject)
+	{
+		if (chunk != null)
+		{
+			chunk.SetCurrentObject(setObject);
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
 		}
@@ -437,16 +375,16 @@ public partial class GameTileMap : Node2D
 			SetCharacter(mousePosition, moveCharacter);
 			if (previousCharacterChunk != GetChunk(mousePosition))
 			{
-				ResetChunkCharacter(previousCharacterChunk);
+				ResetChunk(previousCharacterChunk);
 			}
 		}
 		// SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
 		// bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
 	}
 	
-	public void MoveSelectedCharacter(ChunkData chunk, Node2D character = null)
+	public void MoveSelectedCharacter(ChunkData chunk, Player character = null)
 	{
-		Node2D moveCharacter = _currentSelectedCharacter;
+		Player moveCharacter = _currentSelectedCharacter;
 		if (character != null)
 		{
 			moveCharacter = character;
@@ -460,7 +398,7 @@ public partial class GameTileMap : Node2D
 			{
 				moveCharacter.GlobalPosition = characterPosition;
 				SetCharacter(chunk, moveCharacter);
-				ResetChunkCharacter(previousCharacterChunk);
+				ResetChunk(previousCharacterChunk);
 			}
 		}
 		// SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
@@ -501,6 +439,23 @@ public partial class GameTileMap : Node2D
 					teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
 					chunk.GetTileHighlight().ToggleSelectedPlayerUI(true);
 				}
+			}
+		}
+	}
+
+	public void SpawnObject(Object objectToSpawn, ChunkData chunkData)
+	{
+		if (objectToSpawn != null)
+		{
+			chunkData.SetCurrentObject(objectToSpawn);
+			_turnManager.AddObject(objectToSpawn);
+			ChunkData previousCharacterChunk = Tilemap.GetChunk(objectToSpawn.GlobalPosition);
+			Vector2 characterPosition = chunkData.GetPosition();
+			if (previousCharacterChunk != chunkData)
+			{
+				objectToSpawn.GlobalPosition = characterPosition;
+				SetObject(chunkData, objectToSpawn);
+				ResetChunk(previousCharacterChunk);
 			}
 		}
 	}

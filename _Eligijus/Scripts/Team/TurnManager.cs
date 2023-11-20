@@ -1,9 +1,11 @@
 using Godot;
+using Godot.Collections;
 
 public partial class TurnManager : Node
 {
 	[Export] private TeamInformation _teamInformation;
 	[Export] private Team _currentTeam;
+	private Array<Object> _objects;
 	[Export] private int _currentTeamIndex = 0;
 	[Export] private TeamsList _teamsList;
 	[Export] private Player _currentPlayer;
@@ -48,7 +50,17 @@ public partial class TurnManager : Node
 			_currentEnemy = null;
 		}
 	}
-	
+
+	public void AddObject(Object currentObject)
+	{
+		if (_objects == null)
+		{
+			_objects = new Array<Object>();
+		}
+		currentObject.AddTurnManager(this);
+		_objects.Add(currentObject);
+	}
+
 	public void SetCurrentEnemy(Player character)
 	{
 		if (!_currentTeam.characters.Values.Contains(character))
@@ -96,7 +108,14 @@ public partial class TurnManager : Node
 	public void OnTurnStart()
 	{
 		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
-		
+		if (_objects != null && _objects.Count > 0)
+		{
+			for (int i = 0; i < _objects.Count; i++)
+			{
+				_objects[i].OnTurnStart();
+			}
+		}
+
 		foreach (Player character in _currentTeam.characters.Values)
 		{
 			character.OnTurnStart();
@@ -106,6 +125,13 @@ public partial class TurnManager : Node
 	public void OnTurnEnd()
 	{
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
+		if (_objects != null && _objects.Count > 0)
+		{
+			for (int i = 0; i < _objects.Count; i++)
+			{
+				_objects[i].OnTurnEnd();
+			}
+		}
 
 		foreach (Player character in _currentTeam.characters.Values)
 		{
