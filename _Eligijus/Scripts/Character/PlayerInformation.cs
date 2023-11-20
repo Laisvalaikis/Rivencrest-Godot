@@ -32,7 +32,7 @@ public partial class PlayerInformation : Node
 
 	public void SetupData()
 	{
-		objectData = new ObjectInformation<ObjectData>(playerInformationData);
+		objectData = new ObjectInformation<ObjectData>(playerInformationData, typeof(Player));
 	}
 
 	public override void _Ready()

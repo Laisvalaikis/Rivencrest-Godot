@@ -9,7 +9,7 @@ public partial class Object : Node2D
     public override void _EnterTree()
     {
         base._EnterTree();
-        objectInformation = new ObjectInformation<ObjectData>(objectData);
+        objectInformation = new ObjectInformation<ObjectData>(objectData, typeof(Object));
     }
 
     public virtual void SetupObject()

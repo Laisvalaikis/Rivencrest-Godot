@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://da3lwkkcxjahp" path="res://_Aurimas/Enemies/ForestHuntress.tscn" id="2_maccw"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_nlvl0"]
 
-
 [resource]
 script = ExtResource("3_nlvl0")
 prefab = ExtResource("2_maccw")
@@ -16,8 +15,8 @@ dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_dnbvq")

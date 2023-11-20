@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_4umh6"]
 [ext_resource type="Resource" uid="uid://cptwd81pxejjd" path="res://Data/EnemyResource/ForestBear/UnlockAbility_0.tres" id="4_qs8u6"]
 
-
 [resource]
 script = ExtResource("3_4umh6")
 prefab = ExtResource("2_xih3q")
@@ -17,8 +16,8 @@ dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([ExtResource("4_qs8u6")])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_tyiv2")

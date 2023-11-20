@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bwcv0hf0owwd2" path="res://_Aurimas/Enemies/ForestDruid.tscn" id="2_r8nws"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_tkyc8"]
 
-
 [resource]
 script = ExtResource("3_tkyc8")
 prefab = ExtResource("2_r8nws")
@@ -16,8 +15,8 @@ dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_bhex1")

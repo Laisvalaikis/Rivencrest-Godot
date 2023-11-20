@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://2uuquw5n2ayx"]
 
-[ext_resource type="Resource" uid="uid://t6kp41je1xv2" path="res://Data/PlayerResource/Brown/PlayerBrownData_1.tres" id="1_b3he3"]
+[ext_resource type="Resource" uid="uid://b6mwmarsnyy6s" path="res://Data/PlayerResource/Brown/PlayerBrownData_1.tres" id="1_b3he3"]
 [ext_resource type="PackedScene" uid="uid://de44fmgyef8hi" path="res://_Eligijus/Prefabs/Characters/PlayerBrown.tscn" id="2_ngsl4"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="2_xj3c7"]
 
@@ -11,6 +11,7 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
+dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])

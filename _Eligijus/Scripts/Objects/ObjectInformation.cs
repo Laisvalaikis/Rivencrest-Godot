@@ -1,11 +1,13 @@
-﻿
+﻿using System;
+
 public class ObjectInformation<T>
 {
     public T objectData;
-
-    public ObjectInformation(T data)
+    public Type objectType;
+    public ObjectInformation(T data, Type type)
     {
         objectData = data;
+        objectType = type;
     }
 
     public ObjectData GetObjectData()

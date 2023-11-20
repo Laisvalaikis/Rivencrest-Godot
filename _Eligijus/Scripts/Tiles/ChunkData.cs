@@ -15,7 +15,6 @@ public class ChunkData
         _positionWidth = positionWidth;
         _positionHeight = positionHeight;
         _tileIsLocked = tileIsLocked;
-        // _tileSpriteRenderer = tileSpriteRenderer;
         _highlightTile = highlightTile;
     }
     
@@ -35,27 +34,16 @@ public class ChunkData
     private float _positionWidth;
     private int _indexWidth;
     private int _indexHeight;
-    private float _weight = 0;
-    private bool _weightUpdated = false;
-    private bool _dataWasInserted = false;
-    private int _heapIndex = -1;
     private bool _standingOnChunk = false;
     private bool _canUseTile = false;
     private bool _tileIsLocked = false;
-    private Node2D _currentCharacter;
     private ObjectType<Object> _currentPlayer;
     private InformationType _type = InformationType.None;
-    // private SpriteRenderer _tileSpriteRenderer;
     private HighlightTile _highlightTile;
 
     public Vector2 GetPosition()
     {
         return new(_positionWidth, _positionHeight);
-    }
-    
-    public Vector3 GetChunkCenterPosition()
-    {
-        return new(_positionWidth, _positionHeight - _height/2, -0.1f);
     }
 
     public Vector3 GetDimensions()
@@ -76,11 +64,6 @@ public class ChunkData
             return false;
         }
     }
-
-    // public SpriteRenderer GetTileSpriteRenderer()
-    // {
-    //     return _tileSpriteRenderer;
-    // }
     
     public HighlightTile GetTileHighlight()
     {
@@ -91,9 +74,13 @@ public class ChunkData
     {
         if (_currentPlayer == null)
         {
-            _currentPlayer = new ObjectType<Object>();
+            _currentPlayer = new ObjectType<Object>(player, typeof(Player));
         }
-        _currentCharacter = player;
+        else
+        {
+            _currentPlayer.data = player;
+            _currentPlayer.objectType = typeof(Player);
+        }
         _currentPlayer.data = player;
         if (player != null)
         {
@@ -106,21 +93,38 @@ public class ChunkData
     
         
     }
+    
+    public void SetCurrentObject(Object objectRef)
+    {
+        if (_currentPlayer == null)
+        {
+            _currentPlayer = new ObjectType<Object>(objectRef, typeof(Object));
+        }
+        else
+        {
+            _currentPlayer.data = objectRef;
+            _currentPlayer.objectType = typeof(Player);
+        }
+        // if (objectRef != null)
+        // {
+        //     _type = objectRef.objectInformation.GetObjectData().GetInformationType(); 
+        // }
+        // else
+        // {
+        //     _type = InformationType.None;
+        // }
+    
+        
+    }
 
     public InformationType GetInformationType()
     {
         return _type;
     }
 
-
-    public Node2D GetCurrentCharacterObject()
-    {
-        return _currentCharacter;
-    }
-
     public bool CharacterIsOnTile()
     {
-        return _currentCharacter != null;
+        return _currentPlayer != null;
     }
 
     public Player GetCurrentPlayer()
@@ -142,13 +146,7 @@ public class ChunkData
 
         return null;
     }
-
-    public void StandingOnChunk(bool standingOnChunk)
-    {
-        _standingOnChunk = standingOnChunk;
-    }
     
-
     public bool TileIsLocked()
     {
         return _tileIsLocked;
@@ -169,43 +167,9 @@ public class ChunkData
         return _standingOnChunk;
     }
 
-    public bool WeightWasUpdated()
-    {
-        return _weightUpdated;
-    }
-
-    public void InsertData()
-    {
-        _dataWasInserted = true;
-    }
-
-    public bool DataWasInserted()
-    {
-        return _dataWasInserted;
-    }
-
-    public float GetWeight()
-    {
-        return _weight;
-    }
-    
-    public int GetGeneratedIndex()
-    {
-        return _indexWidth+(_indexHeight * 19);
-    }
-
     public (int,int) GetIndexes()
     {
         return (_indexWidth, _indexHeight);
     }
 
-    public void SetHeapIndex(int index)
-    {
-        _heapIndex = index;
-    }
-
-    public int GetHeapIndex()
-    {
-        return _heapIndex;
-    }
 }
