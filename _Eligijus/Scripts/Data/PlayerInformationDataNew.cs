@@ -38,7 +38,6 @@ public partial class PlayerInformationDataNew : ObjectData
 		characterType = playerInformationData.characterType;
 		ClassName = playerInformationData.ClassName;
 		critChance = playerInformationData.critChance;
-		accuracy = playerInformationData.accuracy;
 		dodgeChance = playerInformationData.dodgeChance;
 		killXP = playerInformationData.killXP;
 		role = playerInformationData.role;

@@ -34,6 +34,7 @@ public partial class ObjectData : Resource
     public void CopyData(ObjectData informationData)
     {
         maxHealth = informationData.maxHealth;
+        accuracy = informationData.accuracy;
         classColor = informationData.classColor;
         secondClassColor = informationData.secondClassColor;
         textColor = informationData.textColor;

@@ -51,7 +51,7 @@ public abstract partial class BaseAction: Resource
 		protected SelectActionButton _selectActionButton;
 		protected TurnManager _turnManager;
 		private bool firstTimeUsage = false;
-		private PlayerInformationDataNew _playerInformationData;
+		private ObjectData _objectData;
 		private Random _random;
 
 		public BaseAction()
@@ -88,7 +88,7 @@ public abstract partial class BaseAction: Resource
 			throw new NotImplementedException();
 		}
 
-		public void SetupAbility(Player player, int abilityIndex)
+		public void SetupPlayerAbility(Player player, int abilityIndex)
 		{
 			this.player = player;
 			if (player.unlockedBlessingList.Count > abilityIndex)
@@ -99,16 +99,32 @@ public abstract partial class BaseAction: Resource
 			{
 				unlockedBlessingsList = new Array<UnlockedBlessingsResource>();
 			}
-
-			
+			SetObjectInformationData(player.playerInformation.objectData.GetPlayerInformationData());
 			Start();
+		}
+		
+		public void SetupObjectAbility(Object player)
+		{
+			unlockedBlessingsList = new Array<UnlockedBlessingsResource>();
+			for (int i = 0; i < _abilityBlessingsRef.Count; i++)
+			{
+				UnlockedBlessingsResource resource = new UnlockedBlessingsResource(_abilityBlessingsRef[i]);
+				resource.blessingUnlocked = true;
+				unlockedBlessingsList.Add(resource);
+			}
+			SetObjectInformationData(player.objectInformation.GetObjectData());
+			Start();
+		}
+
+		private void SetObjectInformationData(ObjectData data)
+		{
+			_objectData = new ObjectData();
+			_objectData.CopyData(data);
 		}
 
 		public virtual void Start()
 		{
 			_random = new Random();
-			_playerInformationData = new PlayerInformationDataNew();
-			_playerInformationData.CopyData(player.playerInformation.objectData.GetPlayerInformationData());
 			_chunkList = new List<ChunkData>();
 			if (_abilityBlessingsRef != null)
 			{
@@ -696,7 +712,7 @@ public abstract partial class BaseAction: Resource
 		private void DodgeActivation(ref int damage)
 		{
 			int dodgeNumber = _random.Next(0, 100);
-			if (dodgeNumber > _playerInformationData.accuracy)
+			if (dodgeNumber > _objectData.accuracy)
 			{
 				damage = -1;
 			}

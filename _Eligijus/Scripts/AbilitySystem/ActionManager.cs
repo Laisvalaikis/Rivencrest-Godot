@@ -49,7 +49,7 @@ public partial class ActionManager : Node
 			for (int i = 0; i < allAbilities.Count; i++)
 			{
 				Ability ability = new Ability(allAbilities[i]);
-				ability.Action.SetupAbility(_player, i);
+				ability.Action.SetupPlayerAbility(_player, i);
 				if (_allAbilities == null)
 				{
 					_allAbilities = new Array<Ability>();

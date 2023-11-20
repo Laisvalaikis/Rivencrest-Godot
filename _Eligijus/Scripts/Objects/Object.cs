@@ -24,6 +24,7 @@ public partial class Object : Node2D
         {
             Ability ability = new Ability(objectData.abilities[i]);
             _abilities.Add(ability);
+            ability.Action.SetupObjectAbility(this);
         }
         for (int i = 0; i < objectData.blessings.Count; i++)
         {
