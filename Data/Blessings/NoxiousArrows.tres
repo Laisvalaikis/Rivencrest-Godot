@@ -13,4 +13,4 @@ className = ""
 spellName = ""
 condition = ""
 description = ""
-_blessingIsUnlocked = false
+_blessingIsUnlocked = true

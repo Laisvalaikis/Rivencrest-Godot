@@ -12,7 +12,6 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([ExtResource("4_qs8u6")])
 abilityBlessings = Array[Resource]([])

@@ -11,7 +11,6 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
