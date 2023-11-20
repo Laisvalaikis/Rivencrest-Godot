@@ -5,15 +5,13 @@ public partial class UsedAbility : Resource
 {
 	public BaseAction ability { get; }
 	public ChunkData chunk { get; }
-	public Player abilityPLayer { get; }
 	private int _turnLifetime ;
 	private int _turnsSinceCast = 0;
 	
-	public UsedAbility(BaseAction ability, ChunkData chunk, Player abilityPLayer)
+	public UsedAbility(BaseAction ability, ChunkData chunk)
 	{
 		this.ability = ability;
 		this.chunk = chunk;
-		this.abilityPLayer = abilityPLayer;
 		_turnLifetime = 1;
 		
 	}
@@ -22,7 +20,6 @@ public partial class UsedAbility : Resource
 	{
 		this.ability = ability;
 		this.chunk = chunk;
-		this.abilityPLayer = abilityPLayer;
 		_turnLifetime = turnLifetime;
 	}
 

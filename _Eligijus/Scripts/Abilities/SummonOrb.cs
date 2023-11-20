@@ -66,8 +66,7 @@ public partial class SummonOrb : BaseAction
             foreach (var t in _attackList)
             {
                 int randomDamage = _random.Next(minAttackDamage, maxAttackDamage);
-                bool crit = IsItCriticalStrike(ref randomDamage);
-                DealDamage(t, randomDamage, crit);
+                DealDamage(t, randomDamage);
             }
             _attackList.Clear();
         }

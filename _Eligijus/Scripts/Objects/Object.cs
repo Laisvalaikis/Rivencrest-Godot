@@ -34,6 +34,13 @@ public partial class Object : Node2D
     public void AddTurnManager(TurnManager turnManager)
     {
         _turnManager = turnManager;
+        for (int i = 0; i < _abilities.Count; i++)
+        {
+            if (_abilities[i].enabled)
+            {
+                _abilities[i].Action.AddTurnManager(turnManager);
+            }
+        }
     }
 
     private void ExecuteOnTurnStart()
@@ -68,14 +75,14 @@ public partial class Object : Node2D
         }
     }
     
-    private void ExecuteResolve()
+    private void ExecuteResolve(ChunkData chunkData)
     {
         for (int i = 0; i < _abilities.Count; i++)
         {
             if (_abilities[i].enabled)
             {
-                _abilities[i].Action.ResolveAbility(null);
-                _abilities[i].Action.ResolveBlessings(null);
+                _abilities[i].Action.ResolveAbility(chunkData);
+                _abilities[i].Action.ResolveBlessings(chunkData);
             }
         }
     }
@@ -95,14 +102,14 @@ public partial class Object : Node2D
         ExecuteOnTurnStart();
     }
 
-    public void StepOn()
+    public void StepOn(ChunkData chunkData)
     {
-        Execute();
+        Execute(chunkData);
     }
 
-    public void Execute()
+    public void Execute(ChunkData chunkData)
     {
-        ExecuteResolve();
+        ExecuteResolve(chunkData);
     }
 
     public virtual void OnTurnEnd()

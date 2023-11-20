@@ -170,13 +170,17 @@ public abstract partial class BaseAction: Resource
 
 		public virtual void ClearGrid()
 		{
-			foreach (var chunk in _chunkList)
+			if (_chunkList != null)
 			{
-				HighlightTile highlightTile = chunk.GetTileHighlight();
-				highlightTile.ActivateColorGridTile(false);
-				DisableDamagePreview(chunk);
+				foreach (var chunk in _chunkList)
+				{
+					HighlightTile highlightTile = chunk.GetTileHighlight();
+					highlightTile.ActivateColorGridTile(false);
+					DisableDamagePreview(chunk);
+				}
+
+				_chunkList.Clear();
 			}
-			_chunkList.Clear();
 		}
 
 		public virtual void CreateAvailableChunkList(int range)
@@ -196,11 +200,6 @@ public abstract partial class BaseAction: Resource
 		public List<ChunkData> GetChunkList()
 		{
 			return _chunkList;
-		}
-
-		public Array<AbilityBlessing> GetBlessings()
-		{
-			return _abilityBlessingsCreated;
 		}
 		
 		public Array<AbilityBlessing> GetAllBlessings()
@@ -337,30 +336,11 @@ public abstract partial class BaseAction: Resource
 				chunkData.GetTileHighlight()?.SetHighlightColor(otherTeamHoverCharacter);
 			}
 		}
-
-
 		public Color GetAbilityHighlightColor()
 		{
 			return abilityHighlight;
 		}
 		
-		public Color GetAbilityHighlightHoverColor()
-		{
-			return abilityHighlightHover;
-		}
-		
-		public Color GetAbilityHoverCharacterColor()
-		{
-			return abilityHoverCharacter;
-		}
-		
-		
-		public Color GetCharacterOnGridColor()
-		{
-			return characterOnGrid;
-		}
-		
-
 		public int GetAbilityCooldown()
 		{
 			return abilityCooldown;
@@ -579,16 +559,6 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
-		public int GetLifetimeAfterResolve()
-		{
-			return turnAfterResolveLifetime;
-		}
-		
-		public int GetLifetimeBeforeStart()
-		{
-			return turnBeforeStartLifetime;
-		}
-
 		public virtual void OnAfterResolve(ChunkData chunkData)
 		{
 			GD.Print("SMTH");
@@ -613,10 +583,19 @@ public abstract partial class BaseAction: Resource
 			}
 			GD.PushWarning("PlaySound");
 			ClearGrid();
-			UsedAbility usedAbility = new UsedAbility(this, chunk, player);
-			_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
-			_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
-			_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);
+			UsedAbility usedAbility = new UsedAbility(this, chunk);
+			if (player is not null)
+			{
+				_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
+				_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
+				_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);
+			}
+			else
+			{
+				_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime, true);
+				_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime, true);
+				_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown, true);
+			}
 		}
 
 		public virtual void ResolveBlessings(ChunkData chunk)
@@ -636,7 +615,10 @@ public abstract partial class BaseAction: Resource
 
 		public void UpdateAbilityButton()
 		{
-			_selectActionButton.DisableAbility();
+			if (_selectActionButton != null)
+			{
+				_selectActionButton.DisableAbility();
+			}
 		}
 
 		public void SetSelectActionButton(SelectActionButton selectActionButton)
@@ -695,12 +677,7 @@ public abstract partial class BaseAction: Resource
 		{
 			GameTileMap.Tilemap.DeselectCurrentCharacter();
 		}
-
-		protected ChunkData GetSpecificGroundTile(Vector2 position)
-		{
-			return GameTileMap.Tilemap.GetChunk(position);
-		}
-
+		
 		protected static bool CheckIfSpecificInformationType(ChunkData chunk, Type type)
 		{
 			return chunk.GetCharacterType() == type;
@@ -708,7 +685,7 @@ public abstract partial class BaseAction: Resource
 
 		public bool IsAllegianceSame(ChunkData chunk)
 		{
-			return chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam();
+			return chunk.GetCurrentPlayer() != null && player != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam();
 		}
 		
 		public bool IsAllegianceSameForBuffs(ChunkData chunk)
@@ -716,26 +693,10 @@ public abstract partial class BaseAction: Resource
 			return chunk == null || (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
 		}
 
-		protected bool IsItCriticalStrike(ref int damage)
-		{
-			int critNumber = _random.Next(0, 100);
-			bool crit;
-			if (critNumber > _playerInformationData.critChance)
-			{
-				crit = false;
-			}
-			else
-			{
-				damage += 3;
-				crit = true;
-			}
-			return crit;
-		}
-
-		private void DodgeActivation(ref int damage, PlayerInformation target) //Dodge temporarily removed
+		private void DodgeActivation(ref int damage)
 		{
 			int dodgeNumber = _random.Next(0, 100);
-			if (dodgeNumber > _playerInformationData.accuracy - target.objectData.GetPlayerInformationData().dodgeChance)
+			if (dodgeNumber > _playerInformationData.accuracy)
 			{
 				damage = -1;
 			}
@@ -747,13 +708,12 @@ public abstract partial class BaseAction: Resource
 			{
 				
 				int randomDamage = _random.Next(minDamage, maxDamage);
-				bool crit = IsItCriticalStrike(ref randomDamage);
-				DodgeActivation(ref randomDamage, chunkData.GetCurrentPlayer().playerInformation);
+				DodgeActivation(ref randomDamage);
 				chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, player);
 			}
 		}
 
-		protected void DealDamage(ChunkData chunkData, int damage, bool crit)
+		protected void DealDamage(ChunkData chunkData, int damage)
 		{
 			if (chunkData != null && chunkData.GetCurrentPlayer() != null && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{

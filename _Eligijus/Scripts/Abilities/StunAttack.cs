@@ -29,7 +29,7 @@ public partial class StunAttack : BaseAction
             GD.PrintErr("SMTH Happens");
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            DealDamage(chunk, spellDamage, false);
+            DealDamage(chunk, spellDamage);
             BaseDeBuff debuff = _debuff.CreateNewInstance();
             chunk.GetCurrentPlayer().deBuffManager.AddDeBuff(debuff);
             FinishAbility();

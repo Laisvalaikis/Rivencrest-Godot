@@ -41,8 +41,7 @@ public partial class SwordPush : BaseAction
             if (i > 0)
             {
                 int damage = pushDamage;
-                bool crit = IsItCriticalStrike(ref damage);
-                DealDamage(_attackTiles[i], damage, crit);
+                DealDamage(_attackTiles[i], damage);
                 _side = ChunkSideByCharacter(chunk, _attackTiles[i]);
                 (int x, int y) sideVector = GetSideVector(_side);
                 MovePlayerToSide(_attackTiles[i], sideVector);
@@ -51,8 +50,7 @@ public partial class SwordPush : BaseAction
             {
                 CheckAdjacent(chunk);
                 int damage = centerDamage;
-                bool crit = IsItCriticalStrike(ref damage);
-                DealDamage(_attackTiles[i], damage, crit);
+                DealDamage(_attackTiles[i], damage);
                 if (_adjacent != null)
                 {
                     _side = ChunkSideByCharacter(chunk, _adjacent);

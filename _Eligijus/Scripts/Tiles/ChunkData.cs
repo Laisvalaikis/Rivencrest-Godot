@@ -118,12 +118,12 @@ public class ChunkData
 
     public bool CharacterIsOnTile()
     {
-        return _currentPlayer != null;
+        return _currentPlayer != null && _currentPlayer.data != null;
     }
     
     public bool ObjectIsOnTile()
     {
-        return _currentObject != null;
+        return _currentObject != null && _currentObject.data != null;
     }
 
     public Player GetCurrentPlayer()
@@ -138,9 +138,9 @@ public class ChunkData
     
     public Object GetCurrentObject()
     {
-        if (_currentPlayer != null)
+        if (_currentObject != null)
         {
-            return _currentPlayer.GetObject();
+            return _currentObject.GetObject();
         }
 
         return null;

@@ -376,6 +376,10 @@ public partial class GameTileMap : Node2D
 				moveCharacter.GlobalPosition = characterPosition;
 				SetCharacter(chunk, moveCharacter);
 				ResetChunk(previousCharacterChunk);
+				if (chunk.ObjectIsOnTile())
+				{
+					chunk.GetCurrentObject().StepOn(chunk);
+				}
 			}
 		}
 		// SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);

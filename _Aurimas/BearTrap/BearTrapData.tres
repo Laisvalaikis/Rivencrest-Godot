@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://6m2mcxc1he07"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://6m2mcxc1he07"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_j3erq"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="1_xjicx"]
 
 [resource]
 script = ExtResource("1_j3erq")
@@ -10,5 +11,6 @@ secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
 backgroundColor = Color(0, 0, 0, 0)
 canStepOnObject = true
-abilities = null
-blessings = null
+destroyObjectStepingOn = true
+abilities = Array[Resource]([ExtResource("1_xjicx")])
+blessings = Array[Resource]([])

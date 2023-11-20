@@ -6,6 +6,8 @@ public partial class ObjectData : Resource
     [Export]
     public int maxHealth = 1;
     [Export]
+    public int accuracy = 100;
+    [Export]
     public Color classColor;
     [Export]
     public Color secondClassColor;
@@ -17,6 +19,8 @@ public partial class ObjectData : Resource
     public Texture CharacterPortraitSprite;
     [Export] 
     public bool canStepOnObject = false;
+    [Export] 
+    public bool destroyObjectStepingOn = false;
     [Export]
     public Array<Ability> abilities;
     [Export]

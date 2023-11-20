@@ -39,7 +39,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
             for (int i = 0; i < _chunkArray.GetLength(1); i++)
             {
                 ChunkData damageChunk = _chunkArray[index, i];
-                DealDamage(damageChunk, spellDamage, false);
+                DealDamage(damageChunk, spellDamage);
             }
             GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(index));
             FinishAbility();

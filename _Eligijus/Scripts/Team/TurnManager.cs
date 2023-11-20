@@ -6,6 +6,9 @@ public partial class TurnManager : Node
 	[Export] private TeamInformation _teamInformation;
 	[Export] private Team _currentTeam;
 	private Array<Object> _objects;
+	public LinkedList<UsedAbility> objectAbilitiesBeforeStartTurn = new LinkedList<UsedAbility>();
+	public LinkedList<UsedAbility> objectAbilitiesAfterResolve = new LinkedList<UsedAbility>();
+	public LinkedList<UsedAbility> objectAbilitiesEndTurn = new LinkedList<UsedAbility>();
 	[Export] private int _currentTeamIndex = 0;
 	[Export] private TeamsList _teamsList;
 	[Export] private Player _currentPlayer;
@@ -108,6 +111,7 @@ public partial class TurnManager : Node
 	public void OnTurnStart()
 	{
 		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
+		ActionsBeforeStart(objectAbilitiesBeforeStartTurn);
 		if (_objects != null && _objects.Count > 0)
 		{
 			for (int i = 0; i < _objects.Count; i++)
@@ -125,6 +129,7 @@ public partial class TurnManager : Node
 	public void OnTurnEnd()
 	{
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
+		ActionsAfterResolve(objectAbilitiesAfterResolve);
 		if (_objects != null && _objects.Count > 0)
 		{
 			for (int i = 0; i < _objects.Count; i++)
@@ -138,6 +143,7 @@ public partial class TurnManager : Node
 			character.OnAfterResolve();
 			character.OnTurnEnd();
 		}
+		ActionsEndTurn(objectAbilitiesEndTurn);
 		ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn);
 	}
 
@@ -237,27 +243,56 @@ public partial class TurnManager : Node
 		}
 	}
 	
-	public void AddUsedAbilityBeforeStartTurn(UsedAbility usedAbility, int lifetime)
+	public void AddUsedAbilityBeforeStartTurn(UsedAbility usedAbility, int lifetime, bool objectAbility = false)
 	{
-		_currentTeam.usedAbilitiesBeforeStartTurn.AddLast(new UsedAbility(usedAbility, lifetime));
-	}
-
-	public void AddUsedAbilityAfterResolve(UsedAbility usedAbility, int lifetime)
-	{
-		_currentTeam.usedAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, lifetime));
-	}
-	
-	public void AddUsedAbilityOnTurnEnd(UsedAbility usedAbility, int lifetime)
-	{
-		LinkedListNode<UsedAbility> findElement =
-			_currentTeam.usedAbilitiesEndTurn.Find(new UsedAbility(usedAbility, lifetime));
-		if (findElement == null)
+		if (!objectAbility)
 		{
-			_currentTeam.usedAbilitiesEndTurn.AddLast(new UsedAbility(usedAbility, lifetime));
+			_currentTeam.usedAbilitiesBeforeStartTurn.AddLast(new UsedAbility(usedAbility, lifetime));
 		}
 		else
 		{
-			_currentTeam.usedAbilitiesEndTurn.MoveToEnd(findElement);
+			objectAbilitiesBeforeStartTurn.AddLast(new UsedAbility(usedAbility, lifetime));
+		}
+	}
+
+	public void AddUsedAbilityAfterResolve(UsedAbility usedAbility, int lifetime, bool objectAbility = false)
+	{
+		if (!objectAbility)
+		{
+			_currentTeam.usedAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, lifetime));
+		}
+		else
+		{
+			objectAbilitiesAfterResolve.AddLast(new UsedAbility(usedAbility, lifetime));
+		}
+	}
+	
+	public void AddUsedAbilityOnTurnEnd(UsedAbility usedAbility, int lifetime, bool objectAbility = false)
+	{
+		if (!objectAbility)
+		{
+			LinkedListNode<UsedAbility> findElement =
+				_currentTeam.usedAbilitiesEndTurn.Find(new UsedAbility(usedAbility, lifetime));
+			if (findElement == null)
+			{
+				_currentTeam.usedAbilitiesEndTurn.AddLast(new UsedAbility(usedAbility, lifetime));
+			}
+			else
+			{
+				_currentTeam.usedAbilitiesEndTurn.MoveToEnd(findElement);
+			}
+		}
+		else
+		{
+			LinkedListNode<UsedAbility> findElement = objectAbilitiesEndTurn.Find(new UsedAbility(usedAbility, lifetime));
+			if (findElement == null)
+			{
+				objectAbilitiesEndTurn.AddLast(new UsedAbility(usedAbility, lifetime));
+			}
+			else
+			{
+				objectAbilitiesEndTurn.MoveToEnd(findElement);
+			}
 		}
 	}
 
