@@ -613,6 +613,11 @@ public abstract partial class BaseAction: Resource
 				_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown, true);
 			}
 		}
+		
+		public virtual void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
+		{
+			
+		}
 
 		public virtual void ResolveBlessings(ChunkData chunk)
 		{

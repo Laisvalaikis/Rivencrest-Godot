@@ -109,14 +109,25 @@ public partial class Object : Node2D
         Execute(chunkData);
     }
 
-    public void OnExit(ChunkData chunkData)
+    public void OnExit(ChunkData chunkDataPrev, ChunkData chunkData)
     {
-        
+        ExecuteOnExit(chunkDataPrev, chunkData);
     }
 
     public void Execute(ChunkData chunkData)
     {
         ExecuteResolve(chunkData);
+    }
+    
+    public void ExecuteOnExit(ChunkData chunkDataPrev, ChunkData chunkData)
+    {
+        for (int i = 0; i < _abilities.Count; i++)
+        {
+            if (_abilities[i].enabled)
+            {
+                _abilities[i].Action.OnExitAbility(chunkDataPrev,chunkData);
+            }
+        }
     }
 
     public virtual void OnTurnEnd()

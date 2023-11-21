@@ -388,7 +388,7 @@ public partial class GameTileMap : Node2D
 				if (previousCharacterChunk.ObjectIsOnTile() && previousCharacterChunk.GetCurrentObject().CanStepOn())
 				{
 					Object currentObject = previousCharacterChunk.GetCurrentObject();
-					currentObject.OnExit(chunk);
+					currentObject.OnExit(previousCharacterChunk, chunk);
 				}
 			}
 		}
