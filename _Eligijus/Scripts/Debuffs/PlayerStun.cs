@@ -2,28 +2,28 @@ using Godot;
 using System;
 
 //Player cannot move at all, but can use abilities?
-public partial class StunDebuff : BaseDebuff
+public partial class PlayerStun : BaseDebuff
 {
 	
-	public StunDebuff()
+	public PlayerStun()
 	{
 			
 	}
     
-	public StunDebuff(StunDebuff debuff): base(debuff)
+	public PlayerStun(PlayerStun debuff): base(debuff)
 	{
         
 	}
     
 	public override BaseDebuff CreateNewInstance(BaseDebuff baseDebuff)
 	{
-		StunDebuff debuff = new StunDebuff((StunDebuff)baseDebuff);
+		PlayerStun debuff = new PlayerStun((PlayerStun)baseDebuff);
 		return debuff;
 	}
     
 	public override BaseDebuff CreateNewInstance()
 	{
-		StunDebuff debuff = new StunDebuff(this);
+		PlayerStun debuff = new PlayerStun(this);
 		return debuff;
 	}
 	

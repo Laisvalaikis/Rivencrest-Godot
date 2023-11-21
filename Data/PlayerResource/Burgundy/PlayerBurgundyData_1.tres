@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=13 format=3 uid="uid://bb3rw1idir411"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://w0dfrk7kykbe"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_0jahi"]
 [ext_resource type="Texture2D" uid="uid://bnjidvtwmfo62" path="res://Data/PlayerResource/Burgundy/Textures/CharacterPortraitSprite.tres" id="1_7kqen"]
@@ -18,7 +18,6 @@ script = ExtResource("1_0jahi")
 characterType = 0
 ClassName = "CRUSADER"
 critChance = 3
-accuracy = 100
 dodgeChance = 5
 killXP = 50
 role = "TANK"
@@ -27,12 +26,14 @@ CroppedSplashArt = ExtResource("3_ia3ss")
 characterSprite = ExtResource("10_by0c2")
 roleSprite = ExtResource("11_sgfx4")
 baseAbilities = Array[Resource]([ExtResource("8_goe0h"), ExtResource("9_wyigf")])
-playerBlessings = Array[Resource]([])
 maxHealth = 27
+accuracy = 100
 classColor = Color(0.913725, 0.592157, 0.227451, 1)
 secondClassColor = Color(0.631373, 0.211765, 0.211765, 1)
 textColor = Color(0.839216, 0.607843, 0.352941, 1)
 backgroundColor = Color(0.501961, 0.180392, 0.180392, 1)
 CharacterPortraitSprite = ExtResource("1_7kqen")
+canStepOnObject = false
+destroyObjectStepingOn = true
 abilities = Array[Resource]([ExtResource("4_8dru2"), ExtResource("5_n67ps"), ExtResource("6_axx8t"), ExtResource("7_v7lhl")])
 blessings = []

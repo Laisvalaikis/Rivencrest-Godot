@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Swiftness : PlayerBlessing
 {
-    [Export] private int addAbilityPoints = 1;
+    [Export] private int addMovementPoints = 5;
     
     public Swiftness()
     {
@@ -11,7 +11,7 @@ public partial class Swiftness : PlayerBlessing
     
     public Swiftness(Swiftness blessing): base(blessing)
     {
-        addAbilityPoints = blessing.addAbilityPoints;
+        addMovementPoints = blessing.addMovementPoints;
     }
     
     public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
@@ -29,9 +29,11 @@ public partial class Swiftness : PlayerBlessing
     public override void OnTurnStart(BaseAction baseAction)
     {
         base.OnTurnStart(baseAction);
-        if (baseAction.TurnIsEven())
-        {
-            baseAction.GetPlayer().actionManager.AddAbilityPoints(addAbilityPoints);
-        }
+        //   if (baseAction.TurnIsEven())
+       // {
+            //baseAction.GetPlayer().AddMovementPoints(addMovementPoints);
+            Player player = baseAction.GetPlayer();
+            player.AddMovementPoints(addMovementPoints);
+       // }
     }
 }

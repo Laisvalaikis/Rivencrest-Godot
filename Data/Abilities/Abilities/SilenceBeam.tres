@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://5x5hmqyixtid"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://5x5hmqyixtid"]
 
-[ext_resource type="Resource" uid="uid://iem7lurqv28a" path="res://Data/Blessings/SlowDown.tres" id="1_6xyvt"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SilenceBeam.cs" id="1_jwin8"]
 
 [resource]
@@ -24,4 +23,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_6xyvt")])
+_abilityBlessingsRef = null

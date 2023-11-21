@@ -1,12 +1,10 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://8cjt0mubqvem"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://8cjt0mubqvem"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateBearTrap.cs" id="1_6tlcb"]
-[ext_resource type="Resource" uid="uid://6m2mcxc1he07" path="res://_Aurimas/BearTrap/BearTrapData.tres" id="1_hci2q"]
 [ext_resource type="PackedScene" uid="uid://d3obd07ibnqm1" path="res://_Aurimas/AbilityPrefabs/BearTrap.tscn" id="1_l2evs"]
 
 [resource]
 script = ExtResource("1_6tlcb")
-bearTrapData = ExtResource("1_hci2q")
 bearTrapPrefab = ExtResource("1_l2evs")
 laserGrid = false
 turnBeforeStartLifetime = 1

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_fgqox")
-addAbilityPoints = 1
+addMovementPoints = 5
 blessingName = "Swiftness"
 rarity = 0
 className = ""
