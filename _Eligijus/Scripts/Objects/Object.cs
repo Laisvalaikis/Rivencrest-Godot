@@ -109,7 +109,7 @@ public partial class Object : Node2D
         Execute(chunkData);
     }
 
-    public void OnExit(ChunkData chunkDataPrev, ChunkData chunkData)
+    public virtual void OnExit(ChunkData chunkDataPrev, ChunkData chunkData)
     {
         ExecuteOnExit(chunkDataPrev, chunkData);
     }

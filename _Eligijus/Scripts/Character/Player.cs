@@ -133,6 +133,7 @@ public partial class Player : Object
 		
 	}
 	
+	
 	public void OnAfterResolve()
 	{
 		actionManager.OnAfterResolve();
@@ -156,6 +157,11 @@ public partial class Player : Object
 			}
 		}
 		debuffManager.OnTurnEnd();
+	}
+	
+	public override void OnExit(ChunkData chunkDataPrev, ChunkData chunkData)
+	{
+		actionManager.ActionOnExit(chunkDataPrev, chunkData);
 	}
 
 	public int GetPoisonCount()

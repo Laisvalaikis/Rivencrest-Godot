@@ -616,7 +616,7 @@ public abstract partial class BaseAction: Resource
 		
 		public virtual void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
 		{
-			
+			GD.Print("SMTH");	
 		}
 
 		public virtual void ResolveBlessings(ChunkData chunk)

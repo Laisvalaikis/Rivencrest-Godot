@@ -204,6 +204,24 @@ public partial class ActionManager : Node
 		}
 	}
 
+	public void ActionOnExit(ChunkData chunkDataPrev, ChunkData chunkData)
+	{
+		for (int i = 0; i < _baseAbilities.Count; i++)
+		{
+			if (_baseAbilities[i].enabled)
+			{
+				_baseAbilities[i].Action.OnExitAbility(chunkDataPrev, chunkData);
+			}
+		}
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
+			{
+				_abilities[i].Action.OnExitAbility(chunkDataPrev, chunkData);
+			}
+		}
+	}
+
 	public void PlayerWasAttacked()
 	{
 		for (int i = 0; i < _baseAbilities.Count; i++)
