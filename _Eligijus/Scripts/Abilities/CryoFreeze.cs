@@ -92,7 +92,7 @@ public partial class CryoFreeze : BaseAction
 		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
 		_isAbilityActive = true;
-		player.playerInformation.Stasis = true;
+		player.playerInformation.stasis = true;
 		FinishAbility();
 	}
 }

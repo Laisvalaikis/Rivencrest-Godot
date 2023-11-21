@@ -3,7 +3,6 @@ using Godot.Collections;
 
 public partial class Object : Node2D
 {
-    [Export] private ObjectData objectData;
     public ObjectDataType<ObjectData> ObjectDataType;
     private TurnManager _turnManager;
     private Array<Ability> _abilities;
@@ -12,23 +11,22 @@ public partial class Object : Node2D
     public override void _EnterTree()
     {
         base._EnterTree();
-        ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Object));
     }
 
-    public virtual void SetupObject()
+    public virtual void SetupObject(ObjectData objectInformation)
     {
-        ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Object));
+        ObjectDataType = new ObjectDataType<ObjectData>(objectInformation, typeof(Object));
         _abilities = new Array<Ability>();
         _playerBlessings = new Array<PlayerBlessing>();
-        for (int i = 0; i < objectData.abilities.Count; i++)
+        for (int i = 0; i < objectInformation.abilities.Count; i++)
         {
-            Ability ability = new Ability(objectData.abilities[i]);
+            Ability ability = new Ability(objectInformation.abilities[i]);
             _abilities.Add(ability);
             ability.Action.SetupObjectAbility(this);
         }
-        for (int i = 0; i < objectData.blessings.Count; i++)
+        for (int i = 0; i < objectInformation.blessings.Count; i++)
         {
-            _playerBlessings.Add(new PlayerBlessing(objectData.blessings[i]));
+            _playerBlessings.Add(new PlayerBlessing(objectInformation.blessings[i]));
         }
     }
 

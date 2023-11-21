@@ -212,13 +212,13 @@ public partial class CharacterTeams : Node
 				spawnedCharacter.playerInTeamIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
 				spawnedCharacter.SetPlayerTeam(teamIndex);
-				spawnedCharacter.SetupObject();
 				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characters.Add(i, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characterPrefabs.Add(i, allCharacterList[teamIndex].characterPrefabs[i]);
 				currentCharacters.Teams[teamIndex].coordinates.Add(i, coordinate.Value);
 				if (allCharacterList[teamIndex].characterResources != null && allCharacterList[teamIndex].characterResources.Count != 0)
 				{
+					spawnedCharacter.SetupObject(allCharacterList[teamIndex].characterResources[i].playerInformation);
 					currentCharacters.Teams[teamIndex].characterResources
 						.Add(i, allCharacterList[teamIndex].characterResources[i]);
 					spawnedCharacter.unlockedAbilityList =

@@ -3,10 +3,18 @@ using Godot;
 public partial class ObjectInformation : Node
 {
     [Export]
-    private Object _object;
+    protected Object _object;
+    [Export]
+    protected ObjectData _objectInformationData;
     public ObjectDataType<ObjectData> objectData;
-    private int _health = 100;
-    
+    protected int _health = 100;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        objectData = new ObjectDataType<ObjectData>(_objectInformationData, typeof(Object));
+    }
+
     public virtual void DealDamage(int damage, Player damageDealer)
     {
 
@@ -59,6 +67,15 @@ public partial class ObjectInformation : Node
     public void AddHealth(int health)
     {
         _health += health;
+    }
+    
+    public virtual void OnTurnStart()
+    {
+		
+    }
+    public virtual void OnTurnEnd()
+    {
+	   
     }
     
 }

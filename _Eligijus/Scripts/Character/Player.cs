@@ -18,9 +18,9 @@ public partial class Player : Object
 	private int movementPoints = 3; //track movement points here in this class
 	private int previousMovementPoints = 3;
 
-	public override void SetupObject()
+	public override void SetupObject(ObjectData objectInformation)
 	{
-		playerInformation.SetupData();
+		playerInformation.SetupData(objectInformation);
 	}
 
 	public override void Death()

@@ -3,6 +3,7 @@ using Godot;
 
 public partial class CreateBearTrap : BaseAction
 {
+	[Export] private ObjectData bearTrapData;
 	[Export] private Resource bearTrapPrefab;
 	private Object spawnedBearTrap;
 	private int i = 0; //Naudojama, kad bear trap dingtu po keliu turn'u
@@ -27,7 +28,7 @@ public partial class CreateBearTrap : BaseAction
 		PackedScene spawnCharacter = (PackedScene)bearTrapPrefab;
 		spawnedBearTrap = spawnCharacter.Instantiate<Object>();
 		player.GetTree().Root.CallDeferred("add_child", spawnedBearTrap);
-		spawnedBearTrap.SetupObject();
+		spawnedBearTrap.SetupObject(bearTrapData);
 		GameTileMap.Tilemap.SpawnObject(spawnedBearTrap, chunk);
 		i = 0;
 		FinishAbility();

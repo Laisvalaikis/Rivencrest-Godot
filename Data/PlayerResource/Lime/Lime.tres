@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="1_m1rbs"]
 [ext_resource type="PackedScene" uid="uid://ckahpwfms43k" path="res://_Eligijus/Prefabs/Characters/PlayerLime.tscn" id="1_s6ckk"]
-[ext_resource type="Resource" uid="uid://bfod5lwskxgj6" path="res://Data/PlayerResource/Lime/PlayerLimeData.tres" id="1_vxof7"]
+[ext_resource type="Resource" uid="uid://bfod5lwskxgj6" path="res://Data/PlayerResource/Lime/PlayerLimeData_1.tres" id="1_vxof7"]
 
 [resource]
 script = ExtResource("1_m1rbs")
@@ -11,7 +11,6 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])

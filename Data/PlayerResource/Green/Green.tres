@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://duuprt0k5y4w6"]
 
-[ext_resource type="Resource" uid="uid://cds0bflq0kxt5" path="res://Data/PlayerResource/Green/PlayerGreenData_1.tres" id="1_gwxay"]
+[ext_resource type="Resource" uid="uid://t47rmupqrwh2" path="res://Data/PlayerResource/Green/PlayerGreenData_1.tres" id="1_gwxay"]
 [ext_resource type="PackedScene" uid="uid://dsemmn7tbwstk" path="res://_Eligijus/Prefabs/Characters/PlayerGreen.tscn" id="2_5me5p"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_e2gq3"]
 
