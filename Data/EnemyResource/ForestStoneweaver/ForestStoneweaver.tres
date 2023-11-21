@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cyhodxt2y5fpx" path="res://_Aurimas/Enemies/ForestStoneweaver.tscn" id="2_lcjt0"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_8iwwo"]
 
-
 [resource]
 script = ExtResource("3_8iwwo")
 prefab = ExtResource("2_lcjt0")
@@ -12,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_0lu5r")

@@ -100,13 +100,14 @@ public partial class Avalanche : BaseAction
         if (CheckIfSpecificInformationType(chunk, typeof(Player)))
         {
             Player target = chunk.GetCurrentPlayer();
-            if (target.debuffs.IsPlayerStunned()
-                || target.debuffs.IsPalyerRooted()
-                || target.debuffs.IsPlayerSlower()
-                || target.debuffs.IsPlayerSilenced())
-            {
-                return true;
-            }
+            // if (target.debuffs.IsPlayerStunned()
+            //     || target.debuffs.IsPalyerRooted()
+            //     || target.debuffs.IsPlayerSlower()
+            //     || target.debuffs.IsPlayerSilenced())
+            // {
+            //     return true;
+            // }
+            return true;
         }
         return false;
     }

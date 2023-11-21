@@ -65,7 +65,7 @@ public partial class PowerShot : BaseAction
         if (chunk.CharacterIsOnTile())
         {
             Player target = chunk.GetCurrentPlayer();
-            target.debuffs.SlowDownPlayer(1);
+            // target.debuffs.SlowDownPlayer(1);
         }
         FinishAbility();
     }

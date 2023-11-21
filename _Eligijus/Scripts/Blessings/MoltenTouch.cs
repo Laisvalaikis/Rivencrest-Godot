@@ -33,7 +33,7 @@ public partial class MoltenTouch : AbilityBlessing
         if (tile.CharacterIsOnTile())
         {
             Player player = tile.GetCurrentPlayer();
-            player.debuffs.AddAFlame();
+            // player.debuffs.AddAFlame();
         }
 
         Aflame(ref baseAction, tile);

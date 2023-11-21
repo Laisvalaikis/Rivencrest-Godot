@@ -35,8 +35,8 @@ public partial class SilenceBeam : BaseAction
 				if (damageChunk.CharacterIsOnTile())
 				{
 					Player target = damageChunk.GetCurrentPlayer();
-					target.debuffs.SetTurnCounterFromThisTurn(1);
-					target.debuffs.SilencePlayer();
+					// target.debuffs.SetTurnCounterFromThisTurn(1);
+					// target.debuffs.SilencePlayer();
 				}
 				DealRandomDamageToTarget(damageChunk, minAttackDamage + _additionalDamage, maxAttackDamage + _additionalDamage);
 			}

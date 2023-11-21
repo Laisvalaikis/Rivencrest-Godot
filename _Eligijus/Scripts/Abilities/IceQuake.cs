@@ -63,10 +63,10 @@ public partial class IceQuake : BaseAction
             if (CanTileBeClicked(hoveredChunk))
             {
                 Player target = hoveredChunk.GetCurrentPlayer();
-                if (target.debuffs.IsPlayerSlower())
-                {
-                    bonusDamage += rootDamage;
-                }
+                // if (target.debuffs.IsPlayerSlower())
+                // {
+                //     bonusDamage += rootDamage;
+                // }
                 EnableDamagePreview(hoveredChunk);
                 bonusDamage = 0;
             }
@@ -87,14 +87,14 @@ public partial class IceQuake : BaseAction
             if (chunk.IsStandingOnChunk())
             {
                 Player target = chunk.GetCurrentPlayer();
-                if (target.debuffs.IsPlayerSlower())
-                {
-                    target.actionManager.RemoveSlowDown();
-                    bonusDamage += rootDamage;
-                }
+                // if (target.debuffs.IsPlayerSlower())
+                // {
+                //     target.actionManager.RemoveSlowDown();
+                //     bonusDamage += rootDamage;
+                // }
             }
             DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
-            chunk.GetCurrentPlayer().debuffs.SlowDownPlayer(1);
+            // chunk.GetCurrentPlayer().debuffs.SlowDownPlayer(1);
             FinishAbility();
         }
     }

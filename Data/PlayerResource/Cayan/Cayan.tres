@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://cdno48pmlhfnh"]
 
-[ext_resource type="Resource" uid="uid://ca4hxanhexseh" path="res://Data/PlayerResource/Cayan/PlayerCayanData.tres" id="1_cr5bw"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="1_dyauh"]
+[ext_resource type="Resource" uid="uid://d4dwmbb8f2xli" path="res://Data/PlayerResource/Cayan/PlayerCayanData_1.tres" id="1_pp664"]
 [ext_resource type="PackedScene" uid="uid://bf00py5hix2pw" path="res://_Eligijus/Prefabs/Characters/PlayerCayan.tscn" id="2_goebb"]
 
 [resource]
@@ -11,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 900
 characterIndex = 1
-playerInformation = ExtResource("1_cr5bw")
+playerInformation = ExtResource("1_pp664")

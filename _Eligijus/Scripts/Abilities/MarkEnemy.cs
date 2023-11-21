@@ -24,10 +24,10 @@ public partial class MarkEnemy : BaseAction
     public override void OnTurnEnd(ChunkData chunkData)
     {
         base.OnTurnEnd(chunkData);
-        if (_target != null && _target.debuffs.IsMarked())
-        {
-            _target.debuffs.UnMark();
-        }
+        // if (_target != null && _target.debuffs.IsMarked())
+        // {
+        //     _target.debuffs.UnMark();
+        // }
     }
 
     public override void ResolveAbility(ChunkData chunk)
@@ -37,7 +37,7 @@ public partial class MarkEnemy : BaseAction
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
             _target = chunk.GetCurrentPlayer();
-            player.debuffs.Mark();
+            // player.debuffs.Mark();
             FinishAbility();
         }
         // chunk.GetCurrentPlayerInformation().Marker = gameObject;
@@ -46,9 +46,9 @@ public partial class MarkEnemy : BaseAction
     public override void Die() // probably ateity kitaip bus daroma
     {
         base.Die();
-        if (_target != null && _target.debuffs.IsMarked())
-        {
-            _target.debuffs.UnMark();
-        }
+        // if (_target != null && _target.debuffs.IsMarked())
+        // {
+        //     _target.debuffs.UnMark();
+        // }
     }
 }

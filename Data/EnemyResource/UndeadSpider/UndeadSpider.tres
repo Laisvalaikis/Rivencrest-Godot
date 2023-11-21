@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dd6td6gqp7obi" path="res://_Aurimas/Enemies/UndeadSpider.tscn" id="2_k2wjs"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_rgduf"]
 
-
 [resource]
 script = ExtResource("3_rgduf")
 prefab = ExtResource("2_k2wjs")
@@ -12,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_lgjom")

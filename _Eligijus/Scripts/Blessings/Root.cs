@@ -34,7 +34,7 @@ public partial class Root : AbilityBlessing
           //  if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
            // {
                 // Create Can't move
-                player.debuffs.RootPlayer();
+                // player.debuffs.RootPlayer();
                 // GD.PrintErr("Fix can't move on player");
           //  }
         }

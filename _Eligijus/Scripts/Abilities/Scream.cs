@@ -30,8 +30,8 @@ public partial class Scream : BaseAction
         {
             //apply silenced
             Player target = chunk.GetCurrentPlayer();
-            target.debuffs.SetTurnCounterFromThisTurn(1);
-            target.debuffs.SilencePlayer();
+            // target.debuffs.SetTurnCounterFromThisTurn(1);
+            // target.debuffs.SilencePlayer();
         }
         FinishAbility();
     }

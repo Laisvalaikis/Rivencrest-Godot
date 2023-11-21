@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://34himh4fi2ok" path="res://_Aurimas/Enemies/UndeadCultist.tscn" id="2_fhgww"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_bhd2e"]
 
-
 [resource]
 script = ExtResource("3_bhd2e")
 prefab = ExtResource("2_fhgww")
@@ -12,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_l0v8d")

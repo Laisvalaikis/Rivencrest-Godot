@@ -4,7 +4,6 @@
 [ext_resource type="Resource" uid="uid://b2b0clksql7f4" path="res://Data/EnemyResource/ForestWitch/ForestWitchData_1.tres" id="1_xsixb"]
 [ext_resource type="PackedScene" uid="uid://30rgstmdo5yq" path="res://_Aurimas/Enemies/ForestWitch.tscn" id="2_led10"]
 
-
 [resource]
 script = ExtResource("1_5o7ql")
 prefab = ExtResource("2_led10")
@@ -12,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_xsixb")

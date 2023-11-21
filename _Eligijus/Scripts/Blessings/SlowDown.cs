@@ -30,7 +30,7 @@ public partial class SlowDown : AbilityBlessing
     {
         base.ResolveBlessing(baseAction, tile);
   //      tile.GetCurrentPlayer().actionManager.AddAbilityPoints(-slowsDown);
-        tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
+        // tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
     }
     
 }

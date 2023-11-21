@@ -27,9 +27,9 @@ public partial class Purify : BaseAction
             UpdateAbilityButton();
             Player target = chunk.GetCurrentPlayer();
             target.RemoveWeakSpot();
-            target.debuffs.RemoveSilence();
-            target.debuffs.RemoveAFlame();
-            target.debuffs.RemoveSilence();
+            // target.debuffs.RemoveSilence();
+            // target.debuffs.RemoveAFlame();
+            // target.debuffs.RemoveSilence();
             target.ClearPoison();
         }
     }

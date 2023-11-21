@@ -6,7 +6,6 @@ public partial class Player : Object
 {
 	[Export] public int playerInTeamIndex = 0;
 	[Export] public PlayerInformation playerInformation;
-	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
 	[Export] public DebuffManager debuffManager;
 	public Array<UnlockedAbilitiesResource> unlockedAbilityList;

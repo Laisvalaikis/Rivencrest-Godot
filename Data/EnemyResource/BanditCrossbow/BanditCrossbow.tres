@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dwuvfbt651j81" path="res://_Aurimas/Enemies/BanditCrossbow.tscn" id="2_0x7l6"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_2k7p7"]
 
-
 [resource]
 script = ExtResource("3_2k7p7")
 prefab = ExtResource("2_0x7l6")
@@ -12,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 0
 characterIndex = 0
 playerInformation = ExtResource("1_0d44f")

@@ -19,7 +19,7 @@ public partial class Entangle : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        chunk.GetCurrentPlayer().debuffs.RootPlayer();
+        // chunk.GetCurrentPlayer().debuffs.RootPlayer();
         FinishAbility();
     }
 }

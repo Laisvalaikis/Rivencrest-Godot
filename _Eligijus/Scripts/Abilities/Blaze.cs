@@ -28,14 +28,14 @@ public partial class Blaze : BaseAction //removed ability
             if (chunk.CharacterIsOnTile())
             {
                 Player target = chunk.GetCurrentPlayer();
-                if (target.debuffs.PlayerHaveAFlame())
-                {
-                    Aflame(chunk);
-                }
-                else
-                {
+                // if (target.debuffs.PlayerHaveAFlame())
+                // {
+                //     Aflame(chunk);
+                // }
+                // else
+                // {
                     DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
-                }
+                // }
             }
             
         }

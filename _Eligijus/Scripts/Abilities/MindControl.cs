@@ -25,14 +25,14 @@ public partial class MindControl : BaseAction
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             _target = chunk.GetCurrentPlayer();
-            _target.debuffs.SetTurnCounterFromThisTurn(2);
+            // _target.debuffs.SetTurnCounterFromThisTurn(2);
             FinishAbility();
         }
     }
 
     public override void PlayerWasAttacked()
     {
-        _target.debuffs.RemoveSilence();
+        // _target.debuffs.RemoveSilence();
         _target = null;
     }
 }

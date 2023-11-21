@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://tu6l76mmaugw"]
 
+[ext_resource type="Resource" uid="uid://w0dfrk7kykbe" path="res://Data/PlayerResource/Burgundy/PlayerBurgundyData_1.tres" id="1_geuus"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="1_js1hn"]
-[ext_resource type="Resource" uid="uid://b1a55n0vxj2t2" path="res://Data/PlayerResource/Burgundy/PlayerBurgundyData.tres" id="1_tt2eb"]
 [ext_resource type="PackedScene" uid="uid://cbwqgnwjv2xc1" path="res://_Eligijus/Prefabs/Characters/PlayerBurgundy.tscn" id="2_ukibv"]
 
 [resource]
@@ -11,12 +11,11 @@ level = 0
 xP = 0
 xPToGain = 0
 characterName = ""
-dead = false
 abilityPointCount = 0
 unlockedAbilities = Array[Resource]([])
 abilityBlessings = Array[Resource]([])
-toConfirmAbilities = 0
 characterBlessings = Array[Resource]([])
+toConfirmAbilities = 0
 cost = 1000
 characterIndex = 7
-playerInformation = ExtResource("1_tt2eb")
+playerInformation = ExtResource("1_geuus")

@@ -27,7 +27,7 @@ public partial class BindingRitual : BaseAction
                  if (CanTileBeClicked(tile))
                  {
                      DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
-                     tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
+                     // tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
                  }
              }
              base.ResolveAbility(chunk);
