@@ -21,6 +21,8 @@ public partial class ObjectData : Resource
     public bool canStepOnObject = false;
     [Export] 
     public bool destroyObjectStepingOn = true;
+    [Export] 
+    public bool canBeDestroyed = true;
     [Export]
     public Array<Ability> abilities;
     [Export]

@@ -30,11 +30,6 @@ public partial class SlowDebuff : BaseDebuff
 
     }
     
-    public override void ResolveDeBuff(ChunkData chunkData)
-    {
-        
-    }
-    
     public override void OnTurnStart()
     {
         base.OnTurnStart();

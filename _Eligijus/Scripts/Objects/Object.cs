@@ -150,4 +150,9 @@ public partial class Object : Node2D
         return ObjectDataType.objectData.destroyObjectStepingOn;
     }
 
+    public bool CanBeDestroyed()
+    {
+        return ObjectDataType.objectData.canBeDestroyed;
+    }
+
 }

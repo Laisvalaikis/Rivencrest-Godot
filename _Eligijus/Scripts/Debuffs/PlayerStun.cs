@@ -31,11 +31,7 @@ public partial class PlayerStun : BaseDebuff
 	{
 
 	}
-    
-	public override void ResolveDeBuff(ChunkData chunkData)
-	{
-        
-	}
+	
     
 	public override void OnTurnStart()
 	{

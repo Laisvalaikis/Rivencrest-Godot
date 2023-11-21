@@ -28,10 +28,6 @@ public partial class BlockerDebuff : BaseDebuff
 
     }
     
-    public override void ResolveDeBuff(ChunkData chunkData)
-    {
-        
-    }
     
     public override void OnTurnStart()
     {

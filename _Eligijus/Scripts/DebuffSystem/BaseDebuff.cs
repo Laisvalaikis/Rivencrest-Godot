@@ -33,11 +33,6 @@ public partial class BaseDebuff : Resource
 
 	}
     
-	public virtual void ResolveDeBuff(ChunkData chunkData)
-	{
-        
-	}
-    
 	public virtual void OnTurnStart()
 	{
 			
@@ -81,5 +76,20 @@ public partial class BaseDebuff : Resource
 	public void SetPLayer(Player player)
 	{
 		_player = player;
+	}
+
+	public override bool Equals(object obj)
+	{
+		return GetType().Equals(obj);
+	}
+	
+	public bool EqualsType(Type obj)
+	{
+		return GetType() == obj;
+	}
+
+	public override int GetHashCode()
+	{
+		return GetHashCode();
 	}
 }

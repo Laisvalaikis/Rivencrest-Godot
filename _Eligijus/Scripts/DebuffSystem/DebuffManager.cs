@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -43,11 +44,6 @@ public partial class DebuffManager : Node
 			}
 		}
 	}
-	
-	public void OnMouseClick(ChunkData chunkData)
-	{
-		ExecuteDebuffs(chunkData);
-	}
 
 	public void OnTurnEnd()
 	{
@@ -63,21 +59,7 @@ public partial class DebuffManager : Node
 			}
 		}
 	}
-
-	private void ExecuteDebuffs(ChunkData chunkData)
-	{
-		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
-		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
-			{
-				element.Value.ResolveDeBuff(chunkData);
-			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
-			{
-				debufList.Remove(element);
-			}
-		}
-	}
+	
 
 	public virtual void PlayerWasAttacked()
 	{
@@ -114,9 +96,20 @@ public partial class DebuffManager : Node
 		debuff.SetPLayer(_player);
 		debufList.AddLast(debuff);
 	}
-
-	public bool ContainsDebuff(BaseDebuff debuff)
+	
+	public bool ContainsDebuff(Type debuff)
 	{
-		return debufList.Contains(debuff);
+		return debufList.ContainsType(debuff);
+	}
+
+	public void RemoveDebuffsByType(Type debuff)
+	{
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
+		{
+			if (element.Value.EqualsType(debuff))
+			{
+				debufList.Remove(element);
+			}
+		}
 	}
 }

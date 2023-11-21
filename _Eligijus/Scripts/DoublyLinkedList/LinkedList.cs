@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
@@ -86,6 +87,18 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
         }
         return false;
     }
+    
+    public bool ContainsType(Type value)
+    {
+        for (LinkedListNode<T> element = First; element != null; element = element.Next)
+        {
+            if (element.Value.Equals(value))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void Remove(LinkedListNode<T> valueToRemove)
     {
@@ -127,6 +140,18 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
     }
     
     public LinkedListNode<T>? Find(T valueToFind)
+    {
+        for (LinkedListNode<T> element = First; element != null; element = element.Next)
+        {
+            if (element.Value.Equals(valueToFind))
+            {
+                return element;
+            }
+        }
+        return null;
+    }
+    
+    public LinkedListNode<T>? FindType(Type valueToFind)
     {
         for (LinkedListNode<T> element = First; element != null; element = element.Next)
         {
