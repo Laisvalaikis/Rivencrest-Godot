@@ -378,8 +378,12 @@ public partial class GameTileMap : Node2D
 				ResetChunk(previousCharacterChunk);
 				if (chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn())
 				{
-					chunk.GetCurrentObject().StepOn(chunk);
-					chunk.GetCurrentObject().Death();
+					Object currentObject = chunk.GetCurrentObject();
+					currentObject.StepOn(chunk);
+					if (currentObject.CanBeDestroyOnStepping())
+					{
+						currentObject.Death();
+					}
 				}
 			}
 		}

@@ -20,7 +20,7 @@ public partial class ObjectData : Resource
     [Export] 
     public bool canStepOnObject = false;
     [Export] 
-    public bool destroyObjectStepingOn = false;
+    public bool destroyObjectStepingOn = true;
     [Export]
     public Array<Ability> abilities;
     [Export]
@@ -40,6 +40,8 @@ public partial class ObjectData : Resource
         textColor = informationData.textColor;
         backgroundColor = informationData.backgroundColor;
         CharacterPortraitSprite = informationData.CharacterPortraitSprite;
+        canStepOnObject = informationData.canStepOnObject;
+        destroyObjectStepingOn = informationData.destroyObjectStepingOn;
         abilities = informationData.abilities;
         blessings = informationData.blessings;
     }

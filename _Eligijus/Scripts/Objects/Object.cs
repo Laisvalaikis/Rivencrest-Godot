@@ -128,5 +128,10 @@ public partial class Object : Node2D
     {
         return ObjectDataType.objectData.canStepOnObject;
     }
-    
+
+    public bool CanBeDestroyOnStepping()
+    {
+        return ObjectDataType.objectData.destroyObjectStepingOn;
+    }
+
 }
