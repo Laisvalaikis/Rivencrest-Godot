@@ -4,7 +4,7 @@ using Godot;
 public partial class StunAttack : BaseAction
 {
     [Export] private int spellDamage = 60;
-    [Export] private BaseDeBuff _debuff;
+    [Export] private BaseDebuff _debuff;
     public StunAttack()
     {
     }
@@ -30,8 +30,8 @@ public partial class StunAttack : BaseAction
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             DealDamage(chunk, spellDamage);
-            BaseDeBuff debuff = _debuff.CreateNewInstance();
-            chunk.GetCurrentPlayer().deBuffManager.AddDeBuff(debuff);
+            BaseDebuff debuff = _debuff.CreateNewInstance();
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff);
             FinishAbility();
         }
     }

@@ -1,21 +1,21 @@
 using Godot;
 using Godot.Collections;
 
-public partial class DeBuffManager : Node
+public partial class DebuffManager : Node
 {
 	[Export] 
 	private Player _player;
-	private LinkedList<BaseDeBuff> debufList;
+	private LinkedList<BaseDebuff> debufList;
 
 	public override void _Ready()
 	{
 		if (debufList == null)
 		{
-			debufList = new LinkedList<BaseDeBuff>();
+			debufList = new LinkedList<BaseDebuff>();
 		}
 		else
 		{
-			for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
+			for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
 			{
 				if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
 				{
@@ -31,7 +31,7 @@ public partial class DeBuffManager : Node
 	
 	public void OnTurnStart()
 	{
-		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
 		{
 			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
 			{
@@ -46,12 +46,12 @@ public partial class DeBuffManager : Node
 	
 	public void OnMouseClick(ChunkData chunkData)
 	{
-		ExecuteDeBuffs(chunkData);
+		ExecuteDebuffs(chunkData);
 	}
 
 	public void OnTurnEnd()
 	{
-		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
 		{
 			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
 			{
@@ -64,9 +64,9 @@ public partial class DeBuffManager : Node
 		}
 	}
 
-	private void ExecuteDeBuffs(ChunkData chunkData)
+	private void ExecuteDebuffs(ChunkData chunkData)
 	{
-		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
 		{
 			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
 			{
@@ -81,7 +81,7 @@ public partial class DeBuffManager : Node
 
 	public virtual void PlayerWasAttacked()
 	{
-		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
 		{
 			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
 			{
@@ -96,7 +96,7 @@ public partial class DeBuffManager : Node
 	
 	public virtual void PlayerDied()
 	{
-		for (LinkedListNode<BaseDeBuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
 		{
 			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
 			{
@@ -109,16 +109,14 @@ public partial class DeBuffManager : Node
 		}
 	}
 
-	public void AddDeBuff(BaseDeBuff deBuff)
+	public void AddDebuff(BaseDebuff debuff)
 	{
-		deBuff.SetPLayer(_player);
-		debufList.AddLast(deBuff);
+		debuff.SetPLayer(_player);
+		debufList.AddLast(debuff);
 	}
 
-	public bool ContainsDeBuff(BaseDeBuff deBuff)
+	public bool ContainsDebuff(BaseDebuff debuff)
 	{
-		return debufList.Contains(deBuff);
+		return debufList.Contains(debuff);
 	}
-	
-	
 }

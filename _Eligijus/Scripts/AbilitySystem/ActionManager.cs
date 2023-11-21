@@ -355,7 +355,6 @@ public partial class ActionManager : Node
 				_currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(_abilityPoints);
 				_currentAbility.Action.ResolveAbility(chunkData);
 				tempAbility.Action.ResolveBlessings(chunkData);
-				
 			}
 		}
 	}

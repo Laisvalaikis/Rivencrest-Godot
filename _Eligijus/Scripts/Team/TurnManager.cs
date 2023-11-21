@@ -261,7 +261,7 @@ public partial class TurnManager : Node
 		ChunkData chunk = GameTileMap.Tilemap.GetChunk(_mousePosition);
 		if (_currentPlayer != null)
 		{
-			_currentPlayer.deBuffManager.OnMouseClick(chunk);
+			_currentPlayer.debuffManager.OnMouseClick(chunk);
 			_currentPlayer.actionManager.OnMouseClick(chunk);
 		}
 	}

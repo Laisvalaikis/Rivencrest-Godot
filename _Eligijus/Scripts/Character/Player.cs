@@ -7,7 +7,7 @@ public partial class Player : Object
 	[Export] public PlayerInformation playerInformation;
 	[Export] public Debuffs debuffs;
 	[Export] public ActionManager actionManager;
-	[Export] public DeBuffManager deBuffManager;
+	[Export] public DebuffManager debuffManager;
 	public Array<UnlockedAbilitiesResource> unlockedAbilityList;
 	public Array<AbilityBlessingsResource> unlockedBlessingList;
 	public Array<UnlockedBlessingsResource> unlockedPLayerBlessings;
@@ -27,7 +27,7 @@ public partial class Player : Object
 	{
 		Hide();
 		actionManager.PlayerDied();
-		deBuffManager.PlayerDied();
+		debuffManager.PlayerDied();
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		if (team != null)
 		{
@@ -44,7 +44,7 @@ public partial class Player : Object
 	public override void PlayerWasDamaged()
 	{
 		actionManager.PlayerWasAttacked();
-		deBuffManager.PlayerWasAttacked();
+		debuffManager.PlayerWasAttacked();
 	}
 
 	public int GetMovementPoints()
@@ -129,7 +129,7 @@ public partial class Player : Object
 				playerBlessings[i].OnTurnStart(this);
 			}
 		}
-		deBuffManager.OnTurnStart();
+		debuffManager.OnTurnStart();
 		
 	}
 	
@@ -155,7 +155,7 @@ public partial class Player : Object
 				playerBlessings[i].OnTurnStart(this);
 			}
 		}
-		deBuffManager.OnTurnEnd();
+		debuffManager.OnTurnEnd();
 	}
 
 	public int GetPoisonCount()

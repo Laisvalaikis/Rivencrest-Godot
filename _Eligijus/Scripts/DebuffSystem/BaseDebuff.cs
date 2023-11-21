@@ -1,29 +1,29 @@
 using Godot;
 using System;
 
-public partial class BaseDeBuff : Resource
+public partial class BaseDebuff : Resource
 {
 	
 	[Export]
 	protected int lifetime = 1;
 	protected int lifetimeCount = 0;
 	protected Player _player;
-	public BaseDeBuff()
+	public BaseDebuff()
 	{
 			
 	}
 
-	public BaseDeBuff(BaseDeBuff blessing)
+	public BaseDebuff(BaseDebuff blessing)
 	{
 		lifetime = blessing.lifetime;
 	}
 
-	public virtual BaseDeBuff CreateNewInstance(BaseDeBuff baseBlessing)
+	public virtual BaseDebuff CreateNewInstance(BaseDebuff baseBlessing)
 	{
 		throw new NotImplementedException();
 	}
 
-	public virtual BaseDeBuff CreateNewInstance()
+	public virtual BaseDebuff CreateNewInstance()
 	{
 		throw new NotImplementedException();
 	}
