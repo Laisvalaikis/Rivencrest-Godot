@@ -376,9 +376,10 @@ public partial class GameTileMap : Node2D
 				moveCharacter.GlobalPosition = characterPosition;
 				SetCharacter(chunk, moveCharacter);
 				ResetChunk(previousCharacterChunk);
-				if (chunk.ObjectIsOnTile())
+				if (chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn())
 				{
 					chunk.GetCurrentObject().StepOn(chunk);
+					chunk.GetCurrentObject().Death();
 				}
 			}
 		}

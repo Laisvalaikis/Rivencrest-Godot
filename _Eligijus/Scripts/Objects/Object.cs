@@ -119,6 +119,11 @@ public partial class Object : Node2D
         ExecuteOnTurnEnd();
     }
 
+    public Array<Ability> GetAllAbilities()
+    {
+        return _abilities;
+    }
+
     public bool CanStepOn()
     {
         return ObjectDataType.objectData.canStepOnObject;

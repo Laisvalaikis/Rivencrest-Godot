@@ -73,6 +73,17 @@ public partial class TurnManager : Node
 		else
 		{
 			_objects.Remove(currentObject);
+			Array<Ability> abilities = currentObject.GetAllAbilities();
+			for (int i = 0; i < abilities.Count; i++)
+			{
+				UsedAbility usedAbility = new UsedAbility(abilities[i].Action);
+				LinkedListNode<UsedAbility> beforeStart = objectAbilitiesBeforeStartTurn.Find(usedAbility);
+				objectAbilitiesBeforeStartTurn.Remove(beforeStart);
+				LinkedListNode<UsedAbility> afterResolve = objectAbilitiesAfterResolve.Find(usedAbility);
+				objectAbilitiesAfterResolve.Remove(afterResolve);
+				LinkedListNode<UsedAbility> endTurn = objectAbilitiesEndTurn.Find(usedAbility);
+				objectAbilitiesEndTurn.Remove(endTurn);
+			}
 		}
 	}
 

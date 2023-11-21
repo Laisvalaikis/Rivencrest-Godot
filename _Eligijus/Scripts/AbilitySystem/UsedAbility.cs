@@ -7,7 +7,12 @@ public partial class UsedAbility : Resource
 	public ChunkData chunk { get; }
 	private int _turnLifetime ;
 	private int _turnsSinceCast = 0;
-	
+
+	public UsedAbility(BaseAction ability)
+	{
+		this.ability = ability;
+	}
+
 	public UsedAbility(BaseAction ability, ChunkData chunk)
 	{
 		this.ability = ability;
