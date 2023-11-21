@@ -2,7 +2,7 @@ using Godot;
 
 using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
-public class BuffManager : Node
+public partial class BuffManager : Node
 {
     [Export] 
 	private Player _player;
