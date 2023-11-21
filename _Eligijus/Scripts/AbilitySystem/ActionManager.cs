@@ -5,8 +5,6 @@ public partial class ActionManager : Node
 {
 	[Export] 
 	private Player _player;
-	[Export] 
-	private Debuffs _debuffs;
 	private Array<Ability> _baseAbilities;
 	private Array<Ability> _abilities;
 	[Export]
@@ -126,17 +124,17 @@ public partial class ActionManager : Node
 		_availableAbilityPoints += abilityPoints;
 	}
 	
-	public void RemoveSlowDown()
-	{
-		_debuffs.RemoveSlowDown(this);
-	}
+	// public void RemoveSlowDown()
+	// {
+	// 	_debuffs.RemoveSlowDown(this);
+	// }
 
 	public void AddAbilityPoints(int abilityPoints)
 	{
-		if (abilityPoints < 0)
-		{
-			_debuffs.SlowDownPlayer(abilityPoints);
-		}
+		// if (abilityPoints < 0)
+		// {
+		// 	_debuffs.SlowDownPlayer(abilityPoints);
+		// }
 
 		if (_abilityPoints + abilityPoints <= _availableAbilityPoints)
 		{
@@ -246,10 +244,10 @@ public partial class ActionManager : Node
 
 	public void OnTurnEnd()
 	{
-		_debuffs.TurnCounter();
-		_debuffs.CheckAbilityTurns();
-		_debuffs.CheckBaseAbilityTurns();
-		_debuffs.CheckWholeAbilities();
+		// _debuffs.TurnCounter();
+		// _debuffs.CheckAbilityTurns();
+		// _debuffs.CheckBaseAbilityTurns();
+		// _debuffs.CheckWholeAbilities();
 	}
 
 	public void OnAfterResolve()
@@ -351,7 +349,7 @@ public partial class ActionManager : Node
 	
 	private void ExecuteCurrentBaseAbility(ChunkData chunkData)
 	{
-		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility && _debuffs.CanUseBaseAbility( this))
+		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility)
 		{
 			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated())
 			{
@@ -364,7 +362,7 @@ public partial class ActionManager : Node
 
 	private void ExecuteCurrentAbility(ChunkData chunkData)
 	{
-		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability && _debuffs.CanUseAbility())
+		if ( _currentAbility != null && _currentAbility._type == AbilityType.Ability)
 		{
 			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated() && _abilityPoints >= _currentAbility.Action.GetAbilityPoints())
 			{
