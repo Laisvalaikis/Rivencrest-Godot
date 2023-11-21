@@ -12,7 +12,7 @@ public partial class PlayerInformation : ObjectInformation
 	public int xPToGain = 0;
 	private bool haveBarier = false;
 
-	public void SetupData(ObjectData objectInformation)
+	public override void SetupData(ObjectData objectInformation)
 	{
 		objectData = new ObjectDataType<ObjectData>(objectInformation, typeof(Player));
 	}
@@ -20,12 +20,12 @@ public partial class PlayerInformation : ObjectInformation
 	public override void _Ready()
 	{
 		base._Ready();
-		_health = _objectInformationData.maxHealth;
+		_health = objectData.objectData.maxHealth;
 	}
 
 	public float GetHealthPercentage()
 	{
-		float maxHealthDouble = _objectInformationData.maxHealth;
+		float maxHealthDouble = objectData.objectData.maxHealth;
 		float healthDouble = _health;
 		return healthDouble / maxHealthDouble * 100;
 	}

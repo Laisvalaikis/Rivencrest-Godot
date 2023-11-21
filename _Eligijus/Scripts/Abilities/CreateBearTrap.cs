@@ -15,6 +15,7 @@ public partial class CreateBearTrap : BaseAction
 	public CreateBearTrap(CreateBearTrap createBearTrap) : base(createBearTrap)
 	{
 		bearTrapPrefab = createBearTrap.bearTrapPrefab;
+		bearTrapData = createBearTrap.bearTrapData;
 	}
 	public override BaseAction CreateNewInstance(BaseAction action)
 	{
