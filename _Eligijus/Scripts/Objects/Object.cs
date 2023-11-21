@@ -109,6 +109,11 @@ public partial class Object : Node2D
         Execute(chunkData);
     }
 
+    public void OnExit(ChunkData chunkData)
+    {
+        
+    }
+
     public void Execute(ChunkData chunkData)
     {
         ExecuteResolve(chunkData);

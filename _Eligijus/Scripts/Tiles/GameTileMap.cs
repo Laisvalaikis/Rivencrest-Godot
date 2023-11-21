@@ -385,6 +385,11 @@ public partial class GameTileMap : Node2D
 						currentObject.Death();
 					}
 				}
+				if (previousCharacterChunk.ObjectIsOnTile() && previousCharacterChunk.GetCurrentObject().CanStepOn())
+				{
+					Object currentObject = previousCharacterChunk.GetCurrentObject();
+					currentObject.OnExit(chunk);
+				}
 			}
 		}
 		// SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
