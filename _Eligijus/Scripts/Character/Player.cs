@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using Rivencrestgodot._Eligijus.Scripts.Character;
 
 public partial class Player : Object
 {
@@ -17,6 +18,7 @@ public partial class Player : Object
 	protected bool weakSpot = false;
 	private int movementPoints = 3; //track movement points here in this class
 	private int previousMovementPoints = 3;
+	public PlayerActionMiddleware playerActionMiddleware;
 
 	public override void SetupObject(ObjectData objectInformation)
 	{
@@ -243,6 +245,4 @@ public partial class Player : Object
 		}
 		return totalDamage;
 	}
-
-
 }
