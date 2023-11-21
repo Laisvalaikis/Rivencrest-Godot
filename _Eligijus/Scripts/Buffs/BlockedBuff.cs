@@ -1,26 +1,27 @@
-namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
-public partial class BlockedDebuff : BaseDebuff
+namespace Rivencrestgodot._Eligijus.Scripts.BuffSystem;
+
+public partial class BlockedBuff : BaseBuff
 {
-    public BlockedDebuff()
+    public BlockedBuff()
     {
         
     }
-    public BlockedDebuff(BlockedDebuff debuff): base(debuff)
+    public BlockedBuff(BlockedBuff buff): base(buff)
     {
         
     }
     
-    public override BaseDebuff CreateNewInstance(BaseDebuff baseDebuff)
+    public override BaseBuff CreateNewInstance(BaseBuff baseBuff)
     {
-        BlockedDebuff debuff = new BlockedDebuff((BlockedDebuff)baseDebuff);
-        return debuff;
+        BlockedBuff buff = new BlockedBuff((BlockedBuff)baseBuff);
+        return buff;
     }
     
-    public override BaseDebuff CreateNewInstance()
+    public override BaseBuff CreateNewInstance()
     {
-        BlockedDebuff debuff = new BlockedDebuff(this);
-        return debuff;
+        BlockedBuff buff = new BlockedBuff(this);
+        return buff;
     }
     
     public override void Start()
@@ -28,7 +29,7 @@ public partial class BlockedDebuff : BaseDebuff
 
     }
     
-    public override void ResolveDeBuff(ChunkData chunkData)
+    public override void ResolveBuff(ChunkData chunkData)
     {
         
     }
