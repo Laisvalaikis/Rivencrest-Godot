@@ -12,7 +12,6 @@ public partial class FogOfWar : Sprite2D
     public override void _Ready()
     {
         base._Ready();
-        lightImage.Resize(100, 100, Image.Interpolation.Nearest);
         lightOffset = new Vector2I((width / 2) - (lightImage.GetWidth() / 2), (width / 2) - (lightImage.GetHeight() / 2));
         fogImage = Image.Create(width, height, false, Image.Format.Rgbah);
         fogImage.Fill(Colors.Black);
