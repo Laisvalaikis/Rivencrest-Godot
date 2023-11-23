@@ -3,6 +3,9 @@ using Godot;
 
 public partial class CometFall : BaseAction
 {
+    [Export] private ObjectData cometTileData;
+    [Export] private Resource cometTilePrefab;
+    private Object spawnedCometTile;
     private List<ChunkData> _damageTiles = new List<ChunkData>();
 
     public CometFall()
@@ -11,6 +14,8 @@ public partial class CometFall : BaseAction
     }
     public CometFall(CometFall ability): base(ability)
     {
+        cometTilePrefab = ability.cometTilePrefab;
+        cometTileData = ability.cometTileData;
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -37,6 +42,7 @@ public partial class CometFall : BaseAction
                     DealRandomDamageToTarget(chunk, minAttackDamage/3, maxAttackDamage/3);
                 }
             }
+            spawnedCometTile.Death();
             _damageTiles.Clear();
         }
     }
@@ -46,6 +52,11 @@ public partial class CometFall : BaseAction
         base.ResolveAbility(chunk);
         _damageTiles.Clear();
         _damageTiles.Add(chunk);
+        PackedScene spawnCharacter = (PackedScene)cometTilePrefab;
+        spawnedCometTile = spawnCharacter.Instantiate<Object>();
+        player.GetTree().Root.CallDeferred("add_child", spawnedCometTile);
+        spawnedCometTile.SetupObject(cometTileData);
+        GameTileMap.Tilemap.SpawnObject(spawnedCometTile, chunk);
         FinishAbility();
     }
 
