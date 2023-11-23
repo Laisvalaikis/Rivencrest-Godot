@@ -308,24 +308,33 @@ public partial class GameTileMap : Node2D
 		}
 	}
 	
-	public void SetCharacter(Vector2 mousePosition, Node2D character)
+	public void SetCharacter(Vector2 mousePosition, Player character)
 	{
 		if (GetChunk(mousePosition) != null)
 		{
+			Ability playerMovement = character.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
+			if (playerMovement != null)
+			{
+				List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(playerMovement.Action.attackRange);
+				foreach (ChunkData generatedChunk in chunkDatas)
+				{
+					_fogOfWar.UpdateFog(generatedChunk.GetPosition());
+				}
+			}
 			_fogOfWar.UpdateFog(mousePosition);
 			ChunkData chunk = GetChunk(mousePosition);
-			chunk.SetCurrentCharacter((Player)character);
+			chunk.SetCurrentCharacter(character);
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
 		}
 	}
 	
-	public void SetEnemy(Vector2 mousePosition, Node2D character)
+	public void SetEnemy(Vector2 mousePosition, Player character)
 	{
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunk = GetChunk(mousePosition);
-			chunk.SetCurrentCharacter((Player)character);
+			chunk.SetCurrentCharacter(character);
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
 		}
@@ -391,9 +400,12 @@ public partial class GameTileMap : Node2D
 				Ability playerMovement = moveCharacter.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
 				if (playerMovement != null)
 				{
-					
+					List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(playerMovement.Action.attackRange);
+					foreach (ChunkData generatedChunk in chunkDatas)
+					{
+						_fogOfWar.UpdateFog(generatedChunk.GetPosition());
+					}
 				}
-				_fogOfWar.UpdateFog(characterPosition);
 				ResetChunk(previousCharacterChunk);
 				if (chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn())
 				{

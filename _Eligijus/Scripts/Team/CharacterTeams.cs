@@ -212,20 +212,11 @@ public partial class CharacterTeams : Node
 				spawnedCharacter.playerInTeamIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
 				spawnedCharacter.SetPlayerTeam(teamIndex);
-				if (!allCharacterList[teamIndex].isTeamAI && !allCharacterList[teamIndex].isEnemies)
-				{
-					GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
-				}
-				else
-				{
-					GameTileMap.Tilemap.SetEnemy(position, spawnedCharacter);
-				}
 				currentCharacters.Teams[teamIndex].characters.Add(i, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characterPrefabs.Add(i, allCharacterList[teamIndex].characterPrefabs[i]);
 				currentCharacters.Teams[teamIndex].coordinates.Add(i, coordinate.Value);
 				if (allCharacterList[teamIndex].characterResources != null && allCharacterList[teamIndex].characterResources.Count != 0)
 				{
-					spawnedCharacter.SetupObject(allCharacterList[teamIndex].characterResources[i].playerInformation);
 					currentCharacters.Teams[teamIndex].characterResources
 						.Add(i, allCharacterList[teamIndex].characterResources[i]);
 					spawnedCharacter.unlockedAbilityList =
@@ -234,6 +225,7 @@ public partial class CharacterTeams : Node
 						allCharacterList[teamIndex].characterResources[i].abilityBlessings;
 					spawnedCharacter.unlockedPLayerBlessings =
 						allCharacterList[teamIndex].characterResources[i].characterBlessings;
+					spawnedCharacter.SetupObject(allCharacterList[teamIndex].characterResources[i].playerInformation);
 				}
 
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
@@ -243,6 +235,14 @@ public partial class CharacterTeams : Node
 				deadCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
 				deadCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
 				spawnedCharacter.actionManager.AddTurnManager(_turnManager);
+				if (!currentCharacters.Teams[teamIndex].isTeamAI && !currentCharacters.Teams[teamIndex].isEnemies)
+				{
+					GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
+				}
+				else
+				{
+					GameTileMap.Tilemap.SetEnemy(position, spawnedCharacter);
+				}
 			}
 			i++;
 		}

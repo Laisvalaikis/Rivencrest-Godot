@@ -27,9 +27,8 @@ public partial class ActionManager : Node
 	private Data _data;
 	private TurnManager _turnManager;
 	
-	public override void _Ready()
+	public void InitializeActionManager()
 	{
-		base._Ready();
 		if (Data.Instance != null)
 		{
 			_data = Data.Instance;
