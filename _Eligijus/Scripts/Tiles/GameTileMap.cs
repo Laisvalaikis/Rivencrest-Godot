@@ -330,6 +330,7 @@ public partial class GameTileMap : Node2D
 			List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(3); // playerMovement.Action.attackRange
 			foreach (ChunkData generatedChunk in chunkDatas)
 			{
+				generatedChunk.SetFogOnTile(false);
 				_fogOfWar.UpdateFog(generatedChunk.GetPosition());
 			}
 		}
