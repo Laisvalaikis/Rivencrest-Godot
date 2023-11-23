@@ -13,5 +13,6 @@ textColor = Color(0, 0, 0, 0)
 backgroundColor = Color(0, 0, 0, 0)
 canStepOnObject = true
 destroyObjectStepingOn = true
+canBeDestroyed = true
 abilities = Array[Resource]([ExtResource("1_xjicx")])
 blessings = Array[Resource]([])

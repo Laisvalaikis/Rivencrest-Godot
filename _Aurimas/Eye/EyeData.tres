@@ -5,9 +5,13 @@
 [resource]
 script = ExtResource("1_as135")
 maxHealth = 1
+accuracy = 100
 classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
 backgroundColor = Color(0, 0, 0, 0)
+canStepOnObject = false
+destroyObjectStepingOn = false
+canBeDestroyed = true
 abilities = null
 blessings = null
