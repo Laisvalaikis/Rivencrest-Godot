@@ -3,12 +3,17 @@ using Godot;
 
 public partial class CreateEye : BaseAction
 {
-	[Export] 
-	private Resource eyePrefab;
-
-	private Player spawnedEye;
+	[Export] private ObjectData eyeData;
+	[Export] private Resource eyePrefab;
+	private Object spawnedEye;
 	private bool isEyeActive = true;
-	
+
+	public override void Start()
+	{
+		base.Start();
+		customText = ""; //To not display damage (might be temporary solution)
+	}
+
 	public CreateEye()
 	{
 		
@@ -16,6 +21,7 @@ public partial class CreateEye : BaseAction
 	public CreateEye(CreateEye createEye) : base(createEye)
 	{
 		eyePrefab = createEye.eyePrefab;
+		eyeData = createEye.eyeData;
 	}
 	public override BaseAction CreateNewInstance(BaseAction action)
 	{
@@ -27,11 +33,11 @@ public partial class CreateEye : BaseAction
 		if (_chunkList.Contains(chunk) && !chunk.CharacterIsOnTile())
 		{
 			UpdateAbilityButton();
-			PackedScene spawnResource = (PackedScene)eyePrefab;
-			spawnedEye = spawnResource.Instantiate<Player>();
+			PackedScene spawnCharacter = (PackedScene)eyePrefab;
+			spawnedEye = spawnCharacter.Instantiate<Object>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedEye);
-			spawnedEye.GlobalPosition = chunk.GetPosition();
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedEye);
+			spawnedEye.SetupObject(eyeData);
+			GameTileMap.Tilemap.SpawnObject(spawnedEye, chunk);
 			base.ResolveAbility(chunk);
 		}
 		FinishAbility();
@@ -40,42 +46,42 @@ public partial class CreateEye : BaseAction
 	public override void OnTurnEnd(ChunkData chunkData)
 	{
 		base.OnTurnEnd(chunkData);
-		spawnedEye.QueueFree();
+		spawnedEye.Death();
 	}
 
-	public override void CreateAvailableChunkList(int attackRange)
+	public override void CreateAvailableChunkList(int range)
 	{
 		(int x, int y) coordinates = GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetIndexes();
 		ChunkData[,] chunkDataArray = GameTileMap.Tilemap.GetChunksArray();
 		_chunkList.Clear();
 		
-		int top = coordinates.y - attackRange;
-		int bottom = coordinates.y + attackRange;
-		int right = coordinates.x + attackRange;
-		int left = coordinates.x - attackRange;
+		int top = coordinates.y - range;
+		int bottom = coordinates.y + range;
+		int right = coordinates.x + range;
+		int left = coordinates.x - range;
 
 		if (GameTileMap.Tilemap.CheckBounds(coordinates.x, top))
 		{
 			ChunkData chunkDataTop = chunkDataArray[coordinates.x, top];
-			_chunkList.Add(chunkDataTop);
+			TryAddTile(chunkDataTop);
 		}
 
 		if (GameTileMap.Tilemap.CheckBounds(coordinates.x, bottom))
 		{
 			ChunkData chunkDataBottom = chunkDataArray[coordinates.x, bottom];
-			_chunkList.Add(chunkDataBottom);
+			TryAddTile(chunkDataBottom);
 		}
 
 		if (GameTileMap.Tilemap.CheckBounds(right, coordinates.y))
 		{
 			ChunkData chunkDataRight = chunkDataArray[right, coordinates.y];
-			_chunkList.Add(chunkDataRight);
+			TryAddTile(chunkDataRight);
 		}
 
 		if (GameTileMap.Tilemap.CheckBounds(left, coordinates.y))
 		{
 			ChunkData chunkDataLeft = chunkDataArray[left, coordinates.y];
-			_chunkList.Add(chunkDataLeft);
+			TryAddTile(chunkDataLeft);
 		}
 	}
 }
