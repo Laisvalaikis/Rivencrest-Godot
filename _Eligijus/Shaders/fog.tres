@@ -4,7 +4,7 @@
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.3.stable.mono's CanvasItemMaterial.
 
 shader_type canvas_item;
-render_mode blend_mul;
+render_mode blend_mix;
 
 uniform sampler2D NOISE_PATTERN : repeat_enable;
 
@@ -41,7 +41,12 @@ float rand(vec2 uv) {
 void fragment() {
 	vec4 mainTexture = texture(TEXTURE, UV);
 	vec2 motion = vec2(rand(UV + TIME * starting_frequency * velocity));
+	vec4 negative_fog_value = vec4(1.0 - fog_color.rgb, fog_color.a);
 	vec4 color = mix(mainTexture, fog_color, rand(UV + motion));
-	
 	COLOR = color;
+	if(color.r * color.g * color.b > 0.01)
+	{
+	    COLOR.a = 0.0;
+	}
+	
 }"
