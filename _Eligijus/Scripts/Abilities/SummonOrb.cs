@@ -4,10 +4,11 @@ using Godot;
 
 public partial class SummonOrb : BaseAction
 {
+    [Export] private ObjectData orbData;
     [Export]
     private Resource orbPrefab;
 
-    private Player orb;
+    private Object orb;
     private PlayerInformation _orbInformation;
     private ChunkData _orbChunkData;
     private List<ChunkData> _attackList;
@@ -20,6 +21,7 @@ public partial class SummonOrb : BaseAction
     public SummonOrb(SummonOrb ability): base(ability)
     {
         orbPrefab = ability.orbPrefab;
+        orbData = ability.orbData;
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -46,11 +48,13 @@ public partial class SummonOrb : BaseAction
     private void SpawnOrb(ChunkData chunkData)
     {
         PackedScene spawnResource = (PackedScene)orbPrefab;
-        orb = spawnResource.Instantiate<Player>();
+       // orb = spawnResource.Instantiate<Player>();
+       orb = spawnResource.Instantiate<Object>();
         player.GetTree().Root.CallDeferred("add_child", orb);
-        _orbInformation = orb.playerInformation;
+        orb.SetupObject(orbData);
+       // _orbInformation = orb.playerInformation;
         _orbInformation.SetInformationType(typeof(Object));
-        chunkData.SetCurrentCharacter(orb);
+       // chunkData.SetCurrentCharacter(orb);
         chunkData.GetTileHighlight().ActivatePlayerTile(true);
         _orbChunkData = chunkData;
     }
