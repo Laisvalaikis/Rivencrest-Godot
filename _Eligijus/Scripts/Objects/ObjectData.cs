@@ -8,6 +8,8 @@ public partial class ObjectData : Resource
     [Export]
     public int accuracy = 100;
     [Export]
+    public int visionRange = 3;
+    [Export]
     public Color classColor;
     [Export]
     public Color secondClassColor;
@@ -37,6 +39,7 @@ public partial class ObjectData : Resource
     {
         maxHealth = informationData.maxHealth;
         accuracy = informationData.accuracy;
+        visionRange = informationData.visionRange;
         classColor = informationData.classColor;
         secondClassColor = informationData.secondClassColor;
         textColor = informationData.textColor;
