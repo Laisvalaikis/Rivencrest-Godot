@@ -355,7 +355,7 @@ public partial class GameTileMap : Node2D
 		if (chunk != null)
 		{
 			chunk.SetCurrentObject(setObject);
-			chunk.GetTileHighlight().ActivatePlayerTile(true);
+			//chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
 		}
 	}
