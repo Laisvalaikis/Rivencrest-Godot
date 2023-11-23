@@ -324,10 +324,10 @@ public partial class GameTileMap : Node2D
 
 	private void UpdateFog(Player character)
 	{
-		Ability playerMovement = character.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
+		Ability playerMovement = character.actionManager.ReturnPlayerMovement();
 		if (playerMovement != null)
 		{
-			List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(3); // playerMovement.Action.attackRange
+			List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(playerMovement.Action.attackRange);
 			foreach (ChunkData generatedChunk in chunkDatas)
 			{
 				generatedChunk.SetFogOnTile(false);
