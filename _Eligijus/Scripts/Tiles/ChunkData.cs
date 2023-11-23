@@ -14,14 +14,13 @@ public class ChunkData
     private int _indexWidth;
     private int _indexHeight;
     private bool _standingOnChunk = false;
-    private bool _canUseTile = false;
-    private bool fogIsOnTile = true;
+    private bool _fogIsOnTile = true;
     private bool _tileIsLocked = false;
     private ObjectType<Object> _currentPlayer;
     private ObjectType<Object> _currentObject;
     private HighlightTile _highlightTile;
     
-    public ChunkData(int indexWidth, int indexHeight, float width, float height, float positionWidth, float positionHeight, bool tileIsLocked, HighlightTile highlightTile) //SpriteRenderer tileSpriteRenderer, HighlightTile highlightTile,  bool tileIsLocked
+    public ChunkData(int indexWidth, int indexHeight, float width, float height, float positionWidth, float positionHeight, bool tileIsLocked, bool fogOnTile, HighlightTile highlightTile) //SpriteRenderer tileSpriteRenderer, HighlightTile highlightTile,  bool tileIsLocked
     {
         _indexHeight = indexHeight;
         _indexWidth = indexWidth;
@@ -30,6 +29,7 @@ public class ChunkData
         _positionWidth = positionWidth;
         _positionHeight = positionHeight;
         _tileIsLocked = tileIsLocked;
+        _fogIsOnTile = fogOnTile;
         _highlightTile = highlightTile;
     }
     
@@ -159,19 +159,14 @@ public class ChunkData
 
     public void SetFogOnTile(bool isFogOnTile)
     {
-        fogIsOnTile = isFogOnTile;
+        _fogIsOnTile = isFogOnTile;
     }
 
     public bool IsFogOnTile()
     {
-        return fogIsOnTile;
+        return _fogIsOnTile;
     }
-
-    public bool CanUseTile()
-    {
-        return _canUseTile;
-    }
-
+    
     public bool IsStandingOnChunk()
     {
         return _standingOnChunk;

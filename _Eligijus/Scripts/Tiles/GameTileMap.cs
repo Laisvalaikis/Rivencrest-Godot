@@ -202,7 +202,7 @@ public partial class GameTileMap : Node2D
 				tileNode.CallDeferred("hide");
 				// tileNode.GlobalPosition = new Vector2(widthPosition, heightPosition);
 				
-				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition + (currentMap._chunkSize/2), heightPosition + + (currentMap._chunkSize/2), false, tileNode);
+				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition + (currentMap._chunkSize/2), heightPosition + (currentMap._chunkSize/2), false, true, tileNode);
 				//tileSpriteRenderers[chunckIndex], tileHighlights[chunckIndex], false
 				if (currentMap._mapBoundries.boundries[h].Y - currentMap._chunkSize <= heightPosition - (heightSize) &&
 					currentMap._mapBoundries.boundries[h].Y >=  heightPosition &&
