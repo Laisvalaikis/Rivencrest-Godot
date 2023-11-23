@@ -1,9 +1,7 @@
 [gd_resource type="Shader" format=3 uid="uid://c8ydwtwb6a8ni"]
 
 [resource]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.1.3.stable.mono's CanvasItemMaterial.
-
-shader_type canvas_item;
+code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform sampler2D NOISE_PATTERN : repeat_enable;
@@ -21,7 +19,7 @@ uniform float starting_frequency = 1.0;
 uniform float shift: hint_range(-1.0, 0.0) = -0.2;
 
 // White cut off
-uniform float white_cutoff: hint_range(0.0, 1.0) = 0.01;
+uniform float white_cutoff: hint_range(0.0, 1.0) = 0.999;
 
 // Direction and speed of travel.
 uniform vec2 velocity = vec2(1.0, 1.0);

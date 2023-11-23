@@ -23,10 +23,9 @@ public partial class GameTileMap : Node2D
 	[Export] private TeamInformation teamInformation;
 	[Export] private SelectAction _selectAction;
 	[Export] private Node2D highligtHolder;
+	[Export] private FogOfWar _fogOfWar;
 	[Export] private Resource textTilePrefab;
 	[Export] private Resource highlightTilePrefab;
-	// [SerializeField] private SpriteRenderer[] tileSpriteRenderers;
-	// [SerializeField] private GameObject tiles;
 	[Export] private bool showChunks;
 	private int _chunkCountWidth = 0;
 	private int _chunkCountHeight = 0;
@@ -313,6 +312,18 @@ public partial class GameTileMap : Node2D
 	{
 		if (GetChunk(mousePosition) != null)
 		{
+			_fogOfWar.UpdateFog(mousePosition);
+			ChunkData chunk = GetChunk(mousePosition);
+			chunk.SetCurrentCharacter((Player)character);
+			chunk.GetTileHighlight().ActivatePlayerTile(true);
+			chunk.GetTileHighlight().EnableTile(true);
+		}
+	}
+	
+	public void SetEnemy(Vector2 mousePosition, Node2D character)
+	{
+		if (GetChunk(mousePosition) != null)
+		{
 			ChunkData chunk = GetChunk(mousePosition);
 			chunk.SetCurrentCharacter((Player)character);
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
@@ -373,9 +384,16 @@ public partial class GameTileMap : Node2D
 			Vector2 characterPosition = chunk.GetPosition();
 			if (previousCharacterChunk != chunk)
 			{
+				
 				moveCharacter.GlobalPosition = characterPosition;
 				moveCharacter.OnExit(previousCharacterChunk, chunk);
 				SetCharacter(chunk, moveCharacter);
+				Ability playerMovement = moveCharacter.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
+				if (playerMovement != null)
+				{
+					
+				}
+				_fogOfWar.UpdateFog(characterPosition);
 				ResetChunk(previousCharacterChunk);
 				if (chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn())
 				{

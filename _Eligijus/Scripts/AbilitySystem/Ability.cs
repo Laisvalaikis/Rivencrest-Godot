@@ -30,5 +30,16 @@ public partial class Ability : Resource
 		BaseAction action = ability.Action.CreateNewInstance(ability.Action);
 		Action = action;
 	}
+	
+	public bool Equals(Type type)
+	{
+		//Check for null and compare run-time types.
+		if (type == null || !this.Action.GetType().Equals(type))
+		{
+			return false;
+		}
+
+		return true;
+	}
 
 }

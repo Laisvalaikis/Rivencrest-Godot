@@ -212,7 +212,14 @@ public partial class CharacterTeams : Node
 				spawnedCharacter.playerInTeamIndex = i;
 				spawnedCharacter.SetPlayerTeam(this);
 				spawnedCharacter.SetPlayerTeam(teamIndex);
-				GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
+				if (!allCharacterList[teamIndex].isTeamAI && !allCharacterList[teamIndex].isEnemies)
+				{
+					GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);
+				}
+				else
+				{
+					GameTileMap.Tilemap.SetEnemy(position, spawnedCharacter);
+				}
 				currentCharacters.Teams[teamIndex].characters.Add(i, spawnedCharacter);
 				currentCharacters.Teams[teamIndex].characterPrefabs.Add(i, allCharacterList[teamIndex].characterPrefabs[i]);
 				currentCharacters.Teams[teamIndex].coordinates.Add(i, coordinate.Value);

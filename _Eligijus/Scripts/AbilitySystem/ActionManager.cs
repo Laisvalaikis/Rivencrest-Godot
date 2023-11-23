@@ -106,8 +106,20 @@ public partial class ActionManager : Node
 	{
 		return _baseAbilities;
 	}
-	
-	
+
+	public Ability ReturnPlayerMovement()
+	{
+		for (int i = 0; i < _baseAbilities.Count; i++)
+		{
+			if (_baseAbilities[i].Equals(typeof(PlayerMovement)))
+			{
+				return _baseAbilities[i];
+			}
+		}
+
+		return null;
+	}
+
 	public void RemoveAllActionPoints() 
 	{
 		_hasSlowAbilityBeenCast = true;
