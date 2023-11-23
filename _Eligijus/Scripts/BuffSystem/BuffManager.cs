@@ -4,7 +4,7 @@ using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class BuffManager : Node
 {
-    [Export] 
+	[Export] 
 	private Player _player;
 	private LinkedList<BaseBuff> debufList;
 

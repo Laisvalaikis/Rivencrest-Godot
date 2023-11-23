@@ -361,6 +361,10 @@ public abstract partial class BaseAction: Resource
 		{
 			return abilityCooldown;
 		}
+		public int IncreaseAbilityCooldown()
+		{
+			return cooldownCount++;
+		}
 
 		public virtual void OnMoveArrows(ChunkData hoveredChunk, ChunkData previousChunk)
 		{
