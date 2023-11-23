@@ -213,7 +213,7 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 		
-		public virtual List<ChunkData> GetAvailableChunkList(int range)
+		public List<ChunkData> GetAvailableChunkList(int range)
 		{
 			ChunkData startChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 			if(laserGrid)

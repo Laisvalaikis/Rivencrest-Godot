@@ -217,6 +217,7 @@ public partial class CharacterTeams : Node
 				currentCharacters.Teams[teamIndex].coordinates.Add(i, coordinate.Value);
 				if (allCharacterList[teamIndex].characterResources != null && allCharacterList[teamIndex].characterResources.Count != 0)
 				{
+					spawnedCharacter.actionManager.AddTurnManager(_turnManager);
 					currentCharacters.Teams[teamIndex].characterResources
 						.Add(i, allCharacterList[teamIndex].characterResources[i]);
 					spawnedCharacter.unlockedAbilityList =
@@ -225,16 +226,15 @@ public partial class CharacterTeams : Node
 						allCharacterList[teamIndex].characterResources[i].abilityBlessings;
 					spawnedCharacter.unlockedPLayerBlessings =
 						allCharacterList[teamIndex].characterResources[i].characterBlessings;
-					spawnedCharacter.SetupObject(allCharacterList[teamIndex].characterResources[i].playerInformation);
+					spawnedCharacter.SetupObject(currentCharacters.Teams[teamIndex].characterResources[i].playerInformation);
 				}
-
 				currentCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
 				currentCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
 				currentCharacters.Teams[teamIndex].teamColor = allCharacterList[teamIndex].teamColor;
 				currentCharacters.Teams[teamIndex].teamName = allCharacterList[teamIndex].teamName;
 				deadCharacters.Teams[teamIndex].isEnemies = allCharacterList[teamIndex].isEnemies;
 				deadCharacters.Teams[teamIndex].isTeamAI = allCharacterList[teamIndex].isTeamAI;
-				spawnedCharacter.actionManager.AddTurnManager(_turnManager);
+				
 				if (!currentCharacters.Teams[teamIndex].isTeamAI && !currentCharacters.Teams[teamIndex].isEnemies)
 				{
 					GameTileMap.Tilemap.SetCharacter(position, spawnedCharacter);

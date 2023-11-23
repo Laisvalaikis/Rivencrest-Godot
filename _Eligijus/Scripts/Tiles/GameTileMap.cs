@@ -312,18 +312,20 @@ public partial class GameTileMap : Node2D
 	{
 		if (GetChunk(mousePosition) != null)
 		{
+			ChunkData chunk = GetChunk(mousePosition);
+			chunk.SetCurrentCharacter(character);
+			_currentSelectedCharacter = character;
 			Ability playerMovement = character.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
 			if (playerMovement != null)
 			{
-				List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(playerMovement.Action.attackRange);
+				List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(3); // playerMovement.Action.attackRange
 				foreach (ChunkData generatedChunk in chunkDatas)
 				{
 					_fogOfWar.UpdateFog(generatedChunk.GetPosition());
 				}
 			}
 			_fogOfWar.UpdateFog(mousePosition);
-			ChunkData chunk = GetChunk(mousePosition);
-			chunk.SetCurrentCharacter(character);
+			_currentSelectedCharacter = null;
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
 		}
