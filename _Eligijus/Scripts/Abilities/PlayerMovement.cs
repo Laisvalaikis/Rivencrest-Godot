@@ -152,6 +152,7 @@ public partial class PlayerMovement : BaseAction
 		HighlightAllGridTiles();
 	}
 	
+	
 	protected override void GenerateDiamondPattern(ChunkData centerChunk, int radius)
 	{
 		Queue<(ChunkData chunk, int distance)> queue = new Queue<(ChunkData, int)>();

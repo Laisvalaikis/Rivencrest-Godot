@@ -327,7 +327,7 @@ public partial class GameTileMap : Node2D
 		Ability playerMovement = character.actionManager.ReturnPlayerMovement();
 		if (playerMovement != null)
 		{
-			List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(playerMovement.Action.attackRange);
+			List<ChunkData> chunkDatas = playerMovement.Action.GetVisionChunkList();
 			foreach (ChunkData generatedChunk in chunkDatas)
 			{
 				generatedChunk.SetFogOnTile(false);

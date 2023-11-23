@@ -13,6 +13,8 @@ public abstract partial class BaseAction: Resource
 		[Export]
 		public int attackRange = 1;
 		[Export]
+		public int visionRange = 3;
+		[Export]
 		public int minAttackDamage = 0;
 		[Export]
 		public int maxAttackDamage = 0;
@@ -66,6 +68,7 @@ public abstract partial class BaseAction: Resource
 			turnAfterResolveLifetime = action.turnAfterResolveLifetime;
 			abilityPoints = action.abilityPoints;
 			attackRange = action.attackRange;
+			visionRange = action.visionRange;
 			minAttackDamage = action.minAttackDamage;
 			maxAttackDamage = action.maxAttackDamage;
 			isAbilitySlow = action.isAbilitySlow;
@@ -213,23 +216,21 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 		
-		public List<ChunkData> GetAvailableChunkList(int range)
+		public virtual List<ChunkData> GetVisionChunkList()
 		{
 			ChunkData startChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 			if(laserGrid)
 			{
-				GeneratePlusPattern(startChunk, range);
+				GeneratePlusPattern(startChunk, visionRange);
 			}
 			else
 			{
 				GD.Print(startChunk.GetPosition());
-				GenerateDiamondPattern(startChunk, range);
+				GenerateDiamondPattern(startChunk, visionRange);
 			}
 
 			return _chunkList;
 		}
-		
-		
 
 		public List<ChunkData> GetChunkList()
 		{
