@@ -2,9 +2,10 @@ using Godot;
 
 public partial class ThrowSpear : BaseAction
 {
+	[Export] private ObjectData throwSpearData;
 	[Export] private Resource spearPrefab;
 	private bool laserGrid = true;
-	private Player spawnedCharacter;
+	private Object spawnedCharacter;
 	private ChunkData[,] _chunkArray;
 	private int _globalIndex = -1;
 	public ThrowSpear()
@@ -14,6 +15,7 @@ public partial class ThrowSpear : BaseAction
 	public ThrowSpear(ThrowSpear throwSpear): base(throwSpear)
 	{
 		spearPrefab = throwSpear.spearPrefab;
+		throwSpearData = throwSpear.throwSpearData;
 	}
 	public override BaseAction CreateNewInstance(BaseAction action)
 	{
@@ -151,18 +153,20 @@ public partial class ThrowSpear : BaseAction
 			if (GameTileMap.Tilemap.CheckBounds(indexes.x + sideVector.x, indexes.y + sideVector.y) && !chunkData.CharacterIsOnTile())
 			{
 				PackedScene spawnResource = (PackedScene)spearPrefab;
-				spawnedCharacter = spawnResource.Instantiate<Player>();
+				spawnedCharacter = spawnResource.Instantiate<Object>();
 				player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-				GameTileMap.Tilemap.MoveSelectedCharacter(chunkData, spawnedCharacter);
+				spawnedCharacter.SetupObject(throwSpearData);
+				GameTileMap.Tilemap.SpawnObject(spawnedCharacter, chunkData);
 			}
 		}
 
 		if (!chunk.CharacterIsOnTile()) //priesas mirsta
 		{
 			PackedScene spawnResource = (PackedScene)spearPrefab;
-			spawnedCharacter = spawnResource.Instantiate<Player>();
+			spawnedCharacter = spawnResource.Instantiate<Object>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
+			spawnedCharacter.SetupObject(throwSpearData);
+			GameTileMap.Tilemap.SpawnObject(spawnedCharacter, chunk);
 		}
 
 		if (chunk.CharacterIsOnTile())     // priesas nemirsta ir virs jo yra mapBorder
