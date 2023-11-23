@@ -315,22 +315,26 @@ public partial class GameTileMap : Node2D
 			ChunkData chunk = GetChunk(mousePosition);
 			chunk.SetCurrentCharacter(character);
 			_currentSelectedCharacter = character;
-			Ability playerMovement = character.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
-			if (playerMovement != null)
-			{
-				List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(3); // playerMovement.Action.attackRange
-				foreach (ChunkData generatedChunk in chunkDatas)
-				{
-					_fogOfWar.UpdateFog(generatedChunk.GetPosition());
-				}
-			}
-			_fogOfWar.UpdateFog(mousePosition);
+			UpdateFog(character);
 			_currentSelectedCharacter = null;
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
 		}
 	}
-	
+
+	private void UpdateFog(Player character)
+	{
+		Ability playerMovement = character.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
+		if (playerMovement != null)
+		{
+			List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(3); // playerMovement.Action.attackRange
+			foreach (ChunkData generatedChunk in chunkDatas)
+			{
+				_fogOfWar.UpdateFog(generatedChunk.GetPosition());
+			}
+		}
+	}
+
 	public void SetEnemy(Vector2 mousePosition, Player character)
 	{
 		if (GetChunk(mousePosition) != null)
@@ -399,15 +403,7 @@ public partial class GameTileMap : Node2D
 				moveCharacter.GlobalPosition = characterPosition;
 				moveCharacter.OnExit(previousCharacterChunk, chunk);
 				SetCharacter(chunk, moveCharacter);
-				Ability playerMovement = moveCharacter.actionManager.ReturnPlayerMovement(); // reikia gauti character movement jo range ir grida tada pagal tai unlockinti fog
-				if (playerMovement != null)
-				{
-					List<ChunkData> chunkDatas = playerMovement.Action.GetAvailableChunkList(playerMovement.Action.attackRange);
-					foreach (ChunkData generatedChunk in chunkDatas)
-					{
-						_fogOfWar.UpdateFog(generatedChunk.GetPosition());
-					}
-				}
+				UpdateFog(moveCharacter);
 				ResetChunk(previousCharacterChunk);
 				if (chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn())
 				{

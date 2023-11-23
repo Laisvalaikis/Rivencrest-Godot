@@ -6,7 +6,21 @@ using Godot;
 [System.Serializable]
 public class ChunkData
 {
-
+    
+    private float _width;
+    private float _height;
+    private float _positionHeight;
+    private float _positionWidth;
+    private int _indexWidth;
+    private int _indexHeight;
+    private bool _standingOnChunk = false;
+    private bool _canUseTile = false;
+    private bool fogIsOnTile = true;
+    private bool _tileIsLocked = false;
+    private ObjectType<Object> _currentPlayer;
+    private ObjectType<Object> _currentObject;
+    private HighlightTile _highlightTile;
+    
     public ChunkData(int indexWidth, int indexHeight, float width, float height, float positionWidth, float positionHeight, bool tileIsLocked, HighlightTile highlightTile) //SpriteRenderer tileSpriteRenderer, HighlightTile highlightTile,  bool tileIsLocked
     {
         _indexHeight = indexHeight;
@@ -28,19 +42,6 @@ public class ChunkData
     public ChunkData()
     {
     }
-
-    private float _width;
-    private float _height;
-    private float _positionHeight;
-    private float _positionWidth;
-    private int _indexWidth;
-    private int _indexHeight;
-    private bool _standingOnChunk = false;
-    private bool _canUseTile = false;
-    private bool _tileIsLocked = false;
-    private ObjectType<Object> _currentPlayer;
-    private ObjectType<Object> _currentObject;
-    private HighlightTile _highlightTile;
 
     public Vector2 GetPosition()
     {
@@ -154,6 +155,16 @@ public class ChunkData
     public void SetTileIsLocked(bool tileIsLocked)
     {
         _tileIsLocked = tileIsLocked;
+    }
+
+    public void SetFogOnTile(bool isFogOnTile)
+    {
+        fogIsOnTile = isFogOnTile;
+    }
+
+    public bool IsFogOnTile()
+    {
+        return fogIsOnTile;
     }
 
     public bool CanUseTile()
