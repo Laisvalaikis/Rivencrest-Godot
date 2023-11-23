@@ -22,6 +22,7 @@ public partial class Player : Object
 	public override void SetupObject(ObjectData objectInformation)
 	{
 		playerInformation.SetupData(objectInformation);
+		actionManager.InitializeActionManager();
 	}
 
 	public override void Death()

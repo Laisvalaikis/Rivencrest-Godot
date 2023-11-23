@@ -212,6 +212,24 @@ public abstract partial class BaseAction: Resource
 				GenerateDiamondPattern(startChunk, range);
 			}
 		}
+		
+		public virtual List<ChunkData> GetAvailableChunkList(int range)
+		{
+			ChunkData startChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+			if(laserGrid)
+			{
+				GeneratePlusPattern(startChunk, range);
+			}
+			else
+			{
+				GD.Print(startChunk.GetPosition());
+				GenerateDiamondPattern(startChunk, range);
+			}
+
+			return _chunkList;
+		}
+		
+		
 
 		public List<ChunkData> GetChunkList()
 		{
