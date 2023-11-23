@@ -52,6 +52,7 @@ public partial class SummonOrb : BaseAction
        orb = spawnResource.Instantiate<Object>();
         player.GetTree().Root.CallDeferred("add_child", orb);
         orb.SetupObject(orbData);
+        GameTileMap.Tilemap.SpawnObject(orb, chunkData);
        // _orbInformation = orb.playerInformation;
         _orbInformation.SetInformationType(typeof(Object));
        // chunkData.SetCurrentCharacter(orb);

@@ -3,7 +3,9 @@ using Godot;
 
 public partial class WallEntrap : BaseAction
 {
+    [Export] private ObjectData wallRockData;
     [Export] private Resource wallPrefab;
+    private Object wall;
     private List<PlayerInformation> _playerInformations;
 
     public WallEntrap()
@@ -13,6 +15,7 @@ public partial class WallEntrap : BaseAction
     public WallEntrap(WallEntrap ability): base(ability)
     {
         wallPrefab = ability.wallPrefab;
+        wallRockData = ability.wallRockData;
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -66,9 +69,10 @@ public partial class WallEntrap : BaseAction
             {
                 ChunkData chunkData = chunkDataArray[x.Item1, x.Item2];
                 PackedScene spawnResource = (PackedScene)wallPrefab;
-                Player wall = spawnResource.Instantiate<Player>();
+                wall = spawnResource.Instantiate<Object>();
                 player.GetTree().Root.CallDeferred("add_child", wall);
-                GameTileMap.Tilemap.MoveSelectedCharacter(chunkData, wall);
+                wall.SetupObject(wallRockData);
+                GameTileMap.Tilemap.SpawnObject(wall, chunkData);
             }
         }
     }
