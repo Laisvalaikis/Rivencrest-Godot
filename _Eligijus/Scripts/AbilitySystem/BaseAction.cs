@@ -45,6 +45,7 @@ public abstract partial class BaseAction: Resource
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected Array<UnlockedBlessingsResource> unlockedBlessingsList;
 		protected List<ChunkData> _chunkList;
+		protected List<ChunkData> _visionChunkList;
 		protected bool turinIsEven = false;
 		protected string customText = null;
 		protected int cooldownCount = 0;
@@ -100,6 +101,7 @@ public abstract partial class BaseAction: Resource
 				unlockedBlessingsList = new Array<UnlockedBlessingsResource>();
 			}
 			SetObjectInformationData(player.playerInformation.objectData.GetPlayerInformationData());
+			
 			Start();
 		}
 		
@@ -216,17 +218,40 @@ public abstract partial class BaseAction: Resource
 		public virtual List<ChunkData> GetVisionChunkList()
 		{
 			ChunkData startChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-			if(laserGrid)
+			GenerateVisionPattern(startChunk, player.GetVisionRange());
+			return _visionChunkList;
+		}
+
+		protected virtual void GenerateVisionPattern(ChunkData centerChunk, int vision)
+		{
+			(int centerX, int centerY) = centerChunk.GetIndexes();
+			if (_visionChunkList is null)
 			{
-				GeneratePlusPattern(startChunk, player.playerInformation.objectData.GetObjectData().visionRange);
+				_visionChunkList = new List<ChunkData>();
 			}
 			else
 			{
-				GD.Print(startChunk.GetPosition());
-				GenerateDiamondPattern(startChunk, player.playerInformation.objectData.GetObjectData().visionRange);
+				_visionChunkList.Clear();
 			}
+			ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
+			for (int y = -vision; y <= vision; y++)
+			{
+				for (int x = -vision; x <= vision; x++)
+				{
+					if (Mathf.Abs(x) + Mathf.Abs(y) <= vision)
+					{
+						int targetX = centerX + x;
+						int targetY = centerY + y;
 
-			return _chunkList;
+						// Ensuring we don't go out of array bounds.
+						if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
+						{
+							ChunkData chunk = chunksArray[targetX, targetY];
+							TryAddVisionChunk(chunk);
+						}
+					}
+				}
+			}
 		}
 
 		public List<ChunkData> GetChunkList()
@@ -294,6 +319,14 @@ public abstract partial class BaseAction: Resource
 			if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
 			{
 				_chunkList.Add(chunk);
+			}
+		}
+
+		protected virtual void TryAddVisionChunk(ChunkData chunk)
+		{
+			if (chunk != null && !chunk.TileIsLocked() && chunk.IsFogOnTile())
+			{
+				_visionChunkList.Add(chunk);
 			}
 		}
 

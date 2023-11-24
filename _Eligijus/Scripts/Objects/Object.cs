@@ -3,14 +3,25 @@ using Godot.Collections;
 
 public partial class Object : Node2D
 {
+	[Export] private Sprite2D _sprite;
 	public ObjectDataType<ObjectData> ObjectDataType;
 	private TurnManager _turnManager;
 	private Array<Ability> _abilities;
 	private Array<PlayerBlessing> _playerBlessings;
-
-	public override void _EnterTree()
+	protected int _visionRange;
+	public void DisableObject()
 	{
-		base._EnterTree();
+		Hide();
+	}
+
+	public void EnableObject()
+	{
+		Show();
+	}
+
+	public bool IsObjectEnabled()
+	{
+		return Visible;
 	}
 
 	public virtual void SetupObject(ObjectData objectInformation)
@@ -28,6 +39,12 @@ public partial class Object : Node2D
 		{
 			_playerBlessings.Add(new PlayerBlessing(objectInformation.blessings[i]));
 		}
+		_visionRange = ObjectDataType.GetObjectData().visionRange;
+	}
+
+	public int GetVisionRange()
+	{
+		return _visionRange;
 	}
 
 	public void AddTurnManager(TurnManager turnManager)

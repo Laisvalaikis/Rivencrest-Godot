@@ -314,9 +314,7 @@ public partial class GameTileMap : Node2D
 		{
 			ChunkData chunk = GetChunk(mousePosition);
 			chunk.SetCurrentCharacter(character);
-			_currentSelectedCharacter = character;
 			UpdateFog(character);
-			_currentSelectedCharacter = null;
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
 		}
@@ -330,8 +328,16 @@ public partial class GameTileMap : Node2D
 			List<ChunkData> chunkDatas = playerMovement.Action.GetVisionChunkList();
 			foreach (ChunkData generatedChunk in chunkDatas)
 			{
-				generatedChunk.SetFogOnTile(false);
-				_fogOfWar.UpdateFog(generatedChunk.GetPosition());
+				if (generatedChunk.IsFogOnTile())
+				{
+					generatedChunk.SetFogOnTile(false);
+					if (generatedChunk.CharacterIsOnTile())
+					{
+						generatedChunk.GetCurrentPlayer().EnableObject();
+					}
+
+					_fogOfWar.UpdateFog(generatedChunk.GetPosition());
+				}
 			}
 		}
 	}
@@ -341,6 +347,7 @@ public partial class GameTileMap : Node2D
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunk = GetChunk(mousePosition);
+			character.DisableObject();
 			chunk.SetCurrentCharacter(character);
 			chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
@@ -381,7 +388,8 @@ public partial class GameTileMap : Node2D
 		if (GetChunk(mousePosition) != null)
 		{
 			ChunkData chunkData = GetChunk(mousePosition);
-			return chunkData.GetCurrentPlayer() != null && chunkData.GetCurrentPlayer() != _currentSelectedCharacter;
+			Player player = chunkData.GetCurrentPlayer();
+			return player != null && player != _currentSelectedCharacter && player.IsObjectEnabled();
 		}
 		return false;
 	}
@@ -453,7 +461,7 @@ public partial class GameTileMap : Node2D
 					_currentSelectedCharacter.actionManager.DeselectAbility();
 				}
 				_currentSelectedCharacter = chunk.GetCurrentPlayer();
-				if (_currentSelectedCharacter != null)
+				if (_currentSelectedCharacter != null && _currentSelectedCharacter.IsObjectEnabled())
 				{
 					_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
 					_turnManager.SetCurrentCharacter(_currentSelectedCharacter);

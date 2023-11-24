@@ -21,7 +21,9 @@ public partial class Player : Object
 
 	public override void SetupObject(ObjectData objectInformation)
 	{
-		playerInformation.SetupData(objectInformation);
+		ObjectDataType = new ObjectDataType<ObjectData>(objectInformation, typeof(Player));
+		playerInformation.SetupData(objectInformation);W
+		_visionRange = ObjectDataType.GetObjectData().visionRange;
 		actionManager.InitializeActionManager();
 	}
 
