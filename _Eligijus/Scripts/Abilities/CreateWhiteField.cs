@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using Godot;
 
 
 public partial class CreateWhiteField : BaseAction
 {
-    [Export] 
-    private Resource whiteFieldPrefab;
+    [Export] private ObjectData whiteFieldData;
+    [Export] private Resource whiteFieldPrefab;
+    private List<Object> whiteFieldObjects=new List<Object>();
     
     public CreateWhiteField()
     {
@@ -13,21 +15,37 @@ public partial class CreateWhiteField : BaseAction
     public CreateWhiteField(CreateWhiteField createWhiteField) : base(createWhiteField)
     {
         whiteFieldPrefab = createWhiteField.whiteFieldPrefab;
+        whiteFieldData = createWhiteField.whiteFieldData;
     }
     public override BaseAction CreateNewInstance(BaseAction action)
     {
         CreateWhiteField createWhiteField = new CreateWhiteField((CreateWhiteField)action);
         return createWhiteField;
     }
+    
+    public override void OnTurnStart(ChunkData chunkData)
+    {
+        base.OnTurnStart(chunkData);
+        if (whiteFieldObjects.Count != 0)
+        {
+            foreach (Object arrowTileObject in whiteFieldObjects)
+            {
+                arrowTileObject.Death();
+            }
+            whiteFieldObjects.Clear();
+        }
+    }
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
-        for (int i = 0; i < _chunkList.Count; i++)
+        foreach (var chunkData in _chunkList)
         {
-            PackedScene spawnResource = (PackedScene)whiteFieldPrefab;
-            Player spawnedWhiteField = spawnResource.Instantiate<Player>();
-            player.GetTree().Root.CallDeferred("add_child", spawnedWhiteField);
-            GameTileMap.Tilemap.MoveSelectedCharacter(_chunkList[i], spawnedWhiteField);
+            PackedScene spawnCharacter = (PackedScene)whiteFieldPrefab;
+            Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
+            player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
+            spawnedArrowTile.SetupObject(whiteFieldData);
+            GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
+            whiteFieldObjects.Add(spawnedArrowTile);
         }
         base.ResolveAbility(chunk);
         FinishAbility();

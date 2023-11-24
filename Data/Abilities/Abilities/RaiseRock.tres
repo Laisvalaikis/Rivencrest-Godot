@@ -1,12 +1,10 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://e6qgikcvdej0"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://e6qgikcvdej0"]
 
 [ext_resource type="PackedScene" uid="uid://bq5ocnak8dyul" path="res://_Aurimas/AbilityPrefabs/Rock.tscn" id="1_aov0g"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/RaiseRock.cs" id="1_ojmik"]
-[ext_resource type="Resource" uid="uid://sab1bi0421t" path="res://_Aurimas/Rock/RockData_1.tres" id="3_44l1x"]
 
 [resource]
 script = ExtResource("1_ojmik")
-wallRockData = ExtResource("3_44l1x")
 WallPrefab = ExtResource("1_aov0g")
 laserGrid = false
 turnBeforeStartLifetime = 1

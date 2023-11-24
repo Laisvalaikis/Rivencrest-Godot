@@ -7,6 +7,7 @@
 script = ExtResource("1_j3erq")
 maxHealth = 1
 accuracy = 100
+visionRange = 3
 classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
