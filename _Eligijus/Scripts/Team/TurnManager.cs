@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
-
+using System.Threading.Tasks;
 public partial class TurnManager : Node
 {
+	[Export] private FogOfWar _fogOfWar;
 	[Export] private TeamInformation _teamInformation;
 	[Export] private Team _currentTeam;
 	private Array<Object> _objects;
@@ -15,7 +17,7 @@ public partial class TurnManager : Node
 	[Export] private Player _currentEnemy;
 	private bool isAiTurn = false;
 	private Vector2 _mousePosition;
-
+	private Task resetTask;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -23,9 +25,27 @@ public partial class TurnManager : Node
 		InputManager.Instance.LeftMouseClick += OnMouseClick;
 	}
 
-	public void SetTeamList(TeamsList teamsList)
+	public void AddTeamToList(int index, Team addTeam)
 	{
-		_teamsList = teamsList;
+		if (_teamsList is null)
+		{
+			_teamsList = new TeamsList();
+		}
+		if (_teamsList.Teams is null)
+		{
+			_teamsList.Teams = new Godot.Collections.Dictionary<int, Team>();
+		}
+		_teamsList.Teams.Add(index, addTeam);
+	}
+	
+	public Team GetTeamByIndex(int teamIndex)
+	{
+		return _teamsList.Teams[teamIndex];
+	}
+
+	public Team GetCurrentTeam()
+	{
+		return _currentTeam;
 	}
 
 	public void SetCurrentTeam(int teamIndex)
@@ -33,6 +53,7 @@ public partial class TurnManager : Node
 		_currentTeam = _teamsList.Teams[teamIndex];
 		_currentTeamIndex = teamIndex;
 		_currentPlayer = null;
+		_fogOfWar.SetFogImage(_currentTeam.fogImage);
 	}
 
 	public void SetCurrentCharacter(Player character)
@@ -104,6 +125,7 @@ public partial class TurnManager : Node
 	public void EndTurn()
 	{
 		OnTurnEnd();
+		resetTask = ResetFogInformation(_currentTeam.GetVisionTiles());
 		if (_currentTeamIndex + 1 < _teamsList.Teams.Count)
 		{
 			_currentTeamIndex++;
@@ -121,9 +143,41 @@ public partial class TurnManager : Node
 		{
 			isAiTurn = false;
 		}
+		UpdateFogInformation(_currentTeam.GetVisionTiles()).Wait();
 		_teamInformation.EndTurn(_currentTeamIndex);
 		OnTurnStart();
-		
+		_fogOfWar.SetFogImage(_currentTeam.fogImage);
+	}
+
+	private async Task ResetFogInformation(List<FogData> fogDataList)
+	{
+		foreach (FogData fogData in fogDataList)
+		{
+			fogData.chunkRef.SetFogOnTile(true);
+			if (fogData.chunkRef.CharacterIsOnTile())
+			{
+				fogData.chunkRef.GetCurrentPlayer().DisableObject();
+				HighlightTile highlightTile = fogData.chunkRef.GetTileHighlight();
+				highlightTile.ActivatePlayerTile(false);
+				highlightTile.EnableTile(false);
+			}
+		}
+	}
+	
+	private async Task UpdateFogInformation(List<FogData> fogDataList)
+	{
+		resetTask.Wait();
+		foreach (FogData fogData in fogDataList)
+		{
+			fogData.chunkRef.SetFogOnTile(fogData.fogIsOnTile);
+			if (fogData.chunkRef.CharacterIsOnTile() && !fogData.fogIsOnTile && fogData.chunkRef.GetCurrentPlayer().GetPlayerTeam() == _currentTeamIndex)
+			{
+				fogData.chunkRef.GetCurrentPlayer().EnableObject();
+				HighlightTile highlightTile = fogData.chunkRef.GetTileHighlight();
+				highlightTile.ActivatePlayerTile(true);
+				highlightTile.EnableTile(true);
+			}
+		}
 	}
 
 	public bool IsCurrentTeamAI()

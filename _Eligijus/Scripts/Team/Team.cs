@@ -1,15 +1,16 @@
+using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
+
 public partial class Team : Resource
 {
     [Export]
-    public Dictionary<int, Resource> characterPrefabs;
+    public Godot.Collections.Dictionary<int, Resource> characterPrefabs;
     [Export]
-    public Dictionary<int, SavedCharacterResource> characterResources;
+    public Godot.Collections.Dictionary<int, SavedCharacterResource> characterResources;
     [Export]
-    public Dictionary<int, Player> characters;
+    public Godot.Collections.Dictionary<int, Player> characters;
     [Export]
-    public Dictionary<int, Vector2> coordinates;
+    public Godot.Collections.Dictionary<int, Vector2> coordinates;
     [Export]
     public string teamName;
     [Export]
@@ -21,10 +22,12 @@ public partial class Team : Resource
     [Export] 
     private bool isTeamUsed = false;
     public int undoCount;
-    
+    public Image fogImage;
+    private List<FogData> _visionTiles;
     public LinkedList<UsedAbility> usedAbilitiesBeforeStartTurn = new LinkedList<UsedAbility>();
     public LinkedList<UsedAbility> usedAbilitiesAfterResolve = new LinkedList<UsedAbility>();
     public LinkedList<UsedAbility> usedAbilitiesEndTurn = new LinkedList<UsedAbility>();
+    
 
     public bool IsTeamUsed()
     {
@@ -34,6 +37,24 @@ public partial class Team : Resource
     public void SetTeamIsUsed(bool usedTeam)
     {
         isTeamUsed = usedTeam;
+    }
+    
+    public void AddVisionTile(ChunkData chunkData)
+    {
+        if (_visionTiles is null)
+        {
+            _visionTiles = new List<FogData>();
+        }
+        _visionTiles.Add(new FogData(chunkData));
+    }
+
+    public List<FogData> GetVisionTiles()
+    {
+        if (_visionTiles is null)
+        {
+            _visionTiles = new List<FogData>();
+        }
+        return _visionTiles;
     }
 
 }

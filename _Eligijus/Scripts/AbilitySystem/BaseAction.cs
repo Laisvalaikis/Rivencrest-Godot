@@ -171,7 +171,10 @@ public abstract partial class BaseAction: Resource
 		{
 			foreach (var chunk in _chunkList)
 			{
-				HighlightGridTile(chunk);
+				if (CanAddTile(chunk))
+				{
+					HighlightGridTile(chunk);
+				}
 			}
 		}
 

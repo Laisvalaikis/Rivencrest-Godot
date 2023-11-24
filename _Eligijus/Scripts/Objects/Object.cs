@@ -5,7 +5,7 @@ public partial class Object : Node2D
 {
 	[Export] private Sprite2D _sprite;
 	public ObjectDataType<ObjectData> ObjectDataType;
-	private TurnManager _turnManager;
+	protected TurnManager _turnManager;
 	private Array<Ability> _abilities;
 	private Array<PlayerBlessing> _playerBlessings;
 	protected int _visionRange;
@@ -47,7 +47,7 @@ public partial class Object : Node2D
 		return _visionRange;
 	}
 
-	public void AddTurnManager(TurnManager turnManager)
+	public virtual void AddTurnManager(TurnManager turnManager)
 	{
 		_turnManager = turnManager;
 		for (int i = 0; i < _abilities.Count; i++)

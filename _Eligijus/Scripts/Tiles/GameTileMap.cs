@@ -331,9 +331,11 @@ public partial class GameTileMap : Node2D
 				if (generatedChunk.IsFogOnTile())
 				{
 					generatedChunk.SetFogOnTile(false);
+					character.AddVisionTile(generatedChunk);
 					if (generatedChunk.CharacterIsOnTile())
 					{
-						generatedChunk.GetCurrentPlayer().EnableObject();
+						Player player = generatedChunk.GetCurrentPlayer();
+						player.EnableObject();
 						generatedChunk.GetTileHighlight().ActivatePlayerTile(true);
 						generatedChunk.GetTileHighlight().EnableTile(true);
 					}
@@ -342,7 +344,7 @@ public partial class GameTileMap : Node2D
 						generatedChunk.GetCurrentObject().EnableObject();
 						generatedChunk.GetTileHighlight().EnableTile(true);
 					}
-					_fogOfWar.UpdateFog(generatedChunk.GetPosition());
+					_fogOfWar.UpdateFog(generatedChunk.GetPosition(), _turnManager.GetTeamByIndex(character.GetPlayerTeam()));
 				}
 			}
 		}
@@ -355,6 +357,7 @@ public partial class GameTileMap : Node2D
 			ChunkData chunk = GetChunk(mousePosition);
 			character.DisableObject();
 			chunk.SetCurrentCharacter(character);
+			UpdateFog(character);
 			// chunk.GetTileHighlight().ActivatePlayerTile(true);
 			// chunk.GetTileHighlight().EnableTile(true);
 		}
@@ -377,7 +380,7 @@ public partial class GameTileMap : Node2D
 			setObject.DisableObject();
 			chunk.SetCurrentObject(setObject);
 			//chunk.GetTileHighlight().ActivatePlayerTile(true);
-			chunk.GetTileHighlight().EnableTile(true);
+			// chunk.GetTileHighlight().EnableTile(true);
 		}
 	}
 

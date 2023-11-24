@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using Array = Godot.Collections.Array;
 
 public partial class CharacterTeams : Node
 {
+	[Export] 
+	private FogOfWar _fogOfWar;
 	[Export]
 	TurnManager _turnManager;
 	[Export]
@@ -26,6 +29,7 @@ public partial class CharacterTeams : Node
 	private Data _data;
 	private bool setupComplete = false;
 	private Random _random;
+	
 
 	public override void _Ready()
 	{
@@ -55,12 +59,12 @@ public partial class CharacterTeams : Node
 			{
 				if (allCharacterList[0].characterPrefabs == null)
 				{
-					allCharacterList[0].characterPrefabs = new Dictionary<int, Resource>();
+					allCharacterList[0].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
 					
 				}
 				if (allCharacterList[0].characterResources == null)
 				{
-					allCharacterList[0].characterResources = new Dictionary<int, SavedCharacterResource>();
+					allCharacterList[0].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
 				}
 
 			}
@@ -76,8 +80,8 @@ public partial class CharacterTeams : Node
 			else if (allCharacterList != null && allCharacterList.Count == 0)
 			{
 				allCharacterList.Add(new Team());
-				allCharacterList[0].characterPrefabs = new Dictionary<int, Resource>();
-				allCharacterList[0].characterResources = new Dictionary<int, SavedCharacterResource>();
+				allCharacterList[0].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
+				allCharacterList[0].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
 			}
 
 			allCharacterList[0].characterPrefabs.Clear();
@@ -97,8 +101,8 @@ public partial class CharacterTeams : Node
 		allCharacterList[0].teamName = _data.townData.teamName;
 		allCharacterList[0].teamColor = Color.FromString(_data.townData.teamColor, Colors.Blue);
 		
-		currentCharacters = new TeamsList { Teams = new Dictionary<int, Team>()};
-		deadCharacters = new TeamsList { Teams = new Dictionary<int, Team>() };
+		currentCharacters = new TeamsList { Teams = new Godot.Collections.Dictionary<int, Team>()};
+		deadCharacters = new TeamsList { Teams = new Godot.Collections.Dictionary<int, Team>() };
 	}
 
 	private void GenerateEnemies()
@@ -113,7 +117,7 @@ public partial class CharacterTeams : Node
 			}
 			else
 			{
-				enemyTeam.characterResources = new Dictionary<int, SavedCharacterResource>();
+				enemyTeam.characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
 			}
 			
 			for (int i = 0; i < enemyData.enemyCount; i++)
@@ -182,21 +186,23 @@ public partial class CharacterTeams : Node
 		for (int i = 0; i < allCharacterList.Count; i++)
 		{ 
 			deadCharacters.Teams.Add(i, new Team());
-			deadCharacters.Teams[i].characters = new Dictionary<int, Player>();
-			deadCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
-			deadCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
-			deadCharacters.Teams[i].characterResources = new Dictionary<int, SavedCharacterResource>();
+			deadCharacters.Teams[i].characters = new Godot.Collections.Dictionary<int, Player>();
+			deadCharacters.Teams[i].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
+			deadCharacters.Teams[i].coordinates = new Godot.Collections.Dictionary<int, Vector2>();
+			deadCharacters.Teams[i].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
 			currentCharacters.Teams.Add(i, new Team());
-			currentCharacters.Teams[i].characters = new Dictionary<int, Player>();
-			currentCharacters.Teams[i].characterPrefabs = new Dictionary<int, Resource>();
-			currentCharacters.Teams[i].coordinates = new Dictionary<int, Vector2>();
-			currentCharacters.Teams[i].characterResources = new Dictionary<int, SavedCharacterResource>();
+			currentCharacters.Teams[i].characters = new Godot.Collections.Dictionary<int, Player>();
+			currentCharacters.Teams[i].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
+			currentCharacters.Teams[i].coordinates = new Godot.Collections.Dictionary<int, Vector2>();
+			currentCharacters.Teams[i].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
+			currentCharacters.Teams[i].fogImage = _fogOfWar.CreateFogImage();
+			_turnManager.AddTeamToList(i, currentCharacters.Teams[i]);
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
-		_turnManager.SetTeamList(currentCharacters);
+		//_turnManager.SetTeamList(currentCharacters);
 		_turnManager.SetCurrentTeam(0);
 	}
-	private void SpawnCharacters(int teamIndex, Dictionary<int, Vector2> coordinates)
+	private void SpawnCharacters(int teamIndex, Godot.Collections.Dictionary<int, Vector2> coordinates)
 	{
 		// colorManager.SetPortraitBoxSprites(portraitTeamBox.gameObject, allCharacterList.Teams[teamIndex].teamName);// priskiria spalvas mygtukams ir paciam portraitboxui
 		int i = 0;
@@ -217,7 +223,7 @@ public partial class CharacterTeams : Node
 				currentCharacters.Teams[teamIndex].coordinates.Add(i, coordinate.Value);
 				if (allCharacterList[teamIndex].characterResources != null && allCharacterList[teamIndex].characterResources.Count != 0)
 				{
-					spawnedCharacter.actionManager.AddTurnManager(_turnManager);
+					spawnedCharacter.AddTurnManager(_turnManager);
 					currentCharacters.Teams[teamIndex].characterResources
 						.Add(i, allCharacterList[teamIndex].characterResources[i]);
 					spawnedCharacter.unlockedAbilityList =
@@ -263,7 +269,7 @@ public partial class CharacterTeams : Node
 		return currentCharacters.Teams[teamIndex].isTeamAI;
 	}
 
-	public Dictionary<int, Player> AliveCharacterList(int teamIndex)
+	public Godot.Collections.Dictionary<int, Player> AliveCharacterList(int teamIndex)
 	{
 		return currentCharacters.Teams[teamIndex].characters;
 	}

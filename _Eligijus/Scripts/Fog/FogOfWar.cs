@@ -20,12 +20,34 @@ public partial class FogOfWar : Sprite2D
         Texture = fogTexture;
     }
 
+    public Image CreateFogImage()
+    {
+        fogImage = Image.Create(width, height, false, Image.Format.Rgbah);
+        fogImage.Fill(Colors.Black);
+        return fogImage;
+    }
+
+    public void SetFogImage(Image fog)
+    {
+        fogImage = fog;
+        UpdateForImageTexture();
+    }
+
     public void UpdateFog(Vector2 position)
     {
         Vector2 gridPosition = ToLocal(position);
         Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y)) ;
         Rect2I lightRectI = new Rect2I(Vector2I.Zero, new Vector2I(lightImage.GetWidth(), lightImage.GetHeight()));
         fogImage.BlendRect(lightImage, lightRectI, gridPositionI + lightOffset);
+        UpdateForImageTexture();
+    }
+    
+    public void UpdateFog(Vector2 position, Team characterTeam)
+    {
+        Vector2 gridPosition = ToLocal(position);
+        Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y)) ;
+        Rect2I lightRectI = new Rect2I(Vector2I.Zero, new Vector2I(lightImage.GetWidth(), lightImage.GetHeight()));
+        characterTeam.fogImage.BlendRect(lightImage, lightRectI, gridPositionI + lightOffset);
         UpdateForImageTexture();
     }
 

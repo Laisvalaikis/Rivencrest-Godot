@@ -37,7 +37,7 @@ public partial class SummonBear : BaseAction
 			base.ResolveAbility(chunk);
 			PackedScene spawnResource = (PackedScene)bearResource.prefab;
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
-			spawnedCharacter.actionManager.AddTurnManager(_turnManager);
+			spawnedCharacter.AddTurnManager(_turnManager);
 			spawnedCharacter.unlockedAbilityList = bearResource.unlockedAbilities;
 			spawnedCharacter.SetupObject(bearResource.playerInformation);
 			Array<Ability> allAbilities = new Array<Ability>();

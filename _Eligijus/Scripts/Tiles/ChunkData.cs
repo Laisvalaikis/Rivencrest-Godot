@@ -38,6 +38,21 @@ public class ChunkData
         _indexHeight = indexHeight;
         _indexWidth = indexWidth;
     }
+    
+    public ChunkData(ChunkData chunkData)
+    {
+        _indexHeight = chunkData._indexHeight;
+        _indexWidth = chunkData._indexWidth;
+        _width = chunkData._width;
+        _height = chunkData._height;
+        _positionWidth = chunkData._positionWidth;
+        _positionHeight = chunkData._positionHeight;
+        _tileIsLocked = chunkData._tileIsLocked;
+        _fogIsOnTile = chunkData._fogIsOnTile;
+        _highlightTile = chunkData._highlightTile;
+        _currentPlayer = chunkData._currentPlayer;
+        _currentObject = chunkData._currentObject;
+    }
 
     public ChunkData()
     {

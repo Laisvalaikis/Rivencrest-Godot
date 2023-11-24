@@ -45,6 +45,17 @@ public partial class Player : Object
 		}
 	}
 
+	public override void AddTurnManager(TurnManager turnManager)
+	{
+		_turnManager = turnManager;
+		actionManager.AddTurnManager(turnManager);
+	}
+
+	public void AddVisionTile(ChunkData chunkData)
+	{
+		_turnManager.GetTeamByIndex(_currentCharacterTeam).AddVisionTile(chunkData);
+	}
+
 	public override void PlayerWasDamaged()
 	{
 		actionManager.PlayerWasAttacked();
