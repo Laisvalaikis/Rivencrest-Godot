@@ -1,13 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cjqfbjmmmxea8"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cjqfbjmmmxea8"]
 
-[ext_resource type="Resource" uid="uid://bpl881dp8vkll" path="res://_Eligijus/Prefabs/DangerTiles/RainOfArrowsData.tres" id="1_5pvvv"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/RainOfArrows.cs" id="1_omtow"]
-[ext_resource type="PackedScene" uid="uid://dcgcqduxwt0jx" path="res://_Eligijus/Prefabs/DangerTiles/RainOfArrowsTile.tscn" id="2_bhga6"]
 
 [resource]
 script = ExtResource("1_omtow")
-arrowTileData = ExtResource("1_5pvvv")
-arrowTilePrefab = ExtResource("2_bhga6")
 laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
