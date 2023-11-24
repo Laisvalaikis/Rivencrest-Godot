@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bpl881dp8vkll"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_nsl83"]
+
+[resource]
+script = ExtResource("1_nsl83")
+maxHealth = 1
+accuracy = 100
+classColor = Color(0, 0, 0, 0)
+secondClassColor = Color(0, 0, 0, 0)
+textColor = Color(0, 0, 0, 0)
+backgroundColor = Color(0, 0, 0, 0)
+canStepOnObject = true
+destroyObjectStepingOn = false
+canBeDestroyed = false
+abilities = null
+blessings = null

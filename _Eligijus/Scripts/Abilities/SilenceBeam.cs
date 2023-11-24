@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
@@ -7,6 +8,10 @@ public partial class SilenceBeam : BaseAction
 	[Export] private int _additionalDamage = 2;
 	private ChunkData[,] _chunkArray;
 	private int _index = -1;
+	
+	[Export] private ObjectData PinkTileData;
+	[Export] private Resource PinkTilePrefab;
+	private List<Object> PinkTileObjects=new List<Object>();
 	public SilenceBeam()
 	{
 	
@@ -15,6 +20,8 @@ public partial class SilenceBeam : BaseAction
 	public SilenceBeam(SilenceBeam action) : base(action)
 	{
 		_additionalDamage = action._additionalDamage;
+		PinkTileData = action.PinkTileData;
+		PinkTilePrefab = action.PinkTilePrefab;
 	}
 		
 	public override BaseAction CreateNewInstance(BaseAction action)
@@ -28,7 +35,6 @@ public partial class SilenceBeam : BaseAction
 		base.OnTurnStart(chunkData);
 		if (_index != -1)
 		{
-			UpdateAbilityButton();
 			for (int i = 0; i < _chunkArray.GetLength(1); i++)
 			{
 				ChunkData damageChunk = _chunkArray[_index, i];
@@ -40,6 +46,11 @@ public partial class SilenceBeam : BaseAction
 				}
 				DealRandomDamageToTarget(damageChunk, minAttackDamage + _additionalDamage, maxAttackDamage + _additionalDamage);
 			}
+
+			foreach (Object pinkZoneTile in PinkTileObjects)
+			{
+				pinkZoneTile.Death();
+			}
 			_chunkArray = new ChunkData[4, attackRange];
 		}
 		
@@ -48,13 +59,23 @@ public partial class SilenceBeam : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
+		UpdateAbilityButton();
 		_index = FindChunkIndex(chunk);
 		if (_index != -1)
 		{
 			for (int i = 0; i < _chunkArray.GetLength(1); i++)
 			{
 				ChunkData damageChunk = _chunkArray[_index, i];
-				DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+				if (damageChunk != null)
+				{
+					DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+					PackedScene spawnCharacter = (PackedScene)PinkTilePrefab;
+					Object spawnedPinkTile = spawnCharacter.Instantiate<Object>();
+					player.GetTree().Root.CallDeferred("add_child", spawnedPinkTile);
+					spawnedPinkTile.SetupObject(PinkTileData);
+					GameTileMap.Tilemap.SpawnObject(spawnedPinkTile, damageChunk);
+					PinkTileObjects.Add(spawnedPinkTile);
+				}
 			}
 			FinishAbility();
 		}
@@ -116,7 +137,7 @@ public partial class SilenceBeam : BaseAction
 				for (int i = 0; i < _chunkArray.GetLength(1); i++)
 				{
 					ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-					if (chunkToHighLight.GetCurrentPlayer()!=null)
+					if (chunkToHighLight!=null && chunkToHighLight.GetCurrentPlayer()!=null)
 					{
 						SetHoveredAttackColor(chunkToHighLight);
 						EnableDamagePreview(chunkToHighLight);

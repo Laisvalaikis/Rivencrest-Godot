@@ -3,13 +3,18 @@ using Godot;
 
 public partial class RainOfArrows : BaseAction
 {
-    private List<ChunkData> _cometTiles = new List<ChunkData>();
+    private List<ChunkData> arrowTiles = new List<ChunkData>();
+    [Export] private ObjectData arrowTileData;
+    [Export] private Resource arrowTilePrefab;
+    private List<Object> arrowTileObjects=new List<Object>();
     public RainOfArrows()
     {
         
     }
     public RainOfArrows(RainOfArrows ability): base(ability)
     {
+        arrowTilePrefab = ability.arrowTilePrefab;
+        arrowTileData = ability.arrowTileData;
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -21,13 +26,21 @@ public partial class RainOfArrows : BaseAction
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
-        if (_cometTiles.Count!=0)
+        if (arrowTiles.Count!=0)
         {
-            foreach (ChunkData tile in _cometTiles)
+            foreach (ChunkData tile in arrowTiles)
             {
                 DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
             }
-            _cometTiles.Clear();
+            arrowTiles.Clear();
+        }
+        if (arrowTileObjects.Count != 0)
+        {
+            foreach (Object arrowTileObject in arrowTileObjects)
+            {
+                arrowTileObject.Death();
+            }
+            arrowTileObjects.Clear();
         }
     }
       
@@ -38,10 +51,13 @@ public partial class RainOfArrows : BaseAction
         List<ChunkData> damageChunks = CreateDamageTileList(chunk);
         foreach (ChunkData chunkData in damageChunks)
         {
-            if (!IsAllegianceSame(chunkData))
-            {
-                _cometTiles.Add(chunkData);
-            }
+            arrowTiles.Add(chunkData);
+            PackedScene spawnCharacter = (PackedScene)arrowTilePrefab;
+            Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
+            player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
+            spawnedArrowTile.SetupObject(arrowTileData);
+            GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
+            arrowTileObjects.Add(spawnedArrowTile);
         }
         FinishAbility();
     }

@@ -1,10 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://5x5hmqyixtid"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://5x5hmqyixtid"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SilenceBeam.cs" id="1_jwin8"]
+[ext_resource type="Resource" uid="uid://bxr6ebvlg50cy" path="res://_Eligijus/Prefabs/DangerTiles/PinkZoneTileData.tres" id="1_wcd0u"]
+[ext_resource type="PackedScene" uid="uid://ffnkyp2rfgra" path="res://_Eligijus/Prefabs/DangerTiles/PinkZoneTile.tscn" id="2_ih53x"]
 
 [resource]
 script = ExtResource("1_jwin8")
 _additionalDamage = 10
+PinkTileData = ExtResource("1_wcd0u")
+PinkTilePrefab = ExtResource("2_ih53x")
 laserGrid = true
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
