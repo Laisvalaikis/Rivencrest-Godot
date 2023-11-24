@@ -2,8 +2,10 @@ using Godot;
 
 public partial class RaiseRock : BaseAction
 {
+	[Export] private ObjectData wallRockData;
 	[Export]
 	public Resource WallPrefab;
+	private Object wall;
 
 	public RaiseRock()
 	{
@@ -12,6 +14,7 @@ public partial class RaiseRock : BaseAction
 	public RaiseRock(RaiseRock ability): base(ability)
 	{
 		WallPrefab = ability.WallPrefab;
+		wallRockData = ability.wallRockData;
 	}
 
 	public override BaseAction CreateNewInstance(BaseAction action)
@@ -27,9 +30,11 @@ public partial class RaiseRock : BaseAction
 		{
 			UpdateAbilityButton();
 			PackedScene spawnResource = (PackedScene)WallPrefab;
-			Player spawnedWall = spawnResource.Instantiate<Player>();
-			player.GetTree().Root.CallDeferred("add_child", spawnedWall);
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedWall);
+			wall = spawnResource.Instantiate<Object>();
+			player.GetTree().Root.CallDeferred("add_child", wall);
+			wall.SetupObject(wallRockData);
+			GameTileMap.Tilemap.SpawnObject(wall, chunk);
+			//GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedWall);
 			FinishAbility();
 		}
 	}
