@@ -314,9 +314,20 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
+		protected virtual bool CanAddTile(ChunkData chunk)
+		{
+			if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() &&
+			    chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
+			{
+				return true;
+			}
+
+			return false;
+		}
+
 		protected virtual void TryAddTile(ChunkData chunk)
 		{
-			if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
+			if (CanAddTile(chunk))
 			{
 				_chunkList.Add(chunk);
 			}
