@@ -316,7 +316,7 @@ public abstract partial class BaseAction: Resource
 
 		protected virtual void TryAddTile(ChunkData chunk)
 		{
-			if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
+			if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
 			{
 				_chunkList.Add(chunk);
 			}
