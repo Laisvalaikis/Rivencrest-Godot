@@ -334,8 +334,14 @@ public partial class GameTileMap : Node2D
 					if (generatedChunk.CharacterIsOnTile())
 					{
 						generatedChunk.GetCurrentPlayer().EnableObject();
+						generatedChunk.GetTileHighlight().ActivatePlayerTile(true);
+						generatedChunk.GetTileHighlight().EnableTile(true);
 					}
-
+					if (generatedChunk.ObjectIsOnTile())
+					{
+						generatedChunk.GetCurrentObject().EnableObject();
+						generatedChunk.GetTileHighlight().EnableTile(true);
+					}
 					_fogOfWar.UpdateFog(generatedChunk.GetPosition());
 				}
 			}
@@ -349,8 +355,8 @@ public partial class GameTileMap : Node2D
 			ChunkData chunk = GetChunk(mousePosition);
 			character.DisableObject();
 			chunk.SetCurrentCharacter(character);
-			chunk.GetTileHighlight().ActivatePlayerTile(true);
-			chunk.GetTileHighlight().EnableTile(true);
+			// chunk.GetTileHighlight().ActivatePlayerTile(true);
+			// chunk.GetTileHighlight().EnableTile(true);
 		}
 	}
 	
@@ -368,6 +374,7 @@ public partial class GameTileMap : Node2D
 	{
 		if (chunk != null)
 		{
+			setObject.DisableObject();
 			chunk.SetCurrentObject(setObject);
 			//chunk.GetTileHighlight().ActivatePlayerTile(true);
 			chunk.GetTileHighlight().EnableTile(true);
