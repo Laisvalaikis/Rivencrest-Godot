@@ -200,7 +200,7 @@ public partial class CharacterTeams : Node
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}
 		//_turnManager.SetTeamList(currentCharacters);
-		_turnManager.SetCurrentTeam(0);
+		_turnManager.SetCurrentTeam(0); // update fog function if enemies is not seen, this mean if current team is other team, don't show enemies.
 	}
 	private void SpawnCharacters(int teamIndex, Godot.Collections.Dictionary<int, Vector2> coordinates)
 	{

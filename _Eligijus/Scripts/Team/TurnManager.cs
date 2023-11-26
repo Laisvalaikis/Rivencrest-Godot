@@ -17,7 +17,6 @@ public partial class TurnManager : Node
 	[Export] private Player _currentEnemy;
 	private bool isAiTurn = false;
 	private Vector2 _mousePosition;
-	private Task resetTask;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -53,6 +52,11 @@ public partial class TurnManager : Node
 		_currentTeam = _teamsList.Teams[teamIndex];
 		_currentTeamIndex = teamIndex;
 		_currentPlayer = null;
+		foreach (int key in _teamsList.Teams.Keys)
+		{
+			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles()).Wait();
+		}
+		UpdateFogInformation(_currentTeam.GetVisionTiles());
 		_fogOfWar.SetFogImage(_currentTeam.fogImage);
 	}
 
@@ -125,7 +129,7 @@ public partial class TurnManager : Node
 	public void EndTurn()
 	{
 		OnTurnEnd();
-		resetTask = ResetFogInformation(_currentTeam.GetVisionTiles());
+		ResetFogInformation(_currentTeam.GetVisionTiles()).Wait();
 		if (_currentTeamIndex + 1 < _teamsList.Teams.Count)
 		{
 			_currentTeamIndex++;
@@ -166,7 +170,6 @@ public partial class TurnManager : Node
 	
 	private async Task UpdateFogInformation(List<FogData> fogDataList)
 	{
-		resetTask.Wait();
 		foreach (FogData fogData in fogDataList)
 		{
 			fogData.chunkRef.SetFogOnTile(fogData.fogIsOnTile);
