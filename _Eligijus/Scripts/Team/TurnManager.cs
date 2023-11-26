@@ -170,7 +170,7 @@ public partial class TurnManager : Node
 		foreach (FogData fogData in fogDataList)
 		{
 			fogData.chunkRef.SetFogOnTile(fogData.fogIsOnTile);
-			if (fogData.chunkRef.CharacterIsOnTile() && !fogData.fogIsOnTile && fogData.chunkRef.GetCurrentPlayer().GetPlayerTeam() == _currentTeamIndex)
+			if (fogData.chunkRef.CharacterIsOnTile() && !fogData.fogIsOnTile)
 			{
 				fogData.chunkRef.GetCurrentPlayer().EnableObject();
 				HighlightTile highlightTile = fogData.chunkRef.GetTileHighlight();
