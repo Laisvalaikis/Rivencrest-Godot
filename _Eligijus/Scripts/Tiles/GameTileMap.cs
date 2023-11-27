@@ -110,46 +110,46 @@ public partial class GameTileMap : Node2D
 		
 	}
 	
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventMouseMotion eventMouseMotion)
-		{
-			QueueRedraw();
-		}
-
-	}
-
-
-	public override void _Draw()
-	{
-		base._Draw();
-		if (_allChunks != null)
-		{
-			if (showChunks)
-			{
-
-				for (int i = 0; i < _allChunks.Count; i++)
-				{ 
-					ChunkData data = _allChunks[i];
-					if (!data.TileIsLocked())
-					{
-						// GD.Print("Mouse Motion at: ", GetGlobalMousePosition());
-						Rect2 rect = new Rect2();
-						rect.Size = new Vector2(data.GetDimensions().X, data.GetDimensions().Y);
-						rect.Position = new Vector2(data.GetPosition().X - (currentMap._chunkSize/2), data.GetPosition().Y - (currentMap._chunkSize/2));
-						if (data.CheckIfPosition(GetGlobalMousePosition(), currentMap))
-						{
-							DrawRect(rect, Colors.Red, true);
-						}
-						else
-						{
-							DrawRect(rect, Colors.Cyan, true);
-						}
-					}
-				}
-			}
-		}
-	}
+	// public override void _Input(InputEvent @event)
+	// {
+	// 	if (@event is InputEventMouseMotion eventMouseMotion)
+	// 	{
+	// 		QueueRedraw();
+	// 	}
+	//
+	// }
+	//
+	//
+	// public override void _Draw()
+	// {
+	// 	base._Draw();
+	// 	if (_allChunks != null)
+	// 	{
+	// 		if (showChunks)
+	// 		{
+	//
+	// 			for (int i = 0; i < _allChunks.Count; i++)
+	// 			{ 
+	// 				ChunkData data = _allChunks[i];
+	// 				if (!data.TileIsLocked())
+	// 				{
+	// 					// GD.Print("Mouse Motion at: ", GetGlobalMousePosition());
+	// 					Rect2 rect = new Rect2();
+	// 					rect.Size = new Vector2(data.GetDimensions().X, data.GetDimensions().Y);
+	// 					rect.Position = new Vector2(data.GetPosition().X - (currentMap._chunkSize/2), data.GetPosition().Y - (currentMap._chunkSize/2));
+	// 					if (data.CheckIfPosition(GetGlobalMousePosition(), currentMap))
+	// 					{
+	// 						DrawRect(rect, Colors.Red, true);
+	// 					}
+	// 					else
+	// 					{
+	// 						DrawRect(rect, Colors.Cyan, true);
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	public override void _Process(double delta)
 	{

@@ -5,16 +5,16 @@ public partial class ExitUI : Node
 {
 	[Export] private View pauseMenuView;
 	
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
-		{
-			if (keyEvent.Keycode == Key.Escape)
-			{
-				Escape();
-			}
-		}
-	}
+	// public override void _Input(InputEvent @event)
+	// {
+	// 	if (@event is InputEventKey keyEvent && keyEvent.Pressed)
+	// 	{
+	// 		if (keyEvent.Keycode == Key.Escape)
+	// 		{
+	// 			Escape();
+	// 		}
+	// 	}
+	// }
 	
 	// public void OnEscape(InputAction.CallbackContext context)
 	// {

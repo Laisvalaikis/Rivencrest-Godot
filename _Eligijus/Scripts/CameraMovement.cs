@@ -20,7 +20,10 @@ public partial class CameraMovement : Camera2D
     public override void _Ready()
     {
         base._Ready();
-        // _tween = GetTree().CreateTween();
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.MouseMoveOutDeadZone += MoveCamera;
+        }
     }
 
 
@@ -33,59 +36,85 @@ public partial class CameraMovement : Camera2D
         SetPhysicsProcess(!Zoom.X.Equals(_targetZoom));
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _UnhandledInput(InputEvent @event)
     {
-        base._Input(@event);
-        if (@event is InputEventMouseButton)
-        {
-            if (@event.IsPressed())
-            {
-                InputEventMouseButton mouseButton = (InputEventMouseButton)@event;
-                if (mouseButton.ButtonIndex == MouseButton.WheelUp)
-                {
-                    ZoomIn();
-                }
-                if (mouseButton.ButtonIndex == MouseButton.WheelDown)
-                {
-                    ZoomOut();
-                }
+        base._UnhandledInput(@event);
+        // if (@event is InputEventMouseButton)
+        // {
+        //     if (@event.IsPressed())
+        //     {
+        //         InputEventMouseButton mouseButton = (InputEventMouseButton)@event;
+        //         if (mouseButton.ButtonIndex == MouseButton.WheelUp)
+        //         {
+        //             ZoomIn();
+        //         }
+        //         if (mouseButton.ButtonIndex == MouseButton.WheelDown)
+        //         {
+        //             ZoomOut();
+        //         }
+        //
+        //         // if (mouseButton.DoubleClick)
+        //         // {
+        //         //     
+        //         // }
+        //     }
+        // }
+        
+        // if (@event is InputEventMouseMotion)
+        // {
+        //     InputEventMouseMotion input = (InputEventMouseMotion)@event;
+        //     if (input.ButtonMask == MouseButtonMask.Left)
+        //     {
+        //         if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
+        //         {
+        //             Position -= input.Relative * Zoom;
+        //         }
+        //         
+        //         if(Position.X > xBounds.Y)
+        //         {
+        //             Position = new Vector2(xBounds.Y, Position.Y);
+        //         }
+        //         if (Position.Y > yBounds.Y)
+        //         {
+        //             Position = new Vector2(Position.X, yBounds.Y);
+        //         }
+        //         if(Position.X < xBounds.X)
+        //         {
+        //             Position = new Vector2(xBounds.X, Position.Y);
+        //         }
+        //         if (Position.Y < yBounds.X)
+        //         {
+        //             Position = new Vector2(Position.X, yBounds.X);
+        //         }
+        //
+        //     }
+        // }
+    }
 
-                // if (mouseButton.DoubleClick)
-                // {
-                //     
-                // }
-            }
+    private void MoveCamera(Vector2 relativePosition)
+    {
+        if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
+        {
+            Position -= relativePosition * Zoom;
         }
         
-        if (@event is InputEventMouseMotion)
+        if(Position.X > xBounds.Y)
         {
-            InputEventMouseMotion input = (InputEventMouseMotion)@event;
-            if (input.ButtonMask == MouseButtonMask.Left)
-            {
-                if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
-                {
-                    Position -= input.Relative * Zoom;
-                }
-                
-                if(Position.X > xBounds.Y)
-                {
-                    Position = new Vector2(xBounds.Y, Position.Y);
-                }
-                if (Position.Y > yBounds.Y)
-                {
-                    Position = new Vector2(Position.X, yBounds.Y);
-                }
-                if(Position.X < xBounds.X)
-                {
-                    Position = new Vector2(xBounds.X, Position.Y);
-                }
-                if (Position.Y < yBounds.X)
-                {
-                    Position = new Vector2(Position.X, yBounds.X);
-                }
-
-            }
+            Position = new Vector2(xBounds.Y, Position.Y);
         }
+        if (Position.Y > yBounds.Y)
+        {
+            Position = new Vector2(Position.X, yBounds.Y);
+        }
+        if(Position.X < xBounds.X)
+        {
+            Position = new Vector2(xBounds.X, Position.Y);
+        }
+        if (Position.Y < yBounds.X)
+        {
+            Position = new Vector2(Position.X, yBounds.X);
+        }
+        
     }
 
     public void SetMovementBounds(Vector2 xMapBounds, Vector2 yMapBounds)

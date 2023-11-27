@@ -4,13 +4,19 @@ public partial class InputManager: Node2D
 {
 	public static InputManager Instance;
 	
-	private string mouseClick = "MouseClickLeft";
-	[Signal]
-	public delegate void LeftMouseClickEventHandler();
-	[Signal]
-	public delegate void MouseMoveEventHandler(Vector2 mousePosition);
+	[Signal] public delegate void LeftMouseClickEventHandler();
+	[Signal] public delegate void MouseMoveEventHandler(Vector2 relativeValues);
+	[Signal] public delegate void MouseMoveOutDeadZoneEventHandler(Vector2 mousePosition);
 
+	[Export] private Vector2 deadZone = new Vector2(10f, 10f);
+	
+	private string mouseClick = "MouseClickLeft";
 	private Vector2 mousePosition;
+	private bool selectIsClicked = false;
+	private Vector2 mouseRelativePosition;
+	private Vector2 deadzoneBoundsX;
+	private Vector2 deadzoneBoundsY;
+	private bool inDeadZone = true;
 
 	public override void _EnterTree()
 	{
@@ -25,20 +31,93 @@ public partial class InputManager: Node2D
 		}
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
-		base._Input(@event);
-		if (@event.IsActionPressed(mouseClick))
+		// base._UnhandledInput(@event);
+
+		if (@event is InputEventMouseButton)
 		{
-			OnLeftMouseClick();
+			InputEventMouseButton input = (InputEventMouseButton)@event;
+			if (input.IsPressed())
+			{
+				selectIsClicked = true;
+				Vector2 mouseClickPosition = GetLocalMousePosition();
+				deadzoneBoundsX.X = mouseClickPosition.X - deadZone.X;
+				deadzoneBoundsX.Y = mouseClickPosition.X + deadZone.X;
+				deadzoneBoundsY.X = mouseClickPosition.Y - deadZone.Y;
+				deadzoneBoundsY.Y = mouseClickPosition.Y + deadZone.Y;
+				mouseRelativePosition = mouseClickPosition;
+				inDeadZone = true;
+			}
+			else if (input.IsReleased())
+			{
+				
+				selectIsClicked = false;
+				if (inDeadZone)
+				{
+					OnLeftMouseClick();
+				}
+			}
+			
 		}
-		else if (@event is InputEventMouseMotion eventMouseMotion)
+
+		if (@event is InputEventMouseMotion)
 		{
-			TrackMousePosition();
-			OnMouseMove();
+			InputEventMouseMotion input = (InputEventMouseMotion)@event;
+			if (input.ButtonMask == MouseButtonMask.Left && selectIsClicked)
+			{
+				mouseRelativePosition -= input.Relative;
+				if (!InDeadZone(mouseRelativePosition))
+				{
+					inDeadZone = false;
+				}
+				if (!inDeadZone)
+				{
+					OnMoveOutsideDeadZone(input.Relative);
+				}
+			}
+			else if(!selectIsClicked)
+			{
+				TrackMousePosition();
+				OnMouseMove();
+			}
 		}
-		
+
+		// if (@event.IsActionPressed(mouseClick))
+		// {
+		// 	OnLeftMouseClick();
+		// 	
+		// }
+		// else if (@event is InputEventMouseMotion eventMouseMotion)
+		// {
+		// 	TrackMousePosition();
+		// 	OnMouseMove();
+		// }
 	}
+	
+	private bool InDeadZone(Vector2 relativePosition)
+	{
+		if (relativePosition.X >= deadzoneBoundsX.X && relativePosition.X <= deadzoneBoundsX.Y && relativePosition.Y >= deadzoneBoundsY.X && relativePosition.Y <= deadzoneBoundsY.Y)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	// public override void _Input(InputEvent @event)
+	// {
+	// 	base._Input(@event);
+	// 	if (@event.IsActionPressed(mouseClick))
+	// 	{
+	// 		OnLeftMouseClick();
+	// 	}
+	// 	else if (@event is InputEventMouseMotion eventMouseMotion)
+	// 	{
+	// 		TrackMousePosition();
+	// 		OnMouseMove();
+	// 	}
+	// 	
+	// }
 
 	public void OnLeftMouseClick()
 	{
@@ -54,7 +133,11 @@ public partial class InputManager: Node2D
 	public void OnMouseMove()
 	{
 		EmitSignal("MouseMove", mousePosition);
-		
+	}
+
+	private void OnMoveOutsideDeadZone(Vector2 relativePosition)
+	{
+		EmitSignal("MouseMoveOutDeadZone", relativePosition);
 	}
 
 	public override void _ExitTree()

@@ -79,15 +79,15 @@ public partial class GameEnd : Control
         }
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
-        if (endOfGame)
-        {
-            if (@event.IsActionPressed(mouseClick))
-            {
-                EmitSignal("EndSignal");
-            }
-        }
-    }
+    // public override void _Input(InputEvent @event)
+    // {
+    //     base._Input(@event);
+    //     if (endOfGame)
+    //     {
+    //         if (@event.IsActionPressed(mouseClick))
+    //         {
+    //             EmitSignal("EndSignal");
+    //         }
+    //     }
+    // }
 }
