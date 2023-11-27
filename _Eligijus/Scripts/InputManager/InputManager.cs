@@ -5,6 +5,7 @@ public partial class InputManager: Node2D
 	public static InputManager Instance;
 	
 	[Signal] public delegate void LeftMouseClickEventHandler();
+	[Signal] public delegate void ExitViewEventHandler();
 	[Signal] public delegate void MouseMoveEventHandler(Vector2 relativeValues);
 	[Signal] public delegate void MouseMoveOutDeadZoneEventHandler(Vector2 mousePosition);
 
@@ -83,16 +84,14 @@ public partial class InputManager: Node2D
 			}
 		}
 
-		// if (@event.IsActionPressed(mouseClick))
-		// {
-		// 	OnLeftMouseClick();
-		// 	
-		// }
-		// else if (@event is InputEventMouseMotion eventMouseMotion)
-		// {
-		// 	TrackMousePosition();
-		// 	OnMouseMove();
-		// }
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
+		{
+			if (keyEvent.Keycode == Key.Escape)
+			{
+				OnExitViewClick();
+			}
+		}
+		
 	}
 	
 	private bool InDeadZone(Vector2 relativePosition)
@@ -104,25 +103,16 @@ public partial class InputManager: Node2D
 		return false;
 	}
 	
-	// public override void _Input(InputEvent @event)
-	// {
-	// 	base._Input(@event);
-	// 	if (@event.IsActionPressed(mouseClick))
-	// 	{
-	// 		OnLeftMouseClick();
-	// 	}
-	// 	else if (@event is InputEventMouseMotion eventMouseMotion)
-	// 	{
-	// 		TrackMousePosition();
-	// 		OnMouseMove();
-	// 	}
-	// 	
-	// }
-
 	public void OnLeftMouseClick()
 	{
 		
 		EmitSignal("LeftMouseClick");
+	}
+
+	public void OnExitViewClick()
+	{
+		
+		EmitSignal("ExitView");
 	}
 
 	private void TrackMousePosition()

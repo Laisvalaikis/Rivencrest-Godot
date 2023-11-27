@@ -52,9 +52,9 @@ public partial class GameTileMap : Node2D
 		{
 			Tilemap = this;
 		}
-		else
+		if (InputManager.Instance != null)
 		{
-			// Destroy(this.gameObject);
+			InputManager.Instance.LeftMouseClick += MouseClick;
 		}
 		_random = new Random();
 	}
