@@ -11,6 +11,9 @@ public partial class CameraMovement : Camera2D
     private float _zoomRate = 8.0f;
     [Export]
     private float zoomIncrement = 0.1f;
+    [Export] 
+    private Vector2 xBounds = new Vector2(-200f, 200f);
+    private Vector2 yBounds = new Vector2(-200f, 200f);
     private float _targetZoom = 1.0f;
     private Tween _tween;
 
@@ -53,15 +56,42 @@ public partial class CameraMovement : Camera2D
                 // }
             }
         }
-
+        
         if (@event is InputEventMouseMotion)
         {
             InputEventMouseMotion input = (InputEventMouseMotion)@event;
             if (input.ButtonMask == MouseButtonMask.Left)
             {
-                Position -= input.Relative * Zoom;
+                if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
+                {
+                    Position -= input.Relative * Zoom;
+                }
+                
+                if(Position.X > xBounds.Y)
+                {
+                    Position = new Vector2(xBounds.Y, Position.Y);
+                }
+                if (Position.Y > yBounds.Y)
+                {
+                    Position = new Vector2(Position.X, yBounds.Y);
+                }
+                if(Position.X < xBounds.X)
+                {
+                    Position = new Vector2(xBounds.X, Position.Y);
+                }
+                if (Position.Y < yBounds.X)
+                {
+                    Position = new Vector2(Position.X, yBounds.X);
+                }
+
             }
         }
+    }
+
+    public void SetMovementBounds(Vector2 xMapBounds, Vector2 yMapBounds)
+    {
+        xBounds = xMapBounds;
+        yBounds = yMapBounds;
     }
 
     public void ZoomIn()
