@@ -810,12 +810,12 @@ public abstract partial class BaseAction: Resource
 		{
 			if (chunkData != null && chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
-				Player player = chunkData.GetCurrentPlayer();
-				player.playerInformation.DealDamage(damage, player);
-				if (!player.CheckIfVisionTileIsUnlocked(chunkData))
+				Player attackedPlayer = chunkData.GetCurrentPlayer();
+				attackedPlayer.playerInformation.DealDamage(damage, this.player);
+				ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+				if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
 				{
-					ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(this.player.GlobalPosition);
-					player.AddVisionTile(enemyChunkData);
+					attackedPlayer.AddVisionTile(enemyChunkData);
 				}
 			}
 		}

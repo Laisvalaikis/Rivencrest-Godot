@@ -10,6 +10,7 @@ public class FogData
     {
         chunkRef = chunkData;
         fogIsOnTile = chunkData.IsFogOnTile();
+        
     }
 
     public override bool Equals(object obj)

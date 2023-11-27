@@ -23,7 +23,6 @@ public partial class GameTileMap : Node2D
 	[Export] private TeamInformation teamInformation;
 	[Export] private SelectAction _selectAction;
 	[Export] private Node2D highligtHolder;
-	[Export] private FogOfWar _fogOfWar;
 	[Export] private Resource textTilePrefab;
 	[Export] private Resource highlightTilePrefab;
 	[Export] private bool showChunks;
@@ -344,7 +343,6 @@ public partial class GameTileMap : Node2D
 						generatedChunk.GetCurrentObject().EnableObject();
 						generatedChunk.GetTileHighlight().EnableTile(true);
 					}
-					_fogOfWar.UpdateFog(generatedChunk.GetPosition(), _turnManager.GetTeamByIndex(character.GetPlayerTeam()));
 				}
 			}
 		}
