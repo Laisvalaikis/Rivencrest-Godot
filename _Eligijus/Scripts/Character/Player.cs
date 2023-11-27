@@ -56,6 +56,11 @@ public partial class Player : Object
 		_turnManager.GetTeamByIndex(_currentCharacterTeam).AddVisionTile(chunkData);
 	}
 
+	public bool CheckIfVisionTileIsUnlocked(ChunkData chunkData)
+	{
+		return _turnManager.GetTeamByIndex(_currentCharacterTeam).ContainsVisionTile(chunkData);
+	}
+
 	public override void PlayerWasDamaged()
 	{
 		actionManager.PlayerWasAttacked();

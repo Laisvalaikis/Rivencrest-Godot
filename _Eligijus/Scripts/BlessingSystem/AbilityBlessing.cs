@@ -79,11 +79,23 @@ public partial class AbilityBlessing : BaseBlessing
     {
 	    if (chunkData != null && chunkData.CharacterIsOnTile() && IsAllegianceSame(currentPlayer, chunkData, baseAction))
 	    {
-				
 		    int randomDamage = _random.Next(minDamage, maxDamage);
-		    bool crit = IsItCriticalStrike(ref randomDamage, currentPlayer.playerInformation);
 		    DodgeActivation(ref randomDamage, currentPlayer.playerInformation, chunkData.GetCurrentPlayer().playerInformation);
-		    chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, currentPlayer);
+		    DealDamage(chunkData, currentPlayer, baseAction, randomDamage);
+	    }
+    }
+
+    protected void DealDamage(ChunkData chunkData, Player damageDealer, BaseAction baseAction, int damage)
+    {
+	    if (chunkData != null && chunkData.CharacterIsOnTile() && !IsAllegianceSame(damageDealer, chunkData, baseAction))
+	    {
+		    Player player = chunkData.GetCurrentPlayer();
+		    player.playerInformation.DealDamage(damage, player);
+		    if (!player.CheckIfVisionTileIsUnlocked(chunkData))
+		    {
+			    ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(damageDealer.GlobalPosition);
+			    player.AddVisionTile(enemyChunkData);
+		    }
 	    }
     }
     
@@ -98,8 +110,9 @@ public partial class AbilityBlessing : BaseBlessing
 
     public bool IsAllegianceSame(Player currentPlayer, ChunkData chunk, BaseAction action)
     {
-	    return chunk == null || chunk.GetCurrentPlayer().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || !action.friendlyFire;
+	    return chunk.GetCurrentPlayer() != null && currentPlayer != null && (chunk.GetCurrentPlayer().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || action.friendlyFire);
     }
+    
     
     protected bool IsItCriticalStrike(ref int damage, PlayerInformation playerInformation)
     {

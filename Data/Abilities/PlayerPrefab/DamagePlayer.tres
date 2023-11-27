@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dwde71fynmx8v"]
+
+[ext_resource type="Resource" uid="uid://dfx11fncxw6u4" path="res://Data/Abilities/Abilities/PrefabAbilities/DamagePlayer.tres" id="1_7yk2x"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="2_p6ueo"]
+
+[resource]
+script = ExtResource("2_p6ueo")
+_type = 2
+enabled = true
+Action = ExtResource("1_7yk2x")

@@ -150,7 +150,12 @@ public partial class TurnManager : Node
 		UpdateFogInformation(_currentTeam.GetVisionTiles()).Wait();
 		_teamInformation.EndTurn(_currentTeamIndex);
 		OnTurnStart();
-		_fogOfWar.SetFogImage(_currentTeam.fogImage);
+		if (!isAiTurn)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+		{
+			_fogOfWar.SetFogImage(_currentTeam.fogImage);
+		}
+
+		
 	}
 
 	private async Task ResetFogInformation(List<FogData> fogDataList)

@@ -377,10 +377,45 @@ public partial class GameTileMap : Node2D
 	{
 		if (chunk != null)
 		{
-			setObject.DisableObject();
-			chunk.SetCurrentObject(setObject);
+			if (chunk.CharacterIsOnTile() && setObject.CanStepOn())
+			{
+
+				if (chunk.IsFogOnTile())
+				{
+					setObject.DisableObject();
+				}
+				else
+				{
+					if (chunk.CharacterIsOnTile())
+					{
+						setObject.StepOn(chunk);
+						if (setObject.CanBeDestroyOnStepping())
+						{
+							setObject.Death();
+						}
+					}
+
+					chunk.GetTileHighlight().EnableTile(true);
+				}
+
+				chunk.SetCurrentObject(setObject);
+			}
+			else if(!chunk.CharacterIsOnTile() && !setObject.CanStepOn())
+			{
+				if (chunk.IsFogOnTile())
+				{
+					setObject.DisableObject();
+				}
+				else
+				{
+					chunk.GetTileHighlight().EnableTile(true);
+				}
+
+				chunk.SetCurrentObject(setObject);
+			}
+			
 			//chunk.GetTileHighlight().ActivatePlayerTile(true);
-			// chunk.GetTileHighlight().EnableTile(true);
+			
 		}
 	}
 

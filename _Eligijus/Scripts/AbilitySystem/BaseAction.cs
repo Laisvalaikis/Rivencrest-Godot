@@ -660,15 +660,15 @@ public abstract partial class BaseAction: Resource
 		public virtual void ResolveAbility(ChunkData chunk)
 		{
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
-			if (isAbilitySlow)
-			{
-				player.SetMovementPoints(0);
-			}
 			GD.PushWarning("PlaySound");
 			ClearGrid();
 			UsedAbility usedAbility = new UsedAbility(this, chunk);
 			if (player is not null)
 			{
+				if (isAbilitySlow)
+				{
+					player.SetMovementPoints(0);
+				}
 				_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
 				_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
 				_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown);
@@ -771,17 +771,17 @@ public abstract partial class BaseAction: Resource
 			return chunk.GetCharacterType() == type;
 		}
 
-		public bool IsAllegianceSame(ChunkData chunk)
+		public virtual bool IsAllegianceSame(ChunkData chunk)
 		{
-			return chunk.GetCurrentPlayer() != null && player != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam();
+			return chunk.CharacterIsOnTile() && player != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam();
 		}
 		
-		public bool IsAllegianceSame(ChunkData chunk, ChunkData seconChunck)
+		public virtual bool IsAllegianceSame(ChunkData chunk, ChunkData seconChunck)
 		{
-			return chunk.GetCurrentPlayer() != null && seconChunck.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == seconChunck.GetCurrentPlayer().GetPlayerTeam();
+			return chunk.CharacterIsOnTile() && seconChunck.CharacterIsOnTile() && chunk.GetCurrentPlayer().GetPlayerTeam() == seconChunck.GetCurrentPlayer().GetPlayerTeam();
 		}
 		
-		public bool IsAllegianceSameForBuffs(ChunkData chunk)
+		public virtual bool IsAllegianceSameForBuffs(ChunkData chunk)
 		{
 			return chunk == null || (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
 		}
@@ -802,15 +802,21 @@ public abstract partial class BaseAction: Resource
 				
 				int randomDamage = _random.Next(minDamage, maxDamage);
 				DodgeActivation(ref randomDamage);
-				chunkData.GetCurrentPlayer().playerInformation.DealDamage(randomDamage, player);
+				DealDamage(chunkData, randomDamage);
 			}
 		}
 
 		protected void DealDamage(ChunkData chunkData, int damage)
 		{
-			if (chunkData != null && chunkData.GetCurrentPlayer() != null && (!IsAllegianceSame(chunkData) || friendlyFire))
+			if (chunkData != null && chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
-				chunkData.GetCurrentPlayer().playerInformation.DealDamage(damage, player);
+				Player player = chunkData.GetCurrentPlayer();
+				player.playerInformation.DealDamage(damage, player);
+				if (!player.CheckIfVisionTileIsUnlocked(chunkData))
+				{
+					ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(this.player.GlobalPosition);
+					player.AddVisionTile(enemyChunkData);
+				}
 			}
 		}
 		

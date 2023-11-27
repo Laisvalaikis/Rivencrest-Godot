@@ -48,6 +48,12 @@ public partial class Team : Resource
         _visionTiles.Add(new FogData(chunkData));
     }
 
+    public bool ContainsVisionTile(ChunkData chunkData)
+    {
+        FogData fogData = new FogData(chunkData);
+        return _visionTiles.Contains(fogData);
+    }
+
     public List<FogData> GetVisionTiles()
     {
         if (_visionTiles is null)
