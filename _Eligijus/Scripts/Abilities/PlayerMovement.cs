@@ -168,7 +168,7 @@ public partial class PlayerMovement : BaseAction
 			{
 				continue;
 			}
-
+			
 			TryAddTile(currentChunk);
 
 			foreach (ChunkData adjacentChunk in GetAdjacentChunks(currentChunk))
@@ -402,10 +402,11 @@ public partial class PlayerMovement : BaseAction
 
                     // Calculate distance to neighbor and total distance from start
                     int neighborDistance = Distance(current, neighbor);
+                    
                     int totalDistance = distances[current] + neighborDistance;
 
                     // Check if total distance is smaller than the current known distance
-                    if (totalDistance + predictedDistance < distances[neighbor])
+                    if (distances.ContainsKey(neighbor) && totalDistance + predictedDistance < distances[neighbor])
                     {
                         // Update distance
                         distances[neighbor] = totalDistance + predictedDistance;

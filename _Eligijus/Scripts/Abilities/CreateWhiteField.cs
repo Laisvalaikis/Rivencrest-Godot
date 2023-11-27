@@ -22,6 +22,13 @@ public partial class CreateWhiteField : BaseAction
         CreateWhiteField createWhiteField = new CreateWhiteField((CreateWhiteField)action);
         return createWhiteField;
     }
+
+    public override void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
+    {
+        //Dont use this, create seperate ability for adding/removing buff and add ability to whitefield object
+    }
+    
+    
     
     public override void OnTurnStart(ChunkData chunkData)
     {
