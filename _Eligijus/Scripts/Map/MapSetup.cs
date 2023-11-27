@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public partial class MapSetup : Node
 {
+	[Export] 
+	private CameraMovement _cameraMovement;
 	private string MapName;
 	private Dictionary<string, MapData> mapDatas;
 	[Export]
@@ -47,7 +49,7 @@ public partial class MapSetup : Node
 					_characterTeams.allCharacterList[i].coordinates.Add(j, currentMapData.mapCoordinates[i].coordinates[j]);
 				}
 			}
-			
+			_cameraMovement.SetMovementBounds(currentMapData.panLimitX, currentMapData.panLimitY);
 			CreateMap();
 		}
 		else
