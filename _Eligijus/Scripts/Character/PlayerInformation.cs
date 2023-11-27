@@ -57,6 +57,9 @@ public partial class PlayerInformation : ObjectInformation
 				}
 
 				_health -= damage;
+				damageDealer.playerInformation.AddDamageXP(damage);
+				damageDealer.playerInformation.AddKillXP();
+				
 				PLayerDamaged();
 			}
 
@@ -82,6 +85,14 @@ public partial class PlayerInformation : ObjectInformation
 	public void AddKillXP()
 	{
 		xPToGain += objectData.GetPlayerInformationData().killXP;
+	}
+	
+	public void AddDamageXP(int damageMade)
+	{
+		int maxHP = objectData.GetObjectData().maxHealth;
+		float maxHPInProcentage = (float)damageMade / (float)maxHP * 100.0f;
+		float killXPProcentage = (float)objectData.GetPlayerInformationData().killXP / 100.0f * maxHPInProcentage;
+		xPToGain += Mathf.RoundToInt(killXPProcentage);
 	}
 
 	public int GainXP()

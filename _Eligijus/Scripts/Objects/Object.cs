@@ -23,6 +23,7 @@ public partial class Object : Node2D
 	{
 		return Visible;
 	}
+	
 
 	public virtual void SetupObject(ObjectData objectInformation)
 	{
