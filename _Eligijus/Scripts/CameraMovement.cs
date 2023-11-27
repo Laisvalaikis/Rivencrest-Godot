@@ -13,6 +13,7 @@ public partial class CameraMovement : Camera2D
     private float zoomIncrement = 0.1f;
     [Export] 
     private Vector2 xBounds = new Vector2(-200f, 200f);
+    [Export]
     private Vector2 yBounds = new Vector2(-200f, 200f);
     private float _targetZoom = 1.0f;
     private Tween _tween;
@@ -23,6 +24,7 @@ public partial class CameraMovement : Camera2D
         if (InputManager.Instance != null)
         {
             InputManager.Instance.MouseMoveOutDeadZone += MoveCamera;
+            InputManager.Instance.LeftMouseDoubleClick += FocusPoint;
         }
     }
 
@@ -34,61 +36,6 @@ public partial class CameraMovement : Camera2D
         double y = Mathf.Lerp(Zoom.Y, _targetZoom * Vector2.One.Y, _zoomRate * delta);
         Zoom = new Vector2((float)x, (float)y);
         SetPhysicsProcess(!Zoom.X.Equals(_targetZoom));
-    }
-
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        base._UnhandledInput(@event);
-        // if (@event is InputEventMouseButton)
-        // {
-        //     if (@event.IsPressed())
-        //     {
-        //         InputEventMouseButton mouseButton = (InputEventMouseButton)@event;
-        //         if (mouseButton.ButtonIndex == MouseButton.WheelUp)
-        //         {
-        //             ZoomIn();
-        //         }
-        //         if (mouseButton.ButtonIndex == MouseButton.WheelDown)
-        //         {
-        //             ZoomOut();
-        //         }
-        //
-        //         // if (mouseButton.DoubleClick)
-        //         // {
-        //         //     
-        //         // }
-        //     }
-        // }
-        
-        // if (@event is InputEventMouseMotion)
-        // {
-        //     InputEventMouseMotion input = (InputEventMouseMotion)@event;
-        //     if (input.ButtonMask == MouseButtonMask.Left)
-        //     {
-        //         if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
-        //         {
-        //             Position -= input.Relative * Zoom;
-        //         }
-        //         
-        //         if(Position.X > xBounds.Y)
-        //         {
-        //             Position = new Vector2(xBounds.Y, Position.Y);
-        //         }
-        //         if (Position.Y > yBounds.Y)
-        //         {
-        //             Position = new Vector2(Position.X, yBounds.Y);
-        //         }
-        //         if(Position.X < xBounds.X)
-        //         {
-        //             Position = new Vector2(xBounds.X, Position.Y);
-        //         }
-        //         if (Position.Y < yBounds.X)
-        //         {
-        //             Position = new Vector2(Position.X, yBounds.X);
-        //         }
-        //
-        //     }
-        // }
     }
 
     private void MoveCamera(Vector2 relativePosition)
@@ -123,22 +70,45 @@ public partial class CameraMovement : Camera2D
         yBounds = yMapBounds;
     }
 
-    public void ZoomIn()
+    private void ZoomIn()
     {
         _targetZoom = Math.Max(_targetZoom - zoomIncrement, minZoom);
         SetPhysicsProcess(true);
     }
     
-    public void ZoomOut()
+    private void ZoomOut()
     {
         _targetZoom = Math.Min(_targetZoom + zoomIncrement, maxZoom);
         SetPhysicsProcess(true);
     }
 
-    // public void FocusPoint(Vector2 targetPosition)
-    // {
-    //     _tween.Stop(this, "position");
-    //     // _tween.interpolate_property(self, "position", position, target_position, 0.2, Tween.TRANS_EXPO)
-    //     _tween.
-    // }
+    public void FocusPoint(Vector2 targetPosition)
+    {
+        _tween = GetTree().CreateTween();
+        _tween.TweenProperty(this, "position", InBounds(targetPosition), 0.2f);
+        _tween.Play();
+    }
+
+    private Vector2 InBounds(Vector2 position)
+    {
+        Vector2 tempPosition = position;
+        if(tempPosition.X > xBounds.Y)
+        {
+            tempPosition = new Vector2(xBounds.Y, tempPosition.Y);
+        }
+        if (tempPosition.Y > yBounds.Y)
+        {
+            tempPosition = new Vector2(tempPosition.X, yBounds.Y);
+        }
+        if(tempPosition.X < xBounds.X)
+        {
+            tempPosition = new Vector2(xBounds.X, tempPosition.Y);
+        }
+        if (tempPosition.Y < yBounds.X)
+        {
+            tempPosition = new Vector2(tempPosition.X, yBounds.X);
+        }
+        
+        return tempPosition;
+    }
 }

@@ -4,6 +4,7 @@ using Godot.Collections;
 using System.Threading.Tasks;
 public partial class TurnManager : Node
 {
+	[Export] private CameraMovement _cameraMovement;
 	[Export] private FogOfWar _fogOfWar;
 	[Export] private TeamInformation _teamInformation;
 	[Export] private Team _currentTeam;
@@ -147,6 +148,14 @@ public partial class TurnManager : Node
 		{
 			isAiTurn = false;
 		}
+
+		foreach (int key in _teamsList.Teams[_currentTeamIndex].characters.Keys)
+		{
+			Player player = _teamsList.Teams[_currentTeamIndex].characters[key];
+			_cameraMovement.FocusPoint(player.GlobalPosition);
+			break;
+		}
+		
 		UpdateFogInformation(_currentTeam.GetVisionTiles()).Wait();
 		_teamInformation.EndTurn(_currentTeamIndex);
 		OnTurnStart();

@@ -4,8 +4,8 @@ public partial class FogOfWar : Sprite2D
 {
     [Export] private Image lightImage;
     [Export] private int GridSize = 10;
-    [Export] private int width = 2000;
-    [Export] private int height = 2000;
+    [Export] private int width = 3000;
+    [Export] private int height = 3000;
     private Image fogImage;
     private ImageTexture fogTexture;
     private Vector2I lightOffset;

@@ -5,6 +5,7 @@ public partial class InputManager: Node2D
 	public static InputManager Instance;
 	
 	[Signal] public delegate void LeftMouseClickEventHandler();
+	[Signal] public delegate void LeftMouseDoubleClickEventHandler(Vector2 mousePosition);
 	[Signal] public delegate void ExitViewEventHandler();
 	[Signal] public delegate void MouseMoveEventHandler(Vector2 relativeValues);
 	[Signal] public delegate void MouseMoveOutDeadZoneEventHandler(Vector2 mousePosition);
@@ -59,7 +60,11 @@ public partial class InputManager: Node2D
 					OnLeftMouseClick();
 				}
 			}
-			
+			if (input.DoubleClick)
+			{
+				EmitSignal("LeftMouseDoubleClick", GetGlobalMousePosition());
+			}
+
 		}
 
 		if (@event is InputEventMouseMotion)
