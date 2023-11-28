@@ -25,6 +25,8 @@ public partial class CameraMovement : Camera2D
         {
             InputManager.Instance.MouseMoveOutDeadZone += MoveCamera;
             InputManager.Instance.LeftMouseDoubleClick += FocusPoint;
+            InputManager.Instance.MouseWheelUp += ZoomIn;
+            InputManager.Instance.MouseWheelDown += ZoomOut;
         }
     }
 

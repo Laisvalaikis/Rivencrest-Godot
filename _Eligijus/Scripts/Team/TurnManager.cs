@@ -57,6 +57,12 @@ public partial class TurnManager : Node
 		{
 			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles()).Wait();
 		}
+		foreach (int key in _currentTeam.characters.Keys)
+		{
+			Player player = _currentTeam.characters[key];
+			_cameraMovement.FocusPoint(player.GlobalPosition);
+			break;
+		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
 		_fogOfWar.SetFogImage(_currentTeam.fogImage);
 	}
@@ -66,6 +72,7 @@ public partial class TurnManager : Node
 		if (_currentTeam.characters.Values.Contains(character))
 		{
 			_currentPlayer = character;
+			_cameraMovement.FocusPoint(_currentPlayer.GlobalPosition);
 		}
 		else if (character != null)
 		{

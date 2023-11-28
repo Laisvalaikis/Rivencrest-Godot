@@ -4,6 +4,8 @@ public partial class InputManager: Node2D
 {
 	public static InputManager Instance;
 	
+	[Signal] public delegate void MouseWheelUpEventHandler();
+	[Signal] public delegate void MouseWheelDownEventHandler();
 	[Signal] public delegate void LeftMouseClickEventHandler();
 	[Signal] public delegate void LeftMouseDoubleClickEventHandler(Vector2 mousePosition);
 	[Signal] public delegate void ExitViewEventHandler();
@@ -40,29 +42,43 @@ public partial class InputManager: Node2D
 		if (@event is InputEventMouseButton)
 		{
 			InputEventMouseButton input = (InputEventMouseButton)@event;
-			if (input.IsPressed())
+			if (input.ButtonIndex == MouseButton.Left)
 			{
-				selectIsClicked = true;
-				Vector2 mouseClickPosition = GetLocalMousePosition();
-				deadzoneBoundsX.X = mouseClickPosition.X - deadZone.X;
-				deadzoneBoundsX.Y = mouseClickPosition.X + deadZone.X;
-				deadzoneBoundsY.X = mouseClickPosition.Y - deadZone.Y;
-				deadzoneBoundsY.Y = mouseClickPosition.Y + deadZone.Y;
-				mouseRelativePosition = mouseClickPosition;
-				inDeadZone = true;
-			}
-			else if (input.IsReleased())
-			{
-				
-				selectIsClicked = false;
-				if (inDeadZone)
+				if (input.IsPressed())
 				{
-					OnLeftMouseClick();
+					selectIsClicked = true;
+					Vector2 mouseClickPosition = GetLocalMousePosition();
+					deadzoneBoundsX.X = mouseClickPosition.X - deadZone.X;
+					deadzoneBoundsX.Y = mouseClickPosition.X + deadZone.X;
+					deadzoneBoundsY.X = mouseClickPosition.Y - deadZone.Y;
+					deadzoneBoundsY.Y = mouseClickPosition.Y + deadZone.Y;
+					mouseRelativePosition = mouseClickPosition;
+					inDeadZone = true;
+				}
+				else if (input.IsReleased())
+				{
+
+					selectIsClicked = false;
+					if (inDeadZone)
+					{
+						OnLeftMouseClick();
+					}
+				}
+
+				if (input.DoubleClick)
+				{
+					EmitSignal("LeftMouseDoubleClick", GetGlobalMousePosition());
 				}
 			}
-			if (input.DoubleClick)
+
+			if (input.ButtonIndex == MouseButton.WheelUp)
 			{
-				EmitSignal("LeftMouseDoubleClick", GetGlobalMousePosition());
+				EmitSignal("MouseWheelUp");
+			}
+			
+			if (input.ButtonIndex == MouseButton.WheelDown)
+			{
+				EmitSignal("MouseWheelDown");
 			}
 
 		}
