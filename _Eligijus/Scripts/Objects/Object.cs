@@ -43,6 +43,14 @@ public partial class Object : Node2D
 		_visionRange = ObjectDataType.GetObjectData().visionRange;
 	}
 
+	public void AddPlayerForObjectAbilities(Player player)
+	{
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			_abilities[i].Action.SetPlayer(player);
+		}
+	}
+
 	public int GetVisionRange()
 	{
 		return _visionRange;

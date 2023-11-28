@@ -30,6 +30,7 @@ public partial class CreateBearTrap : BaseAction
 		spawnedBearTrap = spawnCharacter.Instantiate<Object>();
 		player.GetTree().Root.CallDeferred("add_child", spawnedBearTrap);
 		spawnedBearTrap.SetupObject(bearTrapData);
+		spawnedBearTrap.AddPlayerForObjectAbilities(player);
 		GameTileMap.Tilemap.SpawnObject(spawnedBearTrap, chunk);
 		i = 0;
 		FinishAbility();

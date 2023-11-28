@@ -104,7 +104,12 @@ public abstract partial class BaseAction: Resource
 			
 			Start();
 		}
-		
+
+		public void SetPlayer(Player player)
+		{
+			this.player = player;
+		}
+
 		public void SetupObjectAbility(Object player)
 		{
 			unlockedBlessingsList = new Array<UnlockedBlessingsResource>();
@@ -811,7 +816,7 @@ public abstract partial class BaseAction: Resource
 			if (chunkData != null && chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
 				Player attackedPlayer = chunkData.GetCurrentPlayer();
-				attackedPlayer.playerInformation.DealDamage(damage, this.player);
+				attackedPlayer.playerInformation.DealDamage(damage, player);
 				ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 				if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
 				{
