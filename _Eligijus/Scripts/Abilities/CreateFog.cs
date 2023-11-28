@@ -15,6 +15,7 @@ public partial class CreateFog : BaseAction
 	public CreateFog(CreateFog createFog) : base(createFog)
 	{
 		fogPrefab = createFog.fogPrefab;
+		fogPrefabData = createFog.fogPrefabData;
 	}
 	public override BaseAction CreateNewInstance(BaseAction action)
 	{
@@ -41,9 +42,10 @@ public partial class CreateFog : BaseAction
 		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
 		PackedScene spawnCharacter = (PackedScene)fogPrefab;
-		spawnedFog = spawnCharacter.Instantiate<Player>();
+		spawnedFog = spawnCharacter.Instantiate<Object>();
 		player.GetTree().Root.CallDeferred("add_child", spawnedFog);
-		//GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedFog);        
+		spawnedFog.SetupObject(fogPrefabData);
+		GameTileMap.Tilemap.SpawnObject(spawnedFog, chunk);
 		FinishAbility();
 		isFogActive = true;
 		i = 0;
