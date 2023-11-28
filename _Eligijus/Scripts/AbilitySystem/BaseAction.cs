@@ -324,8 +324,7 @@ public abstract partial class BaseAction: Resource
 
 		protected virtual bool CanAddTile(ChunkData chunk)
 		{
-			if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() &&
-			    chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter())
+			if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() && (!chunk.ObjectIsOnTile() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))
 			{
 				return true;
 			}
