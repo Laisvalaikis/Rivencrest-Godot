@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class PoisonDart : BaseAction
 {
@@ -28,9 +29,11 @@ public partial class PoisonDart : BaseAction
         if (chunk.CharacterIsOnTile())
         {
             Player target = chunk.GetCurrentPlayer();
-            target.AddPoison(new Poison(chunk, _poisonTurns,_poisonDamage));
+            PoisonDebuff debuff = new PoisonDebuff();
+            debuff.SetPoisonDebuffDamage(_poisonDamage);
+            debuff.SetLifetime(_poisonTurns);
+            target.debuffManager.AddDebuff(debuff, player);
         }
-
         FinishAbility();
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
+
 public partial class Antitoxic : PlayerBlessing
 {
     public Antitoxic()
@@ -31,6 +33,7 @@ public partial class Antitoxic : PlayerBlessing
     public override void OnTurnStart(Player player)
     {
         base.OnTurnStart(player);
-        player.GetPoisons().Clear();
+        PoisonDebuff poisonDebuff = new PoisonDebuff(); // :(
+        player.debuffManager.RemoveDebuffsByType(poisonDebuff.GetType());
     }
 }

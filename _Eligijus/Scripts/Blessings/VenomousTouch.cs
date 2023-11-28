@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class VenomousTouch : AbilityBlessing
 {
@@ -33,6 +34,9 @@ public partial class VenomousTouch : AbilityBlessing
 	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(baseAction);
-		tile.GetCurrentPlayer().AddPoison(new Poison(tile, 2, 2));
+		PoisonDebuff debuff = new PoisonDebuff();
+		debuff.SetPoisonDebuffDamage(poisonDamage);
+		debuff.SetLifetime(poisonTurns);
+		tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
 	}
 }

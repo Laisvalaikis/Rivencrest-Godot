@@ -91,9 +91,10 @@ public partial class DebuffManager : Node
 		}
 	}
 
-	public void AddDebuff(BaseDebuff debuff)
+	public void AddDebuff(BaseDebuff debuff, Player playerWhoCreatedDebuff)
 	{
 		debuff.SetPLayer(_player);
+		debuff.SetPlayerWhoCreatedDebuff(playerWhoCreatedDebuff);
 		debufList.AddLast(debuff);
 	}
 	

@@ -34,12 +34,6 @@ public class PlayerActionMiddleware
     {
         _player.SetMovementPoints(points);
     }
-
-    public void AddPoison(Poison poison)
-    {
-        _player.AddPoison(poison);
-    }
-
     public void SetPlayerTeam(int currentCharacterTeam)
     {
         _player.SetPlayerTeam(currentCharacterTeam);
@@ -48,11 +42,6 @@ public class PlayerActionMiddleware
     public int GetPlayerTeam()
     {
         return _player.GetPlayerTeam();
-    }
-
-    public void ClearPoison()
-    {
-        _player.ClearPoison();
     }
 
     public void OnTurnStart()
@@ -73,11 +62,6 @@ public class PlayerActionMiddleware
     public  void OnTurnEnd()
     {
         _player.OnTurnEnd();
-    }
-
-    public int GetPoisonCount()
-    {
-        return _player.GetPoisonCount();
     }
 
     public void AddBarrier()

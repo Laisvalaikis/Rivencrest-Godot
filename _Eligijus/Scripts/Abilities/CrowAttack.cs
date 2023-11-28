@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class CrowAttack : BaseAction
 {
@@ -80,7 +81,8 @@ public partial class CrowAttack : BaseAction
             if (t.CharacterIsOnTile() && CanTileBeClicked(t))
             {
                 int bonusDamage = 0;
-                if (t.GetCurrentPlayer().GetPoisonCount() > 0)
+                PoisonDebuff poison = new PoisonDebuff();
+                if(t.GetCurrentPlayer().debuffManager.ContainsDebuff(poison.GetType())) // vajezau, ar cia tikrai taip?
                 {
                     bonusDamage += poisonBonusDamage;
                 }

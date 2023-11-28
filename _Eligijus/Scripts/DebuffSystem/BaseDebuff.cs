@@ -8,6 +8,7 @@ public partial class BaseDebuff : Resource
 	protected int lifetime = 1;
 	protected int lifetimeCount = 0;
 	protected Player _player;
+	protected Player playerWhoCreatedDebuff;
 	public BaseDebuff()
 	{
 			
@@ -58,6 +59,11 @@ public partial class BaseDebuff : Resource
 		return lifetime;
 	}
 
+	public void SetLifetime(int lifetimeTurns)
+	{
+		lifetime = lifetimeTurns;
+	}
+
 	public int GetLifetimeCounter()
 	{
 		return lifetimeCount;
@@ -76,6 +82,11 @@ public partial class BaseDebuff : Resource
 	public void SetPLayer(Player player)
 	{
 		_player = player;
+	}
+
+	public void SetPlayerWhoCreatedDebuff(Player player)
+	{
+		playerWhoCreatedDebuff = player;
 	}
 
 	public override bool Equals(object obj)

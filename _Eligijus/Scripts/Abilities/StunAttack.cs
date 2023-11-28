@@ -26,14 +26,12 @@ public partial class StunAttack : BaseAction
         if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
-            GD.PrintErr("SMTH Happens");
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             DealDamage(chunk, spellDamage);
             BaseDebuff debuff = _debuff.CreateNewInstance();
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
             FinishAbility();
         }
     }
-    
 }

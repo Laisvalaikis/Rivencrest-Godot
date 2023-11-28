@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_ugqgv")
+poisonDamage = 2
+poisonTurns = 2
 laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1

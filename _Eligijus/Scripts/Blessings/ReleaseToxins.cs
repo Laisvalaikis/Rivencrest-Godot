@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class ReleaseToxins : AbilityBlessing
 {
@@ -28,7 +29,8 @@ public partial class ReleaseToxins : AbilityBlessing
 	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(baseAction);
-		if(tile.CharacterIsOnTile() && !IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) && tile.GetCurrentPlayer().GetPoisonCount() > 0)
+		PoisonDebuff poison = new PoisonDebuff();
+		if(tile.CharacterIsOnTile() && !IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) && tile.GetCurrentPlayer().debuffManager.ContainsDebuff(poison.GetType()))
 		{
 			DealRandomDamageToTarget(baseAction.GetPlayer(), tile, baseAction, bonusDamage, bonusDamage);
 		}

@@ -1,5 +1,7 @@
 ﻿using Godot;
 using System.Collections.Generic;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
+
 public partial class ExplosivePoison : AbilityBlessing
 {
     [Export] private int poisonTurns = 2;
@@ -49,7 +51,10 @@ public partial class ExplosivePoison : AbilityBlessing
                 Player player = chunkData.GetCurrentPlayer();
                 if (IsAllegianceSame(player, chunkData, baseAction))
                 {
-                    chunkData.GetCurrentPlayer().AddPoison(new Poison(chunkData, poisonTurns, poisonDamage));
+                    PoisonDebuff debuff = new PoisonDebuff();
+                    debuff.SetPoisonDebuffDamage(poisonDamage);
+                    debuff.SetLifetime(poisonTurns);
+                    player.debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
                 }
             }
         }

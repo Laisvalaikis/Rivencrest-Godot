@@ -40,6 +40,6 @@ public partial class MarkDebuff: BaseDebuff
     public override void PlayerWasAttacked()
     {
         RootDebuff rootDebuff = new RootDebuff();
-        _player.debuffManager.AddDebuff(rootDebuff);
+        _player.debuffManager.AddDebuff(rootDebuff, playerWhoCreatedDebuff);
     }
 }

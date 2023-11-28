@@ -30,7 +30,6 @@ public partial class Purify : BaseAction
             // target.debuffs.RemoveSilence();
             // target.debuffs.RemoveAFlame();
             // target.debuffs.RemoveSilence();
-            target.ClearPoison();
         }
     }
    

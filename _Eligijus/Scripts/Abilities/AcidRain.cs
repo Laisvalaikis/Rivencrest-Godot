@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class AcidRain : BaseAction
-{	
+{
+	[Export] private int poisonDamage;
+	[Export] private int poisonTurns;
 	public AcidRain()
 	{
 	}
@@ -78,7 +81,11 @@ public partial class AcidRain : BaseAction
 			{
 				if (CanTileBeClicked(tile))
 				{
-					tile.GetCurrentPlayer().AddPoison(new Poison(tile, 2, 2));
+					Player target = tile.GetCurrentPlayer();
+					PoisonDebuff debuff = new PoisonDebuff();
+					debuff.SetPoisonDebuffDamage(poisonDamage);
+					debuff.SetLifetime(poisonTurns);
+					target.debuffManager.AddDebuff(debuff, player);
 				}
 			}
 			base.ResolveAbility(chunk);
