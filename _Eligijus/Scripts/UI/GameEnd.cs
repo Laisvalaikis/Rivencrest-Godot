@@ -73,7 +73,7 @@ public partial class GameEnd : Control
                     
                     Player player = currentCharacters.Teams[i].characters[j];
                     SavedCharacterResource character = currentCharacters.Teams[i].characterResources[j];
-                    character.xPToGain = player.playerInformation.GainXP();
+                    character.xPToGain = player.objectInformation.GetPlayerInformation().GainXP();
                 }
             }
         }

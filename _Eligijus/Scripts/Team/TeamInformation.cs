@@ -31,7 +31,7 @@ public partial class TeamInformation : Control
 				{
 					Player character = characterOnBoardList[keyArray[i]];
 					pvpCharacterSelects[i].SetPortraitCharacter(character,
-						character.playerInformation);
+						character.objectInformation.GetPlayerInformation());
 					pvpCharacterSelects[i].CreateCharatersPortrait();
 					pvpCharacterSelects[i].SetSelectAction(selectAction);
 					pvpCharacterSelects[i].SetGameTilemap(gameTileMap);

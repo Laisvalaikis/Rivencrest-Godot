@@ -43,7 +43,7 @@ public partial class BattleRage : AbilityBlessing
         else
         {
             int randomHeal = _random.Next(minHeal, maxHeal);
-            baseAction.GetPlayer().playerInformation.Heal(randomHeal);
+            baseAction.GetPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
             secondTime = false;
         }
     }

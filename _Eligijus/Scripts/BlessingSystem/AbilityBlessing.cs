@@ -80,7 +80,7 @@ public partial class AbilityBlessing : BaseBlessing
 	    if (chunkData != null && chunkData.CharacterIsOnTile() && IsAllegianceSame(currentPlayer, chunkData, baseAction))
 	    {
 		    int randomDamage = _random.Next(minDamage, maxDamage);
-		    DodgeActivation(ref randomDamage, currentPlayer.playerInformation, chunkData.GetCurrentPlayer().playerInformation);
+		    DodgeActivation(ref randomDamage, currentPlayer.objectInformation.GetPlayerInformation(), chunkData.GetCurrentPlayer().objectInformation.GetPlayerInformation());
 		    DealDamage(chunkData, currentPlayer, baseAction, randomDamage);
 	    }
     }
@@ -90,7 +90,7 @@ public partial class AbilityBlessing : BaseBlessing
 	    if (chunkData != null && chunkData.CharacterIsOnTile() && !IsAllegianceSame(damageDealer, chunkData, baseAction))
 	    {
 		    Player player = chunkData.GetCurrentPlayer();
-		    player.playerInformation.DealDamage(damage, player);
+		    player.objectInformation.GetPlayerInformation().DealDamage(damage, player);
 		    if (!player.CheckIfVisionTileIsUnlocked(chunkData))
 		    {
 			    ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(damageDealer.GlobalPosition);

@@ -36,7 +36,7 @@ public partial class Execute : BaseAction
         {
             if (CanTileBeClicked(hoveredChunk))
             {
-                _playerInformation = hoveredChunk.GetCurrentPlayer().playerInformation;
+                _playerInformation = hoveredChunk.GetCurrentPlayer().objectInformation.GetPlayerInformation();
                 EnableDamagePreview(hoveredChunk);
             }
             SetHoveredAttackColor(hoveredChunk);
@@ -52,10 +52,10 @@ public partial class Execute : BaseAction
         if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
-            chunk.GetCurrentPlayer().playerInformation.DealDamage(minAttackDamage,player);
+            chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(minAttackDamage,player);
             if(chunk.GetCurrentPlayer() == null)
             {
-                player.playerInformation.Heal(5);
+                player.objectInformation.GetPlayerInformation().Heal(5);
                 GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
             }
             base.ResolveAbility(chunk);

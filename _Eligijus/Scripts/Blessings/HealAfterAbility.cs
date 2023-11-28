@@ -40,7 +40,7 @@ public partial class HealAfterAbility : AbilityBlessing
             if (IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
             {
                 int randomHeal = _random.Next(minHeal, maxHeal);
-                player.playerInformation.Heal(randomHeal);
+                player.objectInformation.GetPlayerInformation().Heal(randomHeal);
             }
         }
     }

@@ -30,7 +30,7 @@ public partial class IncreaseHealing : AbilityBlessing
 		if (tile.CharacterIsOnTile())
 		{
 			Player tempPlayer = tile.GetCurrentPlayer();
-			tempPlayer.playerInformation.Heal(bonusHealing);
+			tempPlayer.objectInformation.GetPlayerInformation().Heal(bonusHealing);
 		}
 	}
 }

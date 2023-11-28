@@ -46,12 +46,12 @@ public partial class ComboKick : AbilityBlessing
                 if (tempTile.CharacterIsOnTile())
                 {
                     Player tempPlayer = tempTile.GetCurrentPlayer();
-                    tempPlayer.playerInformation.DealDamage(attackDamage, baseAction.GetPlayer());
+                    tempPlayer.objectInformation.GetPlayerInformation().DealDamage(attackDamage, baseAction.GetPlayer());
                 }
                 if (tile.CharacterIsOnTile())
                 {
                     Player tempPlayer = tile.GetCurrentPlayer();
-                    tempPlayer.playerInformation.DealDamage(attackDamage, baseAction.GetPlayer());
+                    tempPlayer.objectInformation.GetPlayerInformation().DealDamage(attackDamage, baseAction.GetPlayer());
                 }
             }
             else
@@ -59,7 +59,7 @@ public partial class ComboKick : AbilityBlessing
                 if (tile.CharacterIsOnTile())
                 {
                     Player tempPlayer = tile.GetCurrentPlayer();
-                    tempPlayer.playerInformation.DealDamage(attackDamage, baseAction.GetPlayer());
+                    tempPlayer.objectInformation.GetPlayerInformation().DealDamage(attackDamage, baseAction.GetPlayer());
                 }
             }
         }

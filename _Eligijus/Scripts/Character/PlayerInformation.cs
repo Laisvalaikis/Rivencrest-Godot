@@ -5,8 +5,6 @@ using Godot;
 
 public partial class PlayerInformation : ObjectInformation
 {
-	[Export]
-	public Sprite2D spriteRenderer;
 	public bool characterProtected = false;
 	public bool stasis = false;
 	public int xPToGain = 0;
@@ -15,11 +13,6 @@ public partial class PlayerInformation : ObjectInformation
 	public override void SetupData(ObjectData objectInformation)
 	{
 		objectData = new ObjectDataType<ObjectData>(objectInformation, typeof(Player));
-	}
-
-	public override void _Ready()
-	{
-		base._Ready();
 		_health = objectData.objectData.maxHealth;
 	}
 
@@ -57,7 +50,7 @@ public partial class PlayerInformation : ObjectInformation
 				}
 
 				_health -= damage;
-				damageDealer.playerInformation.AddDamageXP(damage);
+				damageDealer.objectInformation.GetPlayerInformation().AddDamageXP(damage);
 				PLayerDamaged();
 			}
 
@@ -76,7 +69,7 @@ public partial class PlayerInformation : ObjectInformation
 
 	public void DeathStart(Player damageDealer)
 	{
-		damageDealer.playerInformation.AddKillXP();
+		damageDealer.objectInformation.GetPlayerInformation().AddKillXP();
 		_object.Death();
 	}
 	

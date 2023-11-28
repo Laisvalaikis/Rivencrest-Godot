@@ -27,7 +27,7 @@ public partial class MistShield : BaseAction
         {
             player.RemoveBarrier();
         }
-        player.playerInformation.characterProtected = false;
+        player.objectInformation.GetPlayerInformation().characterProtected = false;
     }
 
     public override void ResolveAbility(ChunkData chunk)
@@ -37,7 +37,7 @@ public partial class MistShield : BaseAction
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
             isAbilityActive = true;
-            player.playerInformation.characterProtected = true;
+            player.objectInformation.GetPlayerInformation().characterProtected = true;
             player.AddBarrier();
             FinishAbility();
         }

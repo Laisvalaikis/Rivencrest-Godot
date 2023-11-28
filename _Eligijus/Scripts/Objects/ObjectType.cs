@@ -9,9 +9,19 @@ public class ObjectType<T>
         this.data = data;
         objectType = type;
     }
+    public PlayerInformation GetPlayerInformation()
+    {
+        return data as PlayerInformation;
+    }
+    
     public Player GetPlayer()
     {
         return data as Player;
+    }
+    
+    public Object GetObjectInformation()
+    {
+        return data as Object;
     }
 
     public Object GetObject()

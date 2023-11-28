@@ -38,7 +38,7 @@ public partial class SelectAction : Control
 		_playerAbilities = _actionManager.ReturnAbilities();
 		_playerBaseAbilities = _actionManager.ReturnBaseAbilities();
 		_playerAllAbilities = _actionManager.ReturnAllAbilities();
-		_playerInformationData = _currentPlayer.playerInformation.objectData.GetPlayerInformationData();
+		_playerInformationData = _currentPlayer.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData();
 	}
 
 	private void GenerateActions()
@@ -121,9 +121,9 @@ public partial class SelectAction : Control
 	private void UpdatePlayerInfo()
 	{
 		characterPortrait.Texture = (AtlasTexture)_playerInformationData.CharacterPortraitSprite;
-		healthText.Text = _currentPlayer.playerInformation.GetHealth().ToString();
-		int healthPercentage = GetProcentage(_currentPlayer.playerInformation.GetHealth(),
-			_currentPlayer.playerInformation.GetMaxHealth());
+		healthText.Text = _currentPlayer.objectInformation.GetPlayerInformation().GetHealth().ToString();
+		int healthPercentage = GetProcentage(_currentPlayer.objectInformation.GetPlayerInformation().GetHealth(),
+			_currentPlayer.objectInformation.GetPlayerInformation().GetMaxHealth());
 		healthBar.Value = healthPercentage;
 		abilityPointsText.Text = _currentPlayer.actionManager.GetAbilityPoints().ToString();
 		int abilityPercentage = GetProcentage(_currentPlayer.actionManager.GetAbilityPoints(),

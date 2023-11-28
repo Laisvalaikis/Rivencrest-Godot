@@ -62,6 +62,13 @@ public partial class IncreaseVision : BaseAction
     {
         return false;
     }
-    
-    
+
+    public override void Die()
+    {
+        for (int i = 0; i < _savedViewTiles.Count; i++)
+        {
+            GameTileMap.Tilemap.RemoveFog(_savedViewTiles[i], player);
+        }
+    }
+
 }

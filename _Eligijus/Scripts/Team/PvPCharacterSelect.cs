@@ -92,7 +92,7 @@ public partial class PvPCharacterSelect : Button
         }
 
         Player character = (Player)characterOnBoard;
-        if (character.playerInformation.GetHealth() > 0)
+        if (character.objectInformation.GetPlayerInformation().GetHealth() > 0)
         {
               
         }

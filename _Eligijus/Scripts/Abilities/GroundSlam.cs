@@ -42,7 +42,7 @@ public partial class GroundSlam : BaseAction
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
-        if(isAbilityActive && player.playerInformation.GetHealth() > 0)
+        if(isAbilityActive && player.objectInformation.GetPlayerInformation().GetHealth() > 0)
         {
             DealDamageToAdjacent();
         }

@@ -38,7 +38,7 @@ public partial class Enlighten : AbilityBlessing
         if (tile.CharacterIsOnTile())
         {
             int heal = _random.Next(minHeal, maxHeal);
-            tile.GetCurrentPlayer().playerInformation.Heal(heal);
+            tile.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(heal);
         }
     }
     

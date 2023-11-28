@@ -77,36 +77,36 @@ public class PlayerActionMiddleware
 
     public void DealDamage(int damage, Player damageDealer)
     {
-        _player.playerInformation.DealDamage(damage, damageDealer);
+        _player.objectInformation.GetPlayerInformation().DealDamage(damage, damageDealer);
     }
 
     public void DeathStart(Player damageDealer)
     {
-        _player.playerInformation.DeathStart(damageDealer);
+        _player.objectInformation.GetPlayerInformation().DeathStart(damageDealer);
     }
 
     public void AddKillXP()
     {
-        _player.playerInformation.AddKillXP();
+        _player.objectInformation.GetPlayerInformation().AddKillXP();
     }
 
     public int GainXP()
     {
-        return _player.playerInformation.GainXP();
+        return _player.objectInformation.GetPlayerInformation().GainXP();
     }
 
     public Type GetInformationType()
     {
-        return _player.playerInformation.GetInformationType();
+        return _player.objectInformation.GetPlayerInformation().GetInformationType();
     }
 
     public void SetInformationType(Type informationType)
     {
-        _player.playerInformation.SetInformationType(informationType);
+        _player.objectInformation.GetPlayerInformation().SetInformationType(informationType);
     }
 
     public float GetHealthPercentage()
     {
-        return _player.playerInformation.GetHealthPercentage();
+        return _player.objectInformation.GetPlayerInformation().GetHealthPercentage();
     }
 }

@@ -63,7 +63,7 @@ public partial class BlockAbility : BaseAction
         base.OnTurnStart(chunkData);
         if (_characterBeingBlocked != null)
         {
-            _characterBeingBlocked.playerInformation.RemoveBarrier();
+            _characterBeingBlocked.objectInformation.GetPlayerInformation().RemoveBarrier();
         }
     }
     public override void ResolveAbility(ChunkData chunk)
@@ -75,7 +75,7 @@ public partial class BlockAbility : BaseAction
             if (chunk.GetCurrentPlayer() != null)
             {
                 _characterBeingBlocked = chunk.GetCurrentPlayer();
-                _characterBeingBlocked.playerInformation.AddBarrier();
+                _characterBeingBlocked.objectInformation.GetPlayerInformation().AddBarrier();
             }
             FinishAbility();
         }
@@ -86,7 +86,7 @@ public partial class BlockAbility : BaseAction
         base.Die();
         if (_characterBeingBlocked != null)
         {
-            _characterBeingBlocked.playerInformation.RemoveBarrier();
+            _characterBeingBlocked.objectInformation.GetPlayerInformation().RemoveBarrier();
         }
     }
 }

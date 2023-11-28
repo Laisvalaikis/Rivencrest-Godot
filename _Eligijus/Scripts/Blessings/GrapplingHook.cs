@@ -50,7 +50,7 @@ public partial class GrapplingHook : AbilityBlessing
         HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
 
         Player currentCharacter = hoveredChunk?.GetCurrentPlayer();
-        PlayerInformation currentPlayerInfo = currentCharacter?.playerInformation;
+        PlayerInformation currentPlayerInfo = currentCharacter?.objectInformation.GetPlayerInformation();
 
         if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))
         {

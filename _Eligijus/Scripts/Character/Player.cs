@@ -5,7 +5,6 @@ using Rivencrestgodot._Eligijus.Scripts.Character;
 public partial class Player : Object
 {
 	[Export] public int playerInTeamIndex = 0;
-	[Export] public PlayerInformation playerInformation;
 	[Export] public ActionManager actionManager;
 	[Export] public DebuffManager debuffManager;
 	public Array<UnlockedAbilitiesResource> unlockedAbilityList;
@@ -18,10 +17,11 @@ public partial class Player : Object
 	private int previousMovementPoints = 3;
 	public PlayerActionMiddleware playerActionMiddleware;
 
-	public override void SetupObject(ObjectData objectInformation)
+	public override void SetupObject(ObjectData objectData)
 	{
-		ObjectDataType = new ObjectDataType<ObjectData>(objectInformation, typeof(Player));
-		playerInformation.SetupData(objectInformation);
+		objectInformation = new ObjectType<ObjectInformation>(objectInformationNode, typeof(ObjectInformation));
+		ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Player));
+		objectInformation.GetPlayerInformation().SetupData(objectData);
 		_visionRange = ObjectDataType.GetObjectData().visionRange;
 		actionManager.InitializeActionManager();
 	}
@@ -36,7 +36,7 @@ public partial class Player : Object
 		{
 			team.CharacterDeath(chunkData, _currentCharacterTeam, playerInTeamIndex, this);
 		}
-		else if(team == null && playerInformation.GetInformationType() != typeof(Player))
+		else if(team == null && objectInformation.GetType() != typeof(Player))
 		{
 			chunkData.SetCurrentCharacter(null);
 			chunkData.GetTileHighlight().DisableHighlight();
@@ -125,7 +125,7 @@ public partial class Player : Object
 		movementPoints = actionManager.ReturnBaseAbilities()[0].Action.attackRange;
 		previousMovementPoints = movementPoints;
 		actionManager.OnTurnStart();
-		Array<PlayerBlessing> playerBlessings = playerInformation.objectData.GetPlayerInformationData().GetAllPlayerBlessings();
+		Array<PlayerBlessing> playerBlessings = objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().GetAllPlayerBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
 			if (unlockedPLayerBlessings[i].blessingUnlocked)
@@ -152,7 +152,7 @@ public partial class Player : Object
 	public override void OnTurnEnd()
 	{
 		actionManager.OnTurnEnd();
-		Array<PlayerBlessing> playerBlessings = playerInformation.objectData.GetPlayerInformationData().GetAllPlayerBlessings();
+		Array<PlayerBlessing> playerBlessings = objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().GetAllPlayerBlessings();
 		for (int i = 0; i < playerBlessings.Count; i++)
 		{
 			if (unlockedPLayerBlessings[i].blessingUnlocked)
@@ -170,12 +170,12 @@ public partial class Player : Object
 
 	public void AddBarrier()
 	{
-		playerInformation.AddBarrier();
+		objectInformation.GetPlayerInformation().AddBarrier();
 	}
 	
 	public void RemoveBarrier()
 	{
-		playerInformation.RemoveBarrier();
+		objectInformation.GetPlayerInformation().RemoveBarrier();
 	}
 
 	public void AddWeakSpot()

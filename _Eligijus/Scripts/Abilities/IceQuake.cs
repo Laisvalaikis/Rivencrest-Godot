@@ -36,7 +36,7 @@ public partial class IceQuake : BaseAction
                 highlightTile.SetDamageText($"{minAttackDamage+bonusDamage}-{maxAttackDamage+bonusDamage}");
             }
 
-            if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().playerInformation.GetHealth() <= minAttackDamage)
+            if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <= minAttackDamage)
             {
                 highlightTile.ActivateDeathSkull(true);
             }

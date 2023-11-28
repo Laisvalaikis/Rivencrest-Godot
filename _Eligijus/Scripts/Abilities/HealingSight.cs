@@ -44,7 +44,7 @@ public partial class HealingSight : BaseAction
             int randomHeal = random.Next(minHealAmount, maxHealAmount);
             if (chunk.CharacterIsOnTile() && IsAllegianceSame(chunk))
             {
-                chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+                chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
             }
             FinishAbility();
         }

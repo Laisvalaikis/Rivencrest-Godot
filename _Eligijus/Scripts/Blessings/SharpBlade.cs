@@ -33,7 +33,7 @@ public partial class SharpBlade : AbilityBlessing
        if (tile.CharacterIsOnTile())
        {
            Player tempPlayer = tile.GetCurrentPlayer();
-           tempPlayer.playerInformation.DealDamage(dealDamage, baseAction.GetPlayer());
+           tempPlayer.objectInformation.GetPlayerInformation().DealDamage(dealDamage, baseAction.GetPlayer());
        }
     }
 

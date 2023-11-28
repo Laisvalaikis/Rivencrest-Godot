@@ -36,7 +36,7 @@ public partial class MeteorRain : AbilityBlessing
         base.ResolveBlessing(baseAction, tile);
         if (tile.CharacterIsOnTile())
         {
-            tile.GetCurrentPlayer().playerInformation.DealDamage(2, baseAction.GetPlayer());
+            tile.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(2, baseAction.GetPlayer());
         }
     }
 

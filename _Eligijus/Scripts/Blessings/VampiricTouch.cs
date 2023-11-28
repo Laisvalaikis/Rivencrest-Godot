@@ -30,7 +30,7 @@ public partial class VampiricTouch : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction);
-        baseAction.GetPlayer().playerInformation.Heal(lifeSteal);
+        baseAction.GetPlayer().objectInformation.GetPlayerInformation().Heal(lifeSteal);
     }
     
 }

@@ -5,19 +5,22 @@ using System.Diagnostics;
 using System.Threading;
 using Godot;
 using Godot.Collections;
+
 public partial class GameTileMap : Node2D
 {
 	public static GameTileMap Tilemap;
+
 	[System.Serializable]
 	public class SaveChunks
 	{
 		public List<ChunkData> chunks;
-		
+
 		public SaveChunks()
 		{
 			chunks = new List<ChunkData>();
 		}
 	}
+
 	[Export] public TileMapData currentMap;
 	[Export] private TurnManager _turnManager;
 	[Export] private TeamInformation teamInformation;
@@ -52,17 +55,19 @@ public partial class GameTileMap : Node2D
 		{
 			Tilemap = this;
 		}
+
 		if (InputManager.Instance != null)
 		{
 			InputManager.Instance.LeftMouseClick += MouseClick;
 		}
+
 		_random = new Random();
 	}
 
 	public void SetupTiles(TileMapData tileMapData)
 	{
 		currentMap = tileMapData;
-		
+
 		if (currentMap._chunkSize > 0)
 		{
 			_chunks = new List<SaveChunks>();
@@ -74,42 +79,43 @@ public partial class GameTileMap : Node2D
 			_chunksArray = new ChunkData[_chunkCountWidth, _chunkCountHeight];
 			_threadDistance = new Thread(CalculateDistance);
 			_threadDistance.Start();
-		   
+
 		}
 		else
 		{
 			GD.PrintErr("Chunk size can't be 0");
 		}
-		
+
 	}
 
 	public override void _Ready()
 	{
 		base._Ready();
-		
+
 	}
 
 
 	public override void _ExitTree()
 	{
 		base._ExitTree();
-		
+
 		_updateWeight = false;
 		if (_threadDistance != null && _threadDistance.IsAlive)
 		{
 			_threadDistance.Abort();
 		}
-		else if(_threadDistance != null)
+		else if (_threadDistance != null)
 		{
-			_threadDistance.Join(); 
+			_threadDistance.Join();
 		}
+
 		if (Tilemap == this)
 		{
 			Tilemap = null;
 		}
-		
+
 	}
-	
+
 	// public override void _Input(InputEvent @event)
 	// {
 	// 	if (@event is InputEventMouseMotion eventMouseMotion)
@@ -165,7 +171,7 @@ public partial class GameTileMap : Node2D
 	{
 		return chuncksIsSetUp;
 	}
-	
+
 
 	void CalculateDistance()
 	{
@@ -175,20 +181,20 @@ public partial class GameTileMap : Node2D
 		{
 			float leftSizeOfHeight = currentMap._mapHeight;
 			float heightPosition = currentMap._initialPosition.Y;
-			
+
 			float widthSize = currentMap._chunkSize;
-			
+
 			if (leftSizeOfWidth / currentMap._chunkSize < 1)
 			{
 				widthSize = leftSizeOfWidth / currentMap._chunkSize;
 			}
-		
+
 			_chunks.Add(new SaveChunks());
-			
+
 			for (int h = 0; h < _chunkCountHeight; h++)
 			{
 				float heightSize = currentMap._chunkSize;
-				
+
 				if (leftSizeOfHeight / currentMap._chunkSize < 1)
 				{
 					heightSize = leftSizeOfHeight / currentMap._chunkSize;
@@ -197,16 +203,20 @@ public partial class GameTileMap : Node2D
 				PackedScene tileHighlight = (PackedScene)highlightTilePrefab;
 				HighlightTile tileNode = (HighlightTile)tileHighlight.Instantiate();
 				highligtHolder.CallDeferred("add_child", tileNode);
-				tileNode.SetDeferred("global_position", new Vector2(widthPosition + (currentMap._chunkSize/2) , heightPosition + (currentMap._chunkSize/2)));
+				tileNode.SetDeferred("global_position",
+					new Vector2(widthPosition + (currentMap._chunkSize / 2),
+						heightPosition + (currentMap._chunkSize / 2)));
 				tileNode.CallDeferred("hide");
 				// tileNode.GlobalPosition = new Vector2(widthPosition, heightPosition);
-				
-				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize, widthPosition + (currentMap._chunkSize/2), heightPosition + (currentMap._chunkSize/2), false, true, tileNode);
+
+				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize,
+					widthPosition + (currentMap._chunkSize / 2), heightPosition + (currentMap._chunkSize / 2), false,
+					true, tileNode);
 				//tileSpriteRenderers[chunckIndex], tileHighlights[chunckIndex], false
 				if (currentMap._mapBoundries.boundries[h].Y - currentMap._chunkSize <= heightPosition - (heightSize) &&
-					currentMap._mapBoundries.boundries[h].Y >=  heightPosition &&
-					currentMap._mapBoundries.boundries[h].X <= widthPosition && 
-					currentMap._mapBoundries.boundries[h].Z >= widthPosition)
+				    currentMap._mapBoundries.boundries[h].Y >= heightPosition &&
+				    currentMap._mapBoundries.boundries[h].X <= widthPosition &&
+				    currentMap._mapBoundries.boundries[h].Z >= widthPosition)
 				{
 					chunk.SetTileIsLocked(false);
 					// tileNode.CallDeferred("show");
@@ -215,18 +225,20 @@ public partial class GameTileMap : Node2D
 				{
 					chunk.SetTileIsLocked(true);
 				}
+
 				chunckIndex++;
 				lock (_chunksArray)
 				{
 					_chunksArray[w, h] = chunk;
 				}
+
 				_chunks[w].chunks.Add(chunk);
 				_allChunks.Add(chunk);
-				
+
 				heightPosition += heightSize;
 				leftSizeOfHeight -= heightSize;
 			}
-			
+
 			leftSizeOfWidth -= widthSize;
 			widthPosition += widthSize;
 		}
@@ -237,7 +249,7 @@ public partial class GameTileMap : Node2D
 		// _threadWeight.Start();
 		// _avlTree.DisplayTree();
 	}
-	
+
 	public ChunkData[,] GetChunksArray()
 	{
 		return _chunksArray;
@@ -245,16 +257,17 @@ public partial class GameTileMap : Node2D
 
 	public ChunkData GetChunk(Vector2 position)
 	{
-		int widthChunk = Mathf.CeilToInt((position.X - currentMap._initialPosition.X)/currentMap._chunkSize)-1;
-		int heightChunk = Mathf.CeilToInt((position.Y - currentMap._initialPosition.Y) / currentMap._chunkSize)-1;
+		int widthChunk = Mathf.CeilToInt((position.X - currentMap._initialPosition.X) / currentMap._chunkSize) - 1;
+		int heightChunk = Mathf.CeilToInt((position.Y - currentMap._initialPosition.Y) / currentMap._chunkSize) - 1;
 
-		
+
 		lock (_chunksArray)
 		{
-			
+
 			if (_chunksArray.GetLength(0) > widthChunk && widthChunk >= 0
-				&& _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
-				&& _chunksArray[widthChunk, heightChunk] != null && !_chunksArray[widthChunk, heightChunk].TileIsLocked())
+			                                           && _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
+			                                           && _chunksArray[widthChunk, heightChunk] != null &&
+			                                           !_chunksArray[widthChunk, heightChunk].TileIsLocked())
 			{
 				return _chunksArray[widthChunk, heightChunk];
 			}
@@ -273,28 +286,30 @@ public partial class GameTileMap : Node2D
 
 	public bool CheckBounds(int x, int y)
 	{
-		if (_chunksArray.GetLength(0) > x && x >= 0 
-													&& _chunksArray.GetLength(1) > y && y >= 0
-													&& _chunksArray[x, y] != null 
-													&& !_chunksArray[x, y].TileIsLocked())
+		if (_chunksArray.GetLength(0) > x && x >= 0
+		                                  && _chunksArray.GetLength(1) > y && y >= 0
+		                                  && _chunksArray[x, y] != null
+		                                  && !_chunksArray[x, y].TileIsLocked())
 		{
 			return true;
 		}
+
 		return false;
 	}
 
 	public bool CheckIfWall(int x, int y)
 	{
-		if ((_chunksArray.GetLength(0)-1 == x || x == 0) 
-										  && (_chunksArray.GetLength(1)-1 == y || y == 0)
-										  && _chunksArray[x, y] != null 
-										  && !_chunksArray[x, y].TileIsLocked())
+		if ((_chunksArray.GetLength(0) - 1 == x || x == 0)
+		    && (_chunksArray.GetLength(1) - 1 == y || y == 0)
+		    && _chunksArray[x, y] != null
+		    && !_chunksArray[x, y].TileIsLocked())
 		{
 			return true;
 		}
+
 		return false;
 	}
-	
+
 
 	public void ResetChunk(ChunkData chunk)
 	{
@@ -306,7 +321,7 @@ public partial class GameTileMap : Node2D
 			chunk.GetTileHighlight().EnableTile(false);
 		}
 	}
-	
+
 	public void SetCharacter(Vector2 mousePosition, Player character)
 	{
 		if (GetChunk(mousePosition) != null)
@@ -338,6 +353,7 @@ public partial class GameTileMap : Node2D
 						generatedChunk.GetTileHighlight().ActivatePlayerTile(true);
 						generatedChunk.GetTileHighlight().EnableTile(true);
 					}
+
 					if (generatedChunk.ObjectIsOnTile())
 					{
 						generatedChunk.GetCurrentObject().EnableObject();
@@ -364,11 +380,34 @@ public partial class GameTileMap : Node2D
 					generatedChunk.GetTileHighlight().ActivatePlayerTile(true);
 					generatedChunk.GetTileHighlight().EnableTile(true);
 				}
+
 				if (generatedChunk.ObjectIsOnTile())
 				{
 					generatedChunk.GetCurrentObject().EnableObject();
 					generatedChunk.GetTileHighlight().EnableTile(true);
 				}
+			}
+		}
+	}
+
+	public void RemoveFog(ChunkData chunkData, Player currentPlayer)
+	{
+		if (chunkData.IsFogOnTile())
+		{
+			chunkData.SetFogOnTile(true);
+			currentPlayer.RemoveVisionTile(chunkData);
+			if (chunkData.CharacterIsOnTile())
+			{
+				Player player = chunkData.GetCurrentPlayer();
+				player.DisableObject();
+				chunkData.GetTileHighlight().ActivatePlayerTile(false);
+				chunkData.GetTileHighlight().EnableTile(false);
+			}
+
+			if (chunkData.ObjectIsOnTile())
+			{
+				chunkData.GetCurrentObject().DisableObject();
+				chunkData.GetTileHighlight().EnableTile(false);
 			}
 		}
 	}

@@ -50,7 +50,7 @@ public partial class HealSingle : BaseAction
             base.ResolveAbility(chunk);
             Random random = new Random();
             int randomHeal = random.Next(minHealAmount, maxHealAmount);
-            chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+            chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
             FinishAbility();
         }
     }

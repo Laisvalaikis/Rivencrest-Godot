@@ -49,7 +49,7 @@ public partial class WindBoost : BaseAction
                 if (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam())
                 {
                     int randomHeal = _random.Next(minHeal, maxHeal);
-                    chunk.GetCurrentPlayer().playerInformation.Heal(randomHeal);
+                    chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
                 }
             }
         }

@@ -41,8 +41,8 @@ public partial class SummonBear : BaseAction
 			spawnedCharacter.unlockedAbilityList = bearResource.unlockedAbilities;
 			spawnedCharacter.SetupObject(bearResource.playerInformation);
 			Array<Ability> allAbilities = new Array<Ability>();
-			allAbilities.AddRange(spawnedCharacter.playerInformation.objectData.GetPlayerInformationData().baseAbilities);
-			allAbilities.AddRange(spawnedCharacter.playerInformation.objectData.GetPlayerInformationData().abilities);
+			allAbilities.AddRange(spawnedCharacter.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().baseAbilities);
+			allAbilities.AddRange(spawnedCharacter.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().abilities);
 			GenerateBlessingsLockUnlock(allAbilities, bearResource);
 			GenerateCharacterBlessingsLockUnlock(bearResource);
 			spawnedCharacter.SetPlayerTeam(teamIndex);

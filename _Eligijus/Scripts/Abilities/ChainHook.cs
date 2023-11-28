@@ -69,7 +69,7 @@ public partial class ChainHook : BaseAction
 	{
 		base.ResolveAbility(chunk);
 		Player character = chunk.GetCurrentPlayer();
-		if (character != null && character.playerInformation.GetInformationType() != typeof(Object))
+		if (character != null && character.objectInformation.GetPlayerInformation().GetInformationType() != typeof(Object))
 		{
 			UpdateAbilityButton();
 			if (!IsAllegianceSame(chunk))
@@ -122,7 +122,7 @@ public partial class ChainHook : BaseAction
 		HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
 
 		Player currentCharacter = hoveredChunk?.GetCurrentPlayer();
-		PlayerInformation currentPlayerInfo = currentCharacter?.playerInformation;
+		PlayerInformation currentPlayerInfo = currentCharacter?.objectInformation.GetPlayerInformation();
 
 		if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))
 		{
@@ -183,7 +183,7 @@ public partial class ChainHook : BaseAction
 				highlightTile.SetDamageText($"{minAttackDamage+multiplier}-{maxAttackDamage+multiplier}");
 			}
 
-			if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().playerInformation.GetHealth() <= minAttackDamage)
+			if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <= minAttackDamage)
 			{
 				highlightTile.ActivateDeathSkull(true);
 			}

@@ -101,7 +101,7 @@ public abstract partial class BaseAction: Resource
 			{
 				unlockedBlessingsList = new Array<UnlockedBlessingsResource>();
 			}
-			SetObjectInformationData(player.playerInformation.objectData.GetPlayerInformationData());
+			SetObjectInformationData(player.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData());
 			
 			Start();
 		}
@@ -573,7 +573,7 @@ public abstract partial class BaseAction: Resource
 					highlightTile.SetDamageText($"{minAttackDamage}-{maxAttackDamage}");
 				}
 
-				if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().playerInformation.GetHealth() <= minAttackDamage)
+				if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <= minAttackDamage)
 				{
 					highlightTile.ActivateDeathSkull(true);
 				}
@@ -833,7 +833,7 @@ public abstract partial class BaseAction: Resource
 			if (chunkData != null && chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
 				Player attackedPlayer = chunkData.GetCurrentPlayer();
-				attackedPlayer.playerInformation.DealDamage(damage, player);
+				attackedPlayer.objectInformation.GetPlayerInformation().DealDamage(damage, player);
 				ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 				if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
 				{

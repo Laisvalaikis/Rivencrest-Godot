@@ -29,7 +29,7 @@ public partial class PoisonDebuff : BaseDebuff
     public override void OnTurnStart()
     {
         base.OnTurnStart();
-        _player.playerInformation.DealDamage(poisonDamage, playerWhoCreatedDebuff);
+        _player.objectInformation.GetPlayerInformation().DealDamage(poisonDamage, playerWhoCreatedDebuff);
         lifetimeCount++;
     }
 }

@@ -25,7 +25,7 @@ public partial class ChillingGust : BaseAction
         base.OnTurnStart(chunkData);
         if (_protectedAlly != null)
         {
-            _protectedAlly.playerInformation.characterProtected = false;
+            _protectedAlly.objectInformation.GetPlayerInformation().characterProtected = false;
             _protectedAlly = null;
         }
     }
@@ -34,7 +34,7 @@ public partial class ChillingGust : BaseAction
         UpdateAbilityButton();
             base.ResolveAbility(chunk);
             Player target = chunk.GetCurrentPlayer();
-            PlayerInformation clickedPlayerInformation = target.playerInformation;
+            PlayerInformation clickedPlayerInformation = target.objectInformation.GetPlayerInformation();
             
             if (IsAllegianceSame(chunk))
             {

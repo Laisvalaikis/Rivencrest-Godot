@@ -3,6 +3,9 @@ using Godot.Collections;
 
 public partial class Object : Node2D
 {
+	[Export] 
+	protected ObjectInformation objectInformationNode;
+	public ObjectType<ObjectInformation> objectInformation;
 	public ObjectDataType<ObjectData> ObjectDataType;
 	protected TurnManager _turnManager;
 	private Array<Ability> _abilities;
@@ -24,20 +27,21 @@ public partial class Object : Node2D
 	}
 	
 
-	public virtual void SetupObject(ObjectData objectInformation)
+	public virtual void SetupObject(ObjectData objectData)
 	{
-		ObjectDataType = new ObjectDataType<ObjectData>(objectInformation, typeof(Object));
+		objectInformation = new ObjectType<ObjectInformation>(objectInformationNode, typeof(ObjectInformation));
+		ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Object));
 		_abilities = new Array<Ability>();
 		_playerBlessings = new Array<PlayerBlessing>();
-		for (int i = 0; i < objectInformation.abilities.Count; i++)
+		for (int i = 0; i < objectData.abilities.Count; i++)
 		{
-			Ability ability = new Ability(objectInformation.abilities[i]);
+			Ability ability = new Ability(objectData.abilities[i]);
 			_abilities.Add(ability);
 			ability.Action.SetupObjectAbility(this);
 		}
-		for (int i = 0; i < objectInformation.blessings.Count; i++)
+		for (int i = 0; i < objectData.blessings.Count; i++)
 		{
-			_playerBlessings.Add(new PlayerBlessing(objectInformation.blessings[i]));
+			_playerBlessings.Add(new PlayerBlessing(objectData.blessings[i]));
 		}
 		_visionRange = ObjectDataType.GetObjectData().visionRange;
 	}
@@ -118,6 +122,17 @@ public partial class Object : Node2D
 			}
 		}
 	}
+	
+	private void ExecuteDeath()
+	{
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			if (_abilities[i].enabled)
+			{
+				_abilities[i].Action.Die();
+			}
+		}
+	}
 
 	public virtual void PlayerWasDamaged()
 	{
@@ -126,6 +141,7 @@ public partial class Object : Node2D
 	
 	public virtual void Death()
 	{
+		ExecuteDeath();
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		chunkData.SetCurrentObject(null);
 		_turnManager.RemoveObject(this);

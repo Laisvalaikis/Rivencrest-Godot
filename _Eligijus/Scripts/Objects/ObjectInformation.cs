@@ -3,6 +3,8 @@ using Godot;
 public partial class ObjectInformation : Node
 {
     [Export]
+    public Sprite2D spriteRenderer;
+    [Export]
     protected Object _object;
     public ObjectDataType<ObjectData> objectData;
     protected int _health = 100;
@@ -45,7 +47,7 @@ public partial class ObjectInformation : Node
     
     public void DeathStart(Player damageDealer)
     {
-        damageDealer.playerInformation.AddKillXP();
+        damageDealer.objectInformation.GetPlayerInformation().AddKillXP();
         _object.Death();
     }
     

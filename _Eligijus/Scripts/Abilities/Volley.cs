@@ -77,7 +77,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
         if (hoveredChunk == previousChunk) return;
 
         ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-        PlayerInformation currentPlayerInfo = player.playerInformation;
+        PlayerInformation currentPlayerInfo = player.objectInformation.GetPlayerInformation();
         if (_globalIndex != -1)
         {
             for (int i = 0; i < _chunkArray.GetLength(1); i++)
