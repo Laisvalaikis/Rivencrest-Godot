@@ -52,7 +52,8 @@ public abstract partial class BaseAction: Resource
 		protected SelectActionButton _selectActionButton;
 		protected TurnManager _turnManager;
 		private bool firstTimeUsage = false;
-		private ObjectData _objectData;
+		protected ObjectData _objectData;
+		protected Object _object;
 		private Random _random;
 
 		public BaseAction()
@@ -120,6 +121,7 @@ public abstract partial class BaseAction: Resource
 				unlockedBlessingsList.Add(resource);
 			}
 			SetObjectInformationData(player.ObjectDataType.GetObjectData());
+			_object = player;
 			Start();
 		}
 
@@ -148,6 +150,11 @@ public abstract partial class BaseAction: Resource
 					}
 				}
 			}
+		}
+
+		public virtual void StartAction()
+		{
+			
 		}
 
 		public virtual void PlayerWasAttacked()
@@ -226,22 +233,22 @@ public abstract partial class BaseAction: Resource
 		public virtual List<ChunkData> GetVisionChunkList()
 		{
 			ChunkData startChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-			GenerateVisionPattern(startChunk, player.GetVisionRange());
+			_visionChunkList = GenerateVisionPattern(startChunk, player.GetVisionRange());
 			return _visionChunkList;
 		}
 
-		protected virtual void GenerateVisionPattern(ChunkData centerChunk, int vision)
+		protected virtual List<ChunkData> GenerateVisionPattern(ChunkData centerChunk, int vision)
 		{
 			(int centerX, int centerY) = centerChunk.GetIndexes();
-			if (_visionChunkList is null)
-			{
-				_visionChunkList = new List<ChunkData>();
-			}
-			else
-			{
-				_visionChunkList.Clear();
-			}
+			List<ChunkData> visionList = new List<ChunkData>();
 			ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
+			
+			if (centerX >= 0 && centerX < chunksArray.GetLength(0) && centerY >= 0 && centerY < chunksArray.GetLength(1))
+			{
+				ChunkData chunk = chunksArray[centerX, centerY];
+				TryAddVisionChunk(chunk, visionList);
+			}
+			
 			for (int y = -vision; y <= vision; y++)
 			{
 				for (int x = -vision; x <= vision; x++)
@@ -255,11 +262,12 @@ public abstract partial class BaseAction: Resource
 						if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
 						{
 							ChunkData chunk = chunksArray[targetX, targetY];
-							TryAddVisionChunk(chunk);
+							TryAddVisionChunk(chunk, visionList);
 						}
 					}
 				}
 			}
+			return visionList;
 		}
 
 		public List<ChunkData> GetChunkList()
@@ -340,11 +348,21 @@ public abstract partial class BaseAction: Resource
 			}
 		}
 
-		protected virtual void TryAddVisionChunk(ChunkData chunk)
+		protected virtual bool CanAddVisionChunk(ChunkData chunk)
 		{
 			if (chunk != null && !chunk.TileIsLocked() && chunk.IsFogOnTile())
 			{
-				_visionChunkList.Add(chunk);
+				return true;
+			}
+
+			return false;
+		}
+
+		protected virtual void TryAddVisionChunk(ChunkData chunk, List<ChunkData> visionChunkList)
+		{
+			if (CanAddVisionChunk(chunk))
+			{
+				visionChunkList.Add(chunk);
 			}
 		}
 

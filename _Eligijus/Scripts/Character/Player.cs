@@ -54,6 +54,11 @@ public partial class Player : Object
 	{
 		_turnManager.GetTeamByIndex(_currentCharacterTeam).AddVisionTile(chunkData);
 	}
+	
+	public void RemoveVisionTile(ChunkData chunkData)
+	{
+		_turnManager.GetTeamByIndex(_currentCharacterTeam).AddVisionTile(chunkData);
+	}
 
 	public bool CheckIfVisionTileIsUnlocked(ChunkData chunkData)
 	{

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cn3dp15j1j2ki"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cn3dp15j1j2ki"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_as135"]
+[ext_resource type="Resource" uid="uid://cvkhcjbvlcn5w" path="res://Data/Abilities/PlayerPrefab/IncreaseVision.tres" id="1_ba3bu"]
 
 [resource]
 script = ExtResource("1_as135")
@@ -14,5 +15,5 @@ backgroundColor = Color(0, 0, 0, 0)
 canStepOnObject = false
 destroyObjectStepingOn = false
 canBeDestroyed = true
-abilities = Array[Resource]([])
+abilities = Array[Resource]([ExtResource("1_ba3bu")])
 blessings = Array[Resource]([])

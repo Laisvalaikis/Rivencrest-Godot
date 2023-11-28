@@ -1,10 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dfx11fncxw6u4"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bx4hc5rc6y702"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PrefabAbilities/IncreaseVision.cs" id="1_vkls2"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PrefabAbilities/IncreaseVision.cs" id="1_wgh5l"]
 
 [resource]
-script = ExtResource("1_vkls2")
-vision = 3
+script = ExtResource("1_wgh5l")
+vision = 1
 laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
@@ -23,4 +23,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([])
+_abilityBlessingsRef = null

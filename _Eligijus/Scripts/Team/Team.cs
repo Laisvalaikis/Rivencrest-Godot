@@ -48,7 +48,21 @@ public partial class Team : Resource
             _visionTiles = new List<FogData>();
         }
         _visionTiles.Add(new FogData(chunkData));
-        _fogOfWar.UpdateFog(chunkData.GetPosition(), this);
+        _fogOfWar.RemoveFog(chunkData.GetPosition(), this);
+    }
+    
+    public void RemoveVisionTile(ChunkData chunkData)
+    {
+        if (_visionTiles is null)
+        {
+            _visionTiles = new List<FogData>();
+        }
+
+        if (_visionTiles.Contains(new FogData(chunkData)))
+        {
+            _visionTiles.Remove(new FogData(chunkData));
+        }
+        _fogOfWar.AddFog(chunkData.GetPosition(), this);
     }
 
     public bool ContainsVisionTile(ChunkData chunkData)

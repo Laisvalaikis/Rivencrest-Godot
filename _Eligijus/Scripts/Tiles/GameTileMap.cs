@@ -348,6 +348,31 @@ public partial class GameTileMap : Node2D
 		}
 	}
 
+	public void UpdateFog(BaseAction baseAction, Player currentPlayer)
+	{
+		List<ChunkData> chunkDatas = baseAction.GetVisionChunkList();
+		foreach (ChunkData generatedChunk in chunkDatas)
+		{
+			if (generatedChunk.IsFogOnTile())
+			{
+				generatedChunk.SetFogOnTile(false);
+				currentPlayer.AddVisionTile(generatedChunk);
+				if (generatedChunk.CharacterIsOnTile())
+				{
+					Player player = generatedChunk.GetCurrentPlayer();
+					player.EnableObject();
+					generatedChunk.GetTileHighlight().ActivatePlayerTile(true);
+					generatedChunk.GetTileHighlight().EnableTile(true);
+				}
+				if (generatedChunk.ObjectIsOnTile())
+				{
+					generatedChunk.GetCurrentObject().EnableObject();
+					generatedChunk.GetTileHighlight().EnableTile(true);
+				}
+			}
+		}
+	}
+
 	public void SetEnemy(Vector2 mousePosition, Player character)
 	{
 		if (GetChunk(mousePosition) != null)

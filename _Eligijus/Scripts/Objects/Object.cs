@@ -49,6 +49,14 @@ public partial class Object : Node2D
 			_abilities[i].Action.SetPlayer(player);
 		}
 	}
+	
+	public void StartActions()
+	{
+		for (int i = 0; i < _abilities.Count; i++)
+		{
+			_abilities[i].Action.StartAction();
+		}
+	}
 
 	public int GetVisionRange()
 	{

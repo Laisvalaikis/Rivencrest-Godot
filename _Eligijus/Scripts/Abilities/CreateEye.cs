@@ -11,7 +11,6 @@ public partial class CreateEye : BaseAction
 	public override void Start()
 	{
 		base.Start();
-		customText = ""; //To not display damage (might be temporary solution)
 	}
 
 	public CreateEye()
@@ -37,8 +36,10 @@ public partial class CreateEye : BaseAction
 			spawnedEye = spawnCharacter.Instantiate<Object>();
 			player.GetTree().Root.CallDeferred("add_child", spawnedEye);
 			spawnedEye.SetupObject(eyeData);
+			spawnedEye.AddPlayerForObjectAbilities(player);
 			GameTileMap.Tilemap.SpawnObject(spawnedEye, chunk);
-			base.ResolveAbility(chunk);
+			spawnedEye.StartActions();
+			base.ResolveAbility(chunk); // sukuria, bet neatnaujina 
 		}
 		FinishAbility();
 	}
@@ -83,5 +84,15 @@ public partial class CreateEye : BaseAction
 			ChunkData chunkDataLeft = chunkDataArray[left, coordinates.y];
 			TryAddTile(chunkDataLeft);
 		}
+	}
+
+	protected override bool CanAddTile(ChunkData chunk)
+	{
+		if (chunk != null && !chunk.TileIsLocked() && !chunk.CharacterIsOnTile() && !chunk.ObjectIsOnTile())
+		{
+			return true;
+		}
+
+		return false;
 	}
 }
