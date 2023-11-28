@@ -3,7 +3,6 @@ using Godot.Collections;
 
 public partial class Object : Node2D
 {
-	[Export] private Sprite2D _sprite;
 	public ObjectDataType<ObjectData> ObjectDataType;
 	protected TurnManager _turnManager;
 	private Array<Ability> _abilities;

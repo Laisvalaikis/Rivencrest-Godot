@@ -5,9 +5,14 @@
 [resource]
 script = ExtResource("1_unhnb")
 maxHealth = 1
+accuracy = 100
+visionRange = 3
 classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
 backgroundColor = Color(0, 0, 0, 0)
-abilities = null
-blessings = null
+canStepOnObject = false
+destroyObjectStepingOn = false
+canBeDestroyed = true
+abilities = Array[Resource]([])
+blessings = Array[Resource]([])
