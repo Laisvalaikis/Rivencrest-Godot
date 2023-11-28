@@ -58,8 +58,6 @@ public partial class PlayerInformation : ObjectInformation
 
 				_health -= damage;
 				damageDealer.playerInformation.AddDamageXP(damage);
-				damageDealer.playerInformation.AddKillXP();
-				
 				PLayerDamaged();
 			}
 
