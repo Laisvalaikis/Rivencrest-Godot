@@ -19,9 +19,9 @@ public class ObjectType<T>
         return data as Player;
     }
     
-    public Object GetObjectInformation()
+    public ObjectInformation GetObjectInformation()
     {
-        return data as Object;
+        return data as ObjectInformation;
     }
 
     public Object GetObject()
