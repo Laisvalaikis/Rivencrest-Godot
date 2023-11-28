@@ -66,7 +66,7 @@ public partial class TownHall : Node
 				}
 			}
 
-			if (SelectedUpgrade != null)
+			if (SelectedUpgrade != null && !SelectedUpgrade.Disabled)
 			{
 				upgradeNameText.Show();
 				upgradeDescriptionText.Show();
@@ -114,12 +114,18 @@ public partial class TownHall : Node
 				if (SelectedUpgrade == upgradeButton)
 				{
 					SelectedUpgrade = null;
-					imageFadeController.Play("FadeOut");
+					if (!upgradeButton.Disabled)
+					{
+						imageFadeController.Play("FadeOut");
+					}
 				}
 				else
 				{
 					SelectedUpgrade = upgradeButton;
-					imageFadeController.Play("FadeIn");
+					if (!upgradeButton.Disabled)
+					{
+						imageFadeController.Play("FadeIn");
+					}
 				}
 			}
 			else

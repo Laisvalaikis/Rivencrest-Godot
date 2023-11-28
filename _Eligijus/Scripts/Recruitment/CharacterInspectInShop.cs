@@ -100,7 +100,7 @@ public partial class CharacterInspectInShop : Node
 			support.Hide();
 		}
 
-		maxHP.Text = character.maxHealth + 4 + " HP";
+		maxHP.Text = character.maxHealth + " HP";
 		maxHP.LabelSettings.FontColor = character.classColor;
 		bool melee = character.characterType == CharacterType.Melee;
 		range.Text = melee ? "MELEE" : "RANGED";
