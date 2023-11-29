@@ -45,6 +45,7 @@ public partial class CreateFog : BaseAction
 		spawnedFog = spawnCharacter.Instantiate<Object>();
 		player.GetTree().Root.CallDeferred("add_child", spawnedFog);
 		spawnedFog.SetupObject(fogPrefabData);
+		spawnedFog.AddPlayerForObjectAbilities(player);
 		GameTileMap.Tilemap.SpawnObject(spawnedFog, chunk);
 		FinishAbility();
 		isFogActive = true;

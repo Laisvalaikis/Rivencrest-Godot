@@ -1,16 +1,16 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dfx11fncxw6u4"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://xs0jvnbc0h0h"]
 
-[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PrefabAbilities/DamagePlayer.cs" id="1_v5gjn"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PrefabAbilities/WhiteField.cs" id="1_v85lg"]
 
 [resource]
-script = ExtResource("1_v5gjn")
+script = ExtResource("1_v85lg")
 laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
 abilityPoints = 1
 attackRange = 1
-minAttackDamage = 10
-maxAttackDamage = 20
+minAttackDamage = 0
+maxAttackDamage = 0
 isAbilitySlow = true
 friendlyFire = false
 abilityCooldown = 1

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://iwbfhqda4ogo"]
+
+[ext_resource type="Resource" uid="uid://xs0jvnbc0h0h" path="res://Data/Abilities/Abilities/PrefabAbilities/WhiteField.tres" id="1_ldf1n"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="2_ixea7"]
+
+[resource]
+script = ExtResource("2_ixea7")
+_type = 2
+enabled = true
+Action = ExtResource("1_ldf1n")

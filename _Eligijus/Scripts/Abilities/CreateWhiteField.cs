@@ -51,6 +51,7 @@ public partial class CreateWhiteField : BaseAction
             Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
             player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
             spawnedArrowTile.SetupObject(whiteFieldData);
+            spawnedArrowTile.AddPlayerForObjectAbilities(player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
             whiteFieldObjects.Add(spawnedArrowTile);
         }

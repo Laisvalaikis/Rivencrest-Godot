@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 using System.Threading.Tasks;
+using Godot.Collections;
+
 public partial class TurnManager : Node
 {
 	[Export] private CameraMovement _cameraMovement;
 	[Export] private FogOfWar _fogOfWar;
 	[Export] private TeamInformation _teamInformation;
 	[Export] private Team _currentTeam;
-	private Array<Object> _objects;
+	// private Array<Object> _objects;
+	private System.Collections.Generic.Dictionary<int, TeamObject> _teamObjects;
 	public LinkedList<UsedAbility> objectAbilitiesBeforeStartTurn = new LinkedList<UsedAbility>();
 	public LinkedList<UsedAbility> objectAbilitiesAfterResolve = new LinkedList<UsedAbility>();
 	public LinkedList<UsedAbility> objectAbilitiesEndTurn = new LinkedList<UsedAbility>();
@@ -35,7 +37,12 @@ public partial class TurnManager : Node
 		{
 			_teamsList.Teams = new Godot.Collections.Dictionary<int, Team>();
 		}
+		if (_teamObjects is null)
+		{
+			_teamObjects = new System.Collections.Generic.Dictionary<int, TeamObject>();
+		}
 		_teamsList.Teams.Add(index, addTeam);
+		_teamObjects.Add(index, new TeamObject());
 	}
 	
 	public Team GetTeamByIndex(int teamIndex)
@@ -89,23 +96,24 @@ public partial class TurnManager : Node
 
 	public void AddObject(Object currentObject)
 	{
-		if (_objects == null)
+		if (_teamObjects == null)
 		{
-			_objects = new Array<Object>();
+			_teamObjects = new System.Collections.Generic.Dictionary<int, TeamObject>();
 		}
 		currentObject.AddTurnManager(this);
-		_objects.Add(currentObject);
+		_teamObjects[_currentTeamIndex].AddObject(currentObject);
 	}
 
 	public void RemoveObject(Object currentObject)
 	{
-		if (_objects == null)
+		if (_teamObjects is null)
 		{
-			_objects = new Array<Object>();
+			_teamObjects = new System.Collections.Generic.Dictionary<int, TeamObject>();
 		}
 		else
 		{
-			_objects.Remove(currentObject);
+			List<Object> objects = _teamObjects[_currentTeamIndex].GetObjects();
+			objects.Remove(currentObject);
 			Array<Ability> abilities = currentObject.GetAllAbilities();
 			for (int i = 0; i < abilities.Count; i++)
 			{
@@ -213,13 +221,12 @@ public partial class TurnManager : Node
 	{
 		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
 		ActionsBeforeStart(objectAbilitiesBeforeStartTurn);
-		if (_objects != null && _objects.Count > 0)
+
+		foreach (Object currentObject in _teamObjects[_currentTeamIndex].GetObjects())
 		{
-			for (int i = 0; i < _objects.Count; i++)
-			{
-				_objects[i].OnTurnStart();
-			}
+			currentObject.OnTurnStart();
 		}
+		
 
 		foreach (Player character in _currentTeam.characters.Values)
 		{
@@ -231,12 +238,10 @@ public partial class TurnManager : Node
 	{
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
 		ActionsAfterResolve(objectAbilitiesAfterResolve);
-		if (_objects != null && _objects.Count > 0)
+		
+		foreach (Object currentObject in _teamObjects[_currentTeamIndex].GetObjects())
 		{
-			for (int i = 0; i < _objects.Count; i++)
-			{
-				_objects[i].OnTurnEnd();
-			}
+			currentObject.OnTurnEnd();
 		}
 
 		foreach (Player character in _currentTeam.characters.Values)
