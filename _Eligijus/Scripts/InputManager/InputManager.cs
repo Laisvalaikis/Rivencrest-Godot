@@ -114,7 +114,16 @@ public partial class InputManager: Node2D
 		}
 		
 	}
-	
+
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		if (@event.IsPressed())
+		{
+			GD.Print(@event.AsText());
+		}
+	}
+
 	private bool InDeadZone(Vector2 relativePosition)
 	{
 		if (relativePosition.X >= deadzoneBoundsX.X && relativePosition.X <= deadzoneBoundsX.Y && relativePosition.Y >= deadzoneBoundsY.X && relativePosition.Y <= deadzoneBoundsY.Y)

@@ -61,7 +61,7 @@ public partial class FogAbility : BaseAction
             {
                 chunk.GetCurrentPlayer().debuffManager.RemoveDebuffsByType(typeof(StopAttack));
             }
-            //_object.Death();
+            _object.Death();
         }
     }
     
