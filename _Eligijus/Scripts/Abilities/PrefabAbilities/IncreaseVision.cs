@@ -37,17 +37,6 @@ public partial class IncreaseVision : BaseAction
         GameTileMap.Tilemap.UpdateFog(this, player);
     }
 
-    public override void ResolveAbility(ChunkData chunk)
-    {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            FinishAbility();
-        }
-    }
-
     public override bool CanTileBeClicked(ChunkData chunkData)
     {
         if (CheckIfSpecificInformationType(chunkData, typeof(Player)) 

@@ -399,7 +399,7 @@ public partial class GameTileMap : Node2D
 
 	public void RemoveFog(ChunkData chunkData, Player currentPlayer)
 	{
-		if (chunkData.IsFogOnTile())
+		if (!chunkData.IsFogOnTile())
 		{
 			chunkData.SetFogOnTile(true);
 			currentPlayer.RemoveVisionTile(chunkData);

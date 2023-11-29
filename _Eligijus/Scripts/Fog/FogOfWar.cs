@@ -18,7 +18,7 @@ public partial class FogOfWar : Sprite2D
         addFog = Image.Create(lightImage.GetWidth(), lightImage.GetHeight(), false, Image.Format.Rgbah);
         
         fogImage = Image.Create(width, height, false, Image.Format.Rgbah);
-        fogOffset = new Vector2I((width / 2) - (fogImage.GetWidth() / 2), (width / 2) - (fogImage.GetHeight() / 2));
+        fogOffset = new Vector2I((width / 2) - (addFog.GetWidth() / 2), (width / 2) - (addFog.GetHeight() / 2));
         
         fogImage.Fill(Colors.Black);
         addFog.Fill(Colors.Black);
