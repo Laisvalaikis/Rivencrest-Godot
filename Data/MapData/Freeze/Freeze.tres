@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://berv5gk3s3k8d"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://berv5gk3s3k8d"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_2lrbj"]
-[ext_resource type="Resource" uid="uid://ds5m8gkomex5e" path="res://Data/MapData/Freeze/AI_Coordinates.tres" id="1_d65r5"]
 [ext_resource type="Resource" uid="uid://2a78c2br8fcw" path="res://Data/MapData/Freeze/Coordinates_0.tres" id="2_ubm4n"]
 [ext_resource type="Resource" uid="uid://ds4quu8o87cn0" path="res://Data/MapData/Freeze/Coordinates_1.tres" id="3_478c0"]
 [ext_resource type="Texture2D" uid="uid://iijp8lj336lu" path="res://_Eligijus/Sprites/Map/Freeze.png" id="4_4jykl"]
@@ -9,11 +8,9 @@
 [resource]
 script = ExtResource("1_2lrbj")
 mapName = "Freeze"
-suitableEnemies = Array[String](["UndeadMindController", "UndeadBoss", "UndeadKnight", "UndeadCultist", "UndeadSpiderMaiden"])
-npcTeam = null
 suitableLevels = Array[int]([1, 2, 3, 4, 5])
+npcTeam = null
 mapCoordinates = Array[Resource]([ExtResource("2_ubm4n"), ExtResource("3_478c0")])
-aiMapCoordinates = ExtResource("1_d65r5")
 toFollowStartPosition = Vector3(2.13, 0.92, 0)
 panLimitX = Vector2(1.5, 11.5)
 panLimitY = Vector2(0.5, 10.5)
