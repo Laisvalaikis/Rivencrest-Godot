@@ -112,10 +112,10 @@ public partial class TurnManager : Node
 		}
 		else
 		{
-			List<Object> objects = _teamObjects[_currentTeamIndex].GetObjects();
+			LinkedList<Object> objects = _teamObjects[_currentTeamIndex].GetObjects();
 			if (objects.Contains(currentObject))
 			{
-				objects.Remove(currentObject);
+				_teamObjects[_currentTeamIndex].RemoveObject(currentObject);
 			}
 			Array<Ability> abilities = currentObject.GetAllAbilities();
 			for (int i = 0; i < abilities.Count; i++)
@@ -225,10 +225,7 @@ public partial class TurnManager : Node
 		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
 		ActionsBeforeStart(objectAbilitiesBeforeStartTurn);
 
-		foreach (Object currentObject in _teamObjects[_currentTeamIndex].GetObjects())
-		{
-			currentObject.OnTurnStart();
-		}
+		ObjectActionsOnTurnStart(_teamObjects[_currentTeamIndex].GetObjects());
 		
 
 		foreach (Player character in _currentTeam.characters.Values)
@@ -237,15 +234,24 @@ public partial class TurnManager : Node
 		}
 	}
 
+	public void ObjectActionsOnTurnStart(LinkedList<Object> objects)
+	{
+		if (objects.Count > 0)
+		{
+			for (LinkedListNode<Object> element = objects.First; element != null; element = element.Next)
+			{
+				element.Value.OnTurnStart();
+			}
+		}
+	}
+
 	public void OnTurnEnd()
 	{
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
 		ActionsAfterResolve(objectAbilitiesAfterResolve);
 		
-		foreach (Object currentObject in _teamObjects[_currentTeamIndex].GetObjects())
-		{
-			currentObject.OnTurnEnd();
-		}
+		ObjectActionsOnTurnEnd(_teamObjects[_currentTeamIndex].GetObjects());
+		
 
 		foreach (Player character in _currentTeam.characters.Values)
 		{
@@ -254,6 +260,17 @@ public partial class TurnManager : Node
 		}
 		ActionsEndTurn(objectAbilitiesEndTurn);
 		ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn);
+	}
+	
+	public void ObjectActionsOnTurnEnd(LinkedList<Object> objects)
+	{
+		if (objects.Count > 0)
+		{
+			for (LinkedListNode<Object> element = objects.First; element != null; element = element.Next)
+			{
+				element.Value.OnTurnEnd();
+			}
+		}
 	}
 
 	private void ActionsAfterResolve(LinkedList<UsedAbility> abilities)

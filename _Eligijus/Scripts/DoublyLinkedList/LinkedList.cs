@@ -3,26 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
-public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
+public class LinkedList<T>
 {
     
     public LinkedListNode<T>? First { get; set; }
     public LinkedListNode<T>? Last { get; set; }
     public int Count { get; private set; }
     
-    public IEnumerator<LinkedListNode<T>> GetEnumerator()
-    {
-        LinkedListNode<T>? currentNode = First;
-        while (currentNode is not null)
-        {
-            yield return currentNode;
-            currentNode = currentNode.Next;
-        }
-    }
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
     
     public void AddFirst(T nodeToAdd)
     {
@@ -161,20 +148,6 @@ public class LinkedList<T> : IEnumerable<LinkedListNode<T>>
             }
         }
         return null;
-    }
-
-    public LinkedListNode<T>? Find(LinkedListNode<T> valueToFind)
-    {
-        var aux = First;
-        while (aux is not null)
-        {
-            if (EqualityComparer<T>.Default.Equals(aux.Value, valueToFind.Value))
-            {
-                return aux;
-            }
-            aux = aux.Next;
-        }
-        return default;
     }
 
     public void Clear()

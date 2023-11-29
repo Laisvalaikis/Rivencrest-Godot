@@ -25,11 +25,11 @@ public partial class Comet : BaseAction
         // wait until other turn starts
         // need to add buff destroy half damage
         // damage enemy or damage player
-        if (chunk.CharacterIsOnTile() && IsAllegianceSame(chunk))
+        if (chunk.CharacterIsOnTile() && !IsAllegianceSame(chunk))
         {
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
-        else if(chunk.CharacterIsOnTile() && !IsAllegianceSame(chunk))
+        else if(chunk.CharacterIsOnTile() && IsAllegianceSame(chunk))
         {
             DealRandomDamageToTarget(chunk, minAttackDamage / teamMateDamageDivision, maxAttackDamage / teamMateDamageDivision);
         }

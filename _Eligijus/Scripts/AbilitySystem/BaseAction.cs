@@ -816,7 +816,7 @@ public abstract partial class BaseAction: Resource
 				damage = -1;
 			}
 		}
-
+		
 		protected void DealRandomDamageToTarget(ChunkData chunkData, int minDamage, int maxDamage)
 		{
 			if (chunkData != null && chunkData.CharacterIsOnTile() && CanUseAttack() && (!IsAllegianceSame(chunkData) || friendlyFire))

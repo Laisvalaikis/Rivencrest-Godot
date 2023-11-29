@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://blmh0ptkj3m7k" path="res://Data/Abilities/LeapAndSlam.tres" id="6_2ny3w"]
 [ext_resource type="Resource" uid="uid://dr6wblc8yb3my" path="res://Data/Abilities/WallSmash.tres" id="7_0yelt"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_2pb3y"]
-[ext_resource type="Resource" uid="uid://dnqqe5jqq0jlr" path="res://Data/Abilities/CreateFog.tres" id="9_4js4k"]
+[ext_resource type="Resource" uid="uid://ddemy25a7ohw3" path="res://Data/Abilities/CometFall.tres" id="9_t5a5k"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="10_84hq6"]
 [ext_resource type="Resource" uid="uid://dp05wto3rfxsn" path="res://Data/Blessings/Antitoxic.tres" id="11_nvowa"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="12_xsspb"]
@@ -26,7 +26,7 @@ CharacterSplashArt = ExtResource("2_a0fs6")
 CroppedSplashArt = ExtResource("3_uqbry")
 characterSprite = ExtResource("10_84hq6")
 roleSprite = ExtResource("12_xsspb")
-baseAbilities = Array[Resource]([ExtResource("8_2pb3y"), ExtResource("9_4js4k")])
+baseAbilities = Array[Resource]([ExtResource("8_2pb3y"), ExtResource("9_t5a5k")])
 maxHealth = 28
 accuracy = 100
 visionRange = 1

@@ -1,36 +1,36 @@
 ﻿
-using System.Collections.Generic;
 
 public class TeamObject
 {
-    private List<Object> objects;
+    private LinkedList<Object> objects;
 
     public void AddObject(Object objectToAdd)
     {
         if (objects is null)
         {
-            objects = new List<Object>();
+            objects = new LinkedList<Object>();
         }
-        objects.Add(objectToAdd);
+        objects.AddLast(objectToAdd);
     }
 
     public void RemoveObject(Object objectToRemove)
     {
         if (objects is null)
         {
-            objects = new List<Object>();
+            objects = new LinkedList<Object>();
         }
         else if (objects is not null && objects.Contains(objectToRemove))
         {
-            objects.Remove(objectToRemove);
+            LinkedListNode<Object> objectNode = objects.Find(objectToRemove);
+            objects.Remove(objectNode);
         }
     }
 
-    public List<Object> GetObjects()
+    public LinkedList<Object> GetObjects()
     {
         if (objects is null)
         {
-            objects = new List<Object>();
+            objects = new LinkedList<Object>();
         }
         return objects;
     }

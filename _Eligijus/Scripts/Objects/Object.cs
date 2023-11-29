@@ -81,12 +81,14 @@ public partial class Object : Node2D
 
 	private void ExecuteOnTurnStart()
 	{
+		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		for (int i = 0; i < _abilities.Count; i++)
 		{
+			
 			if (_abilities[i].enabled)
 			{
-				_abilities[i].Action.OnTurnStart(null);
-				_abilities[i].Action.BlessingOnTurnStart(null);
+				_abilities[i].Action.OnTurnStart(chunkData);
+				_abilities[i].Action.BlessingOnTurnStart(chunkData);
 			}
 		}
 		for (int i = 0; i < _playerBlessings.Count; i++)
@@ -97,12 +99,13 @@ public partial class Object : Node2D
 	
 	private void ExecuteOnTurnEnd()
 	{
+		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		for (int i = 0; i < _abilities.Count; i++)
 		{
 			if (_abilities[i].enabled)
 			{
-				_abilities[i].Action.OnTurnEnd(null);
-				_abilities[i].Action.BlessingOnTurnEnd(null);
+				_abilities[i].Action.OnTurnEnd(chunkData);
+				_abilities[i].Action.BlessingOnTurnEnd(chunkData);
 			}
 		}
 		for (int i = 0; i < _playerBlessings.Count; i++)

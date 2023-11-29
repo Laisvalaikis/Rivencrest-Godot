@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public partial class FogAbility : BaseAction
@@ -42,11 +43,7 @@ public partial class FogAbility : BaseAction
     public override void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
     {
         base.OnExitAbility(chunkDataPrev, chunk);
-        // remove debufs
-        if (chunk.CharacterIsOnTile())
-        {
-            chunk.GetCurrentPlayer().debuffManager.RemoveDebuffsByType(typeof(StopAttack));
-        }
+        chunk.GetCurrentPlayer().debuffManager.RemoveDebuffsByType(typeof(StopAttack));
     }
 
     public override void OnTurnStart(ChunkData chunk)
@@ -57,9 +54,12 @@ public partial class FogAbility : BaseAction
         }
         else
         {
-            if (chunk.CharacterIsOnTile())
+            if (_debuffManagers is not null)
             {
-                chunk.GetCurrentPlayer().debuffManager.RemoveDebuffsByType(typeof(StopAttack));
+                for (int i = 0; i < _debuffManagers.Count; i++)
+                {
+                    _debuffManagers[i].RemoveDebuffsByType(typeof(StopAttack));
+                }
             }
             _object.Death();
         }
