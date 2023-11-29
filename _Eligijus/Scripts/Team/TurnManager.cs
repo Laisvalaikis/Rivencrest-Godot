@@ -113,7 +113,10 @@ public partial class TurnManager : Node
 		else
 		{
 			List<Object> objects = _teamObjects[_currentTeamIndex].GetObjects();
-			objects.Remove(currentObject);
+			if (objects.Contains(currentObject))
+			{
+				objects.Remove(currentObject);
+			}
 			Array<Ability> abilities = currentObject.GetAllAbilities();
 			for (int i = 0; i < abilities.Count; i++)
 			{

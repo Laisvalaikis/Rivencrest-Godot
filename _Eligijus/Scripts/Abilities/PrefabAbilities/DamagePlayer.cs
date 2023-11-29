@@ -32,7 +32,6 @@ public partial class DamagePlayer : BaseAction
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
-        GD.PrintErr("SMTHHHH");
     }
 
     public override bool CanTileBeClicked(ChunkData chunkData)
