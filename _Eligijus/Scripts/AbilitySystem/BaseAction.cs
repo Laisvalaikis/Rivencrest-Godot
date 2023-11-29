@@ -819,18 +819,34 @@ public abstract partial class BaseAction: Resource
 
 		protected void DealRandomDamageToTarget(ChunkData chunkData, int minDamage, int maxDamage)
 		{
-			if (chunkData != null && chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
+			if (chunkData != null && chunkData.CharacterIsOnTile() && CanUseAttack() && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
-				
 				int randomDamage = _random.Next(minDamage, maxDamage);
 				DodgeActivation(ref randomDamage);
 				DealDamage(chunkData, randomDamage);
 			}
 		}
 
+		protected virtual bool CanUseAttack()
+		{
+			if (player is not null && player.debuffManager is not null && player.debuffManager.CanUseAttack())
+			{
+				return true;
+			}
+			else if(player is not null && player.debuffManager is null)
+			{
+				return true;
+			}
+			else if (player is null)
+			{
+				return true;
+			}
+			return false;
+		}
+
 		protected void DealDamage(ChunkData chunkData, int damage)
 		{
-			if (chunkData != null && chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
+			if (chunkData != null && chunkData.CharacterIsOnTile() && CanUseAttack() && (!IsAllegianceSame(chunkData) || friendlyFire))
 			{
 				Player attackedPlayer = chunkData.GetCurrentPlayer();
 				attackedPlayer.objectInformation.GetObjectInformation().DealDamage(damage, player);

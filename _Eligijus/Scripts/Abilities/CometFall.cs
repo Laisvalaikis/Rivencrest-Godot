@@ -24,34 +24,10 @@ public partial class CometFall : BaseAction
         return ability;
     }
     
-    public override void OnTurnStart(ChunkData chunkData)
-    {
-        base.OnTurnStart(chunkData);
-        if (_damageTiles.Count > 0)
-        {
-            foreach (ChunkData chunk in _damageTiles)
-            {
-                //Enemy
-                if (CheckIfSpecificInformationType(chunk, typeof(Player)) && !IsAllegianceSame(chunk))
-                {
-                    DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-                }
-                //Ally
-                else if (CheckIfSpecificInformationType(chunk, typeof(Player)) && IsAllegianceSame(chunk))
-                {
-                    DealRandomDamageToTarget(chunk, minAttackDamage/3, maxAttackDamage/3);
-                }
-            }
-            spawnedCometTile.Death();
-            _damageTiles.Clear();
-        }
-    }
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        _damageTiles.Clear();
-        _damageTiles.Add(chunk);
         PackedScene spawnCharacter = (PackedScene)cometTilePrefab;
         spawnedCometTile = spawnCharacter.Instantiate<Object>();
         player.GetTree().Root.CallDeferred("add_child", spawnedCometTile);

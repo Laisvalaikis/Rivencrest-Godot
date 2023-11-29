@@ -26,4 +26,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = null
+_abilityBlessingsRef = Array[Resource]([])

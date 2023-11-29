@@ -1,10 +1,12 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class FogAbility : BaseAction
 {
-    [Export] private int lifeTime = 2;
-    private int lifeTimeCount = 0;
-    
+    [Export] private int _lifeTime = 2;
+    [Export] private StopAttack _stopAttackDebuf;
+    private int _lifeTimeCount = 0;
+    private List<DebuffManager> _debuffManagers;
     public FogAbility()
     {
         
@@ -12,7 +14,8 @@ public partial class FogAbility : BaseAction
     
     public FogAbility(FogAbility ability): base(ability)
     {
-        lifeTime = ability.lifeTime;
+        _lifeTime = ability._lifeTime;
+        _stopAttackDebuf = ability._stopAttackDebuf;
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -25,29 +28,51 @@ public partial class FogAbility : BaseAction
     {
         base.ResolveAbility(chunk);
         // add debufs
+        if (chunk.CharacterIsOnTile())
+        {
+            if (_debuffManagers is null)
+            {
+                _debuffManagers = new List<DebuffManager>();
+            }
+            _debuffManagers.Add(chunk.GetCurrentPlayer().debuffManager);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(_stopAttackDebuf.CreateNewInstance(), player);
+        }
     }
 
     public override void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
     {
         base.OnExitAbility(chunkDataPrev, chunk);
         // remove debufs
+        if (chunk.CharacterIsOnTile())
+        {
+            chunk.GetCurrentPlayer().debuffManager.RemoveDebuffsByType(typeof(StopAttack));
+        }
     }
 
     public override void OnTurnStart(ChunkData chunk)
     {
-        if (lifeTimeCount < lifeTime)
+        if (_lifeTimeCount < _lifeTime)
         {
-            lifeTimeCount++;
+            _lifeTimeCount++;
         }
         else
         {
-            // remove debufs
-            _object.Death();
+            if (chunk.CharacterIsOnTile())
+            {
+                chunk.GetCurrentPlayer().debuffManager.RemoveDebuffsByType(typeof(StopAttack));
+            }
+            //_object.Death();
         }
     }
     
     public override void Die()
     {
-        // remove debufs
+        if (_debuffManagers is not null)
+        {
+            foreach (DebuffManager debuff in _debuffManagers)
+            {
+                debuff.RemoveDebuffsByType(typeof(StopAttack));
+            }
+        }
     }
 }

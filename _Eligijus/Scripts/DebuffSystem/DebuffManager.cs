@@ -113,4 +113,13 @@ public partial class DebuffManager : Node
 			}
 		}
 	}
+
+	public bool CanUseAttack()
+	{
+		if (debufList.ContainsType(typeof(StopAttack)))
+		{
+			return false;
+		}
+		return true;
+	}
 }

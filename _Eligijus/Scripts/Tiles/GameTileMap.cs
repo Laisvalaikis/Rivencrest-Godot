@@ -316,9 +316,16 @@ public partial class GameTileMap : Node2D
 		if (chunk != null)
 		{
 			chunk.SetCurrentCharacter(null);
-			chunk.SetCurrentObject(null);
 			chunk.GetTileHighlight().ActivatePlayerTile(false);
 			chunk.GetTileHighlight().EnableTile(false);
+		}
+	}
+
+	public void ResetChunkObject(ChunkData chunk)
+	{
+		if (chunk != null)
+		{
+			chunk.SetCurrentObject(null);
 		}
 	}
 
@@ -515,7 +522,6 @@ public partial class GameTileMap : Node2D
 			Vector2 characterPosition = chunk.GetPosition();
 			if (previousCharacterChunk != chunk)
 			{
-				
 				moveCharacter.GlobalPosition = characterPosition;
 				moveCharacter.OnExit(previousCharacterChunk, chunk);
 				SetCharacter(chunk, moveCharacter);
@@ -585,14 +591,9 @@ public partial class GameTileMap : Node2D
 		{
 			chunkData.SetCurrentObject(objectToSpawn);
 			_turnManager.AddObject(objectToSpawn);
-			ChunkData previousCharacterChunk = Tilemap.GetChunk(objectToSpawn.GlobalPosition);
 			Vector2 characterPosition = chunkData.GetPosition();
-			if (previousCharacterChunk != chunkData)
-			{
-				objectToSpawn.GlobalPosition = characterPosition;
-				SetObject(chunkData, objectToSpawn);
-				ResetChunk(previousCharacterChunk);
-			}
+			objectToSpawn.GlobalPosition = characterPosition;
+			SetObject(chunkData, objectToSpawn);
 		}
 	}
 

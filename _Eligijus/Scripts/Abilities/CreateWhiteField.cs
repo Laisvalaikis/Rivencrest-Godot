@@ -6,7 +6,6 @@ public partial class CreateWhiteField : BaseAction
 {
     [Export] private ObjectData whiteFieldData;
     [Export] private Resource whiteFieldPrefab;
-    private List<Object> whiteFieldObjects=new List<Object>();
     
     public CreateWhiteField()
     {
@@ -33,14 +32,6 @@ public partial class CreateWhiteField : BaseAction
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
-        if (whiteFieldObjects.Count != 0)
-        {
-            foreach (Object arrowTileObject in whiteFieldObjects)
-            {
-                arrowTileObject.Death();
-            }
-            whiteFieldObjects.Clear();
-        }
     }
     public override void ResolveAbility(ChunkData chunk)
     {
@@ -53,7 +44,6 @@ public partial class CreateWhiteField : BaseAction
             spawnedArrowTile.SetupObject(whiteFieldData);
             spawnedArrowTile.AddPlayerForObjectAbilities(player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
-            whiteFieldObjects.Add(spawnedArrowTile);
         }
         base.ResolveAbility(chunk);
         FinishAbility();

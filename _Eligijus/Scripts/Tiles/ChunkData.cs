@@ -110,7 +110,7 @@ public class ChunkData
         else
         {
             _currentObject.data = objectRef;
-            _currentObject.objectType = typeof(Player);
+            _currentObject.objectType = typeof(Object);
         }
     }
 

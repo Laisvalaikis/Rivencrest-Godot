@@ -28,7 +28,6 @@ public partial class AflameDebuff : BaseDebuff
     {
 
     }
-
     
     public override void OnTurnStart()
     {
