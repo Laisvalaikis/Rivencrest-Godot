@@ -191,7 +191,7 @@ public partial class CharacterTeams : Node
 			deadCharacters.Teams[i].coordinates = new Godot.Collections.Dictionary<int, Vector2>();
 			deadCharacters.Teams[i].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
 			currentCharacters.Teams.Add(i, new Team());
-			currentCharacters.Teams[i]._fogOfWar = _fogOfWar;
+			currentCharacters.Teams[i].fogOfWar = _fogOfWar;
 			currentCharacters.Teams[i].characters = new Godot.Collections.Dictionary<int, Player>();
 			currentCharacters.Teams[i].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
 			currentCharacters.Teams[i].coordinates = new Godot.Collections.Dictionary<int, Vector2>();

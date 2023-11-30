@@ -4,8 +4,6 @@ using Godot;
 public partial class Team : Resource
 {
     [Export]
-    public FogOfWar _fogOfWar;
-    [Export]
     public Godot.Collections.Dictionary<int, Resource> characterPrefabs;
     [Export]
     public Godot.Collections.Dictionary<int, SavedCharacterResource> characterResources;
@@ -23,6 +21,7 @@ public partial class Team : Resource
     public Color teamColor;
     [Export] 
     private bool isTeamUsed = false;
+    public FogOfWar fogOfWar;
     public int undoCount;
     public Image fogImage;
     private List<FogData> _visionTiles;
@@ -48,7 +47,7 @@ public partial class Team : Resource
             _visionTiles = new List<FogData>();
         }
         _visionTiles.Add(new FogData(chunkData));
-        _fogOfWar.RemoveFog(chunkData.GetPosition(), this);
+        fogOfWar.RemoveFog(chunkData.GetPosition(), this);
     }
     
     public void RemoveVisionTile(ChunkData chunkData)
@@ -62,7 +61,7 @@ public partial class Team : Resource
         {
             _visionTiles.Remove(new FogData(chunkData));
         }
-        _fogOfWar.AddFog(chunkData.GetPosition(), this);
+        fogOfWar.AddFog(chunkData.GetPosition(), this);
     }
 
     public bool ContainsVisionTile(ChunkData chunkData)
