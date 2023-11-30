@@ -31,6 +31,7 @@ public partial class Object : Node2D
 	{
 		objectInformation = new ObjectType<ObjectInformation>(objectInformationNode, typeof(ObjectInformation));
 		ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Object));
+		objectInformation.GetObjectInformation().SetupData(objectData);
 		_abilities = new Array<Ability>();
 		_playerBlessings = new Array<PlayerBlessing>();
 		for (int i = 0; i < objectData.abilities.Count; i++)

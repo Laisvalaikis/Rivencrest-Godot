@@ -101,6 +101,16 @@ public partial class PlayerMovement : BaseAction
 			UpdateAbilityButton();
 		}
 	}
+	
+	protected override bool CanAddTile(ChunkData chunk)
+	{
+		if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() && (!chunk.ObjectIsOnTile() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))
+		{
+			return true;
+		}
+
+		return false;
+	}
 
 	protected override bool CheckAbilityBounds(ChunkData chunkData)
 	{

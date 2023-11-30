@@ -28,6 +28,11 @@ public partial class BaseDebuff : Resource
 	{
 		throw new NotImplementedException();
 	}
+
+	public virtual void OnRemove()
+	{
+		
+	}
 	
 	public virtual void Start()
 	{

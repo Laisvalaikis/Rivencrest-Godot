@@ -31,9 +31,8 @@ public partial class PlayerAttack : BaseAction
 
     public override bool CanTileBeClicked(ChunkData chunkData)
     {
-        if (chunkData.GetTileHighlight().isHighlighted &&((CheckIfSpecificInformationType(chunkData, typeof(Player)) 
+        if (chunkData.GetTileHighlight().isHighlighted &&((CheckIfSpecificInformationType(chunkData, typeof(Player)) && !IsAllegianceSame(chunkData)) || friendlyFire)
                                                            || CheckIfSpecificInformationType(chunkData, typeof(Object)))
-                                                       && !IsAllegianceSame(chunkData)) || friendlyFire)
         {
             return true;
         }

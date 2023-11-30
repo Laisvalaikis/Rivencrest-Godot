@@ -109,6 +109,7 @@ public partial class DebuffManager : Node
 		{
 			if (element.Value.EqualsType(debuff))
 			{
+				element.Value.OnRemove();
 				debufList.Remove(element);
 			}
 		}

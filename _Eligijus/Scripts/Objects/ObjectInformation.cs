@@ -12,6 +12,7 @@ public partial class ObjectInformation : Node
     public virtual void SetupData(ObjectData objectInformation)
     {
         objectData = new ObjectDataType<ObjectData>(objectInformation, typeof(Object));
+        _health = objectData.objectData.maxHealth;
     }
 
     public virtual void DealDamage(int damage, Player damageDealer)

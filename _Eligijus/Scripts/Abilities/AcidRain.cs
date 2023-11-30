@@ -11,9 +11,10 @@ public partial class AcidRain : BaseAction
 	{
 	}
  	public AcidRain(AcidRain acidRain): base(acidRain)
- 	{
-		
- 	}
+	{
+		poisonDamage = acidRain.poisonDamage;
+		poisonTurns = acidRain.poisonTurns;
+	}
  	
  	public override BaseAction CreateNewInstance(BaseAction action)
  	{

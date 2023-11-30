@@ -2,6 +2,9 @@
 
 public partial class BlockerDebuff : BaseDebuff
 {
+    
+    //Takes damage from enemy attacks
+    //todo: finish this when player middleware exists
     public BlockerDebuff()
     {
         

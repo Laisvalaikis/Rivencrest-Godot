@@ -332,7 +332,7 @@ public abstract partial class BaseAction: Resource
 
 		protected virtual bool CanAddTile(ChunkData chunk)
 		{
-			if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() && (!chunk.ObjectIsOnTile() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))
+			if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() && (!chunk.ObjectIsOnTile() || chunk.GetCurrentObject().CanBeDestroyed() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))
 			{
 				return true;
 			}
@@ -834,11 +834,23 @@ public abstract partial class BaseAction: Resource
 		
 		protected void DealRandomDamageToTarget(ChunkData chunkData, int minDamage, int maxDamage)
 		{
-			if (chunkData != null && chunkData.CharacterIsOnTile() && CanUseAttack() && (!IsAllegianceSame(chunkData) || friendlyFire))
+			if (chunkData != null && CanUseAttack())
 			{
-				int randomDamage = _random.Next(minDamage, maxDamage);
-				DodgeActivation(ref randomDamage);
-				DealDamage(chunkData, randomDamage);
+
+				if (chunkData.CharacterIsOnTile() &&
+				    (!IsAllegianceSame(chunkData) || friendlyFire))
+				{
+					int randomDamage = _random.Next(minDamage, maxDamage);
+					DodgeActivation(ref randomDamage);
+					DealDamage(chunkData, randomDamage);
+				}
+
+				if (chunkData.ObjectIsOnTile())
+				{
+					int randomDamage = _random.Next(minDamage, maxDamage);
+					DodgeActivation(ref randomDamage);
+					DealDamage(chunkData, randomDamage);
+				}
 			}
 		}
 
@@ -861,14 +873,22 @@ public abstract partial class BaseAction: Resource
 
 		protected void DealDamage(ChunkData chunkData, int damage)
 		{
-			if (chunkData != null && chunkData.CharacterIsOnTile() && CanUseAttack() && (!IsAllegianceSame(chunkData) || friendlyFire))
+			if (chunkData != null && CanUseAttack())
 			{
-				Player attackedPlayer = chunkData.GetCurrentPlayer();
-				attackedPlayer.objectInformation.GetObjectInformation().DealDamage(damage, player);
-				ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-				if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
+				if (chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 				{
-					attackedPlayer.AddVisionTile(enemyChunkData);
+					Player attackedPlayer = chunkData.GetCurrentPlayer();
+					attackedPlayer.objectInformation.GetObjectInformation().DealDamage(damage, player);
+					ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+					if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
+					{
+						attackedPlayer.AddVisionTile(enemyChunkData);
+					}
+				}
+				else if (chunkData.ObjectIsOnTile())
+				{
+					Object attackedObject = chunkData.GetCurrentObject();
+					attackedObject.objectInformation.GetObjectInformation().DealDamage(damage,player);
 				}
 			}
 		}
