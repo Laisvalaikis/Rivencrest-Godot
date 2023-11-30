@@ -19,6 +19,7 @@ ResourceScriptDirectories=["res://", "res://Data"]
 config/name="Rivencrest-godot"
 run/main_scene="res://Scenes/Encounter.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
+run/max_fps=200
 config/icon="res://icon.svg"
 
 [autoload]

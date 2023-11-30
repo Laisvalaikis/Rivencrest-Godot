@@ -23,7 +23,7 @@ public partial class Team : Resource
     private bool isTeamUsed = false;
     public FogOfWar fogOfWar;
     public int undoCount;
-    public Image fogImage;
+    public ImageTexture fogTexture;
     private List<FogData> _visionTiles;
     public LinkedList<UsedAbility> usedAbilitiesBeforeStartTurn = new LinkedList<UsedAbility>();
     public LinkedList<UsedAbility> usedAbilitiesAfterResolve = new LinkedList<UsedAbility>();

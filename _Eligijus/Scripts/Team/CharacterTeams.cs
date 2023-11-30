@@ -196,7 +196,7 @@ public partial class CharacterTeams : Node
 			currentCharacters.Teams[i].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
 			currentCharacters.Teams[i].coordinates = new Godot.Collections.Dictionary<int, Vector2>();
 			currentCharacters.Teams[i].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
-			currentCharacters.Teams[i].fogImage = _fogOfWar.CreateFogImage();
+			currentCharacters.Teams[i].fogTexture = _fogOfWar.CreateFogImageTexture();
 			_turnManager.AddTeamToList(i, currentCharacters.Teams[i]);
 			SpawnCharacters(i, allCharacterList[i].coordinates);
 		}

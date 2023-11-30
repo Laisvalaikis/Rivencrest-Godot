@@ -71,7 +71,7 @@ public partial class TurnManager : Node
 			break;
 		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
-		_fogOfWar.SetFogImage(_currentTeam.fogImage);
+		_fogOfWar.SetFogTexture(_currentTeam.fogTexture);
 	}
 
 	public void SetCurrentCharacter(Player character)
@@ -179,7 +179,7 @@ public partial class TurnManager : Node
 		OnTurnStart();
 		if (!isAiTurn)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 		{
-			_fogOfWar.SetFogImage(_currentTeam.fogImage);
+			_fogOfWar.SetFogTexture(_currentTeam.fogTexture);
 		}
 
 		
