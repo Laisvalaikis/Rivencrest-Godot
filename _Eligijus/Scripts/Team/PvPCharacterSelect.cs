@@ -7,8 +7,6 @@ public partial class PvPCharacterSelect : Button
     [Export] private Control characterButtonParent;
     private GameTileMap _gameTileMap; //cia private padaryt
     [Export]
-    public TextureRect extension;
-    [Export]
     private TextureRect characterPortraitSprite;
     private Node2D characterOnBoard;
     private PlayerInformation _playerInformation;

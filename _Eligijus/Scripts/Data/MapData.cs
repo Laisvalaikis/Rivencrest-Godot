@@ -27,8 +27,6 @@ public partial class MapData : Resource
 	[Export]
 	public bool allowDuplicates;
 	[Export]
-	public CompressedTexture2D mapImage;
-	[Export]
 	public string informationText;
 	
 	[Export]
@@ -48,7 +46,6 @@ public partial class MapData : Resource
 		numberOfEnemies = mapData.numberOfEnemies;
 		mapCategory = mapData.mapCategory;
 		allowDuplicates = mapData.allowDuplicates;
-		mapImage = mapData.mapImage;
 		informationText = mapData.informationText;
 		mapPrefab = mapData.mapPrefab;
 	}

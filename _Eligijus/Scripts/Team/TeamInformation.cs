@@ -76,16 +76,5 @@ public partial class TeamInformation : Control
 			}
 		}
 	}
-
-	public void ChangeBoxSprites(AtlasTexture main, Texture extension, Texture button)
-	{
-		image.Texture = main;
-		for (int i = 0; i < pvpCharacterSelects.Count; i++)
-		{
-			pvpCharacterSelects[i].extension.Texture = (AtlasTexture)extension;
-			StyleBoxTexture styleBoxTexture = new StyleBoxTexture();
-			styleBoxTexture.Texture = (AtlasTexture)button;
-			pvpCharacterSelects[i].AddThemeStyleboxOverride("normal", styleBoxTexture);
-		}
-	}
+	
 }

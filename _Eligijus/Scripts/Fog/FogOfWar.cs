@@ -1,9 +1,11 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 public partial class FogOfWar : Sprite2D
 {
     [Export] private Image lightImage;
     [Export] private int GridSize = 10;
+    [Export] private int scale = 3;
     [Export] private int width = 3000;
     [Export] private int height = 3000;
     private Image fogImage;
@@ -15,12 +17,14 @@ public partial class FogOfWar : Sprite2D
     public override void _Ready()
     {
         base._Ready();
+        lightImage.Resize(Mathf.CeilToInt((float)lightImage.GetWidth()/ (float)scale), Mathf.CeilToInt((float)lightImage.GetHeight()/(float)scale), Image.Interpolation.Nearest);
         lightOffset = new Vector2I((width / 2) - (lightImage.GetWidth() / 2), (height / 2) - (lightImage.GetHeight() / 2));
         addFog = Image.Create(lightImage.GetWidth(), lightImage.GetHeight(), false, Image.Format.Rgbah);
         fogRectI = new Rect2I(Vector2I.Zero, new Vector2I(addFog.GetWidth(), addFog.GetHeight()));
         fogOffset = new Vector2I((width / 2) - (addFog.GetWidth() / 2), (height / 2) - (addFog.GetHeight() / 2));
         addFog.Fill(Colors.Black);
         lightImage.Convert(Image.Format.Rgbah);
+        Scale *= scale;
     }
     
     public ImageTexture CreateFogImageTexture()
