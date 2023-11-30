@@ -1,11 +1,6 @@
-using Godot;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
-
-
 
 public partial class PlayerMovement : BaseAction
 {
@@ -13,7 +8,6 @@ public partial class PlayerMovement : BaseAction
 	private GameTileMap _gameTileMap;
 	private List<ChunkData> _path;
 	private int movementRange = 0;
-	private ChunkData[,] _chunkArray;
 	private PathCache cache=new PathCache();
 
 	public PlayerMovement()
@@ -37,10 +31,7 @@ public partial class PlayerMovement : BaseAction
 	public override void Start()
 	{
 		base.Start();
-		// AttackHighlight = new Color32(130, 255, 95, 255);
-		// AttackHighlightHover = new Color32(255, 227, 0, 255);
 		_gameTileMap = GameTileMap.Tilemap;
-		_chunkArray = _gameTileMap.GetChunksArray();
 	}
 	
 	public override void OnMoveArrows(ChunkData hoveredChunk, ChunkData previousChunk)

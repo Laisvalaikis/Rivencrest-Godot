@@ -89,6 +89,11 @@ public class ChunkData
 
     public void SetCurrentCharacter(Player player)
     {
+        if (player == null)
+        {
+            _currentPlayer = null;
+            return;
+        }
         if (_currentPlayer == null)
         {
             _currentPlayer = new ObjectType<Object>(player, typeof(Player));

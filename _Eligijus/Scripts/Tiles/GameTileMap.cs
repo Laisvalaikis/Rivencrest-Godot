@@ -516,7 +516,7 @@ public partial class GameTileMap : Node2D
 			moveCharacter = character;
 		}
 	
-		if (chunk != null && moveCharacter != null) // !CharacterIsOnTile(mousePosition)
+		if (chunk != null && moveCharacter != null)
 		{
 			ChunkData previousCharacterChunk = Tilemap.GetChunk(moveCharacter.GlobalPosition);
 			Vector2 characterPosition = chunk.GetPosition();

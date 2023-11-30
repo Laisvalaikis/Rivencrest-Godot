@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://i3hyidq7npsg"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Debuffs/AflameDebuff.cs" id="1_f75ho"]
+
+[resource]
+script = ExtResource("1_f75ho")
+minDamage = 1
+maxDamage = 5
+lifetime = 1

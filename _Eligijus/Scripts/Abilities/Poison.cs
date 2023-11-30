@@ -7,6 +7,7 @@ public class Poison
     public int turnsLeft;
     public int poisonValue;
 
+    //Do not use this class anymore (bijau istrint)
     public Poison()
     {
         

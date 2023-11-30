@@ -1,15 +1,16 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class FlameKick : BaseAction
 {
-    //Ability buvo remove'intas. (Player orange abilitis)
-    //Assuminu, kad del to jis nebaigtas
+    [Export] private AflameDebuff debuff;
     public FlameKick()
     {
  		
     }
     public FlameKick(FlameKick flameBlast): base(flameBlast)
     {
+        debuff = flameBlast.debuff;
     }
  	
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -26,6 +27,7 @@ public partial class FlameKick : BaseAction
         {
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
         sideVector = (sideVector.x, sideVector.y);
