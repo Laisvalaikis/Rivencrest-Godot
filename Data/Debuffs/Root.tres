@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bwafvin6tohh"]
+
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Debuffs/RootDebuff.cs" id="1_wpyqx"]
+
+[resource]
+script = ExtResource("1_wpyqx")
+lifetime = 1
