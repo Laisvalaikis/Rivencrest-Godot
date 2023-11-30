@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://dcuhbm3dljxm"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dcuhbm3dljxm"]
 
-[ext_resource type="Resource" uid="uid://cxajb3h2s1o50" path="res://Data/MapData/Fields/AI_Coordinates.tres" id="1_l5wo8"]
 [ext_resource type="Resource" uid="uid://cq43gjhdpfgw8" path="res://Data/MapData/Fields/Coordinates_0.tres" id="2_jy3ir"]
 [ext_resource type="Resource" uid="uid://cfaa3lbvr5nch" path="res://Data/MapData/Fields/Coordinates_1.tres" id="3_blgkq"]
 [ext_resource type="Texture2D" uid="uid://hefvbhoaknf" path="res://_Eligijus/Sprites/Map/Fields.png" id="4_ucc25"]
@@ -9,14 +8,12 @@
 [resource]
 script = ExtResource("5_tq3sa")
 mapName = "Fields"
-suitableEnemies = Array[String](["UndeadBoss", "UndeadSpider", "UndeadCultist", "UndeadKnight", "UndeadMindController", "UndeadSpiderMaiden"])
-npcTeam = Array[Node]([])
 suitableLevels = Array[int]([1, 2, 3, 4, 5])
+npcTeam = Array[Node]([])
 mapCoordinates = Array[Resource]([ExtResource("2_jy3ir"), ExtResource("3_blgkq")])
-aiMapCoordinates = ExtResource("1_l5wo8")
 toFollowStartPosition = Vector3(2.58, -0.28, 0)
-panLimitX = Vector2(0.5, 10.5)
-panLimitY = Vector2(-1.5, 8.5)
+panLimitX = Vector2(-100, 100)
+panLimitY = Vector2(-100, 300)
 numberOfEnemies = 3
 mapCategory = "Undead"
 allowDuplicates = false

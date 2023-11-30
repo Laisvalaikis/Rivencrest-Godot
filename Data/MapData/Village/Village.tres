@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://ctxc4hoqnkbuw"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://ctxc4hoqnkbuw"]
 
-[ext_resource type="Resource" uid="uid://n0fdtsmyqhbb" path="res://Data/MapData/Village/AI_Coordinates.tres" id="1_alo8s"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_f2pgl"]
 [ext_resource type="Resource" uid="uid://ciqbewffinv3j" path="res://Data/MapData/Village/Coordinates_0.tres" id="2_km8vr"]
 [ext_resource type="Resource" uid="uid://didjbw4iilp3b" path="res://Data/MapData/Village/Coordinates_1.tres" id="3_gfpr8"]
@@ -9,14 +8,12 @@
 [resource]
 script = ExtResource("1_f2pgl")
 mapName = "Village"
-suitableEnemies = Array[String](["UndeadBoss", "UndeadSpider", "UndeadCultist", "UndeadKnight", "UndeadMindController"])
-npcTeam = null
 suitableLevels = Array[int]([1, 2, 3, 4, 5])
+npcTeam = null
 mapCoordinates = Array[Resource]([ExtResource("2_km8vr"), ExtResource("3_gfpr8")])
-aiMapCoordinates = ExtResource("1_alo8s")
 toFollowStartPosition = Vector3(2.33, 0.4, 0)
-panLimitX = Vector2(0.5, 10.5)
-panLimitY = Vector2(-1.5, 8.5)
+panLimitX = Vector2(-100, 100)
+panLimitY = Vector2(-200, 300)
 numberOfEnemies = 3
 mapCategory = "Undead"
 allowDuplicates = false
