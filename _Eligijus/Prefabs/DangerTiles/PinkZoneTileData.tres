@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bxr6ebvlg50cy"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bxr6ebvlg50cy"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_7kfm1"]
+[ext_resource type="Resource" uid="uid://bx1sghfw7jrvj" path="res://Data/Abilities/PlayerPrefab/PinkAttack.tres" id="1_mku1o"]
 
 [resource]
 script = ExtResource("1_7kfm1")
@@ -14,5 +15,5 @@ backgroundColor = Color(0, 0, 0, 0)
 canStepOnObject = true
 destroyObjectStepingOn = false
 canBeDestroyed = false
-abilities = null
-blessings = null
+abilities = Array[Resource]([ExtResource("1_mku1o")])
+blessings = Array[Resource]([])

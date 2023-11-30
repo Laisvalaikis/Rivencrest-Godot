@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ikaabnugmevc"]
+
+[ext_resource type="Resource" uid="uid://ddhwmwrtqc6so" path="res://Data/Abilities/Abilities/PrefabAbilities/DamageAdjacent.tres" id="1_iw57p"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="2_ghft0"]
+
+[resource]
+script = ExtResource("2_ghft0")
+_type = 2
+enabled = true
+Action = ExtResource("1_iw57p")

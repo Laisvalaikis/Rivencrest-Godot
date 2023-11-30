@@ -1,13 +1,20 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7nrdyijrso0f"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://7nrdyijrso0f"]
 
+[ext_resource type="Resource" uid="uid://c6csf14xoant0" path="res://Data/Abilities/PlayerPrefab/IncreaseVisionWithoutRemove.tres" id="1_8m88m"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_htrun"]
+[ext_resource type="Resource" uid="uid://bxqslviv4glie" path="res://Data/Abilities/PlayerPrefab/PickUpSpear.tres" id="2_u837l"]
 
 [resource]
 script = ExtResource("1_htrun")
 maxHealth = 1
+accuracy = 100
+visionRange = 3
 classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
 backgroundColor = Color(0, 0, 0, 0)
-abilities = null
+canStepOnObject = true
+destroyObjectStepingOn = false
+canBeDestroyed = false
+abilities = Array[Resource]([ExtResource("1_8m88m"), ExtResource("2_u837l")])
 blessings = null

@@ -446,6 +446,7 @@ public abstract partial class BaseAction: Resource
 		{
 			return abilityCooldown;
 		}
+		
 		public int IncreaseAbilityCooldown()
 		{
 			return cooldownCount++;
@@ -734,6 +735,14 @@ public abstract partial class BaseAction: Resource
 			if (_selectActionButton != null)
 			{
 				_selectActionButton.DisableAbility();
+			}
+		}
+
+		public void UpdateAbilityButtonByActionPoints(int abilityPoints)
+		{
+			if (_selectActionButton != null)
+			{
+				_selectActionButton.UpdateAbilityCooldownWithPoints(abilityPoints);
 			}
 		}
 

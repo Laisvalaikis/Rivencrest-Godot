@@ -1,12 +1,13 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://fgkngukdnek2"]
 
 [ext_resource type="Texture2D" uid="uid://cl5vicj0jmw5t" path="res://Data/ActionIcons/Icon_11.tres" id="1_ib5va"]
-[ext_resource type="Resource" path="res://Data/Abilities/Abilities/Scream.tres" id="2_riuef"]
+[ext_resource type="Resource" uid="uid://dq5h5o4egek3u" path="res://Data/Abilities/Abilities/Scream.tres" id="2_riuef"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_cqj8f"]
-[ext_resource type="Resource" path="res://Data/AbilityText/Scream.tres" id="3_so7jh"]
+[ext_resource type="Resource" uid="uid://eb1rod0bqobu" path="res://Data/AbilityText/Scream.tres" id="3_so7jh"]
 
 [resource]
 script = ExtResource("3_cqj8f")
+_type = 2
 abilityText = ExtResource("3_so7jh")
 enabled = true
 AbilityImage = ExtResource("1_ib5va")

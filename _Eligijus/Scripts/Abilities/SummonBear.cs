@@ -39,6 +39,7 @@ public partial class SummonBear : BaseAction
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
 			spawnedCharacter.AddTurnManager(_turnManager);
 			spawnedCharacter.unlockedAbilityList = bearResource.unlockedAbilities;
+			spawnedCharacter.unlockedBlessingList = bearResource.abilityBlessings;
 			spawnedCharacter.SetupObject(bearResource.playerInformation);
 			Array<Ability> allAbilities = new Array<Ability>();
 			allAbilities.AddRange(spawnedCharacter.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().baseAbilities);

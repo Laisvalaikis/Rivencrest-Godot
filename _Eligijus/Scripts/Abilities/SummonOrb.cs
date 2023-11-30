@@ -5,8 +5,7 @@ using Godot;
 public partial class SummonOrb : BaseAction
 {
     [Export] private ObjectData orbData;
-    [Export]
-    private Resource orbPrefab;
+    [Export] private Resource orbPrefab;
 
     private Object orb;
     private PlayerInformation _orbInformation;
@@ -41,40 +40,23 @@ public partial class SummonOrb : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         SpawnOrb(chunk);
-        GenerateAttackGrid(chunk);
         FinishAbility();
     }
 
     private void SpawnOrb(ChunkData chunkData)
     {
-        PackedScene spawnResource = (PackedScene)orbPrefab;
-       // orb = spawnResource.Instantiate<Player>();
-       orb = spawnResource.Instantiate<Object>();
+        PackedScene spawnCharacter = (PackedScene)orbPrefab;
+        Object orb = spawnCharacter.Instantiate<Object>();
         player.GetTree().Root.CallDeferred("add_child", orb);
         orb.SetupObject(orbData);
+        orb.AddPlayerForObjectAbilities(player);
         GameTileMap.Tilemap.SpawnObject(orb, chunkData);
-       // _orbInformation = orb.playerInformation;
-        _orbInformation.SetInformationType(typeof(Object));
-       // chunkData.SetCurrentCharacter(orb);
-        chunkData.GetTileHighlight().ActivatePlayerTile(true);
-        _orbChunkData = chunkData;
+        orb.StartActions();
     }
     
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
-        if (_orbChunkData != null && _orbInformation.GetHealth() > 0)
-        {
-            _orbChunkData.SetCurrentCharacter(null);
-            _orbChunkData = null;
-            orb.QueueFree();
-            foreach (var t in _attackList)
-            {
-                int randomDamage = _random.Next(minAttackDamage, maxAttackDamage);
-                DealDamage(t, randomDamage);
-            }
-            _attackList.Clear();
-        }
     }
 
     public void GenerateAttackGrid(ChunkData centerChunk)

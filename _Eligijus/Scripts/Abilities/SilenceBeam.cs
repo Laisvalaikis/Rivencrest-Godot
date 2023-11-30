@@ -5,12 +5,12 @@ namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 
 public partial class SilenceBeam : BaseAction
 {
-	[Export] private int _additionalDamage = 2;
 	private ChunkData[,] _chunkArray;
 	private int _index = -1;
 	
 	[Export] private ObjectData PinkTileData;
 	[Export] private Resource PinkTilePrefab;
+	private int _globalIndex = -1;
 	private List<Object> PinkTileObjects=new List<Object>();
 	public SilenceBeam()
 	{
@@ -19,7 +19,6 @@ public partial class SilenceBeam : BaseAction
 	
 	public SilenceBeam(SilenceBeam action) : base(action)
 	{
-		_additionalDamage = action._additionalDamage;
 		PinkTileData = action.PinkTileData;
 		PinkTilePrefab = action.PinkTilePrefab;
 	}
@@ -28,32 +27,6 @@ public partial class SilenceBeam : BaseAction
 	{ 
 		SilenceBeam silenceBeam = new SilenceBeam((SilenceBeam)action); 
 		return silenceBeam;
-	}
-
-	public override void OnTurnStart(ChunkData chunkData)
-	{
-		base.OnTurnStart(chunkData);
-		if (_index != -1)
-		{
-			for (int i = 0; i < _chunkArray.GetLength(1); i++)
-			{
-				ChunkData damageChunk = _chunkArray[_index, i];
-				if (damageChunk.CharacterIsOnTile())
-				{
-					Player target = damageChunk.GetCurrentPlayer();
-					// target.debuffs.SetTurnCounterFromThisTurn(1);
-					// target.debuffs.SilencePlayer();
-				}
-				DealRandomDamageToTarget(damageChunk, minAttackDamage + _additionalDamage, maxAttackDamage + _additionalDamage);
-			}
-
-			foreach (Object pinkZoneTile in PinkTileObjects)
-			{
-				pinkZoneTile.Death();
-			}
-			_chunkArray = new ChunkData[4, attackRange];
-		}
-		
 	}
 
 	public override void ResolveAbility(ChunkData chunk)
@@ -73,6 +46,7 @@ public partial class SilenceBeam : BaseAction
 					Object spawnedPinkTile = spawnCharacter.Instantiate<Object>();
 					player.GetTree().Root.CallDeferred("add_child", spawnedPinkTile);
 					spawnedPinkTile.SetupObject(PinkTileData);
+					spawnedPinkTile.AddPlayerForObjectAbilities(player);
 					GameTileMap.Tilemap.SpawnObject(spawnedPinkTile, damageChunk);
 					PinkTileObjects.Add(spawnedPinkTile);
 				}
@@ -112,8 +86,7 @@ public partial class SilenceBeam : BaseAction
 	{
 		return chunkData.GetTileHighlight().isHighlighted;
 	}
-
-	private int _globalIndex = -1;
+	
 	public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
 	{
 		if (hoveredChunk == previousChunk) return;
@@ -137,7 +110,7 @@ public partial class SilenceBeam : BaseAction
 				for (int i = 0; i < _chunkArray.GetLength(1); i++)
 				{
 					ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-					if (chunkToHighLight!=null && chunkToHighLight.GetCurrentPlayer()!=null)
+					if (chunkToHighLight != null)
 					{
 						SetHoveredAttackColor(chunkToHighLight);
 						EnableDamagePreview(chunkToHighLight);
@@ -146,41 +119,6 @@ public partial class SilenceBeam : BaseAction
 			}
 		}
 	}
-	// public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
-	// {
-	// 	if (hoveredChunk == previousChunk) return;
-	// 	if (_globalIndex != -1)
-	// 	{
-	// 		for (int i = 0; i < _chunkArray.GetLength(1); i++)
-	// 		{
-	// 			ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-	// 			if (chunkToHighLight != null)
-	// 			{
-	// 				SetNonHoveredAttackColor(chunkToHighLight);
-	// 				DisableDamagePreview(chunkToHighLight);
-	// 			}
-	// 		}
-	// 	}
-	// 	if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
-	// 	{
-	// 		_globalIndex = FindChunkIndex(hoveredChunk);
-	// 		if (_globalIndex != -1)
-	// 		{
-	// 			for (int i = 0; i < _chunkArray.GetLength(1); i++)
-	// 			{
-	// 				ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-	// 				if (chunkToHighLight != null)
-	// 				{
-	// 					SetHoveredAttackColor(chunkToHighLight);
-	// 					if (chunkToHighLight.GetCurrentPlayer()!=null)
-	// 					{
-	// 						EnableDamagePreview(chunkToHighLight);
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
 
 	public override void CreateAvailableChunkList(int range)
 	{

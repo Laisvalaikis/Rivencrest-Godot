@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bxqslviv4glie"]
+
+[ext_resource type="Resource" uid="uid://dfucrhpssbm0b" path="res://Data/Abilities/Abilities/PrefabAbilities/PickUpSpear.tres" id="1_j0a77"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="2_k60tb"]
+
+[resource]
+script = ExtResource("2_k60tb")
+_type = 2
+enabled = true
+Action = ExtResource("1_j0a77")

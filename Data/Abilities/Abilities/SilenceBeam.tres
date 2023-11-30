@@ -6,7 +6,6 @@
 
 [resource]
 script = ExtResource("1_jwin8")
-_additionalDamage = 10
 PinkTileData = ExtResource("1_wcd0u")
 PinkTilePrefab = ExtResource("2_ih53x")
 laserGrid = true

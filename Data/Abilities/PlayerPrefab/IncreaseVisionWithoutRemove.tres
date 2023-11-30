@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c6csf14xoant0"]
+
+[ext_resource type="Resource" uid="uid://dx8s7rvdbcvw" path="res://Data/Abilities/Abilities/PrefabAbilities/IncreaseVisionWithoutRemove.tres" id="1_5hvmk"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="2_pl1bv"]
+
+[resource]
+script = ExtResource("2_pl1bv")
+_type = 2
+enabled = true
+Action = ExtResource("1_5hvmk")

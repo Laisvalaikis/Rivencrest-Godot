@@ -4,6 +4,7 @@ using Godot;
 public partial class IncreaseVision : BaseAction
 {
     [Export] private int vision = 3;
+    [Export] private bool removeVisionAfterDeath = true;
     private List<ChunkData> _savedViewTiles;
     
     public IncreaseVision()
@@ -14,6 +15,7 @@ public partial class IncreaseVision : BaseAction
     public IncreaseVision(IncreaseVision ability): base(ability)
     {
         vision = ability.vision;
+        removeVisionAfterDeath = ability.removeVisionAfterDeath;
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -54,7 +56,7 @@ public partial class IncreaseVision : BaseAction
 
     public override void Die()
     {
-        if (_savedViewTiles is not null)
+        if (_savedViewTiles is not null && removeVisionAfterDeath)
         {
             for (int i = 0; i < _savedViewTiles.Count; i++)
             {

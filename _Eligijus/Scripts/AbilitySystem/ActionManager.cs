@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -340,7 +341,20 @@ public partial class ActionManager : Node
 			_currentAbility.Action.CreateGrid();
 		}
 	}
-	
+
+	public BaseAction GetAbilityByType(Type type)
+	{
+		foreach (Ability ability in _allAbilities)
+		{
+			BaseAction action = ability.Action;
+			if (type == action.GetType())
+			{
+				return ability.Action;
+			}
+		}
+		return null;
+	}
+
 	public bool IsAbilitySelected()
 	{
 		return _currentAbility != null;
