@@ -3,10 +3,9 @@ using Godot;
 
 public partial class RainOfArrows : BaseAction
 {
-    private List<ChunkData> arrowTiles = new List<ChunkData>();
     [Export] private ObjectData arrowTileData;
     [Export] private Resource arrowTilePrefab;
-    private List<Object> arrowTileObjects=new List<Object>();
+    private List<ChunkData> damageList = new List<ChunkData>();
     public RainOfArrows()
     {
         
@@ -23,48 +22,83 @@ public partial class RainOfArrows : BaseAction
         return ability;
     }
     
-    public override void OnTurnStart(ChunkData chunkData)
-    {
-        base.OnTurnStart(chunkData);
-        if (arrowTiles.Count!=0)
-        {
-            foreach (ChunkData tile in arrowTiles)
-            {
-                DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
-            }
-            arrowTiles.Clear();
-        }
-        if (arrowTileObjects.Count != 0)
-        {
-            foreach (Object arrowTileObject in arrowTileObjects)
-            {
-                arrowTileObject.Death();
-            }
-            arrowTileObjects.Clear();
-        }
-    }
       
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        List<ChunkData> damageChunks = CreateDamageTileList(chunk);
-        foreach (ChunkData chunkData in damageChunks)
+        foreach (ChunkData chunkData in damageList)
         {
-            arrowTiles.Add(chunkData);
             PackedScene spawnCharacter = (PackedScene)arrowTilePrefab;
             Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
             player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
             spawnedArrowTile.SetupObject(arrowTileData);
+            spawnedArrowTile.AddPlayerForObjectAbilities(player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
-            arrowTileObjects.Add(spawnedArrowTile);
         }
         FinishAbility();
     }
-    
-    public List<ChunkData> CreateDamageTileList(ChunkData chunk)
+
+    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {
-        List<ChunkData> damageTiles = new List<ChunkData>();
+        if (hoveredChunk == previousChunk) return;
+        if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
+        {
+            if (damageList is not null && damageList.Count > 0)
+            {
+                foreach (ChunkData chunk in damageList)
+                {
+                    SetNonHoveredAttackColor(chunk);
+                    DisableDamagePreview(chunk);
+                }
+            }
+            CreateDamageTileList(hoveredChunk);
+            foreach (ChunkData chunk in damageList)
+            {
+                SetHoveredAttackColor(chunk);
+                EnableDamagePreview(chunk);
+                
+            }
+        }
+
+    }
+    
+    public override void ClearGrid()
+    {
+        ChunkData playerChunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        if (playerChunkData is not null)
+        {
+            DisableDamagePreview(playerChunkData);
+        }
+
+        if (_chunkList != null)
+        {
+            foreach (var chunk in _chunkList)
+            {
+                HighlightTile highlightTile = chunk.GetTileHighlight();
+                highlightTile.ActivateColorGridTile(false);
+                DisableDamagePreview(chunk);
+            }
+            _chunkList.Clear();
+        }
+    }
+    
+    public override bool CanTileBeClicked(ChunkData chunkData)
+    {
+        return (CheckIfSpecificInformationType(chunkData, typeof(Player)) || 
+                CheckIfSpecificInformationType(chunkData, typeof(Object))) && (!IsAllegianceSame(chunkData) || friendlyFire);
+    }
+
+    public void CreateDamageTileList(ChunkData chunk)
+    {
+        if (damageList is null)
+        {
+            damageList = new List<ChunkData>();
+        }
+        else
+        {
+            damageList.Clear();
+        }
         (int x, int y) index = chunk.GetIndexes();
         var spellDirectionVectors = new List<(int, int)>
         {
@@ -79,9 +113,8 @@ public partial class RainOfArrows : BaseAction
             if (GameTileMap.Tilemap.CheckBounds(direction.Item1, direction.Item2))
             {
                 ChunkData temp = GameTileMap.Tilemap.GetChunkDataByIndex(direction.Item1, direction.Item2);
-                damageTiles.Add(temp);
+                damageList.Add(temp);
             }
         }
-        return damageTiles;
     }
 }

@@ -1,36 +1,30 @@
 using Godot;
 
-public partial class DamagePlayer : BaseAction
+public partial class DamageOnTurnStart : BaseAction
 {
-
-    public DamagePlayer()
+    public DamageOnTurnStart()
     {
         
     }
 
-    public DamagePlayer(DamagePlayer ability): base(ability)
+    public DamageOnTurnStart(DamageOnTurnStart ability): base(ability)
     {
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
     {
-        DamagePlayer ability = new DamagePlayer((DamagePlayer)action);
+        DamageOnTurnStart ability = new DamageOnTurnStart((DamageOnTurnStart)action);
         return ability;
     }
-
-    public override void ResolveAbility(ChunkData chunk)
+    
+    public override void OnTurnStart(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
         {
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            FinishAbility();
         }
-    }
-    
-    public override void OnTurnStart(ChunkData chunkData)
-    {
-        base.OnTurnStart(chunkData);
+        _object.Death();
     }
 
     public override bool CanTileBeClicked(ChunkData chunkData)
@@ -47,5 +41,4 @@ public partial class DamagePlayer : BaseAction
     {
         return false;
     }
-    
 }

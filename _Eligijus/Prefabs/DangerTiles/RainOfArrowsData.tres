@@ -1,11 +1,13 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bpl881dp8vkll"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bpl881dp8vkll"]
 
+[ext_resource type="Resource" uid="uid://dcg5p5ksc6sci" path="res://Data/Abilities/PlayerPrefab/DamageOnTurnStart.tres" id="1_aq4po"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_nsl83"]
 
 [resource]
 script = ExtResource("1_nsl83")
 maxHealth = 1
 accuracy = 100
+visionRange = 3
 classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
@@ -13,5 +15,5 @@ backgroundColor = Color(0, 0, 0, 0)
 canStepOnObject = true
 destroyObjectStepingOn = false
 canBeDestroyed = false
-abilities = null
+abilities = Array[Resource]([ExtResource("1_aq4po")])
 blessings = null

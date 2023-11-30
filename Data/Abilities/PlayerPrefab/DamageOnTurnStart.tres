@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dcg5p5ksc6sci"]
+
+[ext_resource type="Resource" uid="uid://bcorlpwgjxnr3" path="res://Data/Abilities/Abilities/PrefabAbilities/DamageOnTurnStart.tres" id="1_47p80"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="1_br1g1"]
+
+[resource]
+script = ExtResource("1_br1g1")
+_type = 2
+enabled = true
+Action = ExtResource("1_47p80")

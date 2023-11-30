@@ -557,25 +557,31 @@ public abstract partial class BaseAction: Resource
 		
 		public virtual void EnableDamagePreview(ChunkData chunk, string text = null)
 		{
-			HighlightTile highlightTile = chunk.GetTileHighlight();
-			if (customText != null)
+			if (CanTileBeClicked(chunk))
 			{
-				highlightTile.SetDamageText(customText);
-			}
-			else
-			{
-				if (maxAttackDamage == minAttackDamage)
+
+				HighlightTile highlightTile = chunk.GetTileHighlight();
+				if (customText != null)
 				{
-					highlightTile.SetDamageText(maxAttackDamage.ToString());
+					highlightTile.SetDamageText(customText);
 				}
 				else
 				{
-					highlightTile.SetDamageText($"{minAttackDamage}-{maxAttackDamage}");
-				}
+					if (maxAttackDamage == minAttackDamage)
+					{
+						highlightTile.SetDamageText(maxAttackDamage.ToString());
+					}
+					else
+					{
+						highlightTile.SetDamageText($"{minAttackDamage}-{maxAttackDamage}");
+					}
 
-				if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <= minAttackDamage)
-				{
-					highlightTile.ActivateDeathSkull(true);
+					if (chunk.GetCurrentPlayer() != null &&
+					    chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <=
+					    minAttackDamage)
+					{
+						highlightTile.ActivateDeathSkull(true);
+					}
 				}
 			}
 		}

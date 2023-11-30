@@ -34,7 +34,6 @@ public partial class RaiseRock : BaseAction
 			player.GetTree().Root.CallDeferred("add_child", wall);
 			wall.SetupObject(wallRockData);
 			GameTileMap.Tilemap.SpawnObject(wall, chunk);
-			//GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedWall);
 			FinishAbility();
 		}
 	}

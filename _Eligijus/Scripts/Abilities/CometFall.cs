@@ -6,7 +6,6 @@ public partial class CometFall : BaseAction
     [Export] private ObjectData cometTileData;
     [Export] private Resource cometTilePrefab;
     private Object spawnedCometTile;
-    private List<ChunkData> _damageTiles = new List<ChunkData>();
 
     public CometFall()
     {
