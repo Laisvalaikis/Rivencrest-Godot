@@ -38,13 +38,17 @@ public partial class WallEntrap : BaseAction
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
-        for (int i = 0; i < wallObjects.Count; i++)
+        if (wallObjects is not null)
         {
-            if (wallObjects[i] is null)
+            for (int i = 0; i < wallObjects.Count; i++)
             {
-                wallCount--;
-            }   
+                if (wallObjects[i] is null)
+                {
+                    wallCount--;
+                }
+            }
         }
+
         if (_playerInformations != null && _playerInformations.Count > 0 && IsEnemyTrapped())
         {
             foreach (PlayerInformation x in _playerInformations)
@@ -55,8 +59,15 @@ public partial class WallEntrap : BaseAction
         }
         else
         {
-            _playerInformations.Clear();
-            wallObjects.Clear();
+            if (_playerInformations is not null)
+            {
+                _playerInformations.Clear();
+            }
+
+            if (wallObjects is not null)
+            {
+                wallObjects.Clear();
+            }
         }
     }
 
