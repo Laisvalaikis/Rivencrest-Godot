@@ -396,8 +396,30 @@ public partial class GameTileMap : Node2D
 			}
 		}
 	}
-
+	
 	public void RemoveFog(ChunkData chunkData, Player currentPlayer)
+	{
+		if (chunkData.IsFogOnTile())
+		{
+			chunkData.SetFogOnTile(false);
+			currentPlayer.AddVisionTile(chunkData);
+			if (chunkData.CharacterIsOnTile())
+			{
+				Player player = chunkData.GetCurrentPlayer();
+				player.EnableObject();
+				chunkData.GetTileHighlight().ActivatePlayerTile(true);
+				chunkData.GetTileHighlight().EnableTile(true);
+			}
+
+			if (chunkData.ObjectIsOnTile())
+			{
+				chunkData.GetCurrentObject().EnableObject();
+				chunkData.GetTileHighlight().EnableTile(true);
+			}
+		}
+	}
+
+	public void AddFog(ChunkData chunkData, Player currentPlayer)
 	{
 		if (!chunkData.IsFogOnTile())
 		{

@@ -117,6 +117,11 @@ public partial class WallEntrap : BaseAction
                 player.GetTree().Root.CallDeferred("add_child", wall);
                 wall.SetupObject(wallRockData);
                 GameTileMap.Tilemap.SpawnObject(wall, chunkData);
+                if (chunkDataArray[x.Item1,x.Item2].IsFogOnTile())
+                {
+                    GameTileMap.Tilemap.RemoveFog(chunkDataArray[x.Item1, x.Item2], player);
+                }
+                
                 if (chunk.CharacterIsOnTile() && !_playerInformations.Contains(chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation()))
                 {
                     _playerInformations.Add(chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation());   

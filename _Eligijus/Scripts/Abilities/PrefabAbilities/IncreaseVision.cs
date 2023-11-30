@@ -60,7 +60,7 @@ public partial class IncreaseVision : BaseAction
         {
             for (int i = 0; i < _savedViewTiles.Count; i++)
             {
-                GameTileMap.Tilemap.RemoveFog(_savedViewTiles[i], player);
+                GameTileMap.Tilemap.AddFog(_savedViewTiles[i], player);
             }
         }
     }
