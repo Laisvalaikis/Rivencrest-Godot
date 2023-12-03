@@ -23,10 +23,10 @@ public partial class CameraMovement : Camera2D
         base._Ready();
         if (InputManager.Instance != null)
         {
-            InputManager.Instance.MouseMoveOutDeadZone += MoveCamera;
+            InputManager.Instance.CameraControl += MoveCamera;
             InputManager.Instance.LeftMouseDoubleClick += FocusPoint;
-            InputManager.Instance.MouseWheelUp += ZoomIn;
-            InputManager.Instance.MouseWheelDown += ZoomOut;
+            InputManager.Instance.Up += ZoomIn;
+            InputManager.Instance.Down += ZoomOut;
         }
     }
 
@@ -40,11 +40,11 @@ public partial class CameraMovement : Camera2D
         SetPhysicsProcess(!Zoom.X.Equals(_targetZoom));
     }
 
-    private void MoveCamera(Vector2 relativePosition)
+    private void MoveCamera(Vector2 relativePosition, float movementSpeed)
     {
         if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
         {
-            Position -= relativePosition * Zoom;
+            Position -= relativePosition * Zoom * movementSpeed;
         }
         
         if(Position.X > xBounds.Y)
@@ -72,13 +72,13 @@ public partial class CameraMovement : Camera2D
         yBounds = yMapBounds;
     }
 
-    private void ZoomIn()
+    private void ZoomOut()
     {
         _targetZoom = Math.Max(_targetZoom - zoomIncrement, minZoom);
         SetPhysicsProcess(true);
     }
     
-    private void ZoomOut()
+    private void ZoomIn()
     {
         _targetZoom = Math.Min(_targetZoom + zoomIncrement, maxZoom);
         SetPhysicsProcess(true);

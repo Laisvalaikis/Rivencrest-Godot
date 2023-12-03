@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using System.Threading.Tasks;
 using Godot.Collections;
@@ -23,8 +24,8 @@ public partial class TurnManager : Node
 	public override void _Ready()
 	{
 		base._Ready();
-		InputManager.Instance.MouseMove += OnMove;
-		InputManager.Instance.LeftMouseClick += OnMouseClick;
+		InputManager.Instance.MoveSelector += OnMove;
+		InputManager.Instance.SelectClick += OnMouseClick;
 	}
 
 	public void AddTeamToList(int index, Team addTeam)
@@ -60,6 +61,7 @@ public partial class TurnManager : Node
 		_currentTeam = _teamsList.Teams[teamIndex];
 		_currentTeamIndex = teamIndex;
 		_currentPlayer = null;
+		InputManager.Instance.SetCurrentCharacterPosition(_currentTeam.characters.Values.First().GlobalPosition);
 		foreach (int key in _teamsList.Teams.Keys)
 		{
 			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles()).Wait();
@@ -80,11 +82,13 @@ public partial class TurnManager : Node
 		{
 			_currentPlayer = character;
 			_cameraMovement.FocusPoint(_currentPlayer.GlobalPosition);
+			InputManager.Instance.SetCurrentCharacterPosition(_currentPlayer.GlobalPosition);
 		}
 		else if (character != null)
 		{
 			_currentPlayer = null;
 			_currentEnemy = character;
+			InputManager.Instance.SetCurrentCharacterPosition(_currentEnemy.GlobalPosition);
 			GD.PrintErr("Character is not in team");
 		}
 		else
@@ -349,7 +353,7 @@ public partial class TurnManager : Node
 		}
 	}
 	
-	public void OnMouseClick()
+	public void OnMouseClick(Vector2 mouseClick)
 	{
 		ResolveAbility();
 	}

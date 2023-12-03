@@ -5,6 +5,7 @@ using Godot;
 
 public partial class HighlightTile : Node2D
 {
+	[Export] private Sprite2D mouseHighlight;
 	[Export] private Sprite2D highlight;
 	[Export] private Sprite2D arrowTile;
 	[Export] private Sprite2D playerSelect;
@@ -41,11 +42,10 @@ public partial class HighlightTile : Node2D
 
 	[Export] private AtlasTexture characterSelected;
 	[Export] private AtlasTexture characterNotSelected;
-
 	
 	public bool isHighlighted = false;
-	public string activeState;
-
+	private bool _tileWasEnabled = false;
+	private bool _controllerSelectWasEnabled = false;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -98,7 +98,17 @@ public partial class HighlightTile : Node2D
 	{
 		damageText.Hide();
 	}
-	
+
+	public void EnableMouseSelector()
+	{
+		mouseHighlight.Show();
+	}
+
+	public void DisableMouseSelector()
+	{
+		mouseHighlight.Hide();
+	}
+
 
 	public void ActivateColorGridTile(bool value)
 	{
@@ -113,6 +123,11 @@ public partial class HighlightTile : Node2D
 		isHighlighted = value;
 	}
 
+	public bool TileWasEnabled()
+	{
+		return _tileWasEnabled;
+	}
+
 	public void EnableTile(bool value)
 	{
 		if (value)
@@ -123,8 +138,22 @@ public partial class HighlightTile : Node2D
 		{
 			Hide();
 		}
+		_tileWasEnabled = value;
 	}
 
+	public void EnableControllerSelectTile(bool value)
+	{
+		if (value)
+		{
+			Show();
+		}
+		else
+		{
+			Hide();
+		}
+		_controllerSelectWasEnabled = value;
+	}
+	
 	public void SetPreviewSprite(AtlasTexture sprite)
 	{
 		preview.Texture = sprite;
@@ -266,8 +295,5 @@ public partial class HighlightTile : Node2D
 	{
 		highlight.SelfModulate = color;
 	}
-	bool IsSkillAvailableInFOW()
-	{
-		return ( activeState == "CreateEye" || activeState == "CreatePortal");
-	}
+
 }

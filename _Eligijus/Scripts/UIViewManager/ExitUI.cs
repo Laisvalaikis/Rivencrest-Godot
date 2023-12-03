@@ -10,7 +10,7 @@ public partial class ExitUI : Node
 		base._Ready();
 		if (InputManager.Instance != null)
 		{
-			InputManager.Instance.ExitView += Escape;
+			InputManager.Instance.Exit += Escape;
 		}
 	}
 

@@ -58,7 +58,7 @@ public partial class GameTileMap : Node2D
 
 		if (InputManager.Instance != null)
 		{
-			InputManager.Instance.LeftMouseClick += MouseClick;
+			InputManager.Instance.SelectClick += MouseClick;
 		}
 
 		_random = new Random();
@@ -308,6 +308,31 @@ public partial class GameTileMap : Node2D
 		}
 
 		return false;
+	}
+
+	public bool CheckMouseBounds(Vector2 mousePosition)
+	{
+		
+		int widthChunk = Mathf.CeilToInt((mousePosition.X - currentMap._initialPosition.X) / currentMap._chunkSize) - 1;
+		int heightChunk = Mathf.CeilToInt((mousePosition.Y - currentMap._initialPosition.Y) / currentMap._chunkSize) - 1;
+
+
+		lock (_chunksArray)
+		{
+
+			if (_chunksArray.GetLength(0) > widthChunk && widthChunk >= 0
+			                                           && _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
+			                                           && _chunksArray[widthChunk, heightChunk] != null
+			                                           && !_chunksArray[widthChunk, heightChunk].TileIsLocked()
+			                                           && !_chunksArray[widthChunk, heightChunk].IsFogOnTile())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 	}
 
 
@@ -649,9 +674,9 @@ public partial class GameTileMap : Node2D
 		_turnManager.SetCurrentCharacter((Player)currentCharacter);
 	}
 
-	private void MouseClick()
+	private void MouseClick(Vector2 mousePosition)
 	{
-		_mousePosition = GetGlobalMousePosition();
+		_mousePosition = mousePosition;
 		ChunkData chunk = GetChunk(_mousePosition);
 		if (!CharacterIsSelected()) // no character selected
 		{
