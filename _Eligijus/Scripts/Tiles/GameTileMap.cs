@@ -647,7 +647,7 @@ public partial class GameTileMap : Node2D
 	{
 		if (_currentSelectedCharacter != null)
 		{
-			_selectAction.Hide();
+			_selectAction.Disable();
 			// _currentSelectedCharacter.actionManager.DeselectAbility();
 			_currentSelectedCharacter.actionManager.SetCurrentAbility(null, -1);
 			_turnManager.SetCurrentCharacter(null);

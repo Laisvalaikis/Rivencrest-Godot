@@ -25,6 +25,7 @@ public partial class SelectAction : Control
 	private int _currentAbilityIndex = 0;
 	private int buttonIndexCount = 0;
 	private List<SelectActionButton> activeButtons;
+	private bool disabled = false;
 	
 	public override void _Ready()
 	{
@@ -154,7 +155,7 @@ public partial class SelectAction : Control
 
 	public void NextAbility()
 	{
-		if (activeButtons is not null)
+		if (activeButtons is not null && _currentPlayer is not null && !disabled)
 		{
 			if (_currentAbilityIndex < activeButtons.Count - 1)
 			{
@@ -206,7 +207,7 @@ public partial class SelectAction : Control
 
 	public void PreviousAbility()
 	{
-		if (activeButtons is not null)
+		if (activeButtons is not null && _currentPlayer is not null && !disabled)
 		{
 			if (_currentAbilityIndex >= 0)
 			{
@@ -275,7 +276,7 @@ public partial class SelectAction : Control
 	{
 		if (currentPlayer.actionManager.ReturnBaseAbilities() != null)
 		{
-			Show();
+			Enable();
 			_currentPlayer = currentPlayer;
 			SetupSelectAction();
 			GetAbilities();
@@ -285,6 +286,19 @@ public partial class SelectAction : Control
 		}
 
 	}
+
+	public void Disable()
+	{
+		Hide();
+		disabled = true;
+	}
+
+	public void Enable()
+	{
+		Show();
+		disabled = false;
+	}
+
 	public void DeSetCurrentCharacter()
 	{
 		_currentPlayer = null;
