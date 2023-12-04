@@ -9,9 +9,7 @@ public partial class SummonOrb : BaseAction
 
     private Object orb;
     private PlayerInformation _orbInformation;
-    private ChunkData _orbChunkData;
     private List<ChunkData> _attackList;
-    private Random _random;
 
     public SummonOrb()
     {
@@ -27,12 +25,6 @@ public partial class SummonOrb : BaseAction
     {
         SummonOrb ability = new SummonOrb((SummonOrb)action);
         return ability;
-    }
-
-    public override void Start()
-    {
-        base.Start();
-        _random = new Random();
     }
 
     public override void ResolveAbility(ChunkData chunk)
@@ -54,11 +46,6 @@ public partial class SummonOrb : BaseAction
         orb.StartActions();
     }
     
-    public override void OnTurnStart(ChunkData chunkData)
-    {
-        base.OnTurnStart(chunkData);
-    }
-
     public void GenerateAttackGrid(ChunkData centerChunk)
     {
         (int centerX, int centerY) = centerChunk.GetIndexes();

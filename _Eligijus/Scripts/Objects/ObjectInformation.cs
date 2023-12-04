@@ -41,18 +41,18 @@ public partial class ObjectInformation : Node
         return objectData.GetObjectData().maxHealth;
     }
     
-    public void PLayerDamaged()
+    public virtual void PLayerDamaged()
     {
         _object.PlayerWasDamaged();
     }
     
-    public void DeathStart(Player damageDealer)
+    public virtual void DeathStart(Player damageDealer)
     {
         damageDealer.objectInformation.GetPlayerInformation().AddKillXP();
         _object.Death();
     }
     
-    public void Heal(int healAmount)
+    public virtual void Heal(int healAmount)
     {
         if (_health + healAmount >= objectData.GetObjectData().maxHealth)
         {

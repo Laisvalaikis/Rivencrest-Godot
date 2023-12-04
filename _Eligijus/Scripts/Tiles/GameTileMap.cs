@@ -33,7 +33,6 @@ public partial class GameTileMap : Node2D
 	private int _chunkCountHeight = 0;
 	private List<SaveChunks> _chunks;
 	private List<ChunkData> _allChunks;
-	private List<ChunkData> _spawned;
 	private ChunkData[,] _chunksArray;
 
 	private Thread _threadDistance;

@@ -4,7 +4,6 @@ public partial class ThrowSpear : BaseAction
 {
 	[Export] private ObjectData throwSpearData;
 	[Export] private Resource spearPrefab;
-	private bool laserGrid = true;
 	private Object spawnedCharacter;
 	private ChunkData[,] _chunkArray;
 	private int _globalIndex = -1;
@@ -16,6 +15,7 @@ public partial class ThrowSpear : BaseAction
 	{
 		spearPrefab = throwSpear.spearPrefab;
 		throwSpearData = throwSpear.throwSpearData;
+		this.laserGrid = true;
 	}
 	public override BaseAction CreateNewInstance(BaseAction action)
 	{
@@ -23,12 +23,12 @@ public partial class ThrowSpear : BaseAction
 		return ability;
 	}
 	
-	public override void CreateAvailableChunkList(int attackRange)
+	public override void CreateAvailableChunkList(int range)
 	{
 		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 		(int centerX, int centerY) = centerChunk.GetIndexes();
 		_chunkList.Clear();
-		int count = attackRange;
+		int count = range;
 		_chunkArray = new ChunkData[4,count];
 		int start = 1;
 		for (int i = 0; i < count; i++) 
@@ -141,7 +141,7 @@ public partial class ThrowSpear : BaseAction
 			}
 		}
 	}
-	private void OnAbility(ChunkData chunk,int index)
+	private void OnAbility(ChunkData chunk, int index)
 	{
 		if (chunk.CharacterIsOnTile())// priesas nemirsta ir spear vienu i virsu varo
 		{
@@ -167,33 +167,6 @@ public partial class ThrowSpear : BaseAction
 			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 			spawnedCharacter.SetupObject(throwSpearData);
 			GameTileMap.Tilemap.SpawnObject(spawnedCharacter, chunk);
-		}
-
-		if (chunk.CharacterIsOnTile())     // priesas nemirsta ir virs jo yra mapBorder
-		{
-			(int x, int y) indexes = chunk.GetIndexes();
-			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
-			(int x, int y) sideVector = GetSideVector(side);
-			ChunkData chunkData =
-				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
-			if (!GameTileMap.Tilemap.CheckBounds(indexes.x+ sideVector.x, indexes.y + sideVector.y))
-			{
-				return;
-			}
-			
-		}
-
-		if (chunk.CharacterIsOnTile()) // priesas nemirsta ir virs jo yra enemy
-		{
-			(int x, int y) indexes = chunk.GetIndexes();
-			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
-			(int x, int y) sideVector = GetSideVector(side);
-			ChunkData chunkData =
-				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
-			if (chunkData.CharacterIsOnTile())
-			{
-				return;
-			}
 		}
 	}
 }

@@ -2,7 +2,6 @@ using Godot;
 
 public partial class SwitchPlaces : BaseAction
 {
-    private ChunkData _firstSeleted;
     private ChunkData _secondSelected;
 
     public SwitchPlaces()
@@ -23,21 +22,14 @@ public partial class SwitchPlaces : BaseAction
     {
         if (chunk.CharacterIsOnTile())
         {
-            // if (_firstSeleted == null || !_firstSeleted.CharacterIsOnTile())
-            // {
-            //     _firstSeleted = chunk;
-            // }
-            // else if(_secondSelected == null || !_secondSelected.CharacterIsOnTile())
-            // {
             UpdateAbilityButton();
             ChunkData chunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
             _secondSelected = chunk;
             SwitchCharacters(chunkData, _secondSelected);
             FinishAbility();
             base.ResolveAbility(chunk);
-            _firstSeleted = null;
             _secondSelected = null;
-            // }
+         
           
         }
     }

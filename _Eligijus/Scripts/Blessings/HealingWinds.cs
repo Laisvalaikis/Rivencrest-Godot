@@ -31,6 +31,7 @@ public partial class HealingWinds : AbilityBlessing
 	{
 		base.ResolveBlessing(baseAction);
 		List<ChunkData> tiles = baseAction.GetChunkList();
+		_random = new Random();
 		foreach (ChunkData tile in tiles)
 		{
 			Player player = tile.GetCurrentPlayer();

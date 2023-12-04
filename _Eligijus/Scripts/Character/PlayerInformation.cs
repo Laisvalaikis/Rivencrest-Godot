@@ -66,7 +66,7 @@ public partial class PlayerInformation : ObjectInformation
 
 	}
 
-	public void DeathStart(Player damageDealer)
+	public override void DeathStart(Player damageDealer)
 	{
 		damageDealer.objectInformation.GetPlayerInformation().AddKillXP();
 		_object.Death();

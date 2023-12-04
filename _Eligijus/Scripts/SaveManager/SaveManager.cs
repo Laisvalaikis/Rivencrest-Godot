@@ -3,8 +3,6 @@ using Godot;
 
 public partial class SaveManager: Node
 {
-	private Thread _thread;
-
 	public void SaveData(int slotIndex)
 	{
 		SaveSystem.SaveCurrentSlot(slotIndex);
