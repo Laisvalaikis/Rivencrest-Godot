@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Blaze : BaseAction //removed ability
 {
@@ -28,46 +29,10 @@ public partial class Blaze : BaseAction //removed ability
             if (chunk.CharacterIsOnTile())
             {
                 Player target = chunk.GetCurrentPlayer();
-                // if (target.debuffs.PlayerHaveAFlame())
-                // {
-                //     Aflame(chunk);
-                // }
-                // else
-                // {
-                    DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
-                // }
+                AflameDebuff debuff = new AflameDebuff();
+                target.debuffManager.AddDebuff(debuff, player);
+                DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
             }
-            
-        }
-    }
-
-    private void Aflame(ChunkData tile)
-    {
-        (int x, int y) = tile.GetIndexes();
-        
-        var directionVectors = new List<(int, int)>
-        {
-            (1 + x, 0 + y),
-            (0 + x, 1 + y),
-            (-1 + x, 0 + y),
-            (0 + x, -1 + y)
-        };
-
-        foreach (var directions in directionVectors)
-        {
-            ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(directions.Item1, directions.Item2);
-            if (chunkData.CharacterIsOnTile())
-            {
-                Player player = chunkData.GetCurrentPlayer();
-                if (IsAllegianceSame(tile))
-                {
-                    DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
-                }
-            }
-        }
-        if (tile.CharacterIsOnTile())
-        {
-            DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
         }
     }
 }

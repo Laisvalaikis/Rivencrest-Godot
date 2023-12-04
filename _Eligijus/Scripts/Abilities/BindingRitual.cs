@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class BindingRitual : BaseAction
 {
@@ -27,7 +28,8 @@ public partial class BindingRitual : BaseAction
                  if (CanTileBeClicked(tile))
                  {
                      DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
-                     // tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
+                     SlowDebuff debuff = new SlowDebuff(1, 2);
+                     tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
                  }
              }
              base.ResolveAbility(chunk);
@@ -82,7 +84,6 @@ public partial class BindingRitual : BaseAction
                     int targetX = centerX + x;
                     int targetY = centerY + y;
 
-                    // Ensuring we don't go out of array bounds.
                     if (GameTileMap.Tilemap.CheckBounds(targetX, targetY))
                     {
                         ChunkData chunk = chunksArray[targetX, targetY];

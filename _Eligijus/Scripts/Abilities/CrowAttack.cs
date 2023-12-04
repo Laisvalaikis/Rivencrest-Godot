@@ -81,9 +81,7 @@ public partial class CrowAttack : BaseAction
             if (t.CharacterIsOnTile() && CanTileBeClicked(t))
             {
                 int bonusDamage = 0;
-                PoisonDebuff debuff = new PoisonDebuff(2,2);
-                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
-                if(t.GetCurrentPlayer().debuffManager.ContainsDebuff(debuff.GetType())) // vajezau, ar cia tikrai taip?
+                if(t.GetCurrentPlayer().debuffManager.ContainsDebuff(typeof(PoisonDebuff))) // vajezau, ar cia tikrai taip?
                 {
                     bonusDamage += poisonBonusDamage;
                 }

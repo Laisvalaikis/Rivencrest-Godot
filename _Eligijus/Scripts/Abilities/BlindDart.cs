@@ -21,7 +21,6 @@ public partial class BlindDart : BaseAction // need fog of war for this one
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
-
         }
     }
 }

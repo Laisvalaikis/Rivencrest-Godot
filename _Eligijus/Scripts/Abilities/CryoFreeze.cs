@@ -4,14 +4,12 @@ using Godot;
 
 public partial class CryoFreeze : BaseAction
 {
-	private bool _isAbilityActive = false;
 	public CryoFreeze()
 	{
  		
 	}
 	public CryoFreeze(CryoFreeze cryoFreeze): base(cryoFreeze)
 	{
-		_isAbilityActive = cryoFreeze._isAbilityActive;
 	}
  	
 	public override BaseAction CreateNewInstance(BaseAction action)
@@ -35,7 +33,7 @@ public partial class CryoFreeze : BaseAction
 	public override void OnTurnStart(ChunkData chunkData)
 	{
 		base.OnTurnStart(chunkData);
-		if (_isAbilityActive && (player.objectInformation.GetPlayerInformation().GetHealth() > 0))
+		if ( (player.objectInformation.GetPlayerInformation().GetHealth() > 0))
 		{
 			ChunkData temp = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
 			Thread thread = new Thread(() =>
@@ -46,7 +44,6 @@ public partial class CryoFreeze : BaseAction
 			thread.Start();
 			ThreadManager.InsertThread(thread);
 		}
-		_isAbilityActive = false;
 	}
 	private void DamageAdjacent(ChunkData centerChunk)
 	{
@@ -91,8 +88,6 @@ public partial class CryoFreeze : BaseAction
 	{
 		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
-		_isAbilityActive = true;
-		player.objectInformation.GetPlayerInformation().stasis = true;
 		FinishAbility();
 	}
 }
