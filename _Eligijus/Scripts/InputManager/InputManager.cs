@@ -9,6 +9,8 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void SelectClickEventHandler(Vector2 mouseClick);
 	[Signal] public delegate void LeftMouseDoubleClickEventHandler(Vector2 mousePosition);
 	[Signal] public delegate void ExitEventHandler();
+	[Signal] public delegate void ChangeAbilityNextEventHandler();
+	[Signal] public delegate void ChangeAbilityPreviousEventHandler();
 	[Signal] public delegate void MoveSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void DisableSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void EnableSelectorEventHandler(Vector2 position);
@@ -97,6 +99,16 @@ public partial class InputManager: Node2D
 			{
 				OnSelectClick();
 			}
+		}
+
+		if (Input.IsActionPressed("NextAbility"))
+		{
+			EmitSignal("ChangeAbilityNext");
+		}
+		
+		if(Input.IsActionPressed("PreviousAbility"))
+		{
+			EmitSignal("ChangeAbilityPrevious");
 		}
 
 		if (Input.IsActionPressed("Up"))
