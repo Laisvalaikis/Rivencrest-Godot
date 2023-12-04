@@ -24,9 +24,6 @@ public partial class SelectAction : Control
 	private Data _data;
 	private int _currentAbilityIndex = 0;
 	private int buttonIndexCount = 0;
-	private bool nextAbilitySelection = false;
-	private bool previousAbilitySelection = false;
-	private bool previousAbilitySelectionReseted = false;
 	private List<SelectActionButton> activeButtons;
 	
 	public override void _Ready()
@@ -157,17 +154,6 @@ public partial class SelectAction : Control
 
 	public void NextAbility()
 	{
-		if (previousAbilitySelectionReseted)
-		{
-			previousAbilitySelectionReseted = false;
-			previousAbilitySelection = false;
-			_currentAbilityIndex = 0;
-		}
-		if (previousAbilitySelection)
-		{
-			previousAbilitySelection = false;
-			_currentAbilityIndex++;
-		}
 		
 		if (_currentAbilityIndex < activeButtons.Count-1)
 		{
@@ -181,7 +167,6 @@ public partial class SelectAction : Control
 			activeButtons[_currentAbilityIndex].OnButtonClick();
 			activeButtons[_currentAbilityIndex].ButtonPressed = true;
 		}
-		nextAbilitySelection = true;
 	}
 
 	public void DisableAbility(SelectActionButton selectActionButton)
@@ -194,7 +179,6 @@ public partial class SelectAction : Control
 				_currentAbilityIndex = 0;
 				activeButtons[_currentAbilityIndex].OnButtonClick();
 				activeButtons[_currentAbilityIndex].ButtonPressed = true;
-				nextAbilitySelection = true;
 			}
 		}
 	}
@@ -213,26 +197,20 @@ public partial class SelectAction : Control
 
 	public void PreviousAbility()
 	{
-		if (nextAbilitySelection)
-		{
-			nextAbilitySelection = false;
-			_currentAbilityIndex--;
-		}
-
+		
 		if (_currentAbilityIndex >= 0)
 		{
-			activeButtons[_currentAbilityIndex].OnButtonClick();
-			activeButtons[_currentAbilityIndex].ButtonPressed = true;
 			if (_currentAbilityIndex > 0)
 			{
 				_currentAbilityIndex--;
-				previousAbilitySelectionReseted = false;
 			}
 			else
 			{
 				_currentAbilityIndex = activeButtons.Count-1;
-				previousAbilitySelectionReseted = true;
 			}
+			activeButtons[_currentAbilityIndex].OnButtonClick();
+			activeButtons[_currentAbilityIndex].ButtonPressed = true;
+			
 		}
 		else
 		{
@@ -241,8 +219,6 @@ public partial class SelectAction : Control
 			activeButtons[_currentAbilityIndex].ButtonPressed = true;
 			_currentAbilityIndex--;
 		}
-
-		previousAbilitySelection = true;
 	}
 
 	public void UpdateAllAbilityButtonsByPoints(int availableAbilityPoints)
