@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class WeakSpot : BaseAction
 { 
@@ -19,15 +20,15 @@ public partial class WeakSpot : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
-        base.ResolveAbility(chunk);
-        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        if (chunk.CharacterIsOnTile())
+        if (CanTileBeClicked(chunk))
         {
-            chunk.GetCurrentPlayer().AddWeakSpot();
+            UpdateAbilityButton();
+            base.ResolveAbility(chunk);
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            Player _player = chunk.GetCurrentPlayer();
+            WeakSpotDebuff debuff = new WeakSpotDebuff();
+            _player.debuffManager.AddDebuff(debuff, player);
+            FinishAbility();
         }
-
-        FinishAbility();
     }
-    
 }

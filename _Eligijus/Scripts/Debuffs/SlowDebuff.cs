@@ -13,7 +13,6 @@ public partial class SlowDebuff : BaseDebuff
     {
         this.lifetime = lifetime;
         this.slowBy = slowBy;
-
     }
     
     public SlowDebuff(SlowDebuff debuff): base(debuff)
