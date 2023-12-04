@@ -6,6 +6,6 @@ public class LinkedListNode<T>
     public LinkedListNode<T>? Previous { get; set; }
     public LinkedListNode(T value)
     {
-        value = value;
+        Value = value;
     }
 }
