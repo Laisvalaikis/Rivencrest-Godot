@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class PowerShot : BaseAction
 {
@@ -64,8 +65,9 @@ public partial class PowerShot : BaseAction
         DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
         if (chunk.CharacterIsOnTile())
         {
-            Player target = chunk.GetCurrentPlayer();
-            // target.debuffs.SlowDownPlayer(1);
+           // Player target = chunk.GetCurrentPlayer();
+            SlowDebuff debuff = new SlowDebuff(1,1);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
         }
         FinishAbility();
     }

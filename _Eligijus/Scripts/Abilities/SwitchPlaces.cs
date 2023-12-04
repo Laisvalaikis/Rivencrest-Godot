@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class SwitchPlaces : BaseAction
 {
@@ -26,6 +27,8 @@ public partial class SwitchPlaces : BaseAction
             ChunkData chunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
             _secondSelected = chunk;
             SwitchCharacters(chunkData, _secondSelected);
+            SlowDebuff debuff = new SlowDebuff(1,1);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
             FinishAbility();
             base.ResolveAbility(chunk);
             _secondSelected = null;

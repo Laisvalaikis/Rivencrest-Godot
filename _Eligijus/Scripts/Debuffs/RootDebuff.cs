@@ -11,7 +11,7 @@ public partial class RootDebuff: BaseDebuff
 
 	public RootDebuff(int lifetime)
 	{
-		this.lifetime=lifetime;
+		this.lifetime = lifetime;
 	}
 
 	public RootDebuff(RootDebuff debuff) : base(debuff)

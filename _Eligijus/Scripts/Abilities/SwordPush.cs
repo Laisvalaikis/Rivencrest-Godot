@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class SwordPush : BaseAction
 {
@@ -51,6 +52,8 @@ public partial class SwordPush : BaseAction
                 CheckAdjacent(chunk);
                 int damage = centerDamage;
                 DealDamage(_attackTiles[i], damage);
+                SilenceDebuff debuff = new SilenceDebuff(1);
+                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
                 if (_adjacent != null)
                 {
                     _side = ChunkSideByCharacter(chunk, _adjacent);

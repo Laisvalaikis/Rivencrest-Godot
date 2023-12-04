@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class OilSlow : BaseAction
 {
@@ -24,7 +25,9 @@ public partial class OilSlow : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        chunk.GetCurrentPlayer().AddMovementPoints(-2);
+        SlowDebuff debuff = new SlowDebuff(1,2);
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+        //chunk.GetCurrentPlayer().AddMovementPoints(-2);
         FinishAbility();
 
         

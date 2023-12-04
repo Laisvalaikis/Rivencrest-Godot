@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Scream : BaseAction
 {
@@ -30,6 +31,8 @@ public partial class Scream : BaseAction
         {
             //apply silenced
             Player target = chunk.GetCurrentPlayer();
+            SilenceDebuff debuff = new SilenceDebuff(1);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
             // target.debuffs.SetTurnCounterFromThisTurn(1);
             // target.debuffs.SilencePlayer();
         }

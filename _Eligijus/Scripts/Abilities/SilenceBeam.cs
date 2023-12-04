@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 
@@ -42,6 +43,8 @@ public partial class SilenceBeam : BaseAction
 				if (damageChunk != null)
 				{
 					DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+					SilenceDebuff debuff = new SilenceDebuff(1);
+					chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
 					PackedScene spawnCharacter = (PackedScene)PinkTilePrefab;
 					Object spawnedPinkTile = spawnCharacter.Instantiate<Object>();
 					player.GetTree().Root.CallDeferred("add_child", spawnedPinkTile);

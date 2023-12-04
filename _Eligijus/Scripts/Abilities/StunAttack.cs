@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class StunAttack : BaseAction
 {
@@ -29,7 +30,7 @@ public partial class StunAttack : BaseAction
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             DealDamage(chunk, spellDamage);
-            BaseDebuff debuff = _debuff.CreateNewInstance();
+            RootDebuff debuff = new RootDebuff(1);
             chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
             FinishAbility();
         }
