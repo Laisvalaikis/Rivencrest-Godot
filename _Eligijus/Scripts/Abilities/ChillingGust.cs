@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class ChillingGust : BaseAction
 {
-    private List<ChunkData> _additionalDamageTiles = new List<ChunkData>();
     private Player _protectedAlly;
 
     public ChillingGust()
@@ -44,16 +44,20 @@ public partial class ChillingGust : BaseAction
             else
             {
                 DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+                SlowDebuff debuff = new SlowDebuff(1,1);
+                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
             }
             FinishAbility();
     }
     
-    protected override void TryAddTile(ChunkData chunk)
+    protected override bool CanAddTile(ChunkData chunk)
     {
-        if (chunk != null && !chunk.TileIsLocked())
+        if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile())
         {
-            _chunkList.Add(chunk);
+            return true;
         }
+
+        return false;
     }
     
     public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
@@ -89,5 +93,4 @@ public partial class ChillingGust : BaseAction
             DisableDamagePreview(previousChunk);
         }
     }
-    
 }

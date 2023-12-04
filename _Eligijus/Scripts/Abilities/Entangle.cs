@@ -1,6 +1,8 @@
+using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
+
 public partial class Entangle : BaseAction
 {
-    
     public Entangle()
     {
  		
@@ -16,10 +18,14 @@ public partial class Entangle : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
-        base.ResolveAbility(chunk);
-        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        // chunk.GetCurrentPlayer().debuffs.RootPlayer();
-        FinishAbility();
+        if (CanTileBeClicked(chunk))
+        {
+            UpdateAbilityButton();
+            base.ResolveAbility(chunk);
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            RootDebuff rootDebuff = new RootDebuff(1);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(rootDebuff, player);
+            FinishAbility();
+        }
     }
 }

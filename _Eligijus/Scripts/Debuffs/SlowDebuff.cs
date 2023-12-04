@@ -1,11 +1,19 @@
 ﻿namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
-//Reduces ability points of player by (two/2?)
+//Reduces movement points of player by (two/2?)
 public partial class SlowDebuff : BaseDebuff
 {
+    private int slowBy=2;
     public SlowDebuff()
     {
 			
+    }
+    
+    public SlowDebuff(int lifetime, int slowBy)
+    {
+        this.lifetime = lifetime;
+        this.slowBy = slowBy;
+
     }
     
     public SlowDebuff(SlowDebuff debuff): base(debuff)
@@ -33,7 +41,7 @@ public partial class SlowDebuff : BaseDebuff
     public override void OnTurnStart()
     {
         base.OnTurnStart();
-        _player.AddMovementPoints(-2);
+        _player.AddMovementPoints(slowBy*(-1));
         lifetimeCount++;
     }
 }

@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Avalanche : BaseAction
 {
@@ -99,15 +100,9 @@ public partial class Avalanche : BaseAction
     {
         if (CheckIfSpecificInformationType(chunk, typeof(Player)))
         {
-            Player target = chunk.GetCurrentPlayer();
-            // if (target.debuffs.IsPlayerStunned()
-            //     || target.debuffs.IsPalyerRooted()
-            //     || target.debuffs.IsPlayerSlower()
-            //     || target.debuffs.IsPlayerSilenced())
-            // {
-            //     return true;
-            // }
-            return true;
+            DebuffManager targetDebuffManager = chunk.GetCurrentPlayer().debuffManager;
+            if(targetDebuffManager.ContainsDebuff(typeof(PlayerStun))||targetDebuffManager.ContainsDebuff(typeof(RootDebuff))||targetDebuffManager.ContainsDebuff(typeof(SlowDebuff))||targetDebuffManager.ContainsDebuff(typeof(SilenceDebuff)))
+                return true;
         }
         return false;
     }
