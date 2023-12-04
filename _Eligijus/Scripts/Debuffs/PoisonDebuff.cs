@@ -4,9 +4,10 @@ public partial class PoisonDebuff : BaseDebuff
 {
     private int poisonDamage = 0;
     
-    public PoisonDebuff()
+    public PoisonDebuff(int lifetime, int poisonDamage)
     {
-
+        this.lifetime = lifetime;
+        this.poisonDamage = poisonDamage;
     }
     public PoisonDebuff(PoisonDebuff debuff) : base(debuff)
     {

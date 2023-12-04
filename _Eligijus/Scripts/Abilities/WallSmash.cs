@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class WallSmash : BaseAction
 {
@@ -28,6 +29,8 @@ public partial class WallSmash : BaseAction
         if (chunk.GetCurrentPlayer() != null && chunk.GetCharacterType() == typeof(Player))
         {
             DealRandomDamageToTarget(chunk, minAttackDamage-2, maxAttackDamage-2);
+            SlowDebuff debuff = new SlowDebuff(1,1);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
         }
         else if(chunk.GetCurrentPlayer() != null && chunk.GetCharacterType() != typeof(Player))
         {

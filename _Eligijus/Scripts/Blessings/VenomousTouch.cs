@@ -34,7 +34,9 @@ public partial class VenomousTouch : AbilityBlessing
 	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(baseAction);
-		PoisonDebuff debuff = new PoisonDebuff();
+		Player player = new Player();
+		PoisonDebuff debuff = new PoisonDebuff(2,2);
+		tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
 		debuff.SetPoisonDebuffDamage(poisonDamage);
 		debuff.SetLifetime(poisonTurns);
 		tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff, baseAction.GetPlayer());

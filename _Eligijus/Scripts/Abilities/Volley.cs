@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
 {
@@ -40,6 +41,8 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
             {
                 ChunkData damageChunk = _chunkArray[index, i];
                 DealDamage(damageChunk, spellDamage);
+                PoisonDebuff debuff = new PoisonDebuff(2,2);
+                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
             }
             GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(index));
             FinishAbility();

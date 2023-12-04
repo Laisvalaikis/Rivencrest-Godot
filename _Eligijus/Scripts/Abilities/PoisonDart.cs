@@ -29,7 +29,8 @@ public partial class PoisonDart : BaseAction
         if (chunk.CharacterIsOnTile())
         {
             Player target = chunk.GetCurrentPlayer();
-            PoisonDebuff debuff = new PoisonDebuff();
+            PoisonDebuff debuff = new PoisonDebuff(2,2);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
             debuff.SetPoisonDebuffDamage(_poisonDamage);
             debuff.SetLifetime(_poisonTurns);
             target.debuffManager.AddDebuff(debuff, player);

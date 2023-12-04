@@ -51,7 +51,8 @@ public partial class ExplosivePoison : AbilityBlessing
                 Player player = chunkData.GetCurrentPlayer();
                 if (IsAllegianceSame(player, chunkData, baseAction))
                 {
-                    PoisonDebuff debuff = new PoisonDebuff();
+                    PoisonDebuff debuff = new PoisonDebuff(2,2);
+                    chunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
                     debuff.SetPoisonDebuffDamage(poisonDamage);
                     debuff.SetLifetime(poisonTurns);
                     player.debuffManager.AddDebuff(debuff, baseAction.GetPlayer());

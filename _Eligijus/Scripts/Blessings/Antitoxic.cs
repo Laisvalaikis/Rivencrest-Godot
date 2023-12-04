@@ -33,7 +33,7 @@ public partial class Antitoxic : PlayerBlessing
     public override void OnTurnStart(Player player)
     {
         base.OnTurnStart(player);
-        PoisonDebuff poisonDebuff = new PoisonDebuff(); // :(
+        PoisonDebuff poisonDebuff = new PoisonDebuff(2,2); // :(
         player.debuffManager.RemoveDebuffsByType(poisonDebuff.GetType());
     }
 }
