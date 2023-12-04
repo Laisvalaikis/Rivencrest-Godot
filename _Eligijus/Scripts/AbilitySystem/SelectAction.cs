@@ -154,18 +154,20 @@ public partial class SelectAction : Control
 
 	public void NextAbility()
 	{
-		
-		if (_currentAbilityIndex < activeButtons.Count-1)
+		if (activeButtons is not null)
 		{
-			_currentAbilityIndex++;
-			activeButtons[_currentAbilityIndex].OnButtonClick();
-			activeButtons[_currentAbilityIndex].ButtonPressed = true;
-		}
-		else
-		{
-			_currentAbilityIndex = 0;
-			activeButtons[_currentAbilityIndex].OnButtonClick();
-			activeButtons[_currentAbilityIndex].ButtonPressed = true;
+			if (_currentAbilityIndex < activeButtons.Count - 1)
+			{
+				_currentAbilityIndex++;
+				activeButtons[_currentAbilityIndex].OnButtonClick();
+				activeButtons[_currentAbilityIndex].ButtonPressed = true;
+			}
+			else
+			{
+				_currentAbilityIndex = 0;
+				activeButtons[_currentAbilityIndex].OnButtonClick();
+				activeButtons[_currentAbilityIndex].ButtonPressed = true;
+			}
 		}
 	}
 
@@ -187,7 +189,14 @@ public partial class SelectAction : Control
 	{
 		if (!activeButtons.Contains(selectActionButton))
 		{
-			activeButtons.Insert(index, selectActionButton);
+			if (index <= activeButtons.Count)
+			{
+				activeButtons.Insert(index, selectActionButton);
+			}
+			else
+			{
+				activeButtons.Add(selectActionButton);
+			}
 			//if () // sutvarkyti insert
 			//{
 			//	
@@ -197,27 +206,30 @@ public partial class SelectAction : Control
 
 	public void PreviousAbility()
 	{
-		
-		if (_currentAbilityIndex >= 0)
+		if (activeButtons is not null)
 		{
-			if (_currentAbilityIndex > 0)
+			if (_currentAbilityIndex >= 0)
 			{
-				_currentAbilityIndex--;
+				if (_currentAbilityIndex > 0)
+				{
+					_currentAbilityIndex--;
+				}
+				else
+				{
+					_currentAbilityIndex = activeButtons.Count - 1;
+				}
+
+				activeButtons[_currentAbilityIndex].OnButtonClick();
+				activeButtons[_currentAbilityIndex].ButtonPressed = true;
+
 			}
 			else
 			{
-				_currentAbilityIndex = activeButtons.Count-1;
+				_currentAbilityIndex = activeButtons.Count - 1;
+				activeButtons[_currentAbilityIndex].OnButtonClick();
+				activeButtons[_currentAbilityIndex].ButtonPressed = true;
+				_currentAbilityIndex--;
 			}
-			activeButtons[_currentAbilityIndex].OnButtonClick();
-			activeButtons[_currentAbilityIndex].ButtonPressed = true;
-			
-		}
-		else
-		{
-			_currentAbilityIndex = activeButtons.Count-1;
-			activeButtons[_currentAbilityIndex].OnButtonClick();
-			activeButtons[_currentAbilityIndex].ButtonPressed = true;
-			_currentAbilityIndex--;
 		}
 	}
 
