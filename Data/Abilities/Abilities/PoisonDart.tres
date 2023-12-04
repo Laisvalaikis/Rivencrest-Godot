@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dtmyyk1asoyin"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dtmyyk1asoyin"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PoisonDart.cs" id="1_3xgrd"]
-[ext_resource type="Resource" uid="uid://cddgqhunwlxmk" path="res://Data/Blessings/ExplosivePoison.tres" id="1_4jhrf"]
 
 [resource]
 script = ExtResource("1_3xgrd")
@@ -25,4 +24,4 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_4jhrf")])
+_abilityBlessingsRef = Array[Resource]([])

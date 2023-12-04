@@ -161,33 +161,33 @@ public partial class InputManager: Node2D
 
 	public void ControllerMousePosition()
 	{
-        Vector2 relativePosition = Input.GetVector( "CameraMovementRight", "CameraMovementLeft", "CameraMovementDown", "CameraMovementUp");
-        relativePosition = relativePosition.Normalized();
-        if (Mathf.Abs(relativePosition.X) > Mathf.Abs(relativePosition.Y))
-        {
-            relativePosition.Y = 0.0f;
-        }
-        else
-        {
-	        relativePosition.X = 0.0f;
-        }
-        
-        if (Mathf.Abs(relativePosition.X) > 0.5f)
-        {
-            relativePosition.X = 1 * Mathf.Sign(relativePosition.X);
-        }
-        
-        if (Mathf.Abs(relativePosition.Y) > 0.5f)
-        {
-            relativePosition.Y = 1 * Mathf.Sign(relativePosition.Y);
-        }
-        EmitSignal("DisableSelector", _mousePosition);
-        if (GameTileMap.Tilemap.CheckMouseBounds(_mousePosition - relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize)))
-        {
-            _mousePosition -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
-        }
-        EmitSignal("EnableSelector", _mousePosition);
-        OnSelectorMove(_mousePosition);
+		Vector2 relativePosition = Input.GetVector( "CameraMovementRight", "CameraMovementLeft", "CameraMovementDown", "CameraMovementUp");
+		relativePosition = relativePosition.Normalized();
+		if (Mathf.Abs(relativePosition.X) > Mathf.Abs(relativePosition.Y))
+		{
+			relativePosition.Y = 0.0f;
+		}
+		else
+		{
+			relativePosition.X = 0.0f;
+		}
+		
+		if (Mathf.Abs(relativePosition.X) > 0.5f)
+		{
+			relativePosition.X = 1 * Mathf.Sign(relativePosition.X);
+		}
+		
+		if (Mathf.Abs(relativePosition.Y) > 0.5f)
+		{
+			relativePosition.Y = 1 * Mathf.Sign(relativePosition.Y);
+		}
+		EmitSignal("DisableSelector", _mousePosition);
+		if (GameTileMap.Tilemap.CheckMouseBounds(_mousePosition - relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize)))
+		{
+			_mousePosition -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
+		}
+		EmitSignal("EnableSelector", _mousePosition);
+		OnSelectorMove(_mousePosition);
 	}
 
 	public void SetCurrentCharacterPosition(Vector2 characterPosition)

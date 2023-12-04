@@ -53,9 +53,9 @@ public partial class ExplosivePoison : AbilityBlessing
                 {
                     PoisonDebuff debuff = new PoisonDebuff(2,2);
                     chunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
-                    debuff.SetPoisonDebuffDamage(poisonDamage);
-                    debuff.SetLifetime(poisonTurns);
-                    player.debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
+                   // debuff.SetPoisonDebuffDamage(poisonDamage);
+                   // debuff.SetLifetime(poisonTurns);
+                   // player.debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
                 }
             }
         }

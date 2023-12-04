@@ -77,7 +77,7 @@ public partial class AcidRain : BaseAction
 	{
 		if (CanTileBeClicked(chunk))
 		{
-			UpdateAbilityButton();
+			UpdateAbilityButton(); //this needs fixing
 			foreach (ChunkData tile in _chunkList)
 			{
 				if (CanTileBeClicked(tile))
@@ -85,9 +85,9 @@ public partial class AcidRain : BaseAction
 					Player target = tile.GetCurrentPlayer();
 					PoisonDebuff debuff = new PoisonDebuff(2,2);
 					chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
-					debuff.SetPoisonDebuffDamage(poisonDamage);
-					debuff.SetLifetime(poisonTurns);
-					target.debuffManager.AddDebuff(debuff, player);
+					//debuff.SetPoisonDebuffDamage(poisonDamage);
+					//debuff.SetLifetime(poisonTurns);
+					//target.debuffManager.AddDebuff(debuff, player);
 				}
 			}
 			base.ResolveAbility(chunk);

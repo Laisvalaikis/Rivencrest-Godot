@@ -37,8 +37,8 @@ public partial class VenomousTouch : AbilityBlessing
 		Player player = new Player();
 		PoisonDebuff debuff = new PoisonDebuff(2,2);
 		tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
-		debuff.SetPoisonDebuffDamage(poisonDamage);
-		debuff.SetLifetime(poisonTurns);
-		tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
+		//debuff.SetPoisonDebuffDamage(poisonDamage);
+		//debuff.SetLifetime(poisonTurns);
+		//tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
 	}
 }
