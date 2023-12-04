@@ -212,7 +212,7 @@ public partial class InputManager: Node2D
 		base._Input(@event);
 		if (@event.IsPressed())
 		{
-			// GD.Print(@event.AsText());
+			GD.Print(@event.AsText());
 		}
 		
 	}

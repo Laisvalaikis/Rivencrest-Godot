@@ -64,7 +64,7 @@ public partial class TurnManager : Node
 		InputManager.Instance.SetCurrentCharacterPosition(_currentTeam.characters.Values.First().GlobalPosition);
 		foreach (int key in _teamsList.Teams.Keys)
 		{
-			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles()).Wait();
+			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles());
 		}
 		foreach (int key in _currentTeam.characters.Keys)
 		{
@@ -152,7 +152,7 @@ public partial class TurnManager : Node
 	public void EndTurn()
 	{
 		OnTurnEnd();
-		ResetFogInformation(_currentTeam.GetVisionTiles()).Wait();
+		ResetFogInformation(_currentTeam.GetVisionTiles());
 		if (_currentTeamIndex + 1 < _teamsList.Teams.Count)
 		{
 			_currentTeamIndex++;
@@ -178,7 +178,7 @@ public partial class TurnManager : Node
 			break;
 		}
 		
-		UpdateFogInformation(_currentTeam.GetVisionTiles()).Wait();
+		UpdateFogInformation(_currentTeam.GetVisionTiles());
 		_teamInformation.EndTurn(_currentTeamIndex);
 		OnTurnStart();
 		if (!isAiTurn)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -189,7 +189,7 @@ public partial class TurnManager : Node
 		
 	}
 
-	private async Task ResetFogInformation(List<FogData> fogDataList)
+	private void ResetFogInformation(List<FogData> fogDataList)
 	{
 		foreach (FogData fogData in fogDataList)
 		{
@@ -204,7 +204,7 @@ public partial class TurnManager : Node
 		}
 	}
 	
-	private async Task UpdateFogInformation(List<FogData> fogDataList)
+	private void UpdateFogInformation(List<FogData> fogDataList)
 	{
 		foreach (FogData fogData in fogDataList)
 		{
