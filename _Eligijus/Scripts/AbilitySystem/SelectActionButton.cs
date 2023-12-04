@@ -118,6 +118,7 @@ public partial class SelectActionButton : Button
             turnLabel.Hide();
         }
         turnLabel.Text = turnNumber; // default text 
+        selectAction.DisableAbility(this);
         Disabled = true;
     }
     
@@ -126,6 +127,7 @@ public partial class SelectActionButton : Button
         colorRect.Hide();
         turnLabel.Hide();
         turnLabel.Text = "1"; // default text 
+        selectAction.EnableAbility(this, abilityIndex);
         Disabled = false;
     }
 

@@ -27,6 +27,7 @@ public partial class SelectAction : Control
 	private bool nextAbilitySelection = false;
 	private bool previousAbilitySelection = false;
 	private bool previousAbilitySelectionReseted = false;
+	private List<SelectActionButton> activeButtons;
 	
 	public override void _Ready()
 	{
@@ -56,6 +57,7 @@ public partial class SelectAction : Control
 
 	private void GenerateActions()
 	{
+		activeButtons = new List<SelectActionButton>();
 		buttonIndexCount = 0;
 		
 		if (baseAbilityButtons == null)
@@ -167,19 +169,46 @@ public partial class SelectAction : Control
 			_currentAbilityIndex++;
 		}
 		
-		if (_currentAbilityIndex < buttonIndexCount-1)
+		if (_currentAbilityIndex < activeButtons.Count-1)
 		{
 			_currentAbilityIndex++;
-			allAbilityButtons[_currentAbilityIndex].OnButtonClick();
-			allAbilityButtons[_currentAbilityIndex].ButtonPressed = true;
+			activeButtons[_currentAbilityIndex].OnButtonClick();
+			activeButtons[_currentAbilityIndex].ButtonPressed = true;
 		}
 		else
 		{
 			_currentAbilityIndex = 0;
-			allAbilityButtons[_currentAbilityIndex].OnButtonClick();
-			allAbilityButtons[_currentAbilityIndex].ButtonPressed = true;
+			activeButtons[_currentAbilityIndex].OnButtonClick();
+			activeButtons[_currentAbilityIndex].ButtonPressed = true;
 		}
 		nextAbilitySelection = true;
+	}
+
+	public void DisableAbility(SelectActionButton selectActionButton)
+	{
+		if (activeButtons.Contains(selectActionButton))
+		{
+			activeButtons.Remove(selectActionButton);
+			if (_currentAbilityIndex >= activeButtons.Count)
+			{
+				_currentAbilityIndex = 0;
+				activeButtons[_currentAbilityIndex].OnButtonClick();
+				activeButtons[_currentAbilityIndex].ButtonPressed = true;
+				nextAbilitySelection = true;
+			}
+		}
+	}
+	
+	public void EnableAbility(SelectActionButton selectActionButton, int index)
+	{
+		if (!activeButtons.Contains(selectActionButton))
+		{
+			activeButtons.Insert(index, selectActionButton);
+			//if () // sutvarkyti insert
+			//{
+			//	
+			//}
+		}
 	}
 
 	public void PreviousAbility()
@@ -192,23 +221,24 @@ public partial class SelectAction : Control
 
 		if (_currentAbilityIndex >= 0)
 		{
-			allAbilityButtons[_currentAbilityIndex].OnButtonClick();
-			allAbilityButtons[_currentAbilityIndex].ButtonPressed = true;
+			activeButtons[_currentAbilityIndex].OnButtonClick();
+			activeButtons[_currentAbilityIndex].ButtonPressed = true;
 			if (_currentAbilityIndex > 0)
 			{
 				_currentAbilityIndex--;
+				previousAbilitySelectionReseted = false;
 			}
 			else
 			{
-				_currentAbilityIndex = buttonIndexCount-1;
+				_currentAbilityIndex = activeButtons.Count-1;
 				previousAbilitySelectionReseted = true;
 			}
 		}
 		else
 		{
-			_currentAbilityIndex = buttonIndexCount-1;
-			allAbilityButtons[_currentAbilityIndex].OnButtonClick();
-			allAbilityButtons[_currentAbilityIndex].ButtonPressed = true;
+			_currentAbilityIndex = activeButtons.Count-1;
+			activeButtons[_currentAbilityIndex].OnButtonClick();
+			activeButtons[_currentAbilityIndex].ButtonPressed = true;
 			_currentAbilityIndex--;
 		}
 
@@ -239,7 +269,7 @@ public partial class SelectAction : Control
 	public void ActionSelection(Ability ability, int abilityIndex)
 	{
 		_actionManager.SetCurrentAbility(ability, abilityIndex);
-		_currentAbilityIndex = abilityIndex;
+		//_currentAbilityIndex = abilityIndex;
 		if (ability._type != AbilityType.BaseAbility)
 		{
 			UpdateSelectedActionAbilityPoints(ability);
