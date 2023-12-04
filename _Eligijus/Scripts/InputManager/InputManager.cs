@@ -4,6 +4,7 @@ public partial class InputManager: Node2D
 {
 	public static InputManager Instance;
 	public static InputScheme CurrentInputScheme = InputScheme.KeyboardAndMouse;
+	[Export] private InputScheme controll = InputScheme.KeyboardAndMouse;
 	[Signal] public delegate void UpEventHandler();
 	[Signal] public delegate void DownEventHandler();
 	[Signal] public delegate void SelectClickEventHandler(Vector2 mouseClick);
@@ -39,6 +40,7 @@ public partial class InputManager: Node2D
 		{
 			QueueFree();
 		}
+		CurrentInputScheme = controll;
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -123,28 +125,32 @@ public partial class InputManager: Node2D
 			EmitSignal("Down");
 		}
 
-		if (@event is InputEventMouseMotion)
+		if (CurrentInputScheme == InputScheme.KeyboardAndMouse)
 		{
-			InputEventMouseMotion input = (InputEventMouseMotion)@event;
-			if (input.ButtonMask == MouseButtonMask.Left && selectIsClicked)
+			if (@event is InputEventMouseMotion)
 			{
-				mouseRelativePosition -= input.Relative;
-				if (!InDeadZone(mouseRelativePosition))
+				InputEventMouseMotion input = (InputEventMouseMotion)@event;
+				if (input.ButtonMask == MouseButtonMask.Left && selectIsClicked)
 				{
-					inDeadZone = false;
+					mouseRelativePosition -= input.Relative;
+					if (!InDeadZone(mouseRelativePosition))
+					{
+						inDeadZone = false;
+					}
+
+					if (!inDeadZone)
+					{
+						CameraMovement(input.Relative, cameraMovementSpeedMouse);
+					}
 				}
-				if (!inDeadZone)
+				else if (!selectIsClicked)
 				{
-					CameraMovement(input.Relative, cameraMovementSpeedMouse);
+					TrackMousePosition();
+					OnSelectorMove(_mousePosition);
 				}
 			}
-			// else if(!selectIsClicked)
-			// {
-			// 	TrackMousePosition();
-			// 	OnSelectorMove(_mousePosition);
-			// }
 		}
-		
+
 		if (Input.IsActionPressed("Exit"))
 		{
 			OnExitClick();

@@ -269,7 +269,10 @@ public partial class SelectAction : Control
 	public void ActionSelection(Ability ability, int abilityIndex)
 	{
 		_actionManager.SetCurrentAbility(ability, abilityIndex);
-		//_currentAbilityIndex = abilityIndex;
+		if (activeButtons.Contains(allAbilityButtons[abilityIndex]))
+		{
+			_currentAbilityIndex = activeButtons.IndexOf(allAbilityButtons[abilityIndex]);
+		}
 		if (ability._type != AbilityType.BaseAbility)
 		{
 			UpdateSelectedActionAbilityPoints(ability);
