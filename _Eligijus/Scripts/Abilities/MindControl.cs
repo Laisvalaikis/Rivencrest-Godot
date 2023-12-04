@@ -1,9 +1,9 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class MindControl : BaseAction
 {
-    private Player _target;
-
+    private Player _target = new Player();
     public MindControl()
     {
         
@@ -23,16 +23,17 @@ public partial class MindControl : BaseAction
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            SilenceDebuff debuff = new SilenceDebuff(2);
             _target = chunk.GetCurrentPlayer();
-            // _target.debuffs.SetTurnCounterFromThisTurn(2);
+            _target.debuffManager.AddDebuff(debuff,player);
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+
             FinishAbility();
         }
     }
 
     public override void PlayerWasAttacked()
     {
-        // _target.debuffs.RemoveSilence();
-        _target = null;
+        _target.debuffManager.RemoveDebuffsByType(typeof(SilenceDebuff));
     }
 }

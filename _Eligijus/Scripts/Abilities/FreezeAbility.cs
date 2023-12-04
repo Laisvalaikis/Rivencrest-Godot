@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class FreezeAbility : BaseAction
 { 
@@ -72,8 +73,11 @@ public partial class FreezeAbility : BaseAction
 		UpdateAbilityButton();
 		foreach (var chunkData in _chunkList)
 		{
-			if (chunkData.GetCurrentPlayer() != null && chunkData!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+			SlowDebuff debuff = new SlowDebuff(1, 1);
+			Player target = chunkData.GetCurrentPlayer();
+			if (target != null && chunkData!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
 			{
+				target.debuffManager.AddDebuff(debuff,player);
 				DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
 			}
 		}		

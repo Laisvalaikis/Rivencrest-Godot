@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class DisarmingSlam : BaseAction
 {
@@ -21,9 +22,11 @@ public partial class DisarmingSlam : BaseAction
 	{
 		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
+		Player target = chunk.GetCurrentPlayer();
+		SilenceDebuff debuff = new SilenceDebuff();
+		target.debuffManager.AddDebuff(debuff,player);
 		DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 		GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(chunk));
-		// chunk.GetCurrentPlayer().debuffs.SetTurnCounterFromThisTurn(1);
 		FinishAbility();
 	}
 	private ChunkData TileToDashTo(ChunkData chunk)

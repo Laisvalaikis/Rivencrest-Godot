@@ -9,6 +9,11 @@ public partial class SilenceDebuff : BaseDebuff
 			
     }
     
+    public SilenceDebuff(int lifetime)
+    {
+        this.lifetime = lifetime;
+    }
+    
     public SilenceDebuff(SilenceDebuff debuff): base(debuff)
     {
         

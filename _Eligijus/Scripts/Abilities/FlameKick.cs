@@ -3,14 +3,12 @@ using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class FlameKick : BaseAction
 {
-    [Export] private AflameDebuff debuff;
     public FlameKick()
     {
  		
     }
     public FlameKick(FlameKick flameBlast): base(flameBlast)
     {
-        debuff = flameBlast.debuff;
     }
  	
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -27,6 +25,8 @@ public partial class FlameKick : BaseAction
         {
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
+
+        AflameDebuff debuff = new AflameDebuff();
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);

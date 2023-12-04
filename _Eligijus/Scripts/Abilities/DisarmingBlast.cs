@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal ir nereikia to OnTileHover aurio pamastymai
 {
@@ -22,8 +23,9 @@ public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal
         {
             UpdateAbilityButton();
             Player target = chunk.GetCurrentPlayer();
+            SilenceDebuff debuff = new SilenceDebuff();
+            target.debuffManager.AddDebuff(debuff,player);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            // target.debuffs.SetTurnCounterFromThisTurn(1);
         }
         FinishAbility();
     }

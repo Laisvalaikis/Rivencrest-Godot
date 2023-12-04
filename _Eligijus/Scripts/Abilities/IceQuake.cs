@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class IceQuake : BaseAction
 {
@@ -63,10 +64,10 @@ public partial class IceQuake : BaseAction
             if (CanTileBeClicked(hoveredChunk))
             {
                 Player target = hoveredChunk.GetCurrentPlayer();
-                // if (target.debuffs.IsPlayerSlower())
-                // {
-                //     bonusDamage += rootDamage;
-                // }
+                if (target.debuffManager.ContainsDebuff(typeof(SlowDebuff)))
+                {
+                    bonusDamage += rootDamage;
+                }
                 EnableDamagePreview(hoveredChunk);
                 bonusDamage = 0;
             }
@@ -87,14 +88,16 @@ public partial class IceQuake : BaseAction
             if (chunk.IsStandingOnChunk())
             {
                 Player target = chunk.GetCurrentPlayer();
-                // if (target.debuffs.IsPlayerSlower())
-                // {
-                //     target.actionManager.RemoveSlowDown();
-                //     bonusDamage += rootDamage;
-                // }
+                if (target.debuffManager.ContainsDebuff(typeof(SlowDebuff)))
+                {
+                    RootDebuff rootDebuff = new RootDebuff();
+                    target.debuffManager.AddDebuff(rootDebuff,player);
+                    bonusDamage += rootDamage;
+                }
             }
             DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
-            // chunk.GetCurrentPlayer().debuffs.SlowDownPlayer(1);
+            SlowDebuff debuff = new SlowDebuff(1, 1);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
             FinishAbility();
         }
     }

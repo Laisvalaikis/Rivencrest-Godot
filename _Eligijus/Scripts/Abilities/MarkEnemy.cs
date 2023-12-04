@@ -1,7 +1,5 @@
 public partial class MarkEnemy : BaseAction
 {
-    private Player _target;
- 
     public MarkEnemy()
     {
  		
@@ -21,34 +19,18 @@ public partial class MarkEnemy : BaseAction
         customText = "MARK";
     }
 
-    public override void OnTurnEnd(ChunkData chunkData)
-    {
-        base.OnTurnEnd(chunkData);
-        // if (_target != null && _target.debuffs.IsMarked())
-        // {
-        //     _target.debuffs.UnMark();
-        // }
-    }
-
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
-            _target = chunk.GetCurrentPlayer();
-            // player.debuffs.Mark();
+            Player target = chunk.GetCurrentPlayer();
+            MarkDebuff debuff = new MarkDebuff();
+            target.debuffManager.AddDebuff(debuff,player);
             FinishAbility();
         }
         // chunk.GetCurrentPlayerInformation().Marker = gameObject;
     }
-
-    public override void Die() // probably ateity kitaip bus daroma
-    {
-        base.Die();
-        // if (_target != null && _target.debuffs.IsMarked())
-        // {
-        //     _target.debuffs.UnMark();
-        // }
-    }
+    
 }
