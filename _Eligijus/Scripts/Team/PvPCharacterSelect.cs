@@ -69,7 +69,7 @@ public partial class PvPCharacterSelect : Button
 
     public void SelectPortrait()
     {
-        if (_gameTileMap.GetCurrentCharacter() != characterOnBoard) // GameObject.Find("GameInformation").GetComponent<GameInformation>().canButtonsBeClicked fix this bs
+        if (_gameTileMap.GetCurrentCharacter() != characterOnBoard)
         {
             if (_gameTileMap.GetCurrentCharacter() != null)
             {
@@ -79,20 +79,12 @@ public partial class PvPCharacterSelect : Button
             _gameTileMap.SetCurrentCharacter(characterOnBoard);
             isButtonAvailable = false;
             _selectAction.SetCurrentCharacter((Player)characterOnBoard);
-            // GD.Print("Selected");
         }
         else if (_gameTileMap.GetCurrentCharacter() == characterOnBoard)
         {
             _gameTileMap.DeselectCurrentCharacter();
             _selectAction.DeSetCurrentCharacter();
             isButtonAvailable = true;
-            // GD.Print("Deselected");
-        }
-
-        Player character = (Player)characterOnBoard;
-        if (character.objectInformation.GetPlayerInformation().GetHealth() > 0)
-        {
-              
         }
         
     }

@@ -40,7 +40,7 @@ public partial class CharacterTeams : Node
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		if (!setupComplete && GameTileMap.Tilemap.ChunksIsSetuped())
+		if (!setupComplete && GameTileMap.Tilemap.ChunksGenerationCompleted())
 		{
 			InitializeCharacterLists();
 			GenerateEnemies();

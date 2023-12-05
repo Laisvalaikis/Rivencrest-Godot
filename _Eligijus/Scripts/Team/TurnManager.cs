@@ -170,7 +170,7 @@ public partial class TurnManager : Node
 		{
 			isAiTurn = false;
 		}
-
+		
 		foreach (int key in _teamsList.Teams[_currentTeamIndex].characters.Keys)
 		{
 			Player player = _teamsList.Teams[_currentTeamIndex].characters[key];
@@ -251,19 +251,20 @@ public partial class TurnManager : Node
 
 	public void OnTurnEnd()
 	{
+		// this is the crashing problem
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
 		ActionsAfterResolve(objectAbilitiesAfterResolve);
 		
 		ObjectActionsOnTurnEnd(_teamObjects[_currentTeamIndex].GetObjects());
 		
-
+		
 		foreach (Player character in _currentTeam.characters.Values)
 		{
 			character.OnAfterResolve();
 			character.OnTurnEnd();
 		}
 		ActionsEndTurn(objectAbilitiesEndTurn);
-		ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn);
+		// ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn); // sita funkcija infinity sukasi?
 	}
 	
 	public void ObjectActionsOnTurnEnd(LinkedList<Object> objects)

@@ -393,7 +393,7 @@ public partial class ActionManager : Node
 			{
 				Ability tempAbility = _currentAbility;
 				RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
-				_currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(_abilityPoints);
+				// _currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(_abilityPoints);
 				_currentAbility.Action.ResolveAbility(chunkData);
 				tempAbility.Action.ResolveBlessings(chunkData);
 			}

@@ -161,12 +161,11 @@ public partial class GameTileMap : Node2D
 		base._Process(delta);
 		if (_threadDistance != null && !_threadDistance.IsAlive && !chuncksIsSetUp)
 		{
-			// StartCoroutine(SetupChunckTiles());
 			chuncksIsSetUp = true;
 		}
 	}
 
-	public bool ChunksIsSetuped()
+	public bool ChunksGenerationCompleted()
 	{
 		return chuncksIsSetUp;
 	}
@@ -206,19 +205,16 @@ public partial class GameTileMap : Node2D
 					new Vector2(widthPosition + (currentMap._chunkSize / 2),
 						heightPosition + (currentMap._chunkSize / 2)));
 				tileNode.CallDeferred("hide");
-				// tileNode.GlobalPosition = new Vector2(widthPosition, heightPosition);
 
 				ChunkData chunk = new ChunkData(w, h, widthSize, heightSize,
 					widthPosition + (currentMap._chunkSize / 2), heightPosition + (currentMap._chunkSize / 2), false,
 					true, tileNode);
-				//tileSpriteRenderers[chunckIndex], tileHighlights[chunckIndex], false
 				if (currentMap._mapBoundries.boundries[h].Y - currentMap._chunkSize <= heightPosition - (heightSize) &&
 				    currentMap._mapBoundries.boundries[h].Y >= heightPosition &&
 				    currentMap._mapBoundries.boundries[h].X <= widthPosition &&
 				    currentMap._mapBoundries.boundries[h].Z >= widthPosition)
 				{
 					chunk.SetTileIsLocked(false);
-					// tileNode.CallDeferred("show");
 				}
 				else
 				{
@@ -473,8 +469,6 @@ public partial class GameTileMap : Node2D
 			character.DisableObject();
 			chunk.SetCurrentCharacter(character);
 			UpdateFog(character);
-			// chunk.GetTileHighlight().ActivatePlayerTile(true);
-			// chunk.GetTileHighlight().EnableTile(true);
 		}
 	}
 	
@@ -528,9 +522,6 @@ public partial class GameTileMap : Node2D
 
 				chunk.SetCurrentObject(setObject);
 			}
-			
-			//chunk.GetTileHighlight().ActivatePlayerTile(true);
-			
 		}
 	}
 
@@ -538,7 +529,7 @@ public partial class GameTileMap : Node2D
 	{
 		if (chunkData != null)
 		{
-			return chunkData.GetCurrentPlayer() != null;
+			return chunkData.CharacterIsOnTile();
 		}
 		return false;
 	}
@@ -589,8 +580,6 @@ public partial class GameTileMap : Node2D
 				}
 			}
 		}
-		// SelectedCharacter.GetComponent<GridMovement>().RemoveAvailableMovementPoints(newPosition);
-		// bottomCornerUI.EnableAbilities(SelectedCharacter.GetComponent<PlayerInformation>().savedCharacter);
 	}
 	
 	public void MoveSelectedCharacterWithoutReset(Vector2 mousePosition, Vector2 offset = default, Node2D character = null)

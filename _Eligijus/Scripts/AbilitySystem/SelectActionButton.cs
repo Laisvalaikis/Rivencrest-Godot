@@ -45,33 +45,23 @@ public partial class SelectActionButton : Button
     }
 
     // Disable abiliteies after usage
-    public void UpdateAbilityPointsInformation(int availableAbilityPoints)
-    {
-        if (abilityInformation != null)
-        {
-            DisableAbility();
-            if (abilityInformation.Action.CheckIfAbilityIsActive() &&
-                availableAbilityPoints < abilityInformation.Action.GetAbilityPoints())
-            {
-                DisableAbility("1");
-            }
-        }
-    }
-    public void UpdateAllButtonsByPoints(int availableAbilityPoints)
-    {
-        selectAction.UpdateAllAbilityButtonsByPoints(availableAbilityPoints);
-    }
+    // public void UpdateAbilityPointsInformation(int availableAbilityPoints)
+    // {
+    //     if (abilityInformation != null)
+    //     {
+    //         DisableAbility();
+    //         if (abilityInformation.Action.CheckIfAbilityIsActive() &&
+    //             availableAbilityPoints < abilityInformation.Action.GetAbilityPoints())
+    //         {
+    //             DisableAbility("1");
+    //         }
+    //     }
+    // }
     
-    public void DisableAbility()
-    {
-        if (!abilityInformation.Action.CheckIfAbilityIsActive())
-        {
-            int abilityCooldown = abilityInformation.Action.GetCoolDown();
-            int cooldown = abilityInformation.Action.GetCoolDownCount();
-            int leftCooldown = abilityCooldown - cooldown;
-            DisableAbility(leftCooldown.ToString());
-        }
-    }
+    // public void UpdateAllButtonsByPoints(int availableAbilityPoints)
+    // {
+    //     selectAction.UpdateAllAbilityButtonsByPoints(availableAbilityPoints);
+    // }
     //
     
     public void UpdateAbilityCooldownInformationActive()
@@ -120,6 +110,17 @@ public partial class SelectActionButton : Button
         turnLabel.Text = turnNumber; // default text 
         selectAction.DisableAbility(this);
         Disabled = true;
+    }
+    
+    public void DisableAbility()
+    {
+        if (!abilityInformation.Action.CheckIfAbilityIsActive())
+        {
+            int abilityCooldown = abilityInformation.Action.GetCoolDown();
+            int cooldown = abilityInformation.Action.GetCoolDownCount();
+            int leftCooldown = abilityCooldown - cooldown;
+            DisableAbility(leftCooldown.ToString());
+        }
     }
     
     private void EnableAbility()
