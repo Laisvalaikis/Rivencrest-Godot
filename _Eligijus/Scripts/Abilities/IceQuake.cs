@@ -96,7 +96,7 @@ public partial class IceQuake : BaseAction
                 }
             }
             DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
-            SlowDebuff debuff = new SlowDebuff(1, 1);
+            SlowDebuff debuff = new SlowDebuff(2, 2);
             chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
             FinishAbility();
         }

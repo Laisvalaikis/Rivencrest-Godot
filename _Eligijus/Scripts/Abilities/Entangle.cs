@@ -9,6 +9,7 @@ public partial class Entangle : BaseAction
     }
     public Entangle(Entangle entangle): base(entangle)
     {
+        
     }
  	
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -23,7 +24,7 @@ public partial class Entangle : BaseAction
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            RootDebuff rootDebuff = new RootDebuff(1);
+            RootDebuff rootDebuff = new RootDebuff(2);
             chunk.GetCurrentPlayer().debuffManager.AddDebuff(rootDebuff, player);
             FinishAbility();
         }

@@ -43,7 +43,7 @@ public partial class SilenceBeam : BaseAction
 				if (damageChunk != null)
 				{
 					DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
-					SilenceDebuff debuff = new SilenceDebuff(1);
+					SilenceDebuff debuff = new SilenceDebuff(2);
 					chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
 					PackedScene spawnCharacter = (PackedScene)PinkTilePrefab;
 					Object spawnedPinkTile = spawnCharacter.Instantiate<Object>();
