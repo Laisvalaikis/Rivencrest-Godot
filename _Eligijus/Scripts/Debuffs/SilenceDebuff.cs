@@ -2,6 +2,7 @@ namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 
 //Player cannot use abilities except movement and basic attack (?)
+//NEEDS FIXING
 public partial class SilenceDebuff : BaseDebuff
 {
     public SilenceDebuff()

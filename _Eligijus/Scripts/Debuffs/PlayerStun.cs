@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 //Player cannot move at all, but can use abilities?
+//NEEDS FIXING
 public partial class PlayerStun : BaseDebuff
 {
 	
@@ -37,6 +38,7 @@ public partial class PlayerStun : BaseDebuff
 	{
 		base.OnTurnStart();
 		_player.SetMovementPoints(0);
+		_player.actionManager.SetAbilityPoints(0);
 		lifetimeCount++;
 	}
 
