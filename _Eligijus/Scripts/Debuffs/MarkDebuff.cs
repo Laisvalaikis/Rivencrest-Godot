@@ -3,6 +3,7 @@ using System;
 using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 //Player is marked, if damage is dealt to him, he becomes rooted
+//NEEDS FIXING
 public partial class MarkDebuff: BaseDebuff
 {
     public MarkDebuff()

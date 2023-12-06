@@ -2,6 +2,7 @@ namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class WeakSpotDebuff : BaseDebuff
 {
+	//NEEDS FIXING
 	public WeakSpotDebuff()
 	{
 			
@@ -26,7 +27,8 @@ public partial class WeakSpotDebuff : BaseDebuff
 
 	public override void PlayerWasAttacked()
 	{
-		_player.playerActionMiddleware.DealDamage(1,playerWhoCreatedDebuff);
+		_player.playerActionMiddleware.DealDamage(10,playerWhoCreatedDebuff);
+		lifetimeCount++;
 	}
 
 }
