@@ -210,9 +210,9 @@ public partial class GameTileMap : Node2D
 					widthPosition + (currentMap._chunkSize / 2), heightPosition + (currentMap._chunkSize / 2), false,
 					true, tileNode);
 				if (currentMap._mapBoundries.boundries[h].Y - currentMap._chunkSize <= heightPosition - (heightSize) &&
-				    currentMap._mapBoundries.boundries[h].Y >= heightPosition &&
-				    currentMap._mapBoundries.boundries[h].X <= widthPosition &&
-				    currentMap._mapBoundries.boundries[h].Z >= widthPosition)
+					currentMap._mapBoundries.boundries[h].Y >= heightPosition &&
+					currentMap._mapBoundries.boundries[h].X <= widthPosition &&
+					currentMap._mapBoundries.boundries[h].Z >= widthPosition)
 				{
 					chunk.SetTileIsLocked(false);
 				}
@@ -260,9 +260,9 @@ public partial class GameTileMap : Node2D
 		{
 
 			if (_chunksArray.GetLength(0) > widthChunk && widthChunk >= 0
-			                                           && _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
-			                                           && _chunksArray[widthChunk, heightChunk] != null &&
-			                                           !_chunksArray[widthChunk, heightChunk].TileIsLocked())
+													   && _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
+													   && _chunksArray[widthChunk, heightChunk] != null &&
+													   !_chunksArray[widthChunk, heightChunk].TileIsLocked())
 			{
 				return _chunksArray[widthChunk, heightChunk];
 			}
@@ -282,9 +282,9 @@ public partial class GameTileMap : Node2D
 	public bool CheckBounds(int x, int y)
 	{
 		if (_chunksArray.GetLength(0) > x && x >= 0
-		                                  && _chunksArray.GetLength(1) > y && y >= 0
-		                                  && _chunksArray[x, y] != null
-		                                  && !_chunksArray[x, y].TileIsLocked())
+										  && _chunksArray.GetLength(1) > y && y >= 0
+										  && _chunksArray[x, y] != null
+										  && !_chunksArray[x, y].TileIsLocked())
 		{
 			return true;
 		}
@@ -295,9 +295,9 @@ public partial class GameTileMap : Node2D
 	public bool CheckIfWall(int x, int y)
 	{
 		if ((_chunksArray.GetLength(0) - 1 == x || x == 0)
-		    && (_chunksArray.GetLength(1) - 1 == y || y == 0)
-		    && _chunksArray[x, y] != null
-		    && !_chunksArray[x, y].TileIsLocked())
+			&& (_chunksArray.GetLength(1) - 1 == y || y == 0)
+			&& _chunksArray[x, y] != null
+			&& !_chunksArray[x, y].TileIsLocked())
 		{
 			return true;
 		}
@@ -316,10 +316,10 @@ public partial class GameTileMap : Node2D
 		{
 
 			if (_chunksArray.GetLength(0) > widthChunk && widthChunk >= 0
-			                                           && _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
-			                                           && _chunksArray[widthChunk, heightChunk] != null
-			                                           && !_chunksArray[widthChunk, heightChunk].TileIsLocked()
-			                                           && !_chunksArray[widthChunk, heightChunk].IsFogOnTile())
+													   && _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
+													   && _chunksArray[widthChunk, heightChunk] != null
+													   && !_chunksArray[widthChunk, heightChunk].TileIsLocked()
+													   && !_chunksArray[widthChunk, heightChunk].IsFogOnTile())
 			{
 				return true;
 			}

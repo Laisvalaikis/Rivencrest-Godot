@@ -325,13 +325,13 @@ public partial class TurnManager : Node
 			{
 				UsedAbility usedAbility = element.Value;
 				
-				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
+				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime() || usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime() && !usedAbility.ability.CheckIfAbilityIsActive())
 				{
 					usedAbility.ability.OnTurnEnd(usedAbility.chunk);
 					usedAbility.ability.BlessingOnTurnEnd(usedAbility.chunk);
 					usedAbility.IncreaseCastCount();
 				}
-				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
+				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime() && usedAbility.ability.CheckIfAbilityIsActive())
 				{
 					abilities.Remove(element);
 				}

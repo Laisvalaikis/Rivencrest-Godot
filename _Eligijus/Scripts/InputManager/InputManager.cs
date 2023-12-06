@@ -115,13 +115,11 @@ public partial class InputManager: Node2D
 
 		if (Input.IsActionPressed("Up"))
 		{
-			GD.PrintErr(Input.IsActionPressed("Exit"));
 			EmitSignal("Up");
 		}
 			
 		if (Input.IsActionPressed("Down"))
 		{
-			GD.PrintErr(Input.IsActionPressed("Exit"));
 			EmitSignal("Down");
 		}
 
@@ -202,20 +200,19 @@ public partial class InputManager: Node2D
 		{
 			Vector2 relativePosition = Vector2.Zero;
 			relativePosition = Input.GetVector( "CameraMovementRight", "CameraMovementLeft", "CameraMovementDown", "CameraMovementUp");
-			// GD.PrintErr(relativePosition);
 			CameraMovement(relativePosition, cameraMovementSpeedController);
 		}
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		base._Input(@event);
-		if (@event.IsPressed())
-		{
-			GD.Print(@event.AsText());
-		}
-		
-	}
+	// public override void _Input(InputEvent @event)
+	// {
+	// 	base._Input(@event);
+	// 	if (@event.IsPressed())
+	// 	{
+	// 		GD.Print(@event.AsText());
+	// 	}
+	// 	
+	// }
 
 	private bool InDeadZone(Vector2 relativePosition)
 	{

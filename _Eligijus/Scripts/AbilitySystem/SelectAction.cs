@@ -273,8 +273,8 @@ public partial class SelectAction : Control
 				UpdatePlayerInfo();
 				GenerateActions();
 			}
-			UpdateAllAbilityButtonsByPoints(_currentPlayer.actionManager.GetAbilityPoints());
 			UpdateBaseAbilities();
+			UpdateAllAbilityButtonsByPoints(_currentPlayer.actionManager.GetAbilityPoints());
 			_actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
 		}
 

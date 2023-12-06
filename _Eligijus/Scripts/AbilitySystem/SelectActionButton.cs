@@ -72,7 +72,10 @@ public partial class SelectActionButton : Button
         }
         else
         {
-            DisableAbility("1");
+            int abilityCooldown = abilityInformation.Action.GetCoolDown();
+            int cooldown = abilityInformation.Action.GetCoolDownCount();
+            int leftCooldown = abilityCooldown - cooldown;
+            DisableAbility(leftCooldown.ToString());
         }
     }
     
