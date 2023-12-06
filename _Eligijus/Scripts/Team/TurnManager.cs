@@ -262,7 +262,7 @@ public partial class TurnManager : Node
 			character.OnAfterResolve();
 			character.OnTurnEnd();
 		}
-		// ActionsEndTurn(objectAbilitiesEndTurn);
+		ActionsEndTurn(objectAbilitiesEndTurn);
 		ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn); // sita funkcija infinity sukasi?
 	}
 	

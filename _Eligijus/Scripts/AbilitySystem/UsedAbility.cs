@@ -11,33 +11,21 @@ public partial class UsedAbility : Resource
 	public UsedAbility(BaseAction ability)
 	{
 		this.ability = ability;
+		ResourceName = ability.ResourceName;
 	}
 
 	public UsedAbility(BaseAction ability, ChunkData chunk)
 	{
+		ResourceName = ability.ResourceName;
 		this.ability = ability;
 		this.chunk = chunk;
 		_turnLifetime = 1;
 		
 	}
-
-	public UsedAbility(BaseAction ability, ChunkData chunk, Player abilityPLayer, int turnLifetime)
-	{
-		this.ability = ability;
-		this.chunk = chunk;
-		_turnLifetime = turnLifetime;
-	}
-
-	public UsedAbility(UsedAbility usedAbility)
-	{
-		ability = usedAbility.ability;
-		chunk = usedAbility.chunk;
-		_turnLifetime = usedAbility._turnLifetime;
-		_turnsSinceCast = usedAbility._turnsSinceCast;
-	}
 	
 	public UsedAbility(UsedAbility usedAbility, int turnLifetime)
 	{
+		ResourceName = usedAbility.ResourceName;
 		ability = usedAbility.ability;
 		chunk = usedAbility.chunk;
 		_turnLifetime = turnLifetime;

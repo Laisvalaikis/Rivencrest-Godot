@@ -232,7 +232,7 @@ public partial class SelectAction : Control
 	
 	public void UpdateBaseAbilities()
 	{
-		for (int i = 0; i < abilityButtons.Count; i++)
+		for (int i = 0; i < baseAbilityButtons.Count; i++)
 		{
 			baseAbilityButtons[i].UpdateAbilityCooldownInformationActive();
 		}
