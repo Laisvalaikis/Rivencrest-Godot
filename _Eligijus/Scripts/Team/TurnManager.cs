@@ -251,7 +251,6 @@ public partial class TurnManager : Node
 
 	public void OnTurnEnd()
 	{
-		// this is the crashing problem
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
 		ActionsAfterResolve(objectAbilitiesAfterResolve);
 		
@@ -263,8 +262,8 @@ public partial class TurnManager : Node
 			character.OnAfterResolve();
 			character.OnTurnEnd();
 		}
-		ActionsEndTurn(objectAbilitiesEndTurn);
-		// ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn); // sita funkcija infinity sukasi?
+		// ActionsEndTurn(objectAbilitiesEndTurn);
+		ActionsEndTurn(_currentTeam.usedAbilitiesEndTurn); // sita funkcija infinity sukasi?
 	}
 	
 	public void ObjectActionsOnTurnEnd(LinkedList<Object> objects)

@@ -116,6 +116,8 @@ public class LinkedList<T>
                 First = prev;
             }
         }
+        valueToRemove.Previous = null;
+        valueToRemove.Next = null;
         Count--;
         
     }
