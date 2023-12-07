@@ -113,6 +113,7 @@ public partial class SelectActionButton : Button
         turnLabel.Text = turnNumber; // default text 
         selectAction.DisableAbility(this);
         Disabled = true;
+        ButtonPressed = false;
     }
     
     public void DisableAbility()

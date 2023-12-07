@@ -84,21 +84,13 @@ public partial class SelectAction : Control
 				EnableAbilities(_playerBaseAbilities, baseAbilityButtons, i);
 			}
 		}
-		if (_currentPlayer.unlockedAbilityList != null && _currentPlayer.unlockedAbilityList.Count > 0)
+		for (int i = 0; i < _playerAbilities.Count; i++)
 		{
-			for (int i = 0; i < _playerAbilities.Count; i++)
+			if (_playerAbilities[i].enabled)
 			{
-				if (_playerAbilities[i].enabled &&  i < _currentPlayer.unlockedAbilityList.Count && _currentPlayer.unlockedAbilityList[i].abilityConfirmed)
-				{
-					EnableAbilities(_playerAbilities, abilityButtons, i, true);
-				}
-				else
-				{
-					break;
-				}
+				EnableAbilities(_playerAbilities, abilityButtons, i, true);
 			}
 		}
-
 		for (int i = buttonIndexCount; i < allAbilityButtons.Count; i++)
 		{
 			allAbilityButtons[i].buttonParent.Hide();
@@ -238,17 +230,6 @@ public partial class SelectAction : Control
 		}
 	}
 	
-	//
-	// private void ResetAbilityPointsView()
-	// {
-	// 	int abilityPercentage = GetProcentage(_currentPlayer.actionManager.GetAbilityPoints(),
-	// 		_currentPlayer.actionManager.GetAllAbilityPoints());
-	// 	abilityPointsBar.Value = abilityPercentage;
-	// 	abilityPointsUseBar.Value = abilityPercentage;
-	// }
-	//
-	//
-	//
 	
 	public void ActionSelection(Ability ability, int abilityIndex)
 	{
@@ -275,9 +256,33 @@ public partial class SelectAction : Control
 			}
 			UpdateBaseAbilities();
 			UpdateAllAbilityButtonsByPoints(_currentPlayer.actionManager.GetAbilityPoints());
-			_actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
+			int firstAbilityIndex = GetFirstAvailableAbility();
+			_actionManager.SetCurrentAbility(_playerAllAbilities[0], 0);
 		}
 
+	}
+
+	public int GetFirstAvailableAbility()
+	{
+		int index = 0;
+		for (int i = 0; i < _playerBaseAbilities.Count; i++)
+		{
+			if (_playerBaseAbilities[i].Action.CheckIfAbilityIsActive())
+			{
+				return index;
+			}
+			index++;
+		}
+	
+		for (int i = 0; i < _playerAbilities.Count; i++)
+		{
+			if (_playerAbilities[i].Action.CheckIfAbilityIsActive() && _actionManager.GetAbilityPoints() >= _playerAbilities[i].Action.GetAbilityPoints())
+			{
+				return index;
+			}
+			index++;
+		}
+		return -1;
 	}
 
 	public void Disable()

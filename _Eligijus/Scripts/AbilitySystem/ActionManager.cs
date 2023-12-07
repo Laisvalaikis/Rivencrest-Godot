@@ -47,20 +47,15 @@ public partial class ActionManager : Node
 			for (int i = 0; i < allAbilities.Count; i++)
 			{
 				Ability ability = new Ability(allAbilities[i]);
-				ability.Action.SetupPlayerAbility(_player, i);
-				if (_allAbilities == null)
+				int unlockedAbilityIndex = i - baseAbilities.Count;
+				if (i >= baseAbilities.Count && ability.enabled &&  i < _player.unlockedAbilityList.Count && _player.unlockedAbilityList[unlockedAbilityIndex].abilityConfirmed)
 				{
-					_allAbilities = new Array<Ability>();
-					_allAbilities.Add(ability);
+					SetupAbility(ability, i);
 				}
-				else
+				else if(i < baseAbilities.Count)
 				{
-					_allAbilities.Add(ability);
+					SetupAbility(ability, i);
 				}
-				ability.Action.AddTurnManager(_turnManager);
-				ability.Action.OnBeforeStart(null);
-				ability.Action.OnTurnStart(null);
-				ability.Action.BlessingOnTurnStart(null);
 			}
 			
 			for (int i = 0; i < baseAbilities.Count; i++)
@@ -69,12 +64,30 @@ public partial class ActionManager : Node
 				_baseAbilities.Add(_allAbilities[i]);
 			}
 
-			for (int i = _baseAbilities.Count; i < allAbilities.Count; i++)
+			for (int i = _baseAbilities.Count; i < _allAbilities.Count; i++)
 			{
 				_allAbilities[i]._type = AbilityType.Ability;
 				_abilities.Add(_allAbilities[i]);
 			}
 		}
+	}
+
+	private void SetupAbility(Ability ability, int index)
+	{
+		ability.Action.SetupPlayerAbility(_player, index);
+		if (_allAbilities == null)
+		{
+			_allAbilities = new Array<Ability>();
+			_allAbilities.Add(ability);
+		}
+		else
+		{
+			_allAbilities.Add(ability);
+		}
+		ability.Action.AddTurnManager(_turnManager);
+		ability.Action.OnBeforeStart(null);
+		ability.Action.OnTurnStart(null);
+		ability.Action.BlessingOnTurnStart(null);
 	}
 
 	public void AddTurnManager(TurnManager turnManager)
@@ -202,10 +215,10 @@ public partial class ActionManager : Node
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled)
 			{
 				_abilities[i].Action.OnTurnStart(null);
-				_baseAbilities[i].Action.BlessingOnTurnStart(null);
+				_abilities[i].Action.BlessingOnTurnStart(null);
 			}
 			else
 			{
@@ -225,7 +238,7 @@ public partial class ActionManager : Node
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled)
 			{
 				_abilities[i].Action.OnExitAbility(chunkDataPrev, chunkData);
 			}
@@ -243,7 +256,7 @@ public partial class ActionManager : Node
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled)
 			{
 				_abilities[i].Action.PlayerWasAttacked();
 			}
@@ -278,7 +291,7 @@ public partial class ActionManager : Node
 		}
 		for (int i = 0; i < _abilities.Count; i++)
 		{
-			if (_abilities[i].enabled && i < _unlockedAbilityList.Count && _unlockedAbilityList[i].abilityConfirmed)
+			if (_abilities[i].enabled)
 			{
 				_abilities[i].Action.Die();
 			}
