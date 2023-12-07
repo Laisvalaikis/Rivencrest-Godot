@@ -24,7 +24,8 @@ public partial class PlayerAttack : BaseAction
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            //DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            chunk.GetCurrentPlayer().playerActionMiddleware.DealDamage(5,player);
             FinishAbility();
         }
     }

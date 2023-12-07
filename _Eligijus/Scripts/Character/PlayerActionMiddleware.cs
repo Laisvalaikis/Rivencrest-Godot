@@ -1,3 +1,5 @@
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
+
 namespace Rivencrestgodot._Eligijus.Scripts.Character;
 using System;
 
@@ -25,8 +27,22 @@ public class PlayerActionMiddleware
         return _player.GetPreviousMovementPoints();
     }
 
+    public void AddDebuff(BaseDebuff debuff, Player playerWhoCreatedDebuff)
+    {
+        LinkedList<BaseBuff> buffList = _player.buffManager.GetPlayerBuffs();
+        for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+        {
+            element.Value.ModifyDebuff(ref debuff);
+        }
+        _player.debuffManager.AddDebuff(debuff,playerWhoCreatedDebuff);
+    }
     public void AddMovementPoints(int points)
     {
+        LinkedList<BaseBuff> buffList = _player.buffManager.GetPlayerBuffs();
+        for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+        {
+            element.Value.ModifyMovement(ref points);
+        }
         _player.AddMovementPoints(points);
     }
 
@@ -77,6 +93,11 @@ public class PlayerActionMiddleware
 
     public void DealDamage(int damage, Player damageDealer)
     {
+        LinkedList<BaseBuff> buffList = _player.buffManager.GetPlayerBuffs();
+        for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+        {
+            element.Value.ModifyDamage(ref damage);
+        }
         _player.objectInformation.GetPlayerInformation().DealDamage(damage, damageDealer);
     }
 

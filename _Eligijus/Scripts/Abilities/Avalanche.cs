@@ -17,7 +17,7 @@ public partial class Avalanche : BaseAction
         return avalanche;
     }
     
-        public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {
         HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
         HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
@@ -89,8 +89,7 @@ public partial class Avalanche : BaseAction
     {
         if (chunk.GetTileHighlight().isHighlighted && 
             !IsAllegianceSame(chunk) &&
-            IsCharacterAffectedByCrowdControl(chunk) && 
-            chunk.GetTileHighlight().isHighlighted)
+            IsCharacterAffectedByCrowdControl(chunk))
         {
             return true;
         }
@@ -101,7 +100,8 @@ public partial class Avalanche : BaseAction
         if (CheckIfSpecificInformationType(chunk, typeof(Player)))
         {
             DebuffManager targetDebuffManager = chunk.GetCurrentPlayer().debuffManager;
-            if(targetDebuffManager.ContainsDebuff(typeof(PlayerStun))||targetDebuffManager.ContainsDebuff(typeof(RootDebuff))||targetDebuffManager.ContainsDebuff(typeof(SlowDebuff))||targetDebuffManager.ContainsDebuff(typeof(SilenceDebuff)))
+            if(targetDebuffManager.ContainsDebuff(typeof(PlayerStun))||targetDebuffManager.ContainsDebuff(typeof(RootDebuff))||
+               targetDebuffManager.ContainsDebuff(typeof(SlowDebuff))||targetDebuffManager.ContainsDebuff(typeof(SilenceDebuff)))
                 return true;
         }
         return false;

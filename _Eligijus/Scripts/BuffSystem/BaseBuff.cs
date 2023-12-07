@@ -85,19 +85,18 @@ public partial class BaseBuff : Resource
 	{
 		_player = player;
 	}
-	public void ModifyDamage(ref int damage)
+	public virtual void ModifyDamage(ref int damage)
 	{
 		
 	}
 
-	public void ModifyMovement(ref int movementPoints)
+	public virtual void ModifyMovement(ref int movementPoints)
 	{
 		
 	}
 
-	public void AddDebuff(BaseDebuff debuff)
+	public virtual void ModifyDebuff(ref BaseDebuff debuff)
 	{
-		if(debuff.GetType()==typeof(PoisonDebuff))
-			debuff.SetLifetime(debuff.GetLifetime()/2);
+		
 	}
 }

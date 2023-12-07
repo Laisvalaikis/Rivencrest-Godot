@@ -39,4 +39,9 @@ public partial class BlockedBuff : BaseBuff
         base.OnTurnStart();
         lifetimeCount++;
     }
+    
+    public override void ModifyDamage(ref int damage)
+    {
+        damage = 0;
+    }
 }

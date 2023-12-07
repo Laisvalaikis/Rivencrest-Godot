@@ -7,6 +7,7 @@ public partial class Player : Object
 	[Export] public int playerInTeamIndex = 0;
 	[Export] public ActionManager actionManager;
 	[Export] public DebuffManager debuffManager;
+	[Export] public BuffManager buffManager;
 	public Array<UnlockedAbilitiesResource> unlockedAbilityList;
 	public Array<AbilityBlessingsResource> unlockedBlessingList;
 	public Array<UnlockedBlessingsResource> unlockedPLayerBlessings;
@@ -19,11 +20,13 @@ public partial class Player : Object
 
 	public override void SetupObject(ObjectData objectData)
 	{
+		playerActionMiddleware = new PlayerActionMiddleware();
 		objectInformation = new ObjectType<ObjectInformation>(objectInformationNode, typeof(ObjectInformation));
 		ObjectDataType = new ObjectDataType<ObjectData>(objectData, typeof(Player));
 		objectInformation.GetPlayerInformation().SetupData(objectData);
 		_visionRange = ObjectDataType.GetObjectData().visionRange;
 		actionManager.InitializeActionManager();
+		playerActionMiddleware._player = this;
 	}
 
 	public override void Death()

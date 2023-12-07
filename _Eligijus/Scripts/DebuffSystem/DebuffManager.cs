@@ -123,4 +123,9 @@ public partial class DebuffManager : Node
 		}
 		return true;
 	}
+
+	public LinkedList<BaseDebuff> GetPlayerDebuffs()
+	{
+		return debufList;
+	}
 }
