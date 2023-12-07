@@ -6,16 +6,15 @@ using Godot;
 public class LinkedList<T>
 {
     
-    public LinkedListNode<T>? First { get; set; }
-    public LinkedListNode<T>? Last { get; set; }
+    public LinkedListNode<T> First { get; set; }
+    public LinkedListNode<T> Last { get; set; }
     public int Count { get; private set; }
-    
-    
+
     public void AddFirst(T nodeToAdd)
     {
         LinkedListNode<T> node = new LinkedListNode<T>(nodeToAdd);
         node.Value = nodeToAdd;
-        if (First is null)
+        if (First.Value is null)
         {
             First = node;
             Last = First;
@@ -38,7 +37,7 @@ public class LinkedList<T>
             First = node;
             Last = node;
         }
-        else
+        else if (First is not null && Last is not null)
         {
             Last.Next = node;
             node.Previous = Last;
@@ -98,24 +97,30 @@ public class LinkedList<T>
         if (prev is not null)
         {
             prev.Next = next;
+            if (next is null)
+            {
+                Last = prev;
+                valueToRemove.Previous = null;
+            }
         }
         if (next is not null)
         {
             next.Previous = prev;
+            if (prev is null)
+            {
+                First = next;
+                valueToRemove.Next = null;
+            }
         }
-
-        if (next is null)
+        if (next is null && prev is null)
         {
-            Last = prev;
-            if (prev is not null && prev.Previous is null)
-            {
-                First = prev;
-            }
-            else if(prev is null)
-            {
-                First = prev;
-            }
+            First = null;
+            Last = null;
         }
+        
+        
+        // jei istrinamas primas elementas linkedlist is fucked
+        
         valueToRemove.Previous = null;
         valueToRemove.Next = null;
         Count--;

@@ -115,6 +115,11 @@ public partial class SelectAction : Control
 		buttonIndexCount++;
 	}
 
+	public void EnableAbility(int index)
+	{
+		allAbilityButtons[index].ButtonPressed = true;
+	}
+
 	private void UpdatePlayerInfo()
 	{
 		characterPortrait.Texture = (AtlasTexture)_playerInformationData.CharacterPortraitSprite;
@@ -256,20 +261,26 @@ public partial class SelectAction : Control
 			}
 			UpdateBaseAbilities();
 			UpdateAllAbilityButtonsByPoints(_currentPlayer.actionManager.GetAbilityPoints());
-			int firstAbilityIndex = GetFirstAvailableAbility();
-			_actionManager.SetCurrentAbility(_playerAllAbilities[0], 0);
+			// (int index, Ability ability) firstAbility = GetFirstAvailableAbility();
+			// if (firstAbility.index != -1)
+			// {
+			// 	EnableAbility(firstAbility.index);
+			// 	_actionManager.SetCurrentAbility(firstAbility.ability, firstAbility.index);
+			// }
+			_actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
+			
 		}
 
 	}
 
-	public int GetFirstAvailableAbility()
+	public (int, Ability) GetFirstAvailableAbility()
 	{
 		int index = 0;
 		for (int i = 0; i < _playerBaseAbilities.Count; i++)
 		{
 			if (_playerBaseAbilities[i].Action.CheckIfAbilityIsActive())
 			{
-				return index;
+				return (index, _playerBaseAbilities[i]);
 			}
 			index++;
 		}
@@ -278,11 +289,11 @@ public partial class SelectAction : Control
 		{
 			if (_playerAbilities[i].Action.CheckIfAbilityIsActive() && _actionManager.GetAbilityPoints() >= _playerAbilities[i].Action.GetAbilityPoints())
 			{
-				return index;
+				return (index, _playerAbilities[i]);
 			}
 			index++;
 		}
-		return -1;
+		return (-1, null);
 	}
 
 	public void Disable()

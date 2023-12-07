@@ -281,17 +281,28 @@ public partial class TurnManager : Node
 	{
 		if (abilities.Count > 0)
 		{
-			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; element = element.Next)
+			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; )
 			{
+				bool elementWasRemoved = false;
 				UsedAbility usedAbility = element.Value;
+				
 				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
 				{
 					usedAbility.ability.OnAfterResolve(usedAbility.chunk);
 					usedAbility.IncreaseCastCount();
 				}
+				// remove yra problema vsio aisku
 				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
 				{
+					LinkedListNode<UsedAbility> tempElement = element;
+					tempElement = element.Next;
 					abilities.Remove(element);
+					element = tempElement;
+					elementWasRemoved = true;
+				}
+				if (!elementWasRemoved)
+				{
+					element = element.Next;
 				}
 			}
 		}
@@ -300,10 +311,12 @@ public partial class TurnManager : Node
 	private void ActionsBeforeStart(LinkedList<UsedAbility> abilities)
 	{
 		if (abilities.Count > 0)
-		{
-			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; element = element.Next)
+		{	
+			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; )
 			{
+				bool elementWasRemoved = false;
 				UsedAbility usedAbility = element.Value;
+				
 				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
 				{
 					usedAbility.ability.OnBeforeStart(usedAbility.chunk);
@@ -311,7 +324,15 @@ public partial class TurnManager : Node
 				}
 				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
 				{
+					LinkedListNode<UsedAbility> tempElement = element;
+					tempElement = element.Next;
 					abilities.Remove(element);
+					element = tempElement;
+					elementWasRemoved = true;
+				}
+				if (!elementWasRemoved)
+				{
+					element = element.Next;
 				}
 			}
 		}
@@ -321,19 +342,28 @@ public partial class TurnManager : Node
 	{
 		if (abilities.Count > 0)
 		{
-			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; element = element.Next)
+			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; )
 			{
+				bool elementWasRemoved = false;
 				UsedAbility usedAbility = element.Value;
 				
-				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime() || usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime() && !usedAbility.ability.CheckIfAbilityIsActive())
+				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime()) 
 				{
 					usedAbility.ability.OnTurnEnd(usedAbility.chunk);
 					usedAbility.ability.BlessingOnTurnEnd(usedAbility.chunk);
 					usedAbility.IncreaseCastCount();
 				}
-				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime() && usedAbility.ability.CheckIfAbilityIsActive())
+				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
 				{
+					LinkedListNode<UsedAbility> tempElement = element;
+					tempElement = element.Next;
 					abilities.Remove(element);
+					element = tempElement;
+					elementWasRemoved = true;
+				}
+				if (!elementWasRemoved)
+				{
+					element = element.Next;
 				}
 			}
 		}

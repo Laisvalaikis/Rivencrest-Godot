@@ -8,4 +8,9 @@ public class LinkedListNode<T>
     {
         Value = value;
     }
+    
+    public LinkedListNode()
+    {
+        
+    }
 }
