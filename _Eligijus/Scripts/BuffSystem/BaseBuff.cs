@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 namespace Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
@@ -83,5 +84,20 @@ public partial class BaseBuff : Resource
 	public void SetPLayer(Player player)
 	{
 		_player = player;
+	}
+	public void ModifyDamage(ref int damage)
+	{
+		
+	}
+
+	public void ModifyMovement(ref int movementPoints)
+	{
+		
+	}
+
+	public void AddDebuff(BaseDebuff debuff)
+	{
+		if(debuff.GetType()==typeof(PoisonDebuff))
+			debuff.SetLifetime(debuff.GetLifetime()/2);
 	}
 }

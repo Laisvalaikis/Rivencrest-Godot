@@ -108,4 +108,7 @@ public partial class BaseDebuff : Resource
 	{
 		return GetHashCode();
 	}
+
+	
+	
 }

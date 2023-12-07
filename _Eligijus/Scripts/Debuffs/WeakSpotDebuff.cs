@@ -7,7 +7,10 @@ public partial class WeakSpotDebuff : BaseDebuff
 	{
 			
 	}
-	
+	public WeakSpotDebuff(int lifetime)
+	{
+		this.lifetime = lifetime;
+	}
 	public WeakSpotDebuff(WeakSpotDebuff debuff): base(debuff)
 	{
 		
@@ -27,7 +30,9 @@ public partial class WeakSpotDebuff : BaseDebuff
 
 	public override void PlayerWasAttacked()
 	{
-		_player.playerActionMiddleware.DealDamage(10,playerWhoCreatedDebuff);
+		//_player.playerActionMiddleware.DealDamage(10,playerWhoCreatedDebuff);
+		base.OnTurnStart();
+		_player.AddWeakSpot();
 		lifetimeCount++;
 	}
 
