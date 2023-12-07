@@ -16,31 +16,32 @@ public partial class BuffManager : Node
 		}
 		else
 		{
-			for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
-			{
-				if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
-				{
-					element.Value.OnTurnStart();
-				}
-				if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
-				{
-					buffList.Remove(element);
-				}
-			}
+			OnTurnStart();
 		}
 	}
 	
 	public void OnTurnStart()
 	{
-		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseBuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.OnTurnStart();
+				value.OnTurnStart();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseBuff> tempElement = element;
+				tempElement = element.Next;
 				buffList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}
@@ -52,60 +53,105 @@ public partial class BuffManager : Node
 
 	public void OnTurnEnd()
 	{
-		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseBuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.OnTurnEnd();
+				value.OnTurnEnd();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseBuff> tempElement = element;
+				tempElement = element.Next;
 				buffList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}
 
 	private void ExecuteBuffs(ChunkData chunkData)
 	{
-		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseBuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.ResolveBuff(chunkData);
+				value.ResolveBuff(chunkData);
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseBuff> tempElement = element;
+				tempElement = element.Next;
 				buffList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}
 
 	public virtual void PlayerWasAttacked()
 	{
-		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseBuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.PlayerWasAttacked();
+				value.PlayerWasAttacked();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseBuff> tempElement = element;
+				tempElement = element.Next;
 				buffList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
+		
 	}
 	
 	public virtual void PlayerDied()
 	{
-		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseBuff> element = buffList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseBuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.PlayerDied();
+				value.PlayerDied();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseBuff> tempElement = element;
+				tempElement = element.Next;
 				buffList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}

@@ -16,46 +16,58 @@ public partial class DebuffManager : Node
 		}
 		else
 		{
-			for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
-			{
-				if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
-				{
-					element.Value.OnTurnStart();
-				}
-				if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
-				{
-					debufList.Remove(element);
-				}
-			}
+			OnTurnStart();
 		}
 	}
 	
 	public void OnTurnStart()
 	{
-		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseDebuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.OnTurnStart();
+				value.OnTurnStart();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseDebuff> tempElement = element;
+				tempElement = element.Next;
 				debufList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}
 
 	public void OnTurnEnd()
 	{
-		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseDebuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.OnTurnEnd();
+				value.OnTurnEnd();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseDebuff> tempElement = element;
+				tempElement = element.Next;
 				debufList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}
@@ -63,30 +75,52 @@ public partial class DebuffManager : Node
 
 	public virtual void PlayerWasAttacked()
 	{
-		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseDebuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.PlayerWasAttacked();
+				value.PlayerWasAttacked();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseDebuff> tempElement = element;
+				tempElement = element.Next;
 				debufList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}
 	
 	public virtual void PlayerDied()
 	{
-		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; )
 		{
-			if (element.Value.GetLifetime() > element.Value.GetLifetimeCounter())
+			bool elementWasRemoved = false;
+			BaseDebuff value = element.Value;
+				
+			if (value.GetLifetime() < value.GetLifetimeCounter()) 
 			{
-				element.Value.PlayerDied();
+				value.PlayerDied();
 			}
-			if(element.Value.GetLifetime() <= element.Value.GetLifetimeCounter())
+			if(value.GetLifetime() >= value.GetLifetimeCounter())
 			{
+				LinkedListNode<BaseDebuff> tempElement = element;
+				tempElement = element.Next;
 				debufList.Remove(element);
+				element = tempElement;
+				elementWasRemoved = true;
+			}
+			if (!elementWasRemoved)
+			{
+				element = element.Next;
 			}
 		}
 	}
