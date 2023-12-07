@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class AddBarrier : AbilityBlessing
 {
@@ -27,6 +28,7 @@ public partial class AddBarrier : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction, tile);
-        baseAction.GetPlayer().AddBarrier();
+        BarrierBuff buff = new BarrierBuff();
+        tile.GetCurrentPlayer().buffManager.AddBuff(buff);
     }
 }
