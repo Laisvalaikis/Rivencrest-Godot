@@ -261,13 +261,13 @@ public partial class SelectAction : Control
 			}
 			UpdateBaseAbilities();
 			UpdateAllAbilityButtonsByPoints(_currentPlayer.actionManager.GetAbilityPoints());
-			// (int index, Ability ability) firstAbility = GetFirstAvailableAbility();
-			// if (firstAbility.index != -1)
-			// {
-			// 	EnableAbility(firstAbility.index);
-			// 	_actionManager.SetCurrentAbility(firstAbility.ability, firstAbility.index);
-			// }
-			_actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
+			(int index, Ability ability) firstAbility = GetFirstAvailableAbility();
+			if (firstAbility.index != -1)
+			{
+				EnableAbility(firstAbility.index);
+				_actionManager.SetCurrentAbility(firstAbility.ability, firstAbility.index);
+			}
+			// _actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
 			
 		}
 

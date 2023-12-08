@@ -118,9 +118,6 @@ public class LinkedList<T>
             Last = null;
         }
         
-        
-        // jei istrinamas primas elementas linkedlist is fucked
-        
         valueToRemove.Previous = null;
         valueToRemove.Next = null;
         Count--;
