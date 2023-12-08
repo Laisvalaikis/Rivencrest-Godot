@@ -3,9 +3,15 @@ namespace Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class BlockedBuff : BaseBuff
 {
+    private Player playerWhoTakesDamage;
     public BlockedBuff()
     {
         
+    }
+    
+    public BlockedBuff(Player playerWhoTakesDamage)
+    {
+        this.playerWhoTakesDamage = playerWhoTakesDamage;
     }
     public BlockedBuff(BlockedBuff buff): base(buff)
     {
@@ -34,14 +40,8 @@ public partial class BlockedBuff : BaseBuff
         
     }
     
-    public override void OnTurnStart()
+    public override void ModifyDamage(ref int damage,ref Player player)
     {
-        base.OnTurnStart();
-        lifetimeCount++;
-    }
-    
-    public override void ModifyDamage(ref int damage)
-    {
-        damage = 0;
+        player = playerWhoTakesDamage;
     }
 }

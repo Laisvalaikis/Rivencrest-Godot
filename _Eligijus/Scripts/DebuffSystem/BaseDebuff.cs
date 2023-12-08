@@ -41,7 +41,7 @@ public partial class BaseDebuff : Resource
     
 	public virtual void OnTurnStart()
 	{
-			
+		IncreaseLifetimeCount(1);
 	}
 
 	public virtual void OnTurnEnd()

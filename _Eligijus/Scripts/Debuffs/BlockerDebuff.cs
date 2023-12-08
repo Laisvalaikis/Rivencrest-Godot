@@ -4,7 +4,10 @@ public partial class BlockerDebuff : BaseDebuff
 {
     
     //Takes damage from enemy attacks
-    //todo: finish this when player middleware exists
+    //This functionality is handled in the player buff BlockedBuff
+    //BlockerDebuff exists, because in the future we will want to display
+    //All player debuff and buff related information above abilities
+    //Change sprites, etc
     public BlockerDebuff()
     {
         

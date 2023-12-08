@@ -34,6 +34,7 @@ public partial class Player : Object
 		Hide();
 		actionManager.PlayerDied();
 		debuffManager.PlayerDied();
+		buffManager.PlayerDied();
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);
 		if (team != null)
 		{
@@ -72,6 +73,7 @@ public partial class Player : Object
 	{
 		actionManager.PlayerWasAttacked();
 		debuffManager.PlayerWasAttacked();
+		buffManager.PlayerWasAttacked();
 	}
 
 	public int GetMovementPoints()
@@ -137,7 +139,8 @@ public partial class Player : Object
 			}
 		}
 		debuffManager.OnTurnStart();
-		
+		buffManager.OnTurnStart();
+
 	}
 	
 	
@@ -164,6 +167,7 @@ public partial class Player : Object
 			}
 		}
 		debuffManager.OnTurnEnd();
+		buffManager.OnTurnEnd();
 	}
 	
 	public override void OnExit(ChunkData chunkDataPrev, ChunkData chunkData)

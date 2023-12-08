@@ -85,7 +85,7 @@ public partial class BaseBuff : Resource
 	{
 		_player = player;
 	}
-	public virtual void ModifyDamage(ref int damage)
+	public virtual void ModifyDamage(ref int damage, ref Player player)
 	{
 		
 	}

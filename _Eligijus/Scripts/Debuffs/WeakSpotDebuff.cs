@@ -29,7 +29,7 @@ public partial class WeakSpotDebuff : BaseDebuff
 
 	public override void PlayerWasAttacked()
 	{
-		_player.objectInformation.GetPlayerInformation().DealDamage(10,playerWhoCreatedDebuff);
+		_player.objectInformation.GetPlayerInformation().DealDamageUnnotified(10,playerWhoCreatedDebuff);
 	}
 
 }

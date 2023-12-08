@@ -39,7 +39,7 @@ public partial class BarrierBuff : BaseBuff
         lifetimeCount++;
     }
     
-    public override void ModifyDamage(ref int damage)
+    public override void ModifyDamage(ref int damage, ref Player player)
     {
         damage = 0;
     }

@@ -63,8 +63,19 @@ public partial class PlayerInformation : ObjectInformation
 		{
 			haveBarier = false;
 		}
-
 	}
+
+	public void DealDamageUnnotified(int damage, Player damageDealer)
+	{
+		_health -= damage;
+		damageDealer.objectInformation.GetPlayerInformation().AddDamageXP(damage);
+		if (_health <= 0) // DEATH
+		{
+			_health = 0;
+			DeathStart(damageDealer);
+		}
+	}
+	
 
 	public override void DeathStart(Player damageDealer)
 	{

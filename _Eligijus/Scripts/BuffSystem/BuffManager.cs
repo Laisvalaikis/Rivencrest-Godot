@@ -27,11 +27,11 @@ public partial class BuffManager : Node
 			bool elementWasRemoved = false;
 			BaseBuff value = element.Value;
 				
-			if (value.GetLifetime() < value.GetLifetimeCounter()) 
+			if (value.GetLifetime() > value.GetLifetimeCounter()) 
 			{
 				value.OnTurnStart();
 			}
-			if(value.GetLifetime() >= value.GetLifetimeCounter())
+			if(value.GetLifetime() <= value.GetLifetimeCounter())
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;
@@ -58,11 +58,11 @@ public partial class BuffManager : Node
 			bool elementWasRemoved = false;
 			BaseBuff value = element.Value;
 				
-			if (value.GetLifetime() < value.GetLifetimeCounter()) 
+			if (value.GetLifetime() > value.GetLifetimeCounter()) 
 			{
 				value.OnTurnEnd();
 			}
-			if(value.GetLifetime() >= value.GetLifetimeCounter())
+			if(value.GetLifetime() <= value.GetLifetimeCounter())
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;
@@ -84,11 +84,11 @@ public partial class BuffManager : Node
 			bool elementWasRemoved = false;
 			BaseBuff value = element.Value;
 				
-			if (value.GetLifetime() < value.GetLifetimeCounter()) 
+			if (value.GetLifetime() > value.GetLifetimeCounter()) 
 			{
 				value.ResolveBuff(chunkData);
 			}
-			if(value.GetLifetime() >= value.GetLifetimeCounter())
+			if(value.GetLifetime() <= value.GetLifetimeCounter())
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;
@@ -110,11 +110,11 @@ public partial class BuffManager : Node
 			bool elementWasRemoved = false;
 			BaseBuff value = element.Value;
 				
-			if (value.GetLifetime() < value.GetLifetimeCounter()) 
+			if (value.GetLifetime() > value.GetLifetimeCounter()) 
 			{
 				value.PlayerWasAttacked();
 			}
-			if(value.GetLifetime() >= value.GetLifetimeCounter())
+			if(value.GetLifetime() <= value.GetLifetimeCounter())
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;
@@ -137,11 +137,11 @@ public partial class BuffManager : Node
 			bool elementWasRemoved = false;
 			BaseBuff value = element.Value;
 				
-			if (value.GetLifetime() < value.GetLifetimeCounter()) 
+			if (value.GetLifetime() > value.GetLifetimeCounter()) 
 			{
 				value.PlayerDied();
 			}
-			if(value.GetLifetime() >= value.GetLifetimeCounter())
+			if(value.GetLifetime() <= value.GetLifetimeCounter())
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;

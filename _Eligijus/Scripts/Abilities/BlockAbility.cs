@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class BlockAbility : BaseAction
 {
@@ -63,9 +64,10 @@ public partial class BlockAbility : BaseAction
             base.ResolveAbility(chunk);
             if (chunk.GetCurrentPlayer() != null)
             {
-                BlockedBuff buff = new BlockedBuff();
+                BlockedBuff buff = new BlockedBuff(player);
+                BlockerDebuff debuff = new BlockerDebuff();
+                player.debuffManager.AddDebuff(debuff, player);
                 chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
-                //_characterBeingBlocked.objectInformation.GetPlayerInformation().AddBarrier();
             }
             FinishAbility();
         }

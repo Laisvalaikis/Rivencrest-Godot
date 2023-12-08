@@ -94,11 +94,12 @@ public class PlayerActionMiddleware
     public void DealDamage(int damage, Player damageDealer)
     {
         LinkedList<BaseBuff> buffList = _player.buffManager.GetPlayerBuffs();
+        Player playerWhoTakesDamage = _player;
         for (LinkedListNode<BaseBuff> element = buffList.First; element != null; element = element.Next)
         {
-            element.Value.ModifyDamage(ref damage);
+            element.Value.ModifyDamage(ref damage,ref playerWhoTakesDamage);
         }
-        _player.objectInformation.GetPlayerInformation().DealDamage(damage, damageDealer);
+        playerWhoTakesDamage.objectInformation.GetPlayerInformation().DealDamage(damage, damageDealer);
     }
 
     public void DeathStart(Player damageDealer)
