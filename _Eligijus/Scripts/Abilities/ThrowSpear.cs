@@ -25,7 +25,7 @@ public partial class ThrowSpear : BaseAction
 	
 	public override void CreateAvailableChunkList(int range)
 	{
-		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 		(int centerX, int centerY) = centerChunk.GetIndexes();
 		_chunkList.Clear();
 		int count = range;
@@ -146,7 +146,7 @@ public partial class ThrowSpear : BaseAction
 		if (chunk.CharacterIsOnTile())// priesas nemirsta ir spear vienu i virsu varo
 		{
 			(int x, int y) indexes = chunk.GetIndexes();
-			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
+			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition), chunk);
 			(int x, int y) sideVector = GetSideVector(side);
 			ChunkData chunkData =
 				GameTileMap.Tilemap.GetChunkDataByIndex(indexes.x + sideVector.x, indexes.y + sideVector.y);
@@ -154,7 +154,7 @@ public partial class ThrowSpear : BaseAction
 			{
 				PackedScene spawnResource = (PackedScene)spearPrefab;
 				spawnedCharacter = spawnResource.Instantiate<Object>();
-				player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+				_player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 				spawnedCharacter.SetupObject(throwSpearData);
 				GameTileMap.Tilemap.SpawnObject(spawnedCharacter, chunkData);
 			}
@@ -164,7 +164,7 @@ public partial class ThrowSpear : BaseAction
 		{
 			PackedScene spawnResource = (PackedScene)spearPrefab;
 			spawnedCharacter = spawnResource.Instantiate<Object>();
-			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			_player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 			spawnedCharacter.SetupObject(throwSpearData);
 			GameTileMap.Tilemap.SpawnObject(spawnedCharacter, chunk);
 		}

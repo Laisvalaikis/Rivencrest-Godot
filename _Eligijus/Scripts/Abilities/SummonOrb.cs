@@ -39,9 +39,9 @@ public partial class SummonOrb : BaseAction
     {
         PackedScene spawnCharacter = (PackedScene)orbPrefab;
         Object orb = spawnCharacter.Instantiate<Object>();
-        player.GetTree().Root.CallDeferred("add_child", orb);
+        _player.GetTree().Root.CallDeferred("add_child", orb);
         orb.SetupObject(orbData);
-        orb.AddPlayerForObjectAbilities(player);
+        orb.AddPlayerForObjectAbilities(_player);
         GameTileMap.Tilemap.SpawnObject(orb, chunkData);
         orb.StartActions();
     }

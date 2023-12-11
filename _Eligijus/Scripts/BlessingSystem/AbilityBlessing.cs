@@ -110,7 +110,7 @@ public partial class AbilityBlessing : BaseBlessing
 
     public bool IsAllegianceSame(Player currentPlayer, ChunkData chunk, BaseAction action)
     {
-	    return chunk.GetCurrentPlayer() != null && currentPlayer != null && (chunk.GetCurrentPlayer().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || action.friendlyFire);
+	    return chunk.GetCurrentPlayer() != null && currentPlayer != null && (chunk.GetCurrentPlayer().GetPlayerTeam() == currentPlayer.GetPlayerTeam() || action.GetFriendlyFire());
     }
     
     

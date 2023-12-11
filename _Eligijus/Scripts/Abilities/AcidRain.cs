@@ -84,7 +84,7 @@ public partial class AcidRain : BaseAction
 				{
 					Player target = tile.GetCurrentPlayer();
 					PoisonDebuff debuff = new PoisonDebuff(2,2);
-					target.debuffManager.AddDebuff(debuff,player);
+					target.debuffManager.AddDebuff(debuff,_player);
 				}
 			}
 			base.ResolveAbility(chunk);

@@ -24,14 +24,14 @@ public partial class DisarmingSlam : BaseAction
 		base.ResolveAbility(chunk);
 		Player target = chunk.GetCurrentPlayer();
 		SilenceDebuff debuff = new SilenceDebuff();
-		target.debuffManager.AddDebuff(debuff,player);
+		target.debuffManager.AddDebuff(debuff,_player);
 		DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 		GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(chunk));
 		FinishAbility();
 	}
 	private ChunkData TileToDashTo(ChunkData chunk)
 	{
-		Vector2 position = player.GlobalPosition;
+		Vector2 position = _player.GlobalPosition;
 		ChunkData currentPlayerChunk = GameTileMap.Tilemap.GetChunk(position);
 		(int playerX, int playerY) = currentPlayerChunk.GetIndexes();
 		(int chunkX, int chunkY) = chunk.GetIndexes();

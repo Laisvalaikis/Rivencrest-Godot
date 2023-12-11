@@ -20,14 +20,14 @@ public partial class FlameKick : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         if (!IsAllegianceSame(chunk))
         {
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
 
         AflameDebuff debuff = new AflameDebuff();
-        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
         sideVector = (sideVector.x, sideVector.y);

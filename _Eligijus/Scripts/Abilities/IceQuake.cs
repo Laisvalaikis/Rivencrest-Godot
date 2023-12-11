@@ -91,13 +91,13 @@ public partial class IceQuake : BaseAction
                 if (target.debuffManager.ContainsDebuff(typeof(SlowDebuff)))
                 {
                     RootDebuff rootDebuff = new RootDebuff();
-                    target.debuffManager.AddDebuff(rootDebuff,player);
+                    target.debuffManager.AddDebuff(rootDebuff,_player);
                     bonusDamage += rootDamage;
                 }
             }
             DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
             SlowDebuff debuff = new SlowDebuff(2, 2);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             FinishAbility();
         }
     }

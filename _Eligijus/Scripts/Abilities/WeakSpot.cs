@@ -26,7 +26,7 @@ public partial class WeakSpot : BaseAction
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             WeakSpotDebuff debuff = new WeakSpotDebuff(2);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
             FinishAbility();
         }
     }

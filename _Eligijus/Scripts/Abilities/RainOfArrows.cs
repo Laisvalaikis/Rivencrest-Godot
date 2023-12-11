@@ -31,9 +31,9 @@ public partial class RainOfArrows : BaseAction
         {
             PackedScene spawnCharacter = (PackedScene)arrowTilePrefab;
             Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
-            player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
+            _player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
             spawnedArrowTile.SetupObject(arrowTileData);
-            spawnedArrowTile.AddPlayerForObjectAbilities(player);
+            spawnedArrowTile.AddPlayerForObjectAbilities(_player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
         }
         FinishAbility();
@@ -65,7 +65,7 @@ public partial class RainOfArrows : BaseAction
     
     public override void ClearGrid()
     {
-        ChunkData playerChunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData playerChunkData = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         if (playerChunkData is not null)
         {
             DisableDamagePreview(playerChunkData);

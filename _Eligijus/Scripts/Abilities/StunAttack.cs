@@ -31,7 +31,7 @@ public partial class StunAttack : BaseAction
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             DealDamage(chunk, spellDamage);
             RootDebuff debuff = new RootDebuff(1);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
             FinishAbility();
         }
     }

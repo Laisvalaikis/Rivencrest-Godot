@@ -42,7 +42,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
                 ChunkData damageChunk = _chunkArray[index, i];
                 DealDamage(damageChunk, spellDamage);
                 PoisonDebuff debuff = new PoisonDebuff(2,2);
-                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             }
             GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(index));
             FinishAbility();
@@ -79,8 +79,8 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
     {
         if (hoveredChunk == previousChunk) return;
 
-        ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
-        PlayerInformation currentPlayerInfo = player.objectInformation.GetPlayerInformation();
+        ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
+        PlayerInformation currentPlayerInfo = _player.objectInformation.GetPlayerInformation();
         if (_globalIndex != -1)
         {
             for (int i = 0; i < _chunkArray.GetLength(1); i++)
@@ -128,7 +128,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
     
     private ChunkData TileToDashTo(int index)
     {
-        Vector2 playerPosition = player.GlobalPosition;
+        Vector2 playerPosition = _player.GlobalPosition;
         ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(playerPosition);
         ChunkData tileToDashTo;
         (int x, int y) = playerChunk.GetIndexes();
@@ -172,7 +172,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
     }
     public override void CreateAvailableChunkList(int radius)
     {
-        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
 

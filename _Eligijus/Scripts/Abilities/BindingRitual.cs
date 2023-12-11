@@ -29,7 +29,7 @@ public partial class BindingRitual : BaseAction
                  {
                      DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
                      SlowDebuff debuff = new SlowDebuff(1, 2);
-                     tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+                     tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
                  }
              }
              base.ResolveAbility(chunk);
@@ -71,7 +71,7 @@ public partial class BindingRitual : BaseAction
 
     public override void CreateAvailableChunkList(int attackRange)
     {
-        ChunkData centerChunk =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData centerChunk =  GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
         ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 

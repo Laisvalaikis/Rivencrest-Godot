@@ -53,7 +53,7 @@ public partial class WallEntrap : BaseAction
         {
             foreach (PlayerInformation x in _playerInformations)
             {
-                x.DealDamage(1, player);
+                x.DealDamage(1, _player);
             }
             
         }
@@ -114,12 +114,12 @@ public partial class WallEntrap : BaseAction
                 ChunkData chunkData = chunkDataArray[x.Item1, x.Item2];
                 PackedScene spawnResource = (PackedScene)wallPrefab;
                 wall = spawnResource.Instantiate<Object>();
-                player.GetTree().Root.CallDeferred("add_child", wall);
+                _player.GetTree().Root.CallDeferred("add_child", wall);
                 wall.SetupObject(wallRockData);
                 GameTileMap.Tilemap.SpawnObject(wall, chunkData);
                 if (chunkDataArray[x.Item1,x.Item2].IsFogOnTile())
                 {
-                    GameTileMap.Tilemap.RemoveFog(chunkDataArray[x.Item1, x.Item2], player);
+                    GameTileMap.Tilemap.RemoveFog(chunkDataArray[x.Item1, x.Item2], _player);
                 }
                 
                 if (chunk.CharacterIsOnTile() && !_playerInformations.Contains(chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation()))

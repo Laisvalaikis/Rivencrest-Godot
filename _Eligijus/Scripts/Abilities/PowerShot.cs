@@ -67,7 +67,7 @@ public partial class PowerShot : BaseAction
         {
            // Player target = chunk.GetCurrentPlayer();
             SlowDebuff debuff = new SlowDebuff(1,1);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
         }
         FinishAbility();
     }

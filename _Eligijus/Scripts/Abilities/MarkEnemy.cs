@@ -27,7 +27,7 @@ public partial class MarkEnemy : BaseAction
             base.ResolveAbility(chunk);
             Player target = chunk.GetCurrentPlayer();
             MarkDebuff debuff = new MarkDebuff();
-            target.debuffManager.AddDebuff(debuff,player);
+            target.debuffManager.AddDebuff(debuff,_player);
             FinishAbility();
         }
         // chunk.GetCurrentPlayerInformation().Marker = gameObject;

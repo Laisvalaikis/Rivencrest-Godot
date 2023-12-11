@@ -30,9 +30,9 @@ public partial class CreateFog : BaseAction
 		base.ResolveAbility(chunk);
 		PackedScene spawnCharacter = (PackedScene)fogPrefab;
 		Object spawnedFog = spawnCharacter.Instantiate<Object>();
-		player.GetTree().Root.CallDeferred("add_child", spawnedFog);
+		_player.GetTree().Root.CallDeferred("add_child", spawnedFog);
 		spawnedFog.SetupObject(fogPrefabData);
-		spawnedFog.AddPlayerForObjectAbilities(player);
+		spawnedFog.AddPlayerForObjectAbilities(_player);
 		GameTileMap.Tilemap.SpawnObject(spawnedFog, chunk);
 		FinishAbility();
 	}

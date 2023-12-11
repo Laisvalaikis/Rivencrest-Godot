@@ -5,40 +5,13 @@ using Godot.Collections;
 
 public abstract partial class BaseAction: TileAction
 	{
-		protected Player player;
-		[Export] protected bool laserGrid = false;
 		[Export] protected int turnBeforeStartLifetime = 1;
 		[Export] protected int turnAfterResolveLifetime = 1;
 		[Export] protected int abilityPoints = 1;
 		[Export]
-		public int attackRange = 1;
-		[Export]
-		public int minAttackDamage = 0;
-		[Export]
-		public int maxAttackDamage = 0;
-		[Export]
 		public bool isAbilitySlow = true;
-		[Export]
-		public bool friendlyFire = false;
 		[Export] 
 		protected int abilityCooldown = 1;
-		[Export]
-		protected Color abilityHighlight = new Color("#B25E55");
-		[Export]
-		protected Color abilityHighlightHover = new Color("#9E4A41");
-		[Export]
-		protected Color abilityHoverCharacter = new Color("#FFE300");
-		[Export]
-		protected Color characterOnGrid = new Color("#FF5947");
-		// Other Team
-		[Export]
-		protected Color otherTeamAbilityHighlight = new Color("#5d5d5d");
-		[Export]
-		protected Color otherTeamHighlightHover = new Color("#3a3a3a");
-		[Export]
-		protected Color otherTeamHoverCharacter = new Color("#CB36D6");
-		[Export]
-		protected Color otherTeamCharacterOnGrid = new Color("#141414");
 		//
 		[Export]
 		protected Array<AbilityBlessing> _abilityBlessingsRef;
@@ -59,7 +32,7 @@ public abstract partial class BaseAction: TileAction
 			
 		}
 
-		public BaseAction(BaseAction action)
+		public BaseAction(BaseAction action) : base(action)
 		{
 			laserGrid = action.laserGrid;
 			turnBeforeStartLifetime = action.turnBeforeStartLifetime;
@@ -90,7 +63,7 @@ public abstract partial class BaseAction: TileAction
 
 		public void SetupPlayerAbility(Player player, int abilityIndex)
 		{
-			this.player = player;
+			_player = player;
 			if (player.unlockedBlessingList.Count > abilityIndex)
 			{
 				unlockedBlessingsList = player.unlockedBlessingList[abilityIndex].UnlockedBlessingsList;
@@ -106,7 +79,7 @@ public abstract partial class BaseAction: TileAction
 
 		public void SetPlayer(Player player)
 		{
-			this.player = player;
+			_player = player;
 		}
 
 		public void SetupObjectAbility(Object player)
@@ -350,7 +323,7 @@ public abstract partial class BaseAction: TileAction
 
 		public Player GetPlayer()
 		{
-			return player;
+			return _player;
 		}
 		
 		public virtual void ResolveAbility(ChunkData chunk)
@@ -359,11 +332,11 @@ public abstract partial class BaseAction: TileAction
 			GD.PushWarning("PlaySound");
 			ClearGrid();
 			UsedAbility usedAbility = new UsedAbility(this, chunk);
-			if (player is not null)
+			if (_player is not null)
 			{
 				if (isAbilitySlow)
 				{
-					player.SetMovementPoints(0);
+					_player.SetMovementPoints(0);
 				}
 				_turnManager.AddUsedAbilityBeforeStartTurn(usedAbility, turnBeforeStartLifetime);
 				_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime);
@@ -503,15 +476,15 @@ public abstract partial class BaseAction: TileAction
 
 		protected virtual bool CanUseAttack()
 		{
-			if (player is not null && player.debuffManager is not null && player.debuffManager.CanUseAttack())
+			if (_player is not null && _player.debuffManager is not null && _player.debuffManager.CanUseAttack())
 			{
 				return true;
 			}
-			else if(player is not null && player.debuffManager is null)
+			else if(_player is not null && _player.debuffManager is null)
 			{
 				return true;
 			}
-			else if (player is null)
+			else if (_player is null)
 			{
 				return true;
 			}
@@ -525,8 +498,8 @@ public abstract partial class BaseAction: TileAction
 				if (chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 				{
 					Player attackedPlayer = chunkData.GetCurrentPlayer();
-					attackedPlayer.objectInformation.GetObjectInformation().DealDamage(damage, player);
-					ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+					attackedPlayer.objectInformation.GetObjectInformation().DealDamage(damage, _player);
+					ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 					if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
 					{
 						attackedPlayer.AddVisionTile(enemyChunkData);
@@ -535,7 +508,7 @@ public abstract partial class BaseAction: TileAction
 				else if (chunkData.ObjectIsOnTile())
 				{
 					Object attackedObject = chunkData.GetCurrentObject();
-					attackedObject.objectInformation.GetObjectInformation().DealDamage(damage,player);
+					attackedObject.objectInformation.GetObjectInformation().DealDamage(damage,_player);
 				}
 			}
 		}

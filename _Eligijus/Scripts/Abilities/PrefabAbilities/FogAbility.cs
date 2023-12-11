@@ -36,7 +36,7 @@ public partial class FogAbility : BaseAction
                 _debuffManagers = new List<DebuffManager>();
             }
             _debuffManagers.Add(chunk.GetCurrentPlayer().debuffManager);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(_stopAttackDebuf.CreateNewInstance(), player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(_stopAttackDebuf.CreateNewInstance(), _player);
         }
     }
 

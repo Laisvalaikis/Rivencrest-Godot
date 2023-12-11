@@ -52,10 +52,10 @@ public partial class Execute : BaseAction
         if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
-            chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(minAttackDamage,player);
+            chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(minAttackDamage,_player);
             if(chunk.GetCurrentPlayer() == null)
             {
-                player.objectInformation.GetPlayerInformation().Heal(5);
+                _player.objectInformation.GetPlayerInformation().Heal(5);
                 GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
             }
             base.ResolveAbility(chunk);
@@ -65,7 +65,7 @@ public partial class Execute : BaseAction
 
     public override void CreateAvailableChunkList(int range)
     {
-        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
         ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 

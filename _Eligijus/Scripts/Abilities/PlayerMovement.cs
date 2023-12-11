@@ -47,7 +47,7 @@ public partial class PlayerMovement : BaseAction
 		if (hoveredChunkHighlight.isHighlighted)
 		{
 			ClearArrowPath();
-			_path = AStarSearch(GameTileMap.Tilemap.GetChunk(player.Position), hoveredChunk);
+			_path = AStarSearch(GameTileMap.Tilemap.GetChunk(_player.Position), hoveredChunk);
 			if (_path != null)
 			{
 				SetTileArrow(_path,0,_path.Count-1);
@@ -72,7 +72,7 @@ public partial class PlayerMovement : BaseAction
 		{
 			chunkData.GetTileHighlight().EnableTile(true);
 			chunkData.GetTileHighlight().ActivateColorGridTile(true);
-			if (_turnManager.GetCurrentTeamIndex() == player.GetPlayerTeam())
+			if (_turnManager.GetCurrentTeamIndex() == _player.GetPlayerTeam())
 			{
 				chunkData.GetTileHighlight().SetHighlightColor(abilityHighlight);
 			}
@@ -92,7 +92,7 @@ public partial class PlayerMovement : BaseAction
 			if (!GameTileMap.Tilemap.CharacterIsOnTile(chunk))
 			{
 				GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
-				player.AddMovementPoints(movementRange * (-1));
+				_player.AddMovementPoints(movementRange * (-1));
 			}
 
 			base.ResolveAbility(chunk);
@@ -123,7 +123,7 @@ public partial class PlayerMovement : BaseAction
 
 	public override bool AbilityCanBeActivated()
 	{
-		if (abilityCooldown <= cooldownCount || player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
+		if (abilityCooldown <= cooldownCount || _player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
 		{
 			cooldownCount = 0;
 			return true;
@@ -134,7 +134,7 @@ public partial class PlayerMovement : BaseAction
 	
 	public override bool CheckIfAbilityIsActive()
 	{
-		if (player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
+		if (_player.GetMovementPoints() != 0 && abilityCooldown >= cooldownCount)
 		{
 			return true;
 		}
@@ -149,7 +149,7 @@ public partial class PlayerMovement : BaseAction
 
 	public override void CreateGrid()
 	{
-		CreateAvailableChunkList(player.GetMovementPoints());
+		CreateAvailableChunkList(_player.GetMovementPoints());
 		HighlightAllGridTiles();
 	}
 	

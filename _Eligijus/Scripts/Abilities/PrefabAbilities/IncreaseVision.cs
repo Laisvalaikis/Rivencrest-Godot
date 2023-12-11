@@ -36,7 +36,7 @@ public partial class IncreaseVision : BaseAction
         base.StartAction();
         ChunkData startChunk = GameTileMap.Tilemap.GetChunk(_object.GlobalPosition);
         _savedViewTiles = GenerateVisionPattern(startChunk, vision);
-        GameTileMap.Tilemap.UpdateFog(this, player);
+        GameTileMap.Tilemap.UpdateFog(this, _player);
     }
 
     public override bool CanTileBeClicked(ChunkData chunkData)
@@ -60,7 +60,7 @@ public partial class IncreaseVision : BaseAction
         {
             for (int i = 0; i < _savedViewTiles.Count; i++)
             {
-                GameTileMap.Tilemap.AddFog(_savedViewTiles[i], player);
+                GameTileMap.Tilemap.AddFog(_savedViewTiles[i], _player);
             }
         }
     }

@@ -64,9 +64,9 @@ public partial class BlockAbility : BaseAction
             base.ResolveAbility(chunk);
             if (chunk.GetCurrentPlayer() != null)
             {
-                BlockedBuff buff = new BlockedBuff(player);
+                BlockedBuff buff = new BlockedBuff(_player);
                 BlockerDebuff debuff = new BlockerDebuff();
-                player.debuffManager.AddDebuff(debuff, player);
+                _player.debuffManager.AddDebuff(debuff, _player);
                 chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
             }
             FinishAbility();

@@ -30,7 +30,7 @@ public partial class WallSmash : BaseAction
         {
             DealRandomDamageToTarget(chunk, minAttackDamage-2, maxAttackDamage-2);
             SlowDebuff debuff = new SlowDebuff(1,1);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
         }
         else if(chunk.GetCurrentPlayer() != null && chunk.GetCharacterType() != typeof(Player))
         {
@@ -41,7 +41,7 @@ public partial class WallSmash : BaseAction
     private void DestroyObject(ChunkData chunkData)
     {
         (int x, int y) = chunkData.GetIndexes();
-        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         Side side = ChunkSideByCharacter(current, chunkData);
         (int x, int y) sideVector = GetSideVector(side);
         (int x, int y) coordinates = (x + sideVector.x, y + sideVector.y);
@@ -55,6 +55,6 @@ public partial class WallSmash : BaseAction
                 
         }
         
-        chunkData.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(damageToWall, player);
+        chunkData.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(damageToWall, _player);
     }
 }

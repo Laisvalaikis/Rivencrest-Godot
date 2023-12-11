@@ -91,14 +91,14 @@ public partial class ChainHook : BaseAction
 
 	private int GetMultiplier(Vector2 position)
 	{
-		Vector2 vector2 = position - player.GlobalPosition;
+		Vector2 vector2 = position - _player.GlobalPosition;
 		int multiplier = Mathf.Abs((int)vector2.X + (int)vector2.Y) - 1;
 		return multiplier/100;
 	}
 
 	private ChunkData TileToPullTo(ChunkData chunk)
 	{
-		Vector2 position = player.GlobalPosition;
+		Vector2 position = _player.GlobalPosition;
 		ChunkData currentPlayerChunk = GameTileMap.Tilemap.GetChunk(position);
 		(int chunkX, int chunkY) = chunk.GetIndexes();
 		(int playerX, int playerY) = currentPlayerChunk.GetIndexes();

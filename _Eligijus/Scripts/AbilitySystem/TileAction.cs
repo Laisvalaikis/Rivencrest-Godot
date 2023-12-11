@@ -23,6 +23,29 @@ public partial class TileAction : Resource
     protected List<ChunkData> _visionChunkList;
     protected TurnManager _turnManager;
     protected Player _player;
+
+    public TileAction()
+    {
+        
+    }
+
+    public TileAction(TileAction action)
+    {
+        minAttackDamage = action.minAttackDamage;
+        maxAttackDamage = action.maxAttackDamage;
+        attackRange = action.attackRange;
+        laserGrid = action.laserGrid;
+        friendlyFire = action.friendlyFire;
+        abilityHighlight = action.abilityHighlight;
+        abilityHighlightHover = action.abilityHighlightHover;
+        abilityHoverCharacter = action.abilityHoverCharacter;
+        characterOnGrid = action.characterOnGrid;
+        otherTeamAbilityHighlight = action.otherTeamAbilityHighlight;
+        otherTeamHighlightHover = action.otherTeamHighlightHover;
+        otherTeamHoverCharacter = action.otherTeamHoverCharacter;
+        otherTeamCharacterOnGrid = action.otherTeamCharacterOnGrid;
+    }
+
     protected virtual void HighlightGridTile(ChunkData chunkData)
     {
         SetNonHoveredAttackColor(chunkData);
@@ -383,7 +406,22 @@ public partial class TileAction : Resource
             _chunkList.Clear();
         }
     }
-    
+
+    public void IncreaseRange(int range)
+    {
+        attackRange += range;
+    }
+
+    public bool GetFriendlyFire()
+    {
+        return friendlyFire;
+    }
+
+    public int GetRange()
+    {
+        return attackRange;
+    }
+
     protected virtual bool CheckAbilityBounds(ChunkData chunkData)
     {
         return false;

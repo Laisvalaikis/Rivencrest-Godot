@@ -44,12 +44,12 @@ public partial class SilenceBeam : BaseAction
 				{
 					DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
 					SilenceDebuff debuff = new SilenceDebuff(2);
-					chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
+					chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
 					PackedScene spawnCharacter = (PackedScene)PinkTilePrefab;
 					Object spawnedPinkTile = spawnCharacter.Instantiate<Object>();
-					player.GetTree().Root.CallDeferred("add_child", spawnedPinkTile);
+					_player.GetTree().Root.CallDeferred("add_child", spawnedPinkTile);
 					spawnedPinkTile.SetupObject(PinkTileData);
-					spawnedPinkTile.AddPlayerForObjectAbilities(player);
+					spawnedPinkTile.AddPlayerForObjectAbilities(_player);
 					GameTileMap.Tilemap.SpawnObject(spawnedPinkTile, damageChunk);
 					PinkTileObjects.Add(spawnedPinkTile);
 				}
@@ -125,7 +125,7 @@ public partial class SilenceBeam : BaseAction
 
 	public override void CreateAvailableChunkList(int range)
 	{
-		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 		(int centerX, int centerY) = centerChunk.GetIndexes();
 		_chunkList.Clear();
 		_chunkArray = new ChunkData[4,range];

@@ -127,7 +127,7 @@ public partial class Player : Object
 	}
 	public override void OnTurnStart()
 	{
-		movementPoints = actionManager.ReturnBaseAbilities()[0].Action.attackRange;
+		movementPoints = actionManager.ReturnBaseAbilities()[0].Action.GetRange();
 		previousMovementPoints = movementPoints;
 		actionManager.OnTurnStart();
 		Array<PlayerBlessing> playerBlessings = objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().GetAllPlayerBlessings();

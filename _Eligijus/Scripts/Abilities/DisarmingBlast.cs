@@ -24,7 +24,7 @@ public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal
             UpdateAbilityButton();
             Player target = chunk.GetCurrentPlayer();
             SilenceDebuff debuff = new SilenceDebuff();
-            target.debuffManager.AddDebuff(debuff,player);
+            target.debuffManager.AddDebuff(debuff,_player);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
         FinishAbility();

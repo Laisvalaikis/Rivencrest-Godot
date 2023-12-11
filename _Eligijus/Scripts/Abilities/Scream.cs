@@ -21,7 +21,7 @@ public partial class Scream : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
@@ -32,7 +32,7 @@ public partial class Scream : BaseAction
             //apply silenced
             Player target = chunk.GetCurrentPlayer();
             SilenceDebuff debuff = new SilenceDebuff(1);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
             // target.debuffs.SetTurnCounterFromThisTurn(1);
             // target.debuffs.SilencePlayer();
         }

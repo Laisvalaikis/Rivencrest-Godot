@@ -53,7 +53,7 @@ public partial class SwordPush : BaseAction
                 int damage = centerDamage;
                 DealDamage(_attackTiles[i], damage);
                 SilenceDebuff debuff = new SilenceDebuff(1);
-                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
                 if (_adjacent != null)
                 {
                     _side = ChunkSideByCharacter(chunk, _adjacent);
@@ -129,7 +129,7 @@ public partial class SwordPush : BaseAction
     public override void CreateAvailableChunkList(int attackRange)
     {
         base.CreateAvailableChunkList(base.attackRange);
-        _chunkList.Add(GameTileMap.Tilemap.GetChunk(player.GlobalPosition));
+        _chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
     
     public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)

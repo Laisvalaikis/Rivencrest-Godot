@@ -30,6 +30,6 @@ public partial class RangeIncrease : AbilityBlessing
     public override void OnTurnStart(BaseAction baseAction)
     {
         base.OnTurnStart(baseAction);
-        baseAction.attackRange += increasRange;
+        baseAction.IncreaseRange(increasRange);
     }
 }

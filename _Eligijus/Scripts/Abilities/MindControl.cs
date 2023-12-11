@@ -25,7 +25,7 @@ public partial class MindControl : BaseAction
             base.ResolveAbility(chunk);
             SilenceDebuff debuff = new SilenceDebuff(2);
             _target = chunk.GetCurrentPlayer();
-            _target.debuffManager.AddDebuff(debuff,player);
+            _target.debuffManager.AddDebuff(debuff,_player);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 
             FinishAbility();

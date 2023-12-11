@@ -40,9 +40,9 @@ public partial class CreateWhiteField : BaseAction
         {
             PackedScene spawnCharacter = (PackedScene)whiteFieldPrefab;
             Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
-            player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
+            _player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
             spawnedArrowTile.SetupObject(whiteFieldData);
-            spawnedArrowTile.AddPlayerForObjectAbilities(player);
+            spawnedArrowTile.AddPlayerForObjectAbilities(_player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
         }
         base.ResolveAbility(chunk);

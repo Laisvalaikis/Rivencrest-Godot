@@ -20,7 +20,7 @@ public partial class ShadowBlink : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        ChunkData current = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);

@@ -26,7 +26,7 @@ public partial class ThrowBehind : BaseAction
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
-            ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+            ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
             _side = ChunkSideByCharacter(playerChunk, chunk);
             MoveCharacter(playerChunk, chunk);
             if (!IsAllegianceSame(chunk))

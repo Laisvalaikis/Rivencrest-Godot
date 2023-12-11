@@ -42,7 +42,7 @@ public partial class GroundSlam : BaseAction
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
-        if(isAbilityActive && player.objectInformation.GetPlayerInformation().GetHealth() > 0)
+        if(isAbilityActive && _player.objectInformation.GetPlayerInformation().GetHealth() > 0)
         {
             DealDamageToAdjacent();
         }
@@ -91,7 +91,7 @@ public partial class GroundSlam : BaseAction
             foreach (var chunk in _chunkList)
             {
                 SetHoveredAttackColor(chunk);
-                if (chunk.CharacterIsOnTile() && chunk.GetCurrentPlayer() != player)
+                if (chunk.CharacterIsOnTile() && chunk.GetCurrentPlayer() != _player)
                 {
                     EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
                 }

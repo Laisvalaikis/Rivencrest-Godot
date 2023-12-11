@@ -33,7 +33,7 @@ public partial class SummonBear : BaseAction
 		if (_chunkList.Contains(chunk))
 		{
 			UpdateAbilityButton();
-			int teamIndex = player.GetPlayerTeam();
+			int teamIndex = _player.GetPlayerTeam();
 			base.ResolveAbility(chunk);
 			PackedScene spawnResource = (PackedScene)bearResource.prefab;
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
@@ -47,10 +47,10 @@ public partial class SummonBear : BaseAction
 			GenerateBlessingsLockUnlock(allAbilities, bearResource);
 			GenerateCharacterBlessingsLockUnlock(bearResource);
 			spawnedCharacter.SetPlayerTeam(teamIndex);
-			player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearResource.prefab);
-			player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			_player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearResource.prefab);
+			_player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
-			player.GetPlayerTeams().portraitTeamBox.ModifyList();
+			_player.GetPlayerTeams().portraitTeamBox.ModifyList();
 			FinishAbility();
 		}
 	}

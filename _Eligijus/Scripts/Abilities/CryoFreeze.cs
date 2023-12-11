@@ -20,7 +20,7 @@ public partial class CryoFreeze : BaseAction
 
 	public override void CreateAvailableChunkList(int attackRange)
 	{
-		_chunkList.Add(GameTileMap.Tilemap.GetChunk(player.GlobalPosition));
+		_chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
 	}
 	protected override void TryAddTile(ChunkData chunk)
 	{
@@ -33,9 +33,9 @@ public partial class CryoFreeze : BaseAction
 	public override void OnTurnStart(ChunkData chunkData)
 	{
 		base.OnTurnStart(chunkData);
-		if ( (player.objectInformation.GetPlayerInformation().GetHealth() > 0))
+		if ( (_player.objectInformation.GetPlayerInformation().GetHealth() > 0))
 		{
-			ChunkData temp = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+			ChunkData temp = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 			Thread thread = new Thread(() =>
 			{
 				// Thread.Sleep(40); // for animation

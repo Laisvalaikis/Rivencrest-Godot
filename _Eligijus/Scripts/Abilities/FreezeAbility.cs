@@ -19,7 +19,7 @@ public partial class FreezeAbility : BaseAction
 	
 	public override void CreateAvailableChunkList(int range)
 	{
-		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 		_chunkList.Clear();
 		(int centerX, int centerY) = centerChunk.GetIndexes();
 		ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
@@ -75,9 +75,9 @@ public partial class FreezeAbility : BaseAction
 		{
 			SlowDebuff debuff = new SlowDebuff(1, 1);
 			Player target = chunkData.GetCurrentPlayer();
-			if (target != null && chunkData!=GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+			if (target != null && chunkData!=GameTileMap.Tilemap.GetChunk(_player.GlobalPosition))
 			{
-				target.debuffManager.AddDebuff(debuff,player);
+				target.debuffManager.AddDebuff(debuff,_player);
 				DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
 			}
 		}		

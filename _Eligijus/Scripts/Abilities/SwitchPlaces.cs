@@ -24,11 +24,11 @@ public partial class SwitchPlaces : BaseAction
         if (chunk.CharacterIsOnTile())
         {
             UpdateAbilityButton();
-            ChunkData chunkData = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+            ChunkData chunkData = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
             _secondSelected = chunk;
             SwitchCharacters(chunkData, _secondSelected);
             SlowDebuff debuff = new SlowDebuff(1,1);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             FinishAbility();
             base.ResolveAbility(chunk);
             _secondSelected = null;

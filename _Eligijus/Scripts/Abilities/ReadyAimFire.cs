@@ -59,7 +59,7 @@ public partial class ReadyAimFire : BaseAction
     }
     public override void CreateAvailableChunkList(int range)
     {
-        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
         int count = attackRange; // -2

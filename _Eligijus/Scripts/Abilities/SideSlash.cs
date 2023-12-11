@@ -151,7 +151,7 @@ public partial class SideSlash : BaseAction
 
     public override void CreateAvailableChunkList(int attackRange)
     {
-        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
 

@@ -30,7 +30,7 @@ public partial class Blaze : BaseAction //removed ability
             {
                 Player target = chunk.GetCurrentPlayer();
                 AflameDebuff debuff = new AflameDebuff();
-                target.debuffManager.AddDebuff(debuff, player);
+                target.debuffManager.AddDebuff(debuff, _player);
                 DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
             }
         }

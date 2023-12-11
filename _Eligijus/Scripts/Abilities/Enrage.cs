@@ -20,7 +20,7 @@ public partial class Enrage : BaseAction
 	{
 		HighlightTile highlightTile = chunk.GetTileHighlight();
 		highlightTile.DisableDamageText();
-		GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetTileHighlight().DisableDamageText();
+		GameTileMap.Tilemap.GetChunk(_player.GlobalPosition).GetTileHighlight().DisableDamageText();
 	}
 
 	public override void Start()
@@ -32,7 +32,7 @@ public partial class Enrage : BaseAction
 	public override void EnableDamagePreview(ChunkData chunk, string text = null)
 	{
 		HighlightTile highlightTile = chunk.GetTileHighlight();
-		HighlightTile gamerHighlight = GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetTileHighlight();
+		HighlightTile gamerHighlight = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition).GetTileHighlight();
 		if (customText != null)
 		{
 			highlightTile.SetDamageText(customText);
@@ -77,7 +77,7 @@ public partial class Enrage : BaseAction
 			UpdateAbilityButton();
 			Player targetPlayer = chunk.GetCurrentPlayer();
 			targetPlayer.AddMovementPoints(1);
-			player.AddMovementPoints(1);
+			_player.AddMovementPoints(1);
 		}
 
 		FinishAbility();

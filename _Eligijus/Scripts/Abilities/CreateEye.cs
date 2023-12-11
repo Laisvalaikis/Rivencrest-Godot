@@ -34,9 +34,9 @@ public partial class CreateEye : BaseAction
 			UpdateAbilityButton();
 			PackedScene spawnCharacter = (PackedScene)eyePrefab;
 			spawnedEye = spawnCharacter.Instantiate<Object>();
-			player.GetTree().Root.CallDeferred("add_child", spawnedEye);
+			_player.GetTree().Root.CallDeferred("add_child", spawnedEye);
 			spawnedEye.SetupObject(eyeData);
-			spawnedEye.AddPlayerForObjectAbilities(player);
+			spawnedEye.AddPlayerForObjectAbilities(_player);
 			GameTileMap.Tilemap.SpawnObject(spawnedEye, chunk);
 			spawnedEye.StartActions();
 			base.ResolveAbility(chunk); // sukuria, bet neatnaujina 
@@ -52,7 +52,7 @@ public partial class CreateEye : BaseAction
 
 	public override void CreateAvailableChunkList(int range)
 	{
-		(int x, int y) coordinates = GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetIndexes();
+		(int x, int y) coordinates = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition).GetIndexes();
 		ChunkData[,] chunkDataArray = GameTileMap.Tilemap.GetChunksArray();
 		_chunkList.Clear();
 		

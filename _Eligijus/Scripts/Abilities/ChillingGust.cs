@@ -45,7 +45,7 @@ public partial class ChillingGust : BaseAction
             {
                 DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
                 SlowDebuff debuff = new SlowDebuff(1,1);
-                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             }
             FinishAbility();
     }
@@ -79,7 +79,7 @@ public partial class ChillingGust : BaseAction
             SetHoveredAttackColor(hoveredChunk);
             if (hoveredChunk.GetCurrentPlayer()!=null)
             {
-                if (hoveredChunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam())
+                if (hoveredChunk.GetCurrentPlayer().GetPlayerTeam() == _player.GetPlayerTeam())
                 {
                     customText = "PROTECT";
                 }
