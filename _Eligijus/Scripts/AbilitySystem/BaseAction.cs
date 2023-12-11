@@ -21,7 +21,6 @@ public abstract partial class BaseAction: TileAction
 		protected string customText = null;
 		protected int cooldownCount = 0;
 		protected SelectActionButton _selectActionButton;
-		protected TurnManager _turnManager;
 		private bool firstTimeUsage = false;
 		protected ObjectData _objectData;
 		protected Object _object;
