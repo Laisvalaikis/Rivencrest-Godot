@@ -470,26 +470,6 @@ public abstract partial class BaseAction: TileAction
 			GameTileMap.Tilemap.DeselectCurrentCharacter();
 		}
 		
-		protected static bool CheckIfSpecificInformationType(ChunkData chunk, Type type)
-		{
-			return chunk.GetCharacterType() == type;
-		}
-
-		public virtual bool IsAllegianceSame(ChunkData chunk)
-		{
-			return chunk.CharacterIsOnTile() && player != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam();
-		}
-		
-		public virtual bool IsAllegianceSame(ChunkData chunk, ChunkData seconChunck)
-		{
-			return chunk.CharacterIsOnTile() && seconChunck.CharacterIsOnTile() && chunk.GetCurrentPlayer().GetPlayerTeam() == seconChunck.GetCurrentPlayer().GetPlayerTeam();
-		}
-		
-		public virtual bool IsAllegianceSameForBuffs(ChunkData chunk)
-		{
-			return chunk == null || (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == player.GetPlayerTeam() && !friendlyFire);
-		}
-
 		private void DodgeActivation(ref int damage)
 		{
 			int dodgeNumber = _random.Next(0, 100);
