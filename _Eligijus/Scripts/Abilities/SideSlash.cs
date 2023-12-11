@@ -66,7 +66,7 @@ public partial class SideSlash : BaseAction
                     if (chunkToHighLight!=null && chunkToHighLight.GetCurrentPlayer()!=null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
-                        EnableDamagePreview(chunkToHighLight);
+                        EnableDamagePreview(chunkToHighLight, minAttackDamage, maxAttackDamage);
                     }
                 }
             }

@@ -56,7 +56,7 @@ public partial class RainOfArrows : BaseAction
             foreach (ChunkData chunk in damageList)
             {
                 SetHoveredAttackColor(chunk);
-                EnableDamagePreview(chunk);
+                EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
                 
             }
         }

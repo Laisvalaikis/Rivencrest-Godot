@@ -37,7 +37,7 @@ public partial class Execute : BaseAction
             if (CanTileBeClicked(hoveredChunk))
             {
                 _playerInformation = hoveredChunk.GetCurrentPlayer().objectInformation.GetPlayerInformation();
-                EnableDamagePreview(hoveredChunk);
+                EnableDamagePreview(hoveredChunk, minAttackDamage, maxAttackDamage);
             }
             SetHoveredAttackColor(hoveredChunk);
         }

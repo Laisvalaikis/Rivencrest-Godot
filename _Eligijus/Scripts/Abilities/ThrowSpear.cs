@@ -134,7 +134,7 @@ public partial class ThrowSpear : BaseAction
 						SetHoveredAttackColor(chunkToHighLight);
 						if (CanTileBeClicked(chunkToHighLight))
 						{
-							EnableDamagePreview(chunkToHighLight);
+							EnableDamagePreview(chunkToHighLight, minAttackDamage, maxAttackDamage);
 						}
 					}
 				}

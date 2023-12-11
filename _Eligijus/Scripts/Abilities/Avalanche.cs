@@ -43,7 +43,7 @@ public partial class Avalanche : BaseAction
                     if (CanTileBeClicked(chunk))
                     {
                         SetHoveredAttackColor(chunk);
-                        EnableDamagePreview(chunk);
+                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
                     }
                 }
             }

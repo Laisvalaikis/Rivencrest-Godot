@@ -48,7 +48,7 @@ public partial class CrowAttack : BaseAction
                     if (CanTileBeClicked(chunk))
                     {
                         SetHoveredAttackColor(chunk);
-                        EnableDamagePreview(chunk);
+                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
                     }
                 }
             }

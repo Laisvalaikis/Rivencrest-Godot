@@ -116,7 +116,7 @@ public partial class SilenceBeam : BaseAction
 					if (chunkToHighLight != null)
 					{
 						SetHoveredAttackColor(chunkToHighLight);
-						EnableDamagePreview(chunkToHighLight);
+						EnableDamagePreview(chunkToHighLight, minAttackDamage, maxAttackDamage);
 					}
 				}
 			}

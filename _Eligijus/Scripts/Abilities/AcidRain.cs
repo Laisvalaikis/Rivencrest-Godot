@@ -48,7 +48,7 @@ public partial class AcidRain : BaseAction
 				{
 					if (CanTileBeClicked(chunk))
 					{
-						EnableDamagePreview(chunk);
+						EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
 						SetHoveredAttackColor(chunk);
 					}
 				}

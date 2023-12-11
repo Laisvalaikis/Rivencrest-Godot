@@ -63,7 +63,7 @@ public partial class FreezeAbility : BaseAction
 				SetHoveredAttackColor(chunk);
 				if (chunk.GetCurrentPlayer() != null)
 				{
-					EnableDamagePreview(chunk);
+					EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
 				}
 			}
 		}

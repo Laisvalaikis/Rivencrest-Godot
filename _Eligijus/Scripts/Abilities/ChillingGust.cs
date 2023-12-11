@@ -83,7 +83,7 @@ public partial class ChillingGust : BaseAction
                 {
                     customText = "PROTECT";
                 }
-                EnableDamagePreview(hoveredChunk);
+                EnableDamagePreview(hoveredChunk, minAttackDamage, maxAttackDamage);
                 customText = null;
             }
         }

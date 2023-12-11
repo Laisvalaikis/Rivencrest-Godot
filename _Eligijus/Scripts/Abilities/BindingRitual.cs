@@ -50,7 +50,7 @@ public partial class BindingRitual : BaseAction
                     SetHoveredAttackColor(chunk);
                     if (CanTileBeClicked(chunk))
                     {
-                        EnableDamagePreview(chunk);
+                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
                     }
                 }
             }

@@ -94,7 +94,7 @@ public partial class GrapplingHook : AbilityBlessing
     private void SetHoveredChunkHighlight(BaseAction baseAction, ChunkData hoveredChunk, PlayerInformation currentPlayerInfo)
     {
         baseAction.SetHoveredAttackColor(hoveredChunk);
-        baseAction.EnableDamagePreview(hoveredChunk);
+        baseAction.EnableDamagePreview(hoveredChunk, baseAction.minAttackDamage, baseAction.maxAttackDamage);
 
         if (currentPlayerInfo != null)
         {

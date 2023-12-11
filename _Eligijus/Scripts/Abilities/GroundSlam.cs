@@ -93,7 +93,7 @@ public partial class GroundSlam : BaseAction
                 SetHoveredAttackColor(chunk);
                 if (chunk.CharacterIsOnTile() && chunk.GetCurrentPlayer() != player)
                 {
-                    EnableDamagePreview(chunk);
+                    EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
                 }
             }
         }
