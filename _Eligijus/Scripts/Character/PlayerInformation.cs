@@ -38,9 +38,6 @@ public partial class PlayerInformation : ObjectInformation
 
 	public override void DealDamage(int damage, Player damageDealer)
 	{
-		if (!haveBarier)
-		{
-
 			if (damage != -1)
 			{
 				if (characterProtected || stasis)
@@ -50,7 +47,6 @@ public partial class PlayerInformation : ObjectInformation
 
 				_health -= damage;
 				damageDealer.objectInformation.GetPlayerInformation().AddDamageXP(damage);
-				PLayerDamaged();
 			}
 
 			if (_health <= 0) // DEATH
@@ -58,25 +54,8 @@ public partial class PlayerInformation : ObjectInformation
 				_health = 0;
 				DeathStart(damageDealer);
 			}
-		}
-		else
-		{
-			haveBarier = false;
-		}
-	}
-
-	public void DealDamageUnnotified(int damage, Player damageDealer)
-	{
-		_health -= damage;
-		damageDealer.objectInformation.GetPlayerInformation().AddDamageXP(damage);
-		if (_health <= 0) // DEATH
-		{
-			_health = 0;
-			DeathStart(damageDealer);
-		}
 	}
 	
-
 	public override void DeathStart(Player damageDealer)
 	{
 		damageDealer.objectInformation.GetPlayerInformation().AddKillXP();

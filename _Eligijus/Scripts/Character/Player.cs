@@ -28,6 +28,49 @@ public partial class Player : Object
 		actionManager.InitializeActionManager();
 		playerActionMiddleware._player = this;
 	}
+	
+	//--------------------Methods that use playerActionMiddleware-----------------------------------------
+	
+	public override void DealDamage(int damage, Player damageDealer)
+	{
+		Player playerToDealDamageTo = this;
+		playerActionMiddleware.DealDamage(ref damage, ref playerToDealDamageTo);
+		playerToDealDamageTo.objectInformation.GetPlayerInformation().DealDamage(damage,damageDealer);
+		playerToDealDamageTo.PlayerWasDamaged();
+	}
+
+	public override void DealDamageUnnotified(int damage, Player damageDealer)
+	{
+		Player playerToDealDamageTo = this;
+		playerActionMiddleware.DealDamage(ref damage, ref playerToDealDamageTo);
+		playerToDealDamageTo.objectInformation.GetPlayerInformation().DealDamage(damage,damageDealer);
+	}
+	
+	public override void AddDebuff(BaseDebuff debuff, Player playerWhoCreatedDebuff)
+	{
+		playerActionMiddleware.AddDebuff(ref debuff, playerWhoCreatedDebuff);
+		if (debuff != null)
+		{
+			debuffManager.AddDebuff(debuff, playerWhoCreatedDebuff);
+		}
+	}
+	
+	public void AddMovementPoints(int points)
+	{
+		playerActionMiddleware.AddMovementPoints(ref points);
+		previousMovementPoints = movementPoints;
+		if (movementPoints + points > 0)
+		{
+			movementPoints += points;
+		}
+		else
+		{
+			movementPoints = 0;
+		}
+	}
+
+	//-----------------------------------------------------------------------------------------------------
+
 
 	public override void Death()
 	{
@@ -84,19 +127,6 @@ public partial class Player : Object
 	public int GetPreviousMovementPoints()
 	{
 		return previousMovementPoints;
-	}
-
-	public void AddMovementPoints(int points)
-	{
-		previousMovementPoints = movementPoints;
-		if (movementPoints + points > 0)
-		{
-			movementPoints += points;
-		}
-		else
-		{
-			movementPoints = 0;
-		}
 	}
 
 	public void SetMovementPoints(int points)

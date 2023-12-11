@@ -10,18 +10,18 @@ public partial class PlayerStun : BaseDebuff
 	{
 			
 	}
-    
+	
 	public PlayerStun(PlayerStun debuff): base(debuff)
 	{
-        
+		
 	}
-    
+	
 	public override BaseDebuff CreateNewInstance(BaseDebuff baseDebuff)
 	{
 		PlayerStun debuff = new PlayerStun((PlayerStun)baseDebuff);
 		return debuff;
 	}
-    
+	
 	public override BaseDebuff CreateNewInstance()
 	{
 		PlayerStun debuff = new PlayerStun(this);
@@ -33,10 +33,11 @@ public partial class PlayerStun : BaseDebuff
 
 	}
 	
-    
+	
 	public override void OnTurnStart()
 	{
 		base.OnTurnStart();
+		//_player.SetMovementPoints(0);
 		_player.SetMovementPoints(0);
 		_player.actionManager.SetAbilityPoints(0);
 		lifetimeCount++;
@@ -44,7 +45,7 @@ public partial class PlayerStun : BaseDebuff
 
 	public override void OnTurnEnd()
 	{
-        base.OnTurnEnd();
+		base.OnTurnEnd();
 	}
 	
 	public override void PlayerWasAttacked()

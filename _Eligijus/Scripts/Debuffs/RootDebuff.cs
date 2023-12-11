@@ -34,6 +34,7 @@ public partial class RootDebuff: BaseDebuff
 	public override void OnTurnStart()
 	{
 		base.OnTurnStart();
+		//_player.SetMovementPoints(0);
 		_player.SetMovementPoints(0);
 		lifetimeCount++;
 	}

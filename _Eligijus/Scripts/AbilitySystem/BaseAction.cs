@@ -244,7 +244,7 @@ public abstract partial class BaseAction: TileAction
 
 		public virtual void OnBeforeStart(ChunkData chunkData)
 		{
-			GD.Print("SMTH");
+			//GD.Print("SMTH");
 		}
 
 		public virtual void OnTurnStart(ChunkData chunkData)
@@ -302,7 +302,7 @@ public abstract partial class BaseAction: TileAction
 
 		public virtual void OnAfterResolve(ChunkData chunkData)
 		{
-			GD.Print("SMTH");
+			//GD.Print("SMTH");
 		}
 
 		public void SetFriendlyFire(bool friendlyFire)
@@ -318,7 +318,7 @@ public abstract partial class BaseAction: TileAction
 		public virtual void ResolveAbility(ChunkData chunk)
 		{
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
-			GD.PushWarning("PlaySound");
+			//GD.PushWarning("PlaySound");
 			ClearGrid();
 			UsedAbility usedAbility = new UsedAbility(this, chunk);
 			if (_player is not null)
@@ -341,7 +341,6 @@ public abstract partial class BaseAction: TileAction
 		
 		public virtual void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
 		{
-			GD.Print("SMTH");	
 		}
 
 		public virtual void ResolveBlessings(ChunkData chunk)
@@ -443,23 +442,12 @@ public abstract partial class BaseAction: TileAction
 		
 		protected void DealRandomDamageToTarget(ChunkData chunkData, int minDamage, int maxDamage)
 		{
-			if (chunkData != null && CanUseAttack())
+			if (chunkData != null && CanUseAttack() && (chunkData.ObjectIsOnTile() || chunkData.CharacterIsOnTile() &&
+				    (!IsAllegianceSame(chunkData) || friendlyFire)))
 			{
-
-				if (chunkData.CharacterIsOnTile() &&
-				    (!IsAllegianceSame(chunkData) || friendlyFire))
-				{
-					int randomDamage = _random.Next(minDamage, maxDamage);
-					DodgeActivation(ref randomDamage);
-					DealDamage(chunkData, randomDamage);
-				}
-
-				if (chunkData.ObjectIsOnTile())
-				{
-					int randomDamage = _random.Next(minDamage, maxDamage);
-					DodgeActivation(ref randomDamage);
-					DealDamage(chunkData, randomDamage);
-				}
+				int randomDamage =  _random.Next(minDamage, maxDamage);
+				DodgeActivation(ref randomDamage);
+				DealDamage(chunkData, randomDamage);
 			}
 		}
 
@@ -487,7 +475,7 @@ public abstract partial class BaseAction: TileAction
 				if (chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
 				{
 					Player attackedPlayer = chunkData.GetCurrentPlayer();
-					attackedPlayer.objectInformation.GetObjectInformation().DealDamage(damage, _player);
+					attackedPlayer.DealDamage(damage, _player);
 					ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 					if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
 					{
@@ -497,7 +485,7 @@ public abstract partial class BaseAction: TileAction
 				else if (chunkData.ObjectIsOnTile())
 				{
 					Object attackedObject = chunkData.GetCurrentObject();
-					attackedObject.objectInformation.GetObjectInformation().DealDamage(damage,_player);
+					attackedObject.DealDamage(damage,_player);
 				}
 			}
 		}

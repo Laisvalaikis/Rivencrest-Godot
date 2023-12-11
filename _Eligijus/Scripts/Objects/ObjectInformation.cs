@@ -17,7 +17,6 @@ public partial class ObjectInformation : Node
 
     public virtual void DealDamage(int damage, Player damageDealer)
     {
-
             if (damage != -1)
             {
                 _health -= damage;
@@ -28,6 +27,20 @@ public partial class ObjectInformation : Node
                 DeathStart(damageDealer);
                 _health = 0;
             }
+        
+    }
+    
+    public virtual void DealDamageUnnotified(int damage, Player damageDealer)
+    {
+        if (damage != -1)
+        {
+            _health -= damage;
+        }
+        if (_health <= 0)
+        {
+            DeathStart(damageDealer);
+            _health = 0;
+        }
         
     }
     

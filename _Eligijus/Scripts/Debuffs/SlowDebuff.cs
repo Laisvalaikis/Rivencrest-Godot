@@ -40,6 +40,7 @@ public partial class SlowDebuff : BaseDebuff
     public override void OnTurnStart()
     {
         base.OnTurnStart();
+        //_player.AddMovementPoints(slowBy*(-1));
         _player.AddMovementPoints(slowBy*(-1));
         lifetimeCount++;
     }

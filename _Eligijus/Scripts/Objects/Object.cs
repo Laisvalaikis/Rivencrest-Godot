@@ -47,6 +47,21 @@ public partial class Object : Node2D
 		_visionRange = ObjectDataType.GetObjectData().visionRange;
 	}
 
+	public virtual void DealDamage(int damage, Player damageDealer)
+	{
+		objectInformation.GetObjectInformation().DealDamage(damage, damageDealer);
+	}
+
+	public virtual void DealDamageUnnotified(int damage, Player damageDealer)
+	{
+		objectInformation.GetObjectInformation().DealDamageUnnotified(damage, damageDealer);
+	}
+	
+	public virtual void AddDebuff(BaseDebuff debuff, Player playerWhoCreatedDebuff)
+	{
+		//Ziurek, ka darai, kvaily. Negalima debuffinti objekto, kuris ne playeris!!!!!!!!!
+	}
+
 	public void AddPlayerForObjectAbilities(Player player)
 	{
 		for (int i = 0; i < _abilities.Count; i++)

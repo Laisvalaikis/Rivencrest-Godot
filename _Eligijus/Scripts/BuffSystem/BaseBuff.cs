@@ -99,4 +99,9 @@ public partial class BaseBuff : Resource
 	{
 		
 	}
+
+	public virtual void ModifyBuff(ref BaseBuff buff)
+	{
+		//If we have a buff that makes it so adding another buff is different. 
+	}
 }
