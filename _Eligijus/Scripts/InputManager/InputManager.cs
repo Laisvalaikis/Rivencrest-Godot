@@ -12,6 +12,8 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void ExitEventHandler();
 	[Signal] public delegate void ChangeAbilityNextEventHandler();
 	[Signal] public delegate void ChangeAbilityPreviousEventHandler();
+	[Signal] public delegate void ChangeNextCharacterEventHandler();
+	[Signal] public delegate void ChangePreviousCharacterEventHandler();
 	[Signal] public delegate void MoveSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void DisableSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void EnableSelectorEventHandler(Vector2 position);
@@ -112,6 +114,18 @@ public partial class InputManager: Node2D
 		{
 			EmitSignal("ChangeAbilityPrevious");
 		}
+		
+		// if (Input.IsActionPressed("NextCharacter"))
+		// {
+		// 	// ne visi inputai suveikia tvarkingai
+		// 	EmitSignal("ChangeNextCharacter");
+		// }
+		//
+		// if(Input.IsActionPressed("PreviousCharacter"))
+		// {
+		// 	// ne visi inputai suveikia tvarkingai
+		// 	EmitSignal("ChangePreviousCharacter");
+		// }
 
 		if (Input.IsActionPressed("Up"))
 		{
@@ -204,15 +218,25 @@ public partial class InputManager: Node2D
 		}
 	}
 
-	// public override void _Input(InputEvent @event)
-	// {
-	// 	base._Input(@event);
-	// 	if (@event.IsPressed())
-	// 	{
-	// 		GD.Print(@event.AsText());
-	// 	}
-	// 	
-	// }
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		// if (@event.IsPressed())
+		// {
+		// 	GD.Print(@event.AsText());
+		// }
+		if (Input.IsActionPressed("NextCharacter"))
+		{
+			// ne visi inputai suveikia tvarkingai
+			EmitSignal("ChangeNextCharacter");
+		}
+		
+		if(Input.IsActionPressed("PreviousCharacter"))
+		{
+			// ne visi inputai suveikia tvarkingai
+			EmitSignal("ChangePreviousCharacter");
+		}
+	}
 
 	private bool InDeadZone(Vector2 relativePosition)
 	{

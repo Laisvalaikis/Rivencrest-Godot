@@ -10,21 +10,27 @@ public partial class TeamInformation : Control
 	[Export] private GameTileMap gameTileMap;
 	[Export] private Array<PvPCharacterSelect> pvpCharacterSelects;
 	public int teamIndex;
+	private Array<PvPCharacterSelect> activeCharacterSelects;
 	private int characterCount;
 	private bool changedTeams = false;
+	private int currentCharacterIndex = 0;
 
-	void Awake()
+	public override void _Ready()
 	{
-	
+		base._Ready();
+		InputManager.Instance.ChangeNextCharacter += NextCharacter;
+		InputManager.Instance.ChangePreviousCharacter += PreviousCharacter;
 	}
-	
+
 	public void ModifyList()
 	{
+		GD.PrintErr("Need optimization");
 		Dictionary<int, Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
 		bool teamIsAI = _characterTeams.TeamIsAI(teamIndex);
 		int[] keyArray = characterOnBoardList.Keys.ToArray();
 		if (characterCount != characterOnBoardList.Count || changedTeams)
 		{
+			activeCharacterSelects = new Array<PvPCharacterSelect>();
 			for (int i = 0; i < pvpCharacterSelects.Count; i++)
 			{
 				if (i < characterOnBoardList.Count)
@@ -35,6 +41,8 @@ public partial class TeamInformation : Control
 					pvpCharacterSelects[i].CreateCharatersPortrait();
 					pvpCharacterSelects[i].SetSelectAction(selectAction);
 					pvpCharacterSelects[i].SetGameTilemap(gameTileMap);
+					pvpCharacterSelects[i].SetButtonIndex(i);
+					activeCharacterSelects.Add(pvpCharacterSelects[i]);
 					pvpCharacterSelects[i].Disabled = teamIsAI;
 				}
 				else
@@ -73,6 +81,59 @@ public partial class TeamInformation : Control
 			if (pvpCharacterSelects[i].GetCharacter() == character)
 			{
 				pvpCharacterSelects[i].ButtonPressed = select;
+			}
+		}
+	}
+
+	public void SetSelectedIndex(int index)
+	{
+		currentCharacterIndex = index;
+	}
+
+	public void NextCharacter()
+	{
+		if (activeCharacterSelects is not null && IsVisibleInTree())
+		{
+			if (currentCharacterIndex < activeCharacterSelects.Count - 1)
+			{
+				currentCharacterIndex++;
+				activeCharacterSelects[currentCharacterIndex]._Pressed();
+				activeCharacterSelects[currentCharacterIndex].ButtonPressed = true;
+			}
+			else
+			{
+				currentCharacterIndex = 0;
+				activeCharacterSelects[currentCharacterIndex]._Pressed();
+				activeCharacterSelects[currentCharacterIndex].ButtonPressed = true;
+			}
+		}
+	}
+	
+	public void PreviousCharacter()
+	{
+		if (activeCharacterSelects is not null && IsVisibleInTree())
+		{
+			if (currentCharacterIndex >= 0)
+			{
+				if (currentCharacterIndex > 0)
+				{
+					currentCharacterIndex--;
+				}
+				else
+				{
+					currentCharacterIndex = activeCharacterSelects.Count - 1;
+				}
+
+				activeCharacterSelects[currentCharacterIndex]._Pressed();
+				activeCharacterSelects[currentCharacterIndex].ButtonPressed = true;
+
+			}
+			else
+			{
+				currentCharacterIndex = activeCharacterSelects.Count - 1;
+				activeCharacterSelects[currentCharacterIndex]._Pressed();
+				activeCharacterSelects[currentCharacterIndex].ButtonPressed = true;
+				currentCharacterIndex--;
 			}
 		}
 	}

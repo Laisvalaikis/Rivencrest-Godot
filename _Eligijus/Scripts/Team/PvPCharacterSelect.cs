@@ -4,6 +4,7 @@ using Godot;
 
 public partial class PvPCharacterSelect : Button
 {
+    [Export] private TeamInformation teamInformation;
     [Export] private Control characterButtonParent;
     private GameTileMap _gameTileMap; //cia private padaryt
     [Export]
@@ -13,6 +14,7 @@ public partial class PvPCharacterSelect : Button
     private PlayerInformationDataNew _playerInformationData;
     private SelectAction _selectAction;
     private bool isButtonAvailable = true;
+    private int buttonIndex = 0;
 
     public override void _Ready()
     {
@@ -75,7 +77,7 @@ public partial class PvPCharacterSelect : Button
             {
                 _gameTileMap.GetCurrentCharacter().actionManager.DeselectAbility();
             }
-            
+            teamInformation.SetSelectedIndex(buttonIndex);
             _gameTileMap.SetCurrentCharacter(characterOnBoard);
             isButtonAvailable = false;
             _selectAction.SetCurrentCharacter((Player)characterOnBoard);
@@ -87,6 +89,11 @@ public partial class PvPCharacterSelect : Button
             isButtonAvailable = true;
         }
         
+    }
+
+    public void SetButtonIndex(int index)
+    {
+        buttonIndex = index;
     }
 
     public void SetSelectAction(SelectAction selectAction)
