@@ -95,6 +95,7 @@ public partial class Recruitment : Node
 	}
 	private void CreateCharactersInShop()
 	{
+		GD.PrintErr("Need to refactor this");
 		Array<SavedCharacterResource> AllCharactersCopy = new Array<SavedCharacterResource>(_data.AllAvailableCharacters);
 		CharactersInShop.Clear();
 		characterIndexList.Clear();
@@ -112,58 +113,12 @@ public partial class Recruitment : Node
 			// 		AllCharactersCopy.RemoveAt(j);
 			// 	}
 			// }
-			Array<string> NameList;
-			if (characterToAdd.playerInformation.ClassName == "ASSASSIN" ||
-				characterToAdd.playerInformation.ClassName == "ENCHANTRESS" ||
-				characterToAdd.playerInformation.ClassName == "SORCERESS" ||
-				characterToAdd.playerInformation.ClassName == "HUNTRESS")
-			{
-				NameList = new Array<string>(NamesW);
-			}
-			else {
-				NameList = new Array<string>(NamesM);
-			}
-			int randomIndex2 = _random.Next(0, NameList.Count);
-			characterToAdd.characterName = NameList[randomIndex2].ToUpper();
-			NameList.RemoveAt(randomIndex2);
-			//
+			characterToAdd.characterName = CharacterNameGeneration(characterToAdd.playerInformation.ClassName);;
 			characterToAdd.abilityPointCount = 1;
 			characterToAdd.unlockedAbilities = new Array<UnlockedAbilitiesResource>();
-			Array<Ability> baseAbilities = characterToAdd.playerInformation.baseAbilities;
-			Array<Ability> abilities = characterToAdd.playerInformation.abilities;
-			int abilityIndex = 0;
-			for (int j = 0; j < baseAbilities.Count; j++)
-			{
-				characterToAdd.abilityBlessings.Add(new AbilityBlessingsResource());
-				Array<AbilityBlessing> abilityBlessings = baseAbilities[j].Action.GetAllBlessings();
-				if (abilityBlessings != null)
-				{
-					for (int k = 0; k < abilityBlessings.Count; k++)
-					{
-						characterToAdd.abilityBlessings[abilityIndex].UnlockedBlessingsList.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
-					}
-				}
-				abilityIndex++;
-			}
-			for (int j = 0; j < _data.townData.maxAbilityCount; j++)
-			{
-				characterToAdd.unlockedAbilities.Add(new UnlockedAbilitiesResource());
-				characterToAdd.abilityBlessings.Add(new AbilityBlessingsResource());
-				if (abilities != null && abilities.Count > j)
-				{
-					Array<AbilityBlessing> abilityBlessings = abilities[j].Action.GetAllBlessings();
-					if (abilityBlessings != null)
-					{
-						for (int k = 0; k < abilityBlessings.Count; k++)
-						{
-							characterToAdd.abilityBlessings[abilityIndex].UnlockedBlessingsList
-								.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
-						}
-					}
-					abilityIndex++;
-				}
-			}
-			
+			GenerateBaseAbilities(characterToAdd.playerInformation.baseAbilities, characterToAdd.abilityBlessings);
+			GenerateAbilities(characterToAdd.playerInformation.abilities, characterToAdd.unlockedAbilities,
+				characterToAdd.abilityBlessings);
 			Array<PlayerBlessing> playerBlessings = characterToAdd.playerInformation.GetAllPlayerBlessings();
 			if (characterToAdd.characterBlessings == null)
 			{
@@ -174,18 +129,72 @@ public partial class Recruitment : Node
 			{
 				characterToAdd.characterBlessings.Add(new UnlockedBlessingsResource(playerBlessings[j]));
 			}
-			// GD.PrintErr("Need to redo Unlocked Abilities");
-			//
 			if (CharacterLevelChar == 1)
 			{
 				characterToAdd.level = 2;
 				characterToAdd.abilityPointCount = 2;
 			}
 			characterIndexList.Add(randomIndex);
-			//
 			CharactersInShop.Add(characterToAdd);
 		}
 	}
+
+	private String CharacterNameGeneration(String className)
+	{
+		Array<string> NameList;
+		if (className == "ASSASSIN" || className == "ENCHANTRESS" ||
+		    className == "SORCERESS" || className == "HUNTRESS")
+		{
+			NameList = new Array<string>(NamesW);
+		}
+		else {
+			NameList = new Array<string>(NamesM);
+		}
+		int index = _random.Next(0, NameList.Count);
+		return NameList[index].ToUpper();
+	}
+
+	private void GenerateBaseAbilities(Array<Ability> baseAbilities, Array<AbilityBlessingsResource> playerAbilityBlessings)
+	{
+		int abilityIndex = 0;
+		for (int j = 0; j < baseAbilities.Count; j++)
+		{
+			playerAbilityBlessings.Add(new AbilityBlessingsResource());
+			Array<AbilityBlessing> abilityBlessings = baseAbilities[j].Action.GetAllBlessings();
+			if (abilityBlessings != null)
+			{
+				for (int k = 0; k < abilityBlessings.Count; k++)
+				{
+					playerAbilityBlessings[abilityIndex].UnlockedBlessingsList.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
+				}
+			}
+			abilityIndex++;
+		}
+	}
+	
+	private void GenerateAbilities(Array<Ability> abilities, Array<UnlockedAbilitiesResource> unlockedAbilities, Array<AbilityBlessingsResource> playerAbilityBlessings)
+	{
+		int abilityIndex = playerAbilityBlessings.Count;
+		for (int j = 0; j < _data.townData.maxAbilityCount; j++)
+		{
+			unlockedAbilities.Add(new UnlockedAbilitiesResource());
+			playerAbilityBlessings.Add(new AbilityBlessingsResource());
+			if (abilities != null && abilities.Count > j)
+			{
+				Array<AbilityBlessing> abilityBlessings = abilities[j].Action.GetAllBlessings();
+				if (abilityBlessings != null)
+				{
+					for (int k = 0; k < abilityBlessings.Count; k++)
+					{
+						playerAbilityBlessings[abilityIndex].UnlockedBlessingsList
+							.Add(new UnlockedBlessingsResource(abilityBlessings[k]));
+					}
+				}
+				abilityIndex++;
+			}
+		}
+	}
+
 	public void UpdateButtons()
 	{
 		UpdateRerollButton();
