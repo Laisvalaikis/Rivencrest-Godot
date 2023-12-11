@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://ivxx4faoqdu7"]
 
 [ext_resource type="Texture2D" uid="uid://dc2x67yhjvlrc" path="res://Data/ActionIcons/Icon_45.tres" id="1_r4jdu"]
-[ext_resource type="Resource" uid="uid://cajetis8o1b1g" path="res://Data/Abilities/Abilities/CryoFreeze.tres" id="2_co3vj"]
+[ext_resource type="Resource" uid="uid://cajetis8o1b1g" path="res://Data/Abilities/Abilities/CryoFreeze.tres" id="2_lppiq"]
 [ext_resource type="Resource" uid="uid://b276a1uc3sdcj" path="res://Data/AbilityText/CryoFreeze.tres" id="3_m3xp3"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_pyy76"]
 
@@ -11,4 +11,4 @@ _type = 0
 abilityText = ExtResource("3_m3xp3")
 enabled = true
 AbilityImage = ExtResource("1_r4jdu")
-Action = ExtResource("2_co3vj")
+Action = ExtResource("2_lppiq")

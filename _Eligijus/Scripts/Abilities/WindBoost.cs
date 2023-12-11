@@ -27,10 +27,14 @@ public partial class WindBoost : BaseAction
     {
         _chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
-    public override void OnTurnStart(ChunkData chunkData)//pradzioj ejimo
+    public override bool CanTileBeClicked(ChunkData chunkData)
     {
+        return chunkData.GetTileHighlight().isHighlighted;
+    }
+    public override void OnTurnStart(ChunkData chunkData)//pradzioj ejimo
+    { 
         base.OnTurnStart(null);
-        isAbilityActive = false;
+       isAbilityActive = false;
         ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int x, int y) indexes = current.GetIndexes();
         var pushDirectionVectors = new List<(int, int)>
@@ -50,6 +54,7 @@ public partial class WindBoost : BaseAction
                 {
                     int randomHeal = _random.Next(minHeal, maxHeal);
                     chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
+                    chunk.GetCurrentPlayer().AddMovementPoints(1);
                 }
             }
         }

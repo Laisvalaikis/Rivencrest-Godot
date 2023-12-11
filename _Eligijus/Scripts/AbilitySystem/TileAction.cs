@@ -168,7 +168,7 @@ public partial class TileAction : Resource
     
     protected virtual bool CanAddTile(ChunkData chunk)
     {
-        if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() && (!chunk.ObjectIsOnTile() || chunk.GetCurrentObject().CanBeDestroyed() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))
+        if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile()  && (!chunk.ObjectIsOnTile() || chunk.GetCurrentObject().CanBeDestroyed() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn())) // && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() // posibly turi buti tikrinamas allegiance
         {
             return true;
         }
