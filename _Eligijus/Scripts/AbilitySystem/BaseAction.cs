@@ -76,11 +76,6 @@ public abstract partial class BaseAction: TileAction
 			Start();
 		}
 
-		public void SetPlayer(Player player)
-		{
-			_player = player;
-		}
-
 		public void SetupObjectAbility(Object player)
 		{
 			unlockedBlessingsList = new Array<UnlockedBlessingsResource>();
@@ -101,10 +96,10 @@ public abstract partial class BaseAction: TileAction
 			_objectData.CopyData(data);
 		}
 
-		public virtual void Start()
+		public override void Start()
 		{
+			base.Start();
 			_random = new Random();
-			_chunkList = new List<ChunkData>();
 			if (_abilityBlessingsRef != null)
 			{
 				for (int i = 0; i < _abilityBlessingsRef.Count; i++)
@@ -130,11 +125,6 @@ public abstract partial class BaseAction: TileAction
 		public virtual void PlayerWasAttacked()
 		{
 			
-		}
-
-		public void AddTurnManager(TurnManager turnManager)
-		{
-			_turnManager = turnManager;
 		}
 
 		public int GetAbilityPoints()

@@ -46,6 +46,12 @@ public partial class TileAction : Resource
         otherTeamCharacterOnGrid = action.otherTeamCharacterOnGrid;
     }
 
+    public virtual void Start()
+    {
+        _chunkList = new List<ChunkData>();
+        
+    }
+
     protected virtual void HighlightGridTile(ChunkData chunkData)
     {
         SetNonHoveredAttackColor(chunkData);
@@ -420,6 +426,16 @@ public partial class TileAction : Resource
     public int GetRange()
     {
         return attackRange;
+    }
+    
+    public void AddTurnManager(TurnManager turnManager)
+    {
+        _turnManager = turnManager;
+    }
+    
+    public void SetPlayer(Player player)
+    {
+        _player = player;
     }
 
     protected virtual bool CheckAbilityBounds(ChunkData chunkData)
