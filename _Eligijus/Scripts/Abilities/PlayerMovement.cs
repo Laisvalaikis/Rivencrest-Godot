@@ -65,7 +65,13 @@ public partial class PlayerMovement : BaseAction
 			}
 		}
 	}
-	
+
+	public override void ClearGrid()
+	{
+		base.ClearGrid();
+		ClearArrowPath();
+	}
+
 	protected override void HighlightGridTile(ChunkData chunkData)
 	{
 		if (chunkData.GetCurrentPlayer() == null)
