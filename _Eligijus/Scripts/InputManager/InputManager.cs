@@ -206,7 +206,6 @@ public partial class InputManager: Node2D
 	{
 		EmitSignal("DisableSelector", _mousePosition);
 		_mousePosition = characterPosition;
-		EmitSignal("EnableSelector", _mousePosition);
 	}
 
 	public override void _PhysicsProcess(double delta)
