@@ -22,8 +22,8 @@ public partial class DamagePlayer : BaseAction
     {
         if (CanTileBeClicked(chunk))
         {
-            base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            base.ResolveAbility(chunk);
             FinishAbility();
         }
     }

@@ -43,12 +43,11 @@ public partial class BaseBuff : Resource
 		
 	public virtual void OnTurnStart()
 	{
-				
+		IncreaseLifetimeCount(1);
 	}
 	
 	public virtual void OnTurnEnd()
 	{
-			
 	}
 		
 	public virtual void PlayerWasAttacked()

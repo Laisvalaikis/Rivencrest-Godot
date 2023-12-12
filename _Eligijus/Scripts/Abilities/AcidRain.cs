@@ -21,11 +21,6 @@ public partial class AcidRain : BaseAction
  		AcidRain acidRain = new AcidRain((AcidRain)action);
  		return acidRain;
  	}
-	public override void Start()
-	{
-		base.Start();
-		customText = "POISON";
-	}
 	
 	public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
 	{
@@ -48,7 +43,7 @@ public partial class AcidRain : BaseAction
 				{
 					if (CanTileBeClicked(chunk))
 					{
-						EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+						EnableDamagePreview(chunk, "POISON");
 						SetHoveredAttackColor(chunk);
 					}
 				}

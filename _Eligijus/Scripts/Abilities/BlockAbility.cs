@@ -58,7 +58,7 @@ public partial class BlockAbility : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk)) //currently paspaudus ant abiličio iš kart bando executint ir čia gaunas blogai
+        if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);

@@ -8,7 +8,6 @@ public partial class BlockedBuff : BaseBuff
     {
         
     }
-    
     public BlockedBuff(Player playerWhoTakesDamage)
     {
         this.playerWhoTakesDamage = playerWhoTakesDamage;
@@ -17,7 +16,6 @@ public partial class BlockedBuff : BaseBuff
     {
         
     }
-    
     public override BaseBuff CreateNewInstance(BaseBuff baseBuff)
     {
         BlockedBuff buff = new BlockedBuff((BlockedBuff)baseBuff);
@@ -28,16 +26,6 @@ public partial class BlockedBuff : BaseBuff
     {
         BlockedBuff buff = new BlockedBuff(this);
         return buff;
-    }
-    
-    public override void Start()
-    {
-
-    }
-    
-    public override void ResolveBuff(ChunkData chunkData)
-    {
-        
     }
     
     public override void ModifyDamage(ref int damage,ref Player player)

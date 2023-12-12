@@ -6,7 +6,6 @@ public partial class CreateBearTrap : BaseAction
 	[Export] private ObjectData bearTrapData;
 	[Export] private Resource bearTrapPrefab;
 	private Object spawnedBearTrap;
-	private int i = 0; //Naudojama, kad bear trap dingtu po keliu turn'u
 	
 	public CreateBearTrap()
 	{
@@ -32,7 +31,6 @@ public partial class CreateBearTrap : BaseAction
 		spawnedBearTrap.SetupObject(bearTrapData);
 		spawnedBearTrap.AddPlayerForObjectAbilities(_player);
 		GameTileMap.Tilemap.SpawnObject(spawnedBearTrap, chunk);
-		i = 0;
 		FinishAbility();
 	}
 
