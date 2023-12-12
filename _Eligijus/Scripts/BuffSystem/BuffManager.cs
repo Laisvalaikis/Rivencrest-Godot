@@ -169,6 +169,10 @@ public partial class BuffManager : Node
 
 	public LinkedList<BaseBuff> GetPlayerBuffs()
 	{
+		if (buffList == null)
+		{
+			buffList = new LinkedList<BaseBuff>();
+		}
 		return buffList;
 	}
 }
