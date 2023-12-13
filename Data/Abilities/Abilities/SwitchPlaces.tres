@@ -1,20 +1,20 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bxa6jyqiypxfc"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bxa6jyqiypxfc"]
 
-[ext_resource type="Resource" uid="uid://dcafgt4flkd2v" path="res://Data/Blessings/Root.tres" id="1_46lgn"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SwitchPlaces.cs" id="1_g5e7k"]
 
 [resource]
 script = ExtResource("1_g5e7k")
-laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
 abilityPoints = 1
-attackRange = 3
+isAbilitySlow = true
+abilityCooldown = 1
+_abilityBlessingsRef = Array[Resource]([])
 minAttackDamage = 0
 maxAttackDamage = 0
-isAbilitySlow = true
+attackRange = 3
+laserGrid = false
 friendlyFire = true
-abilityCooldown = 1
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHoverCharacter = Color(0.992157, 1, 0.231373, 1)
@@ -23,4 +23,3 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_46lgn")])

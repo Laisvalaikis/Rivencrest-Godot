@@ -53,8 +53,6 @@ public partial class WallSmash : BaseAction
 			SlowDebuff debuff = new SlowDebuff(2,2);
 			targetChunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);	
 		}
-		
-		//chunkData.GetCurrentObject()?.DealDamage(damageToWall, _player);
 		DealDamage(chunkData,damageToWall);
 	}
 }
