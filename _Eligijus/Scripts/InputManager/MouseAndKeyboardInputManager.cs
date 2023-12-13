@@ -10,26 +10,6 @@ public partial class MouseAndKeyboardInputManager : InputManager
 	private Vector2 deadzoneBoundsX;
 	private Vector2 deadzoneBoundsY;
 	private bool inDeadZone = true;
-	
-	public override void _Input(InputEvent @event)
-	{
-		base._Input(@event);
-
-		if (enabled)
-		{
-			if (Input.IsActionPressed("NextCharacter"))
-			{
-				// ne visi inputai suveikia tvarkingai
-				EmitSignal("ChangeNextCharacter");
-			}
-
-			if (Input.IsActionPressed("PreviousCharacter"))
-			{
-				// ne visi inputai suveikia tvarkingai
-				EmitSignal("ChangePreviousCharacter");
-			}
-		}
-	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
@@ -39,12 +19,6 @@ public partial class MouseAndKeyboardInputManager : InputManager
 			{
 				EmitSignal("ReleaseFocus");
 			}
-
-			if (Input.IsActionPressed("ui_accept"))
-			{
-				EmitSignal("ReleaseFocus");
-			}
-
 
 			if (Input.IsActionJustPressed("Select"))
 			{
@@ -63,16 +37,6 @@ public partial class MouseAndKeyboardInputManager : InputManager
 				{
 					OnSelectClick();
 				}
-			}
-
-			if (Input.IsActionPressed("NextAbility"))
-			{
-				EmitSignal("ChangeAbilityNext");
-			}
-
-			if (Input.IsActionPressed("PreviousAbility"))
-			{
-				EmitSignal("ChangeAbilityPrevious");
 			}
 
 			if (Input.IsActionPressed("Up"))

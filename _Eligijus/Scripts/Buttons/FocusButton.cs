@@ -15,4 +15,13 @@ public partial class FocusButton : Button
     {
         ReleaseFocus();
     }
+
+    public override void _Pressed()
+    {
+        base._Pressed();
+        if (InputSelectManager.CurrentInputScheme == InputScheme.KeyboardAndMouse)
+        {
+            ReleaseButtonFocus();
+        }
+    }
 }
