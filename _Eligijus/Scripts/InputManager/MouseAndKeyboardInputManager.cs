@@ -41,12 +41,12 @@ public partial class MouseAndKeyboardInputManager : InputManager
 
 			if (Input.IsActionPressed("Up"))
 			{
-				EmitSignal("Up");
+				EmitSignal("Up", 1.0);
 			}
 
 			if (Input.IsActionPressed("Down"))
 			{
-				EmitSignal("Down");
+				EmitSignal("Down", 1.0);
 			}
 
 

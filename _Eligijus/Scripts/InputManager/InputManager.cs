@@ -3,8 +3,8 @@ using Godot;
 public partial class InputManager: Node2D
 {
 	public static InputManager Instance;
-	[Signal] public delegate void UpEventHandler();
-	[Signal] public delegate void DownEventHandler();
+	[Signal] public delegate void UpEventHandler(float increment);
+	[Signal] public delegate void DownEventHandler(float increment);
 	[Signal] public delegate void SelectClickEventHandler(Vector2 mouseClick);
 	[Signal] public delegate void LeftMouseDoubleClickEventHandler(Vector2 mousePosition);
 	[Signal] public delegate void ExitEventHandler();
@@ -19,25 +19,6 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void CameraControlEventHandler(Vector2 relativePosition, float movementSpeed);
 
 	protected bool enabled = false;
-	public override void _EnterTree()
-	{
-		base._EnterTree();
-	}
-	
-	public override void _Input(InputEvent @event)
-	{
-		base._Input(@event);
-		// if (@event.IsPressed())
-		// {
-		// 	GD.Print(@event.AsText());
-		// }
-		
-	}
-
-	public override void _UnhandledInput(InputEvent @event)
-	{
-		base._UnhandledInput(@event);
-	}
 
 	public virtual void SetCurrentCharacterPosition(Vector2 characterPosition)
 	{

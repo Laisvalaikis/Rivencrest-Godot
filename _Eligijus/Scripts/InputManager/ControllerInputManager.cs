@@ -4,6 +4,7 @@ public partial class ControllerInputManager : InputManager
 {
 	[Export] private Vector2 deadZone = new Vector2(10f, 10f);
 	[Export] private float cameraMovementSpeedController = 10.0f;
+	[Export(PropertyHint.Range, "0,1,")] private float zoomStrength = 0.7f;
 	private Vector2 _mousePosition;
 	private bool selectIsClicked = false;
 	private Vector2 mouseRelativePosition;
@@ -11,6 +12,8 @@ public partial class ControllerInputManager : InputManager
 	private Vector2 deadzoneBoundsY;
 	private bool inDeadZone = true;
 	private bool _tileSelectionClicked = false;
+	private bool upIsPressed = false;
+	private bool downIsPressed = false;
 	
 	public override void _Input(InputEvent @event)
 	{
@@ -69,15 +72,30 @@ public partial class ControllerInputManager : InputManager
 				EmitSignal("ChangeAbilityPrevious");
 			}
 
-			if (Input.IsActionPressed("Up"))
-			{
-				EmitSignal("Up");
-			}
+			// if (Input.IsActionPressed("Up"))
+			// {
+			// 	EmitSignal("Up",0.3);
+			// }
+			//
+			// if ( Input.IsActionPressed("Down"))
+			// {
+			// 	EmitSignal("Down", 0.3);
+			// }
+			
+			// if (Input.IsActionJustPressed("Up"))
+			// {
+			// 	EmitSignal("Up", 0.3);
+			// 	upIsPressed = true;
+			// }
+			// else
+			// {
+			// 	
+			// }
 
-			if (Input.IsActionPressed("Down"))
-			{
-				EmitSignal("Down");
-			}
+			// if (Input.IsActionPressed("Down"))
+			// {
+			// 	EmitSignal("Down", 0.3);
+			// }
 
 			if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementRight") &&
 			    !Input.IsActionJustPressed("CameraMovementLeft") && (Input.IsActionJustPressed("CameraMovementUp") ||
@@ -165,6 +183,18 @@ public partial class ControllerInputManager : InputManager
 				relativePosition = Input.GetVector("CameraMovementRight", "CameraMovementLeft",
 					"CameraMovementDown", "CameraMovementUp");
 				CameraMovement(relativePosition, cameraMovementSpeedController);
+			}
+
+			if (Input.IsActionPressed("Up", true))
+			{
+				float value = Input.GetActionStrength("Up");
+				EmitSignal("Up",value * zoomStrength);
+			}
+			
+			if ( Input.IsActionPressed("Down", true))
+			{
+				float value = Input.GetActionStrength("Down");
+				EmitSignal("Down",value * zoomStrength);
 			}
 		}
 

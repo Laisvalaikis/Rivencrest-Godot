@@ -72,15 +72,15 @@ public partial class CameraMovement : Camera2D
         yBounds = yMapBounds;
     }
 
-    private void ZoomOut()
+    private void ZoomOut(float increment)
     {
-        _targetZoom = Math.Max(_targetZoom - zoomIncrement, minZoom);
+        _targetZoom = Math.Max(_targetZoom - zoomIncrement * increment, minZoom);
         SetPhysicsProcess(true);
     }
     
-    private void ZoomIn()
+    private void ZoomIn(float increment)
     {
-        _targetZoom = Math.Min(_targetZoom + zoomIncrement, maxZoom);
+        _targetZoom = Math.Min(_targetZoom + zoomIncrement * increment, maxZoom);
         SetPhysicsProcess(true);
     }
 
