@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public partial class PvPCharacterSelect : Button
+public partial class PvPCharacterSelect : FocusButton
 {
     [Export] private TeamInformation teamInformation;
     [Export] private Control characterButtonParent;
