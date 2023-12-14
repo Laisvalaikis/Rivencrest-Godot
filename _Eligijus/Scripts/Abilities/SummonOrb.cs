@@ -33,13 +33,12 @@ public partial class SummonOrb : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         SpawnOrb(chunk);
-        //GenerateAttackGrid(chunk);
         FinishAbility();
     }
 
     private void SpawnOrb(ChunkData chunkData)
     {
-        PackedScene spawnCharacter = (PackedScene)orbPrefab;
+        PackedScene spawnCharacter = (PackedScene)orbPrefab; 
         orb = spawnCharacter.Instantiate<Object>();
         _player.GetTree().Root.CallDeferred("add_child", orb);
         orb.SetupObject(orbData);
@@ -113,7 +112,7 @@ public partial class SummonOrb : BaseAction
         {
             ChunkData realChunkfr=GameTileMap.Tilemap.GetChunk(orb.GlobalPosition);
             GenerateAttackGrid(realChunkfr);
-            //DealRandomDamageToTarget(realChunkfr,4,6);
+            DealRandomDamageToTarget(realChunkfr,4,6);
         }
     }
 }
