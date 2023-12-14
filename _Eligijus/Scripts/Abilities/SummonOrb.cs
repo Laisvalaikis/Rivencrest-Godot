@@ -10,6 +10,7 @@ public partial class SummonOrb : BaseAction
     private Object orb;
     private PlayerInformation _orbInformation;
     private List<ChunkData> _attackList;
+    private bool isSpawned = false;
 
     public SummonOrb()
     {
@@ -32,17 +33,19 @@ public partial class SummonOrb : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         SpawnOrb(chunk);
+        //GenerateAttackGrid(chunk);
         FinishAbility();
     }
 
     private void SpawnOrb(ChunkData chunkData)
     {
         PackedScene spawnCharacter = (PackedScene)orbPrefab;
-        Object orb = spawnCharacter.Instantiate<Object>();
+        orb = spawnCharacter.Instantiate<Object>();
         _player.GetTree().Root.CallDeferred("add_child", orb);
         orb.SetupObject(orbData);
         orb.AddPlayerForObjectAbilities(_player);
         GameTileMap.Tilemap.SpawnObject(orb, chunkData);
+        isSpawned = true;
         orb.StartActions();
     }
     
@@ -69,6 +72,7 @@ public partial class SummonOrb : BaseAction
                     _chunkList.Add(chunkData);
                     HighlightGridTile(chunkData);
                     _attackList.Add(chunkData);
+                    
                 }
 
                 if (GameTileMap.Tilemap.CheckBounds(bottomRightCornerX - i, bottomRightCornerY))
@@ -97,6 +101,19 @@ public partial class SummonOrb : BaseAction
                     _attackList.Add(chunkData);
                 }
             }
+            
+            
+        }
+    }
+
+    public override void OnTurnStart(ChunkData chunkData)
+    {
+        base.OnTurnStart(chunkData);
+        if (isSpawned)
+        {
+            ChunkData realChunkfr=GameTileMap.Tilemap.GetChunk(orb.GlobalPosition);
+            GenerateAttackGrid(realChunkfr);
+            //DealRandomDamageToTarget(realChunkfr,4,6);
         }
     }
 }

@@ -28,12 +28,11 @@ public partial class ThrowBehind : BaseAction
             base.ResolveAbility(chunk);
             ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
             _side = ChunkSideByCharacter(playerChunk, chunk);
-            MoveCharacter(playerChunk, chunk);
             if (!IsAllegianceSame(chunk))
             {
                 DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             }
-
+            MoveCharacter(playerChunk, chunk);
             FinishAbility();
         }
     }
@@ -46,7 +45,7 @@ public partial class ThrowBehind : BaseAction
         if (_side == Side.isFront)
         {
             int range = Math.Abs(playerChunkIndex.y - targetChunkIndex.y);
-            if (GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range) != null && !chunk.CharacterIsOnTile())
+            if (GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range) != null && chunk.CharacterIsOnTile() && GameTileMap.Tilemap.CheckBounds(playerChunkIndex.x,playerChunkIndex.y))
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range);
@@ -56,7 +55,7 @@ public partial class ThrowBehind : BaseAction
         else if (_side == Side.isBack)
         {
             int range = Math.Abs(playerChunkIndex.y - targetChunkIndex.y);
-            if (GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y - range) != null && !chunk.CharacterIsOnTile())
+            if (GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y - range) != null && chunk.CharacterIsOnTile() && GameTileMap.Tilemap.CheckBounds(targetChunkIndex.y,targetChunkIndex.y)) //works
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y  - range);
@@ -66,7 +65,7 @@ public partial class ThrowBehind : BaseAction
         else if (_side == Side.isRight)
         {
             int range = Math.Abs(playerChunkIndex.x - targetChunkIndex.x);
-            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, playerChunkIndex.y) != null && !chunk.CharacterIsOnTile())
+            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, playerChunkIndex.y) != null && chunk.CharacterIsOnTile() && GameTileMap.Tilemap.CheckBounds(targetChunkIndex.x,targetChunkIndex.x)) //works
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x - range, playerChunkIndex.y);
@@ -76,7 +75,7 @@ public partial class ThrowBehind : BaseAction
         else if (_side == Side.isLeft)
         {
             int range = Math.Abs(playerChunkIndex.x - targetChunkIndex.x);
-            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y) != null && !chunk.CharacterIsOnTile())
+            if (GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y) != null && chunk.CharacterIsOnTile() && GameTileMap.Tilemap.CheckBounds(-playerChunkIndex.y,-playerChunkIndex.y))
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(playerChunkIndex.x + range, targetChunkIndex.y);
