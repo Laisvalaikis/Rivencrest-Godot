@@ -21,8 +21,12 @@ uniform float shift: hint_range(-1.0, 0.0) = -0.2;
 // White cut off
 uniform float white_cutoff: hint_range(0.0, 1.0) = 0.999;
 
+uniform float scale: hint_range(0.0, 1.0) = 0.9;
+
 // Direction and speed of travel.
 uniform vec2 velocity = vec2(1.0, 1.0);
+
+uniform vec2 fog_position = vec2(0.0, 0.0);
 
 // Color of the fog.
 uniform vec4 fog_color = vec4(0.0, 0.0, 0.0, 1.0);
@@ -39,14 +43,26 @@ float rand(vec2 uv) {
 	return clamp(output + shift, 0.0, 1.0);
 }
 
+float circle(vec2 position, float radius, float feather)
+{
+	return smoothstep(radius, radius + feather, length(position - vec2(0.5)));
+}
+
 void fragment() {
-	vec2 ps = SCREEN_PIXEL_SIZE;
-	vec2 ratio = (ps.x > ps.y) ? vec2(ps.y / ps.x, 1) : vec2(1, ps.x / ps.y);
-	vec2 uv = (UV - 0.52) * 0.8 + 0.53; //(UV - 0.5) * 1.0 * ratio + 0.5
-	vec4 mainTexture = texture(TEXTURE, uv);
+	//vec2 uv = (UV - fog_position) * scale + (fog_position * scale); //(fog_position); //(UV - 0.5) * 1.0 * ratio + 0.5
+	vec2 position = (1.0 - fog_position);
+	vec2 uvMain = UV * scale - 0.25 * (scale-1.0);
+	float offsetFactor = 1.0-(1.0/scale);
+	vec2 positionOffsetScaled = position * offsetFactor;
+	vec2 uvOriginal = 0.5 + positionOffsetScaled;
+
+	//uv = uv - offset;
+	vec2 uvScaled = ((UV - 0.5) * scale + 0.5) + (position - ((position - 0.5) / scale + 0.5));
+	vec4 mainTexture = texture(TEXTURE, uvScaled);
 	vec2 motion = vec2(rand(UV + TIME * starting_frequency * velocity));
 	vec4 negative_fog_value = vec4(1.0 - fog_color.rgb, fog_color.a);
 	vec4 color = mix(mainTexture, fog_color, rand(UV + motion));
+	color = mainTexture;
 	COLOR = mainTexture;
 	float real_alfa_cutoff = 1.0 - white_cutoff;
 	if(color.r * color.g * color.b > real_alfa_cutoff)

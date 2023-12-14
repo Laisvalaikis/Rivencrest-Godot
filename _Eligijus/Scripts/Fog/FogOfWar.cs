@@ -14,6 +14,7 @@ public partial class FogOfWar : Sprite2D
     private Vector2I lightOffset;
     private Vector2I fogOffset;
     private Rect2I fogRectI;
+    private bool oneTime = false;
     public override void _Ready()
     {
         base._Ready();
@@ -43,7 +44,7 @@ public partial class FogOfWar : Sprite2D
     {
         Image image = characterTeam.fogTexture.GetImage();
         Vector2 gridPosition = ToLocal(position);
-        Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y)) ;
+        Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
         // image.BlendRect(addFog, fogRectI, gridPositionI + fogOffset);
         image.BlitRect(addFog, fogRectI, gridPositionI + fogOffset);
         characterTeam.fogTexture.Update(image);
@@ -54,7 +55,16 @@ public partial class FogOfWar : Sprite2D
     {
         Image image = characterTeam.fogTexture.GetImage();
         Vector2 gridPosition = ToLocal(position);
-        Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y)) ;
+        Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
+        if (!oneTime)
+        {
+            Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
+            Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
+            Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)width);
+            (Material as ShaderMaterial).SetShaderParameter("fog_position", vec);
+            oneTime = true;
+        }
+        
         // image.BlendRect(lightImage, fogRectI, gridPositionI + lightOffset);
         image.BlitRect(lightImage, fogRectI, gridPositionI + lightOffset);
         characterTeam.fogTexture.Update(image);
