@@ -69,17 +69,21 @@ public partial class Enrage : BaseAction
 			DisableDamagePreview(previousChunk);
 		}
 	}
+
+	public override bool CanTileBeClicked(ChunkData chunk)
+	{
+		return (chunk.CharacterIsOnTile() && chunk.GetTileHighlight().isHighlighted && IsAllegianceSameForBuffs(chunk));
+	}
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		base.ResolveAbility(chunk);
-		if (chunk.CharacterIsOnTile())
+		if (CanTileBeClicked(chunk))
 		{
+			base.ResolveAbility(chunk);
 			UpdateAbilityButton();
 			Player targetPlayer = chunk.GetCurrentPlayer();
 			targetPlayer.AddMovementPoints(1);
 			_player.AddMovementPoints(1);
+			FinishAbility();
 		}
-
-		FinishAbility();
 	}
 }

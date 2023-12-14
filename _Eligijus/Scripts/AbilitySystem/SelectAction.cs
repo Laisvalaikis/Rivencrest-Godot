@@ -183,7 +183,6 @@ public partial class SelectAction : Control
 			}
 		}
 	}
-	//
 	
 	public void DisableAbility(SelectActionButton selectActionButton)
 	{
@@ -284,7 +283,7 @@ public partial class SelectAction : Control
 			}
 			index++;
 		}
-	
+		
 		for (int i = 0; i < _playerAbilities.Count; i++)
 		{
 			if (_playerAbilities[i].Action.CheckIfAbilityIsActive() && _actionManager.GetAbilityPoints() >= _playerAbilities[i].Action.GetAbilityPoints())

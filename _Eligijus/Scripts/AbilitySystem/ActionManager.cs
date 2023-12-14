@@ -141,7 +141,7 @@ public partial class ActionManager : Node
 	
 	public void SetAbilityPoints(int abilityPoints)
 	{
-		_availableAbilityPoints = abilityPoints;
+		_abilityPoints = abilityPoints;
 	}
 	
 	public void AddAbilityCooldownPoints(int abilityPoints)
@@ -375,7 +375,9 @@ public partial class ActionManager : Node
 
 	public bool CanAbilityBeUsedOnTile(Vector2 position)
 	{
-		return _currentAbility.Action.IsPositionInGrid(position);
+		if(_currentAbility!=null)
+			return _currentAbility.Action.IsPositionInGrid(position);
+		return false;
 	}
 	
 	public bool IsMovementSelected()
