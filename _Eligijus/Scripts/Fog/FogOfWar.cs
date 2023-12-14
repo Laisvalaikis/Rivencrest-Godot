@@ -44,7 +44,8 @@ public partial class FogOfWar : Sprite2D
         Image image = characterTeam.fogTexture.GetImage();
         Vector2 gridPosition = ToLocal(position);
         Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y)) ;
-        image.BlendRect(addFog, fogRectI, gridPositionI + fogOffset);
+        // image.BlendRect(addFog, fogRectI, gridPositionI + fogOffset);
+        image.BlitRect(addFog, fogRectI, gridPositionI + fogOffset);
         characterTeam.fogTexture.Update(image);
         // UpdateForImageTexture();
     }
@@ -54,7 +55,8 @@ public partial class FogOfWar : Sprite2D
         Image image = characterTeam.fogTexture.GetImage();
         Vector2 gridPosition = ToLocal(position);
         Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y)) ;
-        image.BlendRect(lightImage, fogRectI, gridPositionI + lightOffset);
+        // image.BlendRect(lightImage, fogRectI, gridPositionI + lightOffset);
+        image.BlitRect(lightImage, fogRectI, gridPositionI + lightOffset);
         characterTeam.fogTexture.Update(image);
         // UpdateForImageTexture();
     }
