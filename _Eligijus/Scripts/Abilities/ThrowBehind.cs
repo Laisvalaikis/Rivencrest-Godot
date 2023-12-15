@@ -40,6 +40,7 @@ public partial class ThrowBehind : BaseAction
 
     private void MoveCharacter(ChunkData chunk, ChunkData target)
     {
+        ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int x, int y) playerChunkIndex = chunk.GetIndexes();
         (int x, int y) targetChunkIndex = target.GetIndexes();
         if (_side == Side.isFront)
@@ -49,7 +50,8 @@ public partial class ThrowBehind : BaseAction
             {
                 ChunkData positionChunk =
                     GameTileMap.Tilemap.GetChunkDataByIndex(targetChunkIndex.x, playerChunkIndex.y + range);
-                GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk, target.GetCurrentPlayer());
+                //GameTileMap.Tilemap.MoveSelectedCharacter(positionChunk, target.GetCurrentPlayer());
+                //MovePlayerToSide(positionChunk,targetChunkIndex,target);
             }
         }
         else if (_side == Side.isBack)
