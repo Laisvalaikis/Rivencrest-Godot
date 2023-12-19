@@ -15,6 +15,7 @@ public partial class FogOfWar : Sprite2D
     private Vector2I fogOffset;
     private Rect2I fogRectI;
     private bool oneTime = false;
+    private ShaderMaterial _shaderMaterial;
     public override void _Ready()
     {
         base._Ready();
@@ -26,6 +27,7 @@ public partial class FogOfWar : Sprite2D
         addFog.Fill(Colors.Black);
         lightImage.Convert(Image.Format.Rgbah);
         Scale *= scale;
+        _shaderMaterial = (Material as ShaderMaterial);
     }
     
     public ImageTexture CreateFogImageTexture()
@@ -61,8 +63,7 @@ public partial class FogOfWar : Sprite2D
             Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
             Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
             Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
-            vec.Y = 0.68f;
-            (Material as ShaderMaterial).SetShaderParameter("fog_position", vec);
+            _shaderMaterial.SetShaderParameter("fog_position", vec);
             oneTime = true;
         }
         
