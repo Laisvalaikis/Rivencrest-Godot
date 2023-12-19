@@ -116,11 +116,17 @@ public partial class TurnManager : Node
 		}
 		else
 		{
-			LinkedList<Object> objects = _teamObjects[_currentTeamIndex].GetObjects();
-			if (objects.Contains(currentObject))
+			for (int i = 0; i < _teamsList.Teams.Count; i++)
 			{
-				_teamObjects[_currentTeamIndex].RemoveObject(currentObject);
+				LinkedList<Object> objects = _teamObjects[i].GetObjects();
+				if (objects.Contains(currentObject))
+				{
+					_teamObjects[i]
+						.RemoveObject(
+							currentObject); // Taip gaunasi, kad objekta gali removinti tik komanda, kuri ji sukure
+				}
 			}
+
 			Array<Ability> abilities = currentObject.GetAllAbilities();
 			for (int i = 0; i < abilities.Count; i++)
 			{

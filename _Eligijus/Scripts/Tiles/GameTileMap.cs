@@ -612,6 +612,7 @@ public partial class GameTileMap : Node2D
 				if (_currentSelectedCharacter != null && _currentSelectedCharacter.IsObjectEnabled())
 				{
 					_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
+					_selectAction.UpdatePlayerInfo();//idk about this
 					_turnManager.SetCurrentCharacter(_currentSelectedCharacter);
 					teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
 					chunk.GetTileHighlight().ToggleSelectedPlayerUI(true);

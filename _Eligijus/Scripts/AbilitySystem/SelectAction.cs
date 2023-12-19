@@ -120,7 +120,7 @@ public partial class SelectAction : Control
 		allAbilityButtons[index].ButtonPressed = true;
 	}
 
-	private void UpdatePlayerInfo()
+	public void UpdatePlayerInfo()
 	{
 		characterPortrait.Texture = (AtlasTexture)_playerInformationData.CharacterPortraitSprite;
 		healthText.Text = _currentPlayer.objectInformation.GetPlayerInformation().GetHealth().ToString();
@@ -266,8 +266,10 @@ public partial class SelectAction : Control
 				EnableAbility(firstAbility.index);
 				_actionManager.SetCurrentAbility(firstAbility.ability, firstAbility.index);
 			}
-			// _actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
-			
+			else
+			{
+				_actionManager.SetCurrentAbility(_playerBaseAbilities[0], 0);
+			}
 		}
 
 	}
