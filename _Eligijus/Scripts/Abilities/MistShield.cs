@@ -25,7 +25,7 @@ public partial class MistShield : BaseAction
         base.OnTurnStart(chunkData);
         if (isAbilityActive)
         {
-            _player.RemoveBarrier();
+            //_player.RemoveBarrier();
         }
         _player.objectInformation.GetPlayerInformation().characterProtected = false;
     }
@@ -38,7 +38,7 @@ public partial class MistShield : BaseAction
             base.ResolveAbility(chunk);
             isAbilityActive = true;
             _player.objectInformation.GetPlayerInformation().characterProtected = true;
-            _player.AddBarrier();
+            //_player.AddBarrier();
             FinishAbility();
         }
     }

@@ -680,7 +680,8 @@ public partial class GameTileMap : Node2D
 		}
 		else if(CharacterIsSelected() && chunk != null && GetCurrentCharacter() == chunk.GetCurrentPlayer() && !_turnManager.IsCurrentTeamAI()) // Clicking on currently selected character to deselect it
 		{
-			DeselectCurrentCharacter();
+			if(_currentSelectedCharacter.actionManager.GetCurrentAbility()!=null && !_currentSelectedCharacter.actionManager.GetCurrentAbility().Action.CanTileBeClicked(chunk))
+				DeselectCurrentCharacter();
 		}
 	}
 }

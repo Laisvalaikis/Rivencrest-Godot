@@ -60,7 +60,8 @@ public partial class FogOfWar : Sprite2D
         {
             Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
             Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
-            Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)width);
+            Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
+            vec.Y = 0.68f;
             (Material as ShaderMaterial).SetShaderParameter("fog_position", vec);
             oneTime = true;
         }

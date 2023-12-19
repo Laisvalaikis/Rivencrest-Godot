@@ -1,25 +1,25 @@
 namespace Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
-public partial class BarrierBuff : BaseBuff
+public partial class StasisBuff : BaseBuff
 {
-    public BarrierBuff()
+    public StasisBuff()
     {
         
     }
-    public BarrierBuff(BarrierBuff buff): base(buff)
+    public StasisBuff(StasisBuff buff): base(buff)
     {
         
     }
     
     public override BaseBuff CreateNewInstance(BaseBuff baseBuff)
     {
-        BarrierBuff buff = new BarrierBuff((BarrierBuff)baseBuff);
+        StasisBuff buff = new StasisBuff((StasisBuff)baseBuff);
         return buff;
     }
     
     public override BaseBuff CreateNewInstance()
     {
-        BarrierBuff buff = new BarrierBuff(this);
+        StasisBuff buff = new StasisBuff(this);
         return buff;
     }
     
@@ -33,13 +33,8 @@ public partial class BarrierBuff : BaseBuff
         
     }
     
-    public override void OnTurnStart()
-    {
-        base.OnTurnStart();
-    }
-    
     public override void ModifyDamage(ref int damage, ref Player player)
     {
-        damage = 0;
+        damage /= 2 ;
     }
 }

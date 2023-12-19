@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class CryoFreeze : BaseAction
 {
+	private int i = 0;
 	public CryoFreeze()
 	{
  		
@@ -33,17 +36,22 @@ public partial class CryoFreeze : BaseAction
 	public override void OnTurnStart(ChunkData chunkData)
 	{
 		base.OnTurnStart(chunkData);
-		if ( (_player.objectInformation.GetPlayerInformation().GetHealth() > 0))
+		if (i == 1)
 		{
-			ChunkData temp = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
-			Thread thread = new Thread(() =>
+			if ((_player.objectInformation.GetPlayerInformation().GetHealth() > 0))
 			{
-				// Thread.Sleep(40); // for animation
-				DamageAdjacent(temp);
-			});
-			thread.Start();
-			ThreadManager.InsertThread(thread);
+				ChunkData temp = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
+				Thread thread = new Thread(() =>
+				{
+					// Thread.Sleep(40); // for animation
+					DamageAdjacent(temp);
+				});
+				thread.Start();
+				ThreadManager.InsertThread(thread);
+			}
 		}
+		
+		i++;
 	}
 	private void DamageAdjacent(ChunkData centerChunk)
 	{
@@ -79,15 +87,24 @@ public partial class CryoFreeze : BaseAction
 		return chunkData.GetTileHighlight().isHighlighted;
 	}
 	
-	public override void EnableDamagePreview(ChunkData chunk, string customText = null)
+	public override void EnableDamagePreview(ChunkData chunk, string text = null)
 	{
 		//Intentionally left empty. Ability does damage, but we do not preview it.
 	}
 
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		UpdateAbilityButton();
-		base.ResolveAbility(chunk);
-		FinishAbility();
+		if (CanTileBeClicked(chunk))
+		{
+			UpdateAbilityButton();
+			StasisBuff stasisBuff = new StasisBuff();
+			StasisDebuff stasisDebuff = new StasisDebuff();
+			_player.AddDebuff(stasisDebuff,_player);
+			_player.AddBuff(stasisBuff);
+			_player.SetMovementPoints(0);
+			_player.actionManager.RemoveAllActionPoints();
+			base.ResolveAbility(chunk);
+			FinishAbility();
+		}
 	}
 }

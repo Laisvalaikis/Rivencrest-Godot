@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 using Rivencrestgodot._Eligijus.Scripts.Character;
 
 public partial class Player : Object
@@ -67,6 +68,11 @@ public partial class Player : Object
 		{
 			movementPoints = 0;
 		}
+	}
+
+	public void AddBuff(BaseBuff buff)
+	{
+		buffManager.AddBuff(buff);
 	}
 
 	//-----------------------------------------------------------------------------------------------------
@@ -205,28 +211,5 @@ public partial class Player : Object
 		actionManager.ActionOnExit(chunkDataPrev, chunkData);
 	}
 
-	public void AddBarrier()
-	{
-		objectInformation.GetPlayerInformation().AddBarrier();
-	}
 	
-	public void RemoveBarrier()
-	{
-		objectInformation.GetPlayerInformation().RemoveBarrier();
-	}
-
-	public void AddWeakSpot()
-	{
-		weakSpot = true;
-	}
-
-	public bool HaveWeakSpot()
-	{
-		return weakSpot;
-	}
-
-	public void RemoveWeakSpot()
-	{
-		weakSpot = true;
-	}
 }

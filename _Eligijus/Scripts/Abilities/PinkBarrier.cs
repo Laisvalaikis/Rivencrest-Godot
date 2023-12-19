@@ -32,7 +32,7 @@ public partial class PinkBarrier : BaseAction
        {
            UpdateAbilityButton();
            Player target = chunk.GetCurrentPlayer();
-           target.AddBarrier();
+           //target.AddBarrier();
            target.actionManager.AddAbilityPoints(1);
        }
 
