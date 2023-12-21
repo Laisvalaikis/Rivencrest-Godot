@@ -19,11 +19,12 @@ public partial class DamageOnTurnStart : BaseAction
     
     public override void OnTurnStart(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
+        if (chunk.CharacterIsOnTile())   //CanTileBeClicked(chunk)
         {
-            base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
+        base.OnTurnStart(chunk);
+        
         _object.Death();
     }
 
