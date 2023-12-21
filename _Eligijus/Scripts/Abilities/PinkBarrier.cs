@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class PinkBarrier : BaseAction
 {
@@ -26,14 +27,13 @@ public partial class PinkBarrier : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
        base.ResolveAbility(chunk);
-        // chunk.GetCurrentPlayerInformation().BarrierProvider = gameObject;
-       // GetSpecificGroundTile(position, 0, 0, blockingLayer).GetComponent<GridMovement>().AvailableMovementPoints++;
        if (chunk.CharacterIsOnTile())
        {
            UpdateAbilityButton();
            Player target = chunk.GetCurrentPlayer();
-           //target.AddBarrier();
-           target.actionManager.AddAbilityPoints(1);
+           BarrierBuff buff = new BarrierBuff();
+           target.buffManager.AddBuff(buff);
+           target.AddMovementPoints(1);
        }
 
        FinishAbility();
