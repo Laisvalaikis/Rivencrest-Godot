@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Purify : BaseAction
 {
@@ -26,10 +27,12 @@ public partial class Purify : BaseAction
         {
             UpdateAbilityButton();
             Player target = chunk.GetCurrentPlayer();
+            target.debuffManager.RemoveDebuffs();
             //target.RemoveWeakSpot();
             // target.debuffs.RemoveSilence();
             // target.debuffs.RemoveAFlame();
             // target.debuffs.RemoveSilence();
+            
         }
     }
    

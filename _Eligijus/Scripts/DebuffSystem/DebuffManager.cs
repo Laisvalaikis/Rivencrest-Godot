@@ -162,4 +162,9 @@ public partial class DebuffManager : Node
 	{
 		return debufList;
 	}
+
+	public void RemoveDebuffs()
+	{
+		debufList.Clear();
+	}
 }
