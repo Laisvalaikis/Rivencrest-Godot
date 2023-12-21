@@ -123,7 +123,7 @@ public partial class TurnManager : Node
 				{
 					_teamObjects[i]
 						.RemoveObject(
-							currentObject); // Taip gaunasi, kad objekta gali removinti tik komanda, kuri ji sukure
+							currentObject);
 				}
 			}
 
@@ -246,14 +246,20 @@ public partial class TurnManager : Node
 
 	public void ObjectActionsOnTurnStart(LinkedList<Object> objects)
 	{
-		if (objects.Count > 0)
+		LinkedListNode<Object> element = objects.First;
+		while (element != null)
 		{
-			for (LinkedListNode<Object> element = objects.First; element != null; element = element.Next)
-			{
-				element.Value.OnTurnStart();
-			}
+			// Store the next element before calling OnTurnStart
+			LinkedListNode<Object> nextElement = element.Next;
+
+			// Call OnTurnStart on the current element
+			element.Value.OnTurnStart();
+
+			// Move to the next element, which was stored before the current element could potentially be destroyed
+			element = nextElement;
 		}
 	}
+
 
 	public void OnTurnEnd()
 	{
@@ -274,12 +280,17 @@ public partial class TurnManager : Node
 	
 	public void ObjectActionsOnTurnEnd(LinkedList<Object> objects)
 	{
-		if (objects.Count > 0)
+		LinkedListNode<Object> element = objects.First;
+		while (element != null)
 		{
-			for (LinkedListNode<Object> element = objects.First; element != null; element = element.Next)
-			{
-				element.Value.OnTurnEnd();
-			}
+			// Store the next element before calling OnTurnStart
+			LinkedListNode<Object> nextElement = element.Next;
+
+			// Call OnTurnStart on the current element
+			element.Value.OnTurnEnd();
+
+			// Move to the next element, which was stored before the current element could potentially be destroyed
+			element = nextElement;
 		}
 	}
 

@@ -21,7 +21,6 @@ public partial class DamageOnTurnStart : BaseAction
     {
         if (CanTileBeClicked(chunk))
         {
-            base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
         _object.Death();
