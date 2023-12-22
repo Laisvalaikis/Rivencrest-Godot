@@ -243,24 +243,16 @@ public partial class TurnManager : Node
 			character.OnTurnStart();
 		}
 	}
-
 	public void ObjectActionsOnTurnStart(LinkedList<Object> objects)
 	{
 		LinkedListNode<Object> element = objects.First;
 		while (element != null)
 		{
-			// Store the next element before calling OnTurnStart
 			LinkedListNode<Object> nextElement = element.Next;
-
-			// Call OnTurnStart on the current element
 			element.Value.OnTurnStart();
-
-			// Move to the next element, which was stored before the current element could potentially be destroyed
 			element = nextElement;
 		}
 	}
-
-
 	public void OnTurnEnd()
 	{
 		ActionsAfterResolve(_currentTeam.usedAbilitiesAfterResolve);
@@ -283,13 +275,8 @@ public partial class TurnManager : Node
 		LinkedListNode<Object> element = objects.First;
 		while (element != null)
 		{
-			// Store the next element before calling OnTurnStart
 			LinkedListNode<Object> nextElement = element.Next;
-
-			// Call OnTurnStart on the current element
 			element.Value.OnTurnEnd();
-
-			// Move to the next element, which was stored before the current element could potentially be destroyed
 			element = nextElement;
 		}
 	}

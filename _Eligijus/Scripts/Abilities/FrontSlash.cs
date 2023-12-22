@@ -18,17 +18,21 @@ public partial class FrontSlash : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        base.ResolveAbility(chunk);
-        int index = FindChunkIndex(chunk);
-        if (index != -1)
+        if (CanTileBeClicked(chunk))
         {
-            UpdateAbilityButton();
-            for (int i = 0; i < _chunkArray.GetLength(1); i++)
+            base.ResolveAbility(chunk);
+            int index = FindChunkIndex(chunk);
+            if (index != -1)
             {
-                ChunkData damageChunk = _chunkArray[index, i];
-                DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+                UpdateAbilityButton();
+                for (int i = 0; i < _chunkArray.GetLength(1); i++)
+                {
+                    ChunkData damageChunk = _chunkArray[index, i];
+                    DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
+                }
+
+                FinishAbility();
             }
-            FinishAbility();
         }
     }
     private int FindChunkIndex(ChunkData chunkData)

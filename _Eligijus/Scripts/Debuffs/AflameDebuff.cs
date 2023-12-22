@@ -5,8 +5,8 @@ namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class AflameDebuff : BaseDebuff
 {
-    [Export] private int minDamage;
-    [Export] private int maxDamage;
+    [Export] private int minDamage=1;
+    [Export] private int maxDamage=10; //idk made it up
 
     public AflameDebuff()
     {
@@ -62,6 +62,5 @@ public partial class AflameDebuff : BaseDebuff
     {
         base.OnTurnStart();
         DamageArea(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
-        lifetimeCount++;
     }
 }
