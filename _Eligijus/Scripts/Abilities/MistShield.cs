@@ -1,8 +1,10 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class MistShield : BaseAction
 {
-    private bool isAbilityActive = false;
+    //private bool isAbilityActive = false;
 
     public MistShield()
     {
@@ -20,25 +22,33 @@ public partial class MistShield : BaseAction
     {
         _chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
-    public override void OnTurnStart(ChunkData chunkData)
+    protected override void TryAddTile(ChunkData chunk)
     {
-        base.OnTurnStart(chunkData);
-        if (isAbilityActive)
+        if (chunk != null && !chunk.TileIsLocked())
         {
-            //_player.RemoveBarrier();
+            _chunkList.Add(chunk);
         }
-        _player.objectInformation.GetPlayerInformation().characterProtected = false;
     }
+   // public override void OnTurnStart(ChunkData chunkData)
+   // {
+       // base.OnTurnStart(chunkData);
+       // if (isAbilityActive)
+       // {
+            //_player.RemoveBarrier();
+       // }
+       // _player.objectInformation.GetPlayerInformation().characterProtected = false;
+    //}
 
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            isAbilityActive = true;
+           // isAbilityActive = true;
             _player.objectInformation.GetPlayerInformation().characterProtected = true;
-            //_player.AddBarrier();
+            ProtectedBuff buff = new ProtectedBuff();
+            chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
+            base.ResolveAbility(chunk);
             FinishAbility();
         }
     }
