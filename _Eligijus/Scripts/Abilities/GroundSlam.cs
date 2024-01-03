@@ -45,6 +45,7 @@ public partial class GroundSlam : BaseAction
         if(isAbilityActive && _player.objectInformation.GetPlayerInformation().GetHealth() > 0)
         {
             DealDamageToAdjacent();
+            isAbilityActive = false;
         }
     }
 
