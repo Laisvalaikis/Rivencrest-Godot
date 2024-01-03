@@ -42,6 +42,6 @@ public partial class SlowDebuff : BaseDebuff
         base.OnTurnStart();
         //_player.AddMovementPoints(slowBy*(-1));
         _player.AddMovementPoints(slowBy*(-1));
-        lifetimeCount++;
+        //lifetimeCount++;
     }
 }

@@ -85,7 +85,7 @@ public partial class IceQuake : BaseAction
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
-            if (chunk.IsStandingOnChunk())
+            if (chunk.CharacterIsOnTile())
             {
                 Player target = chunk.GetCurrentPlayer();
                 if (target.debuffManager.ContainsDebuff(typeof(SlowDebuff)))
