@@ -28,7 +28,7 @@ public partial class SwitchPlaces : BaseAction
             _secondSelected = chunk;
             SwitchCharacters(chunkData, _secondSelected);
             SlowDebuff debuff = new SlowDebuff(2,2);
-            _secondSelected.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
+            chunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             FinishAbility();
             base.ResolveAbility(chunk);
             _secondSelected = null;
