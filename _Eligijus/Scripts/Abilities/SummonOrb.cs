@@ -69,7 +69,7 @@ public partial class SummonOrb : BaseAction
                 {
                     ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(topLeftCornerX + i, topLeftCornerY);
                     _chunkList.Add(chunkData);
-                    HighlightGridTile(chunkData);
+                   // HighlightGridTile(chunkData);
                     _attackList.Add(chunkData);
                     
                 }
@@ -79,7 +79,7 @@ public partial class SummonOrb : BaseAction
                     ChunkData chunkData =
                         GameTileMap.Tilemap.GetChunkDataByIndex(bottomRightCornerX - i, bottomRightCornerY);
                     _chunkList.Add(chunkData);
-                    HighlightGridTile(chunkData);
+                   // HighlightGridTile(chunkData);
                     _attackList.Add(chunkData);
                 }
 
@@ -87,7 +87,7 @@ public partial class SummonOrb : BaseAction
                 {
                     ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(topLeftCornerX, topLeftCornerY + i);
                     _chunkList.Add(chunkData);
-                    HighlightGridTile(chunkData);
+                   // HighlightGridTile(chunkData);
                     _attackList.Add(chunkData);
                 }
 
@@ -96,7 +96,7 @@ public partial class SummonOrb : BaseAction
                     ChunkData chunkData =
                         GameTileMap.Tilemap.GetChunkDataByIndex(bottomRightCornerX, bottomRightCornerY - i);
                     _chunkList.Add(chunkData);
-                    HighlightGridTile(chunkData);
+                   // HighlightGridTile(chunkData);
                     _attackList.Add(chunkData);
                 }
             }

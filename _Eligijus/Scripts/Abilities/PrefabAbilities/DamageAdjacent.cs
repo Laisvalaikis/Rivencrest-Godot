@@ -20,7 +20,7 @@ public partial class DamageAdjacent : BaseAction
     
     public override void OnTurnStart(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
+        if (!CanTileBeClicked(chunk))
         {
             base.ResolveAbility(chunk);
             DamageArea(chunk);
