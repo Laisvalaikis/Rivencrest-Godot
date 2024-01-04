@@ -46,24 +46,29 @@ public partial class SwordPush : BaseAction
                 _side = ChunkSideByCharacter(chunk, _attackTiles[i]);
                 (int x, int y) sideVector = GetSideVector(_side);
                 MovePlayerToSide(_attackTiles[i], sideVector);
+                ClearArrows();
             }
             else
             {
                 CheckAdjacent(chunk);
                 int damage = centerDamage;
                 DealDamage(_attackTiles[i], damage);
-                SilenceDebuff debuff = new SilenceDebuff(1);
-                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
+                // ClearArrows();
                 if (_adjacent != null)
                 {
-                    _side = ChunkSideByCharacter(chunk, _adjacent);
-                    (int x, int y) sideVector = GetSideVector(_side);
-                    MovePlayerToSide(_attackTiles[i], sideVector);
+                   // SilenceDebuff debuff = new SilenceDebuff(1);
+                    //chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
+                  //  _side = ChunkSideByCharacter(chunk, _adjacent);
+                   // (int x, int y) sideVector = GetSideVector(_side);
+                  //  MovePlayerToSide(_attackTiles[i], sideVector);
+                    //ClearArrows();
                 }
             }
         }
         chunk.GetTileHighlight().SetSideArrowsSprite(0);
         chunk.GetTileHighlight().ActivateSideArrows(false);
+       // ClearArrows();
+        //ClearText();
         FinishAbility();
         // }
     }
@@ -178,7 +183,6 @@ public partial class SwordPush : BaseAction
             ClearArrows();
             ClearText();
         }
-
     }
     
     private void HighlightSwordPush(int index, ChunkData hoveredChunk)
