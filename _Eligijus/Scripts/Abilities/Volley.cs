@@ -32,21 +32,25 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
 	
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		base.ResolveAbility(chunk);
-		int index = FindChunkIndex(chunk);
-		if (index != -1)
+		if (chunk.GetTileHighlight().isHighlighted)
 		{
-			UpdateAbilityButton();
-			for (int i = 0; i < _chunkArray.GetLength(1); i++)
+			base.ResolveAbility(chunk);
+			int index = FindChunkIndex(chunk);
+			if (index != -1)
 			{
-				ChunkData damageChunk = _chunkArray[index, i];
-				DealDamage(damageChunk, spellDamage);
-				PoisonDebuff debuff = new PoisonDebuff(2,2);
-				chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
+				UpdateAbilityButton();
+				for (int i = 0; i < _chunkArray.GetLength(1); i++)
+				{
+					ChunkData damageChunk = _chunkArray[index, i];
+					DealDamage(damageChunk, spellDamage);
+					PoisonDebuff debuff = new PoisonDebuff(2, 2);
+					chunk.GetCurrentPlayer()?.debuffManager.AddDebuff(debuff, _player);
+				}
+
+				GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(index), _player);
+				FinishAbility();
+				ResetCharacterSpriteRendererAndTilePreview();
 			}
-			GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(index),_player);
-			FinishAbility();
-			ResetCharacterSpriteRendererAndTilePreview();
 		}
 	}
 

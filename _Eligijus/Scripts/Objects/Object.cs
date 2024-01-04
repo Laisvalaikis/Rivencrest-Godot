@@ -25,7 +25,11 @@ public partial class Object : Node2D
 	{
 		return Visible;
 	}
-	
+
+	public void IncreaseVisionRange(int increaseBy)
+	{
+		_visionRange += increaseBy;
+	}
 
 	public virtual void SetupObject(ObjectData objectData)
 	{

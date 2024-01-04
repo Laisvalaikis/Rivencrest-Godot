@@ -63,6 +63,7 @@ public partial class IceQuake : BaseAction
             SetHoveredAttackColor(hoveredChunk);
             if (CanTileBeClicked(hoveredChunk))
             {
+                bonusDamage = 0;
                 Player target = hoveredChunk.GetCurrentPlayer();
                 if (target.debuffManager.ContainsDebuff(typeof(SlowDebuff)))
                 {
