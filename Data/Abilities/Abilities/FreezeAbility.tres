@@ -1,19 +1,21 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c8yfcxxdgbgr4"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c8yfcxxdgbgr4"]
 
+[ext_resource type="Resource" uid="uid://kn1vpyjqk6f4" path="res://Data/Blessings/Agility.tres" id="1_8y61m"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FreezeAbility.cs" id="1_pjmin"]
 
 [resource]
 script = ExtResource("1_pjmin")
-laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
 abilityPoints = 1
-attackRange = 1
+isAbilitySlow = true
+abilityCooldown = 1
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_8y61m")])
 minAttackDamage = 4
 maxAttackDamage = 4
-isAbilitySlow = true
+attackRange = 1
+laserGrid = false
 friendlyFire = true
-abilityCooldown = 1
 abilityHighlight = Color(0.572549, 0.831373, 1, 1)
 abilityHighlightHover = Color(1, 0.890196, 0, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
@@ -22,4 +24,3 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = Array[Resource]([])

@@ -31,20 +31,29 @@ public partial class BattleRage : AbilityBlessing
         BattleRage blessing = new BattleRage(this);
         return blessing;
     }
-    
-    public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
+    public override void OnTurnStart(BaseAction baseAction)
     {
-        base.ResolveBlessing(baseAction);
-       
-        if (!secondTime)
-        {
-            secondTime = true;
-        }
-        else
+        base.OnTurnStart(baseAction);
+        if (secondTime)
         {
             int randomHeal = _random.Next(minHeal, maxHeal);
             baseAction.GetPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
             secondTime = false;
         }
+        
+    }
+    public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
+    {
+        base.ResolveBlessing(baseAction);
+        if (!secondTime)
+        {
+            secondTime = true;
+        }
+        // else
+        // {
+        //     int randomHeal = _random.Next(minHeal, maxHeal);
+        //     baseAction.GetPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
+        //     secondTime = false;
+        // }
     }
 }
