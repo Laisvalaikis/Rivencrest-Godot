@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://btigy2hnt2748"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://btigy2hnt2748"]
 
+[ext_resource type="Resource" uid="uid://bpo3bsgauo5uc" path="res://Data/Blessings/ComboKick.tres" id="1_acorl"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FlameKick.cs" id="1_o66rg"]
 
 [resource]
@@ -9,7 +10,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 2
-_abilityBlessingsRef = Array[Resource]([])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_acorl")])
 minAttackDamage = 3
 maxAttackDamage = 4
 attackRange = 1

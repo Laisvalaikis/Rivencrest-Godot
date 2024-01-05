@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Concussion : AbilityBlessing
 {
@@ -25,15 +26,12 @@ public partial class Concussion : AbilityBlessing
 	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(baseAction, tile);
-		if (tile.CharacterIsOnTile())
+		Player player = tile.GetCurrentPlayer();
+		if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
 		{
-			Player player = tile.GetCurrentPlayer();
-			if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
-			{
-				// player.debuffs.SetTurnCounterFromThisTurn(1);
-				// player.debuffs.SilencePlayer();
-				// GD.PrintErr("can't use abilities for one turn");
-			}
+			SilenceDebuff debuff = new SilenceDebuff(2);
+			player.debuffManager.AddDebuff(debuff, player);
 		}
+		
 	}
 }
