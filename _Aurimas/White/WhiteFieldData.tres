@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://vc6jiygq2f1j"]
 
-[ext_resource type="Resource" uid="uid://xs0jvnbc0h0h" path="res://Data/Abilities/Abilities/PrefabAbilities/WhiteField.tres" id="1_jkrs8"]
+[ext_resource type="Resource" uid="uid://iwbfhqda4ogo" path="res://Data/Abilities/PlayerPrefab/WhiteField.tres" id="1_ged3v"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Objects/ObjectData.cs" id="1_y7ia2"]
 
 [resource]
@@ -15,5 +15,5 @@ backgroundColor = Color(0, 0, 0, 0)
 canStepOnObject = true
 destroyObjectStepingOn = false
 canBeDestroyed = false
-abilities = Array[Resource]([ExtResource("1_jkrs8")])
+abilities = Array[Resource]([ExtResource("1_ged3v")])
 blessings = null

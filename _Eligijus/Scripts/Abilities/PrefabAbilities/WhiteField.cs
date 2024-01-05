@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class WhiteField : BaseAction
 {
@@ -21,13 +22,15 @@ public partial class WhiteField : BaseAction
     // Step On
     public override void ResolveAbility(ChunkData chunk)
     {
-        // need to add buff destroy half damage
+        WhiteFieldBuff buff = new WhiteFieldBuff();
+        Player player = chunk.GetCurrentPlayer();
+        player.AddBuff(buff);
     }
 
     // Exit
     public override void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
     {
-        // need to remove buff destroy half damage
+        chunk.GetCurrentPlayer().debuffManager.RemoveDebuffsByType(typeof(WhiteFieldBuff));
     }
 
     public override void Die()

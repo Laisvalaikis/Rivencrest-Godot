@@ -53,7 +53,7 @@ public partial class SpearPulse : BaseAction
             if (typeof(ThrowSpear) == ability.Action.GetType())
             {
                 ThrowSpear throwSpearAbility = (ThrowSpear)ability.Action;
-                if (throwSpearAbility.spawnedCharacter != null)
+                if (IsInstanceValid(throwSpearAbility.spawnedCharacter) && throwSpearAbility.spawnedCharacter != null)
                 {
                     chunk = GameTileMap.Tilemap.GetChunk(throwSpearAbility.spawnedCharacter.GlobalPosition);
                     break;
