@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 
 
 public partial class CreateWhiteField : BaseAction
@@ -7,6 +8,9 @@ public partial class CreateWhiteField : BaseAction
     [Export] private ObjectData whiteFieldData;
     [Export] private Resource whiteFieldPrefab;
     private Object spawnedArrowTile;
+    private Array<Object> spawnedFields = new();
+    private int i = 0;
+    private bool hasAbilityBeenUsed = false;
     
     public CreateWhiteField()
     {
@@ -22,21 +26,26 @@ public partial class CreateWhiteField : BaseAction
         CreateWhiteField createWhiteField = new CreateWhiteField((CreateWhiteField)action);
         return createWhiteField;
     }
-
-    public override void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)
-    {
-        //Dont use this, create seperate ability for adding/removing buff and add ability to whitefield object
-    }
-    
-    
-    
     public override void OnTurnStart(ChunkData chunkData)
     {
         base.OnTurnStart(chunkData);
+        i++;
+        if (i >= 2)
+        {
+            foreach (Object field in spawnedFields)
+            {
+                field.Death();
+            }
+            spawnedFields.Clear();
+            hasAbilityBeenUsed = false;
+        }
     }
+    
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
+        hasAbilityBeenUsed = true;
+        i = 0;
         foreach (var chunkData in _chunkList)
         {
             PackedScene spawnCharacter = (PackedScene)whiteFieldPrefab; 
@@ -45,6 +54,7 @@ public partial class CreateWhiteField : BaseAction
             spawnedArrowTile.SetupObject(whiteFieldData);
             spawnedArrowTile.AddPlayerForObjectAbilities(_player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
+            spawnedFields.Add(spawnedArrowTile);
         }
         base.ResolveAbility(chunk);
         FinishAbility();
@@ -70,5 +80,4 @@ public partial class CreateWhiteField : BaseAction
             }
         }
     }
-
 }

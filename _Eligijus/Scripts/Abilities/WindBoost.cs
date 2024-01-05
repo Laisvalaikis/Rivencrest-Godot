@@ -9,21 +9,20 @@ public partial class WindBoost : BaseAction
     private Random _random;
     public WindBoost()
     {
+        
     }
-
     public WindBoost(WindBoost ability): base(ability)
     {
         _random = new Random();
         minHeal = ability.minHeal;
         maxHeal = ability.maxHeal;
     }
-
     public override BaseAction CreateNewInstance(BaseAction action)
     {
         WindBoost ability = new WindBoost((WindBoost)action);
         return ability;
     }
-    public override void CreateAvailableChunkList(int attackRange)
+    public override void CreateAvailableChunkList(int range)
     {
         _chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
@@ -31,10 +30,10 @@ public partial class WindBoost : BaseAction
     {
         return chunkData.GetTileHighlight().isHighlighted;
     }
-    public override void OnTurnStart(ChunkData chunkData)//pradzioj ejimo
+    public override void OnBeforeStart(ChunkData chunkData)
     { 
-        base.OnTurnStart(null);
-       isAbilityActive = false;
+        //base.OnTurnStart(null);
+        isAbilityActive = false;
         ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int x, int y) indexes = current.GetIndexes();
         var pushDirectionVectors = new List<(int, int)>
@@ -61,10 +60,12 @@ public partial class WindBoost : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
-        base.ResolveAbility(chunk);
-        isAbilityActive = true;
-        FinishAbility();
+        if (CanTileBeClicked(chunk))
+        {
+            UpdateAbilityButton();
+            base.ResolveAbility(chunk);
+            isAbilityActive = true;
+            FinishAbility();
+        }
     }
-
 }
