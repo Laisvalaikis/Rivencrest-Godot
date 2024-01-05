@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://0uq0mnl00q4o"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://0uq0mnl00q4o"]
 
-[ext_resource type="Resource" uid="uid://c1a2lxsrlrhf6" path="res://Data/Blessings/AddBarrier.tres" id="1_apxu0"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateWhiteField.cs" id="1_esa87"]
 [ext_resource type="PackedScene" uid="uid://86bmv8kysrby" path="res://_Aurimas/AbilityPrefabs/WhiteField.tscn" id="2_8odeq"]
 [ext_resource type="Resource" uid="uid://vc6jiygq2f1j" path="res://_Aurimas/White/WhiteFieldData.tres" id="3_6org0"]
@@ -14,12 +13,12 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_apxu0")])
+_abilityBlessingsRef = Array[Resource]([])
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 2
 laserGrid = false
-friendlyFire = false
+friendlyFire = true
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(1, 0.890196, 0, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)

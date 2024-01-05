@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class AddBarrier : AbilityBlessing

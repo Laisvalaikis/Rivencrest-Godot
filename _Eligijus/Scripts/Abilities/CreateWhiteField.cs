@@ -6,6 +6,7 @@ public partial class CreateWhiteField : BaseAction
 {
     [Export] private ObjectData whiteFieldData;
     [Export] private Resource whiteFieldPrefab;
+    private Object spawnedArrowTile;
     
     public CreateWhiteField()
     {
@@ -38,8 +39,8 @@ public partial class CreateWhiteField : BaseAction
         UpdateAbilityButton();
         foreach (var chunkData in _chunkList)
         {
-            PackedScene spawnCharacter = (PackedScene)whiteFieldPrefab;
-            Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
+            PackedScene spawnCharacter = (PackedScene)whiteFieldPrefab; 
+            spawnedArrowTile = spawnCharacter.Instantiate<Object>();
             _player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
             spawnedArrowTile.SetupObject(whiteFieldData);
             spawnedArrowTile.AddPlayerForObjectAbilities(_player);
