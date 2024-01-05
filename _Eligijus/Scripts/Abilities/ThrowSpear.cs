@@ -4,7 +4,7 @@ public partial class ThrowSpear : BaseAction
 {
 	[Export] private ObjectData throwSpearData;
 	[Export] private Resource spearPrefab;
-	private Object spawnedCharacter;
+	public Object spawnedCharacter;
 	private ChunkData[,] _chunkArray;
 	private int _globalIndex = -1;
 	public ThrowSpear()

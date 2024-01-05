@@ -249,7 +249,6 @@ public partial class TileAction : Resource
         }
         else
         {
-            GD.Print(startChunk.GetPosition());
             GenerateDiamondPattern(startChunk, range);
         }
     }
