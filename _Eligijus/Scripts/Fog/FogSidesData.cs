@@ -1,10 +1,10 @@
 
 public class FogSidesData
 {
-    public bool top = false;
-    public bool bottom = false;
-    public bool right = false;
-    public bool left = false;
+    public bool top;
+    public bool bottom;
+    public bool right;
+    public bool left;
 
     public FogSidesData()
     {
@@ -20,5 +20,34 @@ public class FogSidesData
         this.bottom = bottom;
         this.right = right;
         this.left = left;
+    }
+
+    public float GenerateFogSideData()
+    {
+        float data = 0;
+        if (top)
+        {
+            data += 10000;
+        }
+        if (bottom)
+        {
+            data += 1000;
+        }
+        if (right)
+        {
+            data += 100;
+        }
+        if (left)
+        {
+            data += 10;
+        }
+
+        if (top && bottom && right && left)
+        {
+            data += 1;
+        }
+
+        return data;
+
     }
 }

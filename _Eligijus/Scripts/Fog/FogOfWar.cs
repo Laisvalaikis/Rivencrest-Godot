@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class FogOfWar : Sprite2D
@@ -58,25 +59,44 @@ public partial class FogOfWar : Sprite2D
         // UpdateForImageTexture();
     }
     
-    public void RemoveFog(Vector2 position, Team characterTeam)
+    public void RemoveFog(List<FogData> visionTiles)
     {
        
-        Vector2 gridPosition = ToLocal(position);
-        Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
-        // if (!oneTime)
-        // {
+        // Vector2 gridPosition = ToLocal(position);
+        // Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
+        // // if (!oneTime)
+        // // {
+        //     Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
+        //     Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
+        //     Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
+        //     _shaderMaterial.SetShaderParameter("fog_position", vec);
+        //     GD.Print(vec);
+            // oneTime = true;
+        // }
+        int fogTileCount = visionTiles.Count;
+        Vector3[] fogDataArray = new Vector3[fogTileCount];
+        for (int i = 0; i < fogTileCount; i++)
+        {
+            FogData fogData = visionTiles[i];
+            Vector2 gridPosition = ToLocal(visionTiles[i].chunkRef.GetPosition());
+            Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
+            // if (!oneTime)
+            // {
             Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
             Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
             Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
-            _shaderMaterial.SetShaderParameter("fog_position", vec);
-            GD.Print(vec);
-            // oneTime = true;
-        // }
-        Image image = characterTeam.fogTexture.GetImage();
+            // _shaderMaterial.SetShaderParameter("fog_position", vec);
+            fogDataArray[i] = new Vector3(vec.X, vec.Y, fogData.fogSidesData.GenerateFogSideData());
+            GD.Print(fogData.fogSidesData.GenerateFogSideData());
+        }
+        _shaderMaterial.SetShaderParameter("fog_position_array_size", fogTileCount);
+        _shaderMaterial.SetShaderParameter("fog_position_array", fogDataArray);
+        
+        // Image image = characterTeam.fogTexture.GetImage();
         // characterTeam.fogTexture.
         // Image img = Image.CreateFromData(width, height, false, Image.Format.Rgbah, image.GetData());
         // image.BlendRect(lightImage, fogRectI, gridPositionI + lightOffset);
-        image.BlitRect(lightImage, fogRectI, gridPositionI + lightOffset);
+        // image.BlitRect(lightImage, fogRectI, gridPositionI + lightOffset);
         // characterTeam.fogTexture.Update(img);
         // UpdateForImageTexture();
     }

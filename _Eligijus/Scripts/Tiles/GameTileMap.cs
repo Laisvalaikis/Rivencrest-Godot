@@ -279,12 +279,102 @@ public partial class GameTileMap : Node2D
 		return _chunksArray[x, y];
 	}
 
+	public List<ChunkData> GetAllChunksAround(ChunkData chunkData)
+	{
+		List <ChunkData> chunksAround = new List<ChunkData>();
+		(int x, int y) = chunkData.GetIndexes();
+		(int x, int y)[] indexes = new[]
+		{
+			(x - 1, y),
+			(x + 1, y),
+			(x, y - 1),
+			(x, y + 1),
+		};
+		for (int i = 0; i < indexes.Length; i++)
+		{
+			if (CheckBoundsWithoutLock(indexes[i].x, indexes[i].y))
+			{
+				chunksAround.Add(_chunksArray[indexes[i].x, indexes[i].y]);
+			}
+		}
+		return chunksAround;
+	}
+
+	public bool CheckFogTopChunkBasedOnPrevious(ChunkData chunkData)
+	{
+		(int x, int y) = chunkData.GetIndexes();
+
+		if (CheckBoundsWithoutLock(x, y - 1))
+		{
+			return !_chunksArray[x, y - 1].IsFogOnTile();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public bool CheckFogBottomChunkBasedOnPrevious(ChunkData chunkData)
+	{
+		(int x, int y) = chunkData.GetIndexes();
+
+		if (CheckBoundsWithoutLock(x, y + 1))
+		{
+			return !_chunksArray[x, y + 1].IsFogOnTile();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public bool CheckFogRightChunkBasedOnPrevious(ChunkData chunkData)
+	{
+		(int x, int y) = chunkData.GetIndexes();
+
+		if (CheckBoundsWithoutLock(x + 1, y))
+		{
+			return !_chunksArray[x + 1, y].IsFogOnTile();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public bool CheckFogLeftChunkBasedOnPrevious(ChunkData chunkData)
+	{
+		(int x, int y) = chunkData.GetIndexes();
+
+		if (CheckBoundsWithoutLock(x - 1, y))
+		{
+			return !_chunksArray[x - 1, y].IsFogOnTile();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+
 	public bool CheckBounds(int x, int y)
 	{
 		if (_chunksArray.GetLength(0) > x && x >= 0
 										  && _chunksArray.GetLength(1) > y && y >= 0
 										  && _chunksArray[x, y] != null
 										  && !_chunksArray[x, y].TileIsLocked())
+		{
+			return true;
+		}
+
+		return false;
+	}
+	
+	public bool CheckBoundsWithoutLock(int x, int y)
+	{
+		if (_chunksArray.GetLength(0) > x && x >= 0
+		                                  && _chunksArray.GetLength(1) > y && y >= 0
+		                                  && _chunksArray[x, y] != null)
 		{
 			return true;
 		}

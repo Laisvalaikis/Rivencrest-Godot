@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class FogData
+public class FogData : IEquatable<FogData>, IComparable<FogData>
 {
     public ChunkData chunkRef;
     public bool fogIsOnTile;
@@ -12,6 +12,8 @@ public class FogData
     {
         chunkRef = chunkData;
         fogIsOnTile = chunkData.IsFogOnTile();
+        
+        fogSidesData = new FogSidesData();
     }
     
     public FogData(ChunkData chunkData, bool top, bool bottom, bool right, bool left)
@@ -20,28 +22,34 @@ public class FogData
         fogIsOnTile = chunkData.IsFogOnTile();
         fogSidesData = new FogSidesData(top, bottom, right, left);
     }
-
-    public override bool Equals(object obj)
+    
+    public void SetFogTop(bool top)
     {
-        if (obj is null)
-        {
-            return false;
-        }
-
-        if (!(obj is FogData))
-        {
-            return false;
-        }
-
-        return this.chunkRef == ((FogData)obj).chunkRef;
+        fogSidesData.top = top;
+    }
+    
+    public void SetFogBottom(bool bottom)
+    {
+        fogSidesData.bottom = bottom;
     }
 
-    public override int GetHashCode()
+    public void SetFogRight(bool right)
     {
-        if (chunkRef is null)
-        {
-            return GetHashCode();
-        }
-        return this.chunkRef.GetHashCode();
+        fogSidesData.right = right;
+    }
+    
+    public void SetFogLeft(bool left)
+    {
+        fogSidesData.left = left;
+    }
+    
+    public bool Equals(FogData other)
+    {
+        return ReferenceEquals(this.chunkRef, other.chunkRef) ? false : true;
+    }
+
+    public int CompareTo(FogData other)
+    {
+        return ReferenceEquals(this.chunkRef, other.chunkRef) ? 0 : 1;
     }
 }
