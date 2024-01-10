@@ -47,6 +47,7 @@ public partial class Team : Resource
             _visionTiles = new List<FogData>();
         }
         _visionTiles.Add(new FogData(chunkData));
+        GameTileMap.Tilemap.
         fogOfWar.RemoveFog(chunkData.GetPosition(), this);
     }
     

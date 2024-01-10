@@ -69,6 +69,7 @@ public partial class FogOfWar : Sprite2D
             Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
             Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
             _shaderMaterial.SetShaderParameter("fog_position", vec);
+            GD.Print(vec);
             // oneTime = true;
         // }
         Image image = characterTeam.fogTexture.GetImage();
