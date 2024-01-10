@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public partial class HeadStart : AbilityBlessing
+public partial class HeadStart : PlayerBlessing
 {
     [Export] private int addMovementPoints = 2;
     private bool blessingUsed = false;

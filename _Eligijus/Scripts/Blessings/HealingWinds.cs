@@ -32,15 +32,15 @@ public partial class HealingWinds : AbilityBlessing
 		base.ResolveBlessing(baseAction);
 		List<ChunkData> tiles = baseAction.GetChunkList();
 		_random = new Random();
-		foreach (ChunkData tile in tiles)
-		{
-			Player player = tile.GetCurrentPlayer();
-			if (IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
+		//foreach (ChunkData tile in tiles)
+		//{
+			Player player = chunkData.GetCurrentPlayer();
+			if (IsAllegianceSame(baseAction.GetPlayer(), chunkData, baseAction))
 			{
 				int randomHeal = _random.Next(minHeal, maxHeal);
 				player.objectInformation.GetPlayerInformation().Heal(randomHeal);
 			}
-		}
+		//}
 	}
 	
 }

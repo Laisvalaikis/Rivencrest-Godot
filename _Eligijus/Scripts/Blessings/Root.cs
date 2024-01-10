@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Root : AbilityBlessing
 {
@@ -31,12 +32,11 @@ public partial class Root : AbilityBlessing
         if (tile.CharacterIsOnTile())
         {
             Player player = tile.GetCurrentPlayer();
-          //  if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
-           // {
-                // Create Can't move
-                // player.debuffs.RootPlayer();
-                // GD.PrintErr("Fix can't move on player");
-          //  }
+            if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
+            {
+                RootDebuff debuff = new RootDebuff(1);
+                tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
+            }
         }
     }
 }

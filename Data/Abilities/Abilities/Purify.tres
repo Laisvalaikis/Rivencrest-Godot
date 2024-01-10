@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cr5vqkluu24y6"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cr5vqkluu24y6"]
 
+[ext_resource type="Resource" uid="uid://4j37mt60eqi8" path="res://Data/Blessings/Enlighten.tres" id="1_bcxlu"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/Purify.cs" id="1_o4fh4"]
 
 [resource]
@@ -9,7 +10,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 2
-_abilityBlessingsRef = Array[Resource]([])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_bcxlu")])
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 2

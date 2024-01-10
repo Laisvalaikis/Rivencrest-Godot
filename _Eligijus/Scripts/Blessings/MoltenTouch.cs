@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System.Collections.Generic;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class MoltenTouch : AbilityBlessing
 {
@@ -32,11 +33,12 @@ public partial class MoltenTouch : AbilityBlessing
         base.ResolveBlessing(baseAction);
         if (tile.CharacterIsOnTile())
         {
-            Player player = tile.GetCurrentPlayer();
-            // player.debuffs.AddAFlame();
+            Player target = tile.GetCurrentPlayer();
+            AflameDebuff debuff = new AflameDebuff();
+            target.AddDebuff(debuff, tile.GetCurrentPlayer());
         }
 
-        Aflame(ref baseAction, tile);
+        //Aflame(ref baseAction, tile);
 
     }
     

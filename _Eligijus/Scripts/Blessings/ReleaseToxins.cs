@@ -4,7 +4,7 @@ using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class ReleaseToxins : AbilityBlessing
 {
-	[Export] private int bonusDamage = 3;
+	[Export] private int bonusDamage = 20;
 	public ReleaseToxins()
 	{
 			

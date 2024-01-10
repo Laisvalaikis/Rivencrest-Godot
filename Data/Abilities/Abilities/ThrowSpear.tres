@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://domol825w4mr4"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://domol825w4mr4"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/ThrowSpear.cs" id="1_rb73k"]
+[ext_resource type="Resource" uid="uid://5ssdfeqcovuc" path="res://Data/Blessings/FreezingTouch.tres" id="1_tbpqf"]
 [ext_resource type="PackedScene" uid="uid://bbicufobukyxn" path="res://_Aurimas/AbilityPrefabs/PurpleSpear.tscn" id="2_yly7w"]
 [ext_resource type="Resource" uid="uid://7nrdyijrso0f" path="res://_Aurimas/PurpleSpear/PurpleSpearData.tres" id="3_ita0p"]
 
@@ -8,16 +9,17 @@
 script = ExtResource("1_rb73k")
 throwSpearData = ExtResource("3_ita0p")
 spearPrefab = ExtResource("2_yly7w")
-laserGrid = false
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
 abilityPoints = 1
-attackRange = 2
+isAbilitySlow = false
+abilityCooldown = 1
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_tbpqf")])
 minAttackDamage = 5
 maxAttackDamage = 5
-isAbilitySlow = false
+attackRange = 2
+laserGrid = false
 friendlyFire = true
-abilityCooldown = 1
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
@@ -26,4 +28,3 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
-_abilityBlessingsRef = null

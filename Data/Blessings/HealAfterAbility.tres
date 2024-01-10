@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_u8efj")
-minHeal = 3
-maxHeal = 4
+minHeal = 10
+maxHeal = 10
 blessingName = "Heal After Ability"
 rarity = 0
 className = ""

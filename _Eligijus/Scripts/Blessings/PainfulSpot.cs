@@ -1,8 +1,9 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class PainfulSpot : AbilityBlessing
 {
-    [Export] private int damage = 2;
+    [Export] private int damage = 10;
     
     public PainfulSpot()
     {
@@ -29,7 +30,9 @@ public partial class PainfulSpot : AbilityBlessing
         if (tile.CharacterIsOnTile())
         {
             Player player = tile.GetCurrentPlayer();
-            if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) /*&& player.HaveWeakSpot()*/)
+            WeakSpotDebuff debuff = new WeakSpotDebuff(2);
+            tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff, player);
+            if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) && player.debuffManager.ContainsDebuff(typeof(WeakSpotDebuff)))
             {
                 tile.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(damage, baseAction.GetPlayer());
             }

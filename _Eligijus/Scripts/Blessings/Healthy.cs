@@ -2,7 +2,7 @@
 
 public partial class Healthy : PlayerBlessing
 {
-    [Export] private int grantMaxHealth = 3;
+    [Export] private int grantMaxHealth = 20;
     
     public Healthy()
     {

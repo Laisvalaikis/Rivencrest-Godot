@@ -17,6 +17,7 @@ public partial class BaseBlessing : Resource
     public string description;
     [Export] protected bool _blessingIsUnlocked;
     
+    
     public BaseBlessing()
     {
 			

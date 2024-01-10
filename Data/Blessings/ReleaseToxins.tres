@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_m3hah")
-bonusDamage = 3
+bonusDamage = 10
 blessingName = "Realise Toxins"
 rarity = 0
 className = ""

@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class MarkedStun : AbilityBlessing
 {
@@ -32,8 +33,8 @@ public partial class MarkedStun : AbilityBlessing
 			Player player = tile.GetCurrentPlayer();
 			if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
 			{
-				// Create Can't move
-				// player.debuffs.StunPlayer();
+				StasisDebuff debuff = new StasisDebuff();
+				player.debuffManager.AddDebuff(debuff,player);
 				GD.PrintErr("Fix can't do anything");
 			}
 		}

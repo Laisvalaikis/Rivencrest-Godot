@@ -1,22 +1,26 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7dqg2fyc0d54"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://7dqg2fyc0d54"]
 
+[ext_resource type="Resource" uid="uid://d20d24kjohllp" path="res://Data/Blessings/ReleaseToxins.tres" id="1_clw3h"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PowerShot.cs" id="1_u5v6d"]
 
 [resource]
 script = ExtResource("1_u5v6d")
-laserGrid = true
-turnsSinceCast = 0
-turnLifetime = 1
-abilityPointsUsage = 1
-attackRange = 3
+turnBeforeStartLifetime = 1
+turnAfterResolveLifetime = 1
+abilityPoints = 1
+isAbilitySlow = true
+abilityCooldown = 1
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_clw3h")])
 minAttackDamage = 5
 maxAttackDamage = 7
-isAbilitySlow = true
+attackRange = 3
+laserGrid = true
 friendlyFire = false
-AbilityCooldown = 1
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(0.403922, 0.533333, 0.619608, 1)
 abilityHoverCharacter = Color(1, 0.890196, 0, 1)
-otherOnGrid = Color(0.443137, 0.443137, 0.443137, 1)
 characterOnGrid = Color(0.572549, 0.831373, 1, 1)
-_abilityBlessingsRef = null
+otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
+otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
+otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
+otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)

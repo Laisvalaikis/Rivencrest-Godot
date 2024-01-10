@@ -14,7 +14,8 @@ public partial class DealToAdjacent : AbilityBlessing
 	}
 	public DealToAdjacent(DealToAdjacent blessing): base(blessing)
 	{
-		
+		minDamage = blessing.minDamage;
+		maxDamage = blessing.maxDamage;
 	}
 	public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
 	{

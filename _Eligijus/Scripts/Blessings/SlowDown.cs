@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class SlowDown : AbilityBlessing
 {
@@ -29,8 +30,9 @@ public partial class SlowDown : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction, tile);
-  //      tile.GetCurrentPlayer().actionManager.AddAbilityPoints(-slowsDown);
-        // tile.GetCurrentPlayer().debuffs.SlowDownPlayer(2);
+        Player player = tile.GetCurrentPlayer();
+        SlowDebuff debuff = new SlowDebuff(2,2);
+        tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
     }
     
 }
