@@ -32,6 +32,8 @@ uniform vec2 fog_size = vec2(0.1, 0.1);
 
 uniform vec2 fog_border_size = vec2(0.0, 0.0);
 
+uniform vec2 square_size = vec2(0.0331, 0.0331);
+
 uniform int fog_position_array_size = 0;
 
 uniform vec3 fog_position_array[300];
@@ -127,7 +129,7 @@ vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 position, float side, vec2 size, 
 		
 		color = vec4(0,0,0,0);
 		tempColor = color;
-		//vec2 maxBoundrie = position + size / 2.0;
+		//vec2 maxBoundrie = position + size / 2.0 * 4.0;
 		//vec2 minBoundrie = position - size / 2.0;
 		//
 		//vec2 boundary_size = maxBoundrie - minBoundrie;
@@ -139,7 +141,7 @@ vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 position, float side, vec2 size, 
 		//float gradient = 1.0 - grad_distance * 2.0;
     	//gradient = clamp(gradient, 0.0, 1.0);
 		//tempColor = vec4(vec3(gradient), tempColor.a);
-		//tempColor.a = tempColor.a - tempColor.r * tempColor.g * tempColor.b * 100.0;
+		//tempColor.a = tempColor.a - tempColor.r * tempColor.g * tempColor.b;
 		
 		//if(!EveryCorner(side))
 		//{
@@ -264,7 +266,7 @@ void fragment() {
 	//}
 	for (int i = 0; i < fog_position_array_size; i++) 
 	{
-		color = rectanbleBorder(UV, color, fog_position_array[i].rg, fog_position_array[i].b, vec2(0.0331, 0.0331), 0.0036);
+		color = rectanbleBorder(UV, color, fog_position_array[i].rg, fog_position_array[i].b, square_size, 0.0036);
 	}
 	COLOR = color;
 }

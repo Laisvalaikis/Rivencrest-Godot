@@ -90,9 +90,10 @@ public partial class FogOfWar : Sprite2D
             GD.Print(fogData.fogSidesData.GenerateFogSideData());
         }
 
-        Vector2 squareSize = lightImage.GetSize() / 2;
+        Vector2 squareSize = lightImage.GetSize();
+        squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height);
         
-        
+        _shaderMaterial.SetShaderParameter("square_size", squareSize);
         _shaderMaterial.SetShaderParameter("fog_position_array_size", fogTileCount);
         _shaderMaterial.SetShaderParameter("fog_position_array", fogDataArray);
         
