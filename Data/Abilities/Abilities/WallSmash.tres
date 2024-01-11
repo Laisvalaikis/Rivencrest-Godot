@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cj33ai8wy4vs6"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cj33ai8wy4vs6"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/WallSmash.cs" id="1_dlxcg"]
-[ext_resource type="Resource" uid="uid://wjk15m0v38ob" path="res://Data/Blessings/Concussion.tres" id="1_e8q1q"]
 
 [resource]
 script = ExtResource("1_dlxcg")
@@ -11,7 +10,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_e8q1q")])
+_abilityBlessingsRef = Array[Resource]([])
 minAttackDamage = 28
 maxAttackDamage = 28
 attackRange = 1

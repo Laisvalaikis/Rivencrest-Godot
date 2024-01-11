@@ -79,16 +79,20 @@ public partial class FogOfWar : Sprite2D
         {
             FogData fogData = visionTiles[i];
             Vector2 gridPosition = ToLocal(visionTiles[i].chunkRef.GetPosition());
-            Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
+            // Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
             // if (!oneTime)
             // {
             Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
-            Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
+            Vector2 realPosition = gridPosition + lightOffset + offsetImage;
             Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
             // _shaderMaterial.SetShaderParameter("fog_position", vec);
             fogDataArray[i] = new Vector3(vec.X, vec.Y, fogData.fogSidesData.GenerateFogSideData());
             GD.Print(fogData.fogSidesData.GenerateFogSideData());
         }
+
+        Vector2 squareSize = lightImage.GetSize() / 2;
+        
+        
         _shaderMaterial.SetShaderParameter("fog_position_array_size", fogTileCount);
         _shaderMaterial.SetShaderParameter("fog_position_array", fogDataArray);
         

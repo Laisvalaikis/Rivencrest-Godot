@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://7dqg2fyc0d54"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7dqg2fyc0d54"]
 
-[ext_resource type="Resource" uid="uid://d20d24kjohllp" path="res://Data/Blessings/ReleaseToxins.tres" id="1_clw3h"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PowerShot.cs" id="1_u5v6d"]
 
 [resource]
@@ -10,7 +9,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_clw3h")])
+_abilityBlessingsRef = Array[Resource]([])
 minAttackDamage = 5
 maxAttackDamage = 7
 attackRange = 3
