@@ -53,70 +53,44 @@ public partial class FogOfWar : Sprite2D
         Image image = characterTeam.fogTexture.GetImage();
         Vector2 gridPosition = ToLocal(position);
         Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
-        // image.BlendRect(addFog, fogRectI, gridPositionI + fogOffset);
         image.BlitRect(addFog, fogRectI, gridPositionI + fogOffset);
         characterTeam.fogTexture.Update(image);
-        // UpdateForImageTexture();
     }
     
-    public void RemoveFog(List<FogData> visionTiles)
+    public void RemoveFog(Vector2 maxPosition, Vector2[] visionTiles, int lenght)
     {
-       
-        // Vector2 gridPosition = ToLocal(position);
-        // Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
-        // // if (!oneTime)
-        // // {
-        //     Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
-        //     Vector2 realPosition = gridPositionI + lightOffset + offsetImage;
-        //     Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
-        //     _shaderMaterial.SetShaderParameter("fog_position", vec);
-        //     GD.Print(vec);
-            // oneTime = true;
-        // }
-        int fogTileCount = visionTiles.Count;
-        Vector3[] fogDataArray = new Vector3[fogTileCount];
-        for (int i = 0; i < fogTileCount; i++)
-        {
-            FogData fogData = visionTiles[i];
-            Vector2 gridPosition = ToLocal(visionTiles[i].chunkRef.GetPosition());
-            // Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
-            // if (!oneTime)
-            // {
-            Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
-            Vector2 realPosition = gridPosition + lightOffset + offsetImage;
-            Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
-            // _shaderMaterial.SetShaderParameter("fog_position", vec);
-            fogDataArray[i] = new Vector3(vec.X, vec.Y, fogData.fogSidesData.GenerateFogSideData());
-            // GD.Print(fogData.fogSidesData.GenerateFogSideData());
-        }
-
+        
         Vector2 squareSize = lightImage.GetSize();
         squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height);
         
         _shaderMaterial.SetShaderParameter("square_size", squareSize);
-        _shaderMaterial.SetShaderParameter("fog_position_array_size", fogTileCount);
-        _shaderMaterial.SetShaderParameter("fog_position_array", fogDataArray);
-
-        if (fogDataArray.Length > 12)
-        {
-            // double distance = CalculateDistance2D(fogDataArray[0], fogDataArray[1]);
-            double starting_point = 0;
-            double current_point = CalculateDistance2D(fogDataArray[1], fogDataArray[0]);
-            double last_point = CalculateDistance2D(fogDataArray[1], fogDataArray[6]);
-            double alpha = ((current_point - starting_point) / (last_point - starting_point));
-            GD.Print(starting_point);
-        }
-        // Image image = characterTeam.fogTexture.GetImage();
-        // characterTeam.fogTexture.
-        // Image img = Image.CreateFromData(width, height, false, Image.Format.Rgbah, image.GetData());
-        // image.BlendRect(lightImage, fogRectI, gridPositionI + lightOffset);
-        // image.BlitRect(lightImage, fogRectI, gridPositionI + lightOffset);
-        // characterTeam.fogTexture.Update(img);
-        // UpdateForImageTexture();
+        _shaderMaterial.SetShaderParameter("fog_max_position", maxPosition);
+        _shaderMaterial.SetShaderParameter("fog_position_array_size", lenght);
+        _shaderMaterial.SetShaderParameter("fog_position_array", visionTiles);
+       
     }
 
-    
-    private double CalculateDistance2D(Vector3 start, Vector3 end)
+    public void UpdateCharacterPositions(Vector2[] characterPositions, int characterPositionsCount)
+    {
+        _shaderMaterial.SetShaderParameter("fog_player_position_array", characterPositions);
+        _shaderMaterial.SetShaderParameter("fog_player_position_array_size", characterPositionsCount);
+        if (characterPositionsCount > 2)
+        {
+            GD.Print(characterPositions[2]);
+        }
+    }
+
+    public Vector2 GenerateFogPosition(Vector2 position)
+    {
+        Vector2 gridPosition = ToLocal(position);
+        Vector2 offsetImage = new Vector2(lightImage.GetWidth() / 2, lightImage.GetHeight() / 2);
+        Vector2 realPosition = gridPosition + lightOffset + offsetImage;
+        Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
+        return vec;
+    }
+
+
+    private double CalculateDistance2D(Vector2 start, Vector2 end)
     {
         return Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2));
     }

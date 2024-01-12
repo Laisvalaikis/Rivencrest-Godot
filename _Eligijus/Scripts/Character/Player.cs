@@ -108,6 +108,11 @@ public partial class Player : Object
 		_turnManager.GetTeamByIndex(_currentCharacterTeam).AddVisionTile(chunkData);
 	}
 	
+	public void GenerateCharacterPositions()
+	{
+		_turnManager.GetTeamByIndex(_currentCharacterTeam).GenerateCharacterPositions();
+	}
+	
 	public void RemoveVisionTile(ChunkData chunkData)
 	{
 		_turnManager.GetTeamByIndex(_currentCharacterTeam).RemoveVisionTile(chunkData);

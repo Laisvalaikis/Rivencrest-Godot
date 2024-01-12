@@ -36,7 +36,13 @@ uniform vec2 square_size = vec2(0.0331, 0.0331);
 
 uniform int fog_position_array_size = 0;
 
-uniform vec3 fog_position_array[300];
+uniform vec2 fog_position_array[300];
+
+uniform vec2 fog_player_position_array[300];
+
+uniform vec2 fog_max_position = vec2(0.0, 0.0);
+
+uniform int fog_player_position_array_size = 0;
 // Color of the fog.
 uniform vec4 fog_color = vec4(0.0, 0.0, 0.0, 1.0);
 
@@ -111,12 +117,12 @@ bool EveryCorner(float value)
 	return false;
 }
 
-float fogDistanceGraph(float alpha, float pi)
+float fogDistanceGraph(float alpha)
 {
-	return 0.3249*tan(0.4*(alpha*pi));
+	return pow(alpha, 1.0/2.0);
 }
 
-vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 start_position, vec2 position, vec2 end_position, vec2 size, float pi)
+vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 start_position, vec2 position, vec2 end_position, vec2 size)
 {
     //vec4 color = vec4(0,0,0,1);
 	vec4 tempColor = color;
@@ -125,14 +131,31 @@ vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 start_position, vec2 position, ve
 		
 		//color = vec4(0,0,0,0);
 		//tempColor = color;
-		float starting_point = 0.0;
-		float current_point = distance(start_position, position);
-		float last_point = distance(start_position, end_position);
-		float current_position = ((current_point - starting_point) / (last_point - starting_point));
-    	current_position = clamp(current_position, 0.0, 1.0);
+		for(int i = 0; i < fog_player_position_array_size; i++)
+		{
+			float starting_point = 0.0;
+			float current_point = distance(fog_player_position_array[i], position);
+			float last_point = distance(fog_player_position_array[i], end_position);
+			float current_position = ((current_point - starting_point) / (last_point - starting_point));
+		    current_position = abs(current_position);
+			current_position = clamp(current_position, 0.0, 1.0);
+			float alpha = fogDistanceGraph(current_position) * tempColor.a;
+			if(tempColor.a > alpha)
+			{
+				tempColor.a = alpha;
+			}
+			//tempColor.a = alpha;
+		}
 		
-		float alpha = fogDistanceGraph(current_position, pi) * tempColor.a;
-		tempColor.a = alpha;
+		//float starting_point = 0.0;
+		//float current_point = distance(fog_player_position_array[2], position);
+		//float last_point = distance(fog_player_position_array[2], end_position);
+		//float current_position = ((current_point - starting_point) / (last_point - starting_point));
+	    //current_position = abs(current_position);
+		//current_position = clamp(current_position, 0.0, 1.0);
+		//float alpha = fogDistanceGraph(current_position) * tempColor.a;
+		//tempColor.a = alpha;
+		
 	}
 	return tempColor;
 }
@@ -155,7 +178,7 @@ void fragment() {
 	//}
 	for (int i = 0; i < fog_position_array_size; i++) 
 	{
-		color = rectanbleBorder(UV, color, fog_position_array[1].rg, fog_position_array[i].rg, fog_position_array[6].rg, square_size, PI);
+		color = rectanbleBorder(UV, color, fog_position_array[1].rg, fog_position_array[i].rg, fog_max_position, square_size);
 	}
 	
 	COLOR = color;
