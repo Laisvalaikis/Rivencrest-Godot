@@ -111,139 +111,28 @@ bool EveryCorner(float value)
 	return false;
 }
 
-vec4 sideGradient(vec4 color, float side)
+float fogDistanceGraph(float alpha, float pi)
 {
-		float gradient = 1.0 - side * 2.0;
-    	gradient = clamp(gradient, 0.0, 1.0);
-		color = vec4(vec3(gradient), color.a);
-		color.a = color.a - color.r * color.g * color.b * 100.0;
-		return color;
+	return 0.3249*tan(0.4*(alpha*pi));
 }
 
-vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 position, float side, vec2 size, float border_size)
+vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 start_position, vec2 position, vec2 end_position, vec2 size, float pi)
 {
     //vec4 color = vec4(0,0,0,1);
 	vec4 tempColor = color;
 	if ((uv.x > position.x - size.x / 2.0) && (uv.x < position.x + size.x / 2.0)
 		&& (uv.y > position.y - size.y / 2.0) && (uv.y < position.y + size.y / 2.0)) {
 		
-		color = vec4(0,0,0,0);
-		tempColor = color;
-		//vec2 maxBoundrie = position + size / 2.0 * 4.0;
-		//vec2 minBoundrie = position - size / 2.0;
-		//
-		//vec2 boundary_size = maxBoundrie - minBoundrie;
-		//vec2 normalized_uv = (uv - minBoundrie) / boundary_size;
-		//vec2 dist_from_center = abs(normalized_uv - vec2(0.5, 0.5));
-		//
-		//float grad_distance = max(dist_from_center.x, dist_from_center.y);
-		//
-		//float gradient = 1.0 - grad_distance * 2.0;
-    	//gradient = clamp(gradient, 0.0, 1.0);
-		//tempColor = vec4(vec3(gradient), tempColor.a);
-		//tempColor.a = tempColor.a - tempColor.r * tempColor.g * tempColor.b;
+		//color = vec4(0,0,0,0);
+		//tempColor = color;
+		float starting_point = 0.0;
+		float current_point = distance(start_position, position);
+		float last_point = distance(start_position, end_position);
+		float current_position = ((current_point - starting_point) / (last_point - starting_point));
+    	current_position = clamp(current_position, 0.0, 1.0);
 		
-		//if(!EveryCorner(side))
-		//{
-			//if(!None(side))
-			//{
-				//if(uv.y > position.y - size.y / 2.0 && uv.y < position.y && Top(side) &&
-					//(uv.x > position.x - size.x / 2.0 + border_size) && (uv.x < position.x + size.x / 2.0 - border_size)) // top
-				//{
-					//tempColor.a = 0.0;
-				//}
-				//
-				//if(uv.y > position.y && uv.y < position.y + size.y / 2.0 && Bottom(side) &&
-					//(uv.x > position.x - size.x / 2.0 + border_size) && (uv.x < position.x + size.x / 2.0 - border_size)) // bottom
-				//{
-					//tempColor.a = 0.0;
-				//}
-				//
-				//if(uv.x > position.x - size.x / 2.0 && uv.x < position.x - border_size && Left(side) &&
-					//(uv.y > position.y - size.y / 2.0 + border_size) && (uv.y < position.y + size.y / 2.0 - border_size)) // left
-				//{
-					//tempColor.a = 0.0;
-				//}
-				//
-				//if(uv.x > position.x + border_size && uv.x < position.x + size.x / 2.0 && Right(side) &&
-					//(uv.y > position.y - size.y / 2.0 + border_size) && (uv.y < position.y + size.y / 2.0 - border_size)) // right
-				//{
-					//tempColor.a = 0.0;
-				//}
-			//
-				//if(uv.y > position.y - size.y / 2.0 && uv.y < position.y - size.y / 2.0 + border_size &&
-					//(uv.x > position.x - size.x / 2.0) && (uv.x < position.x - size.x / 2.0 + border_size)) // top left
-				//{
-					//if(Top(side) && Left(side))
-					//{
-						//tempColor.a = 0.0;
-					//}
-					//else if(Left(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.y);
-					//}
-					//else if(Top(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.x);
-					//}
-				//}
-				//
-				//if(uv.y > position.y - size.y / 2.0 && uv.y < position.y - size.y / 2.0 + border_size &&
-					//(uv.x > position.x + size.x / 2.0 - border_size) && (uv.x < position.x + size.x / 2.0)) // top right
-				//{
-					//if(Right(side) && Top(side))
-					//{
-						//tempColor.a = 0.0;
-					//}
-					//else if(Right(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.y);
-					//}
-					//else if(Top(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.x);
-					//}
-				//}
-				//
-				//if(uv.y > position.y + size.y / 2.0 - border_size && uv.y < position.y + size.y / 2.0 &&
-					//(uv.x > position.x - size.x / 2.0) && (uv.x < position.x - size.x / 2.0 + border_size)) // bottom left
-				//{
-					//if(Left(side) && Bottom(side))
-					//{
-						//tempColor.a = 0.0;
-					//}
-					//else if(Left(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.y);
-					//}
-					//else if(Bottom(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.x);
-					//}
-				//}
-				//
-				//if(uv.y > position.y + size.y / 2.0 - border_size && uv.y < position.y + size.y / 2.0 &&
-					//(uv.x > position.x + size.x / 2.0 - border_size) && (uv.x < position.x + size.x / 2.0)) // bottom right
-				//{
-					//if(Right(side) && Bottom(side))
-					//{
-						//tempColor.a = 0.0;
-					//}
-					//if(Right(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.y);
-					//}
-					//else if(Bottom(side))
-					//{
-						//tempColor = sideGradient(color, dist_from_center.x);
-					//}
-				//}
-			//}
-			//else
-			//{
-				//tempColor.a = 0.0;
-			//}
-		//}
+		float alpha = fogDistanceGraph(current_position, pi) * tempColor.a;
+		tempColor.a = alpha;
 	}
 	return tempColor;
 }
@@ -257,8 +146,8 @@ void fragment() {
 	// top, bottom, right, left
 	//fog_position_array[0] = vec3(0.55, 0.55, 1000.0);
 	//fog_position_array[1] = vec3(0.583, 0.516, 1000.0);
-	COLOR = color;
-	float real_alfa_cutoff = 1.0 - white_cutoff;
+	//COLOR = color;
+	//float real_alfa_cutoff = 1.0 - white_cutoff;
 	//if(color.r * color.g * color.b > real_alfa_cutoff)
 	//{
 		////COLOR.rgb = vec3(0,0,0);
@@ -266,8 +155,9 @@ void fragment() {
 	//}
 	for (int i = 0; i < fog_position_array_size; i++) 
 	{
-		color = rectanbleBorder(UV, color, fog_position_array[i].rg, fog_position_array[i].b, square_size, 0.0036);
+		color = rectanbleBorder(UV, color, fog_position_array[1].rg, fog_position_array[i].rg, fog_position_array[6].rg, square_size, PI);
 	}
+	
 	COLOR = color;
 }
 "

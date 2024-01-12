@@ -87,7 +87,7 @@ public partial class FogOfWar : Sprite2D
             Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
             // _shaderMaterial.SetShaderParameter("fog_position", vec);
             fogDataArray[i] = new Vector3(vec.X, vec.Y, fogData.fogSidesData.GenerateFogSideData());
-            GD.Print(fogData.fogSidesData.GenerateFogSideData());
+            // GD.Print(fogData.fogSidesData.GenerateFogSideData());
         }
 
         Vector2 squareSize = lightImage.GetSize();
@@ -96,7 +96,16 @@ public partial class FogOfWar : Sprite2D
         _shaderMaterial.SetShaderParameter("square_size", squareSize);
         _shaderMaterial.SetShaderParameter("fog_position_array_size", fogTileCount);
         _shaderMaterial.SetShaderParameter("fog_position_array", fogDataArray);
-        
+
+        if (fogDataArray.Length > 12)
+        {
+            // double distance = CalculateDistance2D(fogDataArray[0], fogDataArray[1]);
+            double starting_point = 0;
+            double current_point = CalculateDistance2D(fogDataArray[1], fogDataArray[0]);
+            double last_point = CalculateDistance2D(fogDataArray[1], fogDataArray[6]);
+            double alpha = ((current_point - starting_point) / (last_point - starting_point));
+            GD.Print(starting_point);
+        }
         // Image image = characterTeam.fogTexture.GetImage();
         // characterTeam.fogTexture.
         // Image img = Image.CreateFromData(width, height, false, Image.Format.Rgbah, image.GetData());
@@ -106,6 +115,12 @@ public partial class FogOfWar : Sprite2D
         // UpdateForImageTexture();
     }
 
+    
+    private double CalculateDistance2D(Vector3 start, Vector3 end)
+    {
+        return Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2));
+    }
+    
     private void UpdateForImageTexture(ImageTexture texture)
     {
         // fogTexture = ImageTexture.CreateFromImage(fogImage);
