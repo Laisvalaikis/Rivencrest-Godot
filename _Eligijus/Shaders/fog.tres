@@ -134,6 +134,7 @@ vec4 rectanbleBorder(vec2 uv, vec4 color, vec2 start_position, vec2 position, ve
 		for(int i = 0; i < fog_player_position_array_size; i++)
 		{
 			float starting_point = 0.0;
+			//float starting_point = distance(vec2(0.0, 0.0), start_position);
 			float current_point = distance(fog_player_position_array[i], position);
 			float last_point = distance(fog_player_position_array[i], end_position);
 			float current_position = ((current_point - starting_point) / (last_point - starting_point));

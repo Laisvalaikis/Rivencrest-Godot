@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -63,7 +64,31 @@ public partial class Team : Resource
         
         _visionTilesPositions[arrayIndex] = fogOfWar.GenerateFogPosition(chunkData.GetPosition());
         arrayIndex++;
+        
         fogOfWar.RemoveFog(fogOfWar.GenerateFogPosition(maxIndex.GetPosition()), _visionTilesPositions, arrayIndex);
+        GD.Print("STARTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+        for (int i = 0; i < arrayIndex; i++)
+        {
+            Vector2 position = _visionTilesPositions[i];
+            for (int j = 0; j < _fogCharacterPositions.Length; j++)
+            {
+                // float starting_point = 0;
+                float starting_point = _fogCharacterPositions[j].DistanceTo(_visionTilesPositions[1]);
+                float current_point = _fogCharacterPositions[j].DistanceTo(position);
+                float last_point = _fogCharacterPositions[j].DistanceTo(fogOfWar.GenerateFogPosition(maxIndex.GetPosition()));
+                float current_position = ((current_point - starting_point) / (last_point - starting_point));
+                current_position = Math.Abs(current_position);
+                // current_position = Math.Clamp(current_position, 0, 1);
+                // double alpha = fogDistanceGraph(current_position) * 0.7;
+                GD.Print(current_position);
+            }
+        }
+        GD.Print("ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+    }
+    
+    float fogDistanceGraph(float alpha)
+    {
+        return Mathf.Pow(alpha, (float)1.0/(float)2.0);
     }
 
     public void GenerateCharacterPositions()
