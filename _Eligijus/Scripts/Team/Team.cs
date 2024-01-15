@@ -44,6 +44,11 @@ public partial class Team : Resource
         isTeamUsed = usedTeam;
     }
     
+    private float DistanceTo(float x, float y)
+    {
+        return MathF.Sqrt(MathF.Pow(x, 2) + MathF.Pow(y, 2));
+    }
+    
     public void AddVisionTile(ChunkData chunkData)
     {
         if (_visionTilesPositions is null)
@@ -53,12 +58,25 @@ public partial class Team : Resource
             maxIndex = chunkData;
         }
 
-        (int x, int y) current = chunkData.GetIndexes();
-        (int x, int y) max = maxIndex.GetIndexes();
-        if (chunkData != maxIndex && current.x >= max.x && current.y >= max.y)
+        // (int x, int y) current = chunkData.GetIndexes();
+        // (int x, int y) max = maxIndex.GetIndexes();
+
+        if (_fogChunkDatas.Count > 0)
         {
-            maxIndex = chunkData;
+            float currentDistance = _fogChunkDatas[0].GetPosition().DistanceTo(chunkData.GetPosition());
+            float maxDistance = _fogChunkDatas[0].GetPosition().DistanceTo(maxIndex.GetPosition());
+
+            if (chunkData != maxIndex && currentDistance > maxDistance)
+            {
+                maxIndex = chunkData;
+            }
         }
+
+        // float tempDistance = 
+        // if (chunkData != maxIndex && current.x >= max.x && current.y >= max.y)
+        // {
+        //     maxIndex = chunkData;
+        // }
         
         _visionTilesPositions.Add(fogOfWar.GenerateFogPosition(chunkData.GetPosition()));
         _fogChunkDatas.Add(chunkData);

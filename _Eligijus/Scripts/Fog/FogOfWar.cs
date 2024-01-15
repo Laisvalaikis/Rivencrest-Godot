@@ -60,7 +60,6 @@ public partial class FogOfWar : Sprite2D
         Vector2 offsetImage = new Vector2(lightImage.X / 2, lightImage.Y / 2);
         Vector2 realPosition = gridPosition + lightOffset + offsetImage;
         Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
-        GD.Print(vec);
         return vec;
     }
 
