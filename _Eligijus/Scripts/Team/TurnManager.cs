@@ -58,19 +58,14 @@ public partial class TurnManager : Node
 
 	public void SetCurrentTeam(int teamIndex)
 	{
-		if (_currentTeam is not null)
+		foreach (int key in _teamsList.Teams.Keys)
 		{
-			_currentTeam.ResetFogTiles();
+			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles());
 		}
 		_currentTeam = _teamsList.Teams[teamIndex];
 		_currentTeamIndex = teamIndex;
 		_currentPlayer = null;
 		InputManager.Instance.SetCurrentCharacterPosition(_currentTeam.characters.Values.First().GlobalPosition);
-		foreach (int key in _teamsList.Teams.Keys)
-		{
-			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles());
-		}
-		
 		foreach (int key in _currentTeam.characters.Keys)
 		{
 			Player player = _currentTeam.characters[key];
@@ -164,7 +159,7 @@ public partial class TurnManager : Node
 	{
 		OnTurnEnd();
 		ResetFogInformation(_currentTeam.GetVisionTiles());
-		_currentTeam.ResetFogTiles();
+		// _currentTeam.ResetFogTiles();
 		if (_currentTeamIndex + 1 < _teamsList.Teams.Count)
 		{
 			_currentTeamIndex++;
@@ -212,6 +207,7 @@ public partial class TurnManager : Node
 				HighlightTile highlightTile = fogData.GetTileHighlight();
 				highlightTile.ActivatePlayerTile(false);
 				highlightTile.EnableTile(false);
+				
 			}
 		}
 	}
@@ -220,14 +216,15 @@ public partial class TurnManager : Node
 	{
 		foreach (ChunkData fogData in fogDataList)
 		{
+			fogData.SetFogOnTile(false);
 			if (fogData.CharacterIsOnTile())
 			{
 				fogData.GetCurrentPlayer().EnableObject();
 				HighlightTile highlightTile = fogData.GetTileHighlight();
 				highlightTile.ActivatePlayerTile(true);
 				highlightTile.EnableTile(true);
-				fogData.SetFogOnTile(false);
 			}
+			
 		}
 	}
 
