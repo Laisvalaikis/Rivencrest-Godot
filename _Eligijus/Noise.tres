@@ -2,7 +2,7 @@
 
 [resource]
 seed = 9
-frequency = 0.0002
+frequency = 0.002
 offset = Vector3(-373.91, -720, 0)
 fractal_octaves = 3
 fractal_lacunarity = 4.0
