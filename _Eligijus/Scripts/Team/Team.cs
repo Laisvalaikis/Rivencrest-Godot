@@ -25,12 +25,10 @@ public partial class Team : Resource
     private bool isTeamUsed = false;
     public FogOfWar fogOfWar;
     public int undoCount;
-    public ImageTexture fogTexture;
-    private List<FogData> _visionTiles;
-    private Vector2[] _visionTilesPositions;
     private Vector2[] _fogCharacterPositions;
+    private List<ChunkData> _fogChunkDatas;
+    private List<Vector2> _visionTilesPositions;
     private ChunkData maxIndex;
-    private int arrayIndex = 0;
     public LinkedList<UsedAbility> usedAbilitiesBeforeStartTurn = new LinkedList<UsedAbility>();
     public LinkedList<UsedAbility> usedAbilitiesAfterResolve = new LinkedList<UsedAbility>();
     public LinkedList<UsedAbility> usedAbilitiesEndTurn = new LinkedList<UsedAbility>();
@@ -50,8 +48,8 @@ public partial class Team : Resource
     {
         if (_visionTilesPositions is null)
         {
-            _visionTilesPositions = new Vector2[200];
-            arrayIndex = 0;
+            _visionTilesPositions = new List<Vector2>();
+            _fogChunkDatas = new List<ChunkData>();
             maxIndex = chunkData;
         }
 
@@ -62,33 +60,14 @@ public partial class Team : Resource
             maxIndex = chunkData;
         }
         
-        _visionTilesPositions[arrayIndex] = fogOfWar.GenerateFogPosition(chunkData.GetPosition());
-        arrayIndex++;
-        
-        fogOfWar.RemoveFog(fogOfWar.GenerateFogPosition(maxIndex.GetPosition()), _visionTilesPositions, arrayIndex);
-        GD.Print("STARTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-        for (int i = 0; i < arrayIndex; i++)
-        {
-            Vector2 position = _visionTilesPositions[i];
-            for (int j = 0; j < _fogCharacterPositions.Length; j++)
-            {
-                // float starting_point = 0;
-                float starting_point = _fogCharacterPositions[j].DistanceTo(_visionTilesPositions[1]);
-                float current_point = _fogCharacterPositions[j].DistanceTo(position);
-                float last_point = _fogCharacterPositions[j].DistanceTo(fogOfWar.GenerateFogPosition(maxIndex.GetPosition()));
-                float current_position = ((current_point - starting_point) / (last_point - starting_point));
-                current_position = Math.Abs(current_position);
-                // current_position = Math.Clamp(current_position, 0, 1);
-                // double alpha = fogDistanceGraph(current_position) * 0.7;
-                GD.Print(current_position);
-            }
-        }
-        GD.Print("ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        _visionTilesPositions.Add(fogOfWar.GenerateFogPosition(chunkData.GetPosition()));
+        _fogChunkDatas.Add(chunkData);
+        fogOfWar.RemoveFog(fogOfWar.GenerateFogPosition(maxIndex.GetPosition()), _visionTilesPositions.ToArray(), _visionTilesPositions.Count);
     }
-    
-    float fogDistanceGraph(float alpha)
+
+    public void UpdateFogTeamTile()
     {
-        return Mathf.Pow(alpha, (float)1.0/(float)2.0);
+        fogOfWar.RemoveFog(fogOfWar.GenerateFogPosition(maxIndex.GetPosition()), _visionTilesPositions.ToArray(), _visionTilesPositions.Count);
     }
 
     public void GenerateCharacterPositions()
@@ -105,31 +84,57 @@ public partial class Team : Resource
 
     public void RemoveVisionTile(ChunkData chunkData)
     {
-        if (_visionTiles is null)
+        if (_visionTilesPositions is null)
         {
-            _visionTiles = new List<FogData>();
+            _visionTilesPositions = new List<Vector2>();
+            _fogChunkDatas = new List<ChunkData>();
+            maxIndex = chunkData;
         }
 
-        if (_visionTiles.Contains(new FogData(chunkData)))
+        if (_fogChunkDatas.Contains(chunkData))
         {
-            _visionTiles.Remove(new FogData(chunkData));
+            int index = _fogChunkDatas.IndexOf(chunkData);
+            _fogChunkDatas.RemoveAt(index);  
+            _visionTilesPositions.RemoveAt(index);
         }
         fogOfWar.AddFog(chunkData.GetPosition(), this);
     }
 
-    public bool ContainsVisionTile(ChunkData chunkData)
+    public void UpdateTeamFog()
     {
-        FogData fogData = new FogData(chunkData);
-        return _visionTiles.Contains(fogData);
+        UpdateFogTeamTile();
+        GenerateCharacterPositions();
+        EnableFogTiles();
     }
 
-    public List<FogData> GetVisionTiles()
+    public void ResetFogTiles()
     {
-        if (_visionTiles is null)
+        for (int i = 0; i < _fogChunkDatas.Count; i++)
         {
-            _visionTiles = new List<FogData>();
+            _fogChunkDatas[i].SetFogOnTile(true);
         }
-        return _visionTiles;
+    }
+
+    private void EnableFogTiles()
+    {
+        for (int i = 0; i < _fogChunkDatas.Count; i++)
+        {
+            _fogChunkDatas[i].SetFogOnTile(false);
+        }
+    }
+    
+    public bool ContainsVisionTile(ChunkData chunkData)
+    {
+        return _fogChunkDatas.Contains(chunkData);
+    }
+
+    public List<ChunkData> GetVisionTiles()
+    {
+        if (_fogChunkDatas is null)
+        {
+            _fogChunkDatas = new List<ChunkData>();
+        }
+        return _fogChunkDatas;
     }
 
 }

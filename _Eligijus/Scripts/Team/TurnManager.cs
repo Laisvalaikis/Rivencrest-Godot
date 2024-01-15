@@ -58,6 +58,10 @@ public partial class TurnManager : Node
 
 	public void SetCurrentTeam(int teamIndex)
 	{
+		if (_currentTeam is not null)
+		{
+			_currentTeam.ResetFogTiles();
+		}
 		_currentTeam = _teamsList.Teams[teamIndex];
 		_currentTeamIndex = teamIndex;
 		_currentPlayer = null;
@@ -66,6 +70,7 @@ public partial class TurnManager : Node
 		{
 			ResetFogInformation(_teamsList.Teams[key].GetVisionTiles());
 		}
+		
 		foreach (int key in _currentTeam.characters.Keys)
 		{
 			Player player = _currentTeam.characters[key];
@@ -73,7 +78,7 @@ public partial class TurnManager : Node
 			break;
 		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
-		_fogOfWar.SetFogTexture(_currentTeam.fogTexture);
+		_currentTeam.UpdateTeamFog();
 	}
 
 	public void SetCurrentCharacter(Player character)
@@ -159,6 +164,7 @@ public partial class TurnManager : Node
 	{
 		OnTurnEnd();
 		ResetFogInformation(_currentTeam.GetVisionTiles());
+		_currentTeam.ResetFogTiles();
 		if (_currentTeamIndex + 1 < _teamsList.Teams.Count)
 		{
 			_currentTeamIndex++;
@@ -183,44 +189,44 @@ public partial class TurnManager : Node
 			_cameraMovement.FocusPoint(player.GlobalPosition);
 			break;
 		}
-		
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
 		_teamInformation.EndTurn(_currentTeamIndex);
 		OnTurnStart();
 		if (!isAiTurn)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 		{
-			_fogOfWar.SetFogTexture(_currentTeam.fogTexture);
+			GD.Print("Update fog");
+			_currentTeam.UpdateTeamFog();
+			// _fogOfWar.SetFogTexture(_currentTeam.fogTexture);
 		}
-
 		
 	}
-
-	private void ResetFogInformation(List<FogData> fogDataList)
+	
+	private void ResetFogInformation(List<ChunkData> fogDataList)
 	{
-		foreach (FogData fogData in fogDataList)
+		foreach (ChunkData fogData in fogDataList)
 		{
-			fogData.chunkRef.SetFogOnTile(true);
-			if (fogData.chunkRef.CharacterIsOnTile())
+			fogData.SetFogOnTile(true);
+			if (fogData.CharacterIsOnTile())
 			{
-				fogData.chunkRef.GetCurrentPlayer().DisableObject();
-				HighlightTile highlightTile = fogData.chunkRef.GetTileHighlight();
+				fogData.GetCurrentPlayer().EnableObject();
+				HighlightTile highlightTile = fogData.GetTileHighlight();
 				highlightTile.ActivatePlayerTile(false);
 				highlightTile.EnableTile(false);
 			}
 		}
 	}
 	
-	private void UpdateFogInformation(List<FogData> fogDataList)
+	private void UpdateFogInformation(List<ChunkData> fogDataList)
 	{
-		foreach (FogData fogData in fogDataList)
+		foreach (ChunkData fogData in fogDataList)
 		{
-			fogData.chunkRef.SetFogOnTile(fogData.fogIsOnTile);
-			if (fogData.chunkRef.CharacterIsOnTile() && !fogData.fogIsOnTile)
+			if (fogData.CharacterIsOnTile())
 			{
-				fogData.chunkRef.GetCurrentPlayer().EnableObject();
-				HighlightTile highlightTile = fogData.chunkRef.GetTileHighlight();
+				fogData.GetCurrentPlayer().EnableObject();
+				HighlightTile highlightTile = fogData.GetTileHighlight();
 				highlightTile.ActivatePlayerTile(true);
 				highlightTile.EnableTile(true);
+				fogData.SetFogOnTile(false);
 			}
 		}
 	}

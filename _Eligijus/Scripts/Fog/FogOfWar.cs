@@ -33,35 +33,25 @@ public partial class FogOfWar : Sprite2D
         // lightImage.Convert(Image.Format.Rgbah);
         Scale *= scale;
         _shaderMaterial = (Material as ShaderMaterial);
-    }
-    
-    public ImageTexture CreateFogImageTexture()
-    {
-        fogImage = Image.Create(width, height, false, Image.Format.Rgbah);
-        fogImage.Fill(Colors.Black);
-        return ImageTexture.CreateFromImage(fogImage);
-    }
-    
-    public void SetFogTexture(ImageTexture fog)
-    {
-        // oneTime = true;
-        UpdateForImageTexture(fog);
+        UpdateForImageTexture();
     }
     
     public void AddFog(Vector2 position, Team characterTeam)
     {
-        Image image = characterTeam.fogTexture.GetImage();
-        Vector2 gridPosition = ToLocal(position);
-        Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
-        image.BlitRect(addFog, fogRectI, gridPositionI + fogOffset);
-        characterTeam.fogTexture.Update(image);
+        // Image image = characterTeam.fogTexture.GetImage();
+        // Vector2 gridPosition = ToLocal(position);
+        // Vector2I gridPositionI = new Vector2I(Mathf.RoundToInt(gridPosition.X), Mathf.FloorToInt(gridPosition.Y));
+        // image.BlitRect(addFog, fogRectI, gridPositionI + fogOffset);
+        // characterTeam.fogTexture.Update(image);
+        GD.Print("Fix add back fog");
+        
     }
     
     public void RemoveFog(Vector2 maxPosition, Vector2[] visionTiles, int lenght)
     {
         
         Vector2 squareSize = lightImage.GetSize();
-        squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height);
+        squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height) - new Vector2((float)0.00066625, (float)0.000666625);
         
         _shaderMaterial.SetShaderParameter("square_size", squareSize);
         _shaderMaterial.SetShaderParameter("fog_max_position", maxPosition);
@@ -69,7 +59,7 @@ public partial class FogOfWar : Sprite2D
         _shaderMaterial.SetShaderParameter("fog_position_array", visionTiles);
        
     }
-
+    
     public void UpdateCharacterPositions(Vector2[] characterPositions, int characterPositionsCount)
     {
         _shaderMaterial.SetShaderParameter("fog_player_position_array", characterPositions);
@@ -95,9 +85,10 @@ public partial class FogOfWar : Sprite2D
         return Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2));
     }
     
-    private void UpdateForImageTexture(ImageTexture texture)
+    private void UpdateForImageTexture()
     {
-        // fogTexture = ImageTexture.CreateFromImage(fogImage);
-        Texture = texture;
+        fogImage = Image.Create(width, height, false, Image.Format.Rgbah);
+        fogImage.Fill(Colors.Black);
+        Texture =  ImageTexture.CreateFromImage(fogImage);
     }
 }
