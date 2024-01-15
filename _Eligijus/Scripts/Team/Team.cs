@@ -122,16 +122,7 @@ public partial class Team : Resource
     {
         UpdateFogTeamTile();
         GenerateCharacterPositions();
-        // EnableFogTiles();
     }
-
-    // public void ResetFogTiles()
-    // {
-    //     for (int i = 0; i < _fogChunkDatas.Count; i++)
-    //     {
-    //         _fogChunkDatas[i].SetFogOnTile(true);
-    //     }
-    // }
 
     private void EnableFogTiles()
     {

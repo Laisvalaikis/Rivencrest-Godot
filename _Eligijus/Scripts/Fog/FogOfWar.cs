@@ -39,7 +39,7 @@ public partial class FogOfWar : Sprite2D
     {
         
         Vector2 squareSize = lightImage;
-        squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height);
+        squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height) + new Vector2((float)0.00000005, (float)0.00000005);
         
         _shaderMaterial.SetShaderParameter("square_size", squareSize);
         _shaderMaterial.SetShaderParameter("fog_max_position", maxPosition);

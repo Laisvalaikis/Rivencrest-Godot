@@ -203,7 +203,7 @@ public partial class TurnManager : Node
 			fogData.SetFogOnTile(true);
 			if (fogData.CharacterIsOnTile())
 			{
-				fogData.GetCurrentPlayer().EnableObject();
+				fogData.GetCurrentPlayer().DisableObject();
 				HighlightTile highlightTile = fogData.GetTileHighlight();
 				highlightTile.ActivatePlayerTile(false);
 				highlightTile.EnableTile(false);
