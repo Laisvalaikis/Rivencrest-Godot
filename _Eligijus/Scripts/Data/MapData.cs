@@ -21,6 +21,11 @@ public partial class MapData : Resource
 	public Vector2 panLimitY;
 	
 	[Export]
+	public Vector2 panLimitXZoomOut;
+	[Export]
+	public Vector2 panLimitYZoomOut;
+	
+	[Export]
 	public int numberOfEnemies = 3;
 	[Export]
 	public string mapCategory;

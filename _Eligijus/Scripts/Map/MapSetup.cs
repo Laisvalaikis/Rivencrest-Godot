@@ -50,6 +50,7 @@ public partial class MapSetup : Node
 				}
 			}
 			_cameraMovement.SetMovementBounds(currentMapData.panLimitX, currentMapData.panLimitY);
+			_cameraMovement.SetMovementBoundsZoomOut(currentMapData.panLimitXZoomOut, currentMapData.panLimitYZoomOut);
 			CreateMap();
 		}
 		else
