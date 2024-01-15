@@ -61,7 +61,7 @@ public partial class CameraMovement : Camera2D
                 }
                 else
                 {
-                    _tween.Kill();
+                    _tween?.Kill();
                 }
             }
         }
@@ -78,7 +78,7 @@ public partial class CameraMovement : Camera2D
                 }
                 else
                 {
-                    _tween.Kill();
+                    _tween?.Kill();
                 }
             }
         }
@@ -183,26 +183,21 @@ public partial class CameraMovement : Camera2D
     
     private bool CheckInBounds(Vector2 position)
     {
-        Vector2 tempPosition = position;
         bool inBounds = true;
-        if(tempPosition.X > xBounds.Y)
+        if(position.X > xBounds.Y)
         {
-            tempPosition = new Vector2(xBounds.Y, tempPosition.Y);
             inBounds = false;
         }
-        if (tempPosition.Y > yBounds.Y)
+        if (position.Y > yBounds.Y)
         {
-            tempPosition = new Vector2(tempPosition.X, yBounds.Y);
             inBounds = false;
         }
-        if(tempPosition.X < xBounds.X)
+        if(position.X < xBounds.X)
         {
-            tempPosition = new Vector2(xBounds.X, tempPosition.Y);
             inBounds = false;
         }
-        if (tempPosition.Y < yBounds.X)
+        if (position.Y < yBounds.X)
         {
-            tempPosition = new Vector2(tempPosition.X, yBounds.X);
             inBounds = false;
         }
         
