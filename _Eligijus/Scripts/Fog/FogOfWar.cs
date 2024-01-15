@@ -4,7 +4,7 @@ using Godot;
 
 public partial class FogOfWar : Sprite2D
 {
-    [Export] private int scale = 3;
+    [Export] private int fogScale = 3;
     [Export] private int width = 3000;
     [Export] private int height = 3000;
     private Vector2 lightImage;
@@ -14,19 +14,14 @@ public partial class FogOfWar : Sprite2D
     public override void _Ready()
     {
         base._Ready();
-        // lightImage.Resize(Mathf.CeilToInt((float)lightImage.GetWidth()/ (float)scale), Mathf.CeilToInt((float)lightImage.GetHeight()/(float)scale), Image.Interpolation.Nearest);
-        lightImage =  new Vector2((float)100.0 / scale, (float)100.0 / scale);
+        lightImage =  new Vector2((float)100.0 / fogScale, (float)100.0 / fogScale);
         lightOffset = new Vector2((width / 2) - (lightImage.X / 2), (height / 2) - (lightImage.Y / 2));
         Color color = Colors.Black;
         color.A = 0;
         // Scale = Vector2.One;
-        Scale *= scale;
-        // lightImage.Convert(Image.Format.Rgbah);
+        Scale *= fogScale;
         _shaderMaterial = (Material as ShaderMaterial);
         UpdateForImageTexture();
-        // Scale *= scale;
-        
-        
     }
     
     public void AddFog(Vector2 position, Team characterTeam)
@@ -44,7 +39,7 @@ public partial class FogOfWar : Sprite2D
     {
         
         Vector2 squareSize = lightImage;
-        squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height); // - new Vector2((float)0.0006661, (float)0.0006661);
+        squareSize = new Vector2(squareSize.X / (float)width, squareSize.Y / (float)height);
         
         _shaderMaterial.SetShaderParameter("square_size", squareSize);
         _shaderMaterial.SetShaderParameter("fog_max_position", maxPosition);
@@ -64,7 +59,7 @@ public partial class FogOfWar : Sprite2D
         Vector2 gridPosition = ToLocal(position);
         Vector2 offsetImage = new Vector2(lightImage.X / 2, lightImage.Y / 2);
         Vector2 realPosition = gridPosition + lightOffset + offsetImage;
-        Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height); // smth is off with position calculation
+        Vector2 vec = new Vector2(realPosition.X / (float)width, realPosition.Y / (float)height);
         GD.Print(vec);
         return vec;
     }
