@@ -91,6 +91,12 @@ public partial class SelectAction : Control
 				EnableAbilities(_playerAbilities, abilityButtons, i, true);
 			}
 		}
+		
+		// button focus for controllers
+		int lastButtonActive = buttonIndexCount - 1;
+		allAbilityButtons[lastButtonActive].FocusNeighborRight = allAbilityButtons[0].GetPath();
+		allAbilityButtons[0].FocusNeighborLeft = allAbilityButtons[lastButtonActive].GetPath();
+		
 		for (int i = buttonIndexCount; i < allAbilityButtons.Count; i++)
 		{
 			allAbilityButtons[i].buttonParent.Hide();

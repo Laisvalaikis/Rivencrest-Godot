@@ -14,6 +14,7 @@ public partial class ControllerInputManager : InputManager
 	private bool _tileSelectionClicked = false;
 	private bool upIsPressed = false;
 	private bool downIsPressed = false;
+	private bool isFocused = false;
 	
 	public override void _Input(InputEvent @event)
 	{
@@ -38,27 +39,31 @@ public partial class ControllerInputManager : InputManager
 	{
 		if (enabled)
 		{
-			if (Input.IsActionPressed("ReleaseFocus"))
+			if (Input.IsActionPressed("ReleaseFocus") && isFocused)
 			{
 				EmitSignal("ReleaseFocus");
 			}
 
-			if (Input.IsActionJustPressed("Select"))
+			if (!isFocused)
 			{
-				selectIsClicked = true;
-				deadzoneBoundsX.X = _mousePosition.X - deadZone.X;
-				deadzoneBoundsX.Y = _mousePosition.X + deadZone.X;
-				deadzoneBoundsY.X = _mousePosition.Y - deadZone.Y;
-				deadzoneBoundsY.Y = _mousePosition.Y + deadZone.Y;
-				mouseRelativePosition = _mousePosition;
-				inDeadZone = true;
-			}
-			else if (Input.IsActionJustReleased("Select"))
-			{
-				selectIsClicked = false;
-				if (inDeadZone)
+
+				if (Input.IsActionJustPressed("Select"))
 				{
-					OnSelectClick();
+					selectIsClicked = true;
+					deadzoneBoundsX.X = _mousePosition.X - deadZone.X;
+					deadzoneBoundsX.Y = _mousePosition.X + deadZone.X;
+					deadzoneBoundsY.X = _mousePosition.Y - deadZone.Y;
+					deadzoneBoundsY.Y = _mousePosition.Y + deadZone.Y;
+					mouseRelativePosition = _mousePosition;
+					inDeadZone = true;
+				}
+				else if (Input.IsActionJustReleased("Select"))
+				{
+					selectIsClicked = false;
+					if (inDeadZone)
+					{
+						OnSelectClick();
+					}
 				}
 			}
 
@@ -97,29 +102,37 @@ public partial class ControllerInputManager : InputManager
 			// 	EmitSignal("Down", 0.3);
 			// }
 
-			if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementRight") &&
-			    !Input.IsActionJustPressed("CameraMovementLeft") && (Input.IsActionJustPressed("CameraMovementUp") ||
-			                                                         Input.IsActionJustPressed("CameraMovementDown")))
+			if (!isFocused)
 			{
-				ControllerMousePosition();
-				_tileSelectionClicked = true;
-			}
-			else if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementUp") &&
-			         !Input.IsActionJustPressed("CameraMovementDown") &&
-			         (Input.IsActionJustPressed("CameraMovementRight") ||
-			          Input.IsActionJustPressed("CameraMovementLeft")))
-			{
-				ControllerMousePosition();
-				_tileSelectionClicked = true;
-			}
-			else if (_tileSelectionClicked && Input.IsActionJustReleased("CameraMovementUp") &&
-			         Input.IsActionJustReleased("CameraMovementDown") &&
-			         Input.IsActionJustReleased("CameraMovementRight") &&
-			         Input.IsActionJustReleased("CameraMovementLeft"))
-			{
-				_tileSelectionClicked = false;
+				if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementRight") &&
+				    !Input.IsActionJustPressed("CameraMovementLeft") &&
+				    (Input.IsActionJustPressed("CameraMovementUp") ||
+				     Input.IsActionJustPressed("CameraMovementDown")))
+				{
+					ControllerMousePosition();
+					_tileSelectionClicked = true;
+				}
+				else if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementUp") &&
+				         !Input.IsActionJustPressed("CameraMovementDown") &&
+				         (Input.IsActionJustPressed("CameraMovementRight") ||
+				          Input.IsActionJustPressed("CameraMovementLeft")))
+				{
+					ControllerMousePosition();
+					_tileSelectionClicked = true;
+				}
+				else if (_tileSelectionClicked && Input.IsActionJustReleased("CameraMovementUp") &&
+				         Input.IsActionJustReleased("CameraMovementDown") &&
+				         Input.IsActionJustReleased("CameraMovementRight") &&
+				         Input.IsActionJustReleased("CameraMovementLeft"))
+				{
+					_tileSelectionClicked = false;
+				}
 			}
 
+			if (Input.IsActionPressed("CharacterFocusInGame"))
+			{
+				EmitSignal("CharacterFocusInGame");
+			}
 
 			if (Input.IsActionPressed("Exit"))
 			{
@@ -174,7 +187,7 @@ public partial class ControllerInputManager : InputManager
 	{
 		base._PhysicsProcess(delta);
 
-		if (enabled)
+		if (enabled && !isFocused)
 		{
 			if (Input.IsActionPressed("CameraMovementUp", true) || Input.IsActionPressed("CameraMovementDown", true) ||
 			    Input.IsActionPressed("CameraMovementRight", true) || Input.IsActionPressed("CameraMovementLeft", true))
@@ -213,5 +226,16 @@ public partial class ControllerInputManager : InputManager
 	{
 		EmitSignal("SelectClick", _mousePosition);
 	}
+
+	public override void FocusExit()
+	{
+		base.FocusExit();
+		isFocused = false;
+	}
 	
+	public override void FocusEnter()
+	{
+		base.FocusEnter();
+		isFocused = true;
+	}
 }

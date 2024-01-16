@@ -20,6 +20,7 @@ public partial class TeamInformation : Control
 		base._Ready();
 		InputManager.Instance.ChangeNextCharacter += NextCharacter;
 		InputManager.Instance.ChangePreviousCharacter += PreviousCharacter;
+		InputManager.Instance.CharacterFocusInGame += FocusFirstCharacter;
 	}
 
 	public void ModifyList()
@@ -31,6 +32,7 @@ public partial class TeamInformation : Control
 		if (characterCount != characterOnBoardList.Count || changedTeams)
 		{
 			activeCharacterSelects = new Array<PvPCharacterSelect>();
+			int lastButtonActive = 0;
 			for (int i = 0; i < pvpCharacterSelects.Count; i++)
 			{
 				if (i < characterOnBoardList.Count)
@@ -44,6 +46,7 @@ public partial class TeamInformation : Control
 					pvpCharacterSelects[i].SetButtonIndex(i);
 					activeCharacterSelects.Add(pvpCharacterSelects[i]);
 					pvpCharacterSelects[i].Disabled = teamIsAI;
+					lastButtonActive = i;
 				}
 				else
 				{
@@ -51,7 +54,6 @@ public partial class TeamInformation : Control
 					pvpCharacterSelects[i].DisableCharacterPortrait();
 				}
 			}
-
 			if (characterOnBoardList.Count != 0)
 			{
 				image.Show();
@@ -60,6 +62,9 @@ public partial class TeamInformation : Control
 			{
 				image.Hide();
 			}
+			// button focus for controllers
+			pvpCharacterSelects[lastButtonActive].FocusNeighborRight = pvpCharacterSelects[0].GetPath();
+			pvpCharacterSelects[0].FocusNeighborLeft = pvpCharacterSelects[lastButtonActive].GetPath();
 		}
 		characterCount = characterOnBoardList.Count;
 		changedTeams = false;
@@ -108,7 +113,12 @@ public partial class TeamInformation : Control
 			}
 		}
 	}
-	
+
+	public void FocusFirstCharacter()
+	{
+		pvpCharacterSelects[0].GrabFocus();
+	}
+
 	public void PreviousCharacter()
 	{
 		if (activeCharacterSelects is not null && IsVisibleInTree())

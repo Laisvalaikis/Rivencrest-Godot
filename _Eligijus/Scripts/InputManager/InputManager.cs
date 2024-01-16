@@ -16,6 +16,7 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void DisableSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void EnableSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void ReleaseFocusEventHandler();
+	[Signal] public delegate void CharacterFocusInGameEventHandler();
 	[Signal] public delegate void CameraControlEventHandler(Vector2 relativePosition, float movementSpeed);
 
 	protected bool enabled = false;
@@ -76,6 +77,16 @@ public partial class InputManager: Node2D
 	{
 		enabled = false;
 		Instance = null;
+	}
+	
+	public virtual void FocusEnter()
+	{
+		
+	}
+	
+	public virtual void FocusExit()
+	{
+		
 	}
 }
 
