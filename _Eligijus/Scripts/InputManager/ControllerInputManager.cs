@@ -77,6 +77,21 @@ public partial class ControllerInputManager : InputManager
 				EmitSignal("ChangeAbilityPrevious");
 			}
 
+			if (Input.IsActionPressed("Pause"))
+			{
+				EmitSignal("PauseMenu");
+			}
+
+			if (Input.IsActionPressed("EndTurn"))
+			{
+				EmitSignal("EndTurn");
+			}
+			
+			if (Input.IsActionPressed("Undo"))
+			{
+				EmitSignal("Undo");
+			}
+
 			// if (Input.IsActionPressed("Up"))
 			// {
 			// 	EmitSignal("Up",0.3);

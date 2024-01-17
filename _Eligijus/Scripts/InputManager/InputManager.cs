@@ -18,7 +18,11 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void ReleaseFocusEventHandler();
 	[Signal] public delegate void CharacterFocusInGameEventHandler();
 	[Signal] public delegate void CameraControlEventHandler(Vector2 relativePosition, float movementSpeed);
-
+	[Signal] public delegate void PauseMenuEventHandler();
+	[Signal] public delegate void EndTurnEventHandler();
+	
+	[Signal] public delegate void UndoEventHandler();
+	
 	protected bool enabled = false;
 
 	public virtual void SetCurrentCharacterPosition(Vector2 characterPosition)

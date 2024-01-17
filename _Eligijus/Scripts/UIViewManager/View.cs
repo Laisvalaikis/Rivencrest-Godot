@@ -7,12 +7,11 @@ public partial class View : Control
 	public delegate void OpenViewSignalEventHandler();
 	[Signal]
 	public delegate void CloseViewSignalEventHandler();
-	[Export] 
-	private bool viewEnabledOnStart { get; set; } = false;
-	[Export]
-	private bool viewCanBeDisabled {get; set;} = true;
-	[Export]
-	public bool addViewToStack {get; set;} = true;
+
+	[Export] private Control openFocus;
+	[Export] private bool viewEnabledOnStart { get; set; } = false;
+	[Export] private bool viewCanBeDisabled {get; set;} = true;
+	[Export] public bool addViewToStack {get; set;} = true;
 	private int _viewIndex = -1;
 	private bool _disabled = true;
 	private int buttonIndex = -1;
@@ -29,6 +28,7 @@ public partial class View : Control
 		if (!IsVisibleInTree())
 		{
 			Show();
+			openFocus?.GrabFocus();
 		}
 		if (_viewIndex == -1 && addViewToStack)
 		{
