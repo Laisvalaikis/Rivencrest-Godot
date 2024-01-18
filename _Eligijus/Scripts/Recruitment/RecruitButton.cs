@@ -5,10 +5,8 @@ using Godot;
 
 public partial class RecruitButton : TextureRect
 {
-	[Export] 
-	public Color hover;
 	[Export]
-	public Button portrait;
+	public TextureRect portrait;
 	[Export]
 	public Button buyButton;
 	[Export]
@@ -34,11 +32,10 @@ public partial class RecruitButton : TextureRect
 		PlayerInformationDataNew charInformation = character.playerInformation;
 			className.Text = charInformation.ClassName;
 			className.LabelSettings.FontColor = charInformation.classColor;
-			StyleBoxTexture styleBox = NewTexture(charInformation, Colors.White);
-			StyleBoxTexture styleBoxPressed = NewTexture(charInformation, hover);
-			portrait.AddThemeStyleboxOverride("normal", styleBox);
-			portrait.AddThemeStyleboxOverride("hover", styleBox);
-			portrait.AddThemeStyleboxOverride("pressed", styleBoxPressed);
+			portrait.Texture = (Texture2D)charInformation.CharacterPortraitSprite;
+			// AtlasTexture atlas = new AtlasTexture();
+			// atlas.Region = (Rect2)charInformation.CharacterPortraitSprite.Get("region");
+			// atlas.Atlas = (CompressedTexture2D)charInformation.CharacterPortraitSprite.Get("atlas");
 			cost.Text = character.cost.ToString() + "g";
 			if (_data.townData.townGold >= character.cost && _data.Characters.Count < _data.maxCharacterCount)
 			{
@@ -50,18 +47,7 @@ public partial class RecruitButton : TextureRect
 			}
 	}
 
-	private StyleBoxTexture NewTexture(PlayerInformationDataNew playerInformationData, Color pressedColor)
-	{
-		StyleBoxTexture styleBox = new StyleBoxTexture();
-		AtlasTexture atlas = new AtlasTexture();
-		atlas.Region = (Rect2)playerInformationData.CharacterPortraitSprite.Get("region");
-		atlas.Atlas = (CompressedTexture2D)playerInformationData.CharacterPortraitSprite.Get("atlas");
-		styleBox.Texture = atlas;
-		styleBox.ModulateColor = pressedColor;
-		
-
-		return styleBox;
-	}
+	
 
 
 }
