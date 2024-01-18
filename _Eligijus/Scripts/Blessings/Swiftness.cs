@@ -29,11 +29,11 @@ public partial class Swiftness : PlayerBlessing
     public override void OnTurnStart(BaseAction baseAction)
     {
         base.OnTurnStart(baseAction);
-        //   if (baseAction.TurnIsEven())
-       // {
-            //baseAction.GetPlayer().AddMovementPoints(addMovementPoints);
+           if (baseAction.TurnIsEven())
+        {
+            baseAction.GetPlayer().AddMovementPoints(addMovementPoints);
             Player player = baseAction.GetPlayer();
             player.AddMovementPoints(addMovementPoints);
-       // }
+        }
     }
 }

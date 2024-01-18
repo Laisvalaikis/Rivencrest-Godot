@@ -29,6 +29,7 @@ public partial class HeadStart : PlayerBlessing
     public override void OnTurnStart(BaseAction baseAction)
     {
         base.OnTurnStart(baseAction);
+        GD.Print("WORKS");
         if (!blessingUsed)
         {
             Player player = baseAction.GetPlayer();

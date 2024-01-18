@@ -1,4 +1,5 @@
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class Stun : AbilityBlessing
 {
@@ -27,15 +28,8 @@ public partial class Stun : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction, tile);
-        if (tile.CharacterIsOnTile())
-        {
-            Player player = tile.GetCurrentPlayer();
-            if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
-            {
-                // Create Can't move
-                // player.debuffs.StunPlayer();
-                // GD.PrintErr("Fix can't do anything");
-            }
-        }
+        PlayerStun debuff = new PlayerStun();
+        tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
+        
     }
 }
