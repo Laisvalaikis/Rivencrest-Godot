@@ -15,6 +15,8 @@ public partial class CometFall : BaseAction
     {
         cometTilePrefab = ability.cometTilePrefab;
         cometTileData = ability.cometTileData;
+        enemyDisplayText = " ";
+        teamDisplayText = " ";
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -34,10 +36,5 @@ public partial class CometFall : BaseAction
         spawnedCometTile.AddPlayerForObjectAbilities(_player);
         GameTileMap.Tilemap.SpawnObject(spawnedCometTile, chunk);
         FinishAbility();
-    }
-
-    public override bool CanTileBeClicked(ChunkData chunkData)
-    {
-        return chunkData.GetTileHighlight().isHighlighted;
     }
 }

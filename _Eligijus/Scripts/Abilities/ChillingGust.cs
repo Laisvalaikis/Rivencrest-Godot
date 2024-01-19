@@ -12,6 +12,7 @@ public partial class ChillingGust : BaseAction
     }
     public ChillingGust(ChillingGust ability): base(ability)
     {
+        teamDisplayText = "PROTECT";
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
@@ -48,49 +49,5 @@ public partial class ChillingGust : BaseAction
                 chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             }
             FinishAbility();
-    }
-    
-    protected override bool CanAddTile(ChunkData chunk)
-    {
-        if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile())
-        {
-            return true;
-        }
-
-        return false;
-    }
-    
-    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
-    {
-        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
-        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
-
-        if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))
-        {
-            SetNonHoveredAttackColor(previousChunk);
-            DisableDamagePreview(previousChunk);
-        }
-        if (hoveredChunkHighlight == null || hoveredChunk == previousChunk)
-        {
-            return;
-        }
-        if (hoveredChunkHighlight.isHighlighted)
-        {
-            SetHoveredAttackColor(hoveredChunk);
-            if (hoveredChunk.GetCurrentPlayer()!=null)
-            {
-                if (hoveredChunk.GetCurrentPlayer().GetPlayerTeam() == _player.GetPlayerTeam())
-                {
-                    customText = "PROTECT";
-                }
-                EnableDamagePreview(hoveredChunk, minAttackDamage, maxAttackDamage);
-                customText = null;
-            }
-        }
-        if (previousChunkHighlight != null)
-        {
-            SetNonHoveredAttackColor(previousChunk);
-            DisableDamagePreview(previousChunk);
-        }
     }
 }

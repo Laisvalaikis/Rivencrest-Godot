@@ -8,6 +8,7 @@ public partial class Enrage : BaseAction
 	}
 	public Enrage(Enrage enrage): base(enrage)
 	{
+		teamDisplayText = "+1 MP";
 	}
  	
 	public override BaseAction CreateNewInstance(BaseAction action)
@@ -22,22 +23,16 @@ public partial class Enrage : BaseAction
 		highlightTile.DisableDamageText();
 		GameTileMap.Tilemap.GetChunk(_player.GlobalPosition).GetTileHighlight().DisableDamageText();
 	}
-
-	public override void Start()
-	{
-		base.Start();
-		customText = "+1 MP";
-	}
 	
 	public override void EnableDamagePreview(ChunkData chunk, string text = null)
 	{
 		HighlightTile highlightTile = chunk.GetTileHighlight();
 		HighlightTile gamerHighlight = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition).GetTileHighlight();
-		if (customText != null)
+		if (teamDisplayText != string.Empty)
 		{
-			highlightTile.SetDamageText(customText);
+			highlightTile.SetDamageText(teamDisplayText);
 			gamerHighlight.EnableTile(true);
-			gamerHighlight.SetDamageText(customText);
+			gamerHighlight.SetDamageText(teamDisplayText);
 		}
 	}
 	
@@ -68,11 +63,6 @@ public partial class Enrage : BaseAction
 			SetNonHoveredAttackColor(previousChunk);
 			DisableDamagePreview(previousChunk);
 		}
-	}
-
-	public override bool CanTileBeClicked(ChunkData chunk)
-	{
-		return (chunk.CharacterIsOnTile() && chunk.GetTileHighlight().isHighlighted && IsAllegianceSameForBuffs(chunk));
 	}
 	public override void ResolveAbility(ChunkData chunk)
 	{

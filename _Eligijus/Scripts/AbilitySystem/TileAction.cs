@@ -7,7 +7,7 @@ public partial class TileAction : Resource
     [Export] public int minAttackDamage = 0;
     [Export] public int maxAttackDamage = 0;
     [Export] protected int attackRange = 1;
-    [Export] protected bool laserGrid = false;
+
     [Export] protected bool friendlyFire = false;
     [Export] protected Color abilityHighlight = new Color("#B25E55");
     [Export] protected Color abilityHighlightHover = new Color("#9E4A41");
@@ -23,7 +23,22 @@ public partial class TileAction : Resource
     protected List<ChunkData> _visionChunkList;
     protected TurnManager _turnManager;
     protected Player _player;
-
+    
+    // Booleans used for generating and highliting grid
+    // Also used to determine who you can use ability on
+    [Export] protected bool canUseOnSelf;
+    [Export] protected bool canUseOnTeammate;
+    [Export] protected bool canUseOnEnemy;
+    [Export] protected bool canUseOnObject;
+    [Export] protected bool areaOfEffect;
+    [Export] protected bool laserGridExtendsBeyondFirstEnemy;
+    [Export] protected bool laserGrid;
+    [Export] protected bool affectsAllEnemiesInGrid;
+    [Export] protected bool affectsAllAlliesInGrid;
+    [Export] protected bool affectsAllCharactersAtOnce;
+    [Export] protected string teamDisplayText = string.Empty;
+    [Export] protected string enemyDisplayText = string.Empty;
+    //--------------------------------------------------------------
     public TileAction()
     {
         
@@ -34,7 +49,6 @@ public partial class TileAction : Resource
         minAttackDamage = action.minAttackDamage;
         maxAttackDamage = action.maxAttackDamage;
         attackRange = action.attackRange;
-        laserGrid = action.laserGrid;
         friendlyFire = action.friendlyFire;
         abilityHighlight = action.abilityHighlight;
         abilityHighlightHover = action.abilityHighlightHover;
@@ -44,6 +58,17 @@ public partial class TileAction : Resource
         otherTeamHighlightHover = action.otherTeamHighlightHover;
         otherTeamHoverCharacter = action.otherTeamHoverCharacter;
         otherTeamCharacterOnGrid = action.otherTeamCharacterOnGrid;
+        
+        laserGrid = action.laserGrid;
+        canUseOnSelf = action.canUseOnSelf;
+        canUseOnEnemy = action.canUseOnEnemy;
+        canUseOnTeammate = action.canUseOnTeammate;
+        canUseOnObject = action.canUseOnObject;
+        areaOfEffect = action.areaOfEffect;
+        laserGridExtendsBeyondFirstEnemy = action.laserGridExtendsBeyondFirstEnemy;
+        affectsAllAlliesInGrid = action.affectsAllAlliesInGrid;
+        affectsAllEnemiesInGrid = action.affectsAllEnemiesInGrid;
+        affectsAllCharactersAtOnce = action.affectsAllCharactersAtOnce;
     }
 
     public virtual void Start()
@@ -85,13 +110,30 @@ public partial class TileAction : Resource
     
     public virtual bool CanTileBeClicked(ChunkData chunkData)
     {
-        return chunkData.GetTileHighlight().isHighlighted && (CheckIfSpecificInformationType(chunkData, typeof(Player)) || 
-                                                              CheckIfSpecificInformationType(chunkData, typeof(Object))) && (!IsAllegianceSame(chunkData) || friendlyFire);
+        if (chunkData.GetTileHighlight().isHighlighted)
+        {
+            if (CheckIfSpecificInformationType(chunkData, typeof(Player)))
+            {
+                if (IsAllegianceSame(chunkData) && canUseOnTeammate)
+                {
+                    return true;
+                }
+                if (!IsAllegianceSame(chunkData) && canUseOnEnemy)
+                {
+                    return true;
+                }
+            }
+            if (CheckIfSpecificInformationType(chunkData, typeof(Object)) && canUseOnObject)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
     public virtual bool IsAllegianceSame(ChunkData chunk)
     {
-        return chunk.CharacterIsOnTile() && _player != null && chunk.GetCurrentPlayer().GetPlayerTeam() == _player.GetPlayerTeam();
+        return chunk!=null && chunk.CharacterIsOnTile() && _player != null && chunk.GetCurrentPlayer().GetPlayerTeam() == _player.GetPlayerTeam();
     }
     
     public virtual bool IsAllegianceSame(ChunkData chunk, ChunkData seconChunck)
@@ -168,11 +210,11 @@ public partial class TileAction : Resource
     
     protected virtual bool CanAddTile(ChunkData chunk)
     {
-        if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile()  && (!chunk.ObjectIsOnTile() || chunk.GetCurrentObject().CanBeDestroyed() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn())) // && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() // posibly turi buti tikrinamas allegiance
+        if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile()  && 
+            (!chunk.ObjectIsOnTile() || chunk.GetCurrentObject().CanBeDestroyed() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))
         {
-            return true;
+            return canUseOnSelf || chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter();
         }
-
         return false;
     }
     
@@ -210,6 +252,48 @@ public partial class TileAction : Resource
         }
     }
     
+    protected virtual void GeneratePlusPatternNonExtendable(ChunkData centerChunk, int length)
+    {
+        (int centerX, int centerY) = centerChunk.GetIndexes();
+        ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray();
+        bool[] canExtend = { true, true, true, true };
+
+        for (int i = 1; i <= length; i++)
+        {
+            List<(int, int, int)> positions = new List<(int, int, int)>
+            {
+                (centerX, centerY + i, 0), // Up
+                (centerX, centerY - i, 1), // Down
+                (centerX + i, centerY, 2), // Right
+                (centerX - i, centerY, 3) // Left
+            };
+            foreach (var (x, y, direction) in positions)
+            {
+                if (!canExtend[direction])
+                {
+                    continue;
+                }
+                if (x >= 0 && x < chunksArray.GetLength(0) && y >= 0 && y < chunksArray.GetLength(1))
+                {
+                    ChunkData chunk = chunksArray[x, y];
+                    if (chunk != null && !chunk.TileIsLocked())
+                    {
+                        if (chunk.GetCharacterType() == typeof(Object))
+                        {
+                            canExtend[direction] = false;
+                            continue;
+                        }
+                        _chunkList.Add(chunk);
+                        if (chunk.GetCurrentPlayer() != null)
+                        {
+                            canExtend[direction] = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     protected virtual void GenerateDiamondPattern(ChunkData centerChunk, int radius)
     {
         (int centerX, int centerY) = centerChunk.GetIndexes();
@@ -223,7 +307,6 @@ public partial class TileAction : Resource
                     int targetX = centerX + x;
                     int targetY = centerY + y;
 
-                    // Ensuring we don't go out of array bounds.
                     if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
                     {
                         ChunkData chunk = chunksArray[targetX, targetY];
@@ -245,7 +328,14 @@ public partial class TileAction : Resource
         ChunkData startChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         if(laserGrid)
         {
-            GeneratePlusPattern(startChunk, range);
+            if (laserGridExtendsBeyondFirstEnemy)
+            {
+                GeneratePlusPattern(startChunk, range);
+            }
+            else
+            {
+                GeneratePlusPatternNonExtendable(startChunk, range);
+            }
         }
         else
         {
@@ -326,8 +416,49 @@ public partial class TileAction : Resource
     {
 			
     }
-    
+
+    private bool shouldResetColorsSwitch;
+    private bool shouldResetColorsSwitchModes;
     public virtual void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        if (areaOfEffect)
+        {
+            OnMoveHoverEntireGrid(hoveredChunk, previousChunk);
+        }
+        else if (affectsAllCharactersAtOnce)
+        {
+            OnMoveHoverAllAffectedEnemiesAtOnce(hoveredChunk, previousChunk);
+        }
+        else if (affectsAllEnemiesInGrid && !IsAllegianceSame(hoveredChunk) && hoveredChunk!=null && hoveredChunk.CharacterIsOnTile())
+        {
+            if (shouldResetColorsSwitch)
+            {
+                ResetGridColors();
+            }
+            OnMoveHoverAllEnemiesInGrid(hoveredChunk, previousChunk);
+            shouldResetColorsSwitchModes = true;
+        }
+        else if (affectsAllAlliesInGrid && IsAllegianceSame(hoveredChunk) && hoveredChunk!=null && hoveredChunk.CharacterIsOnTile())
+        {
+            if (!shouldResetColorsSwitch)
+            {
+                ResetGridColors();
+            }
+            OnMoveHoverAllAlliesInGrid(hoveredChunk, previousChunk);
+            shouldResetColorsSwitchModes = true;
+        }
+        else
+        {
+            if (shouldResetColorsSwitchModes)
+            {
+                ResetGridColors();
+                shouldResetColorsSwitchModes = false;
+            }
+            OnMoveHoverSingleCharacter(hoveredChunk, previousChunk);
+        }
+    }
+
+    public virtual void OnMoveHoverSingleCharacter(ChunkData hoveredChunk, ChunkData previousChunk)
     {
         HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
         HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
@@ -355,14 +486,195 @@ public partial class TileAction : Resource
             DisableDamagePreview(previousChunk);
         }
     }
+
+    private void ResetGridColors()
+    {
+        foreach (var chunk in _chunkList)
+        {
+            SetNonHoveredAttackColor(chunk);
+            DisableDamagePreview(chunk);
+        }
+    }
+
+    public virtual void OnMoveHoverAllEnemiesInGrid(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
+        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
+        
+        if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted)) // nuhoverinome off-grid
+        {
+            ResetGridColors();
+        }
+        if (hoveredChunkHighlight == null || hoveredChunk == previousChunk) //Hoveriname ant to pacio ar siaip kazkoks gaidys ivyko
+        {
+            return;
+        }
+        if (hoveredChunkHighlight.isHighlighted) //Jei uzhoverinome ant grido
+        {
+            if (CanTileBeClicked(hoveredChunk) && !IsAllegianceSame(hoveredChunk)) //Ant uzhoverinto langelio characteris
+            {
+                shouldResetColorsSwitch = false;
+                foreach (var chunk in _chunkList)
+                {
+                    if (CanTileBeClicked(chunk) && !IsAllegianceSame(chunk))
+                    {
+                        SetHoveredAttackColor(chunk);
+                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                    }
+                }
+            }
+            else //ant uzhoverinto langelio ne characteris
+            {
+                hoveredChunkHighlight.SetHighlightColor(abilityHighlightHover);
+            }
+        }
+        if (previousChunkHighlight != null) // Jei pries tai irgi buvome ant grido
+        {
+            if (CanTileBeClicked(previousChunk) && !IsAllegianceSame(previousChunk) && (!CanTileBeClicked(hoveredChunk) || IsAllegianceSame(hoveredChunk))) //Jei ten buvo veikėjas, be to, dabar nebe ant veikėjo esame
+            {
+                ResetGridColors();
+            }
+            else if(!CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk) && IsAllegianceSame(hoveredChunk) && IsAllegianceSame(previousChunk)) //Nei buvo veikejas ant praeito, nei yra ant dabartinio
+            {
+                SetNonHoveredAttackColor(previousChunk);
+            }
+        }
+    }
+
+    public virtual void OnMoveHoverAllAlliesInGrid(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
+        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
+
+        if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted)) // nuhoverinome off-grid
+        {
+            ResetGridColors();
+        }
+        if (hoveredChunkHighlight == null || hoveredChunk == previousChunk) //Hoveriname ant to pacio ar siaip kazkoks gaidys ivyko
+        {
+            return;
+        }
+        if (hoveredChunkHighlight.isHighlighted) //Jei uzhoverinome ant grido
+        {
+            if (CanTileBeClicked(hoveredChunk) && IsAllegianceSame(hoveredChunk)) //Ant uzhoverinto langelio characteris
+            {
+                shouldResetColorsSwitch = true;
+                foreach (var chunk in _chunkList)
+                {
+                    if (CanTileBeClicked(chunk) && IsAllegianceSame(chunk))
+                    {
+                        SetHoveredAttackColor(chunk);
+                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                    }
+                }
+            }
+            else //ant uzhoverinto langelio ne characteris
+            {
+                hoveredChunkHighlight.SetHighlightColor(abilityHighlightHover);
+            }
+        }
+        if (previousChunkHighlight != null) // Jei pries tai irgi buvome ant grido
+        {
+            if (CanTileBeClicked(previousChunk) && IsAllegianceSame(previousChunk) && !CanTileBeClicked(hoveredChunk) && !IsAllegianceSame(hoveredChunk)) //Jei ten buvo veikėjas, be to, dabar nebe ant veikėjo esame
+            {
+                ResetGridColors();
+            }
+            else if(!CanTileBeClicked(previousChunk) && !IsAllegianceSame(previousChunk) && !CanTileBeClicked(hoveredChunk) && !IsAllegianceSame(hoveredChunk)) //Nei buvo veikejas ant praeito, nei yra ant dabartinio
+            {
+                SetNonHoveredAttackColor(previousChunk);
+            }
+        }
+    }
     
+    public virtual void OnMoveHoverAllAffectedEnemiesAtOnce(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
+        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
+        
+        if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted)) // nuhoverinome off-grid
+        {
+            ResetGridColors();
+        }
+        if (hoveredChunkHighlight == null || hoveredChunk == previousChunk) //Hoveriname ant to pacio ar siaip kazkoks gaidys ivyko
+        {
+            return;
+        }
+        if (hoveredChunkHighlight.isHighlighted) //Jei uzhoverinome ant grido
+        {
+            if (CanTileBeClicked(hoveredChunk)) //Ant uzhoverinto langelio characteris
+            {
+                foreach (var chunk in _chunkList)
+                {
+                    if (CanTileBeClicked(chunk))
+                    {
+                        SetHoveredAttackColor(chunk);
+                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                    }
+                }
+            }
+            else //ant uzhoverinto langelio ne characteris
+            {
+                hoveredChunkHighlight.SetHighlightColor(abilityHighlightHover);
+            }
+        }
+        if (previousChunkHighlight != null) // Jei pries tai irgi buvome ant grido
+        {
+            if (CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Jei ten buvo veikėjas, be to, dabar nebe ant veikėjo esame
+            {
+                ResetGridColors();
+            }
+            else if(!CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Nei buvo veikejas ant praeito, nei yra ant dabartinio
+            {
+                SetNonHoveredAttackColor(previousChunk);
+            }
+        }
+    }
+    
+    public virtual void OnMoveHoverEntireGrid(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        if (hoveredChunk == previousChunk) return;
+        if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
+        {
+            foreach (var chunk in _chunkList)
+            {
+                HighlightTile highlightTile = chunk.GetTileHighlight();
+                if (highlightTile != null)
+                {
+                    SetHoveredAttackColor(chunk);
+                    if (CanTileBeClicked(chunk))
+                    {
+                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                    }
+                }
+            }
+        }
+        else if (hoveredChunk == null || !hoveredChunk.GetTileHighlight().isHighlighted)
+        {
+            foreach (var chunk in _chunkList)
+            {
+                HighlightTile highlightTile = chunk.GetTileHighlight();
+                if (highlightTile != null)
+                {
+                    SetNonHoveredAttackColor(chunk);
+                    DisableDamagePreview(chunk);
+                }
+            }
+        }
+    }
     public virtual void EnableDamagePreview(ChunkData chunk, int minAttackDamage, int maxAttackDamage)
     {
         if (CanTileBeClicked(chunk))
         {
             HighlightTile highlightTile = chunk.GetTileHighlight();
-            
-            if (maxAttackDamage == minAttackDamage)
+            if (teamDisplayText!=string.Empty && IsAllegianceSame(chunk))
+            {
+                highlightTile.SetDamageText(teamDisplayText);
+            }
+            else if (enemyDisplayText!=string.Empty && !IsAllegianceSame(chunk))
+            {
+                highlightTile.SetDamageText(enemyDisplayText);
+            }
+            else if (maxAttackDamage == minAttackDamage)
             {
                 highlightTile.SetDamageText(maxAttackDamage.ToString());
             }
@@ -387,8 +699,6 @@ public partial class TileAction : Resource
             highlightTile.SetDamageText(text);
         }
     }
-    
-    
     
     protected virtual void DisableDamagePreview(ChunkData chunk)
     {
@@ -436,7 +746,7 @@ public partial class TileAction : Resource
     {
         _player = player;
     }
-
+    
     protected virtual bool CheckAbilityBounds(ChunkData chunkData)
     {
         return false;
@@ -446,5 +756,4 @@ public partial class TileAction : Resource
     {
         return _chunkList;
     }
-    
 }

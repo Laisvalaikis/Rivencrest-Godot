@@ -11,18 +11,13 @@ public partial class BlockAbility : BaseAction
     }
     public BlockAbility(BlockAbility ability): base(ability)
     {
+        teamDisplayText = "BLOCK";
     }
 
     public override BaseAction CreateNewInstance(BaseAction action)
     {
         BlockAbility ability = new BlockAbility((BlockAbility)action);
         return ability;
-    }
-
-    public override void Start()
-    {
-        base.Start();
-        customText = "BLOCK";
     }
 
     protected override void SetNonHoveredAttackColor(ChunkData chunkData)

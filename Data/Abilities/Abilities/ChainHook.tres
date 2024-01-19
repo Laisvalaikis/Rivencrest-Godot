@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://chye72ji1eu2k"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://chye72ji1eu2k"]
 
-[ext_resource type="Resource" uid="uid://bmd6f3y4l6bls" path="res://Data/Blessings/GrapplingHook.tres" id="1_cxvoq"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/ChainHook.cs" id="1_l3v1a"]
 
 [resource]
@@ -10,11 +9,10 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_cxvoq")])
+_abilityBlessingsRef = Array[Resource]([])
 minAttackDamage = 1
 maxAttackDamage = 2
 attackRange = 3
-laserGrid = true
 friendlyFire = false
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(0.403922, 0.533333, 0.619608, 1)
@@ -24,3 +22,13 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
+canUseOnSelf = false
+canUseOnTeammate = true
+canUseOnEnemy = true
+canUseOnObject = false
+areaOfEffect = false
+laserGridExtendsBeyondFirstEnemy = false
+laserGrid = true
+affectsAllEnemiesInGrid = false
+affectsAllAlliesInGrid = false
+affectsAllCharactersAtOnce = false

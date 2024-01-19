@@ -36,39 +36,6 @@ public partial class BindingRitual : BaseAction
              FinishAbility();
          }
     }
-
-    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
-    {
-        if (hoveredChunk == previousChunk) return;
-        if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
-        {
-            foreach (var chunk in _chunkList)
-            {
-                HighlightTile highlightTile = chunk.GetTileHighlight();
-                if (highlightTile != null)
-                {
-                    SetHoveredAttackColor(chunk);
-                    if (CanTileBeClicked(chunk))
-                    {
-                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
-                    }
-                }
-            }
-        }
-        else if (hoveredChunk == null || !hoveredChunk.GetTileHighlight().isHighlighted)
-        {
-            foreach (var chunk in _chunkList)
-            {
-                HighlightTile highlightTile = chunk.GetTileHighlight();
-                if (highlightTile != null)
-                {
-                    SetNonHoveredAttackColor(chunk);
-                    DisableDamagePreview(chunk);
-                }
-            }
-        }
-    }
-
     public override void CreateAvailableChunkList(int attackRange)
     {
         ChunkData centerChunk =  GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
