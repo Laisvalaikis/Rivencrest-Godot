@@ -12,7 +12,7 @@ public partial class ReleaseToxins : AbilityBlessing
     
 	public ReleaseToxins(ReleaseToxins blessing): base(blessing)
 	{
-		
+		bonusDamage = blessing.bonusDamage;
 	}
     
 	public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
@@ -29,12 +29,16 @@ public partial class ReleaseToxins : AbilityBlessing
 	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(baseAction);
-		Player player = new Player();
-		PoisonDebuff debuff = new PoisonDebuff(2,2);
-		tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
-		if(tile.CharacterIsOnTile() && !IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) && tile.GetCurrentPlayer().debuffManager.ContainsDebuff(debuff.GetType()))
+		//Player player = new Player();
+		if (tile.GetCurrentPlayer().debuffManager.ContainsDebuff(typeof(PoisonDebuff)))
 		{
-			DealRandomDamageToTarget(baseAction.GetPlayer(), tile, baseAction, bonusDamage, bonusDamage);
+			DealDamage(tile,baseAction.GetPlayer(),baseAction,bonusDamage);
 		}
+		//PoisonDebuff debuff = new PoisonDebuff(2,2);
+		//tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
+		//if(tile.CharacterIsOnTile() && !IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction) && tile.GetCurrentPlayer().debuffManager.ContainsDebuff((typeof(PoisonDebuff))))
+		//{
+		//	DealRandomDamageToTarget(baseAction.GetPlayer(), tile, baseAction, bonusDamage, bonusDamage);
+		//}
 	}
 }

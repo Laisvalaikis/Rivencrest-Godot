@@ -48,7 +48,8 @@ public partial class DealToAdjacent : AbilityBlessing
 				Player player = chunkData.GetCurrentPlayer();
 				if (IsAllegianceSame(player,chunkData,baseAction))
 				{
-					DealRandomDamageToTarget(player, chunkData, baseAction, minDamage, maxDamage);
+					//DealRandomDamageToTarget(player, chunkData, baseAction, minDamage, maxDamage);
+					DealDamage(chunkData, baseAction.GetPlayer(), baseAction, maxDamage);
 				}
 			}
 		}

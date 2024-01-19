@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dtmyyk1asoyin"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dtmyyk1asoyin"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PoisonDart.cs" id="1_3xgrd"]
+[ext_resource type="Resource" uid="uid://iem7lurqv28a" path="res://Data/Blessings/SlowDown.tres" id="1_hvlon"]
 
 [resource]
 script = ExtResource("1_3xgrd")
@@ -11,7 +12,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_hvlon")])
 minAttackDamage = 3
 maxAttackDamage = 4
 attackRange = 3

@@ -35,7 +35,7 @@ public partial class MoltenTouch : AbilityBlessing
         {
             Player target = tile.GetCurrentPlayer();
             AflameDebuff debuff = new AflameDebuff();
-            target.AddDebuff(debuff, tile.GetCurrentPlayer());
+            target.AddDebuff(debuff, baseAction.GetPlayer());
         }
 
         //Aflame(ref baseAction, tile);

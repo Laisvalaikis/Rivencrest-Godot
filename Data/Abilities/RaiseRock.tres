@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://co87qf0t4ms08"]
 
 [ext_resource type="Texture2D" uid="uid://cxs8t4bnodobb" path="res://Data/ActionIcons/Icon_14.tres" id="1_0r5f1"]
-[ext_resource type="Resource" uid="uid://e6qgikcvdej0" path="res://Data/Abilities/Abilities/RaiseRock.tres" id="2_7tc2h"]
+[ext_resource type="Resource" uid="uid://bcka6hd7ykmin" path="res://Data/Abilities/FreezeAbility.tres" id="2_m3f16"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="3_4x7xi"]
 [ext_resource type="Resource" uid="uid://dtvow5yvqiwum" path="res://Data/AbilityText/RaseRock.tres" id="3_ra32h"]
 
@@ -11,4 +11,4 @@ _type = 0
 abilityText = ExtResource("3_ra32h")
 enabled = true
 AbilityImage = ExtResource("1_0r5f1")
-Action = ExtResource("2_7tc2h")
+Action = ExtResource("2_m3f16")

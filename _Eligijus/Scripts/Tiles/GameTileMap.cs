@@ -373,8 +373,8 @@ public partial class GameTileMap : Node2D
 	public bool CheckBoundsWithoutLock(int x, int y)
 	{
 		if (_chunksArray.GetLength(0) > x && x >= 0
-		                                  && _chunksArray.GetLength(1) > y && y >= 0
-		                                  && _chunksArray[x, y] != null)
+										  && _chunksArray.GetLength(1) > y && y >= 0
+										  && _chunksArray[x, y] != null)
 		{
 			return true;
 		}

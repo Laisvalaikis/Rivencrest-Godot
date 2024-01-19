@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://ojd8ms8e2ldy"]
 
-[ext_resource type="Resource" uid="uid://5nclmwwoad2p" path="res://Data/Blessings/MarkedStun.tres" id="1_eftav"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/MarkEnemy.cs" id="1_g2bdx"]
+[ext_resource type="Resource" uid="uid://b08q8gy8ss7y5" path="res://Data/Blessings/RangeIncrease.tres" id="1_ih5c8"]
 
 [resource]
 script = ExtResource("1_g2bdx")
@@ -10,7 +10,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_eftav")])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_ih5c8")])
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 2

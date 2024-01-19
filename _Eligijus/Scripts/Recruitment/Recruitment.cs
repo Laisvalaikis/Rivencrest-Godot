@@ -143,7 +143,7 @@ public partial class Recruitment : Node
 	{
 		Array<string> NameList;
 		if (className == "ASSASSIN" || className == "ENCHANTRESS" ||
-		    className == "SORCERESS" || className == "HUNTRESS")
+			className == "SORCERESS" || className == "HUNTRESS")
 		{
 			NameList = new Array<string>(NamesW);
 		}

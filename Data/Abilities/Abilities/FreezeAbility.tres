@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://c8yfcxxdgbgr4"]
 
+[ext_resource type="Resource" uid="uid://c8geofl2ggoan" path="res://Data/Blessings/ReduceCooldown.tres" id="1_3njhs"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FreezeAbility.cs" id="1_pjmin"]
-[ext_resource type="Resource" uid="uid://iem7lurqv28a" path="res://Data/Blessings/SlowDown.tres" id="1_vi03a"]
 
 [resource]
 script = ExtResource("1_pjmin")
@@ -9,8 +9,8 @@ turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
-abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([ExtResource("1_vi03a")])
+abilityCooldown = 3
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_3njhs")])
 minAttackDamage = 4
 maxAttackDamage = 4
 attackRange = 1

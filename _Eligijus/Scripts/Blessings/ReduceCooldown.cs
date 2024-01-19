@@ -2,7 +2,7 @@
 
 public partial class ReduceCooldown : AbilityBlessing
 {
-    [Export] private int _reduceCooldown = 2;
+    [Export] private int _reduceCooldown = -2;
     
     public ReduceCooldown()
     {

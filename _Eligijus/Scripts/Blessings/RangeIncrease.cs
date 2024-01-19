@@ -4,6 +4,7 @@ public partial class RangeIncrease : AbilityBlessing
 {
 
     [Export] private int increasRange = 1;
+    public bool increased =true;
     
     public RangeIncrease()
     {
@@ -30,6 +31,10 @@ public partial class RangeIncrease : AbilityBlessing
     public override void OnTurnStart(BaseAction baseAction)
     {
         base.OnTurnStart(baseAction);
-        baseAction.IncreaseRange(increasRange);
+        if (increased)
+        {
+            baseAction.IncreaseRange(increasRange);
+            increased = false;
+        }
     }
 }

@@ -1,15 +1,10 @@
-[gd_resource type="Resource" load_steps=13 format=3 uid="uid://b6mwmarsnyy6s"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://b6mwmarsnyy6s"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_0w7qg"]
 [ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_mprbp"]
 [ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_a0fs6"]
 [ext_resource type="Texture2D" uid="uid://m3c84mwfn12o" path="res://Data/PlayerResource/Brown/Textures/CropedSplashArt.tres" id="3_uqbry"]
-[ext_resource type="Resource" uid="uid://co87qf0t4ms08" path="res://Data/Abilities/RaiseRock.tres" id="4_jj2vi"]
-[ext_resource type="Resource" uid="uid://f0fd2qtrwj1l" path="res://Data/Abilities/WallEntrap.tres" id="5_2gj4o"]
-[ext_resource type="Resource" uid="uid://blmh0ptkj3m7k" path="res://Data/Abilities/LeapAndSlam.tres" id="6_2ny3w"]
-[ext_resource type="Resource" uid="uid://dr6wblc8yb3my" path="res://Data/Abilities/WallSmash.tres" id="7_0yelt"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_2pb3y"]
-[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_g40fg"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="10_84hq6"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="12_xsspb"]
 
@@ -25,7 +20,7 @@ CharacterSplashArt = ExtResource("2_a0fs6")
 CroppedSplashArt = ExtResource("3_uqbry")
 characterSprite = ExtResource("10_84hq6")
 roleSprite = ExtResource("12_xsspb")
-baseAbilities = Array[Resource]([ExtResource("8_2pb3y"), ExtResource("9_g40fg")])
+baseAbilities = Array[Resource]([ExtResource("8_2pb3y")])
 maxHealth = 28
 accuracy = 100
 visionRange = 1
@@ -37,5 +32,5 @@ CharacterPortraitSprite = ExtResource("1_mprbp")
 canStepOnObject = false
 destroyObjectStepingOn = false
 canBeDestroyed = true
-abilities = Array[Resource]([ExtResource("4_jj2vi"), ExtResource("5_2gj4o"), ExtResource("6_2ny3w"), ExtResource("7_0yelt")])
+abilities = Array[Resource]([])
 blessings = Array[Resource]([])
