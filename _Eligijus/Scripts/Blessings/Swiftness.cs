@@ -3,7 +3,7 @@ using Godot;
 public partial class Swiftness : PlayerBlessing
 {
     [Export] private int addMovementPoints = 5;
-    
+    public bool isTurnEven = false;
     public Swiftness()
     {
 			
@@ -25,14 +25,27 @@ public partial class Swiftness : PlayerBlessing
         Swiftness blessing = new Swiftness(this);
         return blessing;
     }
-    
-    public override void OnTurnStart(BaseAction baseAction)
+
+    // public override void OnTurnStart(BaseAction baseAction)
+    // {
+    //     base.OnTurnStart(baseAction);
+    //     if (baseAction.TurnIsEven())
+    //     {
+    //         baseAction.GetPlayer().AddMovementPoints(addMovementPoints);
+    //         Player player = baseAction.GetPlayer();
+    //         player.AddMovementPoints(addMovementPoints);
+    //     }
+    // }
+    public override void OnTurnStart(Player player)
     {
-        base.OnTurnStart(baseAction);
-           if (baseAction.TurnIsEven())
+        base.OnTurnStart(player);
+        if (isTurnEven)
         {
-            baseAction.GetPlayer().AddMovementPoints(addMovementPoints);
-            Player player = baseAction.GetPlayer();
+            isTurnEven = false;
+        }
+        else
+        {
+            isTurnEven = true;
             player.AddMovementPoints(addMovementPoints);
         }
     }

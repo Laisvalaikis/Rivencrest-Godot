@@ -204,7 +204,7 @@ public partial class Player : Object
 		{
 			if (unlockedPLayerBlessings[i].blessingUnlocked)
 			{
-				playerBlessings[i].OnTurnStart(this);
+				playerBlessings[i].OnTurnEnd(this);
 			}
 		}
 		debuffManager.OnTurnEnd();
