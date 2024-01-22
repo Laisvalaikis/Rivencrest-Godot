@@ -45,7 +45,7 @@ public partial class BaseBlessing : Resource
 
     public virtual void Start(BaseBlessing baseBlessing)
     {
-
+        
     }
     
     public virtual void ResolveBlessing(BaseAction baseAction)

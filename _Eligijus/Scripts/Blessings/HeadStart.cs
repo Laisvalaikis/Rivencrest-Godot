@@ -4,6 +4,7 @@ public partial class HeadStart : PlayerBlessing
 {
     [Export] private int addMovementPoints = 2;
     private bool blessingUsed = false;
+    private Player player;
     public HeadStart()
     {
 			
@@ -25,14 +26,17 @@ public partial class HeadStart : PlayerBlessing
         HeadStart blessing = new HeadStart(this);
         return blessing;
     }
-
-    public override void OnTurnStart(BaseAction baseAction)
+    public override void Start(PlayerInformation playerInformation)
     {
-        base.OnTurnStart(baseAction);
+       // base.Start(playerInformation);
+        //player.AddMovementPoints(addMovementPoints);
+    }
+    public override void OnTurnStart(Player player)
+    {
+        base.OnTurnStart(player);
         GD.Print("WORKS");
         if (!blessingUsed)
         {
-            Player player = baseAction.GetPlayer();
             player.AddMovementPoints(addMovementPoints);
             blessingUsed = true;
         }

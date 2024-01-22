@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_kf02q")
-bonusHealing = 3
+bonusHealing = 20
 blessingName = "Increase Healing"
 rarity = 0
 className = ""

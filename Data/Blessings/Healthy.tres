@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_wnj3m")
-grantMaxHealth = 3
+grantMaxHealth = 20
 blessingName = "Healthy"
 rarity = 0
 className = ""

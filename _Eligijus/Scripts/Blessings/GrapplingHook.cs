@@ -14,7 +14,8 @@ public partial class GrapplingHook : AbilityBlessing
     
     public GrapplingHook(GrapplingHook blessing): base(blessing)
     {
- 
+        _tileToPullTo = blessing._tileToPullTo;
+        _characterSpriteRenderer = blessing._characterSpriteRenderer;
     }
     
     public override BaseBlessing CreateNewInstance(BaseBlessing baseBlessing)
@@ -38,7 +39,7 @@ public partial class GrapplingHook : AbilityBlessing
             if (chunkToPullTo != null)
             {
                 GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, baseAction.GetPlayer());
-                // ResetCharacterSpriteRendererAndTilePreview();
+                 ResetCharacterSpriteRendererAndTilePreview();
                 // FinishAbility();
             }
         }
@@ -132,7 +133,7 @@ public partial class GrapplingHook : AbilityBlessing
             directionX = 0;
         }
 
-        if (GameTileMap.Tilemap.CheckIfWall(chunkX + directionX, chunkY + directionY))
+        if (GameTileMap.Tilemap.CheckIfWall(chunkX + directionX, chunkY + directionY) || chunk.ObjectIsOnTile())
         {
             return GameTileMap.Tilemap.GetChunkDataByIndex(chunkX + directionX, chunkY + directionY);
         }

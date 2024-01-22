@@ -3,7 +3,7 @@ using System;
 
 public partial class IncreaseHealing : AbilityBlessing
 {
-	[Export] private int bonusHealing = 10;
+	[Export] private int bonusHealing = 20;
 	
 	public IncreaseHealing()
 	{

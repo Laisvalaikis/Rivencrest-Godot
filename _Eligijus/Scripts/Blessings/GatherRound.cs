@@ -41,7 +41,7 @@ public partial class GatherRound : AbilityBlessing
         baseAction.CreateAvailableChunkList(baseAction.GetRange());
         List<ChunkData> chunks = baseAction.GetChunkList();
         int randomHeal = _random.Next(minHealAmount, maxHealAmount);
-        foreach (ChunkData tile in chunks) //chunks 0
+        foreach (ChunkData tile in chunks)
         {
             if (IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
             {

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://chye72ji1eu2k"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://chye72ji1eu2k"]
 
+[ext_resource type="Resource" uid="uid://bmd6f3y4l6bls" path="res://Data/Blessings/GrapplingHook.tres" id="1_eijnn"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/ChainHook.cs" id="1_l3v1a"]
 
 [resource]
@@ -9,7 +10,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
-_abilityBlessingsRef = Array[Resource]([])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_eijnn")])
 minAttackDamage = 1
 maxAttackDamage = 2
 attackRange = 3
@@ -32,3 +33,5 @@ laserGrid = true
 affectsAllEnemiesInGrid = false
 affectsAllAlliesInGrid = false
 affectsAllCharactersAtOnce = false
+teamDisplayText = ""
+enemyDisplayText = ""
