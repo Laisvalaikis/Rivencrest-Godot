@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_afj4f")
-_reduceCooldown = -2
+_reduceCooldown = 2
 blessingName = "Reduce Cooldown"
 rarity = 0
 className = ""
