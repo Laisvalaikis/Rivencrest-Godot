@@ -26,11 +26,7 @@ public partial class HeadStart : PlayerBlessing
         HeadStart blessing = new HeadStart(this);
         return blessing;
     }
-    public override void Start(PlayerInformation playerInformation)
-    {
-       // base.Start(playerInformation);
-        //player.AddMovementPoints(addMovementPoints);
-    }
+
     public override void OnTurnStart(Player player)
     {
         base.OnTurnStart(player);
