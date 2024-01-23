@@ -36,34 +36,6 @@ public partial class Enrage : BaseAction
 		}
 	}
 	
-	public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
-	{
-		HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
-		HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
-
-		if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))
-		{
-			SetNonHoveredAttackColor(previousChunk);
-			DisableDamagePreview(previousChunk);
-		}
-		if (hoveredChunkHighlight == null || hoveredChunk == previousChunk)
-		{
-			return;
-		}
-		if (hoveredChunkHighlight.isHighlighted)
-		{
-			SetHoveredAttackColor(hoveredChunk);
-			if (CanTileBeClicked(hoveredChunk))
-			{
-				EnableDamagePreview(hoveredChunk);
-			}
-		}
-		if (previousChunkHighlight != null && hoveredChunk.GetCurrentPlayer()==null)
-		{
-			SetNonHoveredAttackColor(previousChunk);
-			DisableDamagePreview(previousChunk);
-		}
-	}
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		if (CanTileBeClicked(chunk))

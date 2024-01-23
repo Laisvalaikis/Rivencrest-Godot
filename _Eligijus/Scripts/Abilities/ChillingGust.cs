@@ -32,7 +32,7 @@ public partial class ChillingGust : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
+            UpdateAbilityButton();
             base.ResolveAbility(chunk);
             Player target = chunk.GetCurrentPlayer();
             PlayerInformation clickedPlayerInformation = target.objectInformation.GetPlayerInformation();

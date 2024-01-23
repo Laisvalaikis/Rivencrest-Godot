@@ -87,7 +87,7 @@ public partial class CryoFreeze : BaseAction
 		return chunkData.GetTileHighlight().isHighlighted;
 	}
 	
-	public override void EnableDamagePreview(ChunkData chunk, string text = null)
+	public override void EnableDamagePreview(ChunkData chunkData, int min, int max)
 	{
 		//Intentionally left empty. Ability does damage, but we do not preview it.
 	}

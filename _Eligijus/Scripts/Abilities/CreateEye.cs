@@ -8,11 +8,6 @@ public partial class CreateEye : BaseAction
 	private Object spawnedEye;
 	private bool isEyeActive = true;
 
-	public override void Start()
-	{
-		base.Start();
-	}
-
 	public CreateEye()
 	{
 		
@@ -92,7 +87,6 @@ public partial class CreateEye : BaseAction
 		{
 			return true;
 		}
-
 		return false;
 	}
 }
