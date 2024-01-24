@@ -69,6 +69,8 @@ public partial class TileAction : Resource
         affectsAllAlliesInGrid = action.affectsAllAlliesInGrid;
         affectsAllEnemiesInGrid = action.affectsAllEnemiesInGrid;
         affectsAllCharactersAtOnce = action.affectsAllCharactersAtOnce;
+        teamDisplayText = action.teamDisplayText;
+        enemyDisplayText = action.enemyDisplayText;
     }
 
     public virtual void Start()
@@ -228,24 +230,26 @@ public partial class TileAction : Resource
     
     protected virtual void GeneratePlusPattern(ChunkData centerChunk, int length)
     {
+        _chunkArray = new ChunkData[4,length];
         (int centerX, int centerY) = centerChunk.GetIndexes();
         ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray();
 
         for (int i = 1; i <= length; i++)
         {
-            List<(int, int)> positions = new List<(int, int)> 
+            List<(int, int,int)> positions = new List<(int, int, int)> 
             {
-                (centerX, centerY + i),  // Up
-                (centerX, centerY - i),  // Down
-                (centerX + i, centerY),  // Right
-                (centerX - i, centerY)   // Left
+                (centerX, centerY + i,0),  // Up
+                (centerX, centerY - i,1),  // Down
+                (centerX + i, centerY,2),  // Right
+                (centerX - i, centerY,3)   // Left
             };
 
-            foreach (var (x, y) in positions)
+            foreach (var (x, y,direction) in positions)
             {
-                if (x >= 0 && x < chunksArray.GetLength(0) && y >= 0 && y < chunksArray.GetLength(1))
+                if (GameTileMap.Tilemap.CheckBounds(x,y))
                 {
                     ChunkData chunk = chunksArray[x, y];
+                    _chunkArray[direction, i-1] = chunk;
                     TryAddTile(chunk);
                 }
             }
@@ -254,6 +258,7 @@ public partial class TileAction : Resource
     
     protected virtual void GeneratePlusPatternNonExtendable(ChunkData centerChunk, int length)
     {
+        _chunkArray = new ChunkData[4,length];
         (int centerX, int centerY) = centerChunk.GetIndexes();
         ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray();
         bool[] canExtend = { true, true, true, true };
@@ -273,7 +278,7 @@ public partial class TileAction : Resource
                 {
                     continue;
                 }
-                if (x >= 0 && x < chunksArray.GetLength(0) && y >= 0 && y < chunksArray.GetLength(1))
+                if (GameTileMap.Tilemap.CheckBounds(x,y))
                 {
                     ChunkData chunk = chunksArray[x, y];
                     if (chunk != null && !chunk.TileIsLocked())
@@ -284,6 +289,7 @@ public partial class TileAction : Resource
                             continue;
                         }
                         _chunkList.Add(chunk);
+                        _chunkArray[direction, i-1] = chunk;
                         if (chunk.GetCurrentPlayer() != null)
                         {
                             canExtend[direction] = false;
@@ -423,7 +429,14 @@ public partial class TileAction : Resource
     {
         if (areaOfEffect)
         {
-            OnMoveHoverEntireGrid(hoveredChunk, previousChunk);
+            if (laserGrid)
+            {
+                OnMoveHoverLaserSelectAll(hoveredChunk, previousChunk);
+            }
+            else
+            {
+                OnMoveHoverEntireGrid(hoveredChunk, previousChunk);
+            }
         }
         else if (affectsAllCharactersAtOnce)
         {
@@ -455,6 +468,68 @@ public partial class TileAction : Resource
                 shouldResetColorsSwitchModes = false;
             }
             OnMoveHoverSingleCharacter(hoveredChunk, previousChunk);
+        }
+    }
+
+    protected ChunkData[,] _chunkArray;
+    protected int _index = -1;
+    private int _globalIndex = -1;
+
+    protected int FindChunkIndex(ChunkData chunkData)
+    {
+        int index = -1;
+        for (int i = 0; i < _chunkArray.GetLength(1); i++)
+        {
+            if (_chunkArray[0,i] != null && _chunkArray[0,i] == chunkData)
+            {
+                index = 0;
+            }
+            if(_chunkArray[1,i] != null && _chunkArray[1,i] == chunkData)
+            {
+                index = 1;
+            }
+            if (_chunkArray[2,i] != null && _chunkArray[2,i] == chunkData)
+            {
+                index = 2;
+            }
+            if (_chunkArray[3,i] != null && _chunkArray[3,i] == chunkData)
+            {
+                index = 3;
+            }
+        }
+        return index;
+    }
+	
+    public virtual void OnMoveHoverLaserSelectAll(ChunkData hoveredChunk, ChunkData previousChunk)
+    {
+        if (hoveredChunk == previousChunk) return;
+        if (_globalIndex != -1)
+        {
+            for (int i = 0; i < _chunkArray.GetLength(1); i++)
+            {
+                ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
+                if (chunkToHighLight != null)
+                {
+                    SetNonHoveredAttackColor(chunkToHighLight);
+                    DisableDamagePreview(chunkToHighLight);
+                }
+            }
+        }
+        if (hoveredChunk != null && hoveredChunk.GetTileHighlight().isHighlighted)
+        {
+            _globalIndex = FindChunkIndex(hoveredChunk);
+            if (_globalIndex != -1)
+            {
+                for (int i = 0; i < _chunkArray.GetLength(1); i++)
+                {
+                    ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
+                    if (chunkToHighLight != null)
+                    {
+                        SetHoveredAttackColor(chunkToHighLight);
+                        EnableDamagePreview(chunkToHighLight, minAttackDamage, maxAttackDamage);
+                    }
+                }
+            }
         }
     }
 

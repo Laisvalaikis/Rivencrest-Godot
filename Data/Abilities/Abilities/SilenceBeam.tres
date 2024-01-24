@@ -1,9 +1,8 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://5x5hmqyixtid"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://5x5hmqyixtid"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SilenceBeam.cs" id="1_jwin8"]
 [ext_resource type="Resource" uid="uid://bxr6ebvlg50cy" path="res://_Eligijus/Prefabs/DangerTiles/PinkZoneTileData.tres" id="1_wcd0u"]
 [ext_resource type="PackedScene" uid="uid://ffnkyp2rfgra" path="res://_Eligijus/Prefabs/DangerTiles/PinkZoneTile.tscn" id="2_ih53x"]
-[ext_resource type="Resource" uid="uid://c8geofl2ggoan" path="res://Data/Blessings/ReduceCooldown.tres" id="3_5kt3r"]
 
 [resource]
 script = ExtResource("1_jwin8")
@@ -14,11 +13,10 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 3
-_abilityBlessingsRef = Array[Resource]([ExtResource("3_5kt3r")])
+_abilityBlessingsRef = Array[Resource]([])
 minAttackDamage = 10
 maxAttackDamage = 10
 attackRange = 3
-laserGrid = true
 friendlyFire = false
 abilityHighlight = Color(0.482353, 0.611765, 0.698039, 1)
 abilityHighlightHover = Color(1, 0.890196, 0, 1)
@@ -28,3 +26,15 @@ otherTeamAbilityHighlight = Color(0.364706, 0.364706, 0.364706, 1)
 otherTeamHighlightHover = Color(0.227451, 0.227451, 0.227451, 1)
 otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
+canUseOnSelf = false
+canUseOnTeammate = false
+canUseOnEnemy = false
+canUseOnObject = false
+areaOfEffect = true
+laserGridExtendsBeyondFirstEnemy = true
+laserGrid = true
+affectsAllEnemiesInGrid = false
+affectsAllAlliesInGrid = false
+affectsAllCharactersAtOnce = false
+teamDisplayText = ""
+enemyDisplayText = ""

@@ -244,7 +244,7 @@ public abstract partial class BaseAction: TileAction
 
 		public virtual void OnBeforeStart(ChunkData chunkData)
 		{
-			//GD.Print("SMTH");
+			
 		}
 
 		public virtual void OnTurnStart(ChunkData chunkData)

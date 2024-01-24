@@ -9,13 +9,13 @@ public partial class WindBoost : BaseAction
     private Random _random;
     public WindBoost()
     {
-        
     }
     public WindBoost(WindBoost ability): base(ability)
     {
         _random = new Random();
         minHeal = ability.minHeal;
         maxHeal = ability.maxHeal;
+        teamDisplayText = "BOOST";
     }
     public override BaseAction CreateNewInstance(BaseAction action)
     {
@@ -26,13 +26,8 @@ public partial class WindBoost : BaseAction
     {
         _chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
-    public override bool CanTileBeClicked(ChunkData chunkData)
-    {
-        return chunkData.GetTileHighlight().isHighlighted;
-    }
     public override void OnBeforeStart(ChunkData chunkData)
     { 
-        //base.OnTurnStart(null);
         isAbilityActive = false;
         ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int x, int y) indexes = current.GetIndexes();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
-public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
+public partial class Volley : BaseAction
 {
 	[Export] private int spellDamage = 6;
 	private ChunkData[,] _chunkArray;
@@ -134,7 +134,6 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
 	{
 		Vector2 playerPosition = _player.GlobalPosition;
 		ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(playerPosition);
-		ChunkData tileToDashTo;
 		(int x, int y) = playerChunk.GetIndexes();
 		switch (index)
 		{
@@ -154,7 +153,7 @@ public partial class Volley : BaseAction //STILL FUCKED FOR THE TIEM BEING
 
 		if (GameTileMap.Tilemap.CheckBounds(x, y))
 		{
-			tileToDashTo = GameTileMap.Tilemap.GetChunkDataByIndex(x, y);
+			ChunkData tileToDashTo = GameTileMap.Tilemap.GetChunkDataByIndex(x, y);
 			if (tileToDashTo.GetCharacterType() == null)
 			{
 				return tileToDashTo;
