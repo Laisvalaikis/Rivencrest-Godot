@@ -1,10 +1,7 @@
-
 using Godot;
 
 public partial class Execute : BaseAction
 {
-    private PlayerInformation _playerInformation;
- 
     public Execute()
     {
  		
@@ -19,34 +16,6 @@ public partial class Execute : BaseAction
         return execute;
     }
     
-    public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
-    {
-        HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight(); 
-        HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
-        if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))
-        { 
-            SetNonHoveredAttackColor(previousChunk);
-            DisableDamagePreview(previousChunk);
-        }
-        if (hoveredChunkHighlight == null || hoveredChunk == previousChunk)
-        { 
-            return;
-        }
-        if (hoveredChunkHighlight.isHighlighted)
-        {
-            if (CanTileBeClicked(hoveredChunk))
-            {
-                _playerInformation = hoveredChunk.GetCurrentPlayer().objectInformation.GetPlayerInformation();
-                EnableDamagePreview(hoveredChunk, minAttackDamage, maxAttackDamage);
-            }
-            SetHoveredAttackColor(hoveredChunk);
-        }
-        if (previousChunkHighlight != null)
-        {
-            SetNonHoveredAttackColor(previousChunk);
-            DisableDamagePreview(previousChunk);
-        }
-    }
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))

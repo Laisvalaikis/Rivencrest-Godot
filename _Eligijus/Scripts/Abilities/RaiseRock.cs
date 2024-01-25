@@ -11,6 +11,7 @@ public partial class RaiseRock : BaseAction
 	{
 		
 	}
+	
 	public RaiseRock(RaiseRock ability): base(ability)
 	{
 		WallPrefab = ability.WallPrefab;

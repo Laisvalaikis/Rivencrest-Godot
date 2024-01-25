@@ -164,7 +164,9 @@ public partial class SwordPush : BaseAction
                     _text = new List<ChunkData>();
                 }
                 _text.Add(hoveredChunk);
-                EnableDamagePreview(hoveredChunk, $"-{centerDamage}");
+                customText = $"-{centerDamage}";
+                EnableDamagePreview(hoveredChunk);
+                customText = string.Empty;
             }
         }
         else if(hoveredChunk != null && !hoveredChunk.GetTileHighlight().isHighlighted)
@@ -208,7 +210,9 @@ public partial class SwordPush : BaseAction
                     {
                         int arrowType = DetermineArrowType(tempTile, _attackTiles[index]);
                         tempTile.GetTileHighlight().SetArrowSprite(arrowType);
-                        EnableDamagePreview(_attackTiles[index], $"-{pushDamage}");
+                        customText = $"-{pushDamage}";
+                        EnableDamagePreview(_attackTiles[index]);
+                        customText = string.Empty;
                         int sideArrowsType = DetermineSideArrowsType(tempTile, _attackTiles[index]);
                         _arrowTiles.Add(tempTile.GetTileHighlight());
                         hoveredChunk.GetTileHighlight().SetSideArrowsSprite(sideArrowsType);
@@ -241,7 +245,9 @@ public partial class SwordPush : BaseAction
             ChunkData tempTile = GameTileMap.Tilemap.GetChunkDataByIndex(tempIndexes.Item1, tempIndexes.Item2);
             if (_attackTiles[index].CharacterIsOnTile())
             {
-                EnableDamagePreview(_attackTiles[index], $"-{pushDamage}");
+                customText = $"-{pushDamage}";
+                EnableDamagePreview(_attackTiles[index]);
+                customText = string.Empty;
                 _text.Add(_attackTiles[index]);
                 // tempTile.GetTileHighlight().SetHighlightColor(abilityHoverCharacter);
                 if (!tempTile.CharacterIsOnTile())
@@ -256,7 +262,9 @@ public partial class SwordPush : BaseAction
         {
             if (_attackTiles[index].CharacterIsOnTile())
             {
-                EnableDamagePreview(_attackTiles[index], $"-{pushDamage}");
+                customText = $"-{pushDamage}";
+                EnableDamagePreview(_attackTiles[index]);
+                customText = string.Empty;
                 _text.Add(_attackTiles[index]);
             }
         }

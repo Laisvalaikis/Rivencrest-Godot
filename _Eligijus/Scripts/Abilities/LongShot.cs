@@ -19,29 +19,31 @@ public partial class LongShot : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
-        base.ResolveAbility(chunk);
-        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        FinishAbility();
+        if (CanTileBeClicked(chunk))
+        {
+            UpdateAbilityButton();
+            base.ResolveAbility(chunk);
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            FinishAbility();
+        }
     }
 
-    public override void CreateAvailableChunkList(int attackRange)
+    public override void CreateAvailableChunkList(int range)
     {
         ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
         ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
-        for (int y = -attackRange; y <= attackRange; y++)
+        for (int y = -range; y <= range; y++)
         {
-            for (int x = -attackRange; x <= attackRange; x++)
+            for (int x = -range; x <= range; x++)
             {
-                if (Mathf.Abs(x) + Mathf.Abs(y) == attackRange)
+                if (Mathf.Abs(x) + Mathf.Abs(y) == range)
                 {
                     int targetX = centerX + x;
                     int targetY = centerY + y;
 
-                    // Ensuring we don't go out of array bounds.
-                    if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
+                    if (GameTileMap.Tilemap.CheckBounds(targetX,targetY))
                     {
                         ChunkData chunk = chunksArray[targetX, targetY];
                         TryAddTile(chunk);

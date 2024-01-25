@@ -115,7 +115,7 @@ public partial class SpearPulse : BaseAction
                     if (CanTileBeClicked(chunk))
                     {
                         SetHoveredAttackColor(chunk);
-                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                        EnableDamagePreview(chunk);
                     }
                 }
             }

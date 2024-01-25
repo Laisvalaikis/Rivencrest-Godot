@@ -53,11 +53,13 @@ public partial class RainOfArrows : BaseAction
                 }
             }
             CreateDamageTileList(hoveredChunk);
-            foreach (ChunkData chunk in damageList)
+            if (damageList is not null && damageList.Count > 0)
             {
-                SetHoveredAttackColor(chunk);
-                EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
-                
+                foreach (ChunkData chunk in damageList)
+                {
+                    SetHoveredAttackColor(chunk);
+                    EnableDamagePreview(chunk);
+                }
             }
         }
 
@@ -81,12 +83,6 @@ public partial class RainOfArrows : BaseAction
             }
             _chunkList.Clear();
         }
-    }
-    
-    public override bool CanTileBeClicked(ChunkData chunkData)
-    {
-        return (CheckIfSpecificInformationType(chunkData, typeof(Player)) || 
-                CheckIfSpecificInformationType(chunkData, typeof(Object))) && (!IsAllegianceSame(chunkData) || friendlyFire);
     }
 
     public void CreateDamageTileList(ChunkData chunk)

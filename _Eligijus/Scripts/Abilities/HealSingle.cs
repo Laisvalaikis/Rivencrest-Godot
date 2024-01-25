@@ -5,10 +5,8 @@ namespace Rivencrestgodot._Eligijus.Scripts.Abilities;
 
 public partial class HealSingle : BaseAction
 {
-    [Export]
-    public int minHealAmount = 3;
-    [Export]
-    public int maxHealAmount = 7;
+    [Export] public int minHealAmount = 3;
+    [Export] public int maxHealAmount = 7;
     
     public HealSingle()
     {
@@ -27,21 +25,6 @@ public partial class HealSingle : BaseAction
         return healSingle;
     }
     
-    protected override void TryAddTile(ChunkData chunk)
-    {
-        if (chunk != null && !chunk.TileIsLocked())
-        {
-            _chunkList.Add(chunk);
-        }
-    }
-    public override void EnableDamagePreview(ChunkData chunk, string text = null)
-    {
-        //intentionally left empty
-    }
-    public override bool CanTileBeClicked(ChunkData chunkData)
-    {
-        return CheckIfSpecificInformationType(chunkData, typeof(Player)) && IsAllegianceSameForBuffs(chunkData) && chunkData.GetTileHighlight().isHighlighted;
-    }
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))

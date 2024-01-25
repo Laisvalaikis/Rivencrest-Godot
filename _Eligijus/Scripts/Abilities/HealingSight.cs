@@ -36,21 +36,9 @@ public partial class HealingSight : BaseAction
         }
     }
 
-    public override void EnableDamagePreview(ChunkData chunk, string text = null)
-    {
-        //intentionally left empty
-    }
-    protected override void TryAddTile(ChunkData chunk)
-    {
-        if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == GameTileMap.Tilemap.GetCurrentCharacter())
-        {
-            _chunkList.Add(chunk);
-        }
-    }
-
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (_chunkList.Contains(chunk))
+        if (CanTileBeClicked(chunk))
         {
             abilityUsed = true;
             UpdateAbilityButton();

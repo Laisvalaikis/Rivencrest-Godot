@@ -23,11 +23,6 @@ public partial class WhiteFieldBuff: BaseBuff
         return buff;
     }
     
-    public override void OnTurnStart()
-    {
-        base.OnTurnStart();
-    }
-    
     public override void ResolveBuff(ChunkData chunkData)
     {
         

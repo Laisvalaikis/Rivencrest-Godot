@@ -24,11 +24,6 @@ public partial class ProtectedBuff : BaseBuff
         return buff;
     }
     
-    public override void OnTurnStart()
-    {
-        base.OnTurnStart();
-    }
-    
     public override void ResolveBuff(ChunkData chunkData)
     {
         

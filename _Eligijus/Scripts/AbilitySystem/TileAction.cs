@@ -6,6 +6,7 @@ public partial class TileAction : Resource
 {
     [Export] public int minAttackDamage = 0;
     [Export] public int maxAttackDamage = 0;
+    protected int bonusDamage = 0;
     [Export] protected int attackRange = 1;
 
     [Export] protected bool friendlyFire = false;
@@ -38,6 +39,7 @@ public partial class TileAction : Resource
     [Export] protected bool affectsAllCharactersAtOnce;
     [Export] protected string teamDisplayText = string.Empty;
     [Export] protected string enemyDisplayText = string.Empty;
+    [Export] protected string customText = string.Empty;
     //--------------------------------------------------------------
     public TileAction()
     {
@@ -71,9 +73,10 @@ public partial class TileAction : Resource
         affectsAllCharactersAtOnce = action.affectsAllCharactersAtOnce;
         teamDisplayText = action.teamDisplayText;
         enemyDisplayText = action.enemyDisplayText;
+        customText = action.customText;
     }
 
-    public virtual void Start()
+    protected virtual void Start()
     {
         _chunkList = new List<ChunkData>();
         
@@ -81,9 +84,9 @@ public partial class TileAction : Resource
 
     protected virtual void HighlightGridTile(ChunkData chunkData)
     {
+        chunkData.GetTileHighlight().ActivateColorGridTile(true);
         SetNonHoveredAttackColor(chunkData);
         chunkData.GetTileHighlight().EnableTile(true);
-        chunkData.GetTileHighlight().ActivateColorGridTile(true);
     }
     
     protected virtual void SetNonHoveredAttackColor(ChunkData chunkData)
@@ -98,9 +101,9 @@ public partial class TileAction : Resource
         }
     }
     
-    protected virtual void SetCurrentTeamNonHoverAttackColor(ChunkData chunkData)
+    private void SetCurrentTeamNonHoverAttackColor(ChunkData chunkData)
     {
-        if (chunkData.GetCurrentPlayer() == null || (chunkData.GetCurrentPlayer() != null && !CanTileBeClicked(chunkData)))
+        if (!CanTileBeClicked(chunkData))
         {
             chunkData.GetTileHighlight()?.SetHighlightColor(abilityHighlight);
         }
@@ -142,11 +145,7 @@ public partial class TileAction : Resource
     {
         return chunk.CharacterIsOnTile() && seconChunck.CharacterIsOnTile() && chunk.GetCurrentPlayer().GetPlayerTeam() == seconChunck.GetCurrentPlayer().GetPlayerTeam();
     }
-		
-    public virtual bool IsAllegianceSameForBuffs(ChunkData chunk)
-    {
-        return chunk == null || (chunk.GetCurrentPlayer() != null && chunk.GetCurrentPlayer().GetPlayerTeam() == _player.GetPlayerTeam() && !friendlyFire);
-    }
+    
     protected static bool CheckIfSpecificInformationType(ChunkData chunk, Type type)
     {
         return chunk.GetCharacterType() == type;
@@ -215,7 +214,7 @@ public partial class TileAction : Resource
         if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile()  && 
             (!chunk.ObjectIsOnTile() || chunk.GetCurrentObject().CanBeDestroyed() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))
         {
-            return canUseOnSelf || chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter();
+            return canUseOnSelf || chunk.GetCurrentPlayer() != _player;
         }
         return false;
     }
@@ -256,7 +255,7 @@ public partial class TileAction : Resource
         }
     }
     
-    protected virtual void GeneratePlusPatternNonExtendable(ChunkData centerChunk, int length)
+    protected void GeneratePlusPatternNonExtendable(ChunkData centerChunk, int length)
     {
         _chunkArray = new ChunkData[4,length];
         (int centerX, int centerY) = centerChunk.GetIndexes();
@@ -353,10 +352,7 @@ public partial class TileAction : Resource
     {
         foreach (var chunk in _chunkList)
         {
-            if (CanAddTile(chunk))
-            {
-                HighlightGridTile(chunk);
-            }
+            HighlightGridTile(chunk);
         }
     }
     
@@ -470,6 +466,11 @@ public partial class TileAction : Resource
             OnMoveHoverSingleCharacter(hoveredChunk, previousChunk);
         }
     }
+    
+    protected virtual void ModifyBonusDamage(ChunkData chunk)
+    {
+			
+    }
 
     protected ChunkData[,] _chunkArray;
     protected int _index = -1;
@@ -526,7 +527,7 @@ public partial class TileAction : Resource
                     if (chunkToHighLight != null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
-                        EnableDamagePreview(chunkToHighLight, minAttackDamage, maxAttackDamage);
+                        EnableDamagePreview(chunkToHighLight);
                     }
                 }
             }
@@ -552,7 +553,7 @@ public partial class TileAction : Resource
             SetHoveredAttackColor(hoveredChunk);
             if (CanTileBeClicked(hoveredChunk))
             {
-                EnableDamagePreview(hoveredChunk, minAttackDamage, maxAttackDamage);
+                EnableDamagePreview(hoveredChunk);
             }
         }
         if (previousChunkHighlight != null)
@@ -594,7 +595,7 @@ public partial class TileAction : Resource
                     if (CanTileBeClicked(chunk) && !IsAllegianceSame(chunk))
                     {
                         SetHoveredAttackColor(chunk);
-                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                        EnableDamagePreview(chunk);
                     }
                 }
             }
@@ -639,7 +640,7 @@ public partial class TileAction : Resource
                     if (CanTileBeClicked(chunk) && IsAllegianceSame(chunk))
                     {
                         SetHoveredAttackColor(chunk);
-                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                        EnableDamagePreview(chunk);
                     }
                 }
             }
@@ -683,7 +684,7 @@ public partial class TileAction : Resource
                     if (CanTileBeClicked(chunk))
                     {
                         SetHoveredAttackColor(chunk);
-                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                        EnableDamagePreview(chunk);
                     }
                 }
             }
@@ -718,7 +719,7 @@ public partial class TileAction : Resource
                     SetHoveredAttackColor(chunk);
                     if (CanTileBeClicked(chunk))
                     {
-                        EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
+                        EnableDamagePreview(chunk);
                     }
                 }
             }
@@ -736,12 +737,17 @@ public partial class TileAction : Resource
             }
         }
     }
-    public virtual void EnableDamagePreview(ChunkData chunk, int minAttackDamage, int maxAttackDamage)
+    public virtual void EnableDamagePreview(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
         {
+            ModifyBonusDamage(chunk);
             HighlightTile highlightTile = chunk.GetTileHighlight();
-            if (teamDisplayText!=string.Empty && IsAllegianceSame(chunk))
+            if (customText != string.Empty)
+            {
+                highlightTile.SetDamageText(customText);
+            }
+            else if (teamDisplayText!=string.Empty && IsAllegianceSame(chunk))
             {
                 highlightTile.SetDamageText(teamDisplayText);
             }
@@ -751,27 +757,19 @@ public partial class TileAction : Resource
             }
             else if (maxAttackDamage == minAttackDamage)
             {
-                highlightTile.SetDamageText(maxAttackDamage.ToString());
+                highlightTile.SetDamageText((maxAttackDamage + bonusDamage).ToString());
             }
             else
             {
-                highlightTile.SetDamageText($"{minAttackDamage}-{maxAttackDamage}");
+                highlightTile.SetDamageText($"{minAttackDamage + bonusDamage}-{maxAttackDamage + bonusDamage}");
             }
 
             if (chunk.GetCurrentPlayer() != null && 
-                chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <= minAttackDamage) 
+                chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <= (minAttackDamage+bonusDamage)) 
             {
                 highlightTile.ActivateDeathSkull(true);
             }
-        }
-    }
-    
-    public virtual void EnableDamagePreview(ChunkData chunk, string text)
-    {
-        if (CanTileBeClicked(chunk))
-        {
-            HighlightTile highlightTile = chunk.GetTileHighlight();
-            highlightTile.SetDamageText(text);
+            bonusDamage = 0;
         }
     }
     

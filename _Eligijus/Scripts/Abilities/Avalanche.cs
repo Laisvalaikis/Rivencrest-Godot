@@ -7,10 +7,12 @@ public partial class Avalanche : BaseAction
     {
     		
     }
+    
     public Avalanche(Avalanche avalanche): base(avalanche)
     {
         
     }
+    
     public override BaseAction CreateNewInstance(BaseAction action)
     {
         Avalanche avalanche = new Avalanche((Avalanche)action);
@@ -33,10 +35,12 @@ public partial class Avalanche : BaseAction
             FinishAbility();
         }
     }
+    
     public override bool CanTileBeClicked(ChunkData chunkData)
     {
         return base.CanTileBeClicked(chunkData) && IsCharacterAffectedByCrowdControl(chunkData);
     }
+    
     private bool IsCharacterAffectedByCrowdControl(ChunkData chunk)
     {
         if (CheckIfSpecificInformationType(chunk, typeof(Player)))

@@ -123,7 +123,7 @@ public partial class Volley : BaseAction
 					if (chunkToHighLight != null)
 					{
 						SetHoveredAttackColor(chunkToHighLight);
-						EnableDamagePreview(chunkToHighLight, minAttackDamage, maxAttackDamage);
+						EnableDamagePreview(chunkToHighLight);
 					}                
 				}
 			}
@@ -173,7 +173,7 @@ public partial class Volley : BaseAction
 			_tileToPullTo.GetTileHighlight().TogglePreviewSprite(false);
 		}
 	}
-	public override void CreateAvailableChunkList(int radius)
+	public override void CreateAvailableChunkList(int range)
 	{
 		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 		(int centerX, int centerY) = centerChunk.GetIndexes();

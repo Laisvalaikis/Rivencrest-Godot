@@ -8,17 +8,12 @@ public abstract partial class BaseAction: TileAction
 		[Export] protected int turnBeforeStartLifetime = 1;
 		[Export] protected int turnAfterResolveLifetime = 1;
 		[Export] protected int abilityPoints = 1;
-		[Export]
-		public bool isAbilitySlow = true;
-		[Export] 
-		protected int abilityCooldown = 1;
-		//
-		[Export]
-		protected Array<AbilityBlessing> _abilityBlessingsRef;
+		[Export] public bool isAbilitySlow = true;
+		[Export] protected int abilityCooldown = 1;
+		[Export] protected Array<AbilityBlessing> _abilityBlessingsRef;
 		protected Array<AbilityBlessing> _abilityBlessingsCreated;
 		protected Array<UnlockedBlessingsResource> unlockedBlessingsList;
 		protected bool turinIsEven = false;
-		protected string customText = null;
 		protected int cooldownCount = 0;
 		protected SelectActionButton _selectActionButton;
 		private bool firstTimeUsage = false;
@@ -96,7 +91,7 @@ public abstract partial class BaseAction: TileAction
 			_objectData.CopyData(data);
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			base.Start();
 			_random = new Random();
@@ -136,32 +131,6 @@ public abstract partial class BaseAction: TileAction
 		{
 			return _abilityBlessingsRef;
 		}
-
-		// this need to go
-		protected virtual void GenerateDiamondPattern(ChunkData centerChunk, int radius)
-		{
-			(int centerX, int centerY) = centerChunk.GetIndexes();
-			ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
-			for (int y = -radius; y <= radius; y++)
-			{
-				for (int x = -radius; x <= radius; x++)
-				{
-					if (Mathf.Abs(x) + Mathf.Abs(y) <= radius)
-					{
-						int targetX = centerX + x;
-						int targetY = centerY + y;
-
-						// Ensuring we don't go out of array bounds.
-						if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
-						{
-							ChunkData chunk = chunksArray[targetX, targetY];
-							TryAddTile(chunk);
-						}
-					}
-				}
-			}
-		}
-		
 		
 		public int GetAbilityCooldown()
 		{
@@ -442,8 +411,10 @@ public abstract partial class BaseAction: TileAction
 		
 		protected void DealRandomDamageToTarget(ChunkData chunkData, int minDamage, int maxDamage)
 		{
-			if (chunkData != null && CanUseAttack() && (chunkData.ObjectIsOnTile() || chunkData.CharacterIsOnTile() &&
-				    (!IsAllegianceSame(chunkData) || friendlyFire)))
+			if (chunkData != null && CanUseAttack() && (
+				    chunkData.ObjectIsOnTile() && canUseOnObject || 
+				    !IsAllegianceSame(chunkData) && canUseOnEnemy ||
+				    IsAllegianceSame(chunkData) && canUseOnTeammate))
 			{
 				int randomDamage =  _random.Next(minDamage, maxDamage);
 				DodgeActivation(ref randomDamage);
@@ -472,20 +443,22 @@ public abstract partial class BaseAction: TileAction
 		{
 			if (chunkData != null && CanUseAttack())
 			{
-				if (chunkData.CharacterIsOnTile() && (!IsAllegianceSame(chunkData) || friendlyFire))
+				ModifyBonusDamage(chunkData);
+				if (chunkData.CharacterIsOnTile() && !IsAllegianceSame(chunkData) && canUseOnEnemy ||
+				    IsAllegianceSame(chunkData) && canUseOnTeammate)
 				{
 					Player attackedPlayer = chunkData.GetCurrentPlayer();
-					attackedPlayer.DealDamage(damage, _player);
+					attackedPlayer.DealDamage(damage+bonusDamage, _player);
 					ChunkData enemyChunkData =  GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 					if (!attackedPlayer.CheckIfVisionTileIsUnlocked(enemyChunkData))
 					{
 						attackedPlayer.AddVisionTile(enemyChunkData);
 					}
 				}
-				else if (chunkData.ObjectIsOnTile())
+				else if (chunkData.ObjectIsOnTile() && canUseOnObject)
 				{
 					Object attackedObject = chunkData.GetCurrentObject();
-					attackedObject.DealDamage(damage,_player);
+					attackedObject.DealDamage(damage+bonusDamage,_player);
 				}
 			}
 		}
@@ -505,4 +478,3 @@ public abstract partial class BaseAction: TileAction
 			
 		}
 	}
-

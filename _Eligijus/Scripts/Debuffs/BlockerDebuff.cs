@@ -33,11 +33,4 @@ public partial class BlockerDebuff : BaseDebuff
     {
 
     }
-    
-    
-    public override void OnTurnStart()
-    {
-        base.OnTurnStart();
-        lifetimeCount++;
-    }
 }

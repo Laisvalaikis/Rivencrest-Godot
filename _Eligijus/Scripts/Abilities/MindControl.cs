@@ -17,7 +17,7 @@ public partial class MindControl : BaseAction
         return ability;
     }
     
-    public override void ResolveAbility(ChunkData chunk) //Sitas ability reikalauja further testing po to kai bus PlayerWasAttacked. Bet siaip lyg veikia?
+    public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
         {
@@ -27,7 +27,6 @@ public partial class MindControl : BaseAction
             _target = chunk.GetCurrentPlayer();
             _target.debuffManager.AddDebuff(debuff,_player);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-
             FinishAbility();
         }
     }

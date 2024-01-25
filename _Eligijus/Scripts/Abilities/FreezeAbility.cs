@@ -27,15 +27,13 @@ public partial class FreezeAbility : BaseAction
 		{
 			for (int x = -range; x <= range; x++)
 			{
-				// Skip the center chunk
 				if (x == 0 && y == 0)
 				{
 					continue;
 				}
 				int targetX = centerX + x;
 				int targetY = centerY + y;
-				// Ensuring we don't go out of array bounds.
-				if (targetX >= 0 && targetX < chunksArray.GetLength(0) && targetY >= 0 && targetY < chunksArray.GetLength(1))
+				if (GameTileMap.Tilemap.CheckBounds(targetX,targetY))
 				{
 					ChunkData chunk = chunksArray[targetX, targetY];
 					TryAddTile(chunk);
@@ -43,45 +41,24 @@ public partial class FreezeAbility : BaseAction
 			}
 		}
 	}
-	public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
-	{
-		if (hoveredChunk == previousChunk) return;
-		HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
-		HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
-		if ((hoveredChunkHighlight == null && previousChunkHighlight!=null && previousChunkHighlight.isHighlighted) || (hoveredChunkHighlight!=null && previousChunkHighlight!=null && !hoveredChunkHighlight.isHighlighted && previousChunkHighlight.isHighlighted))
-		{
-			foreach (var chunk in _chunkList)
-			{
-				SetNonHoveredAttackColor(chunk);
-				DisableDamagePreview(chunk);
-			}
-		}
-		else if ((hoveredChunkHighlight!=null && previousChunkHighlight!=null && hoveredChunkHighlight.isHighlighted && !previousChunkHighlight.isHighlighted) || (hoveredChunkHighlight!=null && previousChunkHighlight==null && hoveredChunkHighlight.isHighlighted))
-		{
-			foreach (var chunk in _chunkList)
-			{
-				SetHoveredAttackColor(chunk);
-				if (chunk.GetCurrentPlayer() != null)
-				{
-					EnableDamagePreview(chunk, minAttackDamage, maxAttackDamage);
-				}
-			}
-		}
-	}
+	
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		UpdateAbilityButton();
-		foreach (var chunkData in _chunkList)
+		if (CanTileBeClicked(chunk))
 		{
-			SlowDebuff debuff = new SlowDebuff(1, 1);
-			Player target = chunkData.GetCurrentPlayer();
-			if (target != null && chunkData!=GameTileMap.Tilemap.GetChunk(_player.GlobalPosition))
+			UpdateAbilityButton();
+			foreach (var chunkData in _chunkList)
 			{
-				target.debuffManager.AddDebuff(debuff,_player);
-				DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+				SlowDebuff debuff = new SlowDebuff(1, 1);
+				Player target = chunkData.GetCurrentPlayer();
+				if (CanTileBeClicked(chunkData))
+				{
+					target.debuffManager.AddDebuff(debuff, _player);
+					DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+				}
 			}
-		}		
-		base.ResolveAbility(chunk);
-		FinishAbility();
+			base.ResolveAbility(chunk);
+			FinishAbility();
+		}
 	}
 }

@@ -6,7 +6,6 @@ public partial class ChainHook : BaseAction
 {
 	private ChunkData _tileToPullTo;
 	private Sprite2D _characterSpriteRenderer;
-	private int multiplier=0;
 	public ChainHook()
 	{
 
@@ -24,25 +23,26 @@ public partial class ChainHook : BaseAction
 	
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		base.ResolveAbility(chunk);
-		Player character = chunk.GetCurrentPlayer();
-		if (character != null && character.objectInformation.GetPlayerInformation().GetInformationType() != typeof(Object))
+		if (CanTileBeClicked(chunk))
 		{
+			base.ResolveAbility(chunk);
 			UpdateAbilityButton();
-			if (!IsAllegianceSame(chunk))
+			Player character = chunk.GetCurrentPlayer();
+			if (character != null && character.objectInformation.GetPlayerInformation().GetInformationType() !=
+			    typeof(Object))
 			{
-				multiplier = GetMultiplier(chunk.GetPosition());
-				if (multiplier != 0)
+				if (!IsAllegianceSame(chunk))
 				{
-					DealRandomDamageToTarget(chunk, minAttackDamage + multiplier, maxAttackDamage + multiplier);
+					ModifyBonusDamage(chunk);
+					DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 				}
-			}
 
-			ChunkData chunkToPullTo = TileToPullTo(chunk);
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character);
-			ResetCharacterSpriteRendererAndTilePreview();
-			DisableDamagePreview(chunk);
-			FinishAbility();
+				ChunkData chunkToPullTo = TileToPullTo(chunk);
+				GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character);
+				ResetCharacterSpriteRendererAndTilePreview();
+				DisableDamagePreview(chunk);
+				FinishAbility();
+			}
 		}
 	}
 
@@ -51,6 +51,11 @@ public partial class ChainHook : BaseAction
 		Vector2 vector2 = position - _player.GlobalPosition;
 		int multiplier = Mathf.Abs((int)vector2.X + (int)vector2.Y) - 1;
 		return multiplier/100;
+	}
+
+	protected override void ModifyBonusDamage(ChunkData chunk)
+	{
+		bonusDamage = GetMultiplier(chunk.GetPosition());
 	}
 
 	private ChunkData TileToPullTo(ChunkData chunk)
@@ -83,7 +88,7 @@ public partial class ChainHook : BaseAction
 
 		if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted))
 		{
-			previousChunkHighlight.SetHighlightColor(abilityHighlight);
+			SetNonHoveredAttackColor(previousChunk);
 			ResetCharacterSpriteRendererAndTilePreview();
 			DisableDamagePreview(previousChunk);
 		}
@@ -106,7 +111,7 @@ public partial class ChainHook : BaseAction
 				}
 			}
 			DisableDamagePreview(previousChunk);
-			previousChunkHighlight.SetHighlightColor(abilityHighlight);
+			SetNonHoveredAttackColor(previousChunk);
 		}
 	}
 
@@ -121,31 +126,6 @@ public partial class ChainHook : BaseAction
 			_tileToPullTo.GetTileHighlight().TogglePreviewSprite(false);
 		}
 	}
-	
-	public override void EnableDamagePreview(ChunkData chunk, string text = null)
-	{
-		HighlightTile highlightTile = chunk.GetTileHighlight();
-		if (customText != null)
-		{
-			highlightTile.SetDamageText(customText);
-		}
-		else
-		{
-			if (maxAttackDamage == minAttackDamage)
-			{
-				highlightTile.SetDamageText((maxAttackDamage+multiplier).ToString());
-			}
-			else
-			{
-				highlightTile.SetDamageText($"{minAttackDamage+multiplier}-{maxAttackDamage+multiplier}");
-			}
-
-			if (chunk.GetCurrentPlayer()!=null && chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().GetHealth() <= minAttackDamage)
-			{
-				highlightTile.ActivateDeathSkull(true);
-			}
-		}
-	}
 
 	private void SetHoveredChunkHighlight(ChunkData hoveredChunk, PlayerInformation currentPlayerInfo)
 	{
@@ -154,7 +134,7 @@ public partial class ChainHook : BaseAction
 		{
 			AtlasTexture characterSprite = (AtlasTexture)currentPlayerInfo.objectData.GetPlayerInformationData().characterSprite;
 			_tileToPullTo = TileToPullTo(hoveredChunk);
-			multiplier = GetMultiplier(hoveredChunk.GetPosition());
+			ModifyBonusDamage(hoveredChunk);
 			if (!IsAllegianceSame(hoveredChunk))
 			{
 				EnableDamagePreview(hoveredChunk);

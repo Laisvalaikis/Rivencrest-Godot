@@ -32,29 +32,10 @@ public partial class PlayerStun : BaseDebuff
 	{
 
 	}
-	
-	
 	public override void OnTurnStart()
 	{
 		base.OnTurnStart();
-		//_player.SetMovementPoints(0);
 		_player.SetMovementPoints(0);
 		_player.actionManager.SetAbilityPoints(0);
-		lifetimeCount++;
-	}
-
-	public override void OnTurnEnd()
-	{
-		base.OnTurnEnd();
-	}
-	
-	public override void PlayerWasAttacked()
-	{
-		base.PlayerWasAttacked();
-	}
-	
-	public override void PlayerDied()
-	{
-		base.PlayerDied();
 	}
 }

@@ -33,11 +33,6 @@ public partial class BarrierBuff : BaseBuff
         
     }
     
-    public override void OnTurnStart()
-    {
-        base.OnTurnStart();
-    }
-    
     public override void ModifyDamage(ref int damage, ref Player player)
     {
         damage = 0;

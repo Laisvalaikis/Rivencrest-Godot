@@ -27,12 +27,9 @@ public partial class LeapAndSlam : BaseAction
         FinishAbility();
     }
 
-    protected override void TryAddTile(ChunkData chunk)
+    protected override bool CanAddTile(ChunkData chunk)
     {
-        if (chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == null)
-        {
-            _chunkList.Add(chunk);
-        }
+        return chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == null;
     }
     private void DamageAdjacent(ChunkData centerChunk)
     {

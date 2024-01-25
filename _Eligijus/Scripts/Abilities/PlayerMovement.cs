@@ -28,7 +28,7 @@ public partial class PlayerMovement : BaseAction
 		return movement;
 	}
 	
-	public override void Start()
+	protected override void Start()
 	{
 		base.Start();
 		_gameTileMap = GameTileMap.Tilemap;

@@ -21,16 +21,9 @@ public partial class CryoFreeze : BaseAction
 		return cryoFreeze;
 	}
 
-	public override void CreateAvailableChunkList(int attackRange)
+	public override void CreateAvailableChunkList(int range)
 	{
 		_chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
-	}
-	protected override void TryAddTile(ChunkData chunk)
-	{
-		if (chunk != null && !chunk.TileIsLocked())
-		{
-			_chunkList.Add(chunk);
-		}
 	}
 	
 	public override void OnTurnStart(ChunkData chunkData)
@@ -85,11 +78,6 @@ public partial class CryoFreeze : BaseAction
 	public override bool CanTileBeClicked(ChunkData chunkData)
 	{
 		return chunkData.GetTileHighlight().isHighlighted;
-	}
-	
-	public override void EnableDamagePreview(ChunkData chunkData, int min, int max)
-	{
-		//Intentionally left empty. Ability does damage, but we do not preview it.
 	}
 
 	public override void ResolveAbility(ChunkData chunk)

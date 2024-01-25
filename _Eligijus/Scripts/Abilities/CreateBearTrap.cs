@@ -11,16 +11,19 @@ public partial class CreateBearTrap : BaseAction
 	{
 		
 	}
+	
 	public CreateBearTrap(CreateBearTrap createBearTrap) : base(createBearTrap)
 	{
 		bearTrapPrefab = createBearTrap.bearTrapPrefab;
 		bearTrapData = createBearTrap.bearTrapData;
 	}
+	
 	public override BaseAction CreateNewInstance(BaseAction action)
 	{
 		CreateBearTrap createBearTrap = new CreateBearTrap((CreateBearTrap)action);
 		return createBearTrap;
 	}
+	
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		UpdateAbilityButton();
@@ -33,6 +36,4 @@ public partial class CreateBearTrap : BaseAction
 		GameTileMap.Tilemap.SpawnObject(spawnedBearTrap, chunk);
 		FinishAbility();
 	}
-
-	
 }

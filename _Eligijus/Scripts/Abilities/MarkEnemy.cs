@@ -13,7 +13,7 @@ public partial class MarkEnemy : BaseAction
         return markEnemy;
     }
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         customText = "MARK";
@@ -30,7 +30,5 @@ public partial class MarkEnemy : BaseAction
             target.debuffManager.AddDebuff(debuff,_player);
             FinishAbility();
         }
-        // chunk.GetCurrentPlayerInformation().Marker = gameObject;
     }
-    
 }

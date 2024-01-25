@@ -32,12 +32,6 @@ public partial class MarkDebuff: BaseDebuff
 
     }
     
-    public override void OnTurnStart()
-    {
-        base.OnTurnStart();
-        lifetimeCount++;
-    }
-    
     public override void PlayerWasAttacked()
     {
         

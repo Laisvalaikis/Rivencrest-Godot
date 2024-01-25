@@ -25,19 +25,7 @@ public partial class PlayerAttack : BaseAction
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            //chunk.GetCurrentPlayer().DealDamage(500,_player);
             FinishAbility();
         }
     }
-
-    public override bool CanTileBeClicked(ChunkData chunkData)
-    {
-        if (chunkData.GetTileHighlight().isHighlighted &&((CheckIfSpecificInformationType(chunkData, typeof(Player)) && !IsAllegianceSame(chunkData)) || friendlyFire)
-                                                           || CheckIfSpecificInformationType(chunkData, typeof(Object)))
-        {
-            return true;
-        }
-        return false;
-    }
-    
 }

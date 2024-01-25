@@ -36,17 +36,17 @@ public partial class BindingRitual : BaseAction
              FinishAbility();
          }
     }
-    public override void CreateAvailableChunkList(int attackRange)
+    public override void CreateAvailableChunkList(int range)
     {
         ChunkData centerChunk =  GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
         ChunkData[,] chunksArray = GameTileMap.Tilemap.GetChunksArray(); 
-        for (int y = -attackRange; y <= attackRange; y++)
+        for (int y = -range; y <= range; y++)
         {
-            for (int x = -attackRange; x <= attackRange; x++)
+            for (int x = -range; x <= range; x++)
             {
-                if (Mathf.Abs(x) + Mathf.Abs(y) == attackRange)
+                if (Mathf.Abs(x) + Mathf.Abs(y) == range)
                 {
                     int targetX = centerX + x;
                     int targetY = centerY + y;

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://b6mwmarsnyy6s"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://b6mwmarsnyy6s"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_0w7qg"]
 [ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_mprbp"]
 [ext_resource type="Texture2D" uid="uid://degbl54ueyxb1" path="res://Data/PlayerResource/Brown/Textures/CharacterSplashArt.tres" id="2_a0fs6"]
 [ext_resource type="Texture2D" uid="uid://m3c84mwfn12o" path="res://Data/PlayerResource/Brown/Textures/CropedSplashArt.tres" id="3_uqbry"]
+[ext_resource type="Resource" uid="uid://bal5ynq08gyvu" path="res://Data/Abilities/ReadyAimFire.tres" id="5_5qux3"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_2pb3y"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="10_84hq6"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="12_xsspb"]
@@ -20,10 +21,10 @@ CharacterSplashArt = ExtResource("2_a0fs6")
 CroppedSplashArt = ExtResource("3_uqbry")
 characterSprite = ExtResource("10_84hq6")
 roleSprite = ExtResource("12_xsspb")
-baseAbilities = Array[Resource]([ExtResource("8_2pb3y")])
+baseAbilities = Array[Resource]([ExtResource("8_2pb3y"), ExtResource("5_5qux3")])
 maxHealth = 28
 accuracy = 100
-visionRange = 1
+visionRange = 5
 classColor = Color(0.843137, 0.682353, 0.52549, 1)
 secondClassColor = Color(0.992157, 0.803922, 0.639216, 1)
 textColor = Color(1, 0.807843, 0.623529, 1)

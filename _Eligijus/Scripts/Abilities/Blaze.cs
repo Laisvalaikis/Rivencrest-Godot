@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using Godot;
 using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
-public partial class Blaze : BaseAction //removed ability
+public partial class Blaze : BaseAction
 {
-    [Export] public int bonusDamage = 4;
     public Blaze()
     {
 
@@ -20,6 +19,11 @@ public partial class Blaze : BaseAction //removed ability
         Blaze blaze = new Blaze((Blaze)action);
         return blaze;
     }
+
+    protected override void ModifyBonusDamage(ChunkData chunk)
+    {
+        bonusDamage = 4;
+    }
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))
@@ -31,7 +35,7 @@ public partial class Blaze : BaseAction //removed ability
                 Player target = chunk.GetCurrentPlayer();
                 AflameDebuff debuff = new AflameDebuff();
                 _player.debuffManager.AddDebuff(debuff, target);
-                DealRandomDamageToTarget(chunk, minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
+                DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
             }
         }
     }

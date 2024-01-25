@@ -20,23 +20,29 @@ public partial class CrowAttack : BaseAction
         CrowAttack crowAttack = new CrowAttack((CrowAttack)action);
         return crowAttack;
     }
+
+    protected override void ModifyBonusDamage(ChunkData chunk)
+    {
+        if (chunk.GetCurrentPlayer().debuffManager.ContainsDebuff(typeof(PoisonDebuff)))
+        {
+            bonusDamage += poisonBonusDamage;
+        }
+    }
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
-        foreach (var t in _chunkList)
+        if (CanTileBeClicked(chunk))
         {
-            if (t.CharacterIsOnTile() && CanTileBeClicked(t))
+            UpdateAbilityButton();
+            foreach (var chunkData in _chunkList)
             {
-                int bonusDamage = 0;
-                if(t.GetCurrentPlayer().debuffManager.ContainsDebuff(typeof(PoisonDebuff)))
+                if (CanTileBeClicked(chunkData))
                 {
-                    bonusDamage += poisonBonusDamage;
+                    DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
                 }
-                DealRandomDamageToTarget(t,minAttackDamage + bonusDamage, maxAttackDamage + bonusDamage);
             }
+            base.ResolveAbility(chunk);
+            FinishAbility();
         }
-        base.ResolveAbility(chunk);
-        FinishAbility();
     }
 }
