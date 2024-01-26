@@ -141,6 +141,11 @@ public abstract partial class BaseAction: TileAction
 		{
 			return cooldownCount++;
 		}
+
+		public void ReduceAbilityCooldown()
+		{
+			 cooldownCount+=2;
+		}
 		
 		protected Side ChunkSideByCharacter(ChunkData playerChunk, ChunkData chunkDataTarget)
 		{

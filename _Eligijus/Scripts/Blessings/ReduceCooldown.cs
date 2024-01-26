@@ -2,7 +2,7 @@
 
 public partial class ReduceCooldown : AbilityBlessing
 {
-    [Export] private int _reduceCooldown = 2;
+    [Export] private int _reduceCooldown = 4;
     
     public ReduceCooldown()
     {
@@ -29,13 +29,7 @@ public partial class ReduceCooldown : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction, tile);
-        if (tile.GetCurrentPlayer() != null)
-        {
-            Player player = tile.GetCurrentPlayer();
-            if (IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
-            {
-                baseAction.GetPlayer().actionManager.RefillActionPoints();
-            }
-        }
+        baseAction.ReduceAbilityCooldown();
+
     }
 }
