@@ -7,6 +7,7 @@ public partial class DealToAdjacent : AbilityBlessing
 
 	private int minDamage = 2;
 	private int maxDamage = 2;
+	private List<ChunkData> _chunkListCopy;
 	
 	public DealToAdjacent()
 	{
@@ -30,29 +31,26 @@ public partial class DealToAdjacent : AbilityBlessing
 	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(baseAction);
-		(int x, int y) = tile.GetIndexes();
-		
-		var directionVectors = new List<(int, int)>
-		{
-			(1 + x, 0 + y),
-			(0 + x, 1 + y),
-			(-1 + x, 0 + y),
-			(0 + x, -1 + y)
-		};
+		ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
+		(int x, int y) indexes = tile.GetIndexes();
+		int x = indexes.x;
+		int y = indexes.y;
 
-		foreach (var directions in directionVectors)
+		int[] dx = { 0, 0, 1, -1 };
+		int[] dy = { 1, -1, 0, 0 };
+
+		for (int i = 0; i < 4; i++)
 		{
-			ChunkData chunkData = GameTileMap.Tilemap.GetChunkDataByIndex(directions.Item1, directions.Item2);
-			if (chunkData.CharacterIsOnTile())
+			int nx = x + dx[i];
+			int ny = y + dy[i];
+
+			if (GameTileMap.Tilemap.CheckBounds(nx, ny) && GameTileMap.Tilemap.GetChunkDataByIndex(nx,ny).CharacterIsOnTile())
 			{
-				Player player = chunkData.GetCurrentPlayer();
-				if (IsAllegianceSame(player,chunkData,baseAction))
-				{
-					//DealRandomDamageToTarget(player, chunkData, baseAction, minDamage, maxDamage);
-					DealDamage(chunkData, baseAction.GetPlayer(), baseAction, maxDamage);
-				}
+				ChunkData chunkData = chunks[nx, ny];
+				DealDamage(chunkData, baseAction.GetPlayer(), baseAction, maxDamage);
 			}
 		}
 
 	}
+	
 }
