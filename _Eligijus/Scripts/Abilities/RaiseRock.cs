@@ -3,8 +3,7 @@ using Godot;
 public partial class RaiseRock : BaseAction
 {
 	[Export] private ObjectData wallRockData;
-	[Export]
-	public Resource WallPrefab;
+	[Export] public Resource WallPrefab;
 	private Object wall;
 
 	public RaiseRock()

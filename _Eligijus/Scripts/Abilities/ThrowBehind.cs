@@ -21,7 +21,7 @@ public partial class ThrowBehind : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (chunk.CharacterIsOnTile())
+        if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
@@ -43,7 +43,7 @@ public partial class ThrowBehind : BaseAction
         (int x, int y) chunkToMoveToIndex = targetChunkIndex;
         
         Side side = ChunkSideByCharacter(playerChunk, target);
-        int range=0;
+        int range;
         if (side == Side.isFront)
         {
             range = Math.Abs(playerChunkIndex.y - targetChunkIndex.y);

@@ -474,7 +474,7 @@ public partial class TileAction : Resource
 
     protected ChunkData[,] _chunkArray;
     protected int _index = -1;
-    private int _globalIndex = -1;
+    protected int _globalIndex = -1;
 
     protected int FindChunkIndex(ChunkData chunkData)
     {

@@ -9,9 +9,11 @@ public partial class WallEntrap : BaseAction
     private List<PlayerInformation> _playerInformations;
     private List<Object> wallObjects;
     private int wallCount = 0;
-
+    //Sitas ability visiškai kitoks nei aprašymas
+    //Gal kažką praleidau ir buvo nuspręsta kitaip daryt?
     public WallEntrap()
     {
+        
     }
 
     public WallEntrap(WallEntrap ability): base(ability)
@@ -35,14 +37,14 @@ public partial class WallEntrap : BaseAction
         FinishAbility();
     }
     
-    public override void OnTurnStart(ChunkData chunkData)
+    public override void OnBeforeStart(ChunkData chunkData)
     {
-        base.OnTurnStart(chunkData);
+        base.OnBeforeStart(chunkData);
         if (wallObjects is not null)
         {
-            for (int i = 0; i < wallObjects.Count; i++)
+            foreach (var t in wallObjects)
             {
-                if (wallObjects[i] is null)
+                if (t is null)
                 {
                     wallCount--;
                 }
@@ -53,9 +55,8 @@ public partial class WallEntrap : BaseAction
         {
             foreach (PlayerInformation x in _playerInformations)
             {
-                x.DealDamage(1, _player);
+                x.DealDamage(1, _player); //Damage, nes klaustrofobija!
             }
-            
         }
         else
         {
@@ -66,17 +67,18 @@ public partial class WallEntrap : BaseAction
 
             if (wallObjects is not null)
             {
+                foreach (var t in wallObjects)
+                {
+                    t.Death();
+                }
                 wallObjects.Clear();
             }
         }
     }
 
-    protected override void TryAddTile(ChunkData chunk)
+    protected override bool CanAddTile(ChunkData chunk)
     {
-        if (chunk != null && !chunk.TileIsLocked())
-        {
-            _chunkList.Add(chunk);
-        }
+        return chunk != null && !chunk.TileIsLocked();
     }
 
     private void SpawnAdjacentWalls(ChunkData chunk)

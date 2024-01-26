@@ -4,7 +4,6 @@ public partial class SideSlash : BaseAction
 {
     [Export]
     private int spellDamage = 6;
-    private ChunkData[,] _chunkArray;
 
     public SideSlash()
     {
@@ -38,7 +37,6 @@ public partial class SideSlash : BaseAction
         }
     }
     
-    private int _globalIndex = -1;
     public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
     {
         if (hoveredChunk == previousChunk) return;
@@ -63,104 +61,31 @@ public partial class SideSlash : BaseAction
                 for (int i = 0; i < _chunkArray.GetLength(1); i++)
                 {
                     ChunkData chunkToHighLight = _chunkArray[_globalIndex, i];
-                    if (chunkToHighLight!=null && chunkToHighLight.GetCurrentPlayer()!=null)
+                    if (chunkToHighLight!=null)
                     {
                         SetHoveredAttackColor(chunkToHighLight);
-                        EnableDamagePreview(chunkToHighLight);
+                        if (chunkToHighLight.GetCurrentPlayer() != null)
+                        {
+                            EnableDamagePreview(chunkToHighLight);
+                        }
                     }
                 }
             }
         }
     }
-    // public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
-    // {
-    //     HighlightTile previousChunkHighlight = previousChunk?.GetTileHighlight();
-    //     HighlightTile hoveredChunkHighlight = hoveredChunk?.GetTileHighlight();
-    //
-    //     if (previousChunkHighlight != null && (hoveredChunk == null || !hoveredChunkHighlight.isHighlighted)) // nuhoverinome off-grid
-    //     {
-    //         foreach (var chunk in _chunkList)
-    //         {
-    //             SetNonHoveredAttackColor(chunk);
-    //             DisableDamagePreview(chunk);
-    //         }
-    //     }
-    //     if (hoveredChunkHighlight == null || hoveredChunk == previousChunk) //Hoveriname ant to pacio ar siaip kazkoks gaidys ivyko
-    //     {
-    //         return;
-    //     }
-    //     if (hoveredChunkHighlight.isHighlighted) //Jei uzhoverinome ant grido
-    //     {
-    //         if (CanTileBeClicked(hoveredChunk)) //Ant uzhoverinto langelio characteris
-    //         {
-    //             foreach (var chunk in _chunkList)
-    //             {
-    //                 if (CanTileBeClicked(chunk))
-    //                 {
-    //                     SetHoveredAttackColor(chunk);
-    //                     EnableDamagePreview(chunk);
-    //                 }
-    //             }
-    //         }
-    //         else //ant uzhoverinto langelio ne characteris
-    //         {
-    //             hoveredChunkHighlight.SetHighlightColor(abilityHighlightHover);
-    //         }
-    //     }
-    //     if (previousChunkHighlight != null) // Jei pries tai irgi buvome ant grido
-    //     {
-    //         if (CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Jei ten buvo veikėjas, be to, dabar nebe ant veikėjo esame
-    //         {
-    //             foreach (var chunk in _chunkList)
-    //             {
-    //                 SetNonHoveredAttackColor(chunk);
-    //                 DisableDamagePreview(chunk);
-    //             }
-    //         }
-    //         else if(!CanTileBeClicked(previousChunk) && !CanTileBeClicked(hoveredChunk)) //Nei buvo veikejas ant praeito, nei yra ant dabartinio
-    //         {
-    //             SetNonHoveredAttackColor(previousChunk);
-    //         }
-    //     }
-    // }
 
-    private int FindChunkIndex(ChunkData chunkData)
-    {
-        int index = -1;
-        for (int i = 0; i < _chunkArray.GetLength(1); i++)
-        {
-            if (_chunkArray[0, i] != null && _chunkArray[0, i] == chunkData)
-            {
-                index = 0;
-            }
-            if(_chunkArray[1,i] != null && _chunkArray[1,i] == chunkData)
-            {
-                index = 1;
-            }
-            if (_chunkArray[2,i] != null && _chunkArray[2,i] == chunkData)
-            {
-                index = 2;
-            }
-            if (_chunkArray[3,i] != null && _chunkArray[3,i] == chunkData)
-            {
-                index = 3;
-            }
-        }
-        return index;
-    }
-
-    public override void CreateAvailableChunkList(int attackRange)
+    public override void CreateAvailableChunkList(int range)
     {
         ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
 
         int startRadius = 1;
-        int count = startRadius + (attackRange * 2)-2; // -2
-        int topLeftCornerX = centerX - attackRange;
-        int topLeftCornerY = centerY - attackRange;
-        int bottomRightCornerX = centerX + attackRange;
-        int bottomRightCornerY = centerY + attackRange;
+        int count = startRadius + (range * 2)-2; // -2
+        int topLeftCornerX = centerX - range;
+        int topLeftCornerY = centerY - range;
+        int bottomRightCornerX = centerX + range;
+        int bottomRightCornerY = centerY + range;
 
         _chunkArray = new ChunkData[4,count];
 

@@ -233,18 +233,15 @@ public partial class TurnManager : Node
 		return isAiTurn;
 	}
 
-	public void OnTurnStart()
+	private void OnTurnStart()
 	{
-		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
-		ActionsBeforeStart(objectAbilitiesBeforeStartTurn);
-
-		ObjectActionsOnTurnStart(_teamObjects[_currentTeamIndex].GetObjects());
-		
-
 		foreach (Player character in _currentTeam.characters.Values)
 		{
 			character.OnTurnStart();
 		}
+		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
+		ActionsBeforeStart(objectAbilitiesBeforeStartTurn);
+		ObjectActionsOnTurnStart(_teamObjects[_currentTeamIndex].GetObjects());
 	}
 	public void ObjectActionsOnTurnStart(LinkedList<Object> objects)
 	{
@@ -298,7 +295,6 @@ public partial class TurnManager : Node
 					usedAbility.ability.OnAfterResolve(usedAbility.chunk);
 					usedAbility.IncreaseCastCount();
 				}
-				// remove yra problema vsio aisku
 				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
 				{
 					LinkedListNode<UsedAbility> tempElement = element;
@@ -318,32 +314,30 @@ public partial class TurnManager : Node
 	private void ActionsBeforeStart(LinkedList<UsedAbility> abilities)
 	{
 		if (abilities.Count > 0)
-		{	
+		{   
 			for (LinkedListNode<UsedAbility> element = abilities.First; element != null; )
 			{
-				bool elementWasRemoved = false;
 				UsedAbility usedAbility = element.Value;
-				
+
 				if (usedAbility.GetCastCount() < usedAbility.GetTurnLifetime())
 				{
 					usedAbility.ability.OnBeforeStart(usedAbility.chunk);
 					usedAbility.IncreaseCastCount();
 				}
-				if(usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
+				if (usedAbility.GetCastCount() >= usedAbility.GetTurnLifetime())
 				{
-					LinkedListNode<UsedAbility> tempElement = element;
-					tempElement = element.Next;
+					LinkedListNode<UsedAbility> nextElement = element.Next;
 					abilities.Remove(element);
-					element = tempElement;
-					elementWasRemoved = true;
+					element = nextElement;
 				}
-				if (!elementWasRemoved)
+				else
 				{
 					element = element.Next;
 				}
 			}
 		}
 	}
+
 	
 	private void ActionsEndTurn(LinkedList<UsedAbility> abilities)
 	{
@@ -437,7 +431,7 @@ public partial class TurnManager : Node
 	{
 		if (!objectAbility)
 		{
-			LinkedListNode<UsedAbility> findElement =
+			LinkedListNode<UsedAbility> findElement = 
 				_currentTeam.usedAbilitiesEndTurn.Find(new UsedAbility(usedAbility, lifetime));
 			if (findElement == null)
 			{

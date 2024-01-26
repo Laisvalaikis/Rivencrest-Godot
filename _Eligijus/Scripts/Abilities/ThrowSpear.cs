@@ -33,20 +33,15 @@ public partial class ThrowSpear : BaseAction
 				ChunkData damageChunk = _chunkArray[index, i];
 				DealRandomDamageToTarget(damageChunk, minAttackDamage, maxAttackDamage);
 			}
-			OnAbility(chunk, index);
-			// ChunkData spawnChunk = _chunkArray[index, _chunkArray.GetLength(1) - 1];
-			// PackedScene spawnResource = (PackedScene)spearPrefab;
-			// spawnedCharacter = spawnResource.Instantiate<Player>();
-			// player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
-			// GameTileMap.Tilemap.MoveSelectedCharacter(spawnChunk, spawnedCharacter);
+			OnAbility(chunk);
 		}
 		FinishAbility();
 	}
 	
 	
-	private void OnAbility(ChunkData chunk, int index)
+	private void OnAbility(ChunkData chunk)
 	{
-		if (chunk.CharacterIsOnTile())// priesas nemirsta ir spear vienu i virsu varo
+		if (chunk.CharacterIsOnTile())
 		{
 			(int x, int y) indexes = chunk.GetIndexes();
 			Side side = ChunkSideByCharacter(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition), chunk);

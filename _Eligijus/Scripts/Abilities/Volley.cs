@@ -6,22 +6,20 @@ using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 public partial class Volley : BaseAction
 {
 	[Export] private int spellDamage = 6;
-	private ChunkData[,] _chunkArray;
-	
 	private ChunkData _tileToPullTo;
 	private Sprite2D _characterSpriteRenderer; 
 	
-	private int _globalIndex = -1;
 	
 	public Volley()
 	{
-		customText = $"-{spellDamage}";
+		
 	}
 
 	public Volley(Volley ability): base(ability)
 	{
 		spellDamage = ability.spellDamage;
 		customText = ability.customText;
+		customText = $"-{spellDamage}";
 	}
 
 	public override BaseAction CreateNewInstance(BaseAction action)
@@ -52,31 +50,6 @@ public partial class Volley : BaseAction
 				ResetCharacterSpriteRendererAndTilePreview();
 			}
 		}
-	}
-
-	private int FindChunkIndex(ChunkData chunkData)
-	{
-		int index = -1;
-		for (int i = 0; i < _chunkArray.GetLength(1); i++)
-		{
-			if (_chunkArray[0,i] != null && _chunkArray[0,i] == chunkData)
-			{
-				index = 0;
-			}
-			if(_chunkArray[1,i] != null && _chunkArray[1,i] == chunkData)
-			{
-				index = 1;
-			}
-			if (_chunkArray[2,i] != null && _chunkArray[2,i] == chunkData)
-			{
-				index = 2;
-			}
-			if (_chunkArray[3,i] != null && _chunkArray[3,i] == chunkData)
-			{
-				index = 3;
-			}
-		}
-		return index;
 	}
 	
 	public override void OnMoveHover(ChunkData hoveredChunk, ChunkData previousChunk)
@@ -173,6 +146,7 @@ public partial class Volley : BaseAction
 			_tileToPullTo.GetTileHighlight().TogglePreviewSprite(false);
 		}
 	}
+	
 	public override void CreateAvailableChunkList(int range)
 	{
 		ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
@@ -188,7 +162,7 @@ public partial class Volley : BaseAction
 
 		_chunkArray = new ChunkData[4,count];
 
-		const int rowStart = 1; // start is 1, because we need ignore corner tile
+		const int rowStart = 1; 
 		for (int i = 0; i < count; i++) 
 		{
 			if (GameTileMap.Tilemap.CheckBounds(topLeftCornerX + i + rowStart, topLeftCornerY))
@@ -217,5 +191,4 @@ public partial class Volley : BaseAction
 			}
 		}
 	}
-
 }

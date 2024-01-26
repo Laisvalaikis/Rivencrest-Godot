@@ -21,13 +21,13 @@ public partial class SwitchPlaces : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (chunk.CharacterIsOnTile())
+        if (CanTileBeClicked(chunk))
         {
             UpdateAbilityButton();
             ChunkData chunkData = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
             _secondSelected = chunk;
             SwitchCharacters(chunkData, _secondSelected);
-            SlowDebuff debuff = new SlowDebuff(2,2);
+            SlowDebuff debuff = new SlowDebuff(1,1);
             chunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             FinishAbility();
             base.ResolveAbility(chunk);

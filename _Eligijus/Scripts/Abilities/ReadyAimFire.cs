@@ -2,9 +2,7 @@ using Godot;
 
 public partial class ReadyAimFire : BaseAction
 {
-    private ChunkData[,] _chunkArray;
-    private int _index =-1;
-
+    private int localIndex = -1;
     public ReadyAimFire()
     {
         
@@ -23,46 +21,16 @@ public partial class ReadyAimFire : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        _index = FindChunkIndex(chunk);
+        localIndex = FindChunkIndex(chunk);
         FinishAbility();
     }
-     private int FindChunkIndex(ChunkData chunkData)
-    {
-        int index = -1;
-        for (int i = 0; i < _chunkArray.GetLength(1); i++)
-        {
-            if (_chunkArray[0,i] != null && _chunkArray[0,i] == chunkData)
-            {
-                index = 0;
-                    
-            }
-            
-            if(_chunkArray[1,i] != null && _chunkArray[1,i] == chunkData)
-            {
-                index = 1;
-                    
-            }
-            
-            if (_chunkArray[2,i] != null && _chunkArray[2,i] == chunkData)
-            {
-                index = 2;
-                    
-            }
-
-            if (_chunkArray[3,i] != null && _chunkArray[3,i] == chunkData)
-            {
-                index = 3;
-                    
-            }
-        }
-        return index;
-    }
+     
     public override void CreateAvailableChunkList(int range)
     {
         ChunkData centerChunk = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         (int centerX, int centerY) = centerChunk.GetIndexes();
         _chunkList.Clear();
-        int count = attackRange; // -2
+        int count = attackRange;
         _chunkArray = new ChunkData[4,count];
 
         int start = 1;
@@ -94,24 +62,20 @@ public partial class ReadyAimFire : BaseAction
             }
         }
     }
-    public override void OnTurnStart(ChunkData chunkData)
+    public override void OnBeforeStart(ChunkData chunkData)
     {
-        base.OnTurnStart(chunkData);
-        //_index = FindChunkIndex(chunkData);
-        if (_index != -1)
+        base.OnBeforeStart(chunkData);
+        if (localIndex != -1)
         {
             for (int i = 0; i < _chunkArray.GetLength(1); i++)
             {
-                if (_chunkArray[_index, i].CharacterIsOnTile())
+                if (_chunkArray[localIndex, i].CharacterIsOnTile())
                 {
-                    DealRandomDamageToTarget(_chunkArray[_index, i], minAttackDamage, maxAttackDamage);
+                    DealRandomDamageToTarget(_chunkArray[localIndex, i], minAttackDamage, maxAttackDamage);
                     break;
                 }
             }
             _chunkArray = new ChunkData[4, attackRange];
         }
-        
     }
-    
-
 }

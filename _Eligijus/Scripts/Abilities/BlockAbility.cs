@@ -19,33 +19,7 @@ public partial class BlockAbility : BaseAction
         BlockAbility ability = new BlockAbility((BlockAbility)action);
         return ability;
     }
-
-    // protected override void SetNonHoveredAttackColor(ChunkData chunkData)
-    // {
-    //     HighlightTile tileHighlight = chunkData.GetTileHighlight();
-    //     if (chunkData.CharacterIsOnTile() && IsAllegianceSame(chunkData))
-    //     {
-    //         tileHighlight.SetHighlightColor(characterOnGrid);
-    //     }
-    //     else
-    //     {
-    //         tileHighlight.SetHighlightColor(abilityHighlight);
-    //     }
-    // }
-    // public override void SetHoveredAttackColor(ChunkData chunkData)
-    // {
-    //     Node2D character = chunkData.GetCurrentPlayer();
-    //     HighlightTile tileHighlight = chunkData.GetTileHighlight();
-    //
-    //     if (character != null && IsAllegianceSame(chunkData))
-    //     {
-    //         tileHighlight.SetHighlightColor(abilityHoverCharacter);
-    //     }
-    //     else
-    //     {
-    //         tileHighlight.SetHighlightColor(abilityHighlightHover);
-    //     }
-    // }
+    
     public override void ResolveAbility(ChunkData chunk)
     {
         if (CanTileBeClicked(chunk))

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class ChillingGust : BaseAction
@@ -20,34 +21,26 @@ public partial class ChillingGust : BaseAction
         ChillingGust ability = new ChillingGust((ChillingGust)action);
         return ability;
     }
-
-    public override void OnTurnStart(ChunkData chunkData)
-    {
-        base.OnTurnStart(chunkData);
-        if (_protectedAlly != null)
-        {
-            _protectedAlly.objectInformation.GetPlayerInformation().characterProtected = false;
-            _protectedAlly = null;
-        }
-    }
+    
     public override void ResolveAbility(ChunkData chunk)
     {
+        if (CanTileBeClicked(chunk))
+        {
             UpdateAbilityButton();
             base.ResolveAbility(chunk);
-            Player target = chunk.GetCurrentPlayer();
-            PlayerInformation clickedPlayerInformation = target.objectInformation.GetPlayerInformation();
-            
+
             if (IsAllegianceSame(chunk))
             {
-                clickedPlayerInformation.characterProtected = true;
-                _protectedAlly = target;
+                ProtectedBuff buff = new ProtectedBuff();
+                chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
             }
             else
             {
                 DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-                SlowDebuff debuff = new SlowDebuff(1,1);
-                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
+                SlowDebuff debuff = new SlowDebuff(1, 1);
+                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
             }
             FinishAbility();
+        }
     }
 }

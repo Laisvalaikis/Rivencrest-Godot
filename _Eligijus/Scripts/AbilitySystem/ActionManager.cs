@@ -85,7 +85,7 @@ public partial class ActionManager : Node
 			_allAbilities.Add(ability);
 		}
 		ability.Action.AddTurnManager(_turnManager);
-		ability.Action.OnBeforeStart(null);
+		//ability.Action.OnBeforeStart(null); uzkomentuota, nes si eilute issikviecia kiekvienam abiliciui prasidejus scenai. OnBeforeStart turi buti kvieciamas tik panaudotiem abiliciams
 		ability.Action.OnTurnStart(null);
 		ability.Action.BlessingOnTurnStart(null);
 	}
@@ -153,11 +153,6 @@ public partial class ActionManager : Node
 	{
 		_availableAbilityPoints += abilityPoints;
 	}
-	
-	// public void RemoveSlowDown()
-	// {
-	// 	_debuffs.RemoveSlowDown(this);
-	// }
 
 	public void AddAbilityPoints(int abilityPoints)
 	{
