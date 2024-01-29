@@ -1,10 +1,9 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://cyx8er8qulyqj"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cyx8er8qulyqj"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_pvht8"]
 [ext_resource type="Resource" uid="uid://c3ynlx3mwcmbi" path="res://Data/MapData/MerchantAmbush/Coordinates_0.tres" id="2_4svlb"]
 [ext_resource type="Resource" uid="uid://dc6n47yppcqf" path="res://Data/MapData/MerchantAmbush/Coordinates_1.tres" id="3_kdoh1"]
 [ext_resource type="Resource" uid="uid://dwxqim8eyo8i5" path="res://Data/MapData/MerchantAmbush/Coordinates_2.tres" id="4_y8je5"]
-[ext_resource type="Texture2D" uid="uid://7p7tdenva8qi" path="res://_Eligijus/Sprites/Map/Meadow.png" id="5_qf4fm"]
 
 [resource]
 script = ExtResource("1_pvht8")
@@ -15,8 +14,9 @@ mapCoordinates = Array[Resource]([ExtResource("2_4svlb"), ExtResource("3_kdoh1")
 toFollowStartPosition = Vector3(1.99, 3.14, 0)
 panLimitX = Vector2(-100, 100)
 panLimitY = Vector2(-200, 200)
+panLimitXZoomOut = Vector2(-100, 100)
+panLimitYZoomOut = Vector2(50, 400)
 numberOfEnemies = 3
 mapCategory = "Forest"
 allowDuplicates = false
-mapImage = ExtResource("5_qf4fm")
 informationText = ""
