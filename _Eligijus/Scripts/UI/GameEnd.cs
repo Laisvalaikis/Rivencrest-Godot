@@ -20,6 +20,8 @@ public partial class GameEnd : Control
         {
             _data = Data.Instance;
         }
+
+        InputManager.Instance.SelectClick += EndSignalInvoke;
     }
 
     public void Death(TeamsList deadCharacters, TeamsList currentCharacters)
@@ -89,5 +91,10 @@ public partial class GameEnd : Control
                 EmitSignal("EndSignal");
             }
         }
+    }
+    
+    private void EndSignalInvoke(Vector2 vector2)
+    {
+        EmitSignal("EndSignal");
     }
 }
