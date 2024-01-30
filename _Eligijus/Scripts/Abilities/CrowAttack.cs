@@ -30,19 +30,16 @@ public partial class CrowAttack : BaseAction
     }
     
     public override void ResolveAbility(ChunkData chunk)
-    {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            foreach (var chunkData in _chunkList)
-            {
-                if (CanTileBeClicked(chunkData))
-                {
-                    DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
-                }
+    { 
+        UpdateAbilityButton(); 
+        foreach (var chunkData in _chunkList) 
+        { 
+            if (CanBeUsedOnTile(chunkData)) 
+            { 
+                DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
             }
-            base.ResolveAbility(chunk);
-            FinishAbility();
-        }
+        } 
+        base.ResolveAbility(chunk); 
+        FinishAbility();
     }
 }

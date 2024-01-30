@@ -19,14 +19,11 @@ public partial class Entangle : BaseAction
     }
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            RootDebuff rootDebuff = new RootDebuff(2);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(rootDebuff, _player);
-            FinishAbility();
-        }
+        UpdateAbilityButton(); 
+        base.ResolveAbility(chunk); 
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
+        RootDebuff rootDebuff = new RootDebuff(2); 
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(rootDebuff, _player); 
+        FinishAbility();
     }
 }

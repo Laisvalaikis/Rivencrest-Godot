@@ -22,23 +22,17 @@ public partial class MistShield : BaseAction
         _chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
     
-    protected override void TryAddTile(ChunkData chunk)
+    protected override bool CanAddTile(ChunkData chunk)
     {
-        if (chunk != null && !chunk.TileIsLocked())
-        {
-            _chunkList.Add(chunk);
-        }
+        return chunk != null && !chunk.TileIsLocked();
     }
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            ProtectedBuff buff = new ProtectedBuff();
-            chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
-            base.ResolveAbility(chunk);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        ProtectedBuff buff = new ProtectedBuff();
+        chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
+        base.ResolveAbility(chunk);
+        FinishAbility();
     }
 }

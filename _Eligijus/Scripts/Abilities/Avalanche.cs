@@ -21,24 +21,21 @@ public partial class Avalanche : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            foreach (ChunkData chunkData in _chunkList)
-            {
-                if (CanTileBeClicked(chunkData))
-                {
-                    DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
-                }
+        UpdateAbilityButton();
+        foreach (ChunkData chunkData in _chunkList)
+        { 
+            if (CanBeUsedOnTile(chunkData)) 
+            { 
+                DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
             }
-            base.ResolveAbility(chunk);
-            FinishAbility();
-        }
+        } 
+        base.ResolveAbility(chunk); 
+        FinishAbility();
     }
     
-    public override bool CanTileBeClicked(ChunkData chunkData)
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
     {
-        return base.CanTileBeClicked(chunkData) && IsCharacterAffectedByCrowdControl(chunkData);
+        return base.CanBeUsedOnTile(chunkData) && IsCharacterAffectedByCrowdControl(chunkData);
     }
     
     private bool IsCharacterAffectedByCrowdControl(ChunkData chunk)

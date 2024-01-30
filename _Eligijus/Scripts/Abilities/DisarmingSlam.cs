@@ -19,18 +19,15 @@ public partial class DisarmingSlam : BaseAction
 		return disarmingSlam;
 	}
 	public override void ResolveAbility(ChunkData chunk)
-	{
-		if (CanTileBeClicked(chunk))
-		{
-			base.ResolveAbility(chunk);
-			UpdateAbilityButton();
-			Player target = chunk.GetCurrentPlayer();
-			SilenceDebuff debuff = new SilenceDebuff();
-			target.debuffManager.AddDebuff(debuff, _player);
-			DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-			GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(chunk));
-			FinishAbility();
-		}
+	{ 
+		base.ResolveAbility(chunk); 
+		UpdateAbilityButton(); 
+		Player target = chunk.GetCurrentPlayer(); 
+		SilenceDebuff debuff = new SilenceDebuff(); 
+		target.debuffManager.AddDebuff(debuff, _player); 
+		DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
+		GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(chunk)); 
+		FinishAbility();
 	}
 	private ChunkData TileToDashTo(ChunkData chunk)
 	{

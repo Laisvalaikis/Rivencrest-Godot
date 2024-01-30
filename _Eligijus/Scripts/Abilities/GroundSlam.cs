@@ -3,7 +3,6 @@ using Godot;
 
 public partial class GroundSlam : BaseAction
 {
-    private bool isAbilityActive;
     private List<ChunkData> _chunkListCopy;
 
     public GroundSlam()
@@ -25,26 +24,21 @@ public partial class GroundSlam : BaseAction
         _chunkListCopy = new List<ChunkData>(_chunkList);
     }
     
-    public override void OnTurnStart(ChunkData chunkData)
+    public override void OnBeforeStart(ChunkData chunkData)
     {
-        base.OnTurnStart(chunkData);
-        if(isAbilityActive && _player.objectInformation.GetPlayerInformation().GetHealth() > 0)
+        base.OnBeforeStart(chunkData);
+        if(_player.objectInformation.GetPlayerInformation().GetHealth() > 0)
         {
             DealDamageToAdjacent();
-            isAbilityActive = false;
         }
     }
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealDamageToAdjacent();
-            isAbilityActive = true;
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        DealDamageToAdjacent();
+        FinishAbility();
     }
     private void DealDamageToAdjacent()
     {

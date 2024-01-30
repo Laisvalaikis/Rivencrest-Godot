@@ -394,8 +394,11 @@ public partial class ActionManager : Node
 			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated())
 			{
 				Ability tempAbility = _currentAbility;
-				_currentAbility.Action.ResolveAbility(chunkData);
-				tempAbility.Action.ResolveBlessings(chunkData);
+				if (tempAbility.Action.CanTileBeClicked(chunkData))
+				{
+					_currentAbility.Action.ResolveAbility(chunkData);
+					tempAbility.Action.ResolveBlessings(chunkData);
+				}
 			}
 		}
 	}
@@ -407,10 +410,13 @@ public partial class ActionManager : Node
 			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated() && _abilityPoints >= _currentAbility.Action.GetAbilityPoints())
 			{
 				Ability tempAbility = _currentAbility;
-				RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
-				// _currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(_abilityPoints);
-				_currentAbility.Action.ResolveAbility(chunkData);
-				tempAbility.Action.ResolveBlessings(chunkData);
+				if (tempAbility.Action.CanTileBeClicked(chunkData))
+				{
+					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
+					// _currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(_abilityPoints);
+					_currentAbility.Action.ResolveAbility(chunkData);
+					tempAbility.Action.ResolveBlessings(chunkData);
+				}
 			}
 		}
 	}

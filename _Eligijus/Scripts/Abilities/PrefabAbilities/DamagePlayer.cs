@@ -20,12 +20,9 @@ public partial class DamagePlayer : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            base.ResolveAbility(chunk);
-            FinishAbility();
-        }
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        base.ResolveAbility(chunk);
+        FinishAbility();
     }
     
     public override void OnTurnStart(ChunkData chunkData)
@@ -33,7 +30,7 @@ public partial class DamagePlayer : BaseAction
         base.OnTurnStart(chunkData);
     }
 
-    public override bool CanTileBeClicked(ChunkData chunkData)
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
     {
         if (CheckIfSpecificInformationType(chunkData, typeof(Player)) 
             || CheckIfSpecificInformationType(chunkData, typeof(Object)))

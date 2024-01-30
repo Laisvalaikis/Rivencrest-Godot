@@ -211,7 +211,7 @@ public partial class HighlightTile : Node2D
 	
 	public void SetArrowSprite(int arrowType)
 	{
-		AtlasTexture arrowSprite = null;
+		AtlasTexture arrowSprite;
 
 		switch (arrowType)
 		{
@@ -295,5 +295,4 @@ public partial class HighlightTile : Node2D
 	{
 		highlight.SelfModulate = color;
 	}
-
 }

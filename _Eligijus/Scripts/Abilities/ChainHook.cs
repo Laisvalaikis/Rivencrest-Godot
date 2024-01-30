@@ -13,6 +13,7 @@ public partial class ChainHook : BaseAction
 
 	public ChainHook(ChainHook ability) : base(ability)
 	{
+		
 	}
 
 	public override BaseAction CreateNewInstance(BaseAction action)
@@ -23,26 +24,22 @@ public partial class ChainHook : BaseAction
 	
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		if (CanTileBeClicked(chunk))
+		base.ResolveAbility(chunk); 
+		UpdateAbilityButton(); 
+		Player character = chunk.GetCurrentPlayer(); 
+		if (character != null && character.objectInformation.GetPlayerInformation().GetInformationType() != 
+		    typeof(Object))
 		{
-			base.ResolveAbility(chunk);
-			UpdateAbilityButton();
-			Player character = chunk.GetCurrentPlayer();
-			if (character != null && character.objectInformation.GetPlayerInformation().GetInformationType() !=
-			    typeof(Object))
-			{
-				if (!IsAllegianceSame(chunk))
-				{
-					ModifyBonusDamage(chunk);
-					DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-				}
-
-				ChunkData chunkToPullTo = TileToPullTo(chunk);
-				GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character);
-				ResetCharacterSpriteRendererAndTilePreview();
-				DisableDamagePreview(chunk);
-				FinishAbility();
-			}
+			if (!IsAllegianceSame(chunk)) 
+			{ 
+				ModifyBonusDamage(chunk); 
+				DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+			} 
+			ChunkData chunkToPullTo = TileToPullTo(chunk); 
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character); 
+			ResetCharacterSpriteRendererAndTilePreview(); 
+			DisableDamagePreview(chunk); 
+			FinishAbility();
 		}
 	}
 

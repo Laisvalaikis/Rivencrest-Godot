@@ -10,7 +10,6 @@ public partial class CreateWhiteField : BaseAction
     private Object spawnedArrowTile;
     private Array<Object> spawnedFields = new();
     private int i = 0;
-    private bool hasAbilityBeenUsed = false;
     
     public CreateWhiteField()
     {
@@ -26,10 +25,9 @@ public partial class CreateWhiteField : BaseAction
         CreateWhiteField createWhiteField = new CreateWhiteField((CreateWhiteField)action);
         return createWhiteField;
     }
-    public override void OnTurnStart(ChunkData chunkData)
+    public override void OnBeforeStart(ChunkData chunkData)
     {
-        base.OnTurnStart(chunkData);
-        i++;
+        base.OnBeforeStart(chunkData);
         if (i >= 2)
         {
             foreach (Object field in spawnedFields)
@@ -37,14 +35,13 @@ public partial class CreateWhiteField : BaseAction
                 field.Death();
             }
             spawnedFields.Clear();
-            hasAbilityBeenUsed = false;
         }
+        i++;
     }
     
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
-        hasAbilityBeenUsed = true;
         i = 0;
         foreach (var chunkData in _chunkList)
         {

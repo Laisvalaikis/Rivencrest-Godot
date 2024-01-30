@@ -24,18 +24,15 @@ public partial class CreateEye : BaseAction
 	}
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		if (_chunkList.Contains(chunk) && !chunk.CharacterIsOnTile())
-		{
-			UpdateAbilityButton();
-			PackedScene spawnCharacter = (PackedScene)eyePrefab;
-			spawnedEye = spawnCharacter.Instantiate<Object>();
-			_player.GetTree().Root.CallDeferred("add_child", spawnedEye);
-			spawnedEye.SetupObject(eyeData);
-			spawnedEye.AddPlayerForObjectAbilities(_player);
-			GameTileMap.Tilemap.SpawnObject(spawnedEye, chunk);
-			spawnedEye.StartActions();
-			base.ResolveAbility(chunk); // sukuria, bet neatnaujina 
-		}
+		UpdateAbilityButton(); 
+		PackedScene spawnCharacter = (PackedScene)eyePrefab; 
+		spawnedEye = spawnCharacter.Instantiate<Object>(); 
+		_player.GetTree().Root.CallDeferred("add_child", spawnedEye); 
+		spawnedEye.SetupObject(eyeData); 
+		spawnedEye.AddPlayerForObjectAbilities(_player); 
+		GameTileMap.Tilemap.SpawnObject(spawnedEye, chunk); 
+		spawnedEye.StartActions(); 
+		base.ResolveAbility(chunk); // sukuria, bet neatnaujina 
 		FinishAbility();
 	}
 

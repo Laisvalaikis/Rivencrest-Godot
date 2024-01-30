@@ -22,17 +22,13 @@ public partial class BlockAbility : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            BlockedBuff buff = new BlockedBuff(_player);
-            BlockerDebuff debuff = new BlockerDebuff();
-            _player.debuffManager.AddDebuff(debuff, _player);
-            chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
-            FinishAbility();
-        }
+        UpdateAbilityButton(); 
+        base.ResolveAbility(chunk); 
+        BlockedBuff buff = new BlockedBuff(_player); 
+        BlockerDebuff debuff = new BlockerDebuff(); 
+        _player.debuffManager.AddDebuff(debuff, _player); 
+        chunk.GetCurrentPlayer().buffManager.AddBuff(buff); 
+        FinishAbility();
     }
-    
 }
 

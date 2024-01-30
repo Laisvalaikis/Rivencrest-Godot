@@ -19,7 +19,7 @@ public partial class PinkAttack : BaseAction
     
     public override void OnTurnStart(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
+        if (CanBeUsedOnTile(chunk))
         {
             base.ResolveAbility(chunk);
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
@@ -27,7 +27,7 @@ public partial class PinkAttack : BaseAction
         _object.Death();
     }
 
-    public override bool CanTileBeClicked(ChunkData chunkData)
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
     {
         if (CheckIfSpecificInformationType(chunkData, typeof(Player)) 
             || CheckIfSpecificInformationType(chunkData, typeof(Object)))

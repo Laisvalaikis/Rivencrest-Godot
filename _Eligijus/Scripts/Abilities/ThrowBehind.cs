@@ -21,17 +21,14 @@ public partial class ThrowBehind : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        if (!IsAllegianceSame(chunk))
         {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            if (!IsAllegianceSame(chunk))
-            {
-                DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            }
-            MoveCharacter(chunk);
-            FinishAbility();
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
+        MoveCharacter(chunk);
+        FinishAbility();
     }
 
     private void MoveCharacter(ChunkData target)

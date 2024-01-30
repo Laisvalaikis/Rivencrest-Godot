@@ -19,7 +19,7 @@ public partial class PickUpSpear : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk) && chunk.CharacterIsOnTile())
+        if (CanBeUsedOnTile(chunk))
         {
             base.ResolveAbility(chunk);
             // reset spear cooldown
@@ -41,7 +41,7 @@ public partial class PickUpSpear : BaseAction
         base.OnTurnStart(chunkData);
     }
 
-    public override bool CanTileBeClicked(ChunkData chunkData)
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
     {
         if (CheckIfSpecificInformationType(chunkData, typeof(Player)) 
             || CheckIfSpecificInformationType(chunkData, typeof(Object)))

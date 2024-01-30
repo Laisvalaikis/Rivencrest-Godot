@@ -43,22 +43,19 @@ public partial class FreezeAbility : BaseAction
 	}
 	
 	public override void ResolveAbility(ChunkData chunk)
-	{
-		if (CanTileBeClicked(chunk))
-		{
-			UpdateAbilityButton();
-			foreach (var chunkData in _chunkList)
-			{
-				SlowDebuff debuff = new SlowDebuff(1, 1);
-				Player target = chunkData.GetCurrentPlayer();
-				if (CanTileBeClicked(chunkData))
-				{
-					target.debuffManager.AddDebuff(debuff, _player);
-					DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
-				}
+	{ 
+		UpdateAbilityButton(); 
+		foreach (var chunkData in _chunkList) 
+		{ 
+			SlowDebuff debuff = new SlowDebuff(1, 1); 
+			Player target = chunkData.GetCurrentPlayer(); 
+			if (CanBeUsedOnTile(chunkData)) 
+			{ 
+				target.debuffManager.AddDebuff(debuff, _player); 
+				DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
 			}
-			base.ResolveAbility(chunk);
-			FinishAbility();
-		}
+		} 
+		base.ResolveAbility(chunk); 
+		FinishAbility();
 	}
 }

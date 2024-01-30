@@ -19,13 +19,10 @@ public partial class LongShot : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        FinishAbility();
     }
 
     public override void CreateAvailableChunkList(int range)

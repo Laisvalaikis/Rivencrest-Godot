@@ -28,7 +28,7 @@ public partial class DamageOnTurnStart : BaseAction
         _object.Death();
     }
 
-    public override bool CanTileBeClicked(ChunkData chunkData)
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
     {
         if (CheckIfSpecificInformationType(chunkData, typeof(Player)) 
             || CheckIfSpecificInformationType(chunkData, typeof(Object)))

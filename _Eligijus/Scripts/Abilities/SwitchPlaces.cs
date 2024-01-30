@@ -21,27 +21,21 @@ public partial class SwitchPlaces : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            ChunkData chunkData = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
-            _secondSelected = chunk;
-            SwitchCharacters(chunkData, _secondSelected);
-            SlowDebuff debuff = new SlowDebuff(1,1);
-            chunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
-            FinishAbility();
-            base.ResolveAbility(chunk);
-            _secondSelected = null;
-         
-          
-        }
+        UpdateAbilityButton();
+        ChunkData chunkData = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
+        _secondSelected = chunk;
+        SwitchCharacters(chunkData, _secondSelected);
+        SlowDebuff debuff = new SlowDebuff(1,1);
+        chunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
+        FinishAbility();
+        base.ResolveAbility(chunk);
+        _secondSelected = null;
     }
     private void SwitchCharacters(ChunkData characterOne, ChunkData characterTwo)
     {
         Player character = characterOne.GetCurrentPlayer();
         GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterTwo.GetPosition(), new Vector2(0, 0), characterOne.GetCurrentPlayer());
-        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterOne.GetPosition(), new Vector2(0, 0),
-            characterTwo.GetCurrentPlayer());
+        GameTileMap.Tilemap.MoveSelectedCharacterWithoutReset(characterOne.GetPosition(), new Vector2(0, 0), characterTwo.GetCurrentPlayer());
         GameTileMap.Tilemap.SetCharacter(characterOne, characterTwo.GetCurrentPlayer());
         GameTileMap.Tilemap.SetCharacter(characterTwo, character);
     }

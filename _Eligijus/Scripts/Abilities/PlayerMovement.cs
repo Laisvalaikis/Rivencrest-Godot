@@ -107,7 +107,12 @@ public partial class PlayerMovement : BaseAction
 			UpdateAbilityButton();
 		}
 	}
-	
+
+	public override bool CanTileBeClicked(ChunkData chunkData)
+	{
+		return chunkData.GetTileHighlight().isHighlighted;
+	}
+
 	protected override bool CanAddTile(ChunkData chunk)
 	{
 		if (chunk != null && !chunk.TileIsLocked() && !chunk.IsFogOnTile() && chunk.GetCurrentPlayer() != GameTileMap.Tilemap.GetCurrentCharacter() && (!chunk.ObjectIsOnTile() || chunk.ObjectIsOnTile() && chunk.GetCurrentObject().CanStepOn()))

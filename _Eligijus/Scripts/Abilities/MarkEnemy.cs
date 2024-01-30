@@ -21,14 +21,11 @@ public partial class MarkEnemy : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            Player target = chunk.GetCurrentPlayer();
-            MarkDebuff debuff = new MarkDebuff();
-            target.debuffManager.AddDebuff(debuff,_player);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        Player target = chunk.GetCurrentPlayer();
+        MarkDebuff debuff = new MarkDebuff();
+        target.debuffManager.AddDebuff(debuff,_player);
+        FinishAbility();
     }
 }

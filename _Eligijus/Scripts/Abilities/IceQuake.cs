@@ -28,23 +28,20 @@ public partial class IceQuake : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        if (chunk.CharacterIsOnTile())
         {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            if (chunk.CharacterIsOnTile())
+            Player target = chunk.GetCurrentPlayer();
+            if (target.debuffManager.ContainsDebuff(typeof(SlowDebuff)))
             {
-                Player target = chunk.GetCurrentPlayer();
-                if (target.debuffManager.ContainsDebuff(typeof(SlowDebuff)))
-                {
-                    RootDebuff rootDebuff = new RootDebuff();
-                    target.debuffManager.AddDebuff(rootDebuff,_player);
-                }
+                RootDebuff rootDebuff = new RootDebuff();
+                target.debuffManager.AddDebuff(rootDebuff,_player);
             }
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            SlowDebuff debuff = new SlowDebuff(2, 2);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
-            FinishAbility();
         }
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        SlowDebuff debuff = new SlowDebuff(2, 2);
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
+        FinishAbility();
     }
 }

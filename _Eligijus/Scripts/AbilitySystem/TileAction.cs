@@ -115,24 +115,27 @@ public partial class TileAction : Resource
     
     public virtual bool CanTileBeClicked(ChunkData chunkData)
     {
-        if (chunkData.GetTileHighlight().isHighlighted)
+        return chunkData.GetTileHighlight().isHighlighted && CanBeUsedOnTile(chunkData);
+    }
+
+    public virtual bool CanBeUsedOnTile(ChunkData chunkData)
+    {
+        if (CheckIfSpecificInformationType(chunkData, typeof(Player)))
         {
-            if (CheckIfSpecificInformationType(chunkData, typeof(Player)))
+            if (IsAllegianceSame(chunkData) && canUseOnTeammate)
             {
-                if (IsAllegianceSame(chunkData) && canUseOnTeammate)
-                {
-                    return true;
-                }
-                if (!IsAllegianceSame(chunkData) && canUseOnEnemy)
-                {
-                    return true;
-                }
+                return true;
             }
-            if (CheckIfSpecificInformationType(chunkData, typeof(Object)) && canUseOnObject)
+            if (!IsAllegianceSame(chunkData) && canUseOnEnemy)
             {
                 return true;
             }
         }
+        if (CheckIfSpecificInformationType(chunkData, typeof(Object)) && canUseOnObject)
+        {
+            return true;
+        }
+    
         return false;
     }
     
@@ -828,5 +831,18 @@ public partial class TileAction : Resource
     public List<ChunkData> GetChunkList()
     {
         return _chunkList;
+    }
+
+    public List<ChunkData> GetListOfChunksAvailableForAttack()
+    {
+        List<ChunkData> availableChunks = new List<ChunkData>();
+        foreach (var chunk in _chunkList)
+        {
+            if (CanBeUsedOnTile(chunk))
+            {
+                availableChunks.Add(chunk);
+            }
+        }
+        return availableChunks;
     }
 }

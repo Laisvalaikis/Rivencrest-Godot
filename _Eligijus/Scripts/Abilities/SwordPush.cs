@@ -31,8 +31,6 @@ public partial class SwordPush : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        // if (CanTileBeClicked(position))
-        // {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         Side _side = Side.none;
@@ -70,7 +68,6 @@ public partial class SwordPush : BaseAction
        // ClearArrows();
         //ClearText();
         FinishAbility();
-        // }
     }
 
     private void CheckAdjacent(ChunkData tile)

@@ -24,23 +24,21 @@ public partial class ChillingGust : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-
-            if (IsAllegianceSame(chunk))
-            {
-                ProtectedBuff buff = new ProtectedBuff();
-                chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
-            }
-            else
-            {
-                DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-                SlowDebuff debuff = new SlowDebuff(1, 1);
-                chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
-            }
-            FinishAbility();
+        UpdateAbilityButton(); 
+        base.ResolveAbility(chunk);
+        
+        if (IsAllegianceSame(chunk)) 
+        { 
+            ProtectedBuff buff = new ProtectedBuff(); 
+            chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
         }
+        else 
+        { 
+            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
+            SlowDebuff debuff = new SlowDebuff(1, 1); 
+            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
+        }
+        
+        FinishAbility();
     }
 }

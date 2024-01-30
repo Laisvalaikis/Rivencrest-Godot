@@ -20,14 +20,11 @@ public partial class WeakSpot : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            WeakSpotDebuff debuff = new WeakSpotDebuff(2);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        WeakSpotDebuff debuff = new WeakSpotDebuff(2);
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
+        FinishAbility();
     }
 }

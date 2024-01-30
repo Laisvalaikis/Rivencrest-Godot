@@ -19,12 +19,9 @@ public partial class Purify : BaseAction
  
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            base.ResolveAbility(chunk);
-            UpdateAbilityButton();
-            Player target = chunk.GetCurrentPlayer();
-            target.debuffManager.RemoveDebuffs();
-        }
+        base.ResolveAbility(chunk);
+        UpdateAbilityButton();
+        Player target = chunk.GetCurrentPlayer();
+        target.debuffManager.RemoveDebuffs();
     }
 }

@@ -17,10 +17,7 @@ public partial class BlindDart : BaseAction // need fog of war for this one
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
     }
 }

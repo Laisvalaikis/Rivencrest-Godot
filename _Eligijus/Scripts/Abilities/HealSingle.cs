@@ -27,14 +27,11 @@ public partial class HealSingle : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            Random random = new Random();
-            int randomHeal = random.Next(minHealAmount, maxHealAmount);
-            chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        Random random = new Random();
+        int randomHeal = random.Next(minHealAmount, maxHealAmount);
+        chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
+        FinishAbility();
     }
 }

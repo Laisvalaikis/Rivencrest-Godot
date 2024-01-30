@@ -19,20 +19,17 @@ public partial class FlameKick : BaseAction
     }
     
     public override void ResolveAbility(ChunkData chunk)
-    {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            AflameDebuff debuff = new AflameDebuff();
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
-            Side side = ChunkSideByCharacter(current, chunk);
-            (int x, int y) sideVector = GetSideVector(side);
-            sideVector = (sideVector.x, sideVector.y);
-            MovePlayerToSide(chunk, sideVector);
-            FinishAbility();
-        }
+    { 
+        UpdateAbilityButton(); 
+        base.ResolveAbility(chunk); 
+        ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition); 
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
+        AflameDebuff debuff = new AflameDebuff(); 
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player); 
+        Side side = ChunkSideByCharacter(current, chunk); 
+        (int x, int y) sideVector = GetSideVector(side); 
+        sideVector = (sideVector.x, sideVector.y); 
+        MovePlayerToSide(chunk, sideVector); 
+        FinishAbility();
     }
 }

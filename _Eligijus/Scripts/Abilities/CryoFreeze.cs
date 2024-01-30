@@ -26,9 +26,9 @@ public partial class CryoFreeze : BaseAction
 		_chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
 	}
 	
-	public override void OnTurnStart(ChunkData chunkData)
+	public override void OnBeforeStart(ChunkData chunkData)
 	{
-		base.OnTurnStart(chunkData);
+		base.OnBeforeStart(chunkData);
 		if (i == 1)
 		{
 			if ((_player.objectInformation.GetPlayerInformation().GetHealth() > 0))
@@ -75,24 +75,21 @@ public partial class CryoFreeze : BaseAction
 			}
 		}
 	}
-	public override bool CanTileBeClicked(ChunkData chunkData)
+	public override bool CanBeUsedOnTile(ChunkData chunkData)
 	{
-		return chunkData.GetTileHighlight().isHighlighted;
+		return _chunkList.Contains(chunkData);
 	}
 
 	public override void ResolveAbility(ChunkData chunk)
-	{
-		if (CanTileBeClicked(chunk))
-		{
-			UpdateAbilityButton();
-			StasisBuff stasisBuff = new StasisBuff();
-			StasisDebuff stasisDebuff = new StasisDebuff();
-			_player.AddDebuff(stasisDebuff,_player);
-			_player.AddBuff(stasisBuff);
-			_player.SetMovementPoints(0);
-			_player.actionManager.RemoveAllActionPoints();
-			base.ResolveAbility(chunk);
-			FinishAbility();
-		}
+	{ 
+		UpdateAbilityButton(); 
+		StasisBuff stasisBuff = new StasisBuff(); 
+		StasisDebuff stasisDebuff = new StasisDebuff(); 
+		_player.AddDebuff(stasisDebuff,_player); 
+		_player.AddBuff(stasisBuff); 
+		_player.SetMovementPoints(0); 
+		_player.actionManager.RemoveAllActionPoints(); 
+		base.ResolveAbility(chunk); 
+		FinishAbility();
 	}
 }

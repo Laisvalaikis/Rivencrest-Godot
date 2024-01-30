@@ -15,7 +15,7 @@ public partial class Player : Object
 	private int _currentCharacterTeam = -1;
 	private CharacterTeams team;
 	protected bool weakSpot = false;
-	private int movementPoints = 3; //track movement points here in this class
+	private int movementPoints = 3;
 	private int previousMovementPoints = 3;
 	public PlayerActionMiddleware playerActionMiddleware;
 
@@ -76,8 +76,7 @@ public partial class Player : Object
 	}
 
 	//-----------------------------------------------------------------------------------------------------
-
-
+	
 	public override void Death()
 	{
 		Hide();
@@ -146,22 +145,21 @@ public partial class Player : Object
 		movementPoints = points;
 	}
 	
-	
 	public void SetPlayerTeam(int currentCharacterTeam)
 	{
 		_currentCharacterTeam = currentCharacterTeam;
+	}
+	
+	public void SetPlayerTeam(CharacterTeams teams)
+	{
+		team = teams;
 	}
 	
 	public int GetPlayerTeam()
 	{
 		return _currentCharacterTeam;
 	}
-
-	public void SetPlayerTeam(CharacterTeams teams)
-	{
-		team = teams;
-	}
-
+	
 	public CharacterTeams GetPlayerTeams()
 	{
 		return team;
@@ -181,9 +179,7 @@ public partial class Player : Object
 		}
 		debuffManager.OnTurnStart();
 		buffManager.OnTurnStart();
-
 	}
-	
 	
 	public void OnAfterResolve()
 	{
@@ -194,7 +190,6 @@ public partial class Player : Object
 	{
 		actionManager.OnBeforeStart();
 	}
-
 	
 	public override void OnTurnEnd()
 	{
@@ -215,6 +210,4 @@ public partial class Player : Object
 	{
 		actionManager.ActionOnExit(chunkDataPrev, chunkData);
 	}
-
-	
 }

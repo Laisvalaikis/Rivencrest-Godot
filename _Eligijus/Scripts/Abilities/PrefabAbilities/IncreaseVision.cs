@@ -39,7 +39,7 @@ public partial class IncreaseVision : BaseAction
         GameTileMap.Tilemap.UpdateFog(this, _player);
     }
 
-    public override bool CanTileBeClicked(ChunkData chunkData)
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
     {
         if (CheckIfSpecificInformationType(chunkData, typeof(Player)) 
             || CheckIfSpecificInformationType(chunkData, typeof(Object)))

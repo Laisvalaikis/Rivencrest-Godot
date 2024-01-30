@@ -3,12 +3,9 @@ using Godot;
 
 public partial class HealingSight : BaseAction
 {
-    [Export]
-    public int minHealAmount = 3;
-    [Export]
-    public int maxHealAmount = 7;
-    [Export] 
-    public int visionRangeIncrease = 2;
+    [Export] public int minHealAmount = 3;
+    [Export] public int maxHealAmount = 7;
+    [Export] public int visionRangeIncrease = 2;
 
     private bool abilityUsed = false;
     public HealingSight()
@@ -38,17 +35,14 @@ public partial class HealingSight : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            abilityUsed = true;
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            Random random = new Random();
-            int randomHeal = random.Next(minHealAmount, maxHealAmount);
-            _player.objectInformation.GetPlayerInformation().Heal(randomHeal);
-            _player.IncreaseVisionRange(visionRangeIncrease);
-            GameTileMap.Tilemap.UpdateFog(this,_player);
-            FinishAbility();
-        }
+        abilityUsed = true;
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        Random random = new Random();
+        int randomHeal = random.Next(minHealAmount, maxHealAmount);
+        _player.objectInformation.GetPlayerInformation().Heal(randomHeal);
+        _player.IncreaseVisionRange(visionRangeIncrease);
+        GameTileMap.Tilemap.UpdateFog(this,_player);
+        FinishAbility();
     }
 }

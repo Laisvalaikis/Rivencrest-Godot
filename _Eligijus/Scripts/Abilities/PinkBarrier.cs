@@ -20,15 +20,12 @@ public partial class PinkBarrier : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            base.ResolveAbility(chunk);
-            UpdateAbilityButton();
-            Player target = chunk.GetCurrentPlayer();
-            BarrierBuff buff = new BarrierBuff();
-            target.buffManager.AddBuff(buff);
-            target.AddMovementPoints(1);
-            FinishAbility();
-        }
+        base.ResolveAbility(chunk);
+        UpdateAbilityButton();
+        Player target = chunk.GetCurrentPlayer();
+        BarrierBuff buff = new BarrierBuff();
+        target.buffManager.AddBuff(buff);
+        target.AddMovementPoints(1);
+        FinishAbility();
     }
 }

@@ -24,15 +24,12 @@ public partial class StunAttack : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            DealDamage(chunk, spellDamage);
-            RootDebuff debuff = new RootDebuff(1);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        DealDamage(chunk, spellDamage);
+        RootDebuff debuff = new RootDebuff(1);
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
+        FinishAbility();
     }
 }

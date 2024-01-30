@@ -19,14 +19,11 @@ public partial class PowerShot : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            SlowDebuff debuff = new SlowDebuff(1, 1);
-            chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        SlowDebuff debuff = new SlowDebuff(1, 1);
+        chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
+        FinishAbility();
     }
 }

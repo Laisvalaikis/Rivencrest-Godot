@@ -25,20 +25,17 @@ public partial class AcidRain : BaseAction
 
 	public override void ResolveAbility(ChunkData chunk)
 	{
-		if (CanTileBeClicked(chunk))
+		UpdateAbilityButton(); 
+		foreach (ChunkData tile in _chunkList)
 		{
-			UpdateAbilityButton(); //this needs fixing
-			foreach (ChunkData tile in _chunkList)
+			if (CanBeUsedOnTile(tile))
 			{
-				if (CanTileBeClicked(tile))
-				{
-					Player target = tile.GetCurrentPlayer();
-					PoisonDebuff debuff = new PoisonDebuff(2,2);
-					target.debuffManager.AddDebuff(debuff,_player);
-				}
-			}
-			base.ResolveAbility(chunk);
-			FinishAbility();
+				Player target = tile.GetCurrentPlayer();
+				PoisonDebuff debuff = new PoisonDebuff(2, 2);
+				target.debuffManager.AddDebuff(debuff, _player);
+			} 
 		}
+		base.ResolveAbility(chunk); 
+		FinishAbility();
 	}
 }

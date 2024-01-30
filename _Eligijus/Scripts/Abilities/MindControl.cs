@@ -19,16 +19,13 @@ public partial class MindControl : BaseAction
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            SilenceDebuff debuff = new SilenceDebuff(2);
-            _target = chunk.GetCurrentPlayer();
-            _target.debuffManager.AddDebuff(debuff,_player);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        SilenceDebuff debuff = new SilenceDebuff(2);
+        _target = chunk.GetCurrentPlayer();
+        _target.debuffManager.AddDebuff(debuff,_player);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        FinishAbility();
     }
 
     public override void PlayerWasAttacked()

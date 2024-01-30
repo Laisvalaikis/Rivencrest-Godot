@@ -7,8 +7,10 @@ public partial class WindBoost : BaseAction
     [Export] private int minHeal = 3;
     [Export] private int maxHeal = 5;
     private Random _random;
+    
     public WindBoost()
     {
+        
     }
     public WindBoost(WindBoost ability): base(ability)
     {
@@ -22,10 +24,12 @@ public partial class WindBoost : BaseAction
         WindBoost ability = new WindBoost((WindBoost)action);
         return ability;
     }
+    
     public override void CreateAvailableChunkList(int range)
     {
         _chunkList.Add(GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
+    
     public override void OnBeforeStart(ChunkData chunkData)
     { 
         isAbilityActive = false;
@@ -53,14 +57,12 @@ public partial class WindBoost : BaseAction
             }
         }
     }
+    
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            isAbilityActive = true;
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk); 
+        isAbilityActive = true;
+        FinishAbility();
     }
 }

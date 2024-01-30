@@ -20,12 +20,9 @@ public partial class PlayerAttack : BaseAction
 
     public override void ResolveAbility(ChunkData chunk)
     {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            base.ResolveAbility(chunk);
-            DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-            FinishAbility();
-        }
+        UpdateAbilityButton();
+        base.ResolveAbility(chunk);
+        DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+        FinishAbility();
     }
 }

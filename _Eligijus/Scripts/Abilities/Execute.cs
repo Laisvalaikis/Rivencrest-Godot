@@ -17,19 +17,16 @@ public partial class Execute : BaseAction
     }
     
     public override void ResolveAbility(ChunkData chunk)
-    {
-        if (CanTileBeClicked(chunk))
-        {
-            UpdateAbilityButton();
-            chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(minAttackDamage,_player);
-            if(chunk.GetCurrentPlayer() == null)
-            {
-                _player.objectInformation.GetPlayerInformation().Heal(5);
-                GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
-            }
-            base.ResolveAbility(chunk);
-            FinishAbility();
-        }
+    { 
+        UpdateAbilityButton(); 
+        chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().DealDamage(minAttackDamage,_player); 
+        if(chunk.GetCurrentPlayer() == null) 
+        { 
+            _player.objectInformation.GetPlayerInformation().Heal(5); 
+            GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+        } 
+        base.ResolveAbility(chunk); 
+        FinishAbility();
     }
 
     public override void CreateAvailableChunkList(int range)
