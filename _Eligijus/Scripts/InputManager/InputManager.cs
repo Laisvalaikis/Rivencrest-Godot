@@ -6,6 +6,8 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void UpEventHandler(float increment);
 	[Signal] public delegate void DownEventHandler(float increment);
 	[Signal] public delegate void SelectClickEventHandler(Vector2 mouseClick);
+	
+	[Signal] public delegate void UnHandledSelectClickEventHandler(Vector2 mouseClick);
 	[Signal] public delegate void LeftMouseDoubleClickEventHandler(Vector2 mousePosition);
 	[Signal] public delegate void ExitEventHandler();
 	[Signal] public delegate void ChangeAbilityNextEventHandler();

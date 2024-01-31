@@ -80,6 +80,18 @@ public partial class MouseAndKeyboardInputManager : InputManager
 		}
 	}
 
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		if (enabled)
+		{
+			if (Input.IsActionJustPressed("Select"))
+			{
+				EmitSignal("UnHandledSelectClick", Vector2.Zero);
+			}
+		}
+	}
+
 	private bool InDeadZone(Vector2 relativePosition)
 	{
 		if (relativePosition.X >= deadzoneBoundsX.X && relativePosition.X <= deadzoneBoundsX.Y && relativePosition.Y >= deadzoneBoundsY.X && relativePosition.Y <= deadzoneBoundsY.Y)

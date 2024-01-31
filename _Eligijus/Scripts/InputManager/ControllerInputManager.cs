@@ -22,7 +22,11 @@ public partial class ControllerInputManager : InputManager
 
 		if (enabled)
 		{
-
+			if (Input.IsActionJustPressed("Select"))
+			{
+				EmitSignal("UnHandledSelectClick", Vector2.Zero);
+			}
+			
 			if (Input.IsActionPressed("NextCharacter"))
 			{
 				EmitSignal("ChangeNextCharacter");

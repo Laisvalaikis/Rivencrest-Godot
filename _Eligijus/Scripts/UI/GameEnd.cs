@@ -21,7 +21,7 @@ public partial class GameEnd : Control
             _data = Data.Instance;
         }
 
-        InputManager.Instance.SelectClick += EndSignalInvoke;
+        InputManager.Instance.UnHandledSelectClick += EndSignalInvoke;
     }
 
     public void Death(TeamsList deadCharacters, TeamsList currentCharacters)
