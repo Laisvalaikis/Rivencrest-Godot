@@ -66,7 +66,8 @@ public partial class SelectActionButton : FocusButton
     
     public void UpdateAbilityCooldownInformationActive()
     {
-        if (abilityInformation.Action.CheckIfAbilityIsActive())
+        // this is problem
+        if (abilityInformation.Action.CheckIfAbilityIsActive()) 
         {
             EnableAbility();
         }

@@ -113,7 +113,7 @@ public partial class SelectAction : Control
 		allAbilityButtons[buttonIndexCount].turnLabel.LabelSettings.FontColor = _playerInformationData.textColor;
 		usableAbilities.Add(allAbilityButtons[buttonIndexCount]);
 		abilities[index].Action.SetSelectActionButton(allAbilityButtons[buttonIndexCount]);
-		allAbilityButtons[buttonIndexCount].UpdateAbilityCooldownInformationActive();
+		allAbilityButtons[buttonIndexCount].UpdateAbilityCooldownInformationActive(); // smth wrong with end turn?
 		if (updateAbilityPointsCooldown)
 		{
 			allAbilityButtons[buttonIndexCount].UpdateAbilityCooldownWithPoints(_actionManager.GetAbilityPoints());

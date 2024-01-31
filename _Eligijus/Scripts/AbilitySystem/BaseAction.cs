@@ -372,7 +372,6 @@ public abstract partial class BaseAction: TileAction
 		{
 			if (abilityCooldown <= cooldownCount)
 			{
-				cooldownCount = 0;
 				return true;
 			}
 

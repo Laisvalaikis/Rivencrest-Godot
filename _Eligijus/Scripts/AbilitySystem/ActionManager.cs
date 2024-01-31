@@ -391,12 +391,13 @@ public partial class ActionManager : Node
 	{
 		if (_currentAbility != null && _currentAbility._type == AbilityType.BaseAbility)
 		{
-			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated())
+			if (chunkData != null && _currentAbility.Action.AbilityCanBeActivated()) // this is the problem
 			{
 				Ability tempAbility = _currentAbility;
 				if (tempAbility.Action.CanTileBeClicked(chunkData))
 				{
 					_currentAbility.Action.ResolveAbility(chunkData);
+					tempAbility.Action.ResetCooldown();
 					tempAbility.Action.ResolveBlessings(chunkData);
 				}
 			}
@@ -415,6 +416,7 @@ public partial class ActionManager : Node
 					RemoveAbilityPoints(_currentAbility.Action.GetAbilityPoints());
 					// _currentAbility.Action.GetActionButton().UpdateAllButtonsByPoints(_abilityPoints);
 					_currentAbility.Action.ResolveAbility(chunkData);
+					tempAbility.Action.ResetCooldown();
 					tempAbility.Action.ResolveBlessings(chunkData);
 				}
 			}
