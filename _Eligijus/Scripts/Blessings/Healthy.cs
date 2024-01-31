@@ -26,9 +26,9 @@ public partial class Healthy : PlayerBlessing
         return blessing;
     }
 
-    public override void Start(PlayerInformation playerInformation)
+    public override void Start(Player player)
     {
-        base.Start(playerInformation);
-        playerInformation.AddHealth(grantMaxHealth);
+        base.Start(player);
+        player.objectInformation.GetObjectInformation().AddHealth(grantMaxHealth);
     }
 }

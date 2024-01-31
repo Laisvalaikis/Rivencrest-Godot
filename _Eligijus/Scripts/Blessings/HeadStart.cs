@@ -26,10 +26,9 @@ public partial class HeadStart : PlayerBlessing
         HeadStart blessing = new HeadStart(this);
         return blessing;
     }
-
-    public override void OnTurnStart(Player player)
+    public override void Start(Player player)
     {
-        base.OnTurnStart(player);
+        base.Start(player);
         GD.Print("WORKS");
         if (!blessingUsed)
         {
@@ -37,5 +36,15 @@ public partial class HeadStart : PlayerBlessing
             blessingUsed = true;
         }
     }
+    // public override void OnTurnStart(Player player)
+    // {
+    //     base.OnTurnStart(player);
+    //     GD.Print("WORKS");
+    //     if (!blessingUsed)
+    //     {
+    //         player.AddMovementPoints(addMovementPoints);
+    //         blessingUsed = true;
+    //     }
+    // }
     
 }

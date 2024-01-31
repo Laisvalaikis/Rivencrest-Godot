@@ -21,6 +21,7 @@ public partial class TurnManager : Node
 	[Export] private Player _currentEnemy;
 	private bool isAiTurn = false;
 	private Vector2 _mousePosition;
+	
 	public override void _Ready()
 	{
 		base._Ready();
@@ -74,6 +75,11 @@ public partial class TurnManager : Node
 		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
 		_currentTeam.UpdateTeamFog();
+		if (!_currentTeam.HasTurnHappened())
+		{
+			ExecuteStart();
+			_currentTeam.SetTurnHappend(true);
+		}
 	}
 
 	public void SetCurrentCharacter(Player character)
@@ -186,6 +192,11 @@ public partial class TurnManager : Node
 		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
 		_teamInformation.EndTurn(_currentTeamIndex);
+		if (!_currentTeam.HasTurnHappened())
+		{
+			ExecuteStart();
+			_currentTeam.SetTurnHappend(true);
+		}
 		OnTurnStart();
 		if (!isAiTurn)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 		{
@@ -231,6 +242,15 @@ public partial class TurnManager : Node
 	public bool IsCurrentTeamAI()
 	{
 		return isAiTurn;
+	}
+	
+
+	private void ExecuteStart()
+	{
+		foreach (Player character in _currentTeam.characters.Values)
+		{
+			character.OnStart();
+		}
 	}
 
 	private void OnTurnStart()

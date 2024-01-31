@@ -25,10 +25,6 @@ public partial class Antitoxic : PlayerBlessing
         return blessing;
     }
     
-    public override void Start(PlayerInformation playerInformation)
-    {
-        
-    }
     
     public override void OnTurnStart(Player player)
     {

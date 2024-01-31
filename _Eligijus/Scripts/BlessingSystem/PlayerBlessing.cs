@@ -28,8 +28,8 @@ public partial class PlayerBlessing : BaseBlessing
         
     }
 
-    public virtual void Start(PlayerInformation playerInformation)
+    public virtual void Start(Player player)
     {
-        
+        GD.Print("SSSS");
     }
 }

@@ -9,7 +9,7 @@ public partial class Object : Node2D
 	public ObjectDataType<ObjectData> ObjectDataType;
 	protected TurnManager _turnManager;
 	private Array<Ability> _abilities;
-	private Array<PlayerBlessing> _playerBlessings;
+	protected Array<PlayerBlessing> _playerBlessings;
 	protected int _visionRange;
 	public void DisableObject()
 	{
@@ -99,6 +99,17 @@ public partial class Object : Node2D
 		}
 	}
 
+	public virtual void OnStart()
+	{
+		if (_playerBlessings is not null && _playerBlessings.Count > 0)
+		{
+			for (int i = 0; i < _playerBlessings.Count; i++)
+			{
+				_playerBlessings[i].Start((Player)this);
+				GD.Print(_playerBlessings[i].GetType());
+			}
+		}
+	}
 	private void ExecuteOnTurnStart()
 	{
 		ChunkData chunkData = GameTileMap.Tilemap.GetChunk(GlobalPosition);

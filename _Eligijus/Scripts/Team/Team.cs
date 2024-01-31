@@ -33,7 +33,7 @@ public partial class Team : Resource
 	public LinkedList<UsedAbility> usedAbilitiesAfterResolve = new LinkedList<UsedAbility>();
 	public LinkedList<UsedAbility> usedAbilitiesEndTurn = new LinkedList<UsedAbility>();
 	private int twoTimmes = 0;
-
+	private bool turnHappend;
 	public bool IsTeamUsed()
 	{
 		return isTeamUsed;
@@ -133,10 +133,20 @@ public partial class Team : Resource
 			_fogChunkDatas[i].SetFogOnTile(false);
 		}
 	}
-	
+
+	public void SetTurnHappend(bool happend)
+	{
+		turnHappend = happend;
+	}
+
 	public bool ContainsVisionTile(ChunkData chunkData)
 	{
 		return _fogChunkDatas.Contains(chunkData);
+	}
+	
+	public bool HasTurnHappened()
+	{
+		return turnHappend;
 	}
 
 	public List<ChunkData> GetVisionTiles()
