@@ -6,7 +6,7 @@ public partial class TileAction : Resource
 {
     [Export] public int minAttackDamage = 0;
     [Export] public int maxAttackDamage = 0;
-    protected int bonusDamage = 0;
+    public int bonusDamage = 0;
     [Export] protected int attackRange = 1;
 
     [Export] protected bool friendlyFire = false;
