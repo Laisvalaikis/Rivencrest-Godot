@@ -26,9 +26,9 @@ public partial class Antitoxic : PlayerBlessing
     }
     
     
-    public override void OnTurnStart(Player player)
+    public override void Start(Player player)
     {
-        base.OnTurnStart(player);
+        base.Start(player);
         PoisonDebuff poisonDebuff = new PoisonDebuff(2,2); // :(
         player.debuffManager.RemoveDebuffsByType(poisonDebuff.GetType());
     }
