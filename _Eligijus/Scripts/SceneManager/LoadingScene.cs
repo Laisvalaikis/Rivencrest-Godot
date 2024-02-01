@@ -53,6 +53,7 @@ public partial class LoadingScene : Node
 		Error loaderNextScene = Error.Ok;
 		if (ResourceLoader.Exists(loadPath))
 		{
+			// currentScene.GetTree().Paused = true;
 			loaderNextScene = ResourceLoader.LoadThreadedRequest(loadPath);
 			loadingPath = loadPath;
 			whileCheck = true;
@@ -95,7 +96,7 @@ public partial class LoadingScene : Node
 			if (status == ResourceLoader.ThreadLoadStatus.Loaded)
 			{
 				PackedScene node = (PackedScene)ResourceLoader.LoadThreadedGet(loadingPath);
-				GetTree().Root.CallDeferred("add_child", node.Instantiate());
+				GetTree().Root.AddChild(node.Instantiate());
 				_label.Hide();
 				FadeOut();
 				whileCheck = false;

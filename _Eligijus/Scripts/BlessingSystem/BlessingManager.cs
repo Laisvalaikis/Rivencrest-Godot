@@ -254,6 +254,7 @@ public partial class BlessingManager : Control
 
     public void NoBlessingsWasGenerated()
     {
+        Hide();
         _data.townData.deadCharacters.Clear();
         saveData.SaveGameData();
         changeScene.SceneTransition();
