@@ -2,7 +2,7 @@
 
 public partial class ReduceCooldown : AbilityBlessing
 {
-    [Export] private int _reduceCooldown = 4;
+    [Export] private int _reduceCooldown = 2;
     
     public ReduceCooldown()
     {
@@ -29,7 +29,7 @@ public partial class ReduceCooldown : AbilityBlessing
     public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
     {
         base.ResolveBlessing(baseAction, tile);
-        baseAction.ReduceAbilityCooldown();
+        baseAction.ReduceAbilityCooldown(_reduceCooldown);
 
     }
 }

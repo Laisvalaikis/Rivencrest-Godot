@@ -25,18 +25,26 @@ public partial class MarkedStun : AbilityBlessing
 		return blessing;
 	}
 
+	// public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
+	// {
+	// 	base.ResolveBlessing(baseAction, tile);
+	// 	if (tile.CharacterIsOnTile())
+	// 	{
+	// 		Player player = tile.GetCurrentPlayer();
+	// 		if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
+	// 		{
+	// 			StasisDebuff debuff = new StasisDebuff();
+	// 			player.debuffManager.AddDebuff(debuff,player);
+	// 			GD.PrintErr("Fix can't do anything");
+	// 		}
+	// 	}
+	// }
 	public override void ResolveBlessing(BaseAction baseAction, ChunkData tile)
 	{
 		base.ResolveBlessing(baseAction, tile);
-		if (tile.CharacterIsOnTile())
-		{
-			Player player = tile.GetCurrentPlayer();
-			if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
-			{
-				StasisDebuff debuff = new StasisDebuff();
-				player.debuffManager.AddDebuff(debuff,player);
-				GD.PrintErr("Fix can't do anything");
-			}
-		}
+		Player player = tile.GetCurrentPlayer();
+		MarkStunDebuff stunDebuff = new MarkStunDebuff();
+		player.debuffManager.AddDebuff(stunDebuff,baseAction.GetPlayer());
+		
 	}
 }
