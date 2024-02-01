@@ -323,5 +323,12 @@ public partial class SelectAction : Control
 			_actionManager.DeselectAbility();
 		}
 	}
+	
+	protected override void Dispose(bool disposing)
+	{
+		InputManager.Instance.ChangeAbilityNext -= NextAbility;
+		InputManager.Instance.ChangeAbilityPrevious -= PreviousAbility;
+		base.Dispose(disposing);
+	}
 
 }

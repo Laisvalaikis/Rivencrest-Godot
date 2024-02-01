@@ -148,4 +148,12 @@ public partial class TeamInformation : Control
 		}
 	}
 	
+	protected override void Dispose(bool disposing)
+	{
+		InputManager.Instance.ChangeNextCharacter -= NextCharacter;
+		InputManager.Instance.ChangePreviousCharacter -= PreviousCharacter;
+		InputManager.Instance.CharacterFocusInGame -= FocusFirstCharacter;
+		base.Dispose(disposing);
+	}
+	
 }

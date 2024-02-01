@@ -28,4 +28,10 @@ public partial class ExitUI : Node
 			}
 		}
 	}
+
+	protected override void Dispose(bool disposing)
+	{
+		InputManager.Instance.Exit -= Escape;
+		base.Dispose(disposing);
+	}
 }

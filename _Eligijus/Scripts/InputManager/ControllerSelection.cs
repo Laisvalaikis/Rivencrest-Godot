@@ -31,4 +31,11 @@ public partial class ControllerSelection : Node
 			_selectedTileWasVisible = false;
 		}
 	}
+	
+	protected override void Dispose(bool disposing)
+	{
+		InputManager.Instance.EnableSelector -= EnablePositionCursor;
+		InputManager.Instance.DisableSelector -= DisablePreviousCursor;
+		base.Dispose(disposing);
+	}
 }

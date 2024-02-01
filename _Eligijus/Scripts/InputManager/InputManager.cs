@@ -29,7 +29,6 @@ public partial class InputManager: Node2D
 
 	public virtual void SetCurrentCharacterPosition(Vector2 characterPosition)
 	{
-		
 	}
 	
 	public virtual void OnSelectClick()
@@ -94,5 +93,6 @@ public partial class InputManager: Node2D
 	{
 		
 	}
+	
 }
 

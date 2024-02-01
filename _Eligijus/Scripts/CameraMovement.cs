@@ -203,4 +203,13 @@ public partial class CameraMovement : Camera2D
         
         return inBounds;
     }
+    
+    protected override void Dispose(bool disposing)
+    {
+        InputManager.Instance.CameraControl -= MoveCamera;
+        InputManager.Instance.LeftMouseDoubleClick -= FocusPoint;
+        InputManager.Instance.Up -= ZoomIn;
+        InputManager.Instance.Down -= ZoomOut;
+        base.Dispose(disposing);
+    }
 }

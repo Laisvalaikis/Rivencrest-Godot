@@ -7,4 +7,10 @@ public partial class PauseView : View
         base._Ready();
         InputManager.Instance.PauseMenu += OpenCloseView;
     }
+    
+    protected override void Dispose(bool disposing)
+    {
+        InputManager.Instance.PauseMenu -= OpenCloseView;
+        base.Dispose(disposing);
+    }
 }

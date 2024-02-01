@@ -776,5 +776,11 @@ public partial class GameTileMap : Node2D
 				DeselectCurrentCharacter();
 		}
 	}
+	
+	protected override void Dispose(bool disposing)
+	{
+		InputManager.Instance.SelectClick -= MouseClick;
+		base.Dispose(disposing);
+	}
 }
 

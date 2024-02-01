@@ -86,7 +86,9 @@ public partial class GameEnd : Control
     {
         if (endOfGame)
         {
+            InputManager.Instance.UnHandledSelectClick -= EndSignalInvoke;
             EmitSignal("EndSignal");
         }
     }
+    
 }

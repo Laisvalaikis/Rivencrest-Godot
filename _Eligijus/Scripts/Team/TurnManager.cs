@@ -475,5 +475,12 @@ public partial class TurnManager : Node
 			}
 		}
 	}
+	
+	protected override void Dispose(bool disposing)
+	{
+		InputManager.Instance.MoveSelector -= OnMove;
+		InputManager.Instance.SelectClick -= OnMouseClick;
+		base.Dispose(disposing);
+	}
 
 }

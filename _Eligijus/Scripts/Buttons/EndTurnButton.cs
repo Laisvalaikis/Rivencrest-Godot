@@ -15,4 +15,10 @@ public partial class EndTurnButton : FocusButton
         base._Pressed();
         _turnManager.EndTurn();
     }
+    
+    protected override void Dispose(bool disposing)
+    {
+        InputManager.Instance.EndTurn -= _Pressed;
+        base.Dispose(disposing);
+    }
 }

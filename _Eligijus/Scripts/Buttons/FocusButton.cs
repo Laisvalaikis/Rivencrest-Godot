@@ -29,5 +29,13 @@ public partial class FocusButton : Button
         EmitSignal("HasFocus", true);
     }
     
+    protected override void Dispose(bool disposing)
+    {
+        InputManager.Instance.ReleaseFocus -= ReleaseButtonFocus;
+        FocusEntered -= InputManager.Instance.FocusEnter;
+        FocusExited -= InputManager.Instance.FocusExit;
+        base.Dispose(disposing);
+    }
+    
 
 }

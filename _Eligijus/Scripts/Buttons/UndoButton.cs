@@ -14,4 +14,10 @@ public partial class UndoButton : FocusButton
     {
         base._Pressed();
     }
+    
+    protected override void Dispose(bool disposing)
+    {
+        InputManager.Instance.Undo -= _Pressed;
+        base.Dispose(disposing);
+    }
 }
