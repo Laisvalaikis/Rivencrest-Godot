@@ -38,15 +38,23 @@ public partial class CharacterSelectManager : Node
 			{
 				characterButtons[i].Show();
 				characterButtons[i].characterIndex = i;
-				characterButtons[i].portrait.Show();
-				characterButtons[i].portrait.Texture = NewAtlas((CompressedTexture2D)_data.Characters[i].playerInformation.CharacterPortraitSprite.Get("atlas"), (Rect2)_data.Characters[i].playerInformation.CharacterPortraitSprite.Get("region"));
+				characterButtons[i].portrait.Texture =  NewAtlas((CompressedTexture2D)_data.Characters[i].playerInformation.CharacterPortraitSprite.Get("atlas"), (Rect2)_data.Characters[i].playerInformation.CharacterPortraitSprite.Get("region"));
 				characterButtons[i].levelText.Text = _data.Characters[i].level.ToString();
+				if (_data.Characters[i].toConfirmAbilities > 0 || _data.Characters[i].abilityPointCount > 0)
+				{
+					characterButtons[i].abilityPointCorner.Show();
+				}
+				else
+				{
+					characterButtons[i].abilityPointCorner.Hide();
+				}
 			}
 			else
 			{
 				characterButtons[i].Hide();
 			}
 		}
+		
 		if (_selectedCharacterForMission != null && _selectedCharacterForMission.Count == 3)
 		{
 			DisableCharacters();

@@ -46,6 +46,8 @@ public partial class CharacterPortrait : Button
 			}
 		
 	}
+	
+	
 
 	public override void _Pressed()
 	{
