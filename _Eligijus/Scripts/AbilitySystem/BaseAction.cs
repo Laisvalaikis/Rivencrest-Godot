@@ -142,9 +142,9 @@ public abstract partial class BaseAction: TileAction
 			return cooldownCount++;
 		}
 
-		public void ReduceAbilityCooldown()
+		public void ReduceAbilityCooldown(int reduceCount)
 		{
-			 cooldownCount+=2;
+			 cooldownCount+=reduceCount;
 		}
 		
 		protected Side ChunkSideByCharacter(ChunkData playerChunk, ChunkData chunkDataTarget)
