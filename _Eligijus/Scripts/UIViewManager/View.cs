@@ -10,9 +10,10 @@ public partial class View : Control
 
 	[Export] private Control openFocus;
 	
-	[Export] private bool grabFocusOnStart { get; set; } = false;
+	[Export] private bool grabFocusOnOpen { get; set; } = false;
 	[Export] private bool viewEnabledOnStart { get; set; } = false;
 	[Export] private bool viewCanBeDisabled {get; set;} = true;
+	[Export] public bool removeViewFromStack {get; set;} = true;
 	[Export] public bool addViewToStack {get; set;} = true;
 	private int _viewIndex = -1;
 	private bool _disabled = true;
@@ -23,7 +24,7 @@ public partial class View : Control
 		{
 			OpenView();
 		}
-		if (IsVisibleInTree() && grabFocusOnStart)
+		if (IsVisibleInTree() && grabFocusOnOpen)
 		{
 			openFocus?.GrabFocus();
 		}
@@ -36,12 +37,21 @@ public partial class View : Control
 			Show();
 			openFocus?.GrabFocus();
 		}
+		
 		if (_viewIndex == -1 && addViewToStack)
 		{
 			_viewIndex = UIStack.Instance.AddView(this);
 		}
 		_disabled = false;
 		EmitSignal("OpenViewSignal");
+	}
+
+	public void GrabFocusStack()
+	{
+		if (IsVisibleInTree() && grabFocusOnOpen)
+		{
+			openFocus?.GrabFocus();
+		}
 	}
 	
 	public void UpdateIndex(int index)

@@ -27,17 +27,30 @@ public partial class UIStack : Node
 		if (_views.Count > 0)
 		{
 			_views[Instance._views.Count - 1].ExitView();
+			
 		}
 	}
 	
 	public void QuitView(int index)
 	{
-		if (index >= 0)
+		if (index >= 0 && _views[index].removeViewFromStack)
 		{
 			_views.RemoveAt(index);
 			for (int i = index; i < _views.Count; i++)
 			{
 				_views[i].UpdateIndex(i);
+			}
+			
+			if (_views.Count > 0)
+			{
+				_views[_views.Count - 1].GrabFocusStack();
+			}
+		}
+		else if (index >= 0)
+		{
+			if (_views.Count > 0)
+			{
+				_views[_views.Count - 1].GrabFocusStack();
 			}
 		}
 	}

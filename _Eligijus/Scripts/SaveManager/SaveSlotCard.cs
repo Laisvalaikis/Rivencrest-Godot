@@ -25,6 +25,11 @@ public partial class SaveSlotCard : Control
 
 	public override void _Draw()
 	{
+		EnableView();
+	}
+
+	public void EnableView()
+	{
 		bool saveExist = SaveSystem.DoesSaveFileExist(_slotIndex);
 		SetActive(_addButton, !saveExist);
 		SetActive(_slotMenu, saveExist);
@@ -34,10 +39,9 @@ public partial class SaveSlotCard : Control
 			_slotTitle.Text = SaveSystem.LoadTownData(_slotIndex).teamName;
 		}
 	}
-	
+
 	public void GrabSlotFocus()
 	{
-		GD.Print("Slot Focus Grabed!");
 		if (_slotMenu.IsVisibleInTree())
 		{
 			_slotMenu.first.GrabFocus();
@@ -45,18 +49,6 @@ public partial class SaveSlotCard : Control
 		else
 		{
 			_addButton.GrabFocus();
-		}
-	}
-	
-	public void RealiseSlotFocus()
-	{
-		if (_slotMenu.IsVisibleInTree())
-		{
-			_slotMenu.first.ReleaseFocus();
-		}
-		else
-		{
-			_addButton.ReleaseFocus();
 		}
 	}
 
