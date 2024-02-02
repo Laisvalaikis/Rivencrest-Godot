@@ -121,7 +121,7 @@ public partial class ControllerInputManager : InputManager
 			// 	EmitSignal("Down", 0.3);
 			// }
 
-			if (!isFocused)
+			if (!isFocused && GameTileMap.Tilemap != null)
 			{
 				if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementRight") &&
 				    !Input.IsActionJustPressed("CameraMovementLeft") &&
@@ -206,7 +206,7 @@ public partial class ControllerInputManager : InputManager
 	{
 		base._PhysicsProcess(delta);
 
-		if (enabled && !isFocused)
+		if (enabled && !isFocused && GameTileMap.Tilemap != null)
 		{
 			if (Input.IsActionPressed("CameraMovementUp", true) || Input.IsActionPressed("CameraMovementDown", true) ||
 			    Input.IsActionPressed("CameraMovementRight", true) || Input.IsActionPressed("CameraMovementLeft", true))

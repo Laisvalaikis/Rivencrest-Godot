@@ -9,6 +9,8 @@ public partial class View : Control
 	public delegate void CloseViewSignalEventHandler();
 
 	[Export] private Control openFocus;
+	
+	[Export] private bool grabFocusOnStart { get; set; } = false;
 	[Export] private bool viewEnabledOnStart { get; set; } = false;
 	[Export] private bool viewCanBeDisabled {get; set;} = true;
 	[Export] public bool addViewToStack {get; set;} = true;
@@ -20,6 +22,10 @@ public partial class View : Control
 		if (viewEnabledOnStart)
 		{
 			OpenView();
+		}
+		if (IsVisibleInTree() && grabFocusOnStart)
+		{
+			openFocus?.GrabFocus();
 		}
 	}
 	
