@@ -311,6 +311,7 @@ public abstract partial class BaseAction: TileAction
 				_turnManager.AddUsedAbilityAfterResolve(usedAbility, turnAfterResolveLifetime, true);
 				_turnManager.AddUsedAbilityOnTurnEnd(usedAbility, abilityCooldown, true);
 			}
+			ResetCooldown();
 		}
 		
 		public virtual void OnExitAbility(ChunkData chunkDataPrev, ChunkData chunk)

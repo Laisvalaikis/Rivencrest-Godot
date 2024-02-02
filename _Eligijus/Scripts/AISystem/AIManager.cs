@@ -40,7 +40,6 @@ public partial class AIManager : Node
             {
                 possibleActions.Sort((a, b) => b.Item3.CompareTo(a.Item3));
                 possibleActions[0].Item1.ResolveAbility(possibleActions[0].Item2);
-                possibleActions.Clear();
                 GeneratePossibleActionsForTeamAbilities();
                 actionsCanBeTaken = true;
             }
@@ -49,8 +48,19 @@ public partial class AIManager : Node
             {
                 if (player.GetMovementPoints() > 0)
                 {
-                    MoveTowardsChunk(player, FindNearestPointOfInterest(player));
-                    actionsCanBeTaken = true;
+                    ChunkData chunk = FindNearestPointOfInterest(player);
+                    if (chunk != null && chunk != GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+                    {
+                        bool HasMoved = MoveTowardsChunk(player, chunk);
+                        if (HasMoved)
+                        {
+                            actionsCanBeTaken = true;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -153,8 +163,9 @@ public partial class AIManager : Node
     //It is likely that the character will not complete his journey
     //In this case, the A* will be recalculated next time he moves
     //This is done, because the map might have changed since last time
-    public void MoveTowardsChunk(Player player, ChunkData chunk)
+    public bool MoveTowardsChunk(Player player, ChunkData chunk)
     {
+        bool hasMoved = false;
         List<ChunkData> path = AStarSearch(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
         int tilesWalked = 0;
         //Its probably possible for a character to die mid-move(by stepping on a trap)
@@ -165,7 +176,9 @@ public partial class AIManager : Node
             GameTileMap.Tilemap.MoveSelectedCharacter(path[tilesWalked],player);
             tilesWalked++;
             player.AddMovementPoints(-1);
+            hasMoved = true;
         }
+        return hasMoved;
     }
 
     //Returns chunk that is considered a point of interest for the character
@@ -187,7 +200,11 @@ public partial class AIManager : Node
             // Check if the current chunk is a point of interest
             if (currentChunk.GetCurrentPlayer() != null && !IsAllegianceSame(player, currentChunk))
             {
-                return FindNearestAdjacentChunk(player, currentChunk); // Found the nearest point of interest
+                ChunkData chunkData = FindNearestAdjacentChunk(player, currentChunk);
+                if(chunkData!=null)
+                {
+                    return chunkData; // Found the nearest point of interest
+                }
             }
 
             foreach (ChunkData adjacentChunk in GetAdjacentChunks(currentChunk))
@@ -199,7 +216,7 @@ public partial class AIManager : Node
                 }
             }
         }
-        return null; // No point of interest found (this should not happen)
+        return null; // No point of interest found
     }
 
     //Finds an adjacent chunk for a given chunk that is 
@@ -208,14 +225,18 @@ public partial class AIManager : Node
     private ChunkData FindNearestAdjacentChunk(Player player, ChunkData chunk)
     {
         List<ChunkData> adjacentChunks = GameTileMap.Tilemap.GetAllChunksAround(chunk);
-        int minDistance = int.MaxValue;
         ChunkData resultChunk = null;
+        ChunkData playerChunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        var (ax, ay) = playerChunk.GetIndexes();
+        var (bx, by) = chunk.GetIndexes();
+        int minDistance = Math.Abs(ax - bx) + Math.Abs(ay - by);
+        if (minDistance == 1)
+            return playerChunk;
         foreach (var chunkData in adjacentChunks)
         {
-            if (chunkData.GetCurrentPlayer() == null)
+            if (CanStepOnTile(chunkData))
             {
-                var (ax, ay) = GameTileMap.Tilemap.GetChunk(player.GlobalPosition).GetIndexes();
-                var (bx, by) = chunkData.GetIndexes();
+                (bx, by) = chunkData.GetIndexes();
                 int calculatedDistance = Math.Abs(ax - bx) + Math.Abs(ay - by);
                 if (calculatedDistance < minDistance)
                 {
@@ -259,9 +280,7 @@ public partial class AIManager : Node
 
                 foreach (var neighbor in GetAdjacentChunks(current))
                 {
-                    if (!visited.Contains(neighbor) && 
-                        (neighbor.GetCharacterType() != typeof(Object) || neighbor.GetCurrentObject().CanStepOn()) && 
-                        (neighbor.GetCurrentPlayer() == null))
+                    if (!visited.Contains(neighbor) && CanStepOnTile(neighbor))
                     {
                         int predictedDistance = GetExpectedPathLength(neighbor, goal);
                         int neighborDistance = Distance(current, neighbor);
@@ -278,6 +297,12 @@ public partial class AIManager : Node
             }
         }
         return new List<ChunkData>(); // Path not found
+    }
+
+    private bool CanStepOnTile(ChunkData chunk)
+    {
+        return (chunk.GetCharacterType() != typeof(Object) || chunk.GetCurrentObject().CanStepOn()) && 
+               chunk.GetCurrentPlayer() == null;
     }
 
     //We use IsAllegianceSame in PlayerMovement, so we need it here as well. 
