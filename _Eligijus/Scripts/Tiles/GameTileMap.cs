@@ -292,7 +292,7 @@ public partial class GameTileMap : Node2D
 		};
 		for (int i = 0; i < indexes.Length; i++)
 		{
-			if (CheckBoundsWithoutLock(indexes[i].x, indexes[i].y))
+			if (CheckBounds(indexes[i].x, indexes[i].y))
 			{
 				chunksAround.Add(_chunksArray[indexes[i].x, indexes[i].y]);
 			}

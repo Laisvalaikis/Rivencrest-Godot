@@ -3,6 +3,7 @@ using System.Linq;
 using Godot;
 using System.Threading.Tasks;
 using Godot.Collections;
+using Rivencrestgodot._Eligijus.Scripts.AISystem;
 
 public partial class TurnManager : Node
 {
@@ -21,7 +22,7 @@ public partial class TurnManager : Node
 	[Export] private Player _currentEnemy;
 	private bool isAiTurn = false;
 	private Vector2 _mousePosition;
-	
+	[Export] private AIManager aiManager;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -262,6 +263,11 @@ public partial class TurnManager : Node
 		ActionsBeforeStart(_currentTeam.usedAbilitiesBeforeStartTurn);
 		ActionsBeforeStart(objectAbilitiesBeforeStartTurn);
 		ObjectActionsOnTurnStart(_teamObjects[_currentTeamIndex].GetObjects());
+		if (_currentTeam.isTeamAI)
+		{
+			aiManager.currentTeam = _currentTeam;
+			aiManager.OnTurnStart();
+		}
 	}
 	public void ObjectActionsOnTurnStart(LinkedList<Object> objects)
 	{
