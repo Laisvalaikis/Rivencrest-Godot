@@ -1,23 +1,25 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://behxhscxem2p7"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://behxhscxem2p7"]
 
 [ext_resource type="Resource" uid="uid://drpjqwtamtx3l" path="res://Data/MapData/Tutorial/Coordinates_0.tres" id="2_0pmyl"]
+[ext_resource type="PackedScene" uid="uid://dwvfyse8ro30r" path="res://Maps/Tutorial.tscn" id="3_5r1li"]
 [ext_resource type="Resource" uid="uid://chmgx6qs5qh7y" path="res://Data/MapData/Tutorial/Coordinates_1.tres" id="3_vtmf6"]
+[ext_resource type="Resource" uid="uid://bckjf81cj1lpk" path="res://Data/MapData/Tutorial/Level_1_Enemies.tres" id="5_ab5xo"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="5_uv14d"]
-[ext_resource type="PackedScene" uid="uid://0nfqcq3srxjt" path="res://Maps/Meadow.tscn" id="5_yjd0h"]
-[ext_resource type="Resource" uid="uid://vnh5nyvhw6hm" path="res://Data/MapData/Meadow/Level_1_Enemies.tres" id="6_p2r03"]
-[ext_resource type="Resource" uid="uid://3nldv1vbxvw3" path="res://Data/MapData/Meadow/Level_2_Enemies.tres" id="7_1ath4"]
-[ext_resource type="Resource" uid="uid://cbwyx6wu5n1r3" path="res://Data/MapData/Meadow/Level_3_Enemies.tres" id="8_ky7tu"]
+[ext_resource type="Resource" uid="uid://dagrl3hagtk6y" path="res://Data/MapData/Tutorial/Level_2_Enemies.tres" id="6_7ya6l"]
+[ext_resource type="Resource" uid="uid://b5n7yga6fdt50" path="res://Data/MapData/Tutorial/Level_3_Enemies.tres" id="7_lh1fk"]
+[ext_resource type="Resource" uid="uid://cu6aja3qq3edn" path="res://Data/MapData/Tutorial/MapGeneration.tres" id="8_lf0mq"]
 
 [resource]
 script = ExtResource("5_uv14d")
 mapName = "Tutorial"
 suitableLevels = {
-1: ExtResource("6_p2r03"),
-2: ExtResource("7_1ath4"),
-3: ExtResource("8_ky7tu")
+1: ExtResource("5_ab5xo"),
+2: ExtResource("6_7ya6l"),
+3: ExtResource("7_lh1fk")
 }
 npcTeam = Array[Node]([])
 mapCoordinates = Array[Resource]([ExtResource("2_0pmyl"), ExtResource("3_vtmf6")])
+tileMapCoordinates = ExtResource("8_lf0mq")
 toFollowStartPosition = Vector3(4.44, 2.99, 0)
 panLimitX = Vector2(-200, 200)
 panLimitY = Vector2(-200, 300)
@@ -27,4 +29,4 @@ numberOfEnemies = 3
 mapCategory = "Forest"
 allowDuplicates = false
 informationText = ""
-mapPrefab = ExtResource("5_yjd0h")
+mapPrefab = ExtResource("3_5r1li")

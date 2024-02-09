@@ -1,11 +1,10 @@
-[gd_resource type="Resource" load_steps=10 format=3 uid="uid://fpvleus21ol2"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://fpvleus21ol2"]
 
 [ext_resource type="Texture2D" uid="uid://dataks5c06plm" path="res://Data/PlayerResource/Yellow/Textures/CharacterPortaitSprite.tres" id="1_1j8mk"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_jym2c"]
 [ext_resource type="Texture2D" uid="uid://7ueya57up0ve" path="res://Data/PlayerResource/Yellow/Textures/CharacterSplashArt.tres" id="2_ftry4"]
 [ext_resource type="Texture2D" uid="uid://ckvw055ub7iue" path="res://Data/PlayerResource/Yellow/Textures/CroppedSplashArt.tres" id="3_sckal"]
 [ext_resource type="Resource" uid="uid://bcka6hd7ykmin" path="res://Data/Abilities/FreezeAbility.tres" id="5_3yitu"]
-[ext_resource type="Resource" uid="uid://bfw31a656d1if" path="res://Data/Blessings/HeadStart.tres" id="6_qirmp"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_dhlso"]
 [ext_resource type="Texture2D" uid="uid://dliyw3htp21ow" path="res://Data/PlayerResource/Yellow/Textures/CharacterSprite.tres" id="10_5vw7s"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="11_f60ya"]
@@ -35,4 +34,4 @@ canStepOnObject = false
 destroyObjectStepingOn = false
 canBeDestroyed = true
 abilities = Array[Resource]([])
-blessings = Array[Resource]([ExtResource("6_qirmp")])
+blessings = Array[Resource]([])

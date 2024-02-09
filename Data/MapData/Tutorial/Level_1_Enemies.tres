@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bckjf81cj1lpk"]
+
+[ext_resource type="Resource" uid="uid://d00kq2i1pfkxe" path="res://Data/EnemyResource/ForestBear/ForestBear.tres" id="1_on64a"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="2_42eec"]
+
+[resource]
+script = ExtResource("2_42eec")
+level = 1
+enemyCount = 3
+enemyResource = Array[Resource]([ExtResource("1_on64a")])
