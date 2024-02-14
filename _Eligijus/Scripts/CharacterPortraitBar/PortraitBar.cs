@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -9,12 +11,25 @@ public partial class PortraitBar : TextureRect
 	[Export]
 	public Array<Control> townPortraitsContainers;
 	[Export]
-	public Control up;
+	public Button focusLeft;
 	[Export]
-	public Control down;
+	public Button focusUp;
+	[Export]
+	public Button focusDown;
+	
+	[Export]
+	public Control previousPageControl;
+	[Export]
+	public Button previousPageButton;
+	[Export]
+	public Control nextPageControl;
+	[Export]
+	public Button nextPageButton;
+	private List<CharacterPortrait> enabledPortraits = new List<CharacterPortrait>();
 	
 	private Data _data;
 	private int _lastElement = -1; // array starts from zero 
+	private int _lastButtonIndex = -1;
 	private int _scrollCharacterSelectIndex;
 	private int _page = 1;
 
@@ -30,11 +45,9 @@ public partial class PortraitBar : TextureRect
 
 	public void SetupCharacters()
 	{
-		if (_scrollCharacterSelectIndex + townPortraits.Count < _data.Characters.Count)
-		{
-			down.Show();
-		}
-
+		townPortraits[0].FocusNeighborTop = focusUp.GetPath();
+		focusUp.FocusNeighborBottom = townPortraits[0].GetPath();
+		focusLeft.FocusNeighborRight = townPortraits[0].GetPath();
 		if (_data.Characters.Count > 0)
 		{
 			for (int i = 0; i < _data.Characters.Count; i++)
@@ -43,13 +56,14 @@ public partial class PortraitBar : TextureRect
 				{
 					UpdatePortrait(i, i);
 					_lastElement = i;
-					// townPortraits[i] = _currentCharacters[i].
+					_lastButtonIndex = i;
 				}
 				else
 				{
 					break;
 				}
 			}
+			
 		}
 		else
 		{
@@ -59,6 +73,22 @@ public partial class PortraitBar : TextureRect
 				_lastElement = -1;
 			}
 		}
+		
+		if (_scrollCharacterSelectIndex + townPortraits.Count < _data.Characters.Count)
+		{
+			nextPageControl.Show();
+			townPortraits[^1].FocusNeighborBottom = nextPageButton.GetPath();
+			nextPageButton.FocusNeighborTop = townPortraits[^1].GetPath();
+			nextPageButton.FocusNeighborBottom = focusDown.GetPath();
+			focusDown.FocusNeighborTop = nextPageButton.GetPath();
+		}
+		else
+		{
+			townPortraits[_lastButtonIndex].FocusNeighborBottom = focusDown.GetPath();
+			focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
+		}
+		
+		
 	}
 
 	public void ToggleSelectButton(int index)
@@ -79,11 +109,18 @@ public partial class PortraitBar : TextureRect
 			// GD.Print(_data.Characters[index].playerInformation.ResourceName);
 			UpdatePortrait(index, index);
 			_lastElement = index;
-			
+			_lastButtonIndex = index;
+			townPortraits[_lastButtonIndex].FocusNeighborBottom = focusDown.GetPath();
+			focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
 		}
 		else if (_scrollCharacterSelectIndex + townPortraits.Count < _data.Characters.Count)
 		{
-			down.Show();
+			nextPageControl.Show();
+			
+			townPortraits[_lastButtonIndex].FocusNeighborBottom = nextPageButton.GetPath();
+			nextPageButton.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
+			nextPageButton.FocusNeighborBottom = focusDown.GetPath();
+			focusDown.FocusNeighborTop = nextPageButton.GetPath();
 		}
 	}
 	
@@ -108,8 +145,9 @@ public partial class PortraitBar : TextureRect
 		for (int i = index, count = characterIndex; i < countToUpdate; i++, count++)
 		{
 			UpdatePortrait(i, count);
+			_lastButtonIndex = i;
 		}
-
+		
 		UpdateArrows(_scrollCharacterSelectIndex * -1);
 		
 		if ( (_page - 1) * townPortraits.Count >= _data.Characters.Count)
@@ -136,6 +174,7 @@ public partial class PortraitBar : TextureRect
 				{
 					int index = i + _scrollCharacterSelectIndex;
 					UpdatePortrait(i, index);
+					_lastButtonIndex = i;
 				}
 				else
 				{
@@ -200,27 +239,44 @@ public partial class PortraitBar : TextureRect
 	{
 		if (_data.Characters.Count > townPortraits.Count * (_page - 1) && _page - 1 > 0)
 		{
-			up.Show();
+			previousPageControl.Show();
+			
+			townPortraits[0].FocusNeighborTop = previousPageButton.GetPath();
+			previousPageButton.FocusNeighborBottom = townPortraits[0].GetPath();
+			previousPageButton.FocusNeighborTop = focusUp.GetPath();
+			focusUp.FocusNeighborBottom = previousPageButton.GetPath();
 		}
 		else
 		{
-			up.Hide();
+			previousPageControl.Hide();
+			townPortraits[0].FocusNeighborTop = focusUp.GetPath();
+			focusUp.FocusNeighborBottom = townPortraits[0].GetPath();
 		}
 		
 
 		GD.Print(Mathf.Abs(scrollCalculation) + townPortraits.Count);
 		if (_data.Characters.Count > townPortraits.Count * _page && townPortraits.Count * _page <= _data.Characters.Count)
 		{
-			down.Show();
+			nextPageControl.Show();
+			townPortraits[_lastButtonIndex].FocusNeighborBottom = nextPageButton.GetPath();
+			nextPageButton.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
+			nextPageButton.FocusNeighborBottom = focusDown.GetPath();
+			focusDown.FocusNeighborTop = nextPageButton.GetPath();
 		}
-		else if (scrollCalculation <= _data.Characters.Count)
+		else if (scrollCalculation <= _data.Characters.Count || scrollCalculation >= _data.Characters.Count)
 		{
-			down.Hide();
+			nextPageControl.Hide();
+			
+			townPortraits[_lastButtonIndex].FocusNeighborBottom = focusDown.GetPath();
+			focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
 		}
-		else if (scrollCalculation >= _data.Characters.Count)
-		{
-			down.Hide();
-		}
+		// else if (scrollCalculation >= _data.Characters.Count)
+		// {
+		// 	nextPageButton.Hide();
+		// 	
+		// 	townPortraits[_lastButtonIndex].FocusNeighborBottom = focusDown.GetPath();
+		// 	focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
+		// }
 	}
 
 	public void DisableAbilityCorner(int index)
