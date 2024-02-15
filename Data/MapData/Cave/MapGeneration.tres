@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://da5wvm4xt6fat"]
+
+[ext_resource type="Resource" uid="uid://cfb8nq0rilqi4" path="res://Data/MapData/Cave/MapBoundaries.tres" id="1_kmbx1"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Tiles/TileMapData.cs" id="2_76stu"]
+
+[resource]
+script = ExtResource("2_76stu")
+_mapBoundries = ExtResource("1_kmbx1")
+_initialPosition = Vector2(-550, -250)
+_chunkSize = 100.0
+_mapHeight = 1400.0
+_mapWidth = 1100.0

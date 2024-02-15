@@ -1,15 +1,25 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bw4qdrlvl1a54"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://bw4qdrlvl1a54"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_cm5vh"]
 [ext_resource type="Resource" uid="uid://b1m13sqcflh28" path="res://Data/MapData/Cave/Coordinates_0.tres" id="2_eufrq"]
 [ext_resource type="Resource" uid="uid://dds0ev23rtdh5" path="res://Data/MapData/Cave/Coordinates_1.tres" id="3_30o5u"]
+[ext_resource type="PackedScene" uid="uid://cwgwhhgryph5y" path="res://Maps/Cave.tscn" id="3_pq7di"]
+[ext_resource type="Resource" uid="uid://c1dgpc1sml5u2" path="res://Data/MapData/Cave/Level_1_Enemies.tres" id="4_b4023"]
+[ext_resource type="Resource" uid="uid://currnf252rp50" path="res://Data/MapData/Cave/Level_2_Enemies.tres" id="5_do02c"]
+[ext_resource type="Resource" uid="uid://c6js66ll3coci" path="res://Data/MapData/Cave/Level_3_Enemies.tres" id="6_jlke2"]
+[ext_resource type="Resource" uid="uid://da5wvm4xt6fat" path="res://Data/MapData/Cave/MapGeneration.tres" id="7_vfrgh"]
 
 [resource]
 script = ExtResource("1_cm5vh")
 mapName = "Cave"
-suitableLevels = Array[int]([2, 3, 4, 5])
+suitableLevels = {
+1: ExtResource("4_b4023"),
+2: ExtResource("5_do02c"),
+3: ExtResource("6_jlke2")
+}
 npcTeam = null
 mapCoordinates = Array[Resource]([ExtResource("2_eufrq"), ExtResource("3_30o5u")])
+tileMapCoordinates = ExtResource("7_vfrgh")
 toFollowStartPosition = Vector3(7.79, 1.2, -1)
 panLimitX = Vector2(-100, 100)
 panLimitY = Vector2(-200, 400)
@@ -19,3 +29,4 @@ numberOfEnemies = 4
 mapCategory = "Undead"
 allowDuplicates = false
 informationText = ""
+mapPrefab = ExtResource("3_pq7di")
