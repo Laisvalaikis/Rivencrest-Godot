@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://cnv7wneeic186"]
+
+[ext_resource type="Resource" uid="uid://k3v4t7vq6n6o" path="res://Data/EnemyResource/ForestWatcher/ForestWatcher.tres" id="1_cjtrt"]
+[ext_resource type="Resource" uid="uid://d00kq2i1pfkxe" path="res://Data/EnemyResource/ForestBear/ForestBear.tres" id="2_slm30"]
+[ext_resource type="Resource" uid="uid://ctpoay6sbjwt3" path="res://Data/EnemyResource/ForestDruid/ForestDruid.tres" id="3_uj04g"]
+[ext_resource type="Resource" uid="uid://nilhfb00he7k" path="res://Data/EnemyResource/ForestHuntress/ForestHuntress.tres" id="4_3mbbe"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="5_cks6e"]
+
+[resource]
+script = ExtResource("5_cks6e")
+level = 1
+enemyCount = 3
+enemyResource = Array[Resource]([ExtResource("1_cjtrt"), ExtResource("2_slm30"), ExtResource("3_uj04g"), ExtResource("4_3mbbe"), ExtResource("1_cjtrt")])

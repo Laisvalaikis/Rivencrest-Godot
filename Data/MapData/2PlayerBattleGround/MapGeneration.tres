@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dqfsjvpwglksg"]
+
+[ext_resource type="Resource" uid="uid://cj5hqqrl7v1ye" path="res://Data/MapData/2PlayerBattleGround/MapBoundaries.tres" id="1_r0ib2"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Tiles/TileMapData.cs" id="2_617xv"]
+
+[resource]
+script = ExtResource("2_617xv")
+_mapBoundries = ExtResource("1_r0ib2")
+_initialPosition = Vector2(-550, -350)
+_chunkSize = 100.0
+_mapHeight = 1100.0
+_mapWidth = 1200.0
