@@ -1,37 +1,99 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
 namespace Rivencrestgodot._Eligijus.Scripts.AISystem;
 
-//This class contains an AI team, calls AIEnemy functions and makes decisions
+//This class contains an AI team. It takes ownership of and makes decisions for that team
 public partial class AIManager : Node
 {
     public Team currentTeam;
     private List<(BaseAction, ChunkData, int)> possibleActions = new List<(BaseAction, ChunkData, int)>();
-    private readonly List<ChunkData> _allChunks = new List<ChunkData>();
+    private (BaseAction Action, ChunkData chunk, int weight) highestWeightAction;
     private List<Player> AIPlayers = new List<Player>();
-
-    public void Start()
-    {
-        _allChunks.Clear();
-        ChunkData[,] array2D = GameTileMap.Tilemap.GetChunksArray();
-        //Now for the fucky part TODO: fix later
-        for (int i = 0; i < array2D.GetLength(0); i++)
-        {
-            for (int j = 0; j < array2D.GetLength(1); j++)
-            {
-                _allChunks.Add(array2D[i, j]);
-            }
-        }
-    }
     
     public void OnTurnStart()
     {
-        Start();
-        GenerateAIPlayerList();
-        GeneratePossibleActionsForTeamAbilities();
+        GenerateAiPlayerList();
+        PerformActions2();
+    }
+
+    //Tries to resolve abilities and move players in direction of their points of interest.
+    private async void PerformActions2()
+    {
+        bool actionsPerformed = true;
+
+        while (actionsPerformed)
+        {
+            actionsPerformed = false;
+            if (await ResolveAbilities())
+            {
+                actionsPerformed = true;
+                await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+            }
+            if (await MoveAIPlayers())
+            {
+                actionsPerformed = true;
+            }
+        }
+    }
+
+    
+    //Generates actions and their weights. If an action can be performed, performs the action with highest
+    //weight and returns true. Otherwise returns false.
+    private async Task<bool> ResolveAbilities()
+    {
+        GeneratePossibleActionsAndWeightsForTeamAbilities();
+        if (highestWeightAction.Action == null)
+        {
+            return false;
+        }
+        bool actionTaken = false;
+
+        while (highestWeightAction.Action != null)
+        {
+            PerformHighestWeightAction();
+            highestWeightAction = new(null, null, int.MinValue);
+            GeneratePossibleActionsAndWeightsForTeamAbilities();
+            actionTaken = true;
+            await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+        }
+        return actionTaken;
+    }
+
+    
+    //Moves each AI player towards the nearest point of interest. If at least one player was moved,
+    //returns true. Otherwise returns false
+    private async Task<bool> MoveAIPlayers()
+    {
+        bool movementMade = false;
+
+        foreach (var player in AIPlayers)
+        {
+            if (player.GetMovementPoints() > 0)
+            {
+                ChunkData chunk = FindNearestPointOfInterest(player);
+                if (chunk != null && chunk != GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
+                {
+                    bool moved = await MoveTowardsChunk(player, chunk);
+                    if (moved)
+                    {
+                        movementMade = true;
+                    }
+                }
+            }
+        }
+        return movementMade;
+    }
+
+
+    
+    //Performs actions. see PerformActions2
+    private async Task PerformActions()
+    {
         bool actionsCanBeTaken = true;
         while (actionsCanBeTaken)
         {
@@ -43,7 +105,7 @@ public partial class AIManager : Node
                 GeneratePossibleActionsForTeamAbilities();
                 actionsCanBeTaken = true;
             }
-
+    
             foreach (var player in AIPlayers)
             {
                 if (player.GetMovementPoints() > 0)
@@ -51,8 +113,8 @@ public partial class AIManager : Node
                     ChunkData chunk = FindNearestPointOfInterest(player);
                     if (chunk != null && chunk != GameTileMap.Tilemap.GetChunk(player.GlobalPosition))
                     {
-                        bool HasMoved = MoveTowardsChunk(player, chunk);
-                        if (HasMoved)
+                        bool hasMoved = await MoveTowardsChunk(player, chunk);
+                        if (hasMoved)
                         {
                             actionsCanBeTaken = true;
                         }
@@ -68,7 +130,7 @@ public partial class AIManager : Node
 
     //Generates list of players in the team that are AI. Currently, this is all players in team
     //But it could later be changed to where SOME players in a particular team ar AI
-    public void GenerateAIPlayerList()
+    private void GenerateAiPlayerList()
     {
         Godot.Collections.Dictionary<int, Player> characters = currentTeam.characters;
 
@@ -81,7 +143,7 @@ public partial class AIManager : Node
     //Checks to see if a character has any abilities that can be used
     //If a character has at least one ability (excluding the first ability, movement)
     //that is unlocked and is not under cooldown, method returns true
-    public bool PlayerHasAvailableAbilities(Player player)
+    private bool PlayerHasAvailableAbilities(Player player)
     {
         Array<Ability> playerAbilities = player.actionManager.GetAllAbilities();
         for (int i = 1; i < playerAbilities.Count; i++)
@@ -93,7 +155,19 @@ public partial class AIManager : Node
         }
         return false;
     }
-
+    
+    
+    //Generates possible actions for the whole team
+    private void GeneratePossibleActionsForTeamAbilities()
+    {
+        possibleActions.Clear();
+        foreach (var player in AIPlayers)
+        {
+            GeneratePossibleActionsForPlayerAbilities(player.actionManager.GetAllAbilities());
+        }
+    }
+    
+    
     //Fills up possibleActions list with abilities that could
     //currently be used on the generated grid without moving the character.
     //List may include entries for same ability, but different tiles. We need this to choose possible tile options
@@ -115,46 +189,91 @@ public partial class AIManager : Node
         }
     }
 
-    //Generates possible actions for the whole team
-    private void GeneratePossibleActionsForTeamAbilities()
+
+    // Generates possible actions and weights for the whole team, keeping track of the highest-weight action
+    // This is less flexible, but offers better performance
+    private void GeneratePossibleActionsAndWeightsForTeamAbilities()
     {
         possibleActions.Clear();
+        int highestWeight = int.MinValue;
+
         foreach (var player in AIPlayers)
         {
-            GeneratePossibleActionsForPlayerAbilities(player.actionManager.GetAllAbilities());
+            var playerAbilities = player.actionManager.GetAllAbilities();
+            foreach (var ability in playerAbilities)
+            {
+                if (ability.enabled && ability.Action.AbilityCanBeActivated())
+                {
+                    ability.Action.CreateAvailableChunkList(ability.Action.GetRange());
+                    foreach (var chunk in ability.Action.GetChunkList())
+                    {
+                        if (ability.Action.CanBeUsedOnTile(chunk))
+                        {
+                            int weight = CalculateWeightForAction(ability.Action, chunk);
+                            if (weight > highestWeight)
+                            {
+                                highestWeight = weight;
+                                highestWeightAction=(ability.Action, chunk, weight);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
+    
+    
     //This method iterates through every possible action and calculates the weight.
-    //Current implementation is very simple and almost static. This method can be made as complicated
-    //As we want it to be. Needs to be constantly tweaked for balancing 
-    public void GenerateWeights()
+    private void GenerateWeights()
     {
         for (int i = 0; i < possibleActions.Count; i++)
         {
             var action = possibleActions[i];
-            int weight = 0;
-
-            if (!action.Item1.isAbilitySlow)
-            {
-                weight += 20;
-            }
-            if (action.Item1.IsAllegianceSame(action.Item2))
-            {
-                weight += 60;
-            }
-            else
-            {
-                weight += 40;
-            }
-            /*if (action.Item1.minAttackDamage + action.Item1.bonusDamage >= action.Item2.GetCurrentObject()
-                    .objectInformation.GetObjectInformation().GetHealth()) //might be busted and shitty TODO: test
-            {
-                weight += 100;
-            }
-
-            weight -= action.Item2.GetCurrentObject().objectInformation.GetObjectInformation().GetHealth();*/
+            int weight = CalculateWeightForAction(action.Item1, action.Item2);
             possibleActions[i] = (action.Item1, action.Item2, weight);
+        }
+    }
+
+
+    //Calculates the weight of a specific ability that can be used on a specific tile and returns it.
+    //Current implementation is very simple and almost static. This method can be made as complicated
+    //As we want it to be. Needs to be constantly tweaked for balancing 
+    private int CalculateWeightForAction(BaseAction action, ChunkData chunk)
+    {
+        int weight = 0;
+
+        if (!action.isAbilitySlow)
+        {
+            weight += 20;
+        }
+        if (action.IsAllegianceSame(chunk))
+        {
+            weight += 60;
+        }
+        else
+        {
+            weight += 40;
+        }
+        if (action.minAttackDamage + action.bonusDamage >= chunk.GetCurrentObject()?
+                .objectInformation.GetObjectInformation().GetHealth())
+        {
+            weight += 100;
+        }
+        if (chunk.GetCurrentObject() != null)
+        {
+            weight -= chunk.GetCurrentObject().objectInformation.GetObjectInformation().GetHealth();
+        }
+
+        return weight;
+    }
+
+    //Performs the action that was found to have the highest weight
+    private void PerformHighestWeightAction()
+    {
+        if (highestWeightAction.Action != null)
+        {
+            var (action, chunk, _) = highestWeightAction;
+            action.ResolveAbility(chunk);
         }
     }
 
@@ -163,28 +282,29 @@ public partial class AIManager : Node
     //It is likely that the character will not complete his journey
     //In this case, the A* will be recalculated next time he moves
     //This is done, because the map might have changed since last time
-    public bool MoveTowardsChunk(Player player, ChunkData chunk)
+    private async Task<bool> MoveTowardsChunk(Player player, ChunkData chunk)
     {
         bool hasMoved = false;
         List<ChunkData> path = AStarSearch(GameTileMap.Tilemap.GetChunk(player.GlobalPosition), chunk);
         int tilesWalked = 0;
-        //Its probably possible for a character to die mid-move(by stepping on a trap)
-        //So we probably have to check if player is still alive after each MoveSelectedCharacter
-        //TODO: that
+
         while (player.GetMovementPoints() > 0 && path.Count > tilesWalked)
         {
-            GameTileMap.Tilemap.MoveSelectedCharacter(path[tilesWalked],player);
+            GameTileMap.Tilemap.MoveSelectedCharacter(path[tilesWalked], player);
             tilesWalked++;
             player.AddMovementPoints(-1);
             hasMoved = true;
+            await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         }
+
         return hasMoved;
     }
+
 
     //Returns chunk that is considered a point of interest for the character
     //This, currently, is just a character of a different allegiance. It could
     //Later be a flag / item / object (for example we spawn berries and this distracts the bear)
-    public ChunkData  FindNearestPointOfInterest(Player player)
+    private ChunkData  FindNearestPointOfInterest(Player player)
     {
         ChunkData chunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
         Queue<(ChunkData chunk, int distance)> queue = new Queue<(ChunkData, int)>();
@@ -218,6 +338,43 @@ public partial class AIManager : Node
         }
         return null; // No point of interest found
     }
+    
+    //Finds all points of interest for a player within specified and returns them as a list. 
+    //If no radius is provided, returns all points of interest, ordered by distance.
+    private List<ChunkData> FindPointsOfInterestWithinRadius(Player player, int? radius = null)
+    {
+        ChunkData chunk = GameTileMap.Tilemap.GetChunk(player.GlobalPosition);
+        Queue<(ChunkData chunk, int distance)> queue = new Queue<(ChunkData, int)>();
+        HashSet<ChunkData> visited = new HashSet<ChunkData>();
+        List<ChunkData> pointsOfInterest = new List<ChunkData>();
+
+        queue.Enqueue((chunk, 0));
+        visited.Add(chunk);
+
+        while (queue.Count > 0)
+        {
+            (ChunkData currentChunk, int currentDistance) = queue.Dequeue();
+
+            if ((radius == null || currentDistance <= radius) && currentChunk.GetCurrentPlayer() != null && !IsAllegianceSame(player, currentChunk))
+            {
+                pointsOfInterest.Add(currentChunk);
+            }
+            if (radius == null || currentDistance < radius)
+            {
+                foreach (ChunkData adjacentChunk in GetAdjacentChunks(currentChunk))
+                {
+                    if (!visited.Contains(adjacentChunk))
+                    {
+                        queue.Enqueue((adjacentChunk, currentDistance + 1));
+                        visited.Add(adjacentChunk);
+                    }
+                }
+            }
+        }
+        return pointsOfInterest;
+    }
+
+
 
     //Finds an adjacent chunk for a given chunk that is 
     //1)Steppable on
@@ -253,7 +410,7 @@ public partial class AIManager : Node
     //--------------------------------------------Methods for pathfinding--------------------------------------------
     
     //AStarSearch method taken from PlayerMovement, but without caching because we dont need to cache here
-    public List<ChunkData> AStarSearch(ChunkData start, ChunkData goal)
+    private List<ChunkData> AStarSearch(ChunkData start, ChunkData goal)
     {
         System.Collections.Generic.Dictionary<ChunkData, ChunkData> parentMap = new System.Collections.Generic.Dictionary<ChunkData, ChunkData>();
         HashSet<ChunkData> visited = new HashSet<ChunkData>();
@@ -272,7 +429,6 @@ public partial class AIManager : Node
             if (!visited.Contains(current))
             {
                 visited.Add(current);
-                // If last element in PQ reached
                 if (current != null && current.Equals(goal))
                 {
                     return ReconstructPath(parentMap, start, goal);
@@ -284,6 +440,8 @@ public partial class AIManager : Node
                     {
                         int predictedDistance = GetExpectedPathLength(neighbor, goal);
                         int neighborDistance = Distance(current, neighbor);
+                        // ReSharper disable once AssignNullToNotNullAttribute
+                        // This is fine
                         int totalDistance = distances[current] + neighborDistance;
 
                         if (distances.ContainsKey(neighbor) && totalDistance + predictedDistance < distances[neighbor])
@@ -315,9 +473,13 @@ public partial class AIManager : Node
     private System.Collections.Generic.Dictionary<ChunkData, int> InitializeAllToInfinity()
     {
         var distances = new System.Collections.Generic.Dictionary<ChunkData, int>();
-        foreach (var chunk in _allChunks)
+        ChunkData[,] array2D = GameTileMap.Tilemap.GetChunksArray();
+        for (int i = 0; i < array2D.GetLength(0); i++)
         {
-            distances[chunk] = int.MaxValue;
+            for (int j = 0; j < array2D.GetLength(1); j++)
+            {
+                distances[array2D[i, j]] = int.MaxValue;
+            }
         }
         return distances;
     }
