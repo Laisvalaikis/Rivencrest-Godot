@@ -66,7 +66,7 @@ public partial class AIManager : Node
             highestWeightAction = new(null, null, int.MinValue);
             GeneratePossibleActionsAndWeightsForTeamAbilities();
             actionTaken = true;
-            await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+            await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
         }
         return actionTaken;
     }
@@ -264,8 +264,10 @@ public partial class AIManager : Node
         if (action.minAttackDamage + action.bonusDamage >= chunk.GetCurrentObject()?
                 .objectInformation.GetObjectInformation().GetHealth())
         {
-            if(difficulty==1)
+            if (difficulty == 1)
+            {
                 weight += 100;
+            }
         }
         if (chunk.GetCurrentPlayer() != null)
         {

@@ -131,7 +131,7 @@ public partial class TileAction : Resource
                 return true;
             }
         }
-        if (CheckIfSpecificInformationType(chunkData, typeof(Object)) && canUseOnObject)
+        if (chunkData.GetObjectType() == typeof(Object) && canUseOnObject)
         {
             return true;
         }
