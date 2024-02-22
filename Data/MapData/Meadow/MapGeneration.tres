@@ -9,4 +9,4 @@ _mapBoundries = ExtResource("1_j1rip")
 _initialPosition = Vector2(-500, -400)
 _chunkSize = 100.0
 _mapHeight = 1200.0
-_mapWidth = 1100.0
+_mapWidth = 1300.0
