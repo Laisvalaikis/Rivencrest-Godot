@@ -16,7 +16,7 @@ public partial class AIManager : Node
     private List<Player> AIPlayers = new List<Player>();
     private int difficulty;
     
-    public void OnTurnStart()
+    public async Task OnTurnStart()
     {
         difficulty = Data.Instance.townData.difficultyLevel;
         if (difficulty == 1)
@@ -25,11 +25,11 @@ public partial class AIManager : Node
             HealEveryAIPlayer();
         }
         GenerateAiPlayerList();
-        PerformActions2();
+        await PerformActions2();
     }
 
     //Tries to resolve abilities and move players in direction of their points of interest.
-    private async void PerformActions2()
+    private async Task PerformActions2()
     {
         bool actionsPerformed = true;
 

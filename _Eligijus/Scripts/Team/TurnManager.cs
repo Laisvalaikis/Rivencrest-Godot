@@ -254,7 +254,7 @@ public partial class TurnManager : Node
 		}
 	}
 
-	private void OnTurnStart()
+	private async Task OnTurnStart()
 	{
 		foreach (Player character in _currentTeam.characters.Values)
 		{
@@ -266,7 +266,8 @@ public partial class TurnManager : Node
 		if (_currentTeam.isTeamAI)
 		{
 			aiManager.currentTeam = _currentTeam;
-			aiManager.OnTurnStart();
+			await aiManager.OnTurnStart();
+			EndTurn();
 		}
 	}
 	public void ObjectActionsOnTurnStart(LinkedList<Object> objects)
