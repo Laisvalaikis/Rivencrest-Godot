@@ -14,9 +14,16 @@ public partial class AIManager : Node
     private List<(BaseAction, ChunkData, int)> possibleActions = new List<(BaseAction, ChunkData, int)>();
     private (BaseAction Action, ChunkData chunk, int weight) highestWeightAction;
     private List<Player> AIPlayers = new List<Player>();
+    private int difficulty;
     
     public void OnTurnStart()
     {
+        difficulty = Data.Instance.townData.difficultyLevel;
+        if (difficulty == 1)
+        {
+            //idėja easy/hard mode'ui
+            HealEveryAIPlayer();
+        }
         GenerateAiPlayerList();
         PerformActions2();
     }
@@ -133,7 +140,7 @@ public partial class AIManager : Node
     private void GenerateAiPlayerList()
     {
         Godot.Collections.Dictionary<int, Player> characters = currentTeam.characters;
-
+        AIPlayers.Clear();
         foreach (var key in characters.Keys)
         {
             AIPlayers.Add(characters[key]);
@@ -257,11 +264,19 @@ public partial class AIManager : Node
         if (action.minAttackDamage + action.bonusDamage >= chunk.GetCurrentObject()?
                 .objectInformation.GetObjectInformation().GetHealth())
         {
-            weight += 100;
+            if(difficulty==1)
+                weight += 100;
         }
-        if (chunk.GetCurrentObject() != null)
+        if (chunk.GetCurrentPlayer() != null)
         {
-            weight -= chunk.GetCurrentObject().objectInformation.GetObjectInformation().GetHealth();
+            if (difficulty == 1)
+            {
+                weight -= chunk.GetCurrentPlayer().objectInformation.GetObjectInformation().GetHealth();
+            }
+            else
+            {
+                weight += chunk.GetCurrentPlayer().objectInformation.GetObjectInformation().GetHealth();
+            }
         }
 
         return weight;
@@ -404,7 +419,14 @@ public partial class AIManager : Node
         }
         return resultChunk;
     }
-    
+
+    private void HealEveryAIPlayer()
+    {
+        foreach (var player in AIPlayers)
+        {
+            player.objectInformation.GetPlayerInformation().Heal(1);
+        }
+    }
     
     
     //--------------------------------------------Methods for pathfinding--------------------------------------------
@@ -459,8 +481,8 @@ public partial class AIManager : Node
 
     private bool CanStepOnTile(ChunkData chunk)
     {
-        return (chunk.GetCharacterType() != typeof(Object) || chunk.GetCurrentObject().CanStepOn()) && 
-               chunk.GetCurrentPlayer() == null;
+        return (chunk.GetCurrentPlayer()==null && chunk.GetCurrentObject() == null || (chunk.GetCurrentObject() != null && chunk.GetCurrentObject().CanStepOn() && 
+               chunk.GetCurrentPlayer() == null));
     }
 
     //We use IsAllegianceSame in PlayerMovement, so we need it here as well. 
