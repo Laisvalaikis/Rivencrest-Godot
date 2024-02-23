@@ -17,16 +17,16 @@ suitableLevels = {
 2: ExtResource("5_do02c"),
 3: ExtResource("6_jlke2")
 }
-npcTeam = null
+npcTeam = Array[Node]([])
 mapCoordinates = Array[Resource]([ExtResource("2_eufrq"), ExtResource("3_30o5u")])
 tileMapCoordinates = ExtResource("7_vfrgh")
-toFollowStartPosition = Vector3(7.79, 1.2, -1)
+toFollowStartPosition = Vector3(7.79, 1.2, 0)
 panLimitX = Vector2(-100, 100)
 panLimitY = Vector2(-200, 400)
 panLimitXZoomOut = Vector2(-100, 300)
 panLimitYZoomOut = Vector2(50, 700)
-numberOfEnemies = 4
-mapCategory = "Undead"
+numberOfEnemies = 3
+mapCategory = "Forest"
 allowDuplicates = false
 informationText = ""
 mapPrefab = ExtResource("3_pq7di")

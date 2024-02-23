@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_77grt")
-coordinates = Array[Vector2]([Vector2(-450, 550), Vector2(-350, 650), Vector2(-150, 750)])
+coordinates = Array[Vector2]([Vector2(-350, 450), Vector2(-250, 550), Vector2(-150, 650)])

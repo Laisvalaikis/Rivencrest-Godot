@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bdljhxfy5m8nr"]
+
+[ext_resource type="Resource" uid="uid://ctpoay6sbjwt3" path="res://Data/EnemyResource/ForestDruid/ForestDruid.tres" id="1_dlqp8"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="2_bha10"]
+
+[resource]
+script = ExtResource("2_bha10")
+level = 1
+enemyCount = 3
+enemyResource = Array[Resource]([ExtResource("1_dlqp8")])

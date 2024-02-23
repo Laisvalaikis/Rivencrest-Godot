@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_76stu")
 _mapBoundries = ExtResource("1_kmbx1")
-_initialPosition = Vector2(-550, -250)
+_initialPosition = Vector2(-550, -200)
 _chunkSize = 100.0
 _mapHeight = 1400.0
-_mapWidth = 1100.0
+_mapWidth = 1500.0

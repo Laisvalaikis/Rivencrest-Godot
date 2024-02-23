@@ -1,21 +1,32 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dcuhbm3dljxm"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://dcuhbm3dljxm"]
 
 [ext_resource type="Resource" uid="uid://cq43gjhdpfgw8" path="res://Data/MapData/Fields/Coordinates_0.tres" id="2_jy3ir"]
 [ext_resource type="Resource" uid="uid://cfaa3lbvr5nch" path="res://Data/MapData/Fields/Coordinates_1.tres" id="3_blgkq"]
+[ext_resource type="PackedScene" uid="uid://v18yy4tcebv3" path="res://Maps/Fields.tscn" id="3_rhtwu"]
+[ext_resource type="Resource" uid="uid://bdljhxfy5m8nr" path="res://Data/MapData/Fields/Level_1_Enemies.tres" id="5_loc4o"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="5_tq3sa"]
+[ext_resource type="Resource" uid="uid://bqfj02wbpv2wa" path="res://Data/MapData/Fields/Level_2_Enemies.tres" id="6_fymr4"]
+[ext_resource type="Resource" uid="uid://3x3aqv2oke8v" path="res://Data/MapData/Fields/Level_3_Enemies.tres" id="7_g1mqi"]
+[ext_resource type="Resource" uid="uid://gabo167il8uy" path="res://Data/MapData/Fields/MapGeneration.tres" id="8_jc53u"]
 
 [resource]
 script = ExtResource("5_tq3sa")
 mapName = "Fields"
-suitableLevels = Array[int]([1, 2, 3, 4, 5])
+suitableLevels = {
+1: ExtResource("5_loc4o"),
+2: ExtResource("6_fymr4"),
+3: ExtResource("7_g1mqi")
+}
 npcTeam = Array[Node]([])
 mapCoordinates = Array[Resource]([ExtResource("2_jy3ir"), ExtResource("3_blgkq")])
+tileMapCoordinates = ExtResource("8_jc53u")
 toFollowStartPosition = Vector3(2.58, -0.28, 0)
 panLimitX = Vector2(-100, 100)
 panLimitY = Vector2(-100, 300)
 panLimitXZoomOut = Vector2(-100, 100)
 panLimitYZoomOut = Vector2(50, 400)
 numberOfEnemies = 3
-mapCategory = "Undead"
+mapCategory = "Forest"
 allowDuplicates = false
 informationText = ""
+mapPrefab = ExtResource("3_rhtwu")
