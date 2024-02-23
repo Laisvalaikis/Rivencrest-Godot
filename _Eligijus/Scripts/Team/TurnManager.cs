@@ -23,6 +23,7 @@ public partial class TurnManager : Node
 	private bool isAiTurn = false;
 	private Vector2 _mousePosition;
 	[Export] private AIManager aiManager;
+	[Export] private Button endTurn;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -162,7 +163,7 @@ public partial class TurnManager : Node
 		}
 	}
 
-	public void EndTurn()
+	public async Task EndTurn()
 	{
 		OnTurnEnd();
 		ResetFogInformation(_currentTeam.GetVisionTiles());
@@ -198,7 +199,7 @@ public partial class TurnManager : Node
 			ExecuteStart();
 			_currentTeam.SetTurnHappend(true);
 		}
-		OnTurnStart();
+		await OnTurnStart();
 		if (!isAiTurn)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 		{
 			GD.Print("Update fog");
@@ -266,8 +267,10 @@ public partial class TurnManager : Node
 		if (_currentTeam.isTeamAI)
 		{
 			aiManager.currentTeam = _currentTeam;
+			endTurn.Disabled = true;
 			await aiManager.OnTurnStart();
-			EndTurn();
+			await EndTurn();
+			endTurn.Disabled = false;
 		}
 	}
 	public void ObjectActionsOnTurnStart(LinkedList<Object> objects)
