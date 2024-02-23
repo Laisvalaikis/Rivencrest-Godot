@@ -1,21 +1,32 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://berv5gk3s3k8d"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://berv5gk3s3k8d"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_2lrbj"]
 [ext_resource type="Resource" uid="uid://2a78c2br8fcw" path="res://Data/MapData/Freeze/Coordinates_0.tres" id="2_ubm4n"]
 [ext_resource type="Resource" uid="uid://ds4quu8o87cn0" path="res://Data/MapData/Freeze/Coordinates_1.tres" id="3_478c0"]
+[ext_resource type="PackedScene" uid="uid://cbht2qvqk4k48" path="res://Maps/Freeze.tscn" id="3_ay1pn"]
+[ext_resource type="Resource" uid="uid://lmln8u5a725s" path="res://Data/MapData/Freeze/Level_1_Enemies.tres" id="5_uv43u"]
+[ext_resource type="Resource" uid="uid://b0xeok3fw5tyj" path="res://Data/MapData/Freeze/Level_2_Enemies.tres" id="6_r3kdv"]
+[ext_resource type="Resource" uid="uid://et7ns5a4wg78" path="res://Data/MapData/Freeze/Level_3_Enemies.tres" id="7_s27ym"]
+[ext_resource type="Resource" uid="uid://cmjlr5l7vtjgr" path="res://Data/MapData/Freeze/MapGeneration.tres" id="8_gtg55"]
 
 [resource]
 script = ExtResource("1_2lrbj")
 mapName = "Freeze"
-suitableLevels = null
+suitableLevels = {
+1: ExtResource("5_uv43u"),
+2: ExtResource("6_r3kdv"),
+3: ExtResource("7_s27ym")
+}
 npcTeam = null
 mapCoordinates = Array[Resource]([ExtResource("2_ubm4n"), ExtResource("3_478c0")])
+tileMapCoordinates = ExtResource("8_gtg55")
 toFollowStartPosition = Vector3(2.13, 0.92, 0)
 panLimitX = Vector2(-100, 100)
 panLimitY = Vector2(-100, 300)
 panLimitXZoomOut = Vector2(-100, 100)
 panLimitYZoomOut = Vector2(50, 400)
 numberOfEnemies = 3
-mapCategory = "Undead"
+mapCategory = "Forest"
 allowDuplicates = false
 informationText = ""
+mapPrefab = ExtResource("3_ay1pn")
