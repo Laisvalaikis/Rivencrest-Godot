@@ -45,7 +45,16 @@ public partial class GameEnd : Control
         endOfGame = true;
     }
 
-    private void DeadCharacters(TeamsList deadCharacters)
+    public void Forfeit()
+    {
+         Show();
+         text.Text = "Coward";
+         textureRect.SelfModulate = death;
+         text.LabelSettings.FontColor = death;
+         endOfGame = true;
+    }
+    
+    public void DeadCharacters(TeamsList deadCharacters)
     {
         foreach (int i in deadCharacters.Teams.Keys) 
         {

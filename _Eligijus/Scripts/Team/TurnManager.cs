@@ -206,7 +206,6 @@ public partial class TurnManager : Node
 			_currentTeam.UpdateTeamFog();
 			// _fogOfWar.SetFogTexture(_currentTeam.fogTexture);
 		}
-		
 	}
 	
 	private void ResetFogInformation(List<ChunkData> fogDataList)

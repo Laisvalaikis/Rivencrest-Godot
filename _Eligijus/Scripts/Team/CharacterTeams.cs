@@ -321,6 +321,12 @@ public partial class CharacterTeams : Node
 		portraitTeamBox.ModifyList();
 	}
 
+	public void Forfeit()
+	{
+		gameEnd.DeadCharacters(deadCharacters);
+		gameEnd.Forfeit();
+	}
+
 	public void TeamDied()
 	{
 		if (currentCharacters.enemyTeamCount == 0)
