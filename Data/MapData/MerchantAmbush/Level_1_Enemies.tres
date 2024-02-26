@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c6gthowby8a6m"]
+
+[ext_resource type="Resource" uid="uid://nilhfb00he7k" path="res://Data/EnemyResource/ForestHuntress/ForestHuntress.tres" id="1_aflx7"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="2_7oi78"]
+
+[resource]
+script = ExtResource("2_7oi78")
+level = 1
+enemyCount = 3
+enemyResource = Array[Resource]([ExtResource("1_aflx7")])

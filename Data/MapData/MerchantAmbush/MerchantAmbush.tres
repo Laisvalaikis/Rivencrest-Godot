@@ -1,16 +1,26 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cyx8er8qulyqj"]
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://cyx8er8qulyqj"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_pvht8"]
 [ext_resource type="Resource" uid="uid://c3ynlx3mwcmbi" path="res://Data/MapData/MerchantAmbush/Coordinates_0.tres" id="2_4svlb"]
 [ext_resource type="Resource" uid="uid://dc6n47yppcqf" path="res://Data/MapData/MerchantAmbush/Coordinates_1.tres" id="3_kdoh1"]
+[ext_resource type="PackedScene" uid="uid://sr7nir5liq2k" path="res://Maps/MerchantAmbush.tscn" id="4_wq35c"]
 [ext_resource type="Resource" uid="uid://dwxqim8eyo8i5" path="res://Data/MapData/MerchantAmbush/Coordinates_2.tres" id="4_y8je5"]
+[ext_resource type="Resource" uid="uid://c6gthowby8a6m" path="res://Data/MapData/MerchantAmbush/Level_1_Enemies.tres" id="6_mwvnw"]
+[ext_resource type="Resource" uid="uid://dlja0qhiola5a" path="res://Data/MapData/MerchantAmbush/Level_2_Enemies.tres" id="7_jkprf"]
+[ext_resource type="Resource" uid="uid://cbwyx6wu5n1r3" path="res://Data/MapData/Meadow/Level_3_Enemies.tres" id="8_p0m6p"]
+[ext_resource type="Resource" uid="uid://bfpvbnkhq3u5q" path="res://Data/MapData/MerchantAmbush/MapGeneration.tres" id="9_6q1tg"]
 
 [resource]
 script = ExtResource("1_pvht8")
 mapName = "MerchantAmbush"
-suitableLevels = Array[int]([1, 2, 3])
+suitableLevels = {
+1: ExtResource("6_mwvnw"),
+2: ExtResource("7_jkprf"),
+3: ExtResource("8_p0m6p")
+}
 npcTeam = Array[Node]([null])
 mapCoordinates = Array[Resource]([ExtResource("2_4svlb"), ExtResource("3_kdoh1"), ExtResource("4_y8je5")])
+tileMapCoordinates = ExtResource("9_6q1tg")
 toFollowStartPosition = Vector3(1.99, 3.14, 0)
 panLimitX = Vector2(-100, 100)
 panLimitY = Vector2(-200, 200)
@@ -20,3 +30,4 @@ numberOfEnemies = 3
 mapCategory = "Forest"
 allowDuplicates = false
 informationText = ""
+mapPrefab = ExtResource("4_wq35c")
