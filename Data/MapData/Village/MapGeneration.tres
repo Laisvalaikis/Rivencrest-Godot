@@ -1,3 +1,12 @@
-[gd_resource type="Resource" format=3 uid="uid://dbl83freoaaxb"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dbl83freoaaxb"]
+
+[ext_resource type="Resource" uid="uid://w8umoh7s5785" path="res://Data/MapData/Village/MapBoundaries.tres" id="1_2030w"]
+[ext_resource type="Script" path="res://_Eligijus/Scripts/Tiles/TileMapData.cs" id="2_yurkn"]
 
 [resource]
+script = ExtResource("2_yurkn")
+_mapBoundries = ExtResource("1_2030w")
+_initialPosition = Vector2(-600, -300)
+_chunkSize = 100.0
+_mapHeight = 1100.0
+_mapWidth = 1200.0

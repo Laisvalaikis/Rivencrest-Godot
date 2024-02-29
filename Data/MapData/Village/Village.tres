@@ -1,21 +1,32 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://ctxc4hoqnkbuw"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://ctxc4hoqnkbuw"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MapData.cs" id="1_f2pgl"]
 [ext_resource type="Resource" uid="uid://ciqbewffinv3j" path="res://Data/MapData/Village/Coordinates_0.tres" id="2_km8vr"]
 [ext_resource type="Resource" uid="uid://didjbw4iilp3b" path="res://Data/MapData/Village/Coordinates_1.tres" id="3_gfpr8"]
+[ext_resource type="PackedScene" uid="uid://ceaukrb3hwueh" path="res://Maps/Village.tscn" id="3_jccwx"]
+[ext_resource type="Resource" uid="uid://mathxn6kocfc" path="res://Data/MapData/Village/Level_1_Enemies.tres" id="5_p1dal"]
+[ext_resource type="Resource" uid="uid://b8trdsclq3lr1" path="res://Data/MapData/Village/Level_2_Enemies.tres" id="6_mawj4"]
+[ext_resource type="Resource" uid="uid://cm2tru28dhgvg" path="res://Data/MapData/Village/Level_3_Enemies.tres" id="7_vd840"]
+[ext_resource type="Resource" uid="uid://dbl83freoaaxb" path="res://Data/MapData/Village/MapGeneration.tres" id="8_4oisu"]
 
 [resource]
 script = ExtResource("1_f2pgl")
 mapName = "Village"
-suitableLevels = Array[int]([1, 2, 3, 4, 5])
+suitableLevels = {
+1: ExtResource("5_p1dal"),
+2: ExtResource("6_mawj4"),
+3: ExtResource("7_vd840")
+}
 npcTeam = null
 mapCoordinates = Array[Resource]([ExtResource("2_km8vr"), ExtResource("3_gfpr8")])
+tileMapCoordinates = ExtResource("8_4oisu")
 toFollowStartPosition = Vector3(2.33, 0.4, 0)
 panLimitX = Vector2(-100, 100)
 panLimitY = Vector2(-200, 300)
 panLimitXZoomOut = Vector2(-100, 100)
 panLimitYZoomOut = Vector2(50, 500)
 numberOfEnemies = 3
-mapCategory = "Undead"
+mapCategory = "Forest"
 allowDuplicates = false
 informationText = ""
+mapPrefab = ExtResource("3_jccwx")
