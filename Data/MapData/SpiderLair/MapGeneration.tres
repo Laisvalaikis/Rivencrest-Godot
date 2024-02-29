@@ -9,4 +9,4 @@ _mapBoundries = ExtResource("1_wx8pf")
 _initialPosition = Vector2(-700, -500)
 _chunkSize = 100.0
 _mapHeight = 1000.0
-_mapWidth = 1100.0
+_mapWidth = 1200.0
