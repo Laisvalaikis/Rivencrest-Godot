@@ -22,6 +22,10 @@ config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 run/max_fps=240
 config/icon="res://icon.svg"
 
+[aseprite_importers]
+
+aseprite_executable_path="C:\\Program Files\\Aseprite\\Aseprite.exe"
+
 [autoload]
 
 Manager="*res://_Eligijus/Singletons/manager.tscn"
@@ -35,6 +39,10 @@ window/vsync/vsync_mode=0
 [dotnet]
 
 project/assembly_name="Rivencrest-godot"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [filesystem]
 
