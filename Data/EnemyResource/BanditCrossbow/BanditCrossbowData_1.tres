@@ -1,8 +1,7 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://obpbdgm3uea4"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://obpbdgm3uea4"]
 
 [ext_resource type="Texture2D" uid="uid://dv513equuwc3n" path="res://Data/EnemyResource/BanditCrossbow/Textures/CharacterPortraitSprite.tres" id="1_e42g2"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_eakoh"]
-[ext_resource type="Resource" uid="uid://bal5ynq08gyvu" path="res://Data/Abilities/ReadyAimFire.tres" id="2_nebyj"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="3_82n5h"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="4_hprop"]
 [ext_resource type="Texture2D" uid="uid://cf7k5bbojm75m" path="res://Data/EnemyResource/BanditCrossbow/Textures/CharacterSprite.tres" id="5_2f0tn"]
@@ -13,19 +12,22 @@ script = ExtResource("1_eakoh")
 characterType = 1
 ClassName = "BANDIT"
 critChance = 3
-accuracy = 100
 dodgeChance = 1
 killXP = 50
 role = "DAMAGE"
 characterSprite = ExtResource("5_2f0tn")
 roleSprite = ExtResource("6_yioxc")
 baseAbilities = Array[Resource]([ExtResource("3_82n5h"), ExtResource("4_hprop")])
-playerBlessings = Array[Resource]([])
 maxHealth = 17
+accuracy = 100
+visionRange = 3
 classColor = Color(0.843137, 0.803922, 0.796078, 1)
 secondClassColor = Color(0, 0, 0, 1)
 textColor = Color(0.843137, 0.803922, 0.796078, 1)
 backgroundColor = Color(0.384314, 0.34902, 0.32549, 1)
 CharacterPortraitSprite = ExtResource("1_e42g2")
-abilities = Array[Resource]([ExtResource("2_nebyj")])
+canStepOnObject = false
+destroyObjectStepingOn = true
+canBeDestroyed = true
+abilities = Array[Resource]([])
 blessings = []

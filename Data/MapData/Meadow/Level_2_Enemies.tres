@@ -1,12 +1,12 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://3nldv1vbxvw3"]
 
+[ext_resource type="Resource" uid="uid://y2b3ghth3wfg" path="res://Data/EnemyResource/BanditKnife/BanditKnife.tres" id="1_0a0o3"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="1_2wdy6"]
-[ext_resource type="Resource" uid="uid://dj5nd5wwcrqyn" path="res://Data/EnemyResource/UndeadKnight/UndeadKnight.tres" id="2_mjlfl"]
-[ext_resource type="Resource" uid="uid://byyo5w2h6iv5s" path="res://Data/EnemyResource/UndeadSpiderMaiden/UndeadSpiderMaiden.tres" id="2_v1cyp"]
-[ext_resource type="Resource" uid="uid://oqnldrw2o127" path="res://Data/EnemyResource/UndeadCultist/UndeadCultist.tres" id="3_axn7c"]
+[ext_resource type="Resource" uid="uid://rq3c8pn1pql7" path="res://Data/EnemyResource/BanditBeast/BanditBeast.tres" id="2_ab1sa"]
+[ext_resource type="Resource" uid="uid://cqskswblmt6bd" path="res://Data/EnemyResource/BanditCrossbow/BanditCrossbow.tres" id="3_xgke2"]
 
 [resource]
 script = ExtResource("1_2wdy6")
 level = 1
 enemyCount = 3
-enemyResource = Array[Resource]([ExtResource("2_mjlfl"), ExtResource("2_v1cyp"), ExtResource("3_axn7c")])
+enemyResource = Array[Resource]([ExtResource("1_0a0o3"), ExtResource("2_ab1sa"), ExtResource("3_xgke2")])
