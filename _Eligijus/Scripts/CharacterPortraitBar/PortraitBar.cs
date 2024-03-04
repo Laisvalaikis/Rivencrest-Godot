@@ -175,6 +175,14 @@ public partial class PortraitBar : TextureRect
 					int index = i + _scrollCharacterSelectIndex;
 					UpdatePortrait(i, index);
 					_lastButtonIndex = i;
+					
+					// top
+					if (_lastButtonIndex > 0)
+					{
+						townPortraits[_lastButtonIndex].FocusNeighborTop = townPortraits[_lastButtonIndex-1].GetPath();
+						townPortraits[_lastButtonIndex-1].FocusNeighborBottom = townPortraits[_lastButtonIndex].GetPath();
+					}
+					
 				}
 				else
 				{

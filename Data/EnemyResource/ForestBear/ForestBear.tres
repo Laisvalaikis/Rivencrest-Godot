@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://d00kq2i1pfkxe"]
 
 [ext_resource type="Resource" uid="uid://byy56wy8b318n" path="res://Data/EnemyResource/ForestBear/ForestBearData_1.tres" id="1_tyiv2"]
-[ext_resource type="PackedScene" uid="uid://cq2i4tjm3ffco" path="res://_Aurimas/Enemies/ForestBear.tscn" id="2_xih3q"]
+[ext_resource type="PackedScene" uid="uid://p7gigebywy2m" path="res://_Aurimas/Enemies/ForestBear.tscn" id="2_xih3q"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/MainData/SavedCharacterResource.cs" id="3_4umh6"]
 [ext_resource type="Resource" uid="uid://cptwd81pxejjd" path="res://Data/EnemyResource/ForestBear/UnlockAbility_0.tres" id="4_qs8u6"]
 
