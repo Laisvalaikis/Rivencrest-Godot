@@ -106,13 +106,13 @@ public partial class Recruitment : Node
 			characterToAdd.level = 1;
 			characterToAdd.xP = 0;
 			// Generate only unique
-			// for (int j = AllCharactersCopy.Count-1; j >= 0; j--)
-			// {
-			// 	if (AllCharactersCopy[j].prefab.ResourcePath == characterToAdd.prefab.ResourcePath)
-			// 	{
-			// 		AllCharactersCopy.RemoveAt(j);
-			// 	}
-			// }
+			for (int j = AllCharactersCopy.Count-1; j >= 0; j--)
+			{
+				if (AllCharactersCopy[j].prefab.ResourcePath == characterToAdd.prefab.ResourcePath)
+				{
+					AllCharactersCopy.RemoveAt(j);
+				}
+			}
 			characterToAdd.characterName = CharacterNameGeneration(characterToAdd.playerInformation.ClassName);;
 			characterToAdd.abilityPointCount = 1;
 			characterToAdd.unlockedAbilities = new Array<UnlockedAbilitiesResource>();

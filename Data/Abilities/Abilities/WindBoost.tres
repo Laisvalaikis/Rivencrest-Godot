@@ -36,3 +36,4 @@ affectsAllAlliesInGrid = false
 affectsAllCharactersAtOnce = false
 teamDisplayText = ""
 enemyDisplayText = ""
+customText = ""

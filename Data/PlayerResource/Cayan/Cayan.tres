@@ -17,5 +17,5 @@ abilityBlessings = Array[Resource]([])
 characterBlessings = Array[Resource]([])
 toConfirmAbilities = 0
 cost = 900
-characterIndex = 1
+characterIndex = 7
 playerInformation = ExtResource("1_pp664")
