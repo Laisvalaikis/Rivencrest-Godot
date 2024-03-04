@@ -15,6 +15,8 @@ public partial class CharacterSelectManager : Node
 	private Button _embark;
 	[Export]
 	private Button _back;
+	[Export]
+	private Button _closeViewButton;
 	private Array<int> _selectedCharacterIndexForMission;
 	private Array<SavedCharacterResource> _selectedCharacterForMission;
 	private bool _characterSelectOpen = false;
@@ -219,11 +221,23 @@ public partial class CharacterSelectManager : Node
 		if (!_characterSelectOpen)
 		{
 			_characterSelectView.OpenView();
+			
+			_closeViewButton.Show();
+			_closeViewButton.FocusNeighborRight = portraitButtons[0].GetPath();
+			portraitButtons[0].FocusNeighborLeft = _closeViewButton.GetPath();
+			
+			_back.Hide();
 			_characterSelectOpen = true;
 		}
 		else
 		{
 			_characterSelectView.ExitView();
+			_closeViewButton.Hide();
+			
+			_back.Show();
+			_back.FocusNeighborRight = portraitButtons[0].GetPath();
+			portraitButtons[0].FocusNeighborLeft = _back.GetPath();
+			
 			_characterSelectOpen = false;
 		}
 	}
