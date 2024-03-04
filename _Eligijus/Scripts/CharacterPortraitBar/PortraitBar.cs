@@ -253,12 +253,14 @@ public partial class PortraitBar : TextureRect
 			previousPageButton.FocusNeighborBottom = townPortraits[0].GetPath();
 			previousPageButton.FocusNeighborTop = focusUp.GetPath();
 			focusUp.FocusNeighborBottom = previousPageButton.GetPath();
+			townPortraits[0].GrabFocus();
 		}
 		else
 		{
 			previousPageControl.Hide();
 			townPortraits[0].FocusNeighborTop = focusUp.GetPath();
 			focusUp.FocusNeighborBottom = townPortraits[0].GetPath();
+			townPortraits[0].GrabFocus();
 		}
 		
 
