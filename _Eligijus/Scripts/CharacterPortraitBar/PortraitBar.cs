@@ -48,6 +48,10 @@ public partial class PortraitBar : TextureRect
 		townPortraits[0].FocusNeighborTop = focusUp.GetPath();
 		focusUp.FocusNeighborBottom = townPortraits[0].GetPath();
 		focusLeft.FocusNeighborRight = townPortraits[0].GetPath();
+		nextPageButton.FocusNeighborLeft = focusLeft.GetPath();
+		previousPageButton.FocusNeighborLeft = focusLeft.GetPath();
+		
+		
 		if (_data.Characters.Count > 0)
 		{
 			for (int i = 0; i < _data.Characters.Count; i++)
@@ -85,7 +89,7 @@ public partial class PortraitBar : TextureRect
 		else
 		{
 			townPortraits[_lastButtonIndex].FocusNeighborBottom = focusDown.GetPath();
-			focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
+			focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath(); ;
 		}
 		
 		
@@ -175,14 +179,6 @@ public partial class PortraitBar : TextureRect
 					int index = i + _scrollCharacterSelectIndex;
 					UpdatePortrait(i, index);
 					_lastButtonIndex = i;
-					
-					// top
-					if (_lastButtonIndex > 0)
-					{
-						townPortraits[_lastButtonIndex].FocusNeighborTop = townPortraits[_lastButtonIndex-1].GetPath();
-						townPortraits[_lastButtonIndex-1].FocusNeighborBottom = townPortraits[_lastButtonIndex].GetPath();
-					}
-					
 				}
 				else
 				{
@@ -236,6 +232,15 @@ public partial class PortraitBar : TextureRect
 			{
 				townPortraits[portraitIndex].abilityPointCorner.Hide();
 			}
+
+			// focus
+			if (portraitIndex > 0)
+			{
+				townPortraits[portraitIndex].FocusNeighborTop = townPortraits[portraitIndex-1].GetPath();
+				townPortraits[portraitIndex-1].FocusNeighborBottom = townPortraits[portraitIndex].GetPath();
+			}
+			townPortraits[portraitIndex].FocusNeighborLeft = focusLeft.GetPath();
+
 		}
 		else
 		{
@@ -254,6 +259,7 @@ public partial class PortraitBar : TextureRect
 			previousPageButton.FocusNeighborTop = focusUp.GetPath();
 			focusUp.FocusNeighborBottom = previousPageButton.GetPath();
 			townPortraits[0].GrabFocus();
+			focusUp.FocusNeighborLeft = focusLeft.GetPath();
 		}
 		else
 		{
@@ -272,6 +278,7 @@ public partial class PortraitBar : TextureRect
 			nextPageButton.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
 			nextPageButton.FocusNeighborBottom = focusDown.GetPath();
 			focusDown.FocusNeighborTop = nextPageButton.GetPath();
+			focusUp.FocusNeighborLeft = focusLeft.GetPath();
 		}
 		else if (scrollCalculation <= _data.Characters.Count || scrollCalculation >= _data.Characters.Count)
 		{
