@@ -1,9 +1,7 @@
-[gd_resource type="Resource" load_steps=9 format=3 uid="uid://caoak4ybditcn"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://caoak4ybditcn"]
 
 [ext_resource type="Texture2D" uid="uid://bi27jj7n67k5b" path="res://Data/EnemyResource/UndeadSpiderMaiden/Textures/CharacterPortraitSprite.tres" id="1_7ff6g"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_sqoyn"]
-[ext_resource type="Resource" uid="uid://clk76sgplbv81" path="res://Data/Abilities/DisarmingBlast.tres" id="2_gp45b"]
-[ext_resource type="Resource" uid="uid://lrulrqc4v33e" path="res://Data/Abilities/SummonBear.tres" id="3_xpin1"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="4_8hc6o"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="5_ctqsf"]
 [ext_resource type="Texture2D" uid="uid://qo3xcgwfnfbf" path="res://Data/EnemyResource/UndeadSpiderMaiden/Textures/CharacterSprite.tres" id="6_vl4r7"]
@@ -14,19 +12,22 @@ script = ExtResource("1_sqoyn")
 characterType = 1
 ClassName = "SPIDER MAIDEN"
 critChance = 3
-accuracy = 100
 dodgeChance = 1
 killXP = 50
 role = "DAMAGE"
 characterSprite = ExtResource("6_vl4r7")
 roleSprite = ExtResource("7_6uhba")
 baseAbilities = Array[Resource]([ExtResource("4_8hc6o"), ExtResource("5_ctqsf")])
-playerBlessings = Array[Resource]([])
 maxHealth = 20
+accuracy = 100
+visionRange = 3
 classColor = Color(0.247059, 0.980392, 0.819608, 1)
 secondClassColor = Color(0, 0, 0, 1)
 textColor = Color(0.247059, 0.980392, 0.819608, 1)
 backgroundColor = Color(0.0627451, 0.490196, 0.45098, 1)
 CharacterPortraitSprite = ExtResource("1_7ff6g")
-abilities = Array[Resource]([ExtResource("2_gp45b"), ExtResource("3_xpin1")])
+canStepOnObject = false
+destroyObjectStepingOn = true
+canBeDestroyed = true
+abilities = Array[Resource]([])
 blessings = []
