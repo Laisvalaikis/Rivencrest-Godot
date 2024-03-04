@@ -1,10 +1,10 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://vnh5nyvhw6hm"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="1_0m85y"]
-[ext_resource type="Resource" uid="uid://d00kq2i1pfkxe" path="res://Data/EnemyResource/ForestBear/ForestBear.tres" id="2_fwlqx"]
+[ext_resource type="Resource" uid="uid://d3nlau4n7i3n" path="res://Data/EnemyResource/UndeadSpider/UndeadSpider.tres" id="1_ya7xi"]
 
 [resource]
 script = ExtResource("1_0m85y")
 level = 1
 enemyCount = 3
-enemyResource = Array[Resource]([ExtResource("2_fwlqx")])
+enemyResource = Array[Resource]([ExtResource("1_ya7xi")])

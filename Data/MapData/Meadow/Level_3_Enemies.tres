@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://cbwyx6wu5n1r3"]
 
+[ext_resource type="Resource" uid="uid://dj5nd5wwcrqyn" path="res://Data/EnemyResource/UndeadKnight/UndeadKnight.tres" id="1_e602j"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Map/MapEnemyData.cs" id="1_wx25i"]
-[ext_resource type="Resource" uid="uid://ctpoay6sbjwt3" path="res://Data/EnemyResource/ForestDruid/ForestDruid.tres" id="5_o4hiq"]
-[ext_resource type="Resource" uid="uid://d00kq2i1pfkxe" path="res://Data/EnemyResource/ForestBear/ForestBear.tres" id="6_fr7gq"]
-[ext_resource type="Resource" uid="uid://k3v4t7vq6n6o" path="res://Data/EnemyResource/ForestWatcher/ForestWatcher.tres" id="7_46i2g"]
-[ext_resource type="Resource" uid="uid://nilhfb00he7k" path="res://Data/EnemyResource/ForestHuntress/ForestHuntress.tres" id="8_p5kfb"]
+[ext_resource type="Resource" uid="uid://d3nlau4n7i3n" path="res://Data/EnemyResource/UndeadSpider/UndeadSpider.tres" id="2_isxp7"]
+[ext_resource type="Resource" uid="uid://b4cvoaoka0l3o" path="res://Data/EnemyResource/UndeadBoss/UndeadBoss.tres" id="3_88cvn"]
+[ext_resource type="Resource" uid="uid://oqnldrw2o127" path="res://Data/EnemyResource/UndeadCultist/UndeadCultist.tres" id="4_xe8y3"]
 
 [resource]
 script = ExtResource("1_wx25i")
 level = 1
 enemyCount = 3
-enemyResource = Array[Resource]([ExtResource("5_o4hiq"), ExtResource("6_fr7gq"), ExtResource("7_46i2g"), ExtResource("6_fr7gq"), ExtResource("8_p5kfb")])
+enemyResource = Array[Resource]([ExtResource("1_e602j"), ExtResource("2_isxp7"), ExtResource("1_e602j"), ExtResource("3_88cvn"), ExtResource("4_xe8y3")])
