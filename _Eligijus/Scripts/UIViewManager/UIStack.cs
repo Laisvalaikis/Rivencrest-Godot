@@ -27,10 +27,14 @@ public partial class UIStack : Node
 		if (_views.Count > 0)
 		{
 			_views[Instance._views.Count - 1].ExitView();
-			
 		}
 	}
-	
+
+	public View GetCurrentView()
+	{
+		return _views[Instance._views.Count - 1];
+	}
+
 	public void QuitView(int index)
 	{
 		if (index >= 0 && _views[index].removeViewFromStack)

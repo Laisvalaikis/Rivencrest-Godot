@@ -8,8 +8,7 @@ public partial class View : Control
 	[Signal]
 	public delegate void CloseViewSignalEventHandler();
 	[Export] private Control openFocus;
-	
-	private Control openFocusCurrent;
+	[Export] private Control openFocusCurrent;
 	[Export] private bool grabFocusOnOpen { get; set; } = false;
 	[Export] private bool viewEnabledOnStart { get; set; } = false;
 	[Export] private bool viewCanBeDisabled {get; set;} = true;
@@ -41,7 +40,25 @@ public partial class View : Control
 			openFocus?.GrabFocus();
 		}
 	}
-	
+
+	public void OpenViewCurrentButton(NodePath pressedButton)
+	{
+		UIStack.Instance.GetCurrentView().openFocusCurrent = (Button)GetNode(pressedButton);
+		
+		if (!IsVisibleInTree())
+		{
+			Show();
+			GrabOpenFocus();
+		}
+		
+		if (_viewIndex == -1 && addViewToStack)
+		{
+			_viewIndex = UIStack.Instance.AddView(this);
+		}
+		_disabled = false;
+		EmitSignal("OpenViewSignal");
+	}
+
 	public void OpenView()
 	{
 		if (!IsVisibleInTree())
