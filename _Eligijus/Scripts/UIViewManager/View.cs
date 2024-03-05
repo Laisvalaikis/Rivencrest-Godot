@@ -7,9 +7,9 @@ public partial class View : Control
 	public delegate void OpenViewSignalEventHandler();
 	[Signal]
 	public delegate void CloseViewSignalEventHandler();
-
 	[Export] private Control openFocus;
 	
+	private Control openFocusCurrent;
 	[Export] private bool grabFocusOnOpen { get; set; } = false;
 	[Export] private bool viewEnabledOnStart { get; set; } = false;
 	[Export] private bool viewCanBeDisabled {get; set;} = true;
@@ -26,6 +26,18 @@ public partial class View : Control
 		}
 		if (IsVisibleInTree() && grabFocusOnOpen)
 		{
+			GrabOpenFocus();
+		}
+	}
+	
+	private void GrabOpenFocus()
+	{
+		if (openFocusCurrent != null)
+		{
+			openFocusCurrent.GrabFocus();
+		}
+		else
+		{
 			openFocus?.GrabFocus();
 		}
 	}
@@ -35,7 +47,7 @@ public partial class View : Control
 		if (!IsVisibleInTree())
 		{
 			Show();
-			openFocus?.GrabFocus();
+			GrabOpenFocus();
 		}
 		
 		if (_viewIndex == -1 && addViewToStack)
@@ -50,7 +62,7 @@ public partial class View : Control
 	{
 		if (IsVisibleInTree() && grabFocusOnOpen)
 		{
-			openFocus?.GrabFocus();
+			GrabOpenFocus();
 		}
 	}
 	
