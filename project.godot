@@ -24,7 +24,7 @@ config/icon="res://icon.svg"
 
 [aseprite_importers]
 
-aseprite_executable_path="C:/Users/eligijus/Desktop/Aseprite.v1.3.rc6/aseprite.exe"
+aseprite_executable_path="C:/Program Files/Aseprite/aseprite.exe"
 
 [autoload]
 
