@@ -88,8 +88,9 @@ public partial class PortraitBar : TextureRect
 		}
 		else
 		{
+			if (_lastButtonIndex == -1) return;
 			townPortraits[_lastButtonIndex].FocusNeighborBottom = focusDown.GetPath();
-			focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath(); ;
+			focusDown.FocusNeighborTop = townPortraits[_lastButtonIndex].GetPath();
 		}
 		
 		
