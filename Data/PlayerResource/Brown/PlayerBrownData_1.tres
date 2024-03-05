@@ -34,4 +34,4 @@ canStepOnObject = false
 destroyObjectStepingOn = false
 canBeDestroyed = true
 abilities = Array[Resource]([])
-blessings = Array[Resource]([])
+blessings = null
