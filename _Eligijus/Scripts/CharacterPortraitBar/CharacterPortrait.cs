@@ -39,7 +39,8 @@ public partial class CharacterPortrait : Button
 				}
 				else
 				{
-					characterTable.DisplayCharacterTable(characterIndex);
+					// characterTable.DisplayCharacterTable(characterIndex);
+					characterTable.DisplayCharacterTableButton(characterIndex, this);
 					characterTable.UpdateTable();
 					characterTable.UpdateAllAbilities();
 				}

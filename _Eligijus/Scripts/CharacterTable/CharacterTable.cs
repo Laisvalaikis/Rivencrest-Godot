@@ -230,6 +230,34 @@ public partial class CharacterTable : Node
 		
 		
 	}
+	
+	public void DisplayCharacterTableButton(int index, Button button)
+	{
+		// view.OpenView();
+		view.OpenViewCurrentButton(button.GetPath());
+		int tempIndex = characterIndex;
+		characterIndex = index;
+		
+		if (index != tempIndex)
+		{
+			helpTable.helpTableView.ExitView();
+			UndoAbilitySelection(tempIndex);
+			UpdateTable();
+			UpdateAllAbilities();
+		}
+
+		if (recruitmentCenterTable != null && townHall != null)
+		{
+			recruitmentCenterTable.Hide();
+			townHall.CloseTownHall();
+		}
+		else
+		{
+			GD.Print("TownHall is null");
+		}
+		
+		
+	}
 
 	public void EnableDisableHelpTable(int index)
 	{

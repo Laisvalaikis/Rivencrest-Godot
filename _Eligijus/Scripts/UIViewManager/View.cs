@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Rivencrestgodot._Eligijus.Scripts.Buttons;
 
 public partial class View : Control
 {
@@ -17,6 +18,7 @@ public partial class View : Control
 	private int _viewIndex = -1;
 	private bool _disabled = true;
 	private int buttonIndex = -1;
+	private View previousView;
 	public override void _Ready()
 	{
 		if (viewEnabledOnStart)
@@ -43,7 +45,16 @@ public partial class View : Control
 
 	public void OpenViewCurrentButton(NodePath pressedButton)
 	{
-		UIStack.Instance.GetCurrentView().openFocusCurrent = (Button)GetNode(pressedButton);
+		if (previousView is null)
+		{
+			previousView = UIStack.Instance.GetCurrentView();
+			previousView.openFocusCurrent = (Button)GetNode(pressedButton);
+		}
+		else
+		{
+			previousView.openFocusCurrent = (Button)GetNode(pressedButton);
+		}
+		
 		
 		if (!IsVisibleInTree())
 		{
@@ -92,7 +103,7 @@ public partial class View : Control
 	{
 		if (!_disabled)
 		{
-
+			previousView = null;
 			if (viewCanBeDisabled)
 			{
 				Hide();
