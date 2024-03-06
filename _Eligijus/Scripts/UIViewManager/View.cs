@@ -103,6 +103,7 @@ public partial class View : Control
 	{
 		if (!_disabled)
 		{
+			openFocusCurrent = null;
 			previousView = null;
 			if (viewCanBeDisabled)
 			{
