@@ -98,11 +98,43 @@ public partial class View : Control
 	{
 		_viewIndex = index;
 	}
+
+	public void DeselectPressedButton()
+	{
+		if (previousView != null && previousView.openFocusCurrent != null)
+		{
+			Button button = (Button)previousView.openFocusCurrent;
+			button.ButtonPressed = false;
+		}
+	}
+	
+	public void ToggleExitView()
+	{
+		if (!_disabled)
+		{
+			openFocusCurrent = null;
+			// previousView = null;
+			if (viewCanBeDisabled)
+			{
+				Hide();
+			}
+
+			if (addViewToStack)
+			{
+				UIStack.Quit(_viewIndex);
+			}
+
+			_disabled = true;
+			EmitSignal("CloseViewSignal");
+			_viewIndex = -1;
+		}
+	}
 	
 	public void ExitView()
 	{
 		if (!_disabled)
 		{
+			DeselectPressedButton();
 			openFocusCurrent = null;
 			previousView = null;
 			if (viewCanBeDisabled)
@@ -129,11 +161,24 @@ public partial class View : Control
 		}
 		else
 		{
-			ExitView();
+			ToggleExitView();
 		}
 		GD.Print(toggle);
 	}
-	
+
+	public void ViewFocus(NodePath pressedButton)
+	{
+		if (previousView is null)
+		{
+			previousView = UIStack.Instance.GetCurrentView();
+			previousView.openFocusCurrent = (Button)GetNode(pressedButton);
+		}
+		else
+		{
+			previousView.openFocusCurrent = (Button)GetNode(pressedButton);
+		}
+	}
+
 	public void OpenCloseView()
 	{
 		if (_disabled)
