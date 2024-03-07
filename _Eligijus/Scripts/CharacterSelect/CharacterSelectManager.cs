@@ -30,6 +30,7 @@ public partial class CharacterSelectManager : Node
 			_data = Data.Instance;
 		}
 		SetupView();
+		_characterSelectView.CloseViewSignal += OnCloseView;
 	}
 	
 	public void SetupView()
@@ -216,11 +217,11 @@ public partial class CharacterSelectManager : Node
 
 	}
 	
-	public void OnClickTeamCharacterButton()
+	public void OnClickTeamCharacterButton(Button button)
 	{
 		if (!_characterSelectOpen)
 		{
-			_characterSelectView.OpenView();
+			_characterSelectView.OpenViewCurrentButton(button.GetPath());
 			
 			_closeViewButton.Show();
 			_closeViewButton.FocusNeighborRight = portraitButtons[0].GetPath();
@@ -232,30 +233,24 @@ public partial class CharacterSelectManager : Node
 		else
 		{
 			_characterSelectView.ExitView();
-			_closeViewButton.Hide();
-			
-			_back.Show();
-			_back.FocusNeighborRight = portraitButtons[0].GetPath();
-			portraitButtons[0].FocusNeighborLeft = _back.GetPath();
-			
-			_characterSelectOpen = false;
+			// _closeViewButton.Hide();
+			//
+			// _back.Show();
+			// _back.FocusNeighborRight = portraitButtons[0].GetPath();
+			// portraitButtons[0].FocusNeighborLeft = _back.GetPath();
+			//
+			// _characterSelectOpen = false;
 		}
 	}
 	
-	public void OnClickTeamCharacterButton(int buttonIndex)
+	public void OnCloseView()
 	{
-		if (!_characterSelectOpen)
-		{
-			_characterSelectOpen = true;
-			_characterSelectView.OpenView();
-		}
-		else
-		{
-			RemoveCharacterFromTeam(portraitButtons[buttonIndex].characterIndex);
-		}
-
+		_closeViewButton.Hide();
+		_back.Show();
+		_back.FocusNeighborRight = portraitButtons[0].GetPath();
+		portraitButtons[0].FocusNeighborLeft = _back.GetPath();
+		_characterSelectOpen = false;
 	}
-
 	
 	public void OrderSaveData()
 	{

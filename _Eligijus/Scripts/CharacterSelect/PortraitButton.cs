@@ -20,7 +20,7 @@ public partial class PortraitButton: Button
     public override void _Pressed()
     {
         base._Pressed();
-        _characterSelectManager.OnClickTeamCharacterButton();
+        _characterSelectManager.OnClickTeamCharacterButton(this);
         // _characterSelectManager.OnClickTeamCharacterButton(buttonIndex); // removes character on click when view opend
     }
 }
