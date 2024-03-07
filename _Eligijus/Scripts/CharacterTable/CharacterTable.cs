@@ -146,6 +146,8 @@ public partial class CharacterTable : Node
 			}
 		}
 		confirmAbility.Hide();
+		abilityButtons[0].FocusNeighborTop = abilityButtons[abilityButtons.Count - 1].GetPath();
+		abilityButtons[abilityButtons.Count - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
 		UpdateCharacterPointCorner();
 	}
 
@@ -304,6 +306,7 @@ public partial class CharacterTable : Node
 		UpdateAllAbilities();
 		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollDownByCharacterIndex(newCharacterIndex);
+		view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
 	}
 
 	public void OnRightArrowClick()
@@ -316,6 +319,7 @@ public partial class CharacterTable : Node
 		UpdateAllAbilities();
 		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollUpByCharacterIndex(newCharacterIndex);
+		view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
 	}
 
 	// until this everything is fixed
@@ -347,10 +351,15 @@ public partial class CharacterTable : Node
 		if (_data.Characters[characterIndex].toConfirmAbilities > 0)
 		{
 			confirmAbility.Show();
+			abilityButtons[0].FocusNeighborTop = confirmAbility.GetPath();
+			abilityButtons[abilityButtons.Count - 1].FocusNeighborBottom = confirmAbility.GetPath();
+			confirmAbility.FocusNeighborBottom = abilityButtons[0].GetPath();
 		}
 		else
 		{
 			confirmAbility.Hide();
+			abilityButtons[0].FocusNeighborTop = abilityButtons[abilityButtons.Count - 1].GetPath();
+			abilityButtons[abilityButtons.Count - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
 		}
 
 		if (characterIndex > 0)

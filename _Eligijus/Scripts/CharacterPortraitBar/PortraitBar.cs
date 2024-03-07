@@ -106,6 +106,11 @@ public partial class PortraitBar : TextureRect
 		townPortraits[index].ButtonPressed = false;
 	}
 
+	public Button GetPortraitButtonByIndex(int index)
+	{
+		return townPortraits[index];
+	}
+
 	public void InsertCharacter()
 	{
 		int index = _lastElement + 1;
