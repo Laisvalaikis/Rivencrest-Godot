@@ -1,15 +1,9 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bo0hgt82bjef8"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bo0hgt82bjef8"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PlayerAttack.cs" id="1_j6nme"]
-[ext_resource type="Animation" uid="uid://7iixlam2rle4" path="res://Animations/AflameExplosion.res" id="1_t4a3t"]
-[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="2_uofbm"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="3_7uqja"]
 
 [resource]
 script = ExtResource("1_j6nme")
-AflameExplosionAnimation = ExtResource("1_t4a3t")
-animatedObjectPrefab = ExtResource("2_uofbm")
-animatedObjectPrefabData = ExtResource("3_7uqja")
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
 abilityPoints = 1
