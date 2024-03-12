@@ -3,12 +3,12 @@
 importer="Aseprite Sprite2D Import"
 type="PackedScene"
 uid="uid://5ems526gm0i"
-path="res://.godot/imported/UndeadSpider.aseprite-1fef87af6e5d1d12bddeaacba49e06fd.scn"
+path="res://.godot/imported/UndeadSpider.aseprite-1b3129b312e0bfa2f9aabe5e2d1d4078.scn"
 
 [deps]
 
-source_file="res://Animations/UndeadSpider.aseprite"
-dest_files=["res://.godot/imported/UndeadSpider.aseprite-1fef87af6e5d1d12bddeaacba49e06fd.scn"]
+source_file="res://Animations/Enemies/UndeadSpider.aseprite"
+dest_files=["res://.godot/imported/UndeadSpider.aseprite-1b3129b312e0bfa2f9aabe5e2d1d4078.scn"]
 
 [params]
 

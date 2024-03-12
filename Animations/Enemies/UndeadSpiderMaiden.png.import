@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drclpnjqv6857"
-path="res://.godot/imported/UndeadSpider.png-279f995320fa543a6a40eb1d483d8ed9.ctex"
+uid="uid://djlkvl1i5vgc7"
+path="res://.godot/imported/UndeadSpiderMaiden.png-eadc7e95ea94ab61ea217537423bdf4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/UndeadSpider.png"
-dest_files=["res://.godot/imported/UndeadSpider.png-279f995320fa543a6a40eb1d483d8ed9.ctex"]
+source_file="res://Animations/Enemies/UndeadSpiderMaiden.png"
+dest_files=["res://.godot/imported/UndeadSpiderMaiden.png-eadc7e95ea94ab61ea217537423bdf4a.ctex"]
 
 [params]
 
