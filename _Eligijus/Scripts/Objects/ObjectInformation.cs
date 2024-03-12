@@ -2,10 +2,9 @@ using Godot;
 
 public partial class ObjectInformation : Node
 {
-    [Export]
-    public Sprite2D spriteRenderer;
-    [Export]
-    protected Object _object;
+    [Export] public Sprite2D spriteRenderer;
+    [Export] protected Object _object;
+    [Export] public AnimationPlayer animationPlayer;
     public ObjectDataType<ObjectData> objectData;
     protected int _health = 100;
 

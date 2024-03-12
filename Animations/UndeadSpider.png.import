@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jfqcjfunqtj0"
-path="res://.godot/imported/Brown.png-3a9f46e018aaad059c45936687607f0d.ctex"
+uid="uid://drclpnjqv6857"
+path="res://.godot/imported/UndeadSpider.png-279f995320fa543a6a40eb1d483d8ed9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/Brown.png"
-dest_files=["res://.godot/imported/Brown.png-3a9f46e018aaad059c45936687607f0d.ctex"]
+source_file="res://Animations/UndeadSpider.png"
+dest_files=["res://.godot/imported/UndeadSpider.png-279f995320fa543a6a40eb1d483d8ed9.ctex"]
 
 [params]
 

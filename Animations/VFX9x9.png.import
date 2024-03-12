@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jfqcjfunqtj0"
-path="res://.godot/imported/Brown.png-3a9f46e018aaad059c45936687607f0d.ctex"
+uid="uid://cvgksx4h0mws"
+path="res://.godot/imported/VFX9x9.png-7efa27eeda99eef122c23d9263cf834c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/Brown.png"
-dest_files=["res://.godot/imported/Brown.png-3a9f46e018aaad059c45936687607f0d.ctex"]
+source_file="res://Animations/VFX9x9.png"
+dest_files=["res://.godot/imported/VFX9x9.png-7efa27eeda99eef122c23d9263cf834c.ctex"]
 
 [params]
 

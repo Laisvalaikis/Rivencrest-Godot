@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Threading.Tasks;
 using Godot;
 
 public partial class PlayerInformation : ObjectInformation
 {
-	public bool characterProtected = false;
-	public bool stasis = false;
 	public int xPToGain = 0;
-	private bool haveBarier = false;
 
 	public override void SetupData(ObjectData objectInformation)
 	{
@@ -36,21 +34,21 @@ public partial class PlayerInformation : ObjectInformation
 		objectData.objectType = informationType;
 	}
 
-	public override void DealDamage(int damage, Player damageDealer)
+	public override async void DealDamage(int damage, Player damageDealer)
 	{
 			if (damage != -1)
 			{
-				if (characterProtected || stasis)
-				{
-					damage /= 2;
-				}
-
+				animationPlayer.Play("Hit");
+				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("Hit").Length));
 				_health -= damage;
 				damageDealer.objectInformation.GetPlayerInformation().AddDamageXP(damage);
+				animationPlayer.Play("Idle");
 			}
 
 			if (_health <= 0) // DEATH
 			{
+				animationPlayer.Play("Death");
+				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("Death").Length));
 				_health = 0;
 				DeathStart(damageDealer);
 			}
@@ -79,15 +77,4 @@ public partial class PlayerInformation : ObjectInformation
 	{
 		return xPToGain;
 	}
-
-	public void AddBarrier()
-	{
-		haveBarier = true;
-	}
-	
-	public void RemoveBarrier()
-	{
-		haveBarier = false;
-	}
-
 }
