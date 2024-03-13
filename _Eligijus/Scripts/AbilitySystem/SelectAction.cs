@@ -96,8 +96,12 @@ public partial class SelectAction : Control
 		
 		// button focus for controllers
 		int lastButtonActive = buttonIndexCount - 1;
-		allAbilityButtons[lastButtonActive].FocusNeighborRight = allAbilityButtons[0].GetPath();
-		allAbilityButtons[0].FocusNeighborLeft = allAbilityButtons[lastButtonActive].GetPath();
+		
+		allAbilityButtons[lastButtonActive].FocusNeighborRight = focusRight.GetPath();
+		focusRight.FocusNeighborLeft = allAbilityButtons[lastButtonActive].GetPath();
+		
+		allAbilityButtons[0].FocusNeighborLeft = focusLeft.GetPath();
+		focusLeft.FocusNeighborRight = allAbilityButtons[0].GetPath();
 		
 		for (int i = buttonIndexCount; i < allAbilityButtons.Count; i++)
 		{

@@ -65,8 +65,13 @@ public partial class TeamInformation : Control
 				image.Hide();
 			}
 			// button focus for controllers
-			pvpCharacterSelects[lastButtonActive].FocusNeighborRight = pvpCharacterSelects[0].GetPath();
-			pvpCharacterSelects[0].FocusNeighborLeft = pvpCharacterSelects[lastButtonActive].GetPath();
+			pvpCharacterSelects[lastButtonActive].FocusNeighborRight = focusRight.GetPath();
+			focusRight.FocusNeighborLeft = pvpCharacterSelects[lastButtonActive].GetPath();
+			pvpCharacterSelects[0].FocusNeighborLeft = focusLeft.GetPath();
+			focusLeft.FocusNeighborRight = pvpCharacterSelects[0].GetPath();
+			//
+			// pvpCharacterSelects[lastButtonActive].FocusNeighborRight = pvpCharacterSelects[0].GetPath();
+			// pvpCharacterSelects[0].FocusNeighborLeft = pvpCharacterSelects[lastButtonActive].GetPath();
 		}
 		characterCount = characterOnBoardList.Count;
 		changedTeams = false;
