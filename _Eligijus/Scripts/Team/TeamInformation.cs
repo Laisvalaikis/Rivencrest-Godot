@@ -96,6 +96,18 @@ public partial class TeamInformation : Control
 			}
 		}
 	}
+	
+	public void PressCharacterPortrait(Node2D character, bool select = true)
+	{
+		Dictionary<int, Player> characterOnBoardList = _characterTeams.AliveCharacterList(teamIndex);
+		for (int i = 0; i < characterOnBoardList.Count; i++)
+		{
+			if (pvpCharacterSelects[i].GetCharacter() == character)
+			{
+				pvpCharacterSelects[i].SelectPortrait();
+			}
+		}
+	}
 
 	public void SetSelectedIndex(int index)
 	{

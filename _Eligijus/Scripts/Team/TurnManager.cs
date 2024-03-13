@@ -74,9 +74,6 @@ public partial class TurnManager : Node
 		{
 			Player player = _currentTeam.characters[key];
 			_cameraMovement.FocusPoint(player.GlobalPosition);
-			_selectAction.SetCurrentCharacter(player);
-			_selectAction.UpdatePlayerInfo();//idk about this
-			_teamInformation.SelectCharacterPortrait(player);
 			break;
 		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
