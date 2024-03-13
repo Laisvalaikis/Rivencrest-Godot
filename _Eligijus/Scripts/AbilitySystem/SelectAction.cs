@@ -4,11 +4,8 @@ using Godot;
 using Godot.Collections;
 public partial class SelectAction : Control
 {
-	private Array<Ability> _playerAllAbilities;
-	private Array<Ability> _playerBaseAbilities;
-	private Array<Ability> _playerAbilities;
-	private Player _currentPlayer;
-	private PlayerInformationDataNew _playerInformationData;
+	[Export] private Button focusLeft;
+	[Export] private Button focusRight;
 	[Export] private HelpTable helpTable;
 	[Export] private TextureRect characterPortrait;
 	[Export] private TextureProgressBar healthBar;
@@ -18,6 +15,11 @@ public partial class SelectAction : Control
 	[Export] private Label abilityPointsText;
 	[Export] private TextureRect staminaButtonBackground;
 	[Export] private Array<SelectActionButton> allAbilityButtons;
+	private Array<Ability> _playerAllAbilities;
+	private Array<Ability> _playerBaseAbilities;
+	private Array<Ability> _playerAbilities;
+	private Player _currentPlayer;
+	private PlayerInformationDataNew _playerInformationData;
 	private Array<SelectActionButton> baseAbilityButtons;
 	private Array<SelectActionButton> abilityButtons;
 	private ActionManager _actionManager;

@@ -4,6 +4,8 @@ using Godot;
 using Godot.Collections;
 public partial class TeamInformation : Control
 {
+	[Export] private Button focusLeft;
+	[Export] private Button focusRight;
 	[Export] private SelectAction selectAction;
 	[Export] private CharacterTeams _characterTeams;
 	[Export] private TextureRect image;
