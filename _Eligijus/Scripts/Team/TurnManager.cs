@@ -7,6 +7,7 @@ using Rivencrestgodot._Eligijus.Scripts.AISystem;
 
 public partial class TurnManager : Node
 {
+	[Export] private SelectAction _selectAction;
 	[Export] private CameraMovement _cameraMovement;
 	[Export] private FogOfWar _fogOfWar;
 	[Export] private TeamInformation _teamInformation;
@@ -20,10 +21,10 @@ public partial class TurnManager : Node
 	[Export] private TeamsList _teamsList;
 	[Export] private Player _currentPlayer;
 	[Export] private Player _currentEnemy;
-	private bool isAiTurn = false;
-	private Vector2 _mousePosition;
 	[Export] private AIManager aiManager;
 	[Export] private Button endTurn;
+	private bool isAiTurn = false;
+	private Vector2 _mousePosition;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -73,6 +74,9 @@ public partial class TurnManager : Node
 		{
 			Player player = _currentTeam.characters[key];
 			_cameraMovement.FocusPoint(player.GlobalPosition);
+			_selectAction.SetCurrentCharacter(player);
+			_selectAction.UpdatePlayerInfo();//idk about this
+			_teamInformation.SelectCharacterPortrait(player);
 			break;
 		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());
