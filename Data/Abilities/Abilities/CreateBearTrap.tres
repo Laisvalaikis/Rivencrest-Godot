@@ -1,10 +1,8 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://8cjt0mubqvem"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://8cjt0mubqvem"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateBearTrap.cs" id="1_6tlcb"]
 [ext_resource type="PackedScene" uid="uid://d3obd07ibnqm1" path="res://_Aurimas/AbilityPrefabs/BearTrap.tscn" id="1_l2evs"]
 [ext_resource type="Resource" uid="uid://6m2mcxc1he07" path="res://_Aurimas/BearTrap/BearTrapData.tres" id="1_n5nk4"]
-[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_xdkbk"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_yknvv"]
 
 [resource]
 script = ExtResource("1_6tlcb")
@@ -16,8 +14,6 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
-animatedObjectPrefab = ExtResource("1_xdkbk")
-animatedObjectPrefabData = ExtResource("2_yknvv")
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 2

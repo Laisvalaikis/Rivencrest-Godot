@@ -4,6 +4,7 @@ using System;
 public partial class ExitUI : Node
 {
 	[Export] private View pauseMenuView;
+	[Export] private bool openMenuWithExitButton = true;
 
 	public override void _Ready()
 	{
@@ -22,7 +23,7 @@ public partial class ExitUI : Node
 		}
 		else
 		{
-			if (pauseMenuView != null)
+			if (pauseMenuView != null && openMenuWithExitButton)
 			{
 				pauseMenuView.OpenView();
 			}

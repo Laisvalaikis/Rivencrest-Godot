@@ -6,14 +6,14 @@
 
 [resource]
 script = ExtResource("1_j6nme")
+animatedObjectPrefab = ExtResource("1_q75sm")
+animatedObjectPrefabData = ExtResource("2_7eiao")
 turnBeforeStartLifetime = 1
 turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 2
 _abilityBlessingsRef = Array[Resource]([])
-animatedObjectPrefab = ExtResource("1_q75sm")
-animatedObjectPrefabData = ExtResource("2_7eiao")
 minAttackDamage = 50
 maxAttackDamage = 50
 attackRange = 2
