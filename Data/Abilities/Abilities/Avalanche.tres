@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ewxoxljcsojx"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://ewxoxljcsojx"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_n0lmc"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/Avalanche.cs" id="1_ug0xv"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_dky8k"]
 
 [resource]
 script = ExtResource("1_ug0xv")
@@ -10,6 +12,8 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
+animatedObjectPrefab = ExtResource("1_n0lmc")
+animatedObjectPrefabData = ExtResource("2_dky8k")
 minAttackDamage = 4
 maxAttackDamage = 5
 attackRange = 3
@@ -32,3 +36,6 @@ laserGrid = false
 affectsAllEnemiesInGrid = true
 affectsAllAlliesInGrid = false
 affectsAllCharactersAtOnce = false
+teamDisplayText = ""
+enemyDisplayText = ""
+customText = ""

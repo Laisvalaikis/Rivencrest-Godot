@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
@@ -20,6 +21,9 @@ public abstract partial class BaseAction: TileAction
 		protected ObjectData _objectData;
 		protected Object _object;
 		private Random _random;
+		
+		[Export] public Resource animatedObjectPrefab;
+		[Export] public ObjectData animatedObjectPrefabData;
 
 		public BaseAction()
 		{
@@ -48,6 +52,8 @@ public abstract partial class BaseAction: TileAction
 			otherTeamCharacterOnGrid = action.otherTeamCharacterOnGrid;
 			firstTimeUsage = true;
 			_abilityBlessingsRef = action._abilityBlessingsRef;
+			animatedObjectPrefab = action.animatedObjectPrefab;
+			animatedObjectPrefabData = action.animatedObjectPrefabData;
 		}
 
 		public virtual BaseAction CreateNewInstance(BaseAction action)
@@ -481,5 +487,25 @@ public abstract partial class BaseAction: TileAction
 		public virtual void Die()
 		{
 			
+		}
+
+		public async Task PlayAnimation(string animationName, ChunkData chunk)
+		{
+			PackedScene spawnCharacter = (PackedScene)animatedObjectPrefab; 
+			Object animatedObject = spawnCharacter.Instantiate<Object>(); 
+			_player.GetTree().Root.CallDeferred("add_child", animatedObject); 
+			animatedObject.SetupObject(animatedObjectPrefabData); 
+			animatedObject.AddPlayerForObjectAbilities(_player); 
+			GameTileMap.Tilemap.SpawnObject(animatedObject, chunk); 
+        
+			AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
+			if(animationPlayer != null)
+			{
+				animationPlayer.Play(animationName);
+				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(animationName).Length));
+			}
+
+			_turnManager.RemoveObject(animatedObject);
+			animatedObject.QueueFree();
 		}
 	}

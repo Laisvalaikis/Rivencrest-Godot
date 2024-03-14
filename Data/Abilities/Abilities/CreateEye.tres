@@ -1,8 +1,10 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dprh8mtc0kviv"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://dprh8mtc0kviv"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_1lwpg"]
 [ext_resource type="Resource" uid="uid://cn3dp15j1j2ki" path="res://_Aurimas/Eye/EyeData.tres" id="1_2lm4m"]
 [ext_resource type="PackedScene" uid="uid://clfrmjkaht4bk" path="res://_Aurimas/AbilityPrefabs/Eye.tscn" id="1_a3eme"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateEye.cs" id="1_glqru"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_wdaa0"]
 
 [resource]
 script = ExtResource("1_glqru")
@@ -14,6 +16,8 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+animatedObjectPrefab = ExtResource("1_1lwpg")
+animatedObjectPrefabData = ExtResource("2_wdaa0")
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 3
