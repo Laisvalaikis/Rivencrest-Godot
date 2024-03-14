@@ -43,6 +43,12 @@ public partial class ControllerInputManager : InputManager
 	{
 		if (enabled)
 		{
+			
+			if (Input.IsActionPressed("ReleaseFocus") && !isFocused)
+			{
+				EmitSignal("ReleaseFocusWhenNotFocused");
+			}
+			
 			if (Input.IsActionPressed("ReleaseFocus") && isFocused)
 			{
 				EmitSignal("ReleaseFocus");

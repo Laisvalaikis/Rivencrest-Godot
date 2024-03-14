@@ -58,6 +58,7 @@ public partial class GameTileMap : Node2D
 		if (InputManager.Instance != null)
 		{
 			InputManager.Instance.SelectClick += MouseClick;
+			InputManager.Instance.ReleaseFocusWhenNotFocused += DeselectCurrentCharacterWithButton;
 		}
 
 		_random = new Random();
@@ -736,6 +737,15 @@ public partial class GameTileMap : Node2D
 			GetChunk(_currentSelectedCharacter.GlobalPosition).GetTileHighlight().ToggleSelectedPlayerUI(false);
 			_currentSelectedCharacter = null;
 		}
+	}
+
+	public void DeselectCurrentCharacterWithButton()
+	{
+		DeselectCurrentCharacter();
+		// if (!teamInformation.IsFocusedOnFirstCharacter())
+		// {
+		// 	DeselectCurrentCharacter();
+		// }
 	}
 
 	public bool CharacterIsSelected()

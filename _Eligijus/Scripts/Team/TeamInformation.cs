@@ -16,6 +16,7 @@ public partial class TeamInformation : Control
 	private int characterCount;
 	private bool changedTeams = false;
 	private int currentCharacterIndex = 0;
+	private bool characterFocus = false;
 
 	public override void _Ready()
 	{
@@ -23,6 +24,7 @@ public partial class TeamInformation : Control
 		InputManager.Instance.ChangeNextCharacter += NextCharacter;
 		InputManager.Instance.ChangePreviousCharacter += PreviousCharacter;
 		InputManager.Instance.CharacterFocusInGame += FocusFirstCharacter;
+		InputManager.Instance.ReleaseFocus += ReleaseFocusFirstCharacter;
 	}
 
 	public void ModifyList()
@@ -136,6 +138,17 @@ public partial class TeamInformation : Control
 	public void FocusFirstCharacter()
 	{
 		pvpCharacterSelects[0].GrabFocus();
+		characterFocus = true;
+	}
+	
+	public void ReleaseFocusFirstCharacter()
+	{
+		characterFocus = false;
+	}
+
+	public bool IsFocusedOnFirstCharacter()
+	{
+		return characterFocus;
 	}
 
 	public void PreviousCharacter()

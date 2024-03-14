@@ -14,7 +14,7 @@ public partial class FocusButton : Button
         }
     }
     
-    private void ReleaseButtonFocus()
+    private void ReleaseButtonFocus() 
     {
         ReleaseFocus();
     }

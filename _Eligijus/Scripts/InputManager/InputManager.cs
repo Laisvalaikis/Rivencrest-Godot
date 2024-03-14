@@ -18,6 +18,7 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void DisableSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void EnableSelectorEventHandler(Vector2 position);
 	[Signal] public delegate void ReleaseFocusEventHandler();
+	[Signal] public delegate void ReleaseFocusWhenNotFocusedEventHandler();
 	[Signal] public delegate void CharacterFocusInGameEventHandler();
 	[Signal] public delegate void CameraControlEventHandler(Vector2 relativePosition, float movementSpeed);
 	[Signal] public delegate void PauseMenuEventHandler();
