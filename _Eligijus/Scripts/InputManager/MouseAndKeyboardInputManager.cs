@@ -15,7 +15,7 @@ public partial class MouseAndKeyboardInputManager : InputManager
 	{
 		if (enabled)
 		{
-			if (Input.IsActionPressed("ReleaseFocus"))
+			if (Input.IsActionJustPressed("ReleaseFocus"))
 			{
 				EmitSignal("ReleaseFocus");
 			}
@@ -73,7 +73,7 @@ public partial class MouseAndKeyboardInputManager : InputManager
 				}
 			}
 
-			if (Input.IsActionPressed("Exit"))
+			if (Input.IsActionJustPressed("Exit"))
 			{
 				OnExitClick();
 			}
