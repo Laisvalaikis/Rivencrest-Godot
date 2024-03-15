@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FreezeAbility.cs" id="1_pjmin"]
 [ext_resource type="Resource" uid="uid://c8geofl2ggoan" path="res://Data/Blessings/ReduceCooldown.tres" id="1_rsso6"]
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="2_hckxk"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="3_x2pkt"]
+[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="3_x2pkt"]
 
 [resource]
 script = ExtResource("1_pjmin")
