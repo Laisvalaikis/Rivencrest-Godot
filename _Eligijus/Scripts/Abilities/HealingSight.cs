@@ -33,11 +33,12 @@ public partial class HealingSight : BaseAction
         }
     }
 
-    public override void ResolveAbility(ChunkData chunk)
+    public override async void ResolveAbility(ChunkData chunk)
     {
         abilityUsed = true;
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        await PlayAnimation("HealingSight", chunk);
         Random random = new Random();
         int randomHeal = random.Next(minHealAmount, maxHealAmount);
         _player.objectInformation.GetPlayerInformation().Heal(randomHeal);

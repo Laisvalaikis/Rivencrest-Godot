@@ -29,10 +29,11 @@ public partial class SwordPush : BaseAction
         return ability;
     }
     
-    public override void ResolveAbility(ChunkData chunk)
+    public override async void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        await PlayAnimation("SwordPush", chunk);
         Side _side = Side.none;
         CreateAttackGrid(chunk);
         for (int i = 0; i < _attackTiles.Count; i++)

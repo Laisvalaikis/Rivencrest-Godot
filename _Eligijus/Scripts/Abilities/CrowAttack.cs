@@ -29,7 +29,7 @@ public partial class CrowAttack : BaseAction
         }
     }
     
-    public override void ResolveAbility(ChunkData chunk)
+    public override async void ResolveAbility(ChunkData chunk)
     { 
         UpdateAbilityButton(); 
         foreach (var chunkData in _chunkList) 
@@ -40,6 +40,7 @@ public partial class CrowAttack : BaseAction
             }
         } 
         base.ResolveAbility(chunk); 
+        await PlayAnimation("CrowAttack", chunk);
         FinishAbility();
     }
 }

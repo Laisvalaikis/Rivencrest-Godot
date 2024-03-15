@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dkkf3jmkwnqo5"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dkkf3jmkwnqo5"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_52kvr"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/IceQuake.cs" id="1_fbxhi"]
+[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_fd1w5"]
 
 [resource]
 script = ExtResource("1_fbxhi")
@@ -11,6 +13,8 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
+animatedObjectPrefab = ExtResource("1_52kvr")
+animatedObjectPrefabData = ExtResource("2_fd1w5")
 minAttackDamage = 1
 maxAttackDamage = 3
 attackRange = 3

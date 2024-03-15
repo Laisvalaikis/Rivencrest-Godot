@@ -25,10 +25,11 @@ public partial class CometFall : BaseAction
         return ability;
     }
     
-    public override void ResolveAbility(ChunkData chunk)
+    public override async void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        await PlayAnimation("CometFall", chunk);
         PackedScene spawnCharacter = (PackedScene)cometTilePrefab;
         spawnedCometTile = spawnCharacter.Instantiate<Object>();
         _player.GetTree().Root.CallDeferred("add_child", spawnedCometTile);

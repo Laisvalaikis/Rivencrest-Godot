@@ -1,8 +1,10 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://jve2h6f0a1uv"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://jve2h6f0a1uv"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_71tmx"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CometFall.cs" id="1_kky5j"]
 [ext_resource type="Resource" uid="uid://5kiuc8jdr2du" path="res://_Eligijus/Prefabs/DangerTiles/CometTileData.tres" id="1_ttpyy"]
 [ext_resource type="PackedScene" uid="uid://ctp7s0u0kkkw2" path="res://_Eligijus/Prefabs/DangerTiles/CometTile.tscn" id="2_jq17l"]
+[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_ksvn3"]
 
 [resource]
 script = ExtResource("1_kky5j")
@@ -14,6 +16,8 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+animatedObjectPrefab = ExtResource("1_71tmx")
+animatedObjectPrefabData = ExtResource("2_ksvn3")
 minAttackDamage = 7
 maxAttackDamage = 8
 attackRange = 2

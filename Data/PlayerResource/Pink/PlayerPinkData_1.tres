@@ -8,10 +8,10 @@
 [ext_resource type="Resource" uid="uid://drnkp0tjwgvjo" path="res://Data/Abilities/Purify.tres" id="5_nqcw5"]
 [ext_resource type="Resource" uid="uid://bdpmg7b4gmdu7" path="res://Data/Abilities/WeakSpot.tres" id="6_8w5uj"]
 [ext_resource type="Resource" uid="uid://df6i4as2in2ku" path="res://Data/Abilities/SilenceBeam.tres" id="7_7818h"]
-[ext_resource type="Resource" uid="uid://do8p8wi12qypr" path="res://Data/Abilities/HealSingle.tres" id="8_l26hy"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="9_uo7y4"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="10_ym200"]
 [ext_resource type="Texture2D" uid="uid://dsy12g3ufwxnc" path="res://Data/PlayerResource/Pink/Textures/CharacterSprite.tres" id="11_ocjtg"]
+[ext_resource type="Resource" uid="uid://c6racdua8md0f" path="res://Data/Blessings/Swiftness.tres" id="11_wxo5f"]
 [ext_resource type="Texture2D" uid="uid://s5uwng3jk5xw" path="res://Data/PlayerResource/Pink/Textures/RoleSprite.tres" id="12_hfwok"]
 
 [resource]
@@ -38,5 +38,5 @@ CharacterPortraitSprite = ExtResource("1_0piao")
 canStepOnObject = false
 destroyObjectStepingOn = true
 canBeDestroyed = true
-abilities = Array[Resource]([ExtResource("4_dioqm"), ExtResource("5_nqcw5"), ExtResource("6_8w5uj"), ExtResource("7_7818h"), ExtResource("8_l26hy")])
-blessings = null
+abilities = Array[Resource]([ExtResource("4_dioqm"), ExtResource("5_nqcw5"), ExtResource("6_8w5uj"), ExtResource("7_7818h")])
+blessings = Array[Resource]([ExtResource("11_wxo5f")])

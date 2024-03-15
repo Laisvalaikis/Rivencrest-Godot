@@ -1,6 +1,9 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c8yfcxxdgbgr4"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c8yfcxxdgbgr4"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FreezeAbility.cs" id="1_pjmin"]
+[ext_resource type="Resource" uid="uid://c8geofl2ggoan" path="res://Data/Blessings/ReduceCooldown.tres" id="1_rsso6"]
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="2_hckxk"]
+[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="3_x2pkt"]
 
 [resource]
 script = ExtResource("1_pjmin")
@@ -9,7 +12,9 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 3
-_abilityBlessingsRef = Array[Resource]([])
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_rsso6")])
+animatedObjectPrefab = ExtResource("2_hckxk")
+animatedObjectPrefabData = ExtResource("3_x2pkt")
 minAttackDamage = 4
 maxAttackDamage = 4
 attackRange = 1

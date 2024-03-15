@@ -19,7 +19,7 @@ public partial class Avalanche : BaseAction
         return avalanche;
     }
     
-    public override void ResolveAbility(ChunkData chunk)
+    public override async void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         foreach (ChunkData chunkData in _chunkList)
@@ -30,6 +30,7 @@ public partial class Avalanche : BaseAction
             }
         } 
         base.ResolveAbility(chunk); 
+        await PlayAnimation("Avalanche", chunk);
         FinishAbility();
     }
     

@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://betqb3q204ewy"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://betqb3q204ewy"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_eyr0y"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CrowAttack.cs" id="1_nxi0x"]
+[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_o0bhn"]
 
 [resource]
 script = ExtResource("1_nxi0x")
@@ -11,6 +13,8 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
+animatedObjectPrefab = ExtResource("1_eyr0y")
+animatedObjectPrefabData = ExtResource("2_o0bhn")
 minAttackDamage = 2
 maxAttackDamage = 4
 attackRange = 3

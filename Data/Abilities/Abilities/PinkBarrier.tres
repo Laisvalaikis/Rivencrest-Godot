@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://brk7dmdbdcule"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://brk7dmdbdcule"]
 
+[ext_resource type="Resource" uid="uid://c8geofl2ggoan" path="res://Data/Blessings/ReduceCooldown.tres" id="1_dbg3e"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PinkBarrier.cs" id="1_iuq30"]
 
 [resource]
@@ -9,7 +10,7 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
-_abilityBlessingsRef = null
+_abilityBlessingsRef = Array[Resource]([ExtResource("1_dbg3e")])
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 2

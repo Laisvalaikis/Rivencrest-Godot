@@ -26,7 +26,7 @@ public partial class IceQuake : BaseAction
         }
     }
 
-    public override void ResolveAbility(ChunkData chunk)
+    public override async void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
@@ -39,6 +39,7 @@ public partial class IceQuake : BaseAction
                 target.debuffManager.AddDebuff(rootDebuff,_player);
             }
         }
+        await PlayAnimation("IceQuake", chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         SlowDebuff debuff = new SlowDebuff(2, 2);
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);

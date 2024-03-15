@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("3_2hl1i")
-_type = 0
+_type = 1
 abilityText = ExtResource("3_0ptei")
 enabled = true
 AbilityImage = ExtResource("1_2bav4")
