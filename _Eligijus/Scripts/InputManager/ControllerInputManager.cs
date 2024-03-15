@@ -145,10 +145,10 @@ public partial class ControllerInputManager : InputManager
 					ControllerMousePosition();
 					_tileSelectionClicked = true;
 				}
-				else if (_tileSelectionClicked && Input.IsActionJustReleased("CameraMovementUp") &&
-				         Input.IsActionJustReleased("CameraMovementDown") &&
-				         Input.IsActionJustReleased("CameraMovementRight") &&
-				         Input.IsActionJustReleased("CameraMovementLeft"))
+				if (_tileSelectionClicked && !Input.IsActionPressed("CameraMovementUp") && // this is not working
+				    !Input.IsActionPressed("CameraMovementDown") &&
+				    !Input.IsActionPressed("CameraMovementRight") &&
+				    !Input.IsActionPressed("CameraMovementLeft"))
 				{
 					_tileSelectionClicked = false;
 				}
