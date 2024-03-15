@@ -420,8 +420,31 @@ public partial class GameTileMap : Node2D
 			}
 		}
 	}
+	
+	public bool CheckMouseBoundsWithFog(Vector2 mousePosition)
+	{
+		
+		int widthChunk = Mathf.CeilToInt((mousePosition.X - currentMap._initialPosition.X) / currentMap._chunkSize) - 1;
+		int heightChunk = Mathf.CeilToInt((mousePosition.Y - currentMap._initialPosition.Y) / currentMap._chunkSize) - 1;
 
 
+		lock (_chunksArray)
+		{
+
+			if (_chunksArray.GetLength(0) > widthChunk && widthChunk >= 0
+			                                           && _chunksArray.GetLength(1) > heightChunk && heightChunk >= 0
+			                                           && _chunksArray[widthChunk, heightChunk] != null
+			                                           && !_chunksArray[widthChunk, heightChunk].TileIsLocked())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	
 	public void ResetChunk(ChunkData chunk)
 	{
 		if (chunk != null)

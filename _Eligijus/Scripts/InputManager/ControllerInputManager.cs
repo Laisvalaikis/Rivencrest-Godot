@@ -6,6 +6,7 @@ public partial class ControllerInputManager : InputManager
 	[Export] private float cameraMovementSpeedController = 10.0f;
 	[Export(PropertyHint.Range, "0,1,")] private float zoomStrength = 0.7f;
 	private Vector2 _mousePosition;
+	private Vector2 _mousePositionWithoutChecks;
 	private bool selectIsClicked = false;
 	private Vector2 mouseRelativePosition;
 	private Vector2 deadzoneBoundsX;
@@ -195,7 +196,20 @@ public partial class ControllerInputManager : InputManager
 		{
 			_mousePosition -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
 		}
+		
+		Vector2 tempCalculations = _mousePositionWithoutChecks - relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
+		if (GameTileMap.Tilemap.CheckMouseBoundsWithFog(tempCalculations) && GameTileMap.Tilemap.GetChunk(tempCalculations).IsFogOnTile())
+		{
+			_mousePositionWithoutChecks -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
+			CameraMovement(relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize), cameraMovementSpeedController);
+		}
+		else if (GameTileMap.Tilemap.CheckMouseBoundsWithFog(tempCalculations) && !GameTileMap.Tilemap.GetChunk(tempCalculations).IsFogOnTile())
+		{
+			_mousePositionWithoutChecks -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
+		}
+		
 		EmitSignal("EnableSelector", _mousePosition);
+		// CameraMovement(_mousePosition, cameraMovementSpeedController);
 		OnSelectorMove(_mousePosition);
 	}
 
@@ -205,6 +219,7 @@ public partial class ControllerInputManager : InputManager
 		{
 			EmitSignal("DisableSelector", _mousePosition);
 			_mousePosition = characterPosition;
+			_mousePositionWithoutChecks = characterPosition;
 		}
 	}
 
@@ -220,7 +235,8 @@ public partial class ControllerInputManager : InputManager
 				Vector2 relativePosition = Vector2.Zero;
 				relativePosition = Input.GetVector("CameraMovementRight", "CameraMovementLeft",
 					"CameraMovementDown", "CameraMovementUp");
-				CameraMovement(relativePosition, cameraMovementSpeedController);
+				
+				// CameraMovement(relativePosition, cameraMovementSpeedController);
 			}
 
 			if (Input.IsActionPressed("Up", true))

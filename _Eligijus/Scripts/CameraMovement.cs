@@ -22,13 +22,15 @@ public partial class CameraMovement : Camera2D
     private Vector2 orgYBounds;
     private Tween _tween;
     private bool zoomIn = false;
+    private Vector2 _tempPosition;
 
     public override void _Ready()
     {
         base._Ready();
         if (InputManager.Instance != null)
         {
-            InputManager.Instance.CameraControl += MoveCamera;
+            // InputManager.Instance.CameraControl += MoveCamera;
+            InputManager.Instance.CameraControl += MoveCameraTiles;
             InputManager.Instance.LeftMouseDoubleClick += FocusPoint;
             InputManager.Instance.Up += ZoomIn;
             InputManager.Instance.Down += ZoomOut;
@@ -113,6 +115,33 @@ public partial class CameraMovement : Camera2D
         }
         
     }
+    
+    private void MoveCameraTiles(Vector2 relativePosition, float movementSpeed)
+    {
+        if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
+        {
+            Position -= relativePosition * Zoom; //* movementSpeed;
+            // _tempPosition -= relativePosition * Zoom;
+        }
+        
+        if(Position.X > xBounds.Y)
+        {
+            Position = new Vector2(xBounds.Y, Position.Y);
+        }
+        if (Position.Y > yBounds.Y)
+        {
+            Position = new Vector2(Position.X, yBounds.Y);
+        }
+        if(Position.X < xBounds.X)
+        {
+            Position = new Vector2(xBounds.X, Position.Y);
+        }
+        if (Position.Y < yBounds.X)
+        {
+            Position = new Vector2(Position.X, yBounds.X);
+        }
+        
+    }
 
     public void SetMovementBounds(Vector2 xMapBounds, Vector2 yMapBounds)
     {
@@ -150,6 +179,7 @@ public partial class CameraMovement : Camera2D
         }
         _tween = GetTree().CreateTween();
         _tween.TweenProperty(this, "position", InBounds(targetPosition), duration);
+        _tempPosition = InBounds(targetPosition);
         _tween.Play();
     }
 
