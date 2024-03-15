@@ -27,12 +27,12 @@ public partial class ControllerInputManager : InputManager
 				EmitSignal("UnHandledSelectClick", Vector2.Zero);
 			}
 			
-			if (Input.IsActionPressed("NextCharacter"))
+			if (Input.IsActionJustPressed("NextCharacter"))
 			{
 				EmitSignal("ChangeNextCharacter");
 			}
 
-			if (Input.IsActionPressed("PreviousCharacter"))
+			if (Input.IsActionJustPressed("PreviousCharacter"))
 			{
 				EmitSignal("ChangePreviousCharacter");
 			}
@@ -77,27 +77,27 @@ public partial class ControllerInputManager : InputManager
 				}
 			}
 
-			if (Input.IsActionPressed("NextAbility"))
+			if (Input.IsActionJustPressed("NextAbility"))
 			{
 				EmitSignal("ChangeAbilityNext");
 			}
 
-			if (Input.IsActionPressed("PreviousAbility"))
+			if (Input.IsActionJustPressed("PreviousAbility"))
 			{
 				EmitSignal("ChangeAbilityPrevious");
 			}
 
-			if (Input.IsActionPressed("Pause"))
+			if (Input.IsActionJustPressed("Pause"))
 			{
 				EmitSignal("PauseMenu");
 			}
 
-			if (Input.IsActionPressed("EndTurn"))
+			if (Input.IsActionJustPressed("EndTurn"))
 			{
 				EmitSignal("EndTurn");
 			}
 			
-			if (Input.IsActionPressed("Undo"))
+			if (Input.IsActionJustPressed("Undo"))
 			{
 				EmitSignal("Undo");
 			}
@@ -154,12 +154,12 @@ public partial class ControllerInputManager : InputManager
 				}
 			}
 
-			if (Input.IsActionPressed("CharacterFocusInGame"))
+			if (Input.IsActionJustPressed("CharacterFocusInGame"))
 			{
 				EmitSignal("CharacterFocusInGame");
 			}
 
-			if (Input.IsActionPressed("Exit"))
+			if (Input.IsActionJustPressed("Exit"))
 			{
 				OnExitClick();
 
