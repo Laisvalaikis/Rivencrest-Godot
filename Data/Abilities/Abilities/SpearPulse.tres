@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_swxta"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SpearPulse.cs" id="1_tvnma"]
-[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_gspga"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_gspga"]
 
 [resource]
 script = ExtResource("1_tvnma")

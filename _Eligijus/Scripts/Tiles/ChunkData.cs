@@ -108,7 +108,12 @@ public class ChunkData
     
     public void SetCurrentObject(Object objectRef)
     {
-        if (_currentObject == null)
+        if (objectRef == null && _currentObject!=null)
+        {
+            _currentObject.data = null;
+            _currentObject = null;
+        }
+        else if (_currentObject == null)
         {
             _currentObject = new ObjectType<Object>(objectRef, typeof(Object));
         }

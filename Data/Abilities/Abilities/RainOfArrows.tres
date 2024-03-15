@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://bpl881dp8vkll" path="res://_Eligijus/Prefabs/DangerTiles/RainOfArrowsData.tres" id="1_enb6d"]
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_mnguq"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/RainOfArrows.cs" id="1_omtow"]
-[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_c1eq4"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_c1eq4"]
 [ext_resource type="PackedScene" uid="uid://dcgcqduxwt0jx" path="res://_Eligijus/Prefabs/DangerTiles/RainOfArrowsTile.tscn" id="2_miy6s"]
 
 [resource]

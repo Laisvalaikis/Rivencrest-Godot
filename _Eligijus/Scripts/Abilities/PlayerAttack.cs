@@ -23,11 +23,14 @@ public partial class PlayerAttack : BaseAction
 
     public override async void ResolveAbility(ChunkData chunk)
     {
+        _player.objectInformation.GetObjectInformation().animationPlayer.Play("Attack");
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         FinishAbility();
-        await PlayAnimation("AflameExplosion", chunk);
+        PlayAnimation("AflameExplosion", chunk);
+        await Task.Delay(TimeSpan.FromSeconds(_player.objectInformation.GetObjectInformation().animationPlayer.GetAnimation("Attack").Length-0.1f));
+        _player.objectInformation.GetObjectInformation().animationPlayer.Play("Idle");
     }
     
 }

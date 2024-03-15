@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://5vyrjo3w1hp1" path="res://Data/Abilities/WindBoost.tres" id="6_k6tvc"]
 [ext_resource type="Resource" uid="uid://vof8mekwr7s6" path="res://Data/Abilities/ChilingGust.tres" id="7_atdun"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_mbp6q"]
-[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_83jgk"]
+[ext_resource type="Resource" uid="uid://cj66kn5nya1kv" path="res://Data/Abilities/SwordPush.tres" id="9_nw3pe"]
 [ext_resource type="Texture2D" uid="uid://c4v284lx17sud" path="res://Data/PlayerResource/White/Textures/CharacterSprite.tres" id="10_4euo4"]
 [ext_resource type="Texture2D" uid="uid://dgv3xlw2k64ou" path="res://Data/PlayerResource/White/Textures/RoleSprite.tres" id="11_74gd6"]
 
@@ -18,7 +18,6 @@ script = ExtResource("1_1sab3")
 characterType = 0
 ClassName = "GUARDIAN"
 critChance = 3
-accuracy = 100
 dodgeChance = 5
 killXP = 50
 role = "SUPPORT"
@@ -26,13 +25,17 @@ CharacterSplashArt = ExtResource("2_h1on6")
 CroppedSplashArt = ExtResource("3_ie3a3")
 characterSprite = ExtResource("10_4euo4")
 roleSprite = ExtResource("11_74gd6")
-baseAbilities = Array[Resource]([ExtResource("8_mbp6q"), ExtResource("9_83jgk")])
-playerBlessings = Array[Resource]([])
+baseAbilities = Array[Resource]([ExtResource("8_mbp6q"), ExtResource("9_nw3pe")])
 maxHealth = 24
+accuracy = 100
+visionRange = 3
 classColor = Color(1, 1, 1, 1)
 secondClassColor = Color(0.768627, 0.847059, 1, 1)
 textColor = Color(1, 1, 1, 1)
 backgroundColor = Color(0.564706, 0.54902, 0.580392, 1)
 CharacterPortraitSprite = ExtResource("1_iudeu")
+canStepOnObject = false
+destroyObjectStepingOn = true
+canBeDestroyed = true
 abilities = Array[Resource]([ExtResource("4_ilj2j"), ExtResource("5_v6ghe"), ExtResource("6_k6tvc"), ExtResource("7_atdun")])
 blessings = []

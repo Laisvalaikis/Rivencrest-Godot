@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_eyr0y"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CrowAttack.cs" id="1_nxi0x"]
-[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_o0bhn"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_o0bhn"]
 
 [resource]
 script = ExtResource("1_nxi0x")

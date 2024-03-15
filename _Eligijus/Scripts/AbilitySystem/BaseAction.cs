@@ -295,7 +295,7 @@ public abstract partial class BaseAction: TileAction
 			return _player;
 		}
 		
-		public virtual void ResolveAbility(ChunkData chunk)
+		public virtual async void ResolveAbility(ChunkData chunk)
 		{
 			// _assignSound.PlaySound(selectedEffectIndex, selectedSongIndex);
 			//GD.PushWarning("PlaySound");
@@ -489,23 +489,20 @@ public abstract partial class BaseAction: TileAction
 			
 		}
 
+		//Create object pool. Pool should be global. Each ability should have currentanimationobject (or maybe list of current animation objects) from pool.
 		public async Task PlayAnimation(string animationName, ChunkData chunk)
 		{
 			PackedScene spawnCharacter = (PackedScene)animatedObjectPrefab; 
 			Object animatedObject = spawnCharacter.Instantiate<Object>(); 
 			_player.GetTree().Root.CallDeferred("add_child", animatedObject); 
-			animatedObject.SetupObject(animatedObjectPrefabData); 
-			animatedObject.AddPlayerForObjectAbilities(_player); 
-			GameTileMap.Tilemap.SpawnObject(animatedObject, chunk); 
-        
+			animatedObject.SetupObject(animatedObjectPrefabData);
+			animatedObject.GlobalPosition = chunk.GetPosition();
 			AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
-			if(animationPlayer != null)
+			if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
 			{
 				animationPlayer.Play(animationName);
 				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(animationName).Length));
 			}
-
-			_turnManager.RemoveObject(animatedObject);
 			animatedObject.QueueFree();
 		}
 	}

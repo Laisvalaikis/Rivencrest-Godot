@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 

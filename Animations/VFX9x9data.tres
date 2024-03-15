@@ -6,7 +6,7 @@
 script = ExtResource("2_jjjq8")
 maxHealth = 1
 accuracy = 100
-visionRange = 3
+visionRange = 0
 classColor = Color(0, 0, 0, 0)
 secondClassColor = Color(0, 0, 0, 0)
 textColor = Color(0, 0, 0, 0)
