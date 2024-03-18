@@ -37,7 +37,6 @@ public partial class GroundSlam : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        PlayerAbilityAnimation();
         DealDamageToAdjacent();
         FinishAbility();
     }

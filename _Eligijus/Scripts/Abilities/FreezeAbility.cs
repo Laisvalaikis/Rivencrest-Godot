@@ -42,7 +42,7 @@ public partial class FreezeAbility : BaseAction
 		}
 	}
 	
-	public override async void ResolveAbility(ChunkData chunk)
+	public override void ResolveAbility(ChunkData chunk)
 	{ 
 		UpdateAbilityButton(); 
 		foreach (var chunkData in _chunkList) 
@@ -56,7 +56,7 @@ public partial class FreezeAbility : BaseAction
 			}
 		} 
 		base.ResolveAbility(chunk);
-		await PlayAnimation("IceFreeze", chunk);
+		PlayerAbilityAnimation();
 		FinishAbility();
 	}
 }

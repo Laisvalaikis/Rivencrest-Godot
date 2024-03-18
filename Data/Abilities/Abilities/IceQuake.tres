@@ -13,6 +13,7 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
+AttackAnimation = "IceQuake"
 animatedObjectPrefab = ExtResource("1_52kvr")
 animatedObjectPrefabData = ExtResource("2_fd1w5")
 minAttackDamage = 1
