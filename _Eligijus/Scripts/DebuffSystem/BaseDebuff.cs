@@ -9,6 +9,9 @@ public partial class BaseDebuff : Resource
 	protected int lifetimeCount = 0;
 	protected Player _player;
 	protected Player playerWhoCreatedDebuff;
+	
+	[Export] public Resource animatedObjectPrefab;
+	[Export] public ObjectData animatedObjectPrefabData;
 	public BaseDebuff()
 	{
 			
@@ -17,6 +20,8 @@ public partial class BaseDebuff : Resource
 	public BaseDebuff(BaseDebuff blessing)
 	{
 		lifetime = blessing.lifetime;
+		animatedObjectPrefab = blessing.animatedObjectPrefab;
+		animatedObjectPrefabData = blessing.animatedObjectPrefabData;
 	}
 
 	public virtual BaseDebuff CreateNewInstance(BaseDebuff baseBlessing)
@@ -36,7 +41,7 @@ public partial class BaseDebuff : Resource
 	
 	public virtual void Start()
 	{
-
+		
 	}
     
 	public virtual void OnTurnStart()

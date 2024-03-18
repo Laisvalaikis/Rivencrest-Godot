@@ -21,7 +21,8 @@ public abstract partial class BaseAction: TileAction
 		protected ObjectData _objectData;
 		protected Object _object;
 		private Random _random;
-		
+
+		[Export] public string AttackAnimation = "Attack";
 		[Export] public Resource animatedObjectPrefab;
 		[Export] public ObjectData animatedObjectPrefabData;
 
@@ -501,8 +502,19 @@ public abstract partial class BaseAction: TileAction
 			if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
 			{
 				animationPlayer.Play(animationName);
-				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(animationName).Length));
+				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(animationName).Length-0.1f));
 			}
 			animatedObject.QueueFree();
+		}
+		
+		//put this bitch in baseaction
+		//make sure to have variables - defaultaction and attackaction
+		//veliau i playerinformation kur hit animacija ideti defaultaction mayhaps
+		public async Task PlayAttackAnimation()
+		{
+			AnimationPlayer animationPlayer = _player.objectInformation.GetObjectInformation().animationPlayer;
+			animationPlayer.Play(AttackAnimation);
+			await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(AttackAnimation).Length-0.1f));
+			animationPlayer.Play("Idle");
 		}
 	}

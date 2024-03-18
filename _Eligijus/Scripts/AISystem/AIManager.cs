@@ -66,7 +66,7 @@ public partial class AIManager : Node
             highestWeightAction = new(null, null, int.MinValue);
             GeneratePossibleActionsAndWeightsForTeamAbilities();
             actionTaken = true;
-            await ToSignal(GetTree().CreateTimer(0f), "timeout");
+            await ToSignal(GetTree().CreateTimer(1f), "timeout");
         }
         return actionTaken;
     }

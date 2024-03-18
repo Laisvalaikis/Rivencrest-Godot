@@ -130,6 +130,7 @@ public partial class DebuffManager : Node
 		debuff.SetPLayer(_player);
 		debuff.SetPlayerWhoCreatedDebuff(playerWhoCreatedDebuff);
 		debufList.AddLast(debuff);
+		debuff.Start();
 	}
 	
 	public bool ContainsDebuff(Type debuff)
