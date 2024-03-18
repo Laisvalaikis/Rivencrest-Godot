@@ -58,6 +58,11 @@ public partial class AflameDebuff : BaseDebuff
         _player.objectInformation.GetPlayerInformation().DealDamage(randomDamage, playerWhoCreatedDebuff);
     }
     
+    public override void Start()
+    {
+        PlayAnimation(DebuffAnimation, GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
+    }
+    
     public override void OnTurnStart()
     {
         base.OnTurnStart();

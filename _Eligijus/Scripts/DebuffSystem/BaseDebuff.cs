@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class BaseDebuff : Resource
 {
@@ -12,6 +13,9 @@ public partial class BaseDebuff : Resource
 	
 	[Export] public Resource animatedObjectPrefab;
 	[Export] public ObjectData animatedObjectPrefabData;
+	[Export] public string DebuffAnimation;
+
+	private Object animatedObject;
 	public BaseDebuff()
 	{
 			
@@ -114,6 +118,19 @@ public partial class BaseDebuff : Resource
 		return GetHashCode();
 	}
 
-	
-	
+	public async Task PlayAnimation(string animationName, ChunkData chunk)
+	{
+		PackedScene spawnCharacter = (PackedScene)animatedObjectPrefab; 
+		animatedObject = spawnCharacter.Instantiate<Object>(); 
+		_player.CallDeferred("add_child", animatedObject); 
+		animatedObject.SetupObject(animatedObjectPrefabData);
+		animatedObject.GlobalPosition = chunk.GetPosition();
+		AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
+		if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
+		{
+			animationPlayer.Play(animationName);
+			//await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(animationName).Length-0.1f));
+		}
+		//animatedObject.QueueFree();
+	}
 }

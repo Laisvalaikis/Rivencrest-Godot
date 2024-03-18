@@ -55,6 +55,7 @@ public abstract partial class BaseAction: TileAction
 			_abilityBlessingsRef = action._abilityBlessingsRef;
 			animatedObjectPrefab = action.animatedObjectPrefab;
 			animatedObjectPrefabData = action.animatedObjectPrefabData;
+			AttackAnimation = action.AttackAnimation;
 		}
 
 		public virtual BaseAction CreateNewInstance(BaseAction action)
