@@ -28,6 +28,6 @@ public partial class PlayerAttack : BaseAction
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         FinishAbility();
         PlayAnimation("AflameExplosion", chunk);
-        PlayAttackAnimation();
+        PlayerAbilityAnimation();
     }
 }

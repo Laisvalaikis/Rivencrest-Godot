@@ -41,7 +41,7 @@ public partial class CrowAttack : BaseAction
         } 
         base.ResolveAbility(chunk); 
         PlayAnimation("CrowAttack", chunk);
-        PlayAttackAnimation();
+        PlayerAbilityAnimation();
         FinishAbility();
     }
 }

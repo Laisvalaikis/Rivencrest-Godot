@@ -510,7 +510,7 @@ public abstract partial class BaseAction: TileAction
 		//put this bitch in baseaction
 		//make sure to have variables - defaultaction and attackaction
 		//veliau i playerinformation kur hit animacija ideti defaultaction mayhaps
-		public async Task PlayAttackAnimation()
+		public async Task PlayerAbilityAnimation()
 		{
 			AnimationPlayer animationPlayer = _player.objectInformation.GetObjectInformation().animationPlayer;
 			animationPlayer.Play(AttackAnimation);
