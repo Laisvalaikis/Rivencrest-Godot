@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://nsaqsngo1yxf"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://nsaqsngo1yxf"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_80o38"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/GroundSlam.cs" id="1_ce6gm"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_d1hf2"]
 
 [resource]
 script = ExtResource("1_ce6gm")
@@ -10,6 +12,9 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "GroundSlam"
+animatedObjectPrefab = ExtResource("1_80o38")
+animatedObjectPrefabData = ExtResource("2_d1hf2")
 minAttackDamage = 3
 maxAttackDamage = 4
 attackRange = 1

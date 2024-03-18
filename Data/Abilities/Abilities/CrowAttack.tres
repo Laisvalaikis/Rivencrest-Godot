@@ -13,6 +13,7 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
+AttackAnimation = "CrowAttack"
 animatedObjectPrefab = ExtResource("1_eyr0y")
 animatedObjectPrefabData = ExtResource("2_o0bhn")
 minAttackDamage = 2
