@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PlayerAttack.cs" id="1_j6nme"]
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_q75sm"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_7eiao"]
+[ext_resource type="Resource" uid="uid://sgk3nnhndmol" path="res://Animations/VFX9x9data.tres" id="2_7eiao"]
 
 [resource]
 script = ExtResource("1_j6nme")
@@ -14,8 +14,8 @@ abilityCooldown = 2
 _abilityBlessingsRef = Array[Resource]([])
 animatedObjectPrefab = ExtResource("1_q75sm")
 animatedObjectPrefabData = ExtResource("2_7eiao")
-minAttackDamage = 1
-maxAttackDamage = 2
+minAttackDamage = 100
+maxAttackDamage = 100
 attackRange = 2
 friendlyFire = false
 abilityHighlight = Color(0.698039, 0.368627, 0.333333, 1)

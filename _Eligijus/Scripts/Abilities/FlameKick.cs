@@ -28,8 +28,10 @@ public partial class FlameKick : BaseAction
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player); 
         Side side = ChunkSideByCharacter(current, chunk); 
         (int x, int y) sideVector = GetSideVector(side); 
-        sideVector = (sideVector.x, sideVector.y); 
-        MovePlayerToSide(chunk, sideVector); 
+        sideVector = (sideVector.x, sideVector.y);
+        MovePlayerToSide(chunk, sideVector);
+        PlayAnimation("FlameKick", chunk);
+        PlayerAbilityAnimation();
         FinishAbility();
     }
 }

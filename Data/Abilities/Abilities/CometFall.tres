@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CometFall.cs" id="1_kky5j"]
 [ext_resource type="Resource" uid="uid://5kiuc8jdr2du" path="res://_Eligijus/Prefabs/DangerTiles/CometTileData.tres" id="1_ttpyy"]
 [ext_resource type="PackedScene" uid="uid://ctp7s0u0kkkw2" path="res://_Eligijus/Prefabs/DangerTiles/CometTile.tscn" id="2_jq17l"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_ksvn3"]
+[ext_resource type="Resource" uid="uid://sgk3nnhndmol" path="res://Animations/VFX9x9data.tres" id="2_ksvn3"]
 
 [resource]
 script = ExtResource("1_kky5j")

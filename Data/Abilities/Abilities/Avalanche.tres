@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_aw3re"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/Avalanche.cs" id="1_ug0xv"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_psphd"]
+[ext_resource type="Resource" uid="uid://sgk3nnhndmol" path="res://Animations/VFX9x9data.tres" id="2_psphd"]
 
 [resource]
 script = ExtResource("1_ug0xv")
@@ -12,6 +12,7 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
+AttackAnimation = "Avalanche"
 animatedObjectPrefab = ExtResource("1_aw3re")
 animatedObjectPrefabData = ExtResource("2_psphd")
 minAttackDamage = 4

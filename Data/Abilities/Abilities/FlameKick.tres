@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://btigy2hnt2748"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://btigy2hnt2748"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_l3sai"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/FlameKick.cs" id="1_o66rg"]
+[ext_resource type="Resource" uid="uid://sgk3nnhndmol" path="res://Animations/VFX9x9data.tres" id="2_0i6t1"]
 
 [resource]
 script = ExtResource("1_o66rg")
@@ -10,6 +12,9 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 2
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "FlameKick"
+animatedObjectPrefab = ExtResource("1_l3sai")
+animatedObjectPrefabData = ExtResource("2_0i6t1")
 minAttackDamage = 3
 maxAttackDamage = 4
 attackRange = 1

@@ -11,6 +11,7 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 2
 _abilityBlessingsRef = Array[Resource]([ExtResource("1_yq84y")])
+AttackAnimation = "Attack"
 minAttackDamage = 4
 maxAttackDamage = 6
 attackRange = 2
