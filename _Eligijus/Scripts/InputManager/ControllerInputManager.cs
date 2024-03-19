@@ -6,7 +6,6 @@ public partial class ControllerInputManager : InputManager
 	[Export] private float cameraMovementSpeedController = 10.0f;
 	[Export(PropertyHint.Range, "0,1,")] private float zoomStrength = 0.7f;
 	private Vector2 _mousePosition;
-	private Vector2 _mousePositionWithoutChecks;
 	private bool selectIsClicked = false;
 	private Vector2 mouseRelativePosition;
 	private Vector2 deadzoneBoundsX;
@@ -16,6 +15,8 @@ public partial class ControllerInputManager : InputManager
 	private bool upIsPressed = false;
 	private bool downIsPressed = false;
 	private bool isFocused = false;
+	private double timer = 0;
+	private Vector2 relativePositionInput = Vector2.Zero;
 	
 	public override void _Input(InputEvent @event)
 	{
@@ -130,12 +131,13 @@ public partial class ControllerInputManager : InputManager
 
 			if (!isFocused && GameTileMap.Tilemap != null)
 			{
+				
 				if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementRight") &&
 				    !Input.IsActionJustPressed("CameraMovementLeft") &&
 				    (Input.IsActionJustPressed("CameraMovementUp") ||
 				     Input.IsActionJustPressed("CameraMovementDown")))
 				{
-					ControllerMousePosition();
+					relativePositionInput = Input.GetVector( "CameraMovementRight", "CameraMovementLeft", "CameraMovementDown", "CameraMovementUp");
 					_tileSelectionClicked = true;
 				}
 				else if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementUp") &&
@@ -143,7 +145,7 @@ public partial class ControllerInputManager : InputManager
 				         (Input.IsActionJustPressed("CameraMovementRight") ||
 				          Input.IsActionJustPressed("CameraMovementLeft")))
 				{
-					ControllerMousePosition();
+					relativePositionInput = Input.GetVector( "CameraMovementRight", "CameraMovementLeft", "CameraMovementDown", "CameraMovementUp");
 					_tileSelectionClicked = true;
 				}
 				if (_tileSelectionClicked && !Input.IsActionPressed("CameraMovementUp") && // this is not working
@@ -151,6 +153,12 @@ public partial class ControllerInputManager : InputManager
 				    !Input.IsActionPressed("CameraMovementRight") &&
 				    !Input.IsActionPressed("CameraMovementLeft"))
 				{
+					if (timer < 0.2)
+					{
+						ControllerMousePosition(relativePositionInput);
+						relativePositionInput = Vector2.Zero;
+					}
+					timer = 0;
 					_tileSelectionClicked = false;
 				}
 			}
@@ -169,9 +177,9 @@ public partial class ControllerInputManager : InputManager
 
 	}
 
-	public void ControllerMousePosition()
+	public void ControllerMousePosition(Vector2 position)
 	{
-		Vector2 relativePosition = Input.GetVector( "CameraMovementRight", "CameraMovementLeft", "CameraMovementDown", "CameraMovementUp");
+		Vector2 relativePosition = position;
 		relativePosition = relativePosition.Normalized();
 		if (Mathf.Abs(relativePosition.X) > Mathf.Abs(relativePosition.Y))
 		{
@@ -197,19 +205,7 @@ public partial class ControllerInputManager : InputManager
 			_mousePosition -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
 		}
 		
-		Vector2 tempCalculations = _mousePositionWithoutChecks - relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
-		if (GameTileMap.Tilemap.CheckMouseBoundsWithFog(tempCalculations) && GameTileMap.Tilemap.GetChunk(tempCalculations).IsFogOnTile())
-		{
-			_mousePositionWithoutChecks -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
-			CameraMovement(relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize), cameraMovementSpeedController);
-		}
-		else if (GameTileMap.Tilemap.CheckMouseBoundsWithFog(tempCalculations) && !GameTileMap.Tilemap.GetChunk(tempCalculations).IsFogOnTile())
-		{
-			_mousePositionWithoutChecks -= relativePosition.Normalized() * (GameTileMap.Tilemap.currentMap._chunkSize);
-		}
-		
 		EmitSignal("EnableSelector", _mousePosition);
-		// CameraMovement(_mousePosition, cameraMovementSpeedController);
 		OnSelectorMove(_mousePosition);
 	}
 
@@ -219,7 +215,6 @@ public partial class ControllerInputManager : InputManager
 		{
 			EmitSignal("DisableSelector", _mousePosition);
 			_mousePosition = characterPosition;
-			_mousePositionWithoutChecks = characterPosition;
 		}
 	}
 
@@ -232,11 +227,14 @@ public partial class ControllerInputManager : InputManager
 			if (Input.IsActionPressed("CameraMovementUp", true) || Input.IsActionPressed("CameraMovementDown", true) ||
 			    Input.IsActionPressed("CameraMovementRight", true) || Input.IsActionPressed("CameraMovementLeft", true))
 			{
-				Vector2 relativePosition = Vector2.Zero;
-				relativePosition = Input.GetVector("CameraMovementRight", "CameraMovementLeft",
-					"CameraMovementDown", "CameraMovementUp");
-				
-				// CameraMovement(relativePosition, cameraMovementSpeedController);
+				if (timer >= 0.2)
+				{
+					Vector2 relativePosition = Vector2.Zero;
+					relativePosition = Input.GetVector("CameraMovementRight", "CameraMovementLeft",
+						"CameraMovementDown", "CameraMovementUp");
+					CameraMovement(relativePosition, cameraMovementSpeedController);
+				}
+				timer += delta;
 			}
 
 			if (Input.IsActionPressed("Up", true))
