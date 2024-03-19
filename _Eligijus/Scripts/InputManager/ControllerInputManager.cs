@@ -5,6 +5,7 @@ public partial class ControllerInputManager : InputManager
 	[Export] private Vector2 deadZone = new Vector2(10f, 10f);
 	[Export] private float cameraMovementSpeedController = 10.0f;
 	[Export(PropertyHint.Range, "0,1,")] private float zoomStrength = 0.7f;
+	[Export] private double timeTrigerMapMovement = 0.2;
 	private Vector2 _mousePosition;
 	private bool selectIsClicked = false;
 	private Vector2 mouseRelativePosition;
@@ -153,7 +154,7 @@ public partial class ControllerInputManager : InputManager
 				    !Input.IsActionPressed("CameraMovementRight") &&
 				    !Input.IsActionPressed("CameraMovementLeft"))
 				{
-					if (timer < 0.2)
+					if (timer < timeTrigerMapMovement)
 					{
 						ControllerMousePosition(relativePositionInput);
 						relativePositionInput = Vector2.Zero;
@@ -227,7 +228,7 @@ public partial class ControllerInputManager : InputManager
 			if (Input.IsActionPressed("CameraMovementUp", true) || Input.IsActionPressed("CameraMovementDown", true) ||
 			    Input.IsActionPressed("CameraMovementRight", true) || Input.IsActionPressed("CameraMovementLeft", true))
 			{
-				if (timer >= 0.2)
+				if (timer >= timeTrigerMapMovement)
 				{
 					Vector2 relativePosition = Vector2.Zero;
 					relativePosition = Input.GetVector("CameraMovementRight", "CameraMovementLeft",
