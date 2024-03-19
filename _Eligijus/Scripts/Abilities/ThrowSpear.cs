@@ -24,6 +24,7 @@ public partial class ThrowSpear : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
+		PlayerAbilityAnimation();
 		int index = FindChunkIndex(chunk);
 		if (index != -1)
 		{
