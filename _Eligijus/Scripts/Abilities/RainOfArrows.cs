@@ -23,11 +23,11 @@ public partial class RainOfArrows : BaseAction
     }
     
       
-    public override async void ResolveAbility(ChunkData chunk)
+    public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        await PlayAnimation("RainOfArrows", chunk);
+        PlayerAbilityAnimation();
         foreach (ChunkData chunkData in damageList)
         {
             PackedScene spawnCharacter = (PackedScene)arrowTilePrefab;

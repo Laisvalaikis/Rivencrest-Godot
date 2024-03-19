@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://o2v8q602epqt"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://o2v8q602epqt"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/Volley.cs" id="1_kul5h"]
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_s7wlu"]
+[ext_resource type="Resource" uid="uid://sgk3nnhndmol" path="res://Animations/VFX9x9data.tres" id="2_rhd6s"]
 
 [resource]
 script = ExtResource("1_kul5h")
@@ -10,7 +12,10 @@ turnAfterResolveLifetime = 1
 abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
-_abilityBlessingsRef = null
+_abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Volley"
+animatedObjectPrefab = ExtResource("1_s7wlu")
+animatedObjectPrefabData = ExtResource("2_rhd6s")
 minAttackDamage = 28
 maxAttackDamage = 28
 attackRange = 2

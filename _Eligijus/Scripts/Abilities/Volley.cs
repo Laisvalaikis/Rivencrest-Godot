@@ -31,6 +31,7 @@ public partial class Volley : BaseAction
     {
         base.ResolveAbility(chunk);
         int index = FindChunkIndex(chunk);
+        PlayerAbilityAnimation();
         if (index != -1)
         {
             UpdateAbilityButton();
