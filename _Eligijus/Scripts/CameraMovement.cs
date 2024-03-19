@@ -29,8 +29,7 @@ public partial class CameraMovement : Camera2D
         base._Ready();
         if (InputManager.Instance != null)
         {
-            // InputManager.Instance.CameraControl += MoveCamera;
-            InputManager.Instance.CameraControl += MoveCameraTiles;
+            InputManager.Instance.CameraControl += MoveCamera;
             InputManager.Instance.LeftMouseDoubleClick += FocusPoint;
             InputManager.Instance.Up += ZoomIn;
             InputManager.Instance.Down += ZoomOut;
@@ -95,33 +94,6 @@ public partial class CameraMovement : Camera2D
         if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
         {
             Position -= relativePosition * Zoom * movementSpeed;
-        }
-        
-        if(Position.X > xBounds.Y)
-        {
-            Position = new Vector2(xBounds.Y, Position.Y);
-        }
-        if (Position.Y > yBounds.Y)
-        {
-            Position = new Vector2(Position.X, yBounds.Y);
-        }
-        if(Position.X < xBounds.X)
-        {
-            Position = new Vector2(xBounds.X, Position.Y);
-        }
-        if (Position.Y < yBounds.X)
-        {
-            Position = new Vector2(Position.X, yBounds.X);
-        }
-        
-    }
-    
-    private void MoveCameraTiles(Vector2 relativePosition, float movementSpeed)
-    {
-        if (Position.X <= xBounds.Y && Position.Y <= yBounds.Y && Position.X >= xBounds.X && Position.Y >= yBounds.X)
-        {
-            Position -= relativePosition * Zoom; //* movementSpeed;
-            // _tempPosition -= relativePosition * Zoom;
         }
         
         if(Position.X > xBounds.Y)
