@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_52kvr"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/IceQuake.cs" id="1_fbxhi"]
-[ext_resource type="Resource" uid="uid://sgk3nnhndmol" path="res://Animations/VFX9x9data.tres" id="2_fd1w5"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_fd1w5"]
 
 [resource]
 script = ExtResource("1_fbxhi")

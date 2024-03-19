@@ -4,10 +4,12 @@ public partial class PoisonDebuff : BaseDebuff
 {
     private int poisonDamage = 0;
     
+    
     public PoisonDebuff(int lifetime, int poisonDamage)
     {
         this.lifetime = lifetime;
         this.poisonDamage = poisonDamage;
+        debuffAnimation = "Poison";
     }
     public PoisonDebuff(PoisonDebuff debuff) : base(debuff)
     {
@@ -31,5 +33,10 @@ public partial class PoisonDebuff : BaseDebuff
     {
         base.OnTurnStart();
         _player.DealDamage(poisonDamage, playerWhoCreatedDebuff);
+    }
+    
+    public override void Start()
+    {
+        PlayAnimation("Poisoned", GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
 }

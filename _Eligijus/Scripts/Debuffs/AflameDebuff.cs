@@ -60,7 +60,6 @@ public partial class AflameDebuff : BaseDebuff
     
     public override void Start()
     {
-        PlayAnimation(DebuffAnimation, GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
     }
     
     public override void OnTurnStart()

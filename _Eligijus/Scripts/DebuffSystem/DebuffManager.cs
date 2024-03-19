@@ -7,7 +7,11 @@ public partial class DebuffManager : Node
 	[Export] 
 	private Player _player;
 	private LinkedList<BaseDebuff> debufList;
+	
+	[Export] public Resource animatedObjectPrefab;
+	[Export] public ObjectData animatedObjectPrefabData;
 
+	
 	public override void _Ready()
 	{
 		if (debufList == null)
@@ -35,6 +39,7 @@ public partial class DebuffManager : Node
 			{
 				LinkedListNode<BaseDebuff> tempElement = element;
 				tempElement = element.Next;
+				element.Value.OnRemove();
 				debufList.Remove(element);
 				element = tempElement;
 				elementWasRemoved = true;
@@ -61,6 +66,7 @@ public partial class DebuffManager : Node
 			{
 				LinkedListNode<BaseDebuff> tempElement = element;
 				tempElement = element.Next;
+				element.Value.OnRemove();
 				debufList.Remove(element);
 				element = tempElement;
 				elementWasRemoved = true;
@@ -166,6 +172,10 @@ public partial class DebuffManager : Node
 
 	public void RemoveDebuffs()
 	{
-		debufList.Clear();
+		for (LinkedListNode<BaseDebuff> element = debufList.First; element != null; element = element.Next)
+		{
+			element.Value.OnRemove();
+			debufList.Remove(element);
+		}
 	}
 }

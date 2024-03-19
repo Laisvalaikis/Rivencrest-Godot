@@ -11,9 +11,9 @@ public partial class BaseDebuff : Resource
 	protected Player _player;
 	protected Player playerWhoCreatedDebuff;
 	
-	[Export] public Resource animatedObjectPrefab;
-	[Export] public ObjectData animatedObjectPrefabData;
-	[Export] public string DebuffAnimation;
+	private Resource animatedObjectPrefab;
+	private ObjectData animatedObjectPrefabData;
+	protected string debuffAnimation;
 
 	private Object animatedObject;
 	public BaseDebuff()
@@ -24,8 +24,6 @@ public partial class BaseDebuff : Resource
 	public BaseDebuff(BaseDebuff blessing)
 	{
 		lifetime = blessing.lifetime;
-		animatedObjectPrefab = blessing.animatedObjectPrefab;
-		animatedObjectPrefabData = blessing.animatedObjectPrefabData;
 	}
 
 	public virtual BaseDebuff CreateNewInstance(BaseDebuff baseBlessing)
@@ -40,7 +38,7 @@ public partial class BaseDebuff : Resource
 
 	public virtual void OnRemove()
 	{
-		
+		animatedObject.QueueFree();
 	}
 	
 	public virtual void Start()
@@ -118,19 +116,20 @@ public partial class BaseDebuff : Resource
 		return GetHashCode();
 	}
 
-	public async Task PlayAnimation(string animationName, ChunkData chunk)
+	public virtual async Task PlayAnimation(string animationName, ChunkData chunk)
 	{
+		animatedObjectPrefab = _player.debuffManager.animatedObjectPrefab;
+		animatedObjectPrefabData = _player.debuffManager.animatedObjectPrefabData;
 		PackedScene spawnCharacter = (PackedScene)animatedObjectPrefab; 
 		animatedObject = spawnCharacter.Instantiate<Object>(); 
 		_player.CallDeferred("add_child", animatedObject); 
 		animatedObject.SetupObject(animatedObjectPrefabData);
-		animatedObject.GlobalPosition = chunk.GetPosition();
+		
+		animatedObject.Position = new Vector2(0, 0);
 		AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
 		if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
 		{
 			animationPlayer.Play(animationName);
-			//await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(animationName).Length-0.1f));
 		}
-		//animatedObject.QueueFree();
 	}
 }

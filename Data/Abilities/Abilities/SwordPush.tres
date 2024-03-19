@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SwordPush.cs" id="1_bqhxg"]
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_c1mrg"]
-[ext_resource type="Resource" uid="uid://sgk3nnhndmol" path="res://Animations/VFX9x9data.tres" id="2_cpux5"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_cpux5"]
 
 [resource]
 script = ExtResource("1_bqhxg")
@@ -14,6 +14,7 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Attack"
 animatedObjectPrefab = ExtResource("1_c1mrg")
 animatedObjectPrefabData = ExtResource("2_cpux5")
 minAttackDamage = 3
