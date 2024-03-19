@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Godot;
 using Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
@@ -10,6 +11,11 @@ public partial class BaseBuff : Resource
 	protected int lifetime = 1;
 	protected int lifetimeCount = 0;
 	protected Player _player;
+	
+	private Resource animatedObjectPrefab;
+	private ObjectData animatedObjectPrefabData;
+	protected string buffAnimation;
+	private Object animatedObject;
 		
 	public BaseBuff()
 	{
@@ -102,5 +108,26 @@ public partial class BaseBuff : Resource
 	public virtual void ModifyBuff(ref BaseBuff buff)
 	{
 		//If we have a buff that makes it so adding another buff is different. 
+	}
+	public virtual void OnRemove()
+	{
+		animatedObject.QueueFree();
+	}
+	
+	public virtual async Task PlayAnimation(string animationName, ChunkData chunk)
+	{
+		animatedObjectPrefab = _player.debuffManager.animatedObjectPrefab;
+		animatedObjectPrefabData = _player.debuffManager.animatedObjectPrefabData;
+		PackedScene spawnCharacter = (PackedScene)animatedObjectPrefab; 
+		animatedObject = spawnCharacter.Instantiate<Object>(); 
+		_player.CallDeferred("add_child", animatedObject); 
+		animatedObject.SetupObject(animatedObjectPrefabData);
+		
+		animatedObject.Position = new Vector2(0, 0);
+		AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
+		if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
+		{
+			animationPlayer.Play(animationName);
+		}
 	}
 }

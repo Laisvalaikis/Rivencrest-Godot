@@ -7,6 +7,9 @@ public partial class BuffManager : Node
 	[Export] 
 	private Player _player;
 	private LinkedList<BaseBuff> buffList;
+	
+	[Export] public Resource animatedObjectPrefab;
+	[Export] public ObjectData animatedObjectPrefabData;
 
 	public override void _Ready()
 	{
@@ -35,6 +38,7 @@ public partial class BuffManager : Node
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;
+				element.Value.OnRemove();
 				buffList.Remove(element);
 				element = tempElement;
 				elementWasRemoved = true;
@@ -66,6 +70,7 @@ public partial class BuffManager : Node
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;
+				element.Value.OnRemove();
 				buffList.Remove(element);
 				element = tempElement;
 				elementWasRemoved = true;
@@ -92,6 +97,7 @@ public partial class BuffManager : Node
 			{
 				LinkedListNode<BaseBuff> tempElement = element;
 				tempElement = element.Next;
+				element.Value.OnRemove();
 				buffList.Remove(element);
 				element = tempElement;
 				elementWasRemoved = true;
@@ -160,6 +166,7 @@ public partial class BuffManager : Node
 	{
 		buff.SetPLayer(_player);
 		buffList.AddLast(buff);
+		buff.Start();
 	}
 
 	public bool ContainsBuff(BaseBuff buff)
