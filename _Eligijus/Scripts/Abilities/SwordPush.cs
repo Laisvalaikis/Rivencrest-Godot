@@ -35,7 +35,7 @@ public partial class SwordPush : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        await PlayAnimation("SwordPush", chunk);
+        PlayerAbilityAnimation();
         Side _side = Side.none;
         CreateAttackGrid(chunk);
         for (int i = 0; i < _attackTiles.Count; i++)

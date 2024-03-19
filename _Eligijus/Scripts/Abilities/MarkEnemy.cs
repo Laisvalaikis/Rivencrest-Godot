@@ -23,6 +23,7 @@ public partial class MarkEnemy : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         Player target = chunk.GetCurrentPlayer();
         MarkDebuff debuff = new MarkDebuff();
         target.debuffManager.AddDebuff(debuff,_player);

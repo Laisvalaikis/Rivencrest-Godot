@@ -1,7 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://d3tran0e5j2ce"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://d3tran0e5j2ce"]
 
 [ext_resource type="PackedScene" uid="uid://cd3ubhdi062c" path="res://_Aurimas/AbilityPrefabs/Fog.tscn" id="1_bnnhi"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/CreateFog.cs" id="1_db3ah"]
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_qh3rt"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_6qcx6"]
 [ext_resource type="Resource" uid="uid://7oe3f2oik0ie" path="res://_Aurimas/Fog/FogData.tres" id="2_676yb"]
 
 [resource]
@@ -14,6 +16,9 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "CreateFog"
+animatedObjectPrefab = ExtResource("1_qh3rt")
+animatedObjectPrefabData = ExtResource("2_6qcx6")
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 2

@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cm0l4ix5qvwm0"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cm0l4ix5qvwm0"]
 
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_huiok"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/DisarmingSlam.cs" id="1_k010w"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_1utcj"]
 
 [resource]
 script = ExtResource("1_k010w")
@@ -10,6 +12,9 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "DisarmingSlam"
+animatedObjectPrefab = ExtResource("1_huiok")
+animatedObjectPrefabData = ExtResource("2_1utcj")
 minAttackDamage = 2
 maxAttackDamage = 5
 attackRange = 2
@@ -34,3 +39,4 @@ affectsAllAlliesInGrid = false
 affectsAllCharactersAtOnce = false
 teamDisplayText = ""
 enemyDisplayText = ""
+customText = ""

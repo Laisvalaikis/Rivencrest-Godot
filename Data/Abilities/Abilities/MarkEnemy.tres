@@ -1,7 +1,9 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ojd8ms8e2ldy"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://ojd8ms8e2ldy"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/MarkEnemy.cs" id="1_g2bdx"]
 [ext_resource type="Resource" uid="uid://5nclmwwoad2p" path="res://Data/Blessings/MarkedStun.tres" id="1_hpw6q"]
+[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="2_1oovw"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="3_tjhir"]
 
 [resource]
 script = ExtResource("1_g2bdx")
@@ -11,6 +13,9 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([ExtResource("1_hpw6q")])
+AttackAnimation = "MarkEnemy"
+animatedObjectPrefab = ExtResource("2_1oovw")
+animatedObjectPrefabData = ExtResource("3_tjhir")
 minAttackDamage = 0
 maxAttackDamage = 0
 attackRange = 2

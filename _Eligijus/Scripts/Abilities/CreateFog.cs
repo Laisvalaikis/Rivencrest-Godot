@@ -27,6 +27,7 @@ public partial class CreateFog : BaseAction
 	{
 		UpdateAbilityButton();
 		base.ResolveAbility(chunk);
+		PlayerAbilityAnimation();
 		PackedScene spawnCharacter = (PackedScene)fogPrefab;
 		Object spawnedFog = spawnCharacter.Instantiate<Object>();
 		_player.GetTree().Root.CallDeferred("add_child", spawnedFog);
