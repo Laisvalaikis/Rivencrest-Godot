@@ -21,7 +21,7 @@ public partial class SpearPulse : BaseAction
         return ability;
     }
 
-    public override async void ResolveAbility(ChunkData chunk)
+    public override void ResolveAbility(ChunkData chunk)
     {
         SpearHasBeenCast(ref chunk);
         UpdateAbilityButton();
@@ -30,7 +30,7 @@ public partial class SpearPulse : BaseAction
             DealRandomDamageToTarget(_chunkList[i], minAttackDamage, maxAttackDamage); //pirmus 2 naikina
         }
         base.ResolveAbility(chunk);
-        await PlayAnimation("PurpleAttack", chunk);
+        PlayerAbilityAnimation();
         FinishAbility();
     }
     
