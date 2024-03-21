@@ -20,7 +20,8 @@ public partial class DisarmingSlam : BaseAction
 	}
 	public override void ResolveAbility(ChunkData chunk)
 	{ 
-		base.ResolveAbility(chunk); 
+		base.ResolveAbility(chunk);
+		PlayAnimation("Yellow2", chunk);
 		PlayerAbilityAnimation();
 		UpdateAbilityButton(); 
 		Player target = chunk.GetCurrentPlayer(); 

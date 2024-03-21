@@ -37,7 +37,7 @@ public partial class CrowAttack : BaseAction
             if (CanBeUsedOnTile(chunkData)) 
             { 
                 DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
-                PlayAnimation("CrowAttack", chunkData);
+                //PlayAnimation("CrowAttack", chunkData);
             }
         } 
         PlayerAbilityAnimation();
