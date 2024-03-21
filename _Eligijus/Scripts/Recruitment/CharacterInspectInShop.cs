@@ -65,8 +65,6 @@ public partial class CharacterInspectInShop : Node
 		_currentCharacterInShop = index;
 		_currentCharacterIndex = recruitment.GetRealCharacterIndex(index);
 		PlayerInformationDataNew character = savedCharacter.playerInformation;
-		view.OpenViewCurrentButton(view.GetPathTo(recruitment.iconButtons[index]));
-		view.OpenView();
 		AtlasTexture styleBoxTexture = NewAtlas((CompressedTexture2D)character.CroppedSplashArt.Get("atlas"), (Rect2)character.CroppedSplashArt.Get("region"));
 		characterArt.Texture = styleBoxTexture;
 		tableBorder.SelfModulate = character.secondClassColor;
@@ -128,6 +126,9 @@ public partial class CharacterInspectInShop : Node
 			AtlasTexture atlasTexture = NewTexture(character.abilities[i].AbilityImage, Colors.White);
 			_characterAbilityRecruits[i].abilityIcon.Texture = atlasTexture;
 		}
+		
+		view.OpenViewCurrentButton(view.GetPathTo(recruitment.iconButtons[index]));
+		view.OpenView();
 		
 	}
 	
