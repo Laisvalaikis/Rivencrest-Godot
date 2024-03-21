@@ -33,11 +33,6 @@ public partial class HelpTable : Node
 	private bool wasSetuped = false;
 	private bool wasSelected = false;
 	private Data _data;
-	
-	public void closeHelpTable()
-	{
-		helpTableView.ExitView();
-	}
 
 	public override void _Ready()
 	{
@@ -62,10 +57,12 @@ public partial class HelpTable : Node
 
 	public void EnableTableForBoughtCharacters(int abilityIndex, int characterIndex)
 	{
-		SetupHelpTable();
 		SavedCharacterResource character = _data.Characters[characterIndex];
-		UpdateHelpTable(character.playerInformation.abilities[abilityIndex]);
-		// GD.PrintErr("FIX ABILITY INFORMATION");
+		if (character.playerInformation.abilities.Count > 0)
+		{
+			SetupHelpTable();
+			UpdateHelpTable(character.playerInformation.abilities[abilityIndex]);
+		}
 	}
 
 	public void DisableHelpTable()
@@ -90,6 +87,15 @@ public partial class HelpTable : Node
 			helpTableView.OpenView();
 			FillTableWithInfo(ability);
 			wasSelected = true;
+		}
+	}
+	
+	public void CloseHelpTable()
+	{
+		if (wasSelected)
+		{
+			helpTableView.ExitView();
+			wasSelected = false;
 		}
 	}
 

@@ -7,6 +7,8 @@ public partial class CharacterTable : Node
 {
 	[Export] 
 	public View view;
+	[Export]
+	private Button exit;
 	[Export] 
 	private TextureRect tableBoarder;
 	[Export]
@@ -221,16 +223,23 @@ public partial class CharacterTable : Node
 
 	public void DisplayCharacterTable(int index)
 	{
-		view.OpenView();
 		int tempIndex = characterIndex;
 		characterIndex = index;
-		abilityCount = _data.Characters[tempIndex].playerInformation.abilities.Count;
+		abilityCount = _data.Characters[characterIndex].playerInformation.abilities.Count;
 		if (index != tempIndex)
 		{
 			helpTable.helpTableView.ExitView();
 			UndoAbilitySelection(tempIndex);
 			UpdateTable();
 			UpdateAllAbilities();
+		}
+		
+		if (abilityCount == 0)
+		{
+			nameInput.FocusNeighborLeft = leftArrow.GetPath();
+			nameInput.FocusNeighborRight = rightArrow.GetPath();
+			nameInput.FocusNeighborTop = exit.GetPath();
+			exit.FocusNeighborBottom = nameInput.GetPath();
 		}
 
 		if (recruitmentCenterTable != null && townHall != null)
@@ -242,37 +251,17 @@ public partial class CharacterTable : Node
 		{
 			GD.Print("TownHall is null");
 		}
-		
 		
 	}
 	
-	public void DisplayCharacterTableButton(int index, Button button)
+	public void OpenViewWithButton(Button button)
 	{
-		// view.OpenView();
 		view.OpenViewCurrentButton(button.GetPath());
-		int tempIndex = characterIndex;
-		characterIndex = index;
-		abilityCount = _data.Characters[tempIndex].playerInformation.abilities.Count;
-		
-		if (index != tempIndex)
-		{
-			helpTable.helpTableView.ExitView();
-			UndoAbilitySelection(tempIndex);
-			UpdateTable();
-			UpdateAllAbilities();
-		}
-
-		if (recruitmentCenterTable != null && townHall != null)
-		{
-			recruitmentCenterTable.Hide();
-			townHall.CloseTownHall();
-		}
-		else
-		{
-			GD.Print("TownHall is null");
-		}
-		
-		
+	}
+	
+	public void OpenView()
+	{
+		view.OpenView();
 	}
 
 	public void EnableDisableHelpTable(int index)
@@ -318,6 +307,7 @@ public partial class CharacterTable : Node
 		DisplayCharacterTable(newCharacterIndex);
 		UpdateTable();
 		UpdateAllAbilities();
+		OpenView();
 		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollDownByCharacterIndex(newCharacterIndex);
 		view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
@@ -331,6 +321,7 @@ public partial class CharacterTable : Node
 		DisplayCharacterTable(newCharacterIndex);
 		UpdateTable();
 		UpdateAllAbilities();
+		OpenView();
 		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollUpByCharacterIndex(newCharacterIndex);
 		view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
@@ -370,13 +361,17 @@ public partial class CharacterTable : Node
 			confirmAbility.FocusNeighborBottom = abilityButtons[0].GetPath();
 			confirmAbility.FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
 		}
-		else
+		else if (_data.Characters[characterIndex].toConfirmAbilities <= 0 && abilityCount > 0)
 		{
 			confirmAbility.Hide();
 			abilityButtons[0].FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
 			abilityButtons[abilityCount - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
 		}
-
+		else if (_data.Characters[characterIndex].toConfirmAbilities <= 0 && abilityCount == 0)
+		{
+			confirmAbility.Hide();
+		}
+		
 		if (characterIndex > 0)
 		{
 			leftArrow.Show();
@@ -460,6 +455,7 @@ public partial class CharacterTable : Node
 	// 	// }
 	// 	return maxHP;
 	// }
+	
 	private void UpgradeAbility(int abilityIndex)
 	{
 		_data.Characters[characterIndex].unlockedAbilities[abilityIndex].abilityUnlocked = true;

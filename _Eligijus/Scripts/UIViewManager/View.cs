@@ -8,8 +8,9 @@ public partial class View : Control
 	public delegate void OpenViewSignalEventHandler();
 	[Signal]
 	public delegate void CloseViewSignalEventHandler();
-	[Export] private Control openFocus;
 	[Export] private Control openFocusCurrent;
+	[Export] private Control openFocus;
+	[Export] private Control secondaryOpenFocus;
 	[Export] private bool grabFocusOnOpen { get; set; } = false;
 	[Export] private bool viewEnabledOnStart { get; set; } = false;
 	[Export] private bool viewCanBeDisabled {get; set;} = true;
@@ -31,15 +32,19 @@ public partial class View : Control
 		}
 	}
 	
-	private void GrabOpenFocus()
+	public void GrabOpenFocus()
 	{
-		if (openFocusCurrent != null)
+		if (openFocusCurrent != null && openFocusCurrent.IsVisibleInTree())
 		{
 			openFocusCurrent.GrabFocus();
 		}
+		else if (openFocus != null && openFocus.IsVisibleInTree())
+		{
+			openFocus.GrabFocus();
+		}
 		else
 		{
-			openFocus?.GrabFocus();
+			secondaryOpenFocus?.GrabFocus();
 		}
 	}
 

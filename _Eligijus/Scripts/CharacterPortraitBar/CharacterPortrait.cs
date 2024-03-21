@@ -39,10 +39,11 @@ public partial class CharacterPortrait : Button
 				}
 				else
 				{
-					// characterTable.DisplayCharacterTable(characterIndex);
-					characterTable.DisplayCharacterTableButton(characterIndex, this);
+					// SavedCharacterResource character = _data.Characters[characterIndex];
+					characterTable.DisplayCharacterTable(characterIndex);
 					characterTable.UpdateTable();
 					characterTable.UpdateAllAbilities();
+					characterTable.OpenViewWithButton(this);
 				}
 			}
 		
