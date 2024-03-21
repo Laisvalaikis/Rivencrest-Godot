@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=12 format=3 uid="uid://w0dfrk7kykbe"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://w0dfrk7kykbe"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_0jahi"]
 [ext_resource type="Texture2D" uid="uid://bnjidvtwmfo62" path="res://Data/PlayerResource/Burgundy/Textures/CharacterPortraitSprite.tres" id="1_7kqen"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://6goaufd13pcj" path="res://Data/Abilities/GroundSlam.tres" id="6_axx8t"]
 [ext_resource type="Resource" uid="uid://c7b12fgf0a00o" path="res://Data/Abilities/FlameKick.tres" id="7_v7lhl"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_goe0h"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_bc8af"]
 [ext_resource type="Texture2D" uid="uid://dq2n57m7ixtr3" path="res://Data/PlayerResource/Burgundy/Textures/CharacterSprite.tres" id="10_by0c2"]
 [ext_resource type="Texture2D" uid="uid://biudeusi4gvvk" path="res://Data/PlayerResource/Burgundy/Textures/RoleSprite.tres" id="11_sgfx4"]
 
@@ -24,7 +25,7 @@ CharacterSplashArt = ExtResource("2_6b7h2")
 CroppedSplashArt = ExtResource("3_ia3ss")
 characterSprite = ExtResource("10_by0c2")
 roleSprite = ExtResource("11_sgfx4")
-baseAbilities = Array[Resource]([ExtResource("8_goe0h"), ExtResource("6_axx8t")])
+baseAbilities = Array[Resource]([ExtResource("8_goe0h"), ExtResource("9_bc8af")])
 maxHealth = 27
 accuracy = 100
 visionRange = 3

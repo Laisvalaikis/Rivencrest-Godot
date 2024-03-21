@@ -143,6 +143,8 @@ public partial class SelectActionButton : FocusButton
         {
             this.MouseEntered += OnHover;
             this.MouseExited += OffHover;
+            this.FocusEntered += OnHover;
+            this.FocusExited += OffHover;
             setupAction = true;
         }
 
