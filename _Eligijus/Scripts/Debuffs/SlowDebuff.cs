@@ -9,10 +9,11 @@ public partial class SlowDebuff : BaseDebuff
 			
     }
     
-    public SlowDebuff(int lifetime, int slowBy)
+    public SlowDebuff(int lifetime, int slowBy, string slowType)
     {
         this.lifetime = lifetime;
         this.slowBy = slowBy;
+        debuffAnimation = slowType;
     }
     
     public SlowDebuff(SlowDebuff debuff): base(debuff)
@@ -30,11 +31,6 @@ public partial class SlowDebuff : BaseDebuff
     {
         SlowDebuff debuff = new SlowDebuff(this);
         return debuff;
-    }
-	
-    public override void Start()
-    {
-
     }
     
     public override void OnTurnStart()

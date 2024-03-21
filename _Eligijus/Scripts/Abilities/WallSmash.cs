@@ -50,7 +50,7 @@ public partial class WallSmash : BaseAction
 		{
 			   
 			DealRandomDamageToTarget(targetChunkData, minAttackDamage, maxAttackDamage);
-			SlowDebuff debuff = new SlowDebuff(2,2);
+			SlowDebuff debuff = new SlowDebuff(2,2, "IceSlow");
 			targetChunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);	
 		}
 		DealDamage(chunkData,damageToWall);

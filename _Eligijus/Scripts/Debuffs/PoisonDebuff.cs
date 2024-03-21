@@ -9,7 +9,7 @@ public partial class PoisonDebuff : BaseDebuff
     {
         this.lifetime = lifetime;
         this.poisonDamage = poisonDamage;
-        debuffAnimation = "Poison";
+        debuffAnimation = "Poisoned";
     }
     public PoisonDebuff(PoisonDebuff debuff) : base(debuff)
     {
@@ -37,6 +37,6 @@ public partial class PoisonDebuff : BaseDebuff
     
     public override void Start()
     {
-        PlayAnimation("Poisoned", GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
+        
     }
 }

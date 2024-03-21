@@ -31,7 +31,7 @@ public partial class SlowDown : AbilityBlessing
     {
         base.ResolveBlessing(baseAction, tile);
         Player player = tile.GetCurrentPlayer();
-        SlowDebuff debuff = new SlowDebuff(2,1);
+        SlowDebuff debuff = new SlowDebuff(2,1,"IceSlow");
         tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,player);
     }
     

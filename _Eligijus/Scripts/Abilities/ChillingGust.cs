@@ -35,7 +35,7 @@ public partial class ChillingGust : BaseAction
         else 
         { 
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
-            SlowDebuff debuff = new SlowDebuff(1, 1); 
+            SlowDebuff debuff = new SlowDebuff(1, 1, "IceSlow"); 
             chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
         }
         

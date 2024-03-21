@@ -26,7 +26,7 @@ public partial class BindingRitual : BaseAction
             if (CanBeUsedOnTile(tile))
             {
                 DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
-                SlowDebuff debuff = new SlowDebuff(1, 2);
+                SlowDebuff debuff = new SlowDebuff(1, 2, "IceSlow");
                 tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
             }
         }

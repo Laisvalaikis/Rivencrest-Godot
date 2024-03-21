@@ -47,7 +47,7 @@ public partial class FreezeAbility : BaseAction
 		UpdateAbilityButton(); 
 		foreach (var chunkData in _chunkList) 
 		{ 
-			SlowDebuff debuff = new SlowDebuff(1, 1); 
+			SlowDebuff debuff = new SlowDebuff(1, 1,"IceSlow"); 
 			Player target = chunkData.GetCurrentPlayer(); 
 			if (CanBeUsedOnTile(chunkData)) 
 			{ 

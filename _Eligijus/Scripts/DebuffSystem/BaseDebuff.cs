@@ -43,7 +43,7 @@ public partial class BaseDebuff : Resource
 	
 	public virtual void Start()
 	{
-		
+		PlayAnimation(debuffAnimation, GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
 	}
     
 	public virtual void OnTurnStart()

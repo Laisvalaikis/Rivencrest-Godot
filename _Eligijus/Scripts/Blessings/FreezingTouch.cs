@@ -38,7 +38,7 @@ public partial class FreezingTouch : AbilityBlessing
 	{
 		base.ResolveBlessing(baseAction);
 		Player player = tile.GetCurrentPlayer();
-		SlowDebuff debuff = new SlowDebuff(2, 2);
+		SlowDebuff debuff = new SlowDebuff(2, 2, "IceSlow");
 		player.debuffManager.AddDebuff(debuff,player);
 	}
 	

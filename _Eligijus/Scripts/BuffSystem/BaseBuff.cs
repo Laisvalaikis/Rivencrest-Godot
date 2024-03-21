@@ -39,8 +39,9 @@ public partial class BaseBuff : Resource
 		
 	public virtual void Start()
 	{
-	
+		PlayAnimation(buffAnimation, GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
 	}
+	
 		
 	public virtual void ResolveBuff(ChunkData chunkData)
 	{
@@ -116,8 +117,8 @@ public partial class BaseBuff : Resource
 	
 	public virtual async Task PlayAnimation(string animationName, ChunkData chunk)
 	{
-		animatedObjectPrefab = _player.debuffManager.animatedObjectPrefab;
-		animatedObjectPrefabData = _player.debuffManager.animatedObjectPrefabData;
+		animatedObjectPrefab = _player.buffManager.animatedObjectPrefab;
+		animatedObjectPrefabData = _player.buffManager.animatedObjectPrefabData;
 		PackedScene spawnCharacter = (PackedScene)animatedObjectPrefab; 
 		animatedObject = spawnCharacter.Instantiate<Object>(); 
 		_player.CallDeferred("add_child", animatedObject); 

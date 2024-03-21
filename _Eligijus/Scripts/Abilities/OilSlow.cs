@@ -23,7 +23,7 @@ public partial class OilSlow : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
-        SlowDebuff debuff = new SlowDebuff(1, 2);
+        SlowDebuff debuff = new SlowDebuff(1, 2, "OilSlow");
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
         FinishAbility();
     }

@@ -25,7 +25,7 @@ public partial class SwitchPlaces : BaseAction
         ChunkData chunkData = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         _secondSelected = chunk;
         SwitchCharacters(chunkData, _secondSelected);
-        SlowDebuff debuff = new SlowDebuff(1,1);
+        SlowDebuff debuff = new SlowDebuff(1,1, "IceSlow");
         chunkData.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);
         FinishAbility();
         base.ResolveAbility(chunk);
