@@ -129,6 +129,7 @@ public partial class SaveSlotCard : Control
 	{
 		SetActive(_addButton, true);
 		SetActive(_slotMenu, false);
+		_addButton.GrabFocus();
 		_saveManager.DeleteSlot(_slotIndex);
 	}
 }
