@@ -148,6 +148,7 @@ public partial class CharacterTable : Node
 		confirmAbility.Hide();
 		abilityButtons[0].FocusNeighborTop = abilityButtons[abilityButtons.Count - 1].GetPath();
 		abilityButtons[abilityButtons.Count - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
+		abilityButtons[abilityButtons.Count - 1].GrabFocus();
 		UpdateCharacterPointCorner();
 	}
 

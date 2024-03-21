@@ -47,7 +47,12 @@ public partial class RecruitButton : TextureRect
 			}
 	}
 
-	
+	public void GrabFocusBuyButton()
+	{
+		buyButton.GrabFocus();
+	}
+
+
 
 
 }

@@ -214,6 +214,20 @@ public partial class Recruitment : Node
 			
 		}
 	}
+	
+	private void GrabButtonFocusIndex(int index)
+	{
+		
+		if (recruitTableCharacters[index].IsVisibleInTree())
+		{
+			recruitTableCharacters[index].GrabFocusBuyButton();
+		}
+		else if (recruitTableCharacters[0].IsVisibleInTree())
+		{
+			recruitTableCharacters[0].GrabFocusBuyButton();
+		}
+	}
+	
 	private void UpdateRerollButton()
 	{
 		if (_data.townData.townHall != null)
@@ -254,6 +268,7 @@ public partial class Recruitment : Node
 			CharactersInShop.Remove(savedCharacter);
 			characterIndexList.Remove(index);
 			UpdateButtons();
+			GrabButtonFocusIndex(index);
 		}
 		else GD.Print("Ziurek ka darai, kvaily!");
 	}
