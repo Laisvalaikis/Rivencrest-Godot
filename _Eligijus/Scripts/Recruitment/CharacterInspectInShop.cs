@@ -37,6 +37,7 @@ public partial class CharacterInspectInShop : Node
 	private View view;
 	private int _currentCharacterIndex = 0;
 	private int _currentCharacterInShop;
+	private int _abilityCount = 0;
 
 	public void DisableCharacterOnBuy(int index)
 	{
@@ -65,6 +66,7 @@ public partial class CharacterInspectInShop : Node
 		_currentCharacterInShop = index;
 		_currentCharacterIndex = recruitment.GetRealCharacterIndex(index);
 		PlayerInformationDataNew character = savedCharacter.playerInformation;
+		_abilityCount = character.abilities.Count;
 		AtlasTexture styleBoxTexture = NewAtlas((CompressedTexture2D)character.CroppedSplashArt.Get("atlas"), (Rect2)character.CroppedSplashArt.Get("region"));
 		characterArt.Texture = styleBoxTexture;
 		tableBorder.SelfModulate = character.secondClassColor;
@@ -119,12 +121,41 @@ public partial class CharacterInspectInShop : Node
 		level.LabelSettings.FontColor = character.classColor;
 		for (int i = 0; i < _characterAbilityRecruits.Count; i++)
 		{
-			_characterAbilityRecruits[i].Show();
-			_characterAbilityRecruits[i].backgroundImage.SelfModulate = character.backgroundColor;
-			_characterAbilityRecruits[i].abilityIcon.SelfModulate = character.classColor;
-			_characterAbilityRecruits[i].ability = character.abilities[i];
-			AtlasTexture atlasTexture = NewTexture(character.abilities[i].AbilityImage, Colors.White);
-			_characterAbilityRecruits[i].abilityIcon.Texture = atlasTexture;
+			if (_abilityCount > i)
+			{
+				_characterAbilityRecruits[i].Show();
+				_characterAbilityRecruits[i].backgroundImage.SelfModulate = character.backgroundColor;
+				_characterAbilityRecruits[i].abilityIcon.SelfModulate = character.classColor;
+				_characterAbilityRecruits[i].ability = character.abilities[i];
+				AtlasTexture atlasTexture = NewTexture(character.abilities[i].AbilityImage, Colors.White);
+				_characterAbilityRecruits[i].abilityIcon.Texture = atlasTexture;
+				if (i > 0 && i + 1 < _abilityCount)
+				{
+					_characterAbilityRecruits[i-1].FocusNeighborBottom = _characterAbilityRecruits[i].GetPath();
+					_characterAbilityRecruits[i].FocusNeighborTop = _characterAbilityRecruits[i-1].GetPath();
+					_characterAbilityRecruits[i].FocusNeighborBottom = _characterAbilityRecruits[i+1].GetPath();
+					_characterAbilityRecruits[i+1].FocusNeighborTop = _characterAbilityRecruits[i].GetPath();
+				}
+				else if (i + 1 == _abilityCount)
+				{
+					if (_abilityCount > 1)
+					{
+						_characterAbilityRecruits[i - 1].FocusNeighborBottom = _characterAbilityRecruits[i].GetPath();
+						_characterAbilityRecruits[i].FocusNeighborTop = _characterAbilityRecruits[i-1].GetPath();
+						_characterAbilityRecruits[i].FocusNeighborBottom = _characterAbilityRecruits[0].GetPath();
+						_characterAbilityRecruits[0].FocusNeighborTop = _characterAbilityRecruits[i].GetPath();
+					}
+					else
+					{
+						_characterAbilityRecruits[0].FocusNeighborBottom = _characterAbilityRecruits[i].GetPath();
+						_characterAbilityRecruits[i].FocusNeighborBottom = _characterAbilityRecruits[0].GetPath();
+					}
+				}
+			}
+			else
+			{
+				_characterAbilityRecruits[i].Hide();
+			}
 		}
 		
 		view.OpenViewCurrentButton(view.GetPathTo(recruitment.iconButtons[index]));

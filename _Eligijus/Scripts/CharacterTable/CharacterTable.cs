@@ -62,6 +62,7 @@ public partial class CharacterTable : Node
 	public TownHall townHall;
 	private Array<bool> abilityButtonState;
 	private int characterIndex;
+	private int abilityCount = 0;
 	private Data _data;
 	private bool pauseEnabled = false;
 	
@@ -146,9 +147,9 @@ public partial class CharacterTable : Node
 			}
 		}
 		confirmAbility.Hide();
-		abilityButtons[0].FocusNeighborTop = abilityButtons[abilityButtons.Count - 1].GetPath();
-		abilityButtons[abilityButtons.Count - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
-		abilityButtons[abilityButtons.Count - 1].GrabFocus();
+		abilityButtons[0].FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
+		abilityButtons[abilityCount - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
+		abilityButtons[abilityCount - 1].GrabFocus();
 		UpdateCharacterPointCorner();
 	}
 
@@ -186,23 +187,33 @@ public partial class CharacterTable : Node
 		var character = _data.Characters[characterIndex];
 		for (int i = 0; i < abilityButtons.Count; i++)
 		{
-			if (character.abilityPointCount > 0 || !_data.Characters[characterIndex].unlockedAbilities[i].abilityConfirmed && _data.Characters[characterIndex].unlockedAbilities[i].abilityUnlocked)
+			if (abilityCount > i)
 			{
-				abilityButtons[i].Disabled = false;
-			}
-			else
-			{
-				abilityButtons[i].Disabled = true;
-			}
+				abilityButtons[i].Show();
+				if (character.abilityPointCount > 0 ||
+				    !_data.Characters[characterIndex].unlockedAbilities[i].abilityConfirmed &&
+				    _data.Characters[characterIndex].unlockedAbilities[i].abilityUnlocked)
+				{
+					abilityButtons[i].Disabled = false;
+				}
+				else
+				{
+					abilityButtons[i].Disabled = true;
+				}
 
-			if (!character.unlockedAbilities[i].abilityUnlocked)
-			{
-				Color color = abilityButtonBackgroundImages[i].SelfModulate - new Color(0.2f, 0.2f, 0.2f, 0f);
-				abilityButtonBackgroundImages[i].SelfModulate = color;
+				if (!character.unlockedAbilities[i].abilityUnlocked)
+				{
+					Color color = abilityButtonBackgroundImages[i].SelfModulate - new Color(0.2f, 0.2f, 0.2f, 0f);
+					abilityButtonBackgroundImages[i].SelfModulate = color;
+				}
+				else
+				{
+					abilityButtonBackgroundImages[i].SelfModulate = character.playerInformation.backgroundColor;
+				}
 			}
 			else
 			{
-				abilityButtonBackgroundImages[i].SelfModulate = character.playerInformation.backgroundColor;
+				abilityButtons[i].Hide();
 			}
 		}
 	}
@@ -213,6 +224,7 @@ public partial class CharacterTable : Node
 		view.OpenView();
 		int tempIndex = characterIndex;
 		characterIndex = index;
+		abilityCount = _data.Characters[tempIndex].playerInformation.abilities.Count;
 		if (index != tempIndex)
 		{
 			helpTable.helpTableView.ExitView();
@@ -240,6 +252,7 @@ public partial class CharacterTable : Node
 		view.OpenViewCurrentButton(button.GetPath());
 		int tempIndex = characterIndex;
 		characterIndex = index;
+		abilityCount = _data.Characters[tempIndex].playerInformation.abilities.Count;
 		
 		if (index != tempIndex)
 		{
@@ -353,14 +366,15 @@ public partial class CharacterTable : Node
 		{
 			confirmAbility.Show();
 			abilityButtons[0].FocusNeighborTop = confirmAbility.GetPath();
-			abilityButtons[abilityButtons.Count - 1].FocusNeighborBottom = confirmAbility.GetPath();
+			abilityButtons[abilityCount - 1].FocusNeighborBottom = confirmAbility.GetPath();
 			confirmAbility.FocusNeighborBottom = abilityButtons[0].GetPath();
+			confirmAbility.FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
 		}
 		else
 		{
 			confirmAbility.Hide();
-			abilityButtons[0].FocusNeighborTop = abilityButtons[abilityButtons.Count - 1].GetPath();
-			abilityButtons[abilityButtons.Count - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
+			abilityButtons[0].FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
+			abilityButtons[abilityCount - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
 		}
 
 		if (characterIndex > 0)
