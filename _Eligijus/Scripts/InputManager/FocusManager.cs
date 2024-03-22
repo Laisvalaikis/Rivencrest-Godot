@@ -16,24 +16,27 @@ public partial class FocusManager : Node
     private void FocusLeft()
     {
         GetViewFocus();
-        if (currentfocus != null && currentfocus.FocusNeighborLeft != null)
+        if (currentfocus != null && currentfocus.GetNodeOrNull<Control>(currentfocus.FocusNeighborLeft) != null)
         {
-            Control temp = (Control)GetNode(currentfocus.FocusNeighborBottom);
+            // Control temp = (Control)GetNode(currentfocus.FocusNeighborLeft);
+            Control temp = currentfocus.GetNode<Control>(currentfocus.FocusNeighborLeft);
             if (temp.IsVisibleInTree())
             {
                 currentfocus.ReleaseFocus();
                 temp.GrabFocus();
                 currentfocus = temp;
             }
+            GD.Print(temp.IsVisibleInTree());
         }
     }
     
     private void FocusRight()
     {
         GetViewFocus();
-        if (currentfocus != null && currentfocus.FocusNeighborRight != null)
+        if (currentfocus != null && currentfocus.GetNodeOrNull<Control>(currentfocus.FocusNeighborRight) != null)
         {
-            Control temp = (Control)GetNode(currentfocus.FocusNeighborBottom);
+            // Control temp = (Control)GetNode(currentfocus.FocusNeighborRight);
+            Control temp = currentfocus.GetNode<Control>(currentfocus.FocusNeighborRight);
             if (temp.IsVisibleInTree())
             {
                 currentfocus.ReleaseFocus();
@@ -46,9 +49,10 @@ public partial class FocusManager : Node
     private void FocusUp()
     {
         GetViewFocus();
-        if (currentfocus != null && currentfocus.FocusNeighborTop != null)
+        if (currentfocus != null && currentfocus.GetNodeOrNull<Control>(currentfocus.FocusNeighborTop) != null)
         {
-            Control temp = (Control)GetNode(currentfocus.FocusNeighborBottom);
+            // Control temp = (Control)GetNode(currentfocus.FocusNeighborTop);
+            Control temp = currentfocus.GetNode<Control>(currentfocus.FocusNeighborTop);
             if (temp.IsVisibleInTree())
             {
                 currentfocus.ReleaseFocus();
@@ -61,9 +65,10 @@ public partial class FocusManager : Node
     private void FocusDown()
     {
         GetViewFocus();
-        if (currentfocus != null && currentfocus.FocusNeighborBottom != null)
+        if (currentfocus != null && currentfocus.GetNodeOrNull<Control>(currentfocus.FocusNeighborBottom) != null)
         {
-            Control temp = (Control)GetNode(currentfocus.FocusNeighborBottom);
+            // Control temp = (Control)GetNode(currentfocus.FocusNeighborBottom);
+            Control temp = currentfocus.GetNode<Control>(currentfocus.FocusNeighborBottom);
             if (temp.IsVisibleInTree())
             {
                 currentfocus.ReleaseFocus();

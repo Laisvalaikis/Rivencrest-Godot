@@ -15,9 +15,25 @@ public partial class MouseAndKeyboardInputManager : InputManager
 	{
 		if (enabled)
 		{
-			if (Input.IsActionJustPressed("ReleaseFocus"))
+			
+			if (Input.IsActionJustPressed("FocusLeft"))
 			{
-				EmitSignal("ReleaseFocus");
+				EmitSignal("FocusLeft");
+			}
+			
+			if (Input.IsActionJustPressed("FocusRight"))
+			{
+				EmitSignal("FocusRight");
+			}
+			
+			if (Input.IsActionJustPressed("FocusUp"))
+			{
+				EmitSignal("FocusUp");
+			}
+			
+			if (Input.IsActionJustPressed("FocusDown"))
+			{
+				EmitSignal("FocusDown");
 			}
 
 			if (Input.IsActionJustPressed("Select"))
@@ -89,6 +105,34 @@ public partial class MouseAndKeyboardInputManager : InputManager
 			{
 				EmitSignal("UnHandledSelectClick", Vector2.Zero);
 			}
+		}
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		base._PhysicsProcess(delta);
+		if (enabled)
+		{
+			
+			if (Input.IsActionJustPressed("FocusLeft", true))
+			{
+				EmitSignal("FocusLeft");
+			}
+			if (Input.IsActionJustPressed("FocusRight", true))
+			{
+				EmitSignal("FocusRight");
+			}
+			
+			if (Input.IsActionJustPressed("FocusUp", true))
+			{
+				EmitSignal("FocusUp");
+			}
+			
+			if (Input.IsActionJustPressed("FocusDown", true))
+			{
+				EmitSignal("FocusDown");
+			}
+			
 		}
 	}
 

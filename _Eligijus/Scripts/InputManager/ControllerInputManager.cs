@@ -57,26 +57,6 @@ public partial class ControllerInputManager : InputManager
 				EmitSignal("ReleaseFocus");
 			}
 			
-			if (Input.IsActionJustPressed("FocusLeft") && !isFocused)
-			{
-				EmitSignal("FocusLeft");
-			}
-			
-			if (Input.IsActionJustPressed("FocusRight") && !isFocused)
-			{
-				EmitSignal("FocusRight");
-			}
-			
-			if (Input.IsActionJustPressed("FocusUp") && !isFocused)
-			{
-				EmitSignal("FocusUp");
-			}
-			
-			if (Input.IsActionJustPressed("FocusDown") && !isFocused)
-			{
-				EmitSignal("FocusDown");
-			}
-
 			if (!isFocused)
 			{
 
@@ -124,31 +104,6 @@ public partial class ControllerInputManager : InputManager
 			{
 				EmitSignal("Undo");
 			}
-
-			// if (Input.IsActionPressed("Up"))
-			// {
-			// 	EmitSignal("Up",0.3);
-			// }
-			//
-			// if ( Input.IsActionPressed("Down"))
-			// {
-			// 	EmitSignal("Down", 0.3);
-			// }
-			
-			// if (Input.IsActionJustPressed("Up"))
-			// {
-			// 	EmitSignal("Up", 0.3);
-			// 	upIsPressed = true;
-			// }
-			// else
-			// {
-			// 	
-			// }
-
-			// if (Input.IsActionPressed("Down"))
-			// {
-			// 	EmitSignal("Down", 0.3);
-			// }
 
 			if (!isFocused && GameTileMap.Tilemap != null)
 			{
@@ -271,6 +226,30 @@ public partial class ControllerInputManager : InputManager
 			}
 		}
 
+		if (enabled)
+		{
+			
+			if (Input.IsActionJustPressed("FocusLeft", true) && !isFocused)
+			{
+				EmitSignal("FocusLeft");
+			}
+			if (Input.IsActionJustPressed("FocusRight", true) && !isFocused)
+			{
+				EmitSignal("FocusRight");
+			}
+			
+			if (Input.IsActionJustPressed("FocusUp", true) && !isFocused)
+			{
+				EmitSignal("FocusUp");
+			}
+			
+			if (Input.IsActionJustPressed("FocusDown", true) && !isFocused)
+			{
+				EmitSignal("FocusDown");
+			}
+			
+		}
+
 	}
 
 	private bool InDeadZone(Vector2 relativePosition)
@@ -298,4 +277,5 @@ public partial class ControllerInputManager : InputManager
 		base.FocusEnter();
 		isFocused = true;
 	}
+	
 }
