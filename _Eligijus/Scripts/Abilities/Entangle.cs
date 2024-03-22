@@ -21,6 +21,7 @@ public partial class Entangle : BaseAction
     {
         UpdateAbilityButton(); 
         base.ResolveAbility(chunk); 
+        PlayAnimation("Forest4", chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
         RootDebuff rootDebuff = new RootDebuff(2); 
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(rootDebuff, _player); 

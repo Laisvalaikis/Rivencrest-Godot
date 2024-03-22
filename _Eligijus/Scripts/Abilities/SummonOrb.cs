@@ -32,6 +32,7 @@ public partial class SummonOrb : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayAnimation("Forest4", chunk);
         SpawnOrb(chunk);
         FinishAbility();
     }
