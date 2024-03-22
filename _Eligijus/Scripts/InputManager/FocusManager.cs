@@ -11,6 +11,7 @@ public partial class FocusManager : Node
         InputManager.Instance.FocusRight += FocusRight;
         InputManager.Instance.FocusUp += FocusUp;
         InputManager.Instance.FocusDown += FocusDown;
+        UIStack.Instance.CloseView += ResetFocus;
     }
     
     private void FocusLeft()
@@ -83,14 +84,20 @@ public partial class FocusManager : Node
     private void GetViewFocus()
     {
         View tempView = UIStack.Instance.GetCurrentView();
-        currentfocus = tempView.FirstFocused();
-        currentView = tempView;
+        // currentfocus = tempView.FirstFocused();
+        // currentView = tempView;
         
         // this is for saving button part of it
-        // if (tempView != currentView)
-        // {
-        //     currentfocus = tempView.FirstFocused();
-        //     currentView = tempView;
-        // }
+        if (tempView != currentView)
+        {
+            currentfocus = tempView.FirstFocused();
+            currentView = tempView;
+        }
+    }
+
+    private void ResetFocus()
+    {
+        currentfocus = null;
+        currentView = null;
     }
 }

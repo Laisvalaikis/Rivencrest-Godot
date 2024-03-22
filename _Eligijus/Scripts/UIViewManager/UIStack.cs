@@ -6,15 +6,17 @@ public partial class UIStack : Node
 {
 	public static UIStack Instance { get; private set; }
 	private List<View> _views;
-	public override void _Ready()
+	[Signal] public delegate void CloseViewEventHandler();
+
+	public override void _EnterTree()
 	{
+		base._EnterTree();
 		if (Instance == null)
 		{
 			Instance = this;
 			_views = new List<View>();
 		}
 	}
-
 	
 	public int AddView(View view)
 	{
@@ -57,10 +59,12 @@ public partial class UIStack : Node
 				_views[_views.Count - 1].GrabFocusStack();
 			}
 		}
+		EmitSignal("CloseView");
 	}
 	public static void Quit(int index)
 	{
 		Instance.QuitView(index);
+		
 	}
 
 	public static void ClearStack()

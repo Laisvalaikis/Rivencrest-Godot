@@ -20,7 +20,6 @@ public partial class View : Control
 	private bool _disabled = true;
 	private int buttonIndex = -1;
 	private View previousView;
-	private Control focus;
 	public override void _Ready()
 	{
 		if (viewEnabledOnStart)
@@ -38,19 +37,16 @@ public partial class View : Control
 		if (openFocusCurrent != null && openFocusCurrent.IsVisibleInTree())
 		{
 			openFocusCurrent.GrabFocus();
-			focus = openFocusCurrent;
 		}
 		else if (openFocus != null && openFocus.IsVisibleInTree())
 		{
 			openFocus.GrabFocus();
-			focus = openFocus;
 		}
 		else
 		{
 			if (secondaryOpenFocus != null)
 			{
 				secondaryOpenFocus.GrabFocus();
-				focus = secondaryOpenFocus;
 			}
 		}
 	}
@@ -125,7 +121,6 @@ public partial class View : Control
 		if (!_disabled)
 		{
 			openFocusCurrent = null;
-			focus = null;
 			// previousView = null;
 			if (viewCanBeDisabled)
 			{
@@ -149,7 +144,6 @@ public partial class View : Control
 		{
 			DeselectPressedButton();
 			openFocusCurrent = null;
-			focus = null;
 			previousView = null;
 			if (viewCanBeDisabled)
 			{
@@ -240,9 +234,24 @@ public partial class View : Control
 		_disabled = true;
 	}
 
-	public Control FirstFocused()
+	public Control FirstFocused() // problema ne cia
 	{
-		return focus;
+		if (openFocusCurrent != null && openFocusCurrent.IsVisibleInTree())
+		{
+			return openFocusCurrent;
+		}
+		else if (openFocus != null && openFocus.IsVisibleInTree())
+		{
+			return openFocus;
+		}
+		else
+		{
+			if (secondaryOpenFocus != null)
+			{
+				return secondaryOpenFocus;
+			}
+		}
+		return null;
 	}
 
 }
