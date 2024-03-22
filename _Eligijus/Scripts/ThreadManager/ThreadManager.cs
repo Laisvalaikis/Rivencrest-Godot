@@ -82,7 +82,7 @@ public partial class ThreadManager : Node
 			}
 			else
 			{
-				workingIndex = waitingThreads.Count - 1;
+				workingIndex = workingThreads.Count - 1;
 			}
 		}
 	}

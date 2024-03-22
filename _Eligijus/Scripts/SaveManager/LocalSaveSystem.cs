@@ -73,7 +73,9 @@ public static class LocalSaveSystem
 					using (StreamReader reader = new StreamReader(stream))
 					{
 						dataToLoad = reader.ReadToEnd();
+						reader.Close();
 					}
+					stream.Close();
 				}
 				 
 				// dataToLoad = EncryptDecrypt(dataToLoad);
