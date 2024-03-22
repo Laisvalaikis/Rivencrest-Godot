@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bdm6rx8r4u3n4"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bdm6rx8r4u3n4"]
 
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_p870t"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/OilSlow.cs" id="1_psjxm"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_lxxlw"]
 
 [resource]
 script = ExtResource("1_psjxm")
@@ -10,6 +12,9 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = null
+AttackAnimation = "Attack"
+animatedObjectPrefab = ExtResource("1_p870t")
+animatedObjectPrefabData = ExtResource("2_lxxlw")
 minAttackDamage = 2
 maxAttackDamage = 3
 attackRange = 3
