@@ -37,24 +37,25 @@ public partial class ActionManager : Node
 		RefillActionPoints();
 		_abilities = new Array<Ability>();
 		_baseAbilities = new Array<Ability>();
-		Array<Ability> allAbilities = new Array<Ability>();
+		Array<Ability> abilities = new Array<Ability>();
 		Array<Ability> baseAbilities = _player.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().baseAbilities;
 		_unlockedAbilityList = _player.unlockedAbilityList;
-		allAbilities.AddRange(baseAbilities);
-		allAbilities.AddRange(_player.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().abilities);
-		if (allAbilities.Count != 0)
+		abilities = _player.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().abilities;
+		if (abilities.Count + baseAbilities.Count != 0)
 		{
-			for (int i = 0; i < allAbilities.Count; i++)
+			for (int i = 0; i < baseAbilities.Count; i++)
 			{
-				Ability ability = new Ability(allAbilities[i]);
-				int unlockedAbilityIndex = i - baseAbilities.Count;
-				if (i >= baseAbilities.Count && ability.enabled &&  i < _player.unlockedAbilityList.Count && _player.unlockedAbilityList[unlockedAbilityIndex].abilityConfirmed)
+				Ability ability = new Ability(baseAbilities[i]);
+				SetupAbility(ability, i);
+			}
+			
+			for (int i = 0; i < abilities.Count; i++)
+			{
+				int index = i + baseAbilities.Count;
+				Ability ability = new Ability(abilities[i]);
+				if (ability.enabled && _player.unlockedAbilityList[i].abilityConfirmed)
 				{
-					SetupAbility(ability, i);
-				}
-				else if(i < baseAbilities.Count)
-				{
-					SetupAbility(ability, i);
+					SetupAbility(ability, index);
 				}
 			}
 			
