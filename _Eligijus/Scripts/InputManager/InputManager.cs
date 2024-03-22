@@ -23,8 +23,12 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void CameraControlEventHandler(Vector2 relativePosition, float movementSpeed);
 	[Signal] public delegate void PauseMenuEventHandler();
 	[Signal] public delegate void EndTurnEventHandler();
-	
 	[Signal] public delegate void UndoEventHandler();
+	// focus handling
+	[Signal] public delegate void FocusLeftEventHandler();
+	[Signal] public delegate void FocusRightEventHandler();
+	[Signal] public delegate void FocusUpEventHandler();
+	[Signal] public delegate void FocusDownEventHandler();
 	
 	protected bool enabled = false;
 
