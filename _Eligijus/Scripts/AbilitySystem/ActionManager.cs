@@ -49,7 +49,7 @@ public partial class ActionManager : Node
 				SetupAbility(ability, i);
 			}
 			
-			for (int i = 0; i < abilities.Count; i++)
+			for (int i = 0; i < abilities.Count && _player.unlockedAbilityList.Count > 0; i++)
 			{
 				int index = i + baseAbilities.Count;
 				Ability ability = new Ability(abilities[i]);
