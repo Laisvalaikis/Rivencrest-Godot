@@ -25,6 +25,7 @@ public partial class ChainHook : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk); 
+		PlayAnimation("Burgundy2", chunk);
 		UpdateAbilityButton(); 
 		Player character = chunk.GetCurrentPlayer(); 
 		if (character != null && character.objectInformation.GetPlayerInformation().GetInformationType() != 

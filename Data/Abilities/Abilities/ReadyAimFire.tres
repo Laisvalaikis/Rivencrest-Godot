@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bean628p7yf62"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bean628p7yf62"]
 
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_2gent"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/ReadyAimFire.cs" id="1_pdjh4"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_4ewi2"]
 
 [resource]
 script = ExtResource("1_pdjh4")
@@ -10,6 +12,9 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 2
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Attack"
+animatedObjectPrefab = ExtResource("1_2gent")
+animatedObjectPrefabData = ExtResource("2_4ewi2")
 minAttackDamage = 200
 maxAttackDamage = 200
 attackRange = 2
