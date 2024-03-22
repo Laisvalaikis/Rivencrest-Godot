@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://domol825w4mr4"]
 
-[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_htv71"]
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_1qhto"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/ThrowSpear.cs" id="1_rb73k"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_2oruw"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_g7lqu"]
 [ext_resource type="PackedScene" uid="uid://bbicufobukyxn" path="res://_Aurimas/AbilityPrefabs/PurpleSpear.tscn" id="2_yly7w"]
 [ext_resource type="Resource" uid="uid://7nrdyijrso0f" path="res://_Aurimas/PurpleSpear/PurpleSpearData.tres" id="3_ita0p"]
 
@@ -17,8 +17,8 @@ isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
 AttackAnimation = "ThrowSpear"
-animatedObjectPrefab = ExtResource("1_htv71")
-animatedObjectPrefabData = ExtResource("2_2oruw")
+animatedObjectPrefab = ExtResource("1_1qhto")
+animatedObjectPrefabData = ExtResource("2_g7lqu")
 minAttackDamage = 5
 maxAttackDamage = 5
 attackRange = 2

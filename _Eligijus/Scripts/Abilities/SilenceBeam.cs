@@ -29,6 +29,7 @@ public partial class SilenceBeam : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk);
+		PlayAnimation("Pink1", chunk);
 		UpdateAbilityButton();
 		_index = FindChunkIndex(chunk);
 		if (_index != -1)

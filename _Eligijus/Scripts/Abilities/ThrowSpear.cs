@@ -25,6 +25,7 @@ public partial class ThrowSpear : BaseAction
 	{
 		base.ResolveAbility(chunk);
 		PlayerAbilityAnimation();
+		PlayAnimation("Purple1", chunk);
 		int index = FindChunkIndex(chunk);
 		if (index != -1)
 		{

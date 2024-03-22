@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://4p42hrelfmr1"]
 
-[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_swxta"]
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_4d43x"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SpearPulse.cs" id="1_tvnma"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_gspga"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_yeedu"]
 
 [resource]
 script = ExtResource("1_tvnma")
@@ -13,8 +13,8 @@ isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
 AttackAnimation = "SpearPulse"
-animatedObjectPrefab = ExtResource("1_swxta")
-animatedObjectPrefabData = ExtResource("2_gspga")
+animatedObjectPrefab = ExtResource("1_4d43x")
+animatedObjectPrefabData = ExtResource("2_yeedu")
 minAttackDamage = 20
 maxAttackDamage = 20
 attackRange = 1

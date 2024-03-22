@@ -31,6 +31,7 @@ public partial class SpearPulse : BaseAction
         }
         base.ResolveAbility(chunk);
         PlayerAbilityAnimation();
+        PlayAnimation("Purple1", chunk);
         FinishAbility();
     }
     
