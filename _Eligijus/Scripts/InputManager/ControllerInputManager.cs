@@ -56,6 +56,26 @@ public partial class ControllerInputManager : InputManager
 			{
 				EmitSignal("ReleaseFocus");
 			}
+			
+			if (Input.IsActionJustPressed("FocusLeft") && !isFocused)
+			{
+				EmitSignal("FocusLeft");
+			}
+			
+			if (Input.IsActionJustPressed("FocusRight") && !isFocused)
+			{
+				EmitSignal("FocusRight");
+			}
+			
+			if (Input.IsActionJustPressed("FocusUp") && !isFocused)
+			{
+				EmitSignal("FocusUp");
+			}
+			
+			if (Input.IsActionJustPressed("FocusDown") && !isFocused)
+			{
+				EmitSignal("FocusDown");
+			}
 
 			if (!isFocused)
 			{

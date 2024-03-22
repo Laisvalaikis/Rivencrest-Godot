@@ -6,6 +6,8 @@ public partial class CreateSave : Node
 	private BaseButton buttonForCreation;
 	[Export]
 	private SaveManager _saveManager;
+	[Export]
+	private int saveTitleMaxLength = 8;
 	private int _difficulty;
 	private Color _color;
 	private string _teamName;

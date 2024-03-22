@@ -20,6 +20,7 @@ public partial class View : Control
 	private bool _disabled = true;
 	private int buttonIndex = -1;
 	private View previousView;
+	private Control focus;
 	public override void _Ready()
 	{
 		if (viewEnabledOnStart)
@@ -37,14 +38,20 @@ public partial class View : Control
 		if (openFocusCurrent != null && openFocusCurrent.IsVisibleInTree())
 		{
 			openFocusCurrent.GrabFocus();
+			focus = openFocusCurrent;
 		}
 		else if (openFocus != null && openFocus.IsVisibleInTree())
 		{
 			openFocus.GrabFocus();
+			focus = openFocus;
 		}
 		else
 		{
-			secondaryOpenFocus?.GrabFocus();
+			if (secondaryOpenFocus != null)
+			{
+				secondaryOpenFocus.GrabFocus();
+				focus = secondaryOpenFocus;
+			}
 		}
 	}
 
@@ -229,6 +236,11 @@ public partial class View : Control
 		}
 
 		_disabled = true;
+	}
+
+	public Control FirstFocused()
+	{
+		return focus;
 	}
 
 }

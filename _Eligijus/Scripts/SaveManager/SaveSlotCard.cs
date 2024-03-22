@@ -18,6 +18,8 @@ public partial class SaveSlotCard : Control
 	private SaveManager _saveManager;
 	[Export] 
 	private Label _slotTitle;
+	[Export]
+	private Button backButton;
 	// Start is called before the first frame update
 	public override void _Ready()
 	{
@@ -85,6 +87,11 @@ public partial class SaveSlotCard : Control
 
 	private void FocusSlotMenu()
 	{
+		if (backButton != null) 
+		{
+			backButton.FocusNeighborTop = _slotMenu.first.GetPath();	
+		}
+
 		if (_prievCard._slotMenu.IsVisibleInTree())
 		{
 			_slotMenu.first.FocusNeighborLeft = _prievCard._slotMenu.last.GetPath();
@@ -106,6 +113,11 @@ public partial class SaveSlotCard : Control
 
 	private void FocusAddButton()
 	{
+		if (backButton != null) 
+		{
+			backButton.FocusNeighborTop = _addButton.GetPath();	
+		}
+		
 		if (_prievCard._slotMenu.IsVisibleInTree())
 		{
 			_addButton.FocusNeighborLeft = _prievCard._slotMenu.last.GetPath();
