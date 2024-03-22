@@ -74,7 +74,9 @@ public partial class FocusManager : Node
                 currentfocus.ReleaseFocus();
                 temp.GrabFocus();
                 currentfocus = temp;
+                
             }
+            
         }
     }
 
