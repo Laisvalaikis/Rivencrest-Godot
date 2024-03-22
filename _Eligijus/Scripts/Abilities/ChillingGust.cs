@@ -26,7 +26,8 @@ public partial class ChillingGust : BaseAction
     {
         UpdateAbilityButton(); 
         base.ResolveAbility(chunk);
-        
+        //PlayAnimation("White1", chunk);
+        PlayAnimation("White2", chunk);
         if (IsAllegianceSame(chunk)) 
         { 
             ProtectedBuff buff = new ProtectedBuff(); 

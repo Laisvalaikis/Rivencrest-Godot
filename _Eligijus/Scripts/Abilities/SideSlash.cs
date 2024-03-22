@@ -23,6 +23,7 @@ public partial class SideSlash : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
+        PlayAnimation("Undead5", chunk);
         int index = FindChunkIndex(chunk);
         if (index != -1)
         {

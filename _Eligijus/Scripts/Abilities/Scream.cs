@@ -21,6 +21,7 @@ public partial class Scream : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayAnimation("Red1", chunk);
         ChunkData current = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
         Side side = ChunkSideByCharacter(current, chunk);
         (int x, int y) sideVector = GetSideVector(side);
