@@ -45,15 +45,14 @@ public partial class PortraitBar : TextureRect
 
 	public void SetupCharacters()
 	{
-		townPortraits[0].FocusNeighborTop = focusUp.GetPath();
-		focusUp.FocusNeighborBottom = townPortraits[0].GetPath();
-		focusLeft.FocusNeighborRight = townPortraits[0].GetPath();
-		nextPageButton.FocusNeighborLeft = focusLeft.GetPath();
-		previousPageButton.FocusNeighborLeft = focusLeft.GetPath();
-		
-		
 		if (_data.Characters.Count > 0)
 		{
+			townPortraits[0].FocusNeighborTop = focusUp.GetPath();
+			focusUp.FocusNeighborBottom = townPortraits[0].GetPath();
+			focusLeft.FocusNeighborRight = townPortraits[0].GetPath();
+			nextPageButton.FocusNeighborLeft = focusLeft.GetPath();
+			previousPageButton.FocusNeighborLeft = focusLeft.GetPath();
+			
 			for (int i = 0; i < _data.Characters.Count; i++)
 			{
 				if (i < townPortraits.Count)
