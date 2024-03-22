@@ -26,6 +26,7 @@ public partial class StunAttack : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayAnimation("Burgundy1", chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         DealDamage(chunk, spellDamage);
         RootDebuff debuff = new RootDebuff(1);

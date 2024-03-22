@@ -1,7 +1,9 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cuvglqoj3h5g0"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cuvglqoj3h5g0"]
 
 [ext_resource type="Resource" uid="uid://c50yw217sifjj" path="res://Data/Debuffs/PlayerStun.tres" id="1_6phnt"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/StunAttack.cs" id="1_wysyd"]
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="2_jcio7"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="3_hh5fe"]
 
 [resource]
 script = ExtResource("1_wysyd")
@@ -13,6 +15,9 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Attack"
+animatedObjectPrefab = ExtResource("2_jcio7")
+animatedObjectPrefabData = ExtResource("3_hh5fe")
 minAttackDamage = 2
 maxAttackDamage = 3
 attackRange = 1
