@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://oafcf5g7ik8n" path="res://Data/Abilities/IceQuake.tres" id="6_gpuqp"]
 [ext_resource type="Resource" uid="uid://ivxx4faoqdu7" path="res://Data/Abilities/CryoFreeze.tres" id="7_j81vh"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_atsw0"]
-[ext_resource type="Resource" uid="uid://vrp3xvxfpts3" path="res://Data/Abilities/BlockAbility.tres" id="9_3mue2"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_uedvr"]
 [ext_resource type="Resource" uid="uid://c6racdua8md0f" path="res://Data/Blessings/Swiftness.tres" id="10_4g7nm"]
 [ext_resource type="Texture2D" uid="uid://c8i7pcxyauq3q" path="res://Data/PlayerResource/Cayan/Textures/CharacterSprite.tres" id="10_owbp1"]
 [ext_resource type="Texture2D" uid="uid://bqqeua0j0kfw2" path="res://Data/PlayerResource/Cayan/Textures/RoleSprite.tres" id="11_5ejxs"]
@@ -26,7 +26,7 @@ CharacterSplashArt = ExtResource("2_1a7ki")
 CroppedSplashArt = ExtResource("3_dsavw")
 characterSprite = ExtResource("10_owbp1")
 roleSprite = ExtResource("11_5ejxs")
-baseAbilities = Array[Resource]([ExtResource("8_atsw0"), ExtResource("9_3mue2")])
+baseAbilities = Array[Resource]([ExtResource("8_atsw0"), ExtResource("9_uedvr")])
 maxHealth = 22
 accuracy = 100
 visionRange = 3

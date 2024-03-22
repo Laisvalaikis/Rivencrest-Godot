@@ -26,6 +26,7 @@ public partial class Execute : BaseAction
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
         } 
         base.ResolveAbility(chunk); 
+        PlayAnimation("Red2", chunk);
         FinishAbility();
     }
 

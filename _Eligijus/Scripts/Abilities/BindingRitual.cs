@@ -21,6 +21,7 @@ public partial class BindingRitual : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
+        PlayAnimation("Undead6", chunk);
         foreach (ChunkData tile in GetChunkList())
         {
             if (CanBeUsedOnTile(tile))

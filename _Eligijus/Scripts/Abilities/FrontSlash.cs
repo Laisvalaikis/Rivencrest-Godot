@@ -17,6 +17,7 @@ public partial class FrontSlash : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         base.ResolveAbility(chunk);
+        PlayAnimation("Undead4", chunk);
         int index = FindChunkIndex(chunk);
         if (index != -1)
         {

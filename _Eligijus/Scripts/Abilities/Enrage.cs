@@ -33,6 +33,7 @@ public partial class Enrage : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{ 
 		base.ResolveAbility(chunk); 
+		PlayAnimation("Red1", chunk);
 		UpdateAbilityButton(); 
 		Player targetPlayer = chunk.GetCurrentPlayer(); 
 		targetPlayer.AddMovementPoints(1); 
