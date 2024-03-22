@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7dqg2fyc0d54"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://7dqg2fyc0d54"]
 
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_i0c23"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/PowerShot.cs" id="1_u5v6d"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_sss8n"]
 
 [resource]
 script = ExtResource("1_u5v6d")
@@ -10,6 +12,9 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Attack"
+animatedObjectPrefab = ExtResource("1_i0c23")
+animatedObjectPrefabData = ExtResource("2_sss8n")
 minAttackDamage = 5
 maxAttackDamage = 7
 attackRange = 3

@@ -36,6 +36,7 @@ public partial class AcidRain : BaseAction
 			} 
 		}
 		base.ResolveAbility(chunk); 
+		PlayAnimation("Forest3", chunk);
 		FinishAbility();
 	}
 }

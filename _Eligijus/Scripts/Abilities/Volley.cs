@@ -44,6 +44,7 @@ public partial class Volley : BaseAction
             }
 
             GameTileMap.Tilemap.MoveSelectedCharacter(TileToDashTo(index), _player);
+            PlayAnimation("Forest3", chunk);
             FinishAbility();
             ResetCharacterSpriteRendererAndTilePreview();
         }
