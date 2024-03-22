@@ -125,6 +125,7 @@ public partial class View : Control
 		if (!_disabled)
 		{
 			openFocusCurrent = null;
+			focus = null;
 			// previousView = null;
 			if (viewCanBeDisabled)
 			{
@@ -148,6 +149,7 @@ public partial class View : Control
 		{
 			DeselectPressedButton();
 			openFocusCurrent = null;
+			focus = null;
 			previousView = null;
 			if (viewCanBeDisabled)
 			{

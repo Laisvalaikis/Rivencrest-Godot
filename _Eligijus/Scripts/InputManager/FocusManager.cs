@@ -83,10 +83,14 @@ public partial class FocusManager : Node
     private void GetViewFocus()
     {
         View tempView = UIStack.Instance.GetCurrentView();
-        if (tempView != currentView)
-        {
-            currentfocus = tempView.FirstFocused();
-            currentView = tempView;
-        }
+        currentfocus = tempView.FirstFocused();
+        currentView = tempView;
+        
+        // this is for saving button part of it
+        // if (tempView != currentView)
+        // {
+        //     currentfocus = tempView.FirstFocused();
+        //     currentView = tempView;
+        // }
     }
 }
