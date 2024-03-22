@@ -11,6 +11,7 @@ public partial class BlockedBuff : BaseBuff
     public BlockedBuff(Player playerWhoTakesDamage)
     {
         this.playerWhoTakesDamage = playerWhoTakesDamage;
+        buffAnimation = "Blocked";
     }
     public BlockedBuff(BlockedBuff buff): base(buff)
     {

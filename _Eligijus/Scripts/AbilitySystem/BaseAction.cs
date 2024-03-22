@@ -508,14 +508,11 @@ public abstract partial class BaseAction: TileAction
 			animatedObject.QueueFree();
 		}
 		
-		//put this bitch in baseaction
-		//make sure to have variables - defaultaction and attackaction
-		//veliau i playerinformation kur hit animacija ideti defaultaction mayhaps
 		public async Task PlayerAbilityAnimation()
 		{
 			AnimationPlayer animationPlayer = _player.objectInformation.GetObjectInformation().animationPlayer;
 			animationPlayer.Play(AttackAnimation);
 			await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(AttackAnimation).Length-0.1f));
-			animationPlayer.Play("Idle");
+			animationPlayer.Play(_player.CurrentIdleAnimation);
 		}
 	}

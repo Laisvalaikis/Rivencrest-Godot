@@ -11,6 +11,8 @@ public partial class Object : Node2D
 	private Array<Ability> _abilities;
 	protected Array<PlayerBlessing> _playerBlessings;
 	protected int _visionRange;
+	public string CurrentIdleAnimation = "Idle";
+	public string CurrentHitAnimation = "Hit";
 	public void DisableObject()
 	{
 		Hide();

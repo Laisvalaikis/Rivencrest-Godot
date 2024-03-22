@@ -1,3 +1,7 @@
+using System;
+using System.Threading.Tasks;
+using Godot;
+
 namespace Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class StasisBuff : BaseBuff
@@ -23,10 +27,6 @@ public partial class StasisBuff : BaseBuff
         return buff;
     }
     
-    public override void Start()
-    {
-
-    }
     
     public override void ResolveBuff(ChunkData chunkData)
     {

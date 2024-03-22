@@ -1,18 +1,20 @@
+using System;
+using System.Threading.Tasks;
+using Godot;
+
 namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 //Reduces movement points of player by (two/2?)
 public partial class StasisDebuff : BaseDebuff
 {
-    private int slowBy=2;
     public StasisDebuff()
     {
 			
     }
     
-    public StasisDebuff(int lifetime, int slowBy)
+    public StasisDebuff(int lifetime)
     {
         this.lifetime = lifetime;
-        this.slowBy = slowBy;
     }
     
     public StasisDebuff(StasisDebuff debuff): base(debuff)
@@ -32,15 +34,34 @@ public partial class StasisDebuff : BaseDebuff
         return debuff;
     }
 	
-    public override void Start()
+    public override async void Start()
     {
+        _player.CurrentHitAnimation = "StasisHit";
+        _player.CurrentIdleAnimation = "StasisIdle";
+        AnimationPlayer animationPlayer = _player.objectInformation.GetObjectInformation().animationPlayer;
+        animationPlayer.Play("StasisStart");
+        await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("StasisStart").Length-0.1f));
+        animationPlayer.Play(_player.CurrentIdleAnimation);
+    }
 
+    public override async void OnRemove()
+    {
+        _player.CurrentHitAnimation = "Hit";
+        _player.CurrentIdleAnimation = "Idle";
+        AnimationPlayer animationPlayer = _player.objectInformation.GetObjectInformation().animationPlayer;
+        await Task.Delay(TimeSpan.FromSeconds(0.4f));
+        animationPlayer.Play("StasisExplode");
+        await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("StasisExplode").Length-0.1f));
+        animationPlayer.Play(_player.CurrentIdleAnimation);
     }
     
     public override void OnTurnStart()
     {
         base.OnTurnStart();
-        _player.SetMovementPoints(0);
-        _player.actionManager.RemoveAllActionPoints();
+        if (lifetime != lifetimeCount)
+        {
+            _player.SetMovementPoints(0);
+            _player.actionManager.RemoveAllActionPoints();
+        }
     }
 }

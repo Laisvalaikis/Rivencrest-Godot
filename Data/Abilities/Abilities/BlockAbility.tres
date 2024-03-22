@@ -12,6 +12,7 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Attack"
 animatedObjectPrefab = ExtResource("1_mym8e")
 animatedObjectPrefabData = ExtResource("2_45w8m")
 minAttackDamage = 0

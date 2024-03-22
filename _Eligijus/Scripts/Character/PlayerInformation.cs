@@ -38,11 +38,11 @@ public partial class PlayerInformation : ObjectInformation
 	{
 			if (damage != -1)
 			{
-				animationPlayer.Play("Hit");
-				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("Hit").Length));
+				animationPlayer.Play(_object.CurrentHitAnimation);
+				await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation(_object.CurrentHitAnimation).Length));
 				_health -= damage;
 				damageDealer.objectInformation.GetPlayerInformation().AddDamageXP(damage);
-				animationPlayer.Play("Idle");
+				animationPlayer.Play(_object.CurrentIdleAnimation);
 			}
 
 			if (_health <= 0) // DEATH

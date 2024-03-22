@@ -1,4 +1,8 @@
-﻿namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
+﻿using System;
+using System.Threading.Tasks;
+using Godot;
+
+namespace Rivencrestgodot._Eligijus.Scripts.Debuffs;
 
 public partial class BlockerDebuff : BaseDebuff
 {
@@ -29,8 +33,23 @@ public partial class BlockerDebuff : BaseDebuff
         return debuff;
     }
     
-    public override void Start()
+    public override async void Start()
     {
+        _player.CurrentIdleAnimation = "BlockIdle";
+        _player.CurrentHitAnimation = "BlockHit";
+        AnimationPlayer animationPlayer = _player.objectInformation.GetObjectInformation().animationPlayer;
+        animationPlayer.Play("BlockStart");
+        await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("BlockStart").Length-0.1f));
+        animationPlayer.Play(_player.CurrentIdleAnimation);
+    }
 
+    public override async void OnRemove()
+    {
+        AnimationPlayer animationPlayer = _player.objectInformation.GetObjectInformation().animationPlayer;
+        animationPlayer.Play("BlockToIdle");
+        await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("BlockToIdle").Length-0.1f));
+        _player.CurrentIdleAnimation = "Idle";
+        _player.CurrentHitAnimation = "Hit";
+        animationPlayer.Play(_player.CurrentIdleAnimation);
     }
 }

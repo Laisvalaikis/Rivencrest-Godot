@@ -8,7 +8,7 @@ public partial class BarrierBuff : BaseBuff
     }
     public BarrierBuff(BarrierBuff buff): base(buff)
     {
-        
+        buffAnimation = "Barrier"; //this bitch dont exist, cia per parametrus gal pavadinima
     }
     
     public override BaseBuff CreateNewInstance(BaseBuff baseBuff)

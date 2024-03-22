@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://chye72ji1eu2k"]
 
-[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_fsu2b"]
+[ext_resource type="PackedScene" path="res://Animations/VFXImpactObject.tscn" id="1_fsu2b"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/ChainHook.cs" id="1_l3v1a"]
-[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_3m55y"]
+[ext_resource type="Resource" path="res://Animations/VFXImpactData.tres" id="2_3m55y"]
 
 [resource]
 script = ExtResource("1_l3v1a")

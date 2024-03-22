@@ -36,7 +36,6 @@ public partial class CryoFreeze : BaseAction
 				ChunkData temp = GameTileMap.Tilemap.GetChunk(_player.GlobalPosition);
 				Thread thread = new Thread(() =>
 				{
-					// Thread.Sleep(40); // for animation
 					DamageAdjacent(temp);
 				});
 				thread.Start();
@@ -84,7 +83,7 @@ public partial class CryoFreeze : BaseAction
 	{ 
 		UpdateAbilityButton(); 
 		StasisBuff stasisBuff = new StasisBuff(); 
-		StasisDebuff stasisDebuff = new StasisDebuff(); 
+		StasisDebuff stasisDebuff = new StasisDebuff(1); 
 		_player.AddDebuff(stasisDebuff,_player); 
 		_player.AddBuff(stasisBuff); 
 		_player.SetMovementPoints(0); 

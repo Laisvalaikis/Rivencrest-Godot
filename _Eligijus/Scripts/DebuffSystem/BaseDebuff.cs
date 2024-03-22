@@ -13,7 +13,7 @@ public partial class BaseDebuff : Resource
 	
 	private Resource animatedObjectPrefab;
 	private ObjectData animatedObjectPrefabData;
-	protected string debuffAnimation;
+	protected string debuffAnimation="Empty";
 
 	private Object animatedObject;
 	public BaseDebuff()
