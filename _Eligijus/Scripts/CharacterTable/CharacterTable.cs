@@ -149,7 +149,7 @@ public partial class CharacterTable : Node
 			}
 		}
 		confirmAbility.Hide();
-		abilityButtons[0].FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
+		abilityButtons[0].FocusNeighborTop = exit.GetPath();
 		abilityButtons[abilityCount - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
 		abilityButtons[abilityCount - 1].GrabFocus();
 		UpdateCharacterPointCorner();
@@ -203,6 +203,12 @@ public partial class CharacterTable : Node
 					abilityButtons[i].Disabled = true;
 				}
 
+				if (i > 0)
+				{
+					abilityButtons[i].FocusNeighborTop = abilityButtons[i - 1].GetPath();
+					abilityButtons[i - 1].FocusNeighborBottom = abilityButtons[i].GetPath();
+				}
+
 				if (!character.unlockedAbilities[i].abilityUnlocked)
 				{
 					Color color = abilityButtonBackgroundImages[i].SelfModulate - new Color(0.2f, 0.2f, 0.2f, 0f);
@@ -236,10 +242,22 @@ public partial class CharacterTable : Node
 		
 		if (abilityCount == 0)
 		{
-			nameInput.FocusNeighborLeft = leftArrow.GetPath();
+			if (sellButton.IsVisibleInTree())
+			{
+				nameInput.FocusNeighborLeft = sellButton.GetPath();
+			}
+			else
+			{
+				nameInput.FocusNeighborLeft = leftArrow.GetPath();
+			}
 			nameInput.FocusNeighborRight = rightArrow.GetPath();
 			nameInput.FocusNeighborTop = exit.GetPath();
 			exit.FocusNeighborBottom = nameInput.GetPath();
+			exit.GrabFocus();
+		}
+		else
+		{
+			nameInput.FocusNeighborRight = abilityButtons[0].GetPath();
 		}
 
 		if (recruitmentCenterTable != null && townHall != null)
@@ -356,7 +374,7 @@ public partial class CharacterTable : Node
 		if (_data.Characters[characterIndex].toConfirmAbilities > 0)
 		{
 			confirmAbility.Show();
-			abilityButtons[0].FocusNeighborTop = confirmAbility.GetPath();
+			abilityButtons[0].FocusNeighborTop = exit.GetPath();
 			abilityButtons[abilityCount - 1].FocusNeighborBottom = confirmAbility.GetPath();
 			confirmAbility.FocusNeighborBottom = abilityButtons[0].GetPath();
 			confirmAbility.FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
@@ -364,7 +382,7 @@ public partial class CharacterTable : Node
 		else if (_data.Characters[characterIndex].toConfirmAbilities <= 0 && abilityCount > 0)
 		{
 			confirmAbility.Hide();
-			abilityButtons[0].FocusNeighborTop = abilityButtons[abilityCount - 1].GetPath();
+			abilityButtons[0].FocusNeighborTop = exit.GetPath();
 			abilityButtons[abilityCount - 1].FocusNeighborBottom = abilityButtons[0].GetPath();
 		}
 		else if (_data.Characters[characterIndex].toConfirmAbilities <= 0 && abilityCount == 0)
@@ -375,6 +393,11 @@ public partial class CharacterTable : Node
 		if (characterIndex > 0)
 		{
 			leftArrow.Show();
+			if (!sellButton.IsVisibleInTree())
+			{
+				leftArrow.FocusNeighborRight = nameInput.GetPath();
+				nameInput.FocusNeighborLeft = leftArrow.GetPath();
+			}
 		}
 		else
 		{

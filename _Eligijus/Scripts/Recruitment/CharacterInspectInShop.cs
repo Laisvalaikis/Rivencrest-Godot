@@ -35,6 +35,8 @@ public partial class CharacterInspectInShop : Node
 	private HelpTable helpTable;
 	[Export] 
 	private View view;
+	[Export]
+	private Button exit;
 	private int _currentCharacterIndex = 0;
 	private int _currentCharacterInShop;
 	private int _abilityCount = 0;
@@ -157,7 +159,17 @@ public partial class CharacterInspectInShop : Node
 				_characterAbilityRecruits[i].Hide();
 			}
 		}
-		
+
+		if (_abilityCount == 0)
+		{
+			exit.GrabFocus();
+		}
+		else
+		{
+			exit.FocusNeighborBottom = _characterAbilityRecruits[0].GetPath();
+			_characterAbilityRecruits[0].FocusNeighborTop = exit.GetPath();
+		}
+
 		view.OpenViewCurrentButton(view.GetPathTo(recruitment.iconButtons[index]));
 		view.OpenView();
 		
