@@ -319,6 +319,7 @@ public partial class CharacterTable : Node
 	
 	public void OnLeftArrowClick()
 	{
+		
 		UndoAbilitySelection(characterIndex);
 		portraitBar.ToggleDeSelectButton(characterIndex);
 		int newCharacterIndex = Mathf.Clamp(characterIndex - 1, 0, _data.Characters.Count - 1);
