@@ -254,4 +254,9 @@ public partial class View : Control
 		return null;
 	}
 
+	public void SetOpenFocus(Control focus)
+	{
+		openFocus = focus;
+	}
+
 }

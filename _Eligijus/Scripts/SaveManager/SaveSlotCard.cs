@@ -5,6 +5,8 @@ using Godot;
 public partial class SaveSlotCard : Control
 {
 	[Export]
+	private View _view;
+	[Export]
 	private SaveSlotCard _prievCard;
 	[Export]
 	private SaveSlotCard _nexCard;
@@ -47,10 +49,12 @@ public partial class SaveSlotCard : Control
 		if (_slotMenu.IsVisibleInTree())
 		{
 			_slotMenu.first.GrabFocus();
+			_view.SetOpenFocus(_slotMenu.first);
 		}
 		else
 		{
 			_addButton.GrabFocus();
+			_view.SetOpenFocus(_addButton);
 		}
 	}
 
