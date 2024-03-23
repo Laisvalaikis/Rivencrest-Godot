@@ -259,4 +259,9 @@ public partial class View : Control
 		openFocus = focus;
 	}
 
+	public void ResetFocus()
+	{
+		openFocusCurrent = null;
+	}
+
 }

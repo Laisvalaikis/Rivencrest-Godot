@@ -326,10 +326,12 @@ public partial class CharacterTable : Node
 		DisplayCharacterTable(newCharacterIndex);
 		UpdateTable();
 		UpdateAllAbilities();
-		OpenView();
+		// OpenView();
 		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollDownByCharacterIndex(newCharacterIndex);
-		view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
+		// view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
+		view.OpenViewCurrentButton(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
+		view.GrabOpenFocus();
 	}
 
 	public void OnRightArrowClick()
@@ -340,10 +342,12 @@ public partial class CharacterTable : Node
 		DisplayCharacterTable(newCharacterIndex);
 		UpdateTable();
 		UpdateAllAbilities();
-		OpenView();
+		// OpenView();
 		portraitBar.ToggleSelectButton(newCharacterIndex);
 		portraitBar.ScrollUpByCharacterIndex(newCharacterIndex);
-		view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
+		// view.ViewFocus(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
+		view.OpenViewCurrentButton(view.GetPathTo(portraitBar.GetPortraitButtonByIndex(newCharacterIndex)));
+		view.GrabOpenFocus();
 	}
 
 	// until this everything is fixed
@@ -403,6 +407,14 @@ public partial class CharacterTable : Node
 		else
 		{
 			leftArrow.Hide();
+			// if (abilityButtons[0].IsVisibleInTree())
+			// {
+			// 	abilityButtons[0].GrabFocus();
+			// }
+			// else
+			// {
+			// 	nameInput.GrabFocus();
+			// }
 		}
 
 		if (characterIndex < _data.Characters.Count - 1)
@@ -412,6 +424,14 @@ public partial class CharacterTable : Node
 		else
 		{
 			rightArrow.Hide();
+			// if (abilityButtons[0].IsVisibleInTree())
+			// {
+			// 	abilityButtons[0].GrabFocus();
+			// }
+			// else
+			// {
+			// 	nameInput.GrabFocus();
+			// }
 		}
 		
 		if (_data.Characters.Count > 3)
