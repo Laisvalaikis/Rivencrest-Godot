@@ -34,7 +34,12 @@ public partial class UIStack : Node
 
 	public View GetCurrentView()
 	{
-		return _views[Instance._views.Count - 1];
+		if (_views.Count > 0)
+		{
+			return _views[Instance._views.Count - 1];
+		}
+
+		return null;
 	}
 
 	public void QuitView(int index)

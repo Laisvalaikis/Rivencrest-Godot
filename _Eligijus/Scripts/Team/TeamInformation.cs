@@ -138,12 +138,14 @@ public partial class TeamInformation : Control
 	public void FocusFirstCharacter()
 	{
 		pvpCharacterSelects[0].GrabFocus();
+		FocusManager.Instance.SetCurrentFocus(pvpCharacterSelects[0]);
 		characterFocus = true;
 	}
 	
 	public void ReleaseFocusFirstCharacter()
 	{
 		characterFocus = false;
+		FocusManager.Instance.ResetFocus();
 	}
 
 	public bool IsFocusedOnFirstCharacter()
