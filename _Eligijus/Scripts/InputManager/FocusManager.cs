@@ -81,7 +81,7 @@ public partial class FocusManager : Node
                 currentfocus.ReleaseFocus();
                 temp.GrabFocus();
                 currentfocus = temp;
-                
+                GD.Print("");
             }
             
         }
@@ -107,12 +107,9 @@ public partial class FocusManager : Node
 
     public void ResetFocus()
     {
+        currentfocus?.ReleaseFocus();
         currentfocus = null;
         currentView = null;
     }
-
-    public void SetCurrentFocus(Control focus)
-    {
-        currentfocus = focus;
-    }
+    
 }

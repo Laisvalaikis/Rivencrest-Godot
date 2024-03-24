@@ -18,6 +18,7 @@ public partial class ControllerInputManager : InputManager
 	private bool isFocused = false;
 	private double timer = 0;
 	private Vector2 relativePositionInput = Vector2.Zero;
+	private bool inGameFocus = false;
 	
 	public override void _Input(InputEvent @event)
 	{
@@ -50,14 +51,26 @@ public partial class ControllerInputManager : InputManager
 			if (Input.IsActionJustPressed("ReleaseFocus") && !isFocused)
 			{
 				EmitSignal("ReleaseFocusWhenNotFocused");
+				inGameFocus = false;
+				EmitSignal("EnableSelector", _mousePosition);
+				if (inGameFocus)
+				{
+					FocusManager.Instance.ResetFocus();
+				}
 			}
 			
 			if (Input.IsActionJustPressed("ReleaseFocus") && isFocused)
 			{
 				EmitSignal("ReleaseFocus");
+				inGameFocus = false;
+				EmitSignal("EnableSelector", _mousePosition);
+				if (inGameFocus)
+				{
+					FocusManager.Instance.ResetFocus();
+				}
 			}
 			
-			if (!isFocused)
+			if (!isFocused && !inGameFocus)
 			{
 
 				if (Input.IsActionJustPressed("Select"))
@@ -105,7 +118,7 @@ public partial class ControllerInputManager : InputManager
 				EmitSignal("Undo");
 			}
 
-			if (!isFocused && GameTileMap.Tilemap != null)
+			if (!isFocused && !inGameFocus && GameTileMap.Tilemap != null)
 			{
 				
 				if (!_tileSelectionClicked && !Input.IsActionJustPressed("CameraMovementRight") &&
@@ -142,6 +155,8 @@ public partial class ControllerInputManager : InputManager
 			if (Input.IsActionJustPressed("CharacterFocusInGame"))
 			{
 				EmitSignal("CharacterFocusInGame");
+				inGameFocus = true;
+				EmitSignal("DisableSelector", _mousePosition);
 			}
 
 			if (Input.IsActionJustPressed("Exit"))
@@ -198,7 +213,7 @@ public partial class ControllerInputManager : InputManager
 	{
 		base._PhysicsProcess(delta);
 
-		if (enabled && !isFocused && GameTileMap.Tilemap != null)
+		if (enabled && !isFocused && !inGameFocus && GameTileMap.Tilemap != null)
 		{
 			if (Input.IsActionPressed("CameraMovementUp", true) || Input.IsActionPressed("CameraMovementDown", true) ||
 			    Input.IsActionPressed("CameraMovementRight", true) || Input.IsActionPressed("CameraMovementLeft", true))
@@ -226,24 +241,24 @@ public partial class ControllerInputManager : InputManager
 			}
 		}
 
-		if (enabled)
+		if (enabled && !isFocused && inGameFocus)
 		{
 			
-			if (Input.IsActionJustPressed("FocusLeft", true) && !isFocused)
+			if (Input.IsActionJustPressed("FocusLeft", true))
 			{
 				EmitSignal("FocusLeft");
 			}
-			if (Input.IsActionJustPressed("FocusRight", true) && !isFocused)
+			if (Input.IsActionJustPressed("FocusRight", true))
 			{
 				EmitSignal("FocusRight");
 			}
 			
-			if (Input.IsActionJustPressed("FocusUp", true) && !isFocused)
+			if (Input.IsActionJustPressed("FocusUp", true))
 			{
 				EmitSignal("FocusUp");
 			}
 			
-			if (Input.IsActionJustPressed("FocusDown", true) && !isFocused)
+			if (Input.IsActionJustPressed("FocusDown", true))
 			{
 				EmitSignal("FocusDown");
 			}

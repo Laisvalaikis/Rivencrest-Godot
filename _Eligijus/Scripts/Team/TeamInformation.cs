@@ -4,6 +4,7 @@ using Godot;
 using Godot.Collections;
 public partial class TeamInformation : Control
 {
+	[Export] private View view;
 	[Export] private Button focusLeft;
 	[Export] private Button focusRight;
 	[Export] private SelectAction selectAction;
@@ -24,7 +25,7 @@ public partial class TeamInformation : Control
 		InputManager.Instance.ChangeNextCharacter += NextCharacter;
 		InputManager.Instance.ChangePreviousCharacter += PreviousCharacter;
 		InputManager.Instance.CharacterFocusInGame += FocusFirstCharacter;
-		InputManager.Instance.ReleaseFocus += ReleaseFocusFirstCharacter;
+		InputManager.Instance.ReleaseFocusWhenNotFocused += ReleaseFocusFirstCharacter;
 	}
 
 	public void ModifyList()
@@ -137,15 +138,19 @@ public partial class TeamInformation : Control
 
 	public void FocusFirstCharacter()
 	{
-		pvpCharacterSelects[0].GrabFocus();
-		FocusManager.Instance.SetCurrentFocus(pvpCharacterSelects[0]);
+		// pvpCharacterSelects[0].GrabFocus();
+		view.OpenView();
+		view.GrabOpenFocus();
+		// FocusManager.Instance.SetCurrentFocus(pvpCharacterSelects[0]);
 		characterFocus = true;
 	}
 	
 	public void ReleaseFocusFirstCharacter()
 	{
 		characterFocus = false;
-		FocusManager.Instance.ResetFocus();
+		// FocusManager.Instance.ResetFocus();
+		view.ResetFocus();
+		view.DeselectPressedButton();
 	}
 
 	public bool IsFocusedOnFirstCharacter()

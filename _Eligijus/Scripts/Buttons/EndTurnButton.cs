@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class EndTurnButton : FocusButton
+public partial class EndTurnButton : Button
 {
     [Export] private TurnManager _turnManager;
 

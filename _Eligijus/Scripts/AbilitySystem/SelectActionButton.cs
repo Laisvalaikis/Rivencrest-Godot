@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
-public partial class SelectActionButton : FocusButton
+public partial class SelectActionButton : Button
 {
     [Export] 
     public Control buttonParent;
