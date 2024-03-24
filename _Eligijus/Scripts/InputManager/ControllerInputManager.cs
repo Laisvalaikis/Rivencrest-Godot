@@ -18,7 +18,7 @@ public partial class ControllerInputManager : InputManager
 	private bool isFocused = false;
 	private double timer = 0;
 	private Vector2 relativePositionInput = Vector2.Zero;
-	private bool inGameFocus = false;
+	private bool encounterIsStarted = false;
 	
 	public override void _Input(InputEvent @event)
 	{
@@ -51,23 +51,13 @@ public partial class ControllerInputManager : InputManager
 			if (Input.IsActionJustPressed("ReleaseFocus") && !isFocused)
 			{
 				EmitSignal("ReleaseFocusWhenNotFocused");
-				inGameFocus = false;
 				EmitSignal("EnableSelector", _mousePosition);
-				if (inGameFocus)
-				{
-					FocusManager.Instance.ResetFocus();
-				}
 			}
 			
 			if (Input.IsActionJustPressed("ReleaseFocus") && isFocused)
 			{
 				EmitSignal("ReleaseFocus");
-				inGameFocus = false;
 				EmitSignal("EnableSelector", _mousePosition);
-				if (inGameFocus)
-				{
-					FocusManager.Instance.ResetFocus();
-				}
 			}
 			
 			if (!isFocused && !inGameFocus)
@@ -292,5 +282,5 @@ public partial class ControllerInputManager : InputManager
 		base.FocusEnter();
 		isFocused = true;
 	}
-	
+
 }

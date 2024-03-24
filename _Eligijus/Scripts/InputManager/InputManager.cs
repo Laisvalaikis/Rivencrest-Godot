@@ -31,6 +31,7 @@ public partial class InputManager: Node2D
 	[Signal] public delegate void FocusDownEventHandler();
 	
 	protected bool enabled = false;
+	protected bool inGameFocus = false;
 
 	public virtual void SetCurrentCharacterPosition(Vector2 characterPosition)
 	{
@@ -97,6 +98,11 @@ public partial class InputManager: Node2D
 	public virtual void FocusExit()
 	{
 		
+	}
+	
+	public virtual void SetInGameFocus(bool state)
+	{
+		inGameFocus = state;
 	}
 	
 }

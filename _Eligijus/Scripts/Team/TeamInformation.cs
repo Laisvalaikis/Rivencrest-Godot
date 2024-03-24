@@ -26,6 +26,8 @@ public partial class TeamInformation : Control
 		InputManager.Instance.ChangePreviousCharacter += PreviousCharacter;
 		InputManager.Instance.CharacterFocusInGame += FocusFirstCharacter;
 		InputManager.Instance.ReleaseFocusWhenNotFocused += ReleaseFocusFirstCharacter;
+		InputManager.Instance.ReleaseFocusWhenNotFocused += RealeseFocus;
+		InputManager.Instance.ReleaseFocus += RealeseFocus;
 	}
 
 	public void ModifyList()
@@ -194,5 +196,10 @@ public partial class TeamInformation : Control
 		InputManager.Instance.CharacterFocusInGame -= FocusFirstCharacter;
 		base.Dispose(disposing);
 	}
-	
+
+	private void RealeseFocus()
+	{
+		InputManager.Instance.SetInGameFocus(false);
+	}
+
 }
