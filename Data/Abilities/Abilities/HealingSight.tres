@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_ei8rb"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/HealingSight.cs" id="1_hao48"]
-[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_tbb2d"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_tbb2d"]
 
 [resource]
 script = ExtResource("1_hao48")
@@ -15,6 +15,7 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Attack"
 animatedObjectPrefab = ExtResource("1_ei8rb")
 animatedObjectPrefabData = ExtResource("2_tbb2d")
 minAttackDamage = 0
