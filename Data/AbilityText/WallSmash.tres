@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_ifoqp")
 abilityTitle = "WALL SMASH"
-abilityDescription = "Destroy a wall and deal damage to an enemy behind it. The damaged enemy is slowed by 2."
+abilityDescription = "Destroy a wall and deal damage to an enemy behind it. The damaged enemy is 
+slowed by 2."
