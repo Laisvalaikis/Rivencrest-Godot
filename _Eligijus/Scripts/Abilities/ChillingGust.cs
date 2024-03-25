@@ -26,8 +26,6 @@ public partial class ChillingGust : BaseAction
     {
         UpdateAbilityButton(); 
         base.ResolveAbility(chunk);
-        PlayAnimation("White1", chunk);
-        PlayAnimation("White2", chunk);
         if (IsAllegianceSame(chunk)) 
         { 
             ProtectedBuff buff = new ProtectedBuff(); 
@@ -38,6 +36,8 @@ public partial class ChillingGust : BaseAction
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
             SlowDebuff debuff = new SlowDebuff(1, 1, "IceSlow"); 
             chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
+            PlayAnimation("White1", chunk);
+            PlayAnimation("White2", chunk);
         }
         
         FinishAbility();

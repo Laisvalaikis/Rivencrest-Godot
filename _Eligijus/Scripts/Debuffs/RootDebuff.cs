@@ -9,9 +9,10 @@ public partial class RootDebuff: BaseDebuff
 
 	}
 
-	public RootDebuff(int lifetime)
+	public RootDebuff(int lifetime, string RootType)
 	{
 		this.lifetime = lifetime;
+		this.debuffAnimation = RootType;
 	}
 
 	public RootDebuff(RootDebuff debuff) : base(debuff)

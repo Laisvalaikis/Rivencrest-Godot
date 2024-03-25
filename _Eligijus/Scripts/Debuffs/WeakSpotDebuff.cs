@@ -9,6 +9,7 @@ public partial class WeakSpotDebuff : BaseDebuff
 	public WeakSpotDebuff(int lifetime)
 	{
 		this.lifetime = lifetime;
+		debuffAnimation = "PinkWeakSpot";
 	}
 	public WeakSpotDebuff(WeakSpotDebuff debuff): base(debuff)
 	{

@@ -15,7 +15,7 @@ public partial class BaseDebuff : Resource
 	private ObjectData animatedObjectPrefabData;
 	protected string debuffAnimation="Empty";
 
-	private Object animatedObject;
+	protected Object animatedObject;
 	public BaseDebuff()
 	{
 			
@@ -43,7 +43,7 @@ public partial class BaseDebuff : Resource
 	
 	public virtual void Start()
 	{
-		PlayAnimation(debuffAnimation, GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
+		PlayAnimation(debuffAnimation);
 	}
     
 	public virtual void OnTurnStart()
@@ -116,7 +116,7 @@ public partial class BaseDebuff : Resource
 		return GetHashCode();
 	}
 
-	public virtual async Task PlayAnimation(string animationName, ChunkData chunk)
+	public virtual async Task PlayAnimation(string animationName)
 	{
 		animatedObjectPrefab = _player.debuffManager.animatedObjectPrefab;
 		animatedObjectPrefabData = _player.debuffManager.animatedObjectPrefabData;
@@ -126,6 +126,15 @@ public partial class BaseDebuff : Resource
 		animatedObject.SetupObject(animatedObjectPrefabData);
 		
 		animatedObject.Position = new Vector2(0, 0);
+		AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
+		if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
+		{
+			animationPlayer.Play(animationName);
+		}
+	}
+	
+	public virtual async Task ChangeAnimation(string animationName)
+	{
 		AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
 		if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
 		{

@@ -29,7 +29,7 @@ public partial class StunAttack : BaseAction
         PlayAnimation("Burgundy1", chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         DealDamage(chunk, spellDamage);
-        RootDebuff debuff = new RootDebuff(1);
+        RootDebuff debuff = new RootDebuff(1,"CMBurgundy");
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
         FinishAbility();
     }

@@ -10,6 +10,7 @@ public partial class SilenceDebuff : BaseDebuff
     public SilenceDebuff(int lifetime)
     {
         this.lifetime = lifetime;
+        debuffAnimation = "Silenced";
     }
     
     public SilenceDebuff(SilenceDebuff debuff): base(debuff)
@@ -27,11 +28,6 @@ public partial class SilenceDebuff : BaseDebuff
     {
         SilenceDebuff debuff = new SilenceDebuff(this);
         return debuff;
-    }
-	
-    public override void Start()
-    {
-        
     }
     
     public override void OnTurnStart()

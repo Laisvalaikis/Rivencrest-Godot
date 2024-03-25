@@ -5,7 +5,7 @@ public partial class ProtectedBuff : BaseBuff
 {
     public ProtectedBuff()
     {
-        
+        buffAnimation = "Protected";
     }
     public ProtectedBuff(ProtectedBuff buff): base(buff)
     {

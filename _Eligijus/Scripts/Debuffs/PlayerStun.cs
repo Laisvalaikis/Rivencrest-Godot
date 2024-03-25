@@ -8,7 +8,8 @@ public partial class PlayerStun : BaseDebuff
 	
 	public PlayerStun()
 	{
-			
+		debuffAnimation = "Stun";
+
 	}
 	
 	public PlayerStun(PlayerStun debuff): base(debuff)
@@ -28,10 +29,6 @@ public partial class PlayerStun : BaseDebuff
 		return debuff;
 	}
 	
-	public override void Start()
-	{
-
-	}
 	public override void OnTurnStart()
 	{
 		base.OnTurnStart();

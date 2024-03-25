@@ -34,9 +34,4 @@ public partial class PoisonDebuff : BaseDebuff
         base.OnTurnStart();
         _player.DealDamage(poisonDamage, playerWhoCreatedDebuff);
     }
-    
-    public override void Start()
-    {
-        
-    }
 }

@@ -34,7 +34,7 @@ public partial class Root : AbilityBlessing
             Player player = tile.GetCurrentPlayer();
            // if (!IsAllegianceSame(baseAction.GetPlayer(), tile, baseAction))
           //  {
-                RootDebuff debuff = new RootDebuff(3);
+                RootDebuff debuff = new RootDebuff(3,"CMBurgundy");
                 player.debuffManager.AddDebuff(debuff, baseAction.GetPlayer());
           //  }
         }

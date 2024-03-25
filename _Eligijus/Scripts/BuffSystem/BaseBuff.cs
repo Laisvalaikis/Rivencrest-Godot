@@ -15,7 +15,7 @@ public partial class BaseBuff : Resource
 	private Resource animatedObjectPrefab;
 	private ObjectData animatedObjectPrefabData;
 	protected string buffAnimation="Empty";
-	private Object animatedObject;
+	protected Object animatedObject;
 	
 	
 	public BaseBuff()

@@ -29,7 +29,18 @@ public partial class BarrierBuff : BaseBuff
     
     public override async void Start()
     {
-        
+        PlayAnimation("ShieldTransition");
+        AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
+        await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("ShieldTransition").Length-0.1f));
+        ChangeAnimation("shield");
+    }
+
+    public override async void OnRemove()
+    {
+        ChangeAnimation("ShieldEnd");
+        AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
+        await Task.Delay(TimeSpan.FromSeconds(animationPlayer.GetAnimation("ShieldEnd").Length-0.1f));
+        base.OnRemove();
     }
     
     public override void ResolveBuff(ChunkData chunkData)
