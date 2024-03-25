@@ -1,3 +1,7 @@
+using System;
+using System.Threading.Tasks;
+using Godot;
+
 namespace Rivencrestgodot._Eligijus.Scripts.BuffSystem;
 
 public partial class BarrierBuff : BaseBuff
@@ -23,9 +27,9 @@ public partial class BarrierBuff : BaseBuff
         return buff;
     }
     
-    public override void Start()
+    public override async void Start()
     {
-
+        
     }
     
     public override void ResolveBuff(ChunkData chunkData)

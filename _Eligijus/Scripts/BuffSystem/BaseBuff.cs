@@ -40,7 +40,7 @@ public partial class BaseBuff : Resource
 		
 	public virtual void Start()
 	{
-		PlayAnimation(buffAnimation, GameTileMap.Tilemap.GetChunk(_player.GlobalPosition));
+		PlayAnimation(buffAnimation);
 	}
 	
 		
@@ -116,7 +116,7 @@ public partial class BaseBuff : Resource
 		animatedObject.QueueFree();
 	}
 	
-	public virtual async Task PlayAnimation(string animationName, ChunkData chunk)
+	public virtual async Task PlayAnimation(string animationName)
 	{
 		animatedObjectPrefab = _player.buffManager.animatedObjectPrefab;
 		animatedObjectPrefabData = _player.buffManager.animatedObjectPrefabData;
@@ -126,6 +126,15 @@ public partial class BaseBuff : Resource
 		animatedObject.SetupObject(animatedObjectPrefabData);
 		
 		animatedObject.Position = new Vector2(0, 0);
+		AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
+		if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
+		{
+			animationPlayer.Play(animationName);
+		}
+	}
+
+	public virtual async Task ChangeAnimation(string animationName)
+	{
 		AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;
 		if(animationPlayer != null && animationPlayer.HasAnimation(animationName))
 		{
