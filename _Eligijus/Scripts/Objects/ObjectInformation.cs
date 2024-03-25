@@ -6,7 +6,7 @@ public partial class ObjectInformation : Node
     [Export] protected Object _object;
     [Export] public AnimationPlayer animationPlayer;
     public ObjectDataType<ObjectData> objectData;
-    protected int _health = 100;
+    protected int _health = 28;
 
     public virtual void SetupData(ObjectData objectInformation)
     {

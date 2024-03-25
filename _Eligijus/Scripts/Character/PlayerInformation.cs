@@ -11,6 +11,7 @@ public partial class PlayerInformation : ObjectInformation
 	public override void SetupData(ObjectData objectInformation)
 	{
 		objectData = new ObjectDataType<ObjectData>(objectInformation, typeof(Player));
+		_health = objectData.objectData.maxHealth;
 	}
 
 	public float GetHealthPercentage()
