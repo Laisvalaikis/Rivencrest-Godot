@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_ys85l")
 abilityTitle = "RAIN OF ARROWS"
-abilityDescription = "Create 5-Tile DANGER zone.
-Deal damage to characters standing
-in the zone next turn."
+abilityDescription = "Create 5-Tile DANGER zone. Deal damage to characters standing in the zone next turn."

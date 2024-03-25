@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_2ipre")
 abilityTitle = "BLOCK"
-abilityDescription = "BLOCK and ally.
-Until your next turn
-you take all the damage
-that the ally would take."
+abilityDescription = "BLOCK and ally. Until your next turn you take all the damage that the ally would take."

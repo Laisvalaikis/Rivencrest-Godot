@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_52stb")
 abilityTitle = "FROM THE SHADOWS"
-abilityDescription = "Teleport to a tile and
-deal damage to all
-adjacent enemies."
+abilityDescription = "Teleport to a tile and deal damage to all adjacent enemies."

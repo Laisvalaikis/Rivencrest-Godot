@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_g2xj7")
 abilityTitle = "SPEAR PULSE"
-abilityDescription = "Deal damage around you.
-If your spear is on the
-ground, deal damage
-around it instead."
+abilityDescription = "Deal damage around you. If your spear is on the ground, deal damage around it instead."

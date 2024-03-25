@@ -5,8 +5,4 @@
 [resource]
 script = ExtResource("1_fv11n")
 abilityTitle = "SCREAM"
-abilityDescription = "Deal damage to an enemy
-and teleport to a tile behind you.
-If the enemy does not have allies on
-adjacent tiles, they get silenced
-and cannot use abilities for 1 turn."
+abilityDescription = "Deal damage to an enemy and teleport to a tile behind you. If the enemy does not have allies on adjacent tiles, they get silenced and cannot use abilities for 1 turn."

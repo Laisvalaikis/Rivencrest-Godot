@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_rwa6s")
 abilityTitle = "BLESSING OF THE SUN"
-abilityDescription = "Heal yourself and
-gain 2 vision points
-for 1 turn."
+abilityDescription = "Heal yourself and gain 2 vision points for 1 turn."

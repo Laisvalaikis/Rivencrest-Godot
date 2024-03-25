@@ -5,8 +5,4 @@
 [resource]
 script = ExtResource("1_x3lcl")
 abilityTitle = "ICE QUAKE"
-abilityDescription = "Deal damage to an enemy
-and SLOW them by 1MP.
-Ability ROOTS and deals bonus damage
-if the enemy is already affected by
-negative movement debuffs."
+abilityDescription = "Deal damage to an enemy and SLOW them by 1MP. Ability ROOTS and deals bonus damage if the enemy is already affected by negative movement debuffs."

@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_x2aw8")
 abilityTitle = "OIL SLOW"
-abilityDescription = "SLOW an enemy by 2 MP
-and deal damage to them."
+abilityDescription = "SLOW an enemy by 2 MP and deal damage to them."

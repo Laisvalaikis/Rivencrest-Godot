@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_twgsp")
 abilityTitle = "THROW SPEAR"
-abilityDescription = "Deal damage and throw
-SPEAR at the end.
-If SPEAR is picked up, the cooldown
-is decreased by 1."
+abilityDescription = "Deal damage and throw SPEAR at the end. If SPEAR is picked up, the cooldown is decreased by 1."

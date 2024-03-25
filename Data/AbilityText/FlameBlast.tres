@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_uisv4")
 abilityTitle = "FLAME BLAST"
-abilityDescription = "Deal damage to an area
-and create a danger zone
-in the middle."
+abilityDescription = "Deal damage to an area and create a danger zone in the middle."

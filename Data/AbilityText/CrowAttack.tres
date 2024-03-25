@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_ykwwd")
 abilityTitle = "CROW ATTACK"
-abilityDescription = "Deal damage to all enemies in range.
-Deal bonus damage to those
- that are poisoned."
+abilityDescription = "Deal damage to all enemies in range. Deal bonus damage to those that are poisoned."

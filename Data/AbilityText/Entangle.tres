@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_lfue1")
 abilityTitle = "ENTANGLE"
-abilityDescription = "Deal damage to an enemy
-and root them."
+abilityDescription = "Deal damage to an enemy and root them."

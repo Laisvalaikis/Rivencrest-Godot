@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_t1g7i")
 abilityTitle = "AVALANCHE"
-abilityDescription = "Deal damage to all enemies
-in range affected
-by movement debuffs."
+abilityDescription = "Deal damage to all enemies in range affected by movement debuffs."

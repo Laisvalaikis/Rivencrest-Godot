@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_k4f2y")
 abilityTitle = "ENTRAP"
-abilityDescription = "Choose a character and
-create destroyable rocks around them.
-Rocks are destroyed at the start
-of your next turn."
+abilityDescription = "Choose a character and create destroyable rocks around them. Rocks are destroyed at the start of your next turn."

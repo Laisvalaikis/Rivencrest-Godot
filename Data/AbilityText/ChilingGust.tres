@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_e8m2u")
 abilityTitle = "DUAL WINDS"
-abilityDescription = "Deal damage to an enemy
-and slow them by 1 OR
-Gain an ally PROTECTED buff for 1 turn."
+abilityDescription = "Deal damage to an enemy and slow them by 1 OR Gain an ally PROTECTED buff for 1 turn."

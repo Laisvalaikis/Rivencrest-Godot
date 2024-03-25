@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_p5r63")
 abilityTitle = "VOLLEY"
-abilityDescription = "Deal damage to an area
-and jump backwards by 1 tile.
-Damaged characters
-are also poisoned."
+abilityDescription = "Deal damage to an area and jump backwards by 1 tile. Damaged characters are also poisoned."

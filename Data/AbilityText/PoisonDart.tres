@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_jy7wb")
 abilityTitle = "POISON DART"
-abilityDescription = "Deal damage to an enemy
-and poison them."
+abilityDescription = "Deal damage to an enemy and poison them."

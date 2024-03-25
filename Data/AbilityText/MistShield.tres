@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_0mehf")
 abilityTitle = "MIST SHIELD"
-abilityDescription = "Gain PROTECTED for 1 turn.
-You take half less damage."
+abilityDescription = "Gain PROTECTED for 1 turn. You take half less damage."

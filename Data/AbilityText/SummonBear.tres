@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_wlbis")
 abilityTitle = "SUMMON BEAR"
-abilityDescription = "Summon a BEAR and
-add it to your team."
+abilityDescription = "Summon a BEAR and add it to your team."

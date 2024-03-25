@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_0yprl")
 abilityTitle = "FRONT SLASH"
-abilityDescription = "Deal damage in a line
-in front of you."
+abilityDescription = "Deal damage in a line in front of you."

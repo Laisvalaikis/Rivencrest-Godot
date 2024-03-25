@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_ywtnm")
 abilityTitle = "SWORD PUSH"
-abilityDescription = "Deal damage to a target and its neighbors,
-pushing them away by 1 tile."
+abilityDescription = "Deal damage to a target and its neighbors, pushing them away by 1 tile."

@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_x2bh2")
 abilityTitle = "HEAL"
-abilityDescription = "Restore 80 health 
-to an ally."
+abilityDescription = "Restore 80 health to an ally."

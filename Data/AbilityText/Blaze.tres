@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_rywh6")
 abilityTitle = "BLAZE"
-abilityDescription = "Damage and AFLAME
-an enemy.
-If they are already aflame,
-trigger it and deal bonus damage."
+abilityDescription = "Damage and AFLAME an enemy. If they are already aflame, trigger it and  deal bonus damage."

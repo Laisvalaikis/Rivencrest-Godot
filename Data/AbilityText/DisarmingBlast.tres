@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_byshj")
 abilityTitle = "DISARMING BLAST"
-abilityDescription = "Deal damage to an enemy
-and disarm them."
+abilityDescription = "Deal damage to an enemy and disarm them."

@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_r6mxe")
 abilityTitle = "RING OF FROST"
-abilityDescription = "Deal damage to all nearby
-characters and SLOW them
-by 1 MP."
+abilityDescription = "Deal damage to all nearby characters and SLOW them by 1 MP."

@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_0oogl")
 abilityTitle = "MARK"
-abilityDescription = "MARK an enemy.
-If another ally deals damage to
-the MARKED enemy,
-the enemy is ROOTED."
+abilityDescription = "MARK an enemy. If another ally deals damage to the MARKED enemy, the enemy is ROOTED."

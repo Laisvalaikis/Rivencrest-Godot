@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_6q06d")
 abilityTitle = "LONG SHOT"
-abilityDescription = "Deal damage to an enemy
-from a long range."
+abilityDescription = "Deal damage to an enemy from a long range."

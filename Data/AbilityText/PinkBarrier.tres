@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_gcgck")
 abilityTitle = "BARRIER"
-abilityDescription = "Give BARRIER and 1 MP
-to an ally.
-Next damage they take is negated."
+abilityDescription = "Give BARRIER and 1 MP to an ally. Next damage they take is negated."

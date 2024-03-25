@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_i8enw")
 abilityTitle = "FOG"
-abilityDescription = "Create Fog in which
-characters can't attack
-and use damage abilities.
-The Fog lasts 2 turns."
+abilityDescription = "Create Fog in which characters can't attack and use damage abilities. The Fog lasts 2 turns."

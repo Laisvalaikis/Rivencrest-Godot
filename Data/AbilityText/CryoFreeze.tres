@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_sepx0")
 abilityTitle = "CRYO-FREZE"
-abilityDescription = "Put yourself into STASIS
-for 1 turn, which then explodes.
-In STASIS you take 2 times less damage,
-but cannot act or move."
+abilityDescription = "Put yourself into STASIS for 1 turn, which then explodes. In STASIS you take 2 times less damage, but cannot act or move."

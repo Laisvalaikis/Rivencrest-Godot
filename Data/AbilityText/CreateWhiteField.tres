@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_3c1e0")
 abilityTitle = "WHITE FIELD"
-abilityDescription = "Create a DEFENSE AURA for 1 turn.
-Allies in the field are PROTECTED
-and take half less damage."
+abilityDescription = "Create a DEFENSE AURA for 1 turn. Allies in the field are PROTECTED and take half less damage."

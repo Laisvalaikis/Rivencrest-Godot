@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_dcalj")
 abilityTitle = "RAISE ROCK"
-abilityDescription = "Create a destroyable
-rock on a tile."
+abilityDescription = "Create a destroyable rock on a tile."

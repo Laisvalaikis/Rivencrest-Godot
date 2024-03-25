@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_r1lr4")
 abilityTitle = "COMET FALL"
-abilityDescription = "Create 1-Tile DANGER zone.
-Deal damage to a character standing
-in the zone next turn."
+abilityDescription = "Create 1-Tile DANGER zone. Deal damage to a character standing in the zone next turn."

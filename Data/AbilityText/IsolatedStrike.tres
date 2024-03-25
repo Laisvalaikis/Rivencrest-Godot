@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_dtqpj")
 abilityTitle = "ISOLATED STRIKE"
-abilityDescription = "Deal damage to an enemy.
-Deal extra damage if the enemy
-is ISOLATED and has no adjacent allies."
+abilityDescription = "Deal damage to an enemy. Deal extra damage if the enemy is ISOLATED and has no adjacent allies."

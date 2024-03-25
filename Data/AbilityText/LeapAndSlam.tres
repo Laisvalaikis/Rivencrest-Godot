@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_o27do")
 abilityTitle = "LEAP AND SLAM"
-abilityDescription = "Jump to a tile and deal
-damage to adjacent
-enemies."
+abilityDescription = "Jump to a tile and deal damage to adjacent enemies."

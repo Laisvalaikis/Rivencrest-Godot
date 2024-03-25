@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_eangu")
 abilityTitle = "SIDE SLASH"
-abilityDescription = "Deal damage in a line
-sideways."
+abilityDescription = "Deal damage in a line sideways."

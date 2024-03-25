@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_bi02s")
 abilityTitle = "SHIELD SLAM"
-abilityDescription = "Dash to an enemy and
-DISARM them.
-DISARMED enemies can't use
-their attack abilities."
+abilityDescription = "Dash to an enemy and DISARM them. DISARMED enemies can't use their attack abilities."

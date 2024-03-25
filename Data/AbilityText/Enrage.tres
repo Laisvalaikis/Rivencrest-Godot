@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_2m5pe")
 abilityTitle = "ENRAGE"
-abilityDescription = "Give 1 MP to an ally
-to gain 1 MP."
+abilityDescription = "Give 1 MP to an ally to gain 1 MP."

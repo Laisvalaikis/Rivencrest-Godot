@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_lad68")
 abilityTitle = "SWITCH PLACES"
-abilityDescription = "Switch places with
-a character.
-If the character is on the enemy
-team, slow them by 1."
+abilityDescription = "Switch places with a character. If the character is on the enemy team, slow them by 1."

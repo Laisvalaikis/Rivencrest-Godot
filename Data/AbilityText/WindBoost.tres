@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_d1480")
 abilityTitle = "WIND BOOST"
-abilityDescription = "Channel a boost which
-will heal and give 1 MP to you 
-and all adjacent allies at
-the start of your next turn. "
+abilityDescription = "Channel a boost which will heal and give 1 MP to you  and all adjacent allies at the start of your next turn. "

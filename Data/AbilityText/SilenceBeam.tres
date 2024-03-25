@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_8rolk")
 abilityTitle = "SILENCE BEAM"
-abilityDescription = "Create danger zones
-that will silence and
-damage enemies."
+abilityDescription = "Create danger zones that will silence and damage enemies."

@@ -5,7 +5,4 @@
 [resource]
 script = ExtResource("1_nq6cs")
 abilityTitle = "GROUND SLAM"
-abilityDescription = "Deal damage to all
-adjacent enemies now
-and at the start 
-of your next turn."
+abilityDescription = "Deal damage to all adjacent enemies now and at the start  of your next turn."

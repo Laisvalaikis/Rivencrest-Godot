@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_npbcf")
 abilityTitle = "SHADOW BLINK"
-abilityDescription = "Deal damage to an enemy
-and teleport behind them."
+abilityDescription = "Deal damage to an enemy and teleport behind them."

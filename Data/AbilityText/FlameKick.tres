@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_xmp5f")
 abilityTitle = "FLAME KICK"
-abilityDescription = "Kick an enemy by 1 tile,
-deal damage and
-AFLAME it."
+abilityDescription = "Kick an enemy by 1 tile, deal damage and AFLAME it."

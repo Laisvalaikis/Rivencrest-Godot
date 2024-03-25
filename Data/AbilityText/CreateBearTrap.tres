@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_dan1j")
 abilityTitle = "BEAR TRAP"
-abilityDescription = "Enemies who step or pass through
-it take damage. Trap lasts
-for 2 turns."
+abilityDescription = "Enemies who step or pass through it take damage. Trap lasts for 2 turns."

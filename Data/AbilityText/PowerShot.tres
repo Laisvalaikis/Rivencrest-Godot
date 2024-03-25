@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_0urlp")
 abilityTitle = "POWER SHOT"
-abilityDescription = "Deal damage to an enemy
-and slow them by 1 MP."
+abilityDescription = "Deal damage to an enemy and slow them by 1 MP."

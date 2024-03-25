@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_3d8ky")
 abilityTitle = "FLORAL EXPLOSION"
-abilityDescription = "Create a flower which
-will explode next turn."
+abilityDescription = "Create a flower which will explode next turn."
