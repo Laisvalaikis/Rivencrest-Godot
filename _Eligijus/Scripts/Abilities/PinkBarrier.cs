@@ -22,6 +22,7 @@ public partial class PinkBarrier : BaseAction
     {
         base.ResolveAbility(chunk);
         UpdateAbilityButton();
+        PlayerAbilityAnimation();
         Player target = chunk.GetCurrentPlayer();
         BarrierBuff buff = new BarrierBuff();
         target.buffManager.AddBuff(buff);

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/WindBoost.cs" id="1_8ndcc"]
 [ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_agyh4"]
-[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_050pv"]
+[ext_resource type="Resource" path="res://Animations/VFXImpactData.tres" id="2_050pv"]
 
 [resource]
 script = ExtResource("1_8ndcc")
@@ -14,7 +14,7 @@ abilityPoints = 1
 isAbilitySlow = false
 abilityCooldown = 3
 _abilityBlessingsRef = Array[Resource]([])
-AttackAnimation = "Attack"
+AttackAnimation = "MarkEnemy"
 animatedObjectPrefab = ExtResource("1_agyh4")
 animatedObjectPrefabData = ExtResource("2_050pv")
 minAttackDamage = 0

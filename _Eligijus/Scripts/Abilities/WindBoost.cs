@@ -63,6 +63,7 @@ public partial class WindBoost : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk); 
         PlayAnimation("White1", chunk);
+        PlayerAbilityAnimation();
         isAbilityActive = true;
         FinishAbility();
     }

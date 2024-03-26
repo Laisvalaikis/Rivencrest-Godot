@@ -8,8 +8,8 @@
 [ext_resource type="Resource" uid="uid://b30vrjw3ga4eg" path="res://Data/Abilities/Enrage.tres" id="5_g8sfr"]
 [ext_resource type="Resource" uid="uid://cuhhwknvh5xqx" path="res://Data/Abilities/Execute.tres" id="6_b34ub"]
 [ext_resource type="Resource" uid="uid://fgkngukdnek2" path="res://Data/Abilities/Scream.tres" id="7_q62lg"]
-[ext_resource type="Resource" uid="uid://bxs72xciv5avq" path="res://Data/Abilities/PinkBarrier.tres" id="9_6d2pg"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="9_rfnn3"]
+[ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_x7sn2"]
 [ext_resource type="Resource" uid="uid://c6racdua8md0f" path="res://Data/Blessings/Swiftness.tres" id="11_srdmo"]
 [ext_resource type="Texture2D" uid="uid://b7jxkwqhihjex" path="res://Data/PlayerResource/Red/Textures/CharacterSprite.tres" id="11_wqi2l"]
 [ext_resource type="Texture2D" uid="uid://bmw2cwjl3adgn" path="res://Data/PlayerResource/Red/Textures/RoleSprite.tres" id="12_uapjl"]
@@ -26,7 +26,7 @@ CharacterSplashArt = ExtResource("2_vb8ha")
 CroppedSplashArt = ExtResource("3_t14gr")
 characterSprite = ExtResource("11_wqi2l")
 roleSprite = ExtResource("12_uapjl")
-baseAbilities = Array[Resource]([ExtResource("9_rfnn3"), ExtResource("9_6d2pg")])
+baseAbilities = Array[Resource]([ExtResource("9_rfnn3"), ExtResource("9_x7sn2")])
 maxHealth = 23
 accuracy = 100
 visionRange = 3
