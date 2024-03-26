@@ -36,7 +36,8 @@ public partial class ChainHook : BaseAction
 				DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
 			} 
 			ChunkData chunkToPullTo = TileToPullTo(chunk); 
-			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character); 
+			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character);
+			PlayerAbilityAnimation();
 			PlayAnimation("Burgundy2", chunkToPullTo);
 			ResetCharacterSpriteRendererAndTilePreview(); 
 			DisableDamagePreview(chunk); 

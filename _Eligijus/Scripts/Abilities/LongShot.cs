@@ -21,6 +21,7 @@ public partial class LongShot : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         PlayAnimation("Green1", chunk);
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         FinishAbility();
