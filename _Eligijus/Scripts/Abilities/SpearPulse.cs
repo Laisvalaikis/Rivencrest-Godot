@@ -28,10 +28,10 @@ public partial class SpearPulse : BaseAction
         for (int i = 0; i < _chunkList.Count; i++)
         {
             DealRandomDamageToTarget(_chunkList[i], minAttackDamage, maxAttackDamage); //pirmus 2 naikina
+            PlayerAbilityAnimation();
+            PlayAnimation("Purple1", chunk);
         }
         base.ResolveAbility(chunk);
-        PlayerAbilityAnimation();
-        PlayAnimation("Purple1", chunk);
         FinishAbility();
     }
     
