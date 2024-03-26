@@ -33,10 +33,10 @@ public partial class AcidRain : BaseAction
 				Player target = tile.GetCurrentPlayer();
 				PoisonDebuff debuff = new PoisonDebuff(2, 2);
 				target.debuffManager.AddDebuff(debuff, _player);
+				PlayAnimation("Forest3", tile);
 			} 
 		}
 		base.ResolveAbility(chunk); 
-		PlayAnimation("Forest3", chunk);
 		FinishAbility();
 	}
 }

@@ -27,13 +27,15 @@ public partial class Blaze : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
-        base.ResolveAbility(chunk); 
+        base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         if (chunk.CharacterIsOnTile()) 
         { 
             Player target = chunk.GetCurrentPlayer(); 
             AflameDebuff debuff = new AflameDebuff(); 
             _player.debuffManager.AddDebuff(debuff, target); 
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            PlayAnimation("AflameExplosion",chunk);
         }
     }
 }

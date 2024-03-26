@@ -27,6 +27,7 @@ public partial class Avalanche : BaseAction
             if (CanBeUsedOnTile(chunkData)) 
             { 
                 DealRandomDamageToTarget(chunkData, minAttackDamage, maxAttackDamage);
+                PlayAnimation("Avalanche", chunkData);
             }
         } 
         base.ResolveAbility(chunk); 

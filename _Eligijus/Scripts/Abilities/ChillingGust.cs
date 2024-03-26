@@ -30,16 +30,15 @@ public partial class ChillingGust : BaseAction
         { 
             ProtectedBuff buff = new ProtectedBuff(); 
             chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
+            PlayAnimation("White1", chunk);
         }
         else 
         { 
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage); 
             SlowDebuff debuff = new SlowDebuff(1, 1, "IceSlow"); 
             chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
-            PlayAnimation("White1", chunk);
             PlayAnimation("White2", chunk);
         }
-        
         FinishAbility();
     }
 }

@@ -21,11 +21,12 @@ public partial class BindingRitual : BaseAction
     public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
-        PlayAnimation("Undead6", chunk);
+        PlayerAbilityAnimation();
         foreach (ChunkData tile in GetChunkList())
         {
             if (CanBeUsedOnTile(tile))
             {
+                PlayAnimation("Undead6", chunk);
                 DealRandomDamageToTarget(tile, minAttackDamage, maxAttackDamage);
                 SlowDebuff debuff = new SlowDebuff(1, 2, "IceSlow");
                 tile.GetCurrentPlayer().debuffManager.AddDebuff(debuff,_player);

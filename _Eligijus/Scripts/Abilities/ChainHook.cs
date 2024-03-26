@@ -25,7 +25,6 @@ public partial class ChainHook : BaseAction
 	public override void ResolveAbility(ChunkData chunk)
 	{
 		base.ResolveAbility(chunk); 
-		PlayAnimation("Burgundy2", chunk);
 		UpdateAbilityButton(); 
 		Player character = chunk.GetCurrentPlayer(); 
 		if (character != null && character.objectInformation.GetPlayerInformation().GetInformationType() != 
@@ -38,6 +37,7 @@ public partial class ChainHook : BaseAction
 			} 
 			ChunkData chunkToPullTo = TileToPullTo(chunk); 
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunkToPullTo, character); 
+			PlayAnimation("Burgundy2", chunkToPullTo);
 			ResetCharacterSpriteRendererAndTilePreview(); 
 			DisableDamagePreview(chunk); 
 			FinishAbility();

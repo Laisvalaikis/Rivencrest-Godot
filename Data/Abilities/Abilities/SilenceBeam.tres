@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://bxr6ebvlg50cy" path="res://_Eligijus/Prefabs/DangerTiles/PinkZoneTileData.tres" id="1_wcd0u"]
 [ext_resource type="PackedScene" uid="uid://ffnkyp2rfgra" path="res://_Eligijus/Prefabs/DangerTiles/PinkZoneTile.tscn" id="2_ih53x"]
 [ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="3_e5xeq"]
-[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="4_i77h7"]
+[ext_resource type="Resource" path="res://Animations/VFXImpactData.tres" id="4_i77h7"]
 
 [resource]
 script = ExtResource("1_jwin8")

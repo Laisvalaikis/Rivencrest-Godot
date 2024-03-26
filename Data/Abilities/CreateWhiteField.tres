@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=3 uid="uid://cnfexjcvdt27a"]
 
 [ext_resource type="Texture2D" uid="uid://c87tp0d30jhc1" path="res://Data/ActionIcons/Icon_32.tres" id="1_lt5aa"]
-[ext_resource type="Resource" uid="uid://0uq0mnl00q4o" path="res://Data/Abilities/Abilities/CreateWhiteField.tres" id="2_u1jkf"]
+[ext_resource type="Resource" uid="uid://0uq0mnl00q4o" path="res://Data/Abilities/PlayerPrefab/CreateWhiteField.tres" id="2_c2ff2"]
 [ext_resource type="Resource" uid="uid://dlgtb8wm8m0g4" path="res://Data/AbilityText/CreateWhiteField.tres" id="3_uutxj"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/AbilitySystem/Ability.cs" id="4_chgpc"]
 
@@ -11,4 +11,4 @@ _type = 1
 abilityText = ExtResource("3_uutxj")
 enabled = true
 AbilityImage = ExtResource("1_lt5aa")
-Action = ExtResource("2_u1jkf")
+Action = ExtResource("2_c2ff2")
