@@ -34,6 +34,7 @@ public partial class Enrage : BaseAction
 	{ 
 		base.ResolveAbility(chunk); 
 		PlayAnimation("Red1", chunk);
+		PlayerAbilityAnimation();
 		UpdateAbilityButton(); 
 		Player targetPlayer = chunk.GetCurrentPlayer(); 
 		targetPlayer.AddMovementPoints(1); 

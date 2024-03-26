@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://bhn4kpvbiniq2" path="res://Data/PlayerResource/White/Textures/CharacterSplashArt.tres" id="2_h1on6"]
 [ext_resource type="Texture2D" uid="uid://f2ox508vq6jc" path="res://Data/PlayerResource/White/Textures/CropedSplashArt.tres" id="3_ie3a3"]
 [ext_resource type="Resource" uid="uid://ckpjlcwk1pa51" path="res://Data/Abilities/MarkEnemy.tres" id="4_ilj2j"]
-[ext_resource type="Resource" uid="uid://cnfexjcvdt27a" path="res://Data/Abilities/Abilities/CreateWhiteField.tres" id="5_v6ghe"]
 [ext_resource type="Resource" uid="uid://5vyrjo3w1hp1" path="res://Data/Abilities/WindBoost.tres" id="6_k6tvc"]
 [ext_resource type="Resource" uid="uid://vof8mekwr7s6" path="res://Data/Abilities/ChilingGust.tres" id="7_atdun"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_mbp6q"]
-[ext_resource type="Resource" uid="uid://cfya3hjcruwmo" path="res://Data/Abilities/CrowAttack.tres" id="9_fp2aw"]
+[ext_resource type="Resource" uid="uid://cnfexjcvdt27a" path="res://Data/Abilities/Abilities/CreateWhiteField.tres" id="9_p420d"]
+[ext_resource type="Resource" uid="uid://co87qf0t4ms08" path="res://Data/Abilities/RaiseRock.tres" id="9_q27nc"]
 [ext_resource type="Texture2D" uid="uid://c4v284lx17sud" path="res://Data/PlayerResource/White/Textures/CharacterSprite.tres" id="10_4euo4"]
 [ext_resource type="Texture2D" uid="uid://dgv3xlw2k64ou" path="res://Data/PlayerResource/White/Textures/RoleSprite.tres" id="11_74gd6"]
 
@@ -25,7 +25,7 @@ CharacterSplashArt = ExtResource("2_h1on6")
 CroppedSplashArt = ExtResource("3_ie3a3")
 characterSprite = ExtResource("10_4euo4")
 roleSprite = ExtResource("11_74gd6")
-baseAbilities = Array[Resource]([ExtResource("8_mbp6q"), ExtResource("9_fp2aw")])
+baseAbilities = Array[Resource]([ExtResource("8_mbp6q"), ExtResource("9_q27nc")])
 maxHealth = 24
 accuracy = 100
 visionRange = 3
@@ -37,5 +37,5 @@ CharacterPortraitSprite = ExtResource("1_iudeu")
 canStepOnObject = false
 destroyObjectStepingOn = true
 canBeDestroyed = true
-abilities = Array[Resource]([ExtResource("4_ilj2j"), ExtResource("5_v6ghe"), ExtResource("6_k6tvc"), ExtResource("7_atdun")])
+abilities = Array[Resource]([ExtResource("4_ilj2j"), ExtResource("9_p420d"), ExtResource("6_k6tvc"), ExtResource("7_atdun")])
 blessings = []

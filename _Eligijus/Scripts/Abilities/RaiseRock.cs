@@ -22,6 +22,11 @@ public partial class RaiseRock : BaseAction
 		RaiseRock ability = new RaiseRock((RaiseRock)action);
 		return ability;
 	}
+
+	public override bool CanBeUsedOnTile(ChunkData chunkData)
+	{
+		return !chunkData.CharacterIsOnTile();
+	}
 	
 	public override void ResolveAbility(ChunkData chunk)
 	{

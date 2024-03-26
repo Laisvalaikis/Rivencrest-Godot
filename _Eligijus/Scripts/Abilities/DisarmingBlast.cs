@@ -18,7 +18,8 @@ public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal
     }
     public override void ResolveAbility(ChunkData chunk)
     { 
-        base.ResolveAbility(chunk); 
+        base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         UpdateAbilityButton(); 
         Player target = chunk.GetCurrentPlayer(); 
         SilenceDebuff debuff = new SilenceDebuff(); 
