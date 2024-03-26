@@ -10,6 +10,7 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
+AttackAnimation = "Attack"
 minAttackDamage = 2
 maxAttackDamage = 4
 attackRange = 1
