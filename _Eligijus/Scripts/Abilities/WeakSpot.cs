@@ -23,6 +23,7 @@ public partial class WeakSpot : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         PlayAnimation("Pink1", chunk);
+        PlayerAbilityAnimation();
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         WeakSpotDebuff debuff = new WeakSpotDebuff(2);
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
