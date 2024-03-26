@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/GroundSlam.cs" id="1_ce6gm"]
 [ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_fsfty"]
-[ext_resource type="Resource" path="res://Animations/VFXImpactData.tres" id="2_d8dn1"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_d8dn1"]
 
 [resource]
 script = ExtResource("1_ce6gm")

@@ -21,6 +21,8 @@ public partial class Purify : BaseAction
     {
         base.ResolveAbility(chunk);
         UpdateAbilityButton();
+        PlayAnimation("Purify", chunk);
+        PlayerAbilityAnimation();
         Player target = chunk.GetCurrentPlayer();
         target.debuffManager.RemoveDebuffs();
     }
