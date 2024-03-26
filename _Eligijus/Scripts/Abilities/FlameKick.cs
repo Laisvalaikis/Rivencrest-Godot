@@ -30,7 +30,6 @@ public partial class FlameKick : BaseAction
         (int x, int y) sideVector = GetSideVector(side); 
         sideVector = (sideVector.x, sideVector.y);
         MovePlayerToSide(chunk, sideVector);
-        PlayAnimation("FlameKick", chunk);
         PlayerAbilityAnimation();
         FinishAbility();
     }
