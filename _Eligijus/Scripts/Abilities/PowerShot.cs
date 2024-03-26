@@ -22,6 +22,7 @@ public partial class PowerShot : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         PlayAnimation("Green1", chunk);
+        PlayerAbilityAnimation();
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         SlowDebuff debuff = new SlowDebuff(1, 1, "IceSlow");
         chunk.GetCurrentPlayer().debuffManager.AddDebuff(debuff, _player);
