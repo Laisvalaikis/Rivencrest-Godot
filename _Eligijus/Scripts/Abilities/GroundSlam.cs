@@ -45,6 +45,7 @@ public partial class GroundSlam : BaseAction
         foreach (var chunk in _chunkListCopy)
         {
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
+            PlayAnimation("Burgundy3", chunk);
         }
     }
 }

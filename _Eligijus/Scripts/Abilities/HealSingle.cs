@@ -29,6 +29,7 @@ public partial class HealSingle : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         Random random = new Random();
         int randomHeal = random.Next(minHealAmount, maxHealAmount);
         chunk.GetCurrentPlayer().objectInformation.GetPlayerInformation().Heal(randomHeal);
