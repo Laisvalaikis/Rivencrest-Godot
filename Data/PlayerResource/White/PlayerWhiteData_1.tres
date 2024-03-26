@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bhn4kpvbiniq2" path="res://Data/PlayerResource/White/Textures/CharacterSplashArt.tres" id="2_h1on6"]
 [ext_resource type="Texture2D" uid="uid://f2ox508vq6jc" path="res://Data/PlayerResource/White/Textures/CropedSplashArt.tres" id="3_ie3a3"]
 [ext_resource type="Resource" uid="uid://ckpjlcwk1pa51" path="res://Data/Abilities/MarkEnemy.tres" id="4_ilj2j"]
-[ext_resource type="Resource" uid="uid://cnfexjcvdt27a" path="res://Data/Abilities/CreateWhiteField.tres" id="5_v6ghe"]
+[ext_resource type="Resource" uid="uid://cnfexjcvdt27a" path="res://Data/Abilities/Abilities/CreateWhiteField.tres" id="5_v6ghe"]
 [ext_resource type="Resource" uid="uid://5vyrjo3w1hp1" path="res://Data/Abilities/WindBoost.tres" id="6_k6tvc"]
 [ext_resource type="Resource" uid="uid://vof8mekwr7s6" path="res://Data/Abilities/ChilingGust.tres" id="7_atdun"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_mbp6q"]
