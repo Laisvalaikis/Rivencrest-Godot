@@ -34,7 +34,7 @@ public partial class LoadingScene : Node
 		_fadeOut.Play("FadeOut");
 		_fadeOut.AnimationFinished += delegate(StringName name)
 		{
-			Free();
+			QueueFree();
 		};
 	}
 
@@ -46,7 +46,7 @@ public partial class LoadingScene : Node
 	
 	private void LoadNextScene(Node currentScene, string nextScene)
 	{
-		FreeUpScene(currentScene);
+		
 		_label.Show();
 		string loadPath;
 		loadPath = nextScene;
@@ -64,8 +64,7 @@ public partial class LoadingScene : Node
 		{
 			GD.PrintErr("Attempt to load non-existence file");
 		}
-		
-		
+		FreeUpScene(currentScene);
 		
 	}
 
@@ -111,7 +110,7 @@ public partial class LoadingScene : Node
 
 	private void FreeUpScene(Node current)
 	{
-		current.Free();
+		current.QueueFree();
 	}
 	
 

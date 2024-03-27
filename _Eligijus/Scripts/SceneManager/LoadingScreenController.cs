@@ -23,9 +23,9 @@ public partial class LoadingScreenController : Node
 	public static void LoadScene(Node currentScene, string nextScene)
 	{
 		Node loadingSceneInstance = _instance.loading_screen.Instantiate();
+		_instance.GetTree().Root.CallDeferred("add_child", loadingSceneInstance);
 		LoadingScene loadingScene = (LoadingScene)loadingSceneInstance;
 		loadingScene.SetLoadingInformation(currentScene, nextScene);
-		_instance.GetTree().Root.CallDeferred("add_child", loadingSceneInstance);
 	}
 	
 
