@@ -14,13 +14,19 @@ public partial class LeapAndSlam : BaseAction
         LeapAndSlam ability = new LeapAndSlam((LeapAndSlam)action);
         return ability;
     }
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
+    {
+        return !chunkData.CharacterIsOnTile();
+    }
     
     public override void ResolveAbility(ChunkData chunk)
     {
-        UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        UpdateAbilityButton();
         if (!chunk.CharacterIsOnTile())
         {
+            PlayerAbilityAnimation();
+            PlayAnimation("Burgundy3", chunk);
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
         }
         DamageAdjacent(chunk);

@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cp05l0w6llywb"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cp05l0w6llywb"]
 
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_241bi"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/LeapAndSlam.cs" id="1_j76vu"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_75fyt"]
 
 [resource]
 script = ExtResource("1_j76vu")
@@ -11,6 +13,8 @@ isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
 AttackAnimation = "Attack"
+animatedObjectPrefab = ExtResource("1_241bi")
+animatedObjectPrefabData = ExtResource("2_75fyt")
 minAttackDamage = 4
 maxAttackDamage = 5
 attackRange = 2
@@ -25,8 +29,8 @@ otherTeamHoverCharacter = Color(0.796078, 0.211765, 0.839216, 1)
 otherTeamCharacterOnGrid = Color(0.0784314, 0.0784314, 0.0784314, 1)
 canUseOnSelf = false
 canUseOnTeammate = false
-canUseOnEnemy = true
-canUseOnObject = true
+canUseOnEnemy = false
+canUseOnObject = false
 areaOfEffect = false
 laserGridExtendsBeyondFirstEnemy = false
 laserGrid = false

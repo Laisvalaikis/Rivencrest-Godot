@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://d36xx0xx5i1xd" path="res://Data/PlayerResource/Red/Textures/CharacterSplashArt.tres" id="2_vb8ha"]
 [ext_resource type="Texture2D" uid="uid://b42v14pro0ahq" path="res://Data/PlayerResource/Red/Textures/CropedSplashArt.tres" id="3_t14gr"]
 [ext_resource type="Resource" uid="uid://bxmdwgu0y1nmt" path="res://Data/Abilities/ShadowBlink.tres" id="4_4tgpo"]
-[ext_resource type="Resource" uid="uid://b30vrjw3ga4eg" path="res://Data/Abilities/Enrage.tres" id="5_g8sfr"]
+[ext_resource type="Resource" uid="uid://cv4ho6nh10unu" path="res://Data/Abilities/IsolatedStrike.tres" id="5_gsl88"]
 [ext_resource type="Resource" uid="uid://cuhhwknvh5xqx" path="res://Data/Abilities/Execute.tres" id="6_b34ub"]
-[ext_resource type="Resource" uid="uid://fgkngukdnek2" path="res://Data/Abilities/Scream.tres" id="7_q62lg"]
+[ext_resource type="Resource" uid="uid://swr82th0rf0j" path="res://Data/Abilities/FromTheShadows.tres" id="7_g1ofk"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="9_rfnn3"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_x7sn2"]
 [ext_resource type="Resource" uid="uid://c6racdua8md0f" path="res://Data/Blessings/Swiftness.tres" id="11_srdmo"]
@@ -38,5 +38,5 @@ CharacterPortraitSprite = ExtResource("1_gafg1")
 canStepOnObject = false
 destroyObjectStepingOn = true
 canBeDestroyed = true
-abilities = Array[Resource]([ExtResource("4_4tgpo"), ExtResource("5_g8sfr"), ExtResource("6_b34ub"), ExtResource("7_q62lg")])
+abilities = Array[Resource]([ExtResource("4_4tgpo"), ExtResource("5_gsl88"), ExtResource("6_b34ub"), ExtResource("7_g1ofk")])
 blessings = [ExtResource("11_srdmo")]

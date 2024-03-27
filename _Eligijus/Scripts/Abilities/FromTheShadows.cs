@@ -20,6 +20,10 @@ public partial class FromTheShadows : BaseAction
     {
         return chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == null;
     }
+    public override bool CanBeUsedOnTile(ChunkData chunkData)
+    {
+        return !chunkData.CharacterIsOnTile();
+    }
     
     public override void ResolveAbility(ChunkData chunk)
     {

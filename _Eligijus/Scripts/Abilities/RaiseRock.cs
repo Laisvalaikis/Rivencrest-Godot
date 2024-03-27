@@ -33,6 +33,7 @@ public partial class RaiseRock : BaseAction
 		base.ResolveAbility(chunk);
 		if (!chunk.CharacterIsOnTile())
 		{
+			PlayerAbilityAnimation();
 			UpdateAbilityButton();
 			PackedScene spawnResource = (PackedScene)WallPrefab;
 			wall = spawnResource.Instantiate<Object>();
