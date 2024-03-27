@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 public partial class Revive : GlobalBlessing
 {
@@ -23,7 +23,16 @@ public partial class Revive : GlobalBlessing
         if (Data.Instance != null)
         {
             Data _data = Data.Instance;
-            if (_data.townData.deadCharacters.Contains(playerInformation))
+            SavableCharacterResource deadCharacter = null;
+            for (int i = 0; i < _data.townData.deadCharacters.Count; i++)
+            {
+                if (_data.townData.deadCharacters[i].characterIndex == playerInformation.characterIndex)
+                {
+                    deadCharacter = _data.townData.deadCharacters[i];
+                    break;
+                }
+            }
+            if (deadCharacter != null)
             {
                 playerInformation.xPToGain = 0;
                 _data.Characters.Add(new SavedCharacterResource(_data.AllAvailableCharacters[playerInformation.characterIndex].prefab, playerInformation));
