@@ -27,10 +27,10 @@ public partial class MistShield : BaseAction
         return chunk != null && !chunk.TileIsLocked();
     }
 
-    public override async void ResolveAbility(ChunkData chunk)
+    public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
-        await PlayAnimation("MistSpawn", chunk);
+        PlayAnimation("MistSpawn", chunk);
         ProtectedBuff buff = new ProtectedBuff();
         chunk.GetCurrentPlayer().buffManager.AddBuff(buff);
         base.ResolveAbility(chunk);
