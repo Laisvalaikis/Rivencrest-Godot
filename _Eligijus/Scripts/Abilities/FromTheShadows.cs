@@ -31,9 +31,11 @@ public partial class FromTheShadows : BaseAction
         base.ResolveAbility(chunk);
         if (!chunk.CharacterIsOnTile())
         {
+            PlayerAbilityAnimation();
+            PlayAnimation("Red1", chunk);
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+            DamageAdjacent(chunk);
         }
-        DamageAdjacent(chunk);
         FinishAbility();
     }
     private void DamageAdjacent(ChunkData centerChunk)

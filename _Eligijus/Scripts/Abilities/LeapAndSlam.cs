@@ -28,15 +28,15 @@ public partial class LeapAndSlam : BaseAction
             PlayerAbilityAnimation();
             PlayAnimation("Burgundy3", chunk);
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
+            DamageAdjacent(chunk);
         }
-        DamageAdjacent(chunk);
         FinishAbility();
     }
 
-    protected override bool CanAddTile(ChunkData chunk)
-    {
-        return chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == null;
-    }
+    // protected override bool CanAddTile(ChunkData chunk)
+    // {
+    //     return chunk != null && !chunk.TileIsLocked() && chunk.GetCurrentPlayer() == null;
+    // }
     private void DamageAdjacent(ChunkData centerChunk)
     {
         ChunkData[,] chunks = GameTileMap.Tilemap.GetChunksArray();
@@ -52,7 +52,7 @@ public partial class LeapAndSlam : BaseAction
             int nx = x + dx[i];
             int ny = y + dy[i];
 
-            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny].GetCurrentPlayer() != null)
+            if (GameTileMap.Tilemap.CheckBounds(nx, ny) && chunks[nx, ny]?.GetCurrentPlayer() != null && !IsAllegianceSame(chunks[nx,ny]))
             {
                 DealRandomDamageToTarget(chunks[nx, ny], minAttackDamage, maxAttackDamage);
             }
