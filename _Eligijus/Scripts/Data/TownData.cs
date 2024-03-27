@@ -33,6 +33,8 @@ using Godot;
 		public List<Encounter> pastEncounters { get; set; }
 		public bool generateNewEncounters { get; set; }
 		public List<Encounter> generatedEncounters { get; set; }
+		public int selectedEncounterIndex { get; set; }
+		public List<bool> finishedEncounters { get; set; }
 		public GameSettings gameSettings { get; set; }
 
 		public TownData() { }
@@ -40,7 +42,7 @@ using Godot;
 		public TownData(int difficultyLevel, int townGold, int day, List<SavedCharacter> characters, List<SavedCharacter> deadCharacters, List<int> charactersOnLastMission,
 			bool wasLastMissionSuccessful, bool newGame, int maxAbilityCount, string selectedMission, TownHallData townHall,
 			List<SavedCharacter> rcCharacters, List<int> enemies, bool allowEnemySelection, bool allowDuplicates, string teamColor,
-			string teamName, Encounter selectedEncounter, List<Encounter> pastEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
+			string teamName, Encounter selectedEncounter, List<Encounter> pastEncounters, int selectedEncounterIndex, List<bool> finishedEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
 			GameSettings gameSettings)
 		{
 			this.difficultyLevel = difficultyLevel;
@@ -67,6 +69,8 @@ using Godot;
 			this.pastEncounters = pastEncounters;
 			this.generateNewEncounters = generateNewEncounters;
 			this.generatedEncounters = generatedEncounters;
+			this.selectedEncounterIndex = selectedEncounterIndex;
+			this.finishedEncounters = new List<bool>(finishedEncounters);
 			this.gameSettings = gameSettings;
 		}
 		
@@ -118,6 +122,7 @@ using Godot;
 				pastEncounters.Add(new Encounter(data.pastEncounters[i]));
 			}
 			generateNewEncounters = data.generateNewEncounters;
+			selectedEncounterIndex = data.selectedEncounterIndex;
 			generatedEncounters = new List<Encounter>();
 			for (int i = 0; i < data.generatedEncounters.Count; i++)
 			{
@@ -151,8 +156,9 @@ using Godot;
 				teamName = teamName,
 				selectedEncounter = new Encounter(),
 				pastEncounters = new List<Encounter>(),
-				generateNewEncounters = true,
 				generatedEncounters = new List<Encounter>(),
+				selectedEncounterIndex = 0,
+				generateNewEncounters = true,
 				gameSettings = new GameSettings()
 			};
 		}

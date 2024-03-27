@@ -46,11 +46,15 @@ public partial class TownDataResource: Resource
 	[Export]
 	public EncounterResource selectedEncounter;
 	[Export]
+	public int selectedEncounterIndex;
+	[Export]
 	public Array<EncounterResource> pastEncounters;
 	[Export]
 	public bool generateNewEncounters;
 	[Export]
 	public Array<EncounterResource> generatedEncounters;
+	[Export]
+	public Array<bool> finishedEncounters;
 	[Export]
 	public GameSettingsResource gameSettings;
 
@@ -86,6 +90,8 @@ public partial class TownDataResource: Resource
 		pastEncounters = data.pastEncounters;
 		generateNewEncounters = data.generateNewEncounters;
 		generatedEncounters = data.generatedEncounters;
+		selectedEncounterIndex = data.selectedEncounterIndex;
+		finishedEncounters = new Array<bool>(data.finishedEncounters);
 		gameSettings = data.gameSettings;
 	}
 
@@ -170,6 +176,8 @@ public partial class TownDataResource: Resource
 		{
 			pastEncounters.Add(new EncounterResource(data.pastEncounters[i]));
 		}
+		selectedEncounterIndex = data.selectedEncounterIndex;
+		finishedEncounters = new Array<bool>(data.finishedEncounters);
 		generateNewEncounters = data.generateNewEncounters;
 		generatedEncounters = new Array<EncounterResource>();
 		for (int i = 0; i < data.generatedEncounters.Count; i++)
