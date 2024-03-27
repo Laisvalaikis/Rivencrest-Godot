@@ -122,7 +122,17 @@ using Godot;
 				pastEncounters.Add(new Encounter(data.pastEncounters[i]));
 			}
 			generateNewEncounters = data.generateNewEncounters;
+			
 			selectedEncounterIndex = data.selectedEncounterIndex;
+			if (data.finishedEncounters != null)
+			{
+				finishedEncounters = new List<bool>(data.finishedEncounters);
+			}
+			else
+			{
+				finishedEncounters = new List<bool>();
+			}
+
 			generatedEncounters = new List<Encounter>();
 			for (int i = 0; i < data.generatedEncounters.Count; i++)
 			{

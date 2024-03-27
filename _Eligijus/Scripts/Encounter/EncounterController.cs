@@ -97,6 +97,14 @@ public partial class EncounterController : Control
 	{
 		for (int i = 0; i < encounterSelections.Count; i++)
 		{
+			if (_data.townData.finishedEncounters[i] || i > 0 && _data.townData.finishedEncounters[i - 1] && !_data.townData.finishedEncounters[i] || i == 0 && !_data.townData.finishedEncounters[i])
+			{
+				encounterSelections[i].Show();
+			}
+			else
+			{
+				encounterSelections[i].Hide();
+			}
 			encounterSelections[i].AddEncounter(generatedEncounters[i]); 
 		}
 	}
@@ -106,6 +114,7 @@ public partial class EncounterController : Control
 		bool activate = encounter != _data.townData.selectedEncounter && encounter != null;
 		
 		_data.townData.selectedEncounter = activate ? encounter : null;
+		_data.townData.selectedEncounterIndex = activate ? _data.townData.generatedEncounters.IndexOf(encounter) : -1;
 		_data.townData.selectedMission = activate ? encounter.mapName : "";
 		if (activate)
 		{

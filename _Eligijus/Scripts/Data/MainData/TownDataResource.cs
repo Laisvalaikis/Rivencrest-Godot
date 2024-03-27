@@ -177,7 +177,16 @@ public partial class TownDataResource: Resource
 			pastEncounters.Add(new EncounterResource(data.pastEncounters[i]));
 		}
 		selectedEncounterIndex = data.selectedEncounterIndex;
-		finishedEncounters = new Array<bool>(data.finishedEncounters);
+		
+		if (data.finishedEncounters != null)
+		{
+			finishedEncounters = new Array<bool>(data.finishedEncounters);
+		}
+		else
+		{
+			finishedEncounters = new Array<bool>();
+		}
+
 		generateNewEncounters = data.generateNewEncounters;
 		generatedEncounters = new Array<EncounterResource>();
 		for (int i = 0; i < data.generatedEncounters.Count; i++)
