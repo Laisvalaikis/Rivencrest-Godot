@@ -72,7 +72,7 @@ public partial class LoadingScene : Node
 	{
 		base._Process(delta);
 
-		if (whileCheck)
+		if (whileCheck && !IsInstanceValid(_currentScene))
 		{
 
 			ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(loadingPath, new Array());
@@ -96,9 +96,11 @@ public partial class LoadingScene : Node
 			if (status == ResourceLoader.ThreadLoadStatus.Loaded)
 			{
 				PackedScene node = (PackedScene)ResourceLoader.LoadThreadedGet(loadingPath);
-				GetTree().Root.AddChild(node.Instantiate());
+				Node scene = node.Instantiate();
+				GetTree().Root.AddChild(scene);
 				_label.Hide();
 				FadeOut();
+				GetTree().CurrentScene = scene;
 				whileCheck = false;
 			}
 
