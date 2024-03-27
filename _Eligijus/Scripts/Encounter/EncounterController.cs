@@ -4,6 +4,10 @@ using Godot.Collections;
 
 public partial class EncounterController : Control
 {
+	[Export] 
+	private Button pauseButton;
+	[Export]
+	private PortraitBar _portraitBar;
 	[Export]
 	public Array<string> encounterCategories;
 	[Export]
@@ -100,6 +104,8 @@ public partial class EncounterController : Control
 			if (_data.townData.finishedEncounters[i] || i > 0 && _data.townData.finishedEncounters[i - 1] && !_data.townData.finishedEncounters[i] || i == 0 && !_data.townData.finishedEncounters[i])
 			{
 				encounterSelections[i].Show();
+				_portraitBar.focusLeft = encounterSelections[i];
+				pauseButton.FocusNeighborLeft = encounterSelections[i].GetPath();
 			}
 			else
 			{
