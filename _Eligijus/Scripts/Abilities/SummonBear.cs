@@ -35,6 +35,7 @@ public partial class SummonBear : BaseAction
 			UpdateAbilityButton();
 			int teamIndex = _player.GetPlayerTeam();
 			base.ResolveAbility(chunk);
+			PlayerAbilityAnimation();
 			PackedScene spawnResource = (PackedScene)bearResource.prefab;
 			Player spawnedCharacter = spawnResource.Instantiate<Player>();
 			spawnedCharacter.AddTurnManager(_turnManager);

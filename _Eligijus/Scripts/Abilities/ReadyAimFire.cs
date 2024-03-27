@@ -21,6 +21,7 @@ public partial class ReadyAimFire : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         PlayAnimation("Bandit2", chunk);
         localIndex = FindChunkIndex(chunk);
         FinishAbility();

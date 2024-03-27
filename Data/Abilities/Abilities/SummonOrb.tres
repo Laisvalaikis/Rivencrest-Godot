@@ -1,8 +1,10 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b8daxvc68x24c"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://b8daxvc68x24c"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/SummonOrb.cs" id="1_v3r6t"]
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_wls7l"]
 [ext_resource type="Resource" uid="uid://13pauxoostrm" path="res://_Aurimas/DruidOrb/DruidOrbData.tres" id="1_x2w87"]
 [ext_resource type="PackedScene" uid="uid://kc7bmfbm6jd2" path="res://_Aurimas/AbilityPrefabs/DruidOrb.tscn" id="2_h7ruf"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_up3gu"]
 
 [resource]
 script = ExtResource("1_v3r6t")
@@ -15,6 +17,8 @@ isAbilitySlow = false
 abilityCooldown = 1
 _abilityBlessingsRef = Array[Resource]([])
 AttackAnimation = "Attack"
+animatedObjectPrefab = ExtResource("1_wls7l")
+animatedObjectPrefabData = ExtResource("2_up3gu")
 minAttackDamage = 4
 maxAttackDamage = 6
 attackRange = 3

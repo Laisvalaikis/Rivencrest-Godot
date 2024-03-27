@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/MistShield.cs" id="1_bv1nn"]
 [ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_lr4pj"]
-[ext_resource type="Resource" path="res://Animations/VFX9x9data.tres" id="2_tbdo2"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_tbdo2"]
 
 [resource]
 script = ExtResource("1_bv1nn")
@@ -12,6 +12,7 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 3
 _abilityBlessingsRef = null
+AttackAnimation = "MistShield"
 animatedObjectPrefab = ExtResource("1_lr4pj")
 animatedObjectPrefabData = ExtResource("2_tbdo2")
 minAttackDamage = 0

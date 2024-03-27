@@ -1,6 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://lch5ecstml35"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://lch5ecstml35"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/MindControl.cs" id="1_02ljv"]
+[ext_resource type="PackedScene" uid="uid://c50kryhpl56ma" path="res://Animations/VFX1x1Object.tscn" id="1_e6lk2"]
+[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_rig82"]
 
 [resource]
 script = ExtResource("1_02ljv")
@@ -10,6 +12,9 @@ abilityPoints = 1
 isAbilitySlow = true
 abilityCooldown = 2
 _abilityBlessingsRef = null
+AttackAnimation = "Attack"
+animatedObjectPrefab = ExtResource("1_e6lk2")
+animatedObjectPrefabData = ExtResource("2_rig82")
 minAttackDamage = 3
 maxAttackDamage = 4
 attackRange = 2

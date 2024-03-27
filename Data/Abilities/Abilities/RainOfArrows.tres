@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://cjqfbjmmmxea8"]
 
+[ext_resource type="PackedScene" uid="uid://44goxjrwnr2w" path="res://Animations/VFXImpactObject.tscn" id="1_15v6u"]
 [ext_resource type="Resource" uid="uid://bpl881dp8vkll" path="res://_Eligijus/Prefabs/DangerTiles/RainOfArrowsData.tres" id="1_enb6d"]
-[ext_resource type="PackedScene" uid="uid://di0eklghf54tw" path="res://Animations/VFX9x9Object.tscn" id="1_mnguq"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Abilities/RainOfArrows.cs" id="1_omtow"]
-[ext_resource type="Resource" uid="uid://b8wklq5sm5s8n" path="res://Animations/VFX9x9data.tres" id="2_c1eq4"]
+[ext_resource type="Resource" uid="uid://cmfhopnbyjfrn" path="res://Animations/VFXImpactData.tres" id="2_3cajr"]
 [ext_resource type="PackedScene" uid="uid://dcgcqduxwt0jx" path="res://_Eligijus/Prefabs/DangerTiles/RainOfArrowsTile.tscn" id="2_miy6s"]
 
 [resource]
@@ -17,8 +17,8 @@ isAbilitySlow = true
 abilityCooldown = 1
 _abilityBlessingsRef = null
 AttackAnimation = "RainOfArrows"
-animatedObjectPrefab = ExtResource("1_mnguq")
-animatedObjectPrefabData = ExtResource("2_c1eq4")
+animatedObjectPrefab = ExtResource("1_15v6u")
+animatedObjectPrefabData = ExtResource("2_3cajr")
 minAttackDamage = 2
 maxAttackDamage = 4
 attackRange = 3

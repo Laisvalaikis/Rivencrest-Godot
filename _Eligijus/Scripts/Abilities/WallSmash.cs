@@ -26,6 +26,7 @@ public partial class WallSmash : BaseAction
 	{
 		base.ResolveAbility(chunk);
 		UpdateAbilityButton();
+		PlayerAbilityAnimation();
 		if (chunk.GetCurrentPlayer() != null && chunk.GetCharacterType() == typeof(Player))
 		{
 			DealRandomDamageToTarget(chunk, minAttackDamage-2, maxAttackDamage-2);

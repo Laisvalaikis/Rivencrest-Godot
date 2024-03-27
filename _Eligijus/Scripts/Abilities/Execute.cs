@@ -25,7 +25,8 @@ public partial class Execute : BaseAction
             _player.objectInformation.GetPlayerInformation().Heal(5); 
             GameTileMap.Tilemap.MoveSelectedCharacter(chunk);
         } 
-        base.ResolveAbility(chunk); 
+        base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         PlayAnimation("Red2", chunk);
         FinishAbility();
     }

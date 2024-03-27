@@ -18,6 +18,7 @@ public partial class FrontSlash : BaseAction
     {
         base.ResolveAbility(chunk);
         PlayAnimation("Undead4", chunk);
+        PlayerAbilityAnimation();
         int index = FindChunkIndex(chunk);
         if (index != -1)
         {

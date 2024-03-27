@@ -33,6 +33,7 @@ public partial class WallEntrap : BaseAction
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
         wallCount = 0;
+        PlayerAbilityAnimation();
         SpawnAdjacentWalls(chunk);
         FinishAbility();
     }
