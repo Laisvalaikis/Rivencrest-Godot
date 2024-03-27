@@ -5,7 +5,7 @@ using Godot;
 public partial class PvPCharacterSelect : Button
 {
     [Export] private TeamInformation teamInformation;
-    [Export] private Control characterButtonParent;
+    [Export] public Control characterButtonParent;
     private GameTileMap _gameTileMap; //cia private padaryt
     [Export]
     private TextureRect characterPortraitSprite;

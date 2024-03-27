@@ -4,6 +4,7 @@ using Godot;
 using Godot.Collections;
 public partial class SelectAction : Control
 {
+	[Export] private Control nextAbilityIcon;
 	[Export] private Button focusLeft;
 	[Export] private Button focusRight;
 	[Export] private HelpTable helpTable;
@@ -113,6 +114,9 @@ public partial class SelectAction : Control
 	public void EnableAbilities(Array<Ability> abilities, Array<SelectActionButton> usableAbilities, int index, bool updateAbilityPointsCooldown = false)
 	{
 		allAbilityButtons[buttonIndexCount].buttonParent.Show();
+		Vector2 size = allAbilityButtons[buttonIndexCount].buttonParent.Size;
+		Vector2 position = allAbilityButtons[buttonIndexCount].buttonParent.Position;
+		nextAbilityIcon.Position = new Vector2(position.X + size.X, nextAbilityIcon.Position.Y);
 		allAbilityButtons[buttonIndexCount].AbilityInformation(buttonIndexCount, helpTable, abilities[index], this);
 		allAbilityButtons[buttonIndexCount].AbilityButtonImage.Texture = (AtlasTexture)abilities[index].AbilityImage;
 		allAbilityButtons[buttonIndexCount].abilityButtonBackground.SelfModulate = _playerInformationData.backgroundColor;

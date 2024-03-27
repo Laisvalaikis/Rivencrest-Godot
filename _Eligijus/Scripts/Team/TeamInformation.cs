@@ -4,6 +4,7 @@ using Godot;
 using Godot.Collections;
 public partial class TeamInformation : Control
 {
+	[Export] private Control nextCharacterIcon;
 	[Export] private View view;
 	[Export] private Button focusLeft;
 	[Export] private Button focusRight;
@@ -54,6 +55,9 @@ public partial class TeamInformation : Control
 					pvpCharacterSelects[i].SetButtonIndex(i);
 					activeCharacterSelects.Add(pvpCharacterSelects[i]);
 					pvpCharacterSelects[i].Disabled = teamIsAI;
+					Vector2 size = pvpCharacterSelects[i].characterButtonParent.Size;
+					Vector2 position = pvpCharacterSelects[i].characterButtonParent.Position;
+					nextCharacterIcon.Position = new Vector2(position.X + size.X, nextCharacterIcon.Position.Y);
 					lastButtonActive = i;
 				}
 				else
