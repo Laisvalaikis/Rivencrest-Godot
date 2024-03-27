@@ -41,6 +41,11 @@ public partial class EncounterController : Control
 		{
 			GenerateEncounters(out generatedEncounters);
 			_data.townData.generateNewEncounters = false;
+			_data.townData.finishedEncounters = new Array<bool>();
+			for (int i = 0; i < generatedEncounters.Count; i++)
+			{
+				_data.townData.finishedEncounters.Add(false);
+			}
 		}
 		else generatedEncounters = _data.townData.generatedEncounters;
 		ToggleEncounterButtons(generatedEncounters);
