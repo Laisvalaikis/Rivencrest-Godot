@@ -34,6 +34,20 @@ public partial class Team : Resource
 	public LinkedList<UsedAbility> usedAbilitiesEndTurn = new LinkedList<UsedAbility>();
 	private int twoTimmes = 0;
 	private bool turnHappend;
+
+	public void CopyData(Team team)
+	{
+		characterPrefabs = new Godot.Collections.Dictionary<int, Resource>(team.characterPrefabs);
+		characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>(team.characterResources);
+		characters = new Godot.Collections.Dictionary<int, Player>(team.characters);
+		coordinates = new Godot.Collections.Dictionary<int, Vector2>(team.coordinates);
+		teamName = team.teamName;
+		isTeamAI = team.isTeamAI;
+		isEnemies = team.isEnemies;
+		teamColor = team.teamColor;
+		isTeamUsed = team.isTeamUsed;
+	}
+
 	public bool IsTeamUsed()
 	{
 		return isTeamUsed;

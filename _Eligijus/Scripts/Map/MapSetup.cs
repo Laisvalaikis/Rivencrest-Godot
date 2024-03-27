@@ -41,12 +41,12 @@ public partial class MapSetup : Node
 		{
 			currentMapData = mapDatas[MapName];
 			//coordinates
-			for (int i = 0; i < _characterTeams.allCharacterList.Count; i++)
+			for (int i = 0; i < _characterTeams.availableTeams.Count; i++)
 			{
-				_characterTeams.allCharacterList[i].coordinates.Clear();
+				_characterTeams.availableTeams[i].coordinates.Clear();
 				for (int j = 0; j < currentMapData.mapCoordinates[i].coordinates.Count; j++)
 				{
-					_characterTeams.allCharacterList[i].coordinates.Add(j, currentMapData.mapCoordinates[i].coordinates[j]);
+					_characterTeams.availableTeams[i].coordinates.Add(j, currentMapData.mapCoordinates[i].coordinates[j]);
 				}
 			}
 			_cameraMovement.SetMovementBounds(currentMapData.panLimitX, currentMapData.panLimitY);

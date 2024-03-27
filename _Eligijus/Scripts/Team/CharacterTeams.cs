@@ -15,7 +15,7 @@ public partial class CharacterTeams : Node
 	[Export] 
 	private GameEnd gameEnd;
 	[Export]
-	public Array<Team> allCharacterList;
+	public Array<Team> availableTeams;
 	[Export]
 	public string ChampionTeam;
 	[Export]
@@ -29,6 +29,7 @@ public partial class CharacterTeams : Node
 	private Data _data;
 	private bool setupComplete = false;
 	private Random _random;
+	public Array<Team> allCharacterList;
 	
 
 	public override void _Ready()
@@ -53,39 +54,12 @@ public partial class CharacterTeams : Node
 	private void InitializeCharacterLists()
 	{
 		_data = Data.Instance;
-		if (allCharacterList != null && allCharacterList.Count > 0)
+		allCharacterList = new Array<Team>();
+		for (int i = 0; i < availableTeams.Count; i++)
 		{
-			if (allCharacterList[0] != null)
-			{
-				if (allCharacterList[0].characterPrefabs == null)
-				{
-					allCharacterList[0].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
-					
-				}
-				if (allCharacterList[0].characterResources == null)
-				{
-					allCharacterList[0].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
-				}
-
-			}
-			
-		}
-		else
-		{
-			if (allCharacterList == null)
-			{
-				allCharacterList = new Array<Team>();
-				allCharacterList.Add(new Team());
-			}
-			else if (allCharacterList != null && allCharacterList.Count == 0)
-			{
-				allCharacterList.Add(new Team());
-				allCharacterList[0].characterPrefabs = new Godot.Collections.Dictionary<int, Resource>();
-				allCharacterList[0].characterResources = new Godot.Collections.Dictionary<int, SavedCharacterResource>();
-			}
-
-			allCharacterList[0].characterPrefabs.Clear();
-			allCharacterList[0].characterResources.Clear();
+			Team temp = new Team();
+			temp.CopyData(availableTeams[i]);
+			allCharacterList.Add(temp);
 		}
 
 		// allCharacterList[0].characterResources = new Dictionary<int, SavableCharacterResource>();

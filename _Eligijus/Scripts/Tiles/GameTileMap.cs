@@ -813,6 +813,7 @@ public partial class GameTileMap : Node2D
 	protected override void Dispose(bool disposing)
 	{
 		InputManager.Instance.SelectClick -= MouseClick;
+		Tilemap = null;
 		base.Dispose(disposing);
 	}
 }
