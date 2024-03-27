@@ -4,7 +4,6 @@ using Godot.Collections;
 
 public partial class ActionManager : Node
 {
-	[Export] 
 	private Player _player;
 	private Array<Ability> _baseAbilities;
 	private Array<Ability> _abilities;
@@ -71,6 +70,11 @@ public partial class ActionManager : Node
 				_abilities.Add(_allAbilities[i]);
 			}
 		}
+	}
+
+	public void SetPlayer(Player player)
+	{
+		_player = player;
 	}
 
 	private void SetupAbility(Ability ability, int index)

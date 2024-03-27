@@ -65,7 +65,7 @@ public abstract partial class BaseAction: TileAction
 
 		public void SetupPlayerAbility(Player player, int abilityIndex)
 		{
-			_player = player;
+			base._player = player;
 			if (player.unlockedBlessingList.Count > abilityIndex)
 			{
 				unlockedBlessingsList = player.unlockedBlessingList[abilityIndex].UnlockedBlessingsList;

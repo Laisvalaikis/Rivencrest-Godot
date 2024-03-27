@@ -32,6 +32,12 @@ public partial class TurnManager : Node
 		InputManager.Instance.SelectClick += OnMouseClick;
 	}
 
+	public void ResetTeamList()
+	{
+		_teamsList = new TeamsList();
+		_teamObjects = new System.Collections.Generic.Dictionary<int, TeamObject>();
+	}
+
 	public void AddTeamToList(int index, Team addTeam)
 	{
 		if (_teamsList is null)

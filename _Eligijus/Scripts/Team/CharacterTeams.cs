@@ -157,6 +157,7 @@ public partial class CharacterTeams : Node
 
 	private void SpawnAllCharacters()
 	{
+		_turnManager.ResetTeamList();
 		for (int i = 0; i < allCharacterList.Count; i++)
 		{ 
 			deadCharacters.Teams.Add(i, new Team());

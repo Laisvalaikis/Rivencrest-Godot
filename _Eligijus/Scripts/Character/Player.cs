@@ -27,6 +27,7 @@ public partial class Player : Object
 		_playerBlessings = new Array<PlayerBlessing>();
 		objectInformation.GetPlayerInformation().SetupData(objectData);
 		_visionRange = ObjectDataType.GetObjectData().visionRange;
+		actionManager.SetPlayer(this);
 		actionManager.InitializeActionManager();
 		playerActionMiddleware._player = this;
 		for (int i = 0; i < objectData.blessings.Count; i++)
@@ -223,5 +224,13 @@ public partial class Player : Object
 		actionManager.ActionOnExit(chunkDataPrev, chunkData);
 	}
 
-	
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		Array<Ability> abilities = actionManager.GetAllAbilities();
+		for (int i = 0; i < abilities.Count; i++)
+		{
+			abilities[i].Action.SetPlayer(null);
+		}
+	}
 }
