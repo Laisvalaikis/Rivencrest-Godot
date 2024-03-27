@@ -7,7 +7,6 @@ public partial class ActionManager : Node
 	private Player _player;
 	private Array<Ability> _baseAbilities;
 	private Array<Ability> _abilities;
-	[Export]
 	private Array<Ability> _allAbilities;
 	[Export]
 	private int _availableAbilityPoints = 1;
@@ -40,6 +39,14 @@ public partial class ActionManager : Node
 		Array<Ability> baseAbilities = _player.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().baseAbilities;
 		_unlockedAbilityList = _player.unlockedAbilityList;
 		abilities = _player.objectInformation.GetPlayerInformation().objectData.GetPlayerInformationData().abilities;
+		if (_allAbilities == null)
+		{
+			_allAbilities = new Array<Ability>();
+		}
+		{
+			_allAbilities.Clear();	
+		}
+
 		if (abilities.Count + baseAbilities.Count != 0)
 		{
 			for (int i = 0; i < baseAbilities.Count; i++)
