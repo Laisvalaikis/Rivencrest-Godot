@@ -27,6 +27,7 @@ public partial class ThrowBehind : BaseAction
         {
             DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         }
+        PlayerAbilityAnimation();
         MoveCharacter(chunk);
         FinishAbility();
     }

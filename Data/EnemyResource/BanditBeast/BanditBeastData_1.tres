@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=7 format=3 uid="uid://demi6ujh544u0"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://demi6ujh544u0"]
 
 [ext_resource type="Texture2D" uid="uid://u0l71ckce5bs" path="res://Data/EnemyResource/BanditBeast/Textures/CharacterPortraitSprite.tres" id="1_5a43w"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_wxqw0"]
+[ext_resource type="Resource" uid="uid://byhj7ttpb812w" path="res://Data/Abilities/Abilities/ThrowBehind.tres" id="2_1avkg"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="3_v06lb"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="4_s80k4"]
 [ext_resource type="Texture2D" uid="uid://olx7e4fflugw" path="res://Data/EnemyResource/BanditBeast/Textures/CharacterSprite.tres" id="5_8008u"]
@@ -29,5 +30,5 @@ CharacterPortraitSprite = ExtResource("1_5a43w")
 canStepOnObject = false
 destroyObjectStepingOn = true
 canBeDestroyed = true
-abilities = Array[Resource]([])
+abilities = Array[Resource]([ExtResource("2_1avkg")])
 blessings = []

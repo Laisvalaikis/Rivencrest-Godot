@@ -36,6 +36,7 @@ public partial class RainOfArrows : BaseAction
             spawnedArrowTile.SetupObject(arrowTileData);
             spawnedArrowTile.AddPlayerForObjectAbilities(_player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);
+            PlayAnimation("Forest3", chunkData);
         }
         FinishAbility();
     }
