@@ -36,7 +36,7 @@ public partial class RaiseRock : BaseAction
 			UpdateAbilityButton();
 			PackedScene spawnResource = (PackedScene)WallPrefab;
 			wall = spawnResource.Instantiate<Object>();
-			_player.GetTree().Root.CallDeferred("add_child", wall);
+			_player.GetTree().CurrentScene.CallDeferred("add_child", wall);
 			wall.SetupObject(wallRockData);
 			GameTileMap.Tilemap.SpawnObject(wall, chunk);
 			FinishAbility();

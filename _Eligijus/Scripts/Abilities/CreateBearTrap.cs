@@ -30,7 +30,7 @@ public partial class CreateBearTrap : BaseAction
 		base.ResolveAbility(chunk);
 		PackedScene spawnCharacter = (PackedScene)bearTrapPrefab;
 		spawnedBearTrap = spawnCharacter.Instantiate<Object>();
-		_player.GetTree().Root.CallDeferred("add_child", spawnedBearTrap);
+		_player.GetTree().CurrentScene.CallDeferred("add_child", spawnedBearTrap);
 		spawnedBearTrap.SetupObject(bearTrapData);
 		spawnedBearTrap.AddPlayerForObjectAbilities(_player);
 		GameTileMap.Tilemap.SpawnObject(spawnedBearTrap, chunk);

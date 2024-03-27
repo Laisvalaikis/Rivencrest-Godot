@@ -44,7 +44,7 @@ public partial class SilenceBeam : BaseAction
 					chunk.GetCurrentPlayer()?.debuffManager.AddDebuff(debuff, _player);
 					PackedScene spawnCharacter = (PackedScene)PinkTilePrefab;
 					Object spawnedPinkTile = spawnCharacter.Instantiate<Object>();
-					_player.GetTree().Root.CallDeferred("add_child", spawnedPinkTile);
+					_player.GetTree().CurrentScene.CallDeferred("add_child", spawnedPinkTile);
 					spawnedPinkTile.SetupObject(PinkTileData);
 					spawnedPinkTile.AddPlayerForObjectAbilities(_player);
 					GameTileMap.Tilemap.SpawnObject(spawnedPinkTile, damageChunk);

@@ -48,7 +48,7 @@ public partial class SummonBear : BaseAction
 			GenerateCharacterBlessingsLockUnlock(bearResource);
 			spawnedCharacter.SetPlayerTeam(teamIndex);
 			_player.GetPlayerTeams().AddAliveCharacter(teamIndex, spawnedCharacter, bearResource.prefab);
-			_player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			_player.GetTree().CurrentScene.CallDeferred("add_child", spawnedCharacter);
 			GameTileMap.Tilemap.MoveSelectedCharacter(chunk, spawnedCharacter);
 			_player.GetPlayerTeams().portraitTeamBox.ModifyList();
 			FinishAbility();

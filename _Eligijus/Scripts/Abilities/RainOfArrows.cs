@@ -32,7 +32,7 @@ public partial class RainOfArrows : BaseAction
         {
             PackedScene spawnCharacter = (PackedScene)arrowTilePrefab;
             Object spawnedArrowTile = spawnCharacter.Instantiate<Object>();
-            _player.GetTree().Root.CallDeferred("add_child", spawnedArrowTile);
+            _player.GetTree().CurrentScene.CallDeferred("add_child", spawnedArrowTile);
             spawnedArrowTile.SetupObject(arrowTileData);
             spawnedArrowTile.AddPlayerForObjectAbilities(_player);
             GameTileMap.Tilemap.SpawnObject(spawnedArrowTile, chunkData);

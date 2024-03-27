@@ -30,7 +30,7 @@ public partial class CreateFog : BaseAction
 		PlayerAbilityAnimation();
 		PackedScene spawnCharacter = (PackedScene)fogPrefab;
 		Object spawnedFog = spawnCharacter.Instantiate<Object>();
-		_player.GetTree().Root.CallDeferred("add_child", spawnedFog);
+		_player.GetTree().CurrentScene.CallDeferred("add_child", spawnedFog);
 		spawnedFog.SetupObject(fogPrefabData);
 		spawnedFog.AddPlayerForObjectAbilities(_player);
 		GameTileMap.Tilemap.SpawnObject(spawnedFog, chunk);

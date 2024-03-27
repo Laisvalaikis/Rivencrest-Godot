@@ -39,7 +39,7 @@ public partial class CometFall : BaseAction
         PlayerAbilityAnimation();
         PackedScene spawnCharacter = (PackedScene)cometTilePrefab;
         spawnedCometTile = spawnCharacter.Instantiate<Object>();
-        _player.GetTree().Root.CallDeferred("add_child", spawnedCometTile);
+        _player.GetTree().CurrentScene.CallDeferred("add_child", spawnedCometTile);
         spawnedCometTile.SetupObject(cometTileData);
         spawnedCometTile.AddPlayerForObjectAbilities(_player);
         GameTileMap.Tilemap.SpawnObject(spawnedCometTile, chunk);

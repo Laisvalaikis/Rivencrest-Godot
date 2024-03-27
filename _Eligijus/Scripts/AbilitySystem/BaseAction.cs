@@ -496,7 +496,7 @@ public abstract partial class BaseAction: TileAction
 		{
 			PackedScene spawnCharacter = (PackedScene)animatedObjectPrefab; 
 			Object animatedObject = spawnCharacter.Instantiate<Object>(); 
-			_player.GetTree().Root.CallDeferred("add_child", animatedObject); 
+			_player.GetTree().CurrentScene.CallDeferred("add_child", animatedObject); 
 			animatedObject.SetupObject(animatedObjectPrefabData);
 			animatedObject.GlobalPosition = chunk.GetPosition();
 			AnimationPlayer animationPlayer = animatedObject.objectInformation.GetObjectInformation().animationPlayer;

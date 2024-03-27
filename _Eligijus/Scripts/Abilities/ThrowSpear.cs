@@ -54,7 +54,7 @@ public partial class ThrowSpear : BaseAction
 			{
 				PackedScene spawnResource = (PackedScene)spearPrefab;
 				spawnedCharacter = spawnResource.Instantiate<Object>();
-				_player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+				_player.GetTree().CurrentScene.CallDeferred("add_child", spawnedCharacter);
 				spawnedCharacter.SetupObject(throwSpearData);
 				GameTileMap.Tilemap.SpawnObject(spawnedCharacter, chunkData);
 			}
@@ -64,7 +64,7 @@ public partial class ThrowSpear : BaseAction
 		{
 			PackedScene spawnResource = (PackedScene)spearPrefab;
 			spawnedCharacter = spawnResource.Instantiate<Object>();
-			_player.GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+			_player.GetTree().CurrentScene.CallDeferred("add_child", spawnedCharacter);
 			spawnedCharacter.SetupObject(throwSpearData);
 			GameTileMap.Tilemap.SpawnObject(spawnedCharacter, chunk);
 		}

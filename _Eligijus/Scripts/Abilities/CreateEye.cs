@@ -27,7 +27,7 @@ public partial class CreateEye : BaseAction
 		UpdateAbilityButton(); 
 		PackedScene spawnCharacter = (PackedScene)eyePrefab; 
 		spawnedEye = spawnCharacter.Instantiate<Object>(); 
-		_player.GetTree().Root.CallDeferred("add_child", spawnedEye); 
+		_player.GetTree().CurrentScene.CallDeferred("add_child", spawnedEye); 
 		spawnedEye.SetupObject(eyeData); 
 		spawnedEye.AddPlayerForObjectAbilities(_player); 
 		GameTileMap.Tilemap.SpawnObject(spawnedEye, chunk); 

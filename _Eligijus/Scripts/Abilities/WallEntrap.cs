@@ -116,7 +116,7 @@ public partial class WallEntrap : BaseAction
                 ChunkData chunkData = chunkDataArray[x.Item1, x.Item2];
                 PackedScene spawnResource = (PackedScene)wallPrefab;
                 wall = spawnResource.Instantiate<Object>();
-                _player.GetTree().Root.CallDeferred("add_child", wall);
+                _player.GetTree().CurrentScene.CallDeferred("add_child", wall);
                 wall.SetupObject(wallRockData);
                 GameTileMap.Tilemap.SpawnObject(wall, chunkData);
                 if (chunkDataArray[x.Item1,x.Item2].IsFogOnTile())

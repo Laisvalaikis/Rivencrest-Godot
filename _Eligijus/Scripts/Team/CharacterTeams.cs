@@ -212,7 +212,7 @@ public partial class CharacterTeams : Node
 			{
 				PackedScene spawnResource = (PackedScene)allCharacterList[teamIndex].characterPrefabs[i];
 				Player spawnedCharacter = spawnResource.Instantiate<Player>();
-				GetTree().Root.CallDeferred("add_child", spawnedCharacter);
+				GetTree().CurrentScene.CallDeferred("add_child", spawnedCharacter);
 				Vector2 position = new Vector2(coordinate.Value.X, coordinate.Value.Y);
 				spawnedCharacter.GlobalPosition = position;
 				spawnedCharacter.playerInTeamIndex = i;
