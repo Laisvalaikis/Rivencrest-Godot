@@ -2,8 +2,6 @@ using Godot;
 
 public partial class BlessingCard : Control
 {
-    [Signal]
-    public delegate void BlessingSelectedEventHandler();
     [Export] private Button claimButton;
     [Export] private TextureRect portrait;
     [Export] private TextureRect highlight;
@@ -37,8 +35,7 @@ public partial class BlessingCard : Control
             GlobalBlessing globalBlessing = (GlobalBlessing)blessingData.blessing;
             globalBlessing.Start(blessingData.playerResource);
         }
-        _blessingManager.BlessingFinished();
-        EmitSignal("BlessingSelected");
+        _blessingManager.SceneChange();
     }
 
 }

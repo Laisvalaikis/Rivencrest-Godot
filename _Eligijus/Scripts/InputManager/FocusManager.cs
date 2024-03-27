@@ -107,7 +107,10 @@ public partial class FocusManager : Node
 
     public void ResetFocus()
     {
-        currentfocus?.ReleaseFocus();
+        if (IsInstanceValid(currentfocus))
+        {
+            currentfocus?.ReleaseFocus();
+        }
         currentfocus = null;
         currentView = null;
     }

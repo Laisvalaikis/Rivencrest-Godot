@@ -35,6 +35,7 @@ public partial class SelectAction : Control
 		base._Ready();
 		InputManager.Instance.ChangeAbilityNext += NextAbility;
 		InputManager.Instance.ChangeAbilityPrevious += PreviousAbility;
+		GameTileMap.Tilemap.selectAction = this;
 	}
 
 	public void SetupSelectAction()

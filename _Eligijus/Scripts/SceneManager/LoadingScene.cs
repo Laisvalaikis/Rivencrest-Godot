@@ -13,22 +13,22 @@ public partial class LoadingScene : Node
 	private string _nextScene;
 	private bool whileCheck = false;
 	private string loadingPath;
-	
-	private readonly Dictionary<string, string> GAME_SCENS = new Dictionary<string, string>
-	{
-		{ "town", "res://Scenes/Town.tscn" }
-	};
 
 	public override void _Ready()
 	{
 		base._Ready();
-		_fadeIn.AnimationFinished += delegate(StringName name) { LoadNextScene(_currentScene, _nextScene); };
+	}
+
+	public void AnimationEnd()
+	{
+		LoadNextScene(_currentScene, _nextScene);
+		// GD.Print("SSSSSAAA");
 	}
 
 	public void FadeOut()
 	{
 		_fadeOut.Play("FadeOut");
-		_fadeOut.AnimationFinished += delegate(StringName name) { QueueFree(); };
+		_fadeOut.AnimationFinished += delegate(StringName name) { Free(); };
 	}
 
 	public void SetLoadingInformation(Node currentScene, string nextScene)
@@ -39,16 +39,10 @@ public partial class LoadingScene : Node
 	
 	private void LoadNextScene(Node currentScene, string nextScene)
 	{
+		FreeUpScene(currentScene);
 		_label.Show();
 		string loadPath;
-		if (GAME_SCENS.ContainsKey(nextScene))
-		{
-			loadPath = GAME_SCENS[nextScene];
-		}
-		else
-		{
-			loadPath = nextScene;
-		}
+		loadPath = nextScene;
 
 		Error loaderNextScene = Error.Ok;
 		if (ResourceLoader.Exists(loadPath))
@@ -64,7 +58,7 @@ public partial class LoadingScene : Node
 			GD.PrintErr("Attempt to load non-existence file");
 		}
 		
-		FreeUpScene(currentScene);
+		
 		
 	}
 
@@ -110,7 +104,7 @@ public partial class LoadingScene : Node
 
 	private void FreeUpScene(Node current)
 	{
-		current.QueueFree();
+		current.Free();
 	}
 	
 

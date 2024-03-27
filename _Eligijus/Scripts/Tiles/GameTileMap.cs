@@ -20,11 +20,11 @@ public partial class GameTileMap : Node2D
 			chunks = new List<ChunkData>();
 		}
 	}
-
+	
+	public SelectAction selectAction;
 	[Export] public TileMapData currentMap;
 	[Export] private TurnManager _turnManager;
 	[Export] private TeamInformation teamInformation;
-	[Export] private SelectAction _selectAction;
 	[Export] private Node2D highligtHolder;
 	[Export] private Resource textTilePrefab;
 	[Export] private Resource highlightTilePrefab;
@@ -726,8 +726,8 @@ public partial class GameTileMap : Node2D
 				_currentSelectedCharacter = chunk.GetCurrentPlayer();
 				if (_currentSelectedCharacter != null && _currentSelectedCharacter.IsObjectEnabled())
 				{
-					_selectAction.SetCurrentCharacter(_currentSelectedCharacter);
-					_selectAction.UpdatePlayerInfo();//idk about this
+					selectAction.SetCurrentCharacter(_currentSelectedCharacter);
+					selectAction.UpdatePlayerInfo();//idk about this
 					_turnManager.SetCurrentCharacter(_currentSelectedCharacter);
 					teamInformation.SelectCharacterPortrait(_currentSelectedCharacter);
 					chunk.GetTileHighlight().ToggleSelectedPlayerUI(true);
@@ -752,7 +752,7 @@ public partial class GameTileMap : Node2D
 	{
 		if (_currentSelectedCharacter != null && CharacterIsSelected())
 		{
-			_selectAction.Disable();
+			selectAction.Disable();
 			// _currentSelectedCharacter.actionManager.DeselectAbility();
 			_currentSelectedCharacter.actionManager.SetCurrentAbility(null, -1);
 			_turnManager.SetCurrentCharacter(null);

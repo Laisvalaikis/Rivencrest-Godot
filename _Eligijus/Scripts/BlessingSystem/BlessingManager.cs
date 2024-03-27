@@ -6,8 +6,8 @@ using Godot.Collections;
 public partial class BlessingManager : Control
 {
     [Export] private Array<BlessingCard> _blessingCards;
-    [Export] private SaveData saveData;
-    [Export] private ChangeScene changeScene;
+    [Export] private SaveData _saveData;
+    [Export] private ChangeScene _changeScene;
     private Array<BlessingData> _playerBlessings;
     private Array<BlessingData> _abilityBlessings;
     private Array<BlessingData> _globalBlessings;
@@ -246,17 +246,19 @@ public partial class BlessingManager : Control
             
         }
     }
-    
-    public void BlessingFinished()
+
+    public void SceneChange()
     {
         _data.townData.deadCharacters.Clear();
+        _saveData.SaveGameData();
+        _changeScene.SceneTransition();
     }
 
     public void NoBlessingsWasGenerated()
     {
         Hide();
         _data.townData.deadCharacters.Clear();
-        saveData.SaveGameData();
-        changeScene.SceneTransition();
+        _saveData.SaveGameData();
+        _changeScene.SceneTransition();
     }
 } 
