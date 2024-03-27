@@ -230,29 +230,55 @@ public partial class ControllerInputManager : InputManager
 				EmitSignal("Down",value * zoomStrength);
 			}
 		}
-
-		if (enabled && !isFocused && inGameFocus)
+		
+		if (enabled && !isFocused)
 		{
-			
-			if (Input.IsActionJustPressed("FocusLeft", true))
+
+			if (!isInGame)
 			{
-				EmitSignal("FocusLeft");
+				if (Input.IsActionJustPressed("FocusLeft", true))
+				{
+					EmitSignal("FocusLeft");
+				}
+
+				if (Input.IsActionJustPressed("FocusRight", true))
+				{
+					EmitSignal("FocusRight");
+				}
+
+				if (Input.IsActionJustPressed("FocusUp", true))
+				{
+					EmitSignal("FocusUp");
+				}
+
+				if (Input.IsActionJustPressed("FocusDown", true))
+				{
+					EmitSignal("FocusDown");
+				}
 			}
-			if (Input.IsActionJustPressed("FocusRight", true))
+			else if(isInGame && inGameFocus)
 			{
-				EmitSignal("FocusRight");
+				if (Input.IsActionJustPressed("FocusLeft", true))
+				{
+					EmitSignal("FocusLeft");
+				}
+
+				if (Input.IsActionJustPressed("FocusRight", true))
+				{
+					EmitSignal("FocusRight");
+				}
+
+				if (Input.IsActionJustPressed("FocusUp", true))
+				{
+					EmitSignal("FocusUp");
+				}
+
+				if (Input.IsActionJustPressed("FocusDown", true))
+				{
+					EmitSignal("FocusDown");
+				}
 			}
-			
-			if (Input.IsActionJustPressed("FocusUp", true))
-			{
-				EmitSignal("FocusUp");
-			}
-			
-			if (Input.IsActionJustPressed("FocusDown", true))
-			{
-				EmitSignal("FocusDown");
-			}
-			
+
 		}
 
 	}

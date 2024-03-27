@@ -28,6 +28,7 @@ public partial class TeamInformation : Control
 		InputManager.Instance.ReleaseFocusWhenNotFocused += ReleaseFocusFirstCharacter;
 		InputManager.Instance.ReleaseFocusWhenNotFocused += RealeseFocus;
 		InputManager.Instance.ReleaseFocus += RealeseFocus;
+		InputManager.Instance.SetIsInGame(true);
 	}
 
 	public void ModifyList()

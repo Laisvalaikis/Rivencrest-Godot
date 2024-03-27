@@ -32,6 +32,7 @@ public partial class InputManager: Node2D
 	
 	protected bool enabled = false;
 	protected bool inGameFocus = false;
+	protected bool isInGame = false;
 
 	public virtual void SetCurrentCharacterPosition(Vector2 characterPosition)
 	{
@@ -103,6 +104,11 @@ public partial class InputManager: Node2D
 	public virtual void SetInGameFocus(bool state)
 	{
 		inGameFocus = state;
+	}
+	
+	public virtual void SetIsInGame(bool state)
+	{
+		isInGame = state;
 	}
 	
 }
