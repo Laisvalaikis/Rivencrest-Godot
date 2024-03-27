@@ -21,7 +21,6 @@ public partial class BlessingCard : Control
         blessingName.Text = blessingData.blessing.blessingName;
         blessingDescription.Text = blessingData.blessing.description;
         _blessingManager = blessingManager;
-        claimButton.Pressed += PressButton;
     }
 
     public void PressButton()

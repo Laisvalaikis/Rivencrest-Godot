@@ -1,5 +1,6 @@
+using System;
 using Godot;
-using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 public partial class LoadingScene : Node
 {
@@ -13,13 +14,16 @@ public partial class LoadingScene : Node
 	private string _nextScene;
 	private bool whileCheck = false;
 	private string loadingPath;
+	private Delegate animation;
 
 	public override void _Ready()
 	{
 		base._Ready();
+		_fadeIn.Play("FadeIn");
+		_fadeIn.AnimationFinished += AnimationEnd;
 	}
 
-	public void AnimationEnd()
+	public void AnimationEnd(StringName name)
 	{
 		LoadNextScene(_currentScene, _nextScene);
 		// GD.Print("SSSSSAAA");
@@ -28,7 +32,10 @@ public partial class LoadingScene : Node
 	public void FadeOut()
 	{
 		_fadeOut.Play("FadeOut");
-		_fadeOut.AnimationFinished += delegate(StringName name) { Free(); };
+		_fadeOut.AnimationFinished += delegate(StringName name)
+		{
+			Free();
+		};
 	}
 
 	public void SetLoadingInformation(Node currentScene, string nextScene)
