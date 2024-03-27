@@ -12,6 +12,7 @@ public partial class TurnManager : Node
 	[Export] private FogOfWar _fogOfWar;
 	[Export] private TeamInformation _teamInformation;
 	[Export] private Team _currentTeam;
+	[Export] private ControllerSelection _controllerSelection;
 	// private Array<Object> _objects;
 	private System.Collections.Generic.Dictionary<int, TeamObject> _teamObjects;
 	public LinkedList<UsedAbility> objectAbilitiesBeforeStartTurn = new LinkedList<UsedAbility>();
@@ -80,6 +81,7 @@ public partial class TurnManager : Node
 		{
 			Player player = _currentTeam.characters[key];
 			_cameraMovement.FocusPoint(player.GlobalPosition);
+			_controllerSelection.EnablePositionCursor(player.GlobalPosition);
 			break;
 		}
 		UpdateFogInformation(_currentTeam.GetVisionTiles());

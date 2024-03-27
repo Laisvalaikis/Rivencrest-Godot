@@ -194,7 +194,7 @@ public partial class ControllerInputManager : InputManager
 	{
 		if (enabled)
 		{
-			EmitSignal("DisableSelector", _mousePosition);
+			// EmitSignal("DisableSelector", _mousePosition);
 			_mousePosition = characterPosition;
 		}
 	}

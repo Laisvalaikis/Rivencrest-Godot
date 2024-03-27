@@ -12,13 +12,17 @@ public partial class ControllerSelection : Node
 
 	public void EnablePositionCursor(Vector2 mousePosition) // need update tile rendering enabling when player was selected
 	{
-		HighlightTile highlightTile = GameTileMap.Tilemap.GetChunk(mousePosition).GetTileHighlight();
-		if (!highlightTile.TileWasEnabled())
+		if (InputSelectManager.CurrentInputScheme == InputScheme.GamePad)
 		{
-			highlightTile.EnableControllerSelectTile(true);
-			_selectedTileWasVisible = true;
+			HighlightTile highlightTile = GameTileMap.Tilemap.GetChunk(mousePosition).GetTileHighlight();
+			if (!highlightTile.TileWasEnabled())
+			{
+				highlightTile.EnableControllerSelectTile(true);
+				_selectedTileWasVisible = true;
+			}
+
+			highlightTile.EnableMouseSelector();
 		}
-		highlightTile.EnableMouseSelector();
 	}
 
 	public void DisablePreviousCursor(Vector2 mousePosition) // need update tile enabling when player was selected
