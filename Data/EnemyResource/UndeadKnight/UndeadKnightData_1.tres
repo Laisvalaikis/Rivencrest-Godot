@@ -1,7 +1,10 @@
-[gd_resource type="Resource" load_steps=7 format=3 uid="uid://dfgkakdo3764q"]
+[gd_resource type="Resource" load_steps=10 format=3 uid="uid://dfgkakdo3764q"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_v05ay"]
 [ext_resource type="Texture2D" uid="uid://dntrey1ghc5mh" path="res://Data/EnemyResource/UndeadKnight/Textures/CharacterPortraitSprite.tres" id="1_wx3o8"]
+[ext_resource type="Resource" uid="uid://cptrp37s44iov" path="res://Data/Abilities/MistShield.tres" id="2_fuueu"]
+[ext_resource type="Resource" uid="uid://6goaufd13pcj" path="res://Data/Abilities/GroundSlam.tres" id="3_x42k6"]
+[ext_resource type="Resource" uid="uid://blmh0ptkj3m7k" path="res://Data/Abilities/LeapAndSlam.tres" id="4_uqxhg"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="5_x1vpy"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="6_om1ks"]
 [ext_resource type="Texture2D" uid="uid://dy4akqytlh5bs" path="res://Data/EnemyResource/UndeadKnight/Textures/CharacterSprite.tres" id="7_35dws"]
@@ -29,5 +32,5 @@ CharacterPortraitSprite = ExtResource("1_wx3o8")
 canStepOnObject = false
 destroyObjectStepingOn = true
 canBeDestroyed = true
-abilities = Array[Resource]([])
+abilities = Array[Resource]([ExtResource("2_fuueu"), ExtResource("3_x42k6"), ExtResource("4_uqxhg")])
 blessings = []

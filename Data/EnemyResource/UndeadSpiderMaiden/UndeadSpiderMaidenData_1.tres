@@ -1,7 +1,9 @@
-[gd_resource type="Resource" load_steps=7 format=3 uid="uid://caoak4ybditcn"]
+[gd_resource type="Resource" load_steps=9 format=3 uid="uid://caoak4ybditcn"]
 
 [ext_resource type="Texture2D" uid="uid://bi27jj7n67k5b" path="res://Data/EnemyResource/UndeadSpiderMaiden/Textures/CharacterPortraitSprite.tres" id="1_7ff6g"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_sqoyn"]
+[ext_resource type="Resource" uid="uid://clk76sgplbv81" path="res://Data/Abilities/DisarmingBlast.tres" id="2_3g5bf"]
+[ext_resource type="Resource" uid="uid://lrulrqc4v33e" path="res://Data/Abilities/SummonBear.tres" id="3_r0in8"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="4_8hc6o"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="5_ctqsf"]
 [ext_resource type="Texture2D" uid="uid://qo3xcgwfnfbf" path="res://Data/EnemyResource/UndeadSpiderMaiden/Textures/CharacterSprite.tres" id="6_vl4r7"]
@@ -29,5 +31,5 @@ CharacterPortraitSprite = ExtResource("1_7ff6g")
 canStepOnObject = false
 destroyObjectStepingOn = true
 canBeDestroyed = true
-abilities = Array[Resource]([])
+abilities = Array[Resource]([ExtResource("2_3g5bf"), ExtResource("3_r0in8")])
 blessings = []

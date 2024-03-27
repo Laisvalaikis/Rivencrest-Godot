@@ -25,6 +25,7 @@ public partial class PoisonDart : BaseAction
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
+        PlayerAbilityAnimation();
         DealRandomDamageToTarget(chunk, minAttackDamage, maxAttackDamage);
         Player target = chunk.GetCurrentPlayer();
         PoisonDebuff debuff = new PoisonDebuff(2, 2);

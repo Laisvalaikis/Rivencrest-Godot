@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dr3lf6ebbe7yf" path="res://Data/EnemyResource/ForestBear/Textures/CharacterPortraitSprite.tres" id="1_rjpcr"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_xy778"]
-[ext_resource type="Resource" uid="uid://oafcf5g7ik8n" path="res://Data/Abilities/IceQuake.tres" id="2_4nal2"]
+[ext_resource type="Resource" uid="uid://cptrp37s44iov" path="res://Data/Abilities/MistShield.tres" id="2_2kh3f"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="3_2bamd"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="4_pb57g"]
 [ext_resource type="Texture2D" uid="uid://dy1ygt1alecee" path="res://Data/EnemyResource/ForestBear/Textures/CharacterSprite.tres" id="5_4qpwd"]
@@ -30,5 +30,5 @@ CharacterPortraitSprite = ExtResource("1_rjpcr")
 canStepOnObject = false
 destroyObjectStepingOn = true
 canBeDestroyed = true
-abilities = Array[Resource]([ExtResource("2_4nal2")])
+abilities = Array[Resource]([ExtResource("2_2kh3f")])
 blessings = []

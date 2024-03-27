@@ -20,6 +20,7 @@ public partial class DisarmingBlast : BaseAction   //jei cia tik A.I ability gal
     { 
         base.ResolveAbility(chunk);
         PlayerAbilityAnimation();
+        PlayAnimation("Yellow2", chunk);
         UpdateAbilityButton(); 
         Player target = chunk.GetCurrentPlayer(); 
         SilenceDebuff debuff = new SilenceDebuff(); 

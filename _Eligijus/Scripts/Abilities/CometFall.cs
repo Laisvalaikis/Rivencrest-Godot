@@ -31,11 +31,11 @@ public partial class CometFall : BaseAction
     }
 
     
-    public override async void ResolveAbility(ChunkData chunk)
+    public override void ResolveAbility(ChunkData chunk)
     {
         UpdateAbilityButton();
         base.ResolveAbility(chunk);
-        await PlayAnimation("CometFall", chunk);
+        PlayAnimation("CometFall", chunk);
         PlayerAbilityAnimation();
         PackedScene spawnCharacter = (PackedScene)cometTilePrefab;
         spawnedCometTile = spawnCharacter.Instantiate<Object>();
