@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 public partial class GameEnd : Control
 {
@@ -31,6 +31,7 @@ public partial class GameEnd : Control
         textureRect.SelfModulate = death;
         text.LabelSettings.FontColor = death;
         DeadCharacters(deadCharacters);
+        _data.townData.winGame = false;
         endOfGame = true;
     }
 
@@ -42,6 +43,7 @@ public partial class GameEnd : Control
         text.LabelSettings.FontColor = teamColor;
         DeadCharacters(deadCharacters); 
         SaveCharacterData(currentCharacters);
+        _data.townData.winGame = true;
         _data.townData.finishedEncounters[_data.townData.selectedEncounterIndex] = true;
         endOfGame = true;
     }

@@ -1,0 +1,121 @@
+[gd_resource type="AnimationLibrary" load_steps=5 format=3 uid="uid://c3m08fqxrwtcc"]
+
+[sub_resource type="Animation" id="Animation_hdjb1"]
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(59, 82), Vector2(67, 84), Vector2(68, 84), Vector2(70, 84), Vector2(76, 75), Vector2(83, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2i(61, 0, 80, 48), Rect2i(112, 102, 54, 46), Rect2i(219, 103, 53, 46), Rect2i(51, 110, 51, 46), Rect2i(0, 129, 51, 46), Rect2i(272, 62, 40, 55), Rect2i(0, 175, 33, 62)]
+}
+
+[sub_resource type="Animation" id="Animation_bj3wq"]
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(83, 68), Vector2(78, 68), Vector2(72, 68), Vector2(72, 79), Vector2(86, 77), Vector2(83, 71), Vector2(83, 69), Vector2(81, 67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2i(270, 179, 33, 62), Rect2i(85, 194, 33, 62), Rect2i(280, 0, 38, 62), Rect2i(61, 48, 51, 62), Rect2i(0, 78, 51, 51), Rect2i(33, 217, 34, 41), Rect2i(215, 195, 40, 41), Rect2i(193, 236, 39, 34), Rect2i(151, 214, 42, 34)]
+}
+
+[sub_resource type="Animation" id="Animation_fgq42"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(83, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2i(270, 179, 33, 62)]
+}
+
+[sub_resource type="Animation" id="Animation_30lh6"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(83, 68), Vector2(83, 69), Vector2(83, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2i(0, 175, 33, 62), Rect2i(118, 194, 33, 61), Rect2i(0, 175, 33, 62)]
+}
+
+[resource]
+_data = {
+"Attack": SubResource("Animation_hdjb1"),
+"Death": SubResource("Animation_bj3wq"),
+"Hit": SubResource("Animation_fgq42"),
+"Idle": SubResource("Animation_30lh6")
+}

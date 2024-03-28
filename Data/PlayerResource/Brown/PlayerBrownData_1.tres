@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=14 format=3 uid="uid://b6mwmarsnyy6s"]
+[gd_resource type="Resource" load_steps=16 format=3 uid="uid://b6mwmarsnyy6s"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_0w7qg"]
 [ext_resource type="Texture2D" uid="uid://c7rpuqh4o21k7" path="res://Data/PlayerResource/Brown/Textures/CharacterPortraitSprite.tres" id="1_mprbp"]
@@ -11,8 +11,10 @@
 [ext_resource type="Resource" uid="uid://c6racdua8md0f" path="res://Data/Blessings/Swiftness.tres" id="7_fay1m"]
 [ext_resource type="Resource" uid="uid://f0fd2qtrwj1l" path="res://Data/Abilities/WallEntrap.tres" id="7_qay1b"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_2pb3y"]
+[ext_resource type="AnimationLibrary" uid="uid://6ptsj3ly5q5t" path="res://Animations/Library/PlayerBrown.tres" id="8_g81vd"]
 [ext_resource type="Texture2D" uid="uid://caun8qenjaldi" path="res://Data/PlayerResource/Brown/Textures/CharacterSprite.tres" id="10_84hq6"]
 [ext_resource type="Texture2D" uid="uid://bau8jyaiuvjtr" path="res://Data/PlayerResource/Brown/Textures/RoleSprite.tres" id="12_xsspb"]
+[ext_resource type="Texture2D" uid="uid://jfqcjfunqtj0" path="res://Animations/Brown.png" id="14_3t4sk"]
 
 [resource]
 script = ExtResource("1_0w7qg")
@@ -26,6 +28,8 @@ CharacterSplashArt = ExtResource("2_a0fs6")
 CroppedSplashArt = ExtResource("3_uqbry")
 characterSprite = ExtResource("10_84hq6")
 roleSprite = ExtResource("12_xsspb")
+animationLibrary = ExtResource("8_g81vd")
+spriteSheet = ExtResource("14_3t4sk")
 baseAbilities = Array[Resource]([ExtResource("8_2pb3y"), ExtResource("5_mve42")])
 maxHealth = 28
 accuracy = 100

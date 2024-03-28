@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=12 format=3 uid="uid://bh2r2k40sy4a5"]
+[gd_resource type="Resource" load_steps=14 format=3 uid="uid://bh2r2k40sy4a5"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_bo46i"]
 [ext_resource type="Texture2D" uid="uid://b7oou03na577h" path="res://Data/PlayerResource/Purple/Textures/CharacterPortraitSprite.tres" id="1_xxpwe"]
@@ -7,10 +7,12 @@
 [ext_resource type="Resource" uid="uid://f8fubv507hqc" path="res://Data/Abilities/ThrowSpear.tres" id="4_63v4c"]
 [ext_resource type="Resource" uid="uid://bmipou3232esd" path="res://Data/Abilities/SpearPulse.tres" id="5_75e60"]
 [ext_resource type="Resource" uid="uid://6ne1lnhswoar" path="res://Data/Abilities/SwitchPlaces.tres" id="6_ipmfw"]
+[ext_resource type="AnimationLibrary" uid="uid://bm7mjsvhxfyni" path="res://Animations/Library/PlayerPurple.tres" id="7_gi6ag"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="7_uoa68"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="8_igyqv"]
 [ext_resource type="Texture2D" uid="uid://bxxbmop00asmd" path="res://Data/PlayerResource/Purple/Textures/CharacterSprite.tres" id="9_7cifw"]
 [ext_resource type="Texture2D" uid="uid://8k8mm2ofcyij" path="res://Data/PlayerResource/Purple/Textures/RoleSprite.tres" id="10_aqe2y"]
+[ext_resource type="Texture2D" uid="uid://bld3ohu8hbf3b" path="res://Animations/Players/Purple.png" id="12_l0rsf"]
 
 [resource]
 script = ExtResource("1_bo46i")
@@ -24,6 +26,8 @@ CharacterSplashArt = ExtResource("2_csbb6")
 CroppedSplashArt = ExtResource("3_mk8qc")
 characterSprite = ExtResource("9_7cifw")
 roleSprite = ExtResource("10_aqe2y")
+animationLibrary = ExtResource("7_gi6ag")
+spriteSheet = ExtResource("12_l0rsf")
 baseAbilities = Array[Resource]([ExtResource("7_uoa68"), ExtResource("8_igyqv")])
 maxHealth = 22
 accuracy = 100

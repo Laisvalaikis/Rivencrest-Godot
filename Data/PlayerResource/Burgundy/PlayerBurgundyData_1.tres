@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=13 format=3 uid="uid://w0dfrk7kykbe"]
+[gd_resource type="Resource" load_steps=15 format=3 uid="uid://w0dfrk7kykbe"]
 
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_0jahi"]
 [ext_resource type="Texture2D" uid="uid://bnjidvtwmfo62" path="res://Data/PlayerResource/Burgundy/Textures/CharacterPortraitSprite.tres" id="1_7kqen"]
@@ -8,10 +8,12 @@
 [ext_resource type="Resource" uid="uid://bo8itcxkid5pd" path="res://Data/Abilities/StunAttack.tres" id="5_n67ps"]
 [ext_resource type="Resource" uid="uid://6goaufd13pcj" path="res://Data/Abilities/GroundSlam.tres" id="6_axx8t"]
 [ext_resource type="Resource" uid="uid://c7b12fgf0a00o" path="res://Data/Abilities/FlameKick.tres" id="7_v7lhl"]
+[ext_resource type="AnimationLibrary" uid="uid://brkjgqomibmwl" path="res://Animations/Library/PlayerBurgundy.tres" id="8_elabm"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="8_goe0h"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_c75pb"]
 [ext_resource type="Texture2D" uid="uid://dq2n57m7ixtr3" path="res://Data/PlayerResource/Burgundy/Textures/CharacterSprite.tres" id="10_by0c2"]
 [ext_resource type="Texture2D" uid="uid://biudeusi4gvvk" path="res://Data/PlayerResource/Burgundy/Textures/RoleSprite.tres" id="11_sgfx4"]
+[ext_resource type="Texture2D" uid="uid://ntyheo1p6cod" path="res://Animations/Players/Burgundy.png" id="13_m06uh"]
 
 [resource]
 script = ExtResource("1_0jahi")
@@ -25,6 +27,8 @@ CharacterSplashArt = ExtResource("2_6b7h2")
 CroppedSplashArt = ExtResource("3_ia3ss")
 characterSprite = ExtResource("10_by0c2")
 roleSprite = ExtResource("11_sgfx4")
+animationLibrary = ExtResource("8_elabm")
+spriteSheet = ExtResource("13_m06uh")
 baseAbilities = Array[Resource]([ExtResource("8_goe0h"), ExtResource("9_c75pb")])
 maxHealth = 27
 accuracy = 100

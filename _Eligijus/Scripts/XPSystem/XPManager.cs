@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public partial class XPManager : Node
 {
+    [Export] private Label _missionSuccessful;
+    [Export] private Label _missionFailed;
     [Export] private Array<XPCard> xpCards;
     [Export] private int goldToAdd = 1400;
     [Export] private TwoClickButton button;
@@ -16,6 +18,14 @@ public partial class XPManager : Node
         if (Data.Instance != null)
         {
             _data = Data.Instance;
+            if (_data.townData.winGame)
+            {
+                _missionSuccessful.Show();
+            }
+            else
+            {
+                _missionFailed.Show();
+            }
             UpdateData();
         }
     }

@@ -249,6 +249,7 @@ public partial class BlessingManager : Control
 
     public void SceneChange()
     {
+        _data.townData.day += 1;
         _data.townData.deadCharacters.Clear();
         _saveData.SaveGameData();
         _changeScene.SceneTransition();
@@ -257,6 +258,7 @@ public partial class BlessingManager : Control
     public void NoBlessingsWasGenerated()
     {
         Hide();
+        _data.townData.day += 1;
         _data.townData.deadCharacters.Clear();
         _saveData.SaveGameData();
         _changeScene.SceneTransition();

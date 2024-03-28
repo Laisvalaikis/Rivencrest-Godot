@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=14 format=3 uid="uid://b4y823vicmmwl"]
+[gd_resource type="Resource" load_steps=16 format=3 uid="uid://b4y823vicmmwl"]
 
 [ext_resource type="Texture2D" uid="uid://d0t5uaog4sg7k" path="res://Data/PlayerResource/Red/Textures/CharacterPortraitSprite.tres" id="1_gafg1"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_xquwx"]
@@ -8,11 +8,13 @@
 [ext_resource type="Resource" uid="uid://b30vrjw3ga4eg" path="res://Data/Abilities/Enrage.tres" id="5_v8pk1"]
 [ext_resource type="Resource" uid="uid://cuhhwknvh5xqx" path="res://Data/Abilities/Execute.tres" id="6_b34ub"]
 [ext_resource type="Resource" uid="uid://fgkngukdnek2" path="res://Data/Abilities/Scream.tres" id="7_ts2xn"]
+[ext_resource type="AnimationLibrary" uid="uid://c3m08fqxrwtcc" path="res://Animations/Library/PlayerRed.tres" id="8_sfcck"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="9_rfnn3"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_x7sn2"]
 [ext_resource type="Resource" uid="uid://c6racdua8md0f" path="res://Data/Blessings/Swiftness.tres" id="11_srdmo"]
 [ext_resource type="Texture2D" uid="uid://b7jxkwqhihjex" path="res://Data/PlayerResource/Red/Textures/CharacterSprite.tres" id="11_wqi2l"]
 [ext_resource type="Texture2D" uid="uid://bmw2cwjl3adgn" path="res://Data/PlayerResource/Red/Textures/RoleSprite.tres" id="12_uapjl"]
+[ext_resource type="Texture2D" uid="uid://cbxddi2ec8go8" path="res://Animations/Players/Red.png" id="14_nunlw"]
 
 [resource]
 script = ExtResource("1_xquwx")
@@ -26,6 +28,8 @@ CharacterSplashArt = ExtResource("2_vb8ha")
 CroppedSplashArt = ExtResource("3_t14gr")
 characterSprite = ExtResource("11_wqi2l")
 roleSprite = ExtResource("12_uapjl")
+animationLibrary = ExtResource("8_sfcck")
+spriteSheet = ExtResource("14_nunlw")
 baseAbilities = Array[Resource]([ExtResource("9_rfnn3"), ExtResource("9_x7sn2")])
 maxHealth = 23
 accuracy = 100

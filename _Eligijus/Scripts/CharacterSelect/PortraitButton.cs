@@ -9,7 +9,7 @@ public partial class PortraitButton: Button
     [Export]
     public AnimationPlayer animator;
     [Export]
-    public TextureRect characterImage;
+    public Sprite2D characterImage;
     [Export]
     public PlayerInformationDataNew playerInformation;
     [Export]

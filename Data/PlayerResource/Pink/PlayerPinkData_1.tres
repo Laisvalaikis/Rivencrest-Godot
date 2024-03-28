@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=14 format=3 uid="uid://bbhiystnfus4x"]
+[gd_resource type="Resource" load_steps=16 format=3 uid="uid://bbhiystnfus4x"]
 
 [ext_resource type="Texture2D" uid="uid://ckgu7akm3kvw2" path="res://Data/PlayerResource/Pink/Textures/CharacterPortraitSprite.tres" id="1_0piao"]
 [ext_resource type="Script" path="res://_Eligijus/Scripts/Data/PlayerInformationDataNew.cs" id="1_08aj7"]
@@ -8,11 +8,13 @@
 [ext_resource type="Resource" uid="uid://drnkp0tjwgvjo" path="res://Data/Abilities/Purify.tres" id="5_nqcw5"]
 [ext_resource type="Resource" uid="uid://bdpmg7b4gmdu7" path="res://Data/Abilities/WeakSpot.tres" id="6_8w5uj"]
 [ext_resource type="Resource" uid="uid://df6i4as2in2ku" path="res://Data/Abilities/SilenceBeam.tres" id="7_7818h"]
+[ext_resource type="AnimationLibrary" uid="uid://rhdwwgrxyqem" path="res://Animations/Library/PlayerPink.tres" id="8_67yd2"]
 [ext_resource type="Resource" uid="uid://ccpbav7la1bdy" path="res://Data/Abilities/PlayerAttack.tres" id="9_khyq0"]
 [ext_resource type="Resource" uid="uid://encu7jq8721o" path="res://Data/Abilities/PlayerMovement.tres" id="9_uo7y4"]
 [ext_resource type="Texture2D" uid="uid://dsy12g3ufwxnc" path="res://Data/PlayerResource/Pink/Textures/CharacterSprite.tres" id="11_ocjtg"]
 [ext_resource type="Resource" uid="uid://c6racdua8md0f" path="res://Data/Blessings/Swiftness.tres" id="11_wxo5f"]
 [ext_resource type="Texture2D" uid="uid://s5uwng3jk5xw" path="res://Data/PlayerResource/Pink/Textures/RoleSprite.tres" id="12_hfwok"]
+[ext_resource type="Texture2D" uid="uid://q1xx5factf2v" path="res://Animations/Players/Pink.png" id="14_st2ei"]
 
 [resource]
 script = ExtResource("1_08aj7")
@@ -26,6 +28,8 @@ CharacterSplashArt = ExtResource("2_xfhf8")
 CroppedSplashArt = ExtResource("3_loy1b")
 characterSprite = ExtResource("11_ocjtg")
 roleSprite = ExtResource("12_hfwok")
+animationLibrary = ExtResource("8_67yd2")
+spriteSheet = ExtResource("14_st2ei")
 baseAbilities = Array[Resource]([ExtResource("9_uo7y4"), ExtResource("9_khyq0")])
 maxHealth = 19
 accuracy = 100

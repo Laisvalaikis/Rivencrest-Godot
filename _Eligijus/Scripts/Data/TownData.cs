@@ -35,6 +35,8 @@ using Godot;
 		public List<Encounter> generatedEncounters { get; set; }
 		public int selectedEncounterIndex { get; set; }
 		public List<bool> finishedEncounters { get; set; }
+		
+		public bool winGame;
 		public GameSettings gameSettings { get; set; }
 
 		public TownData() { }
@@ -43,7 +45,7 @@ using Godot;
 			bool wasLastMissionSuccessful, bool newGame, int maxAbilityCount, string selectedMission, TownHallData townHall,
 			List<SavedCharacter> rcCharacters, List<int> enemies, bool allowEnemySelection, bool allowDuplicates, string teamColor,
 			string teamName, Encounter selectedEncounter, List<Encounter> pastEncounters, int selectedEncounterIndex, List<bool> finishedEncounters, bool generateNewEncounters, List<Encounter> generatedEncounters,
-			GameSettings gameSettings)
+			bool winGame, GameSettings gameSettings)
 		{
 			this.difficultyLevel = difficultyLevel;
 			this.townGold = townGold;
@@ -71,6 +73,7 @@ using Godot;
 			this.generatedEncounters = generatedEncounters;
 			this.selectedEncounterIndex = selectedEncounterIndex;
 			this.finishedEncounters = new List<bool>(finishedEncounters);
+			this.winGame = winGame;
 			this.gameSettings = gameSettings;
 		}
 		
@@ -138,6 +141,8 @@ using Godot;
 			{
 				generatedEncounters.Add(new Encounter(data.generatedEncounters[i]));
 			}
+
+			winGame = data.winGame;
 			gameSettings = new GameSettings(data.gameSettings);
 		}
 
@@ -169,6 +174,7 @@ using Godot;
 				generatedEncounters = new List<Encounter>(),
 				selectedEncounterIndex = 0,
 				generateNewEncounters = true,
+				winGame = false,
 				gameSettings = new GameSettings()
 			};
 		}

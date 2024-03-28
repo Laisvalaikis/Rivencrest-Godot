@@ -1,0 +1,178 @@
+[gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://cepi2knd3gv4q"]
+
+[sub_resource type="Animation" id="Animation_alcwe"]
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(73, 67), Vector2(74, 67), Vector2(73, 67), Vector2(74, 67), Vector2(73, 67), Vector2(74, 67), Vector2(73, 67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2i(97, 215, 44, 64), Rect2i(87, 343, 41, 64), Rect2i(283, 0, 41, 64), Rect2i(283, 266, 41, 64), Rect2i(229, 330, 41, 64), Rect2i(235, 75, 52, 64), Rect2i(192, 139, 47, 64), Rect2i(193, 203, 46, 64), Rect2i(239, 139, 47, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_r7u1y"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(76, 67), Vector2(75, 52), Vector2(75, 44), Vector2(75, 39), Vector2(75, 40), Vector2(71, 48), Vector2(74, 56), Vector2(73, 67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2i(0, 335, 41, 64), Rect2i(189, 0, 46, 79), Rect2i(143, 0, 46, 87), Rect2i(51, 0, 46, 92), Rect2i(97, 0, 46, 91), Rect2i(0, 0, 51, 83), Rect2i(235, 0, 48, 75), Rect2i(185, 267, 44, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_gt2tq"]
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(76, 67), Vector2(72, 67), Vector2(72, 79), Vector2(86, 77), Vector2(83, 71), Vector2(83, 69), Vector2(81, 67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2i(270, 330, 41, 64), Rect2i(176, 331, 41, 64), Rect2i(41, 344, 41, 63), Rect2i(0, 83, 51, 63), Rect2i(217, 394, 51, 51), Rect2i(69, 441, 34, 41), Rect2i(146, 151, 40, 41), Rect2i(208, 445, 39, 34), Rect2i(69, 407, 42, 34)]
+}
+
+[sub_resource type="Animation" id="Animation_41ank"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(73, 67), Vector2(74, 67), Vector2(73, 67), Vector2(74, 67), Vector2(73, 67), Vector2(70, 67), Vector2(69, 67), Vector2(68, 67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2i(46, 216, 44, 64), Rect2i(90, 279, 43, 64), Rect2i(44, 280, 43, 64), Rect2i(141, 266, 44, 64), Rect2i(133, 330, 43, 64), Rect2i(239, 266, 44, 64), Rect2i(0, 146, 47, 64), Rect2i(99, 151, 47, 64), Rect2i(51, 92, 48, 64), Rect2i(143, 87, 49, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_mhf5s"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(76, 67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2i(270, 330, 41, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_bby1m"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(76, 67), Vector2(76, 68), Vector2(76, 67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:region_rect")
+tracks/1/interp = 0
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Rect2i(0, 335, 41, 64), Rect2i(128, 394, 41, 63), Rect2i(0, 335, 41, 64)]
+}
+
+[resource]
+_data = {
+"Attack": SubResource("Animation_alcwe"),
+"CrowAttack": SubResource("Animation_r7u1y"),
+"Death": SubResource("Animation_gt2tq"),
+"Heal": SubResource("Animation_41ank"),
+"Hit": SubResource("Animation_mhf5s"),
+"Idle": SubResource("Animation_bby1m")
+}

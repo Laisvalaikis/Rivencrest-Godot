@@ -88,7 +88,9 @@ public partial class CharacterSelectManager : Node
 			var firstUnoccupiedButton = FindFirstUnoccupied();
 			firstUnoccupiedButton.playerInformation = playerinformation;
 			firstUnoccupiedButton.characterIndex = charIndex;
-			firstUnoccupiedButton.characterImage.Texture = NewAtlas((CompressedTexture2D)playerinformation.characterSprite.Get("atlas"), (Rect2)playerinformation.characterSprite.Get("region"));
+			firstUnoccupiedButton.characterImage.Texture = (Texture2D)playerinformation.spriteSheet;
+			firstUnoccupiedButton.animator.AddAnimationLibrary("", playerinformation.animationLibrary);
+			firstUnoccupiedButton.animator.Play("Idle");
 		}
 	}
 	
@@ -158,6 +160,8 @@ public partial class CharacterSelectManager : Node
 			x.characterImage.Texture = null;
 			x.playerInformation = null;
 			x.characterIndex = -1;
+			x.animator.Stop();
+			x.animator.RemoveAnimationLibrary("");
 			Reorder();
 		}
 	}
@@ -173,6 +177,8 @@ public partial class CharacterSelectManager : Node
 				x.characterImage.Texture = null;
 				x.playerInformation = null;
 				x.characterIndex = -1;
+				x.animator.Stop();
+				x.animator.RemoveAnimationLibrary("");
 				AddCharacter(tempInformation, tempIndex);
 			}
 		}

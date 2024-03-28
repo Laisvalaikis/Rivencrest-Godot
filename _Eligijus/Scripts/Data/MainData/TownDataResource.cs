@@ -55,6 +55,8 @@ public partial class TownDataResource: Resource
 	public Array<EncounterResource> generatedEncounters;
 	[Export]
 	public Array<bool> finishedEncounters;
+	[Export] 
+	public bool winGame;
 	[Export]
 	public GameSettingsResource gameSettings;
 
@@ -92,6 +94,7 @@ public partial class TownDataResource: Resource
 		generatedEncounters = data.generatedEncounters;
 		selectedEncounterIndex = data.selectedEncounterIndex;
 		finishedEncounters = new Array<bool>(data.finishedEncounters);
+		winGame = data.winGame;
 		gameSettings = data.gameSettings;
 	}
 
